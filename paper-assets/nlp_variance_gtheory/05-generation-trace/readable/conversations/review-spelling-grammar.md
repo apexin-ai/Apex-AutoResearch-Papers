@@ -1,0 +1,1848 @@
+# review spelling grammar
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/chats/worker_review_spelling_grammar_20260523T175737.jsonl`
+- **Structured JSON:** [`8941c2558fe95f69251e.json`](../../sessions/89/8941c2558fe95f69251e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+53 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T18:03:54.473951+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T18:03:54.474234+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T18:03:54.474435+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -path \"*/paper/*.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory -path \"*/paper/*.tex\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T18:03:54.474598+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T18:03:54.474767+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -name \"*.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory -name \"*.tex\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T18:03:54.474892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T18:03:54.475009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls -la /root/nlp_variance_gtheory/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "ls -la /root/nlp_variance_gtheory/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T18:03:54.475149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1432\\ndrwxr-xr-x 10 root root   4096 May 24 00:12 .\\ndrwx------  1 root root   4096 May 23 23:26 ..\\ndrwxr-xr-x  3 root root     30 May 21 12:21 artifacts\\ndrwxr-xr-x  3 root root   4096 May 23 22:50 data\\n-rw-r--r--  1 root root  10283 May 21 02:38 design_matrix.csv\\n-rw-r--r--  1 root root 291866 May 21 07:01 design_matrix_exp001.csv\\n-rw-r--r--  1 root root 291866 May 21 08:56 design_matrix_exp001_full.csv\\n-rw-r--r--  1 root root  79781 May 21 06:09 design_matrix_exp001_llama.csv\\n-rw-r--r--  1 root root 126437 May 21 06:13 design_matrix_exp001_llama_local.csv\\n-rw-r--r--  1 root root 413327 May 21 16:37 design_matrix_exp002.csv\\n-rw-r--r--  1 root root  24662 May 22 12:27 design_matrix_exp003_3b.csv\\n-rw-r--r--  1 root root  25058 May 22 13:12 design_matrix_exp003_72b.csv\\n-rw-r--r--  1 root root  24662 May 22 12:47 design_matrix_exp003_7b.csv\\n-rw-r--r--  1 root root  49622 May 22 12:26 design_matrix_exp003_scale.csv\\ndrwxr-xr-x  3 root root     27 May 22 20:17 figures\\ndrwxr-xr-x  2 root root     31 May 21 03:57 models\\n-rw-r--r--  1 root root  16155 May 23 17:09 partial_credit_multimodel.py\\n-rw-r--r--  1 root root    321 May 20 23:03 pyproject.toml\\n-rw-r--r--  1 root root    252 May 21 06:05 requirements.txt\\ndrwxr-xr-x 17 root root   4096 May 23 17:09 results\\n-rw-r--r--  1 root root   4306 May 21 03:11 run_bf16_eager.py\\n-rwxr-xr-x  1 root root   1442 May 21 02:44 run_float32_only.sh\\n-rwxr-xr-x  1 root root   1408 May 21 02:45 run_float32_v0.sh\\n-rwxr-xr-x  1 root root   1198 May 21 02:37 run_full_mvp.sh\\n-rwxr-xr-x  1 root root    363 May 24 00:12 run_mmlu_after.sh\\n-rwxr-xr-x  1 root root   1504 May 20 23:04 run_mvp.sh\\n-rw-r--r--  1 root root    798 May 21 14:10 run_reml_500.py\\n-rwxr-xr-x  1 root root    289 May 21 14:13 run_reml_500.sh\\n-rw-r--r--  1 root root   1225 May 21 14:16 run_reml_500_v2.py\\n-rw-r--r--  1 root root   1300 May 21 14:20 run_reml_500_v3
+…[truncated 402 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T18:03:54.475314+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T18:03:54.475481+00:00_
+
+artifacts/dream_reports/dream_20260520T190053/best/paper.tex
+artifacts/dream_reports/dream_20260520T190053/median/paper.tex
+artifacts/dream_reports/dream_20260520T190053/worst/paper.tex
+artifacts/dream_reports/dream_20260520T222113/best/paper.tex
+artifacts/dream_reports/dream_20260520T222113/median/paper.tex
+artifacts/dream_reports/dream_20260520T222113/worst/paper.tex
+artifacts/dream_reports/dream_20260521T032813/best/paper.tex
+artifacts/dream_reports/dream_20260521T032813/median/paper.tex
+artifacts/dream_reports/dream_20260521T032813/worst/paper.tex
+artifacts/dream_reports/dream_20260521T044739/best/paper.tex
+artifacts/dream_reports/dream_20260521T044739/median/paper.tex
+artifacts/dream_reports/dream_20260521T044739/worst/paper.tex
+artifacts/dream_reports/dream_20260521T075006/best/paper.tex
+artifacts/dream_reports/dream_20260521T075006/median/paper.tex
+artifacts/dream_reports/dream_20260521T075006/worst/paper.tex
+artifacts/dream_reports/dream_20260521T122449/best/paper.tex
+artifacts/dream_reports/dream_20260521T122449/median/paper.tex
+artifacts/dream_reports/dream_20260521T122449/worst/paper.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/sections/experiments.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/limitations.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/related_work.tex
+docs/paper/conclusion.tex
+docs/paper/abstract.tex
+docs/paper/method.tex
+docs/paper/appendix.tex
+docs/paper/experiments.tex
+docs/paper/limitations.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T18:03:54.475623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -maxdepth 3 -name \"*.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root -maxdepth 3 -name \"*.tex\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T18:03:54.475745+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T18:03:54.475891+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T18:03:54.476020+00:00_
+
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	
+11	\usepackage{graphicx}
+12	\usepackage{amsmath,amssymb}
+13	\usepackage{booktabs}
+14	\usepackage{multirow}
+15	\usepackage{xcolor}
+16	
+17	\graphicspath{{../../figures/paper/}}
+18	
+19	\title{Reproducibility Budgets for Open-Weight LLM Evaluation:\\A Generalizability Theory Study of 7--9B Instruction-Tuned Models}
+20	
+21	\author{Anonymous}
+22	
+23	\begin{document}
+24	\maketitle
+25	
+26	\begin{abstract}
+27	\input{abstract}
+28	\end{abstract}
+29	
+30	% === INTRODUCTION ===
+31	\input{introduction}
+32	
+33	% === RELATED WORK ===
+34	\input{related_work}
+35	
+36	% === METHOD ===
+37	\input{method}
+38	
+39	% === EXPERIMENTS ===
+40	\input{experiments}
+41	
+42	% === CONCLUSION ===
+43	\input{conclusion}
+44	
+45	% === LIMITATIONS ===
+46	\input{limitations}
+47	
+48	\bibliography{references}
+49	
+50	% === APPENDIX ===
+51	\input{appendix}
+52	
+53	\end{document}
+54	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T18:03:54.476148+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T18:03:54.476267+00:00_
+
+1	Large Language Model (LLM) evaluation results vary across reproductions, but variance sources interact, and their relative importance shifts with the benchmark format. We apply Generalizability theory (G-theory) in a fully crossed design with up to seven facets across eight open-weight instruction-tuned models (7--9B parameters) and five benchmarks, totaling approximately 2.3 million evaluation records. D-study projections show that, under binary correctness scoring, a recommended multi-condition design achieves $G \geq 0.80$ with 178 items (1,602 evaluations per model), a 3.1$\times$ item reduction over single-condition designs (552 items, 552 evaluations)---trading approximately 3$\times$ more total evaluations for 3$\times$ fewer items, a tradeoff that favors multi-condition designs when item construction is costly. Model$\times$item interaction (up to 36\%) indicates that models differ primarily in which items they find difficult, not in overall ability. Preliminary validation across a 3B--72B parameter range confirms stable variance structure within one architecture family. We release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T18:03:54.476405+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T18:03:54.476564+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	In our analysis of five benchmarks, item selection drives 34--38\% of evaluation variance on multiple-choice tasks while prompt wording is negligible ($<$3\%). On the free-form reasoning task GSM8K, the structure shifts: model$\times$prompt interaction alone accounts for approximately 9\%, while item selection drops to 17\%. These numbers, drawn from a factorial analysis of approximately 2.3 million evaluation records, reveal that the variance structure of LLM evaluation is not a fixed property of the pipeline but shifts qualitatively with the response format. Current evaluation practice treats variance sources as independent nuisance factors and controls them one at a time: one study perturbs prompts, another varies precision, a third changes item subsets. This piecemeal approach cannot capture interactions between sources, nor can it predict how the relative importance of each source changes across evaluation settings. Leaderboard rankings built on single-condition evaluations are therefore sensitive to methodological choices that remain unreported and uncontrolled \citep{rodriguez2021leaderboards, dehghani2021benchmark}. No study has simultaneously crossed infrastructure and methodology facets in a unified factorial design across benchmarks to decompose these sources, quantify their interactions, and compare the resulting variance structure.
+5	
+6	Existing studies examine individual variance sources in isolation. \citet{sclar2024formatting} and BrittleBench \citep{brittlebench2026} documented 50--76\% accuracy swings from prompt formatting; \citet{yuan2025layercast} showed up to 9\% variation from numerical precision; \citet{pezeshkpour2024ordering}, \citet{dodge2020finetuning}, and \citet{henderson2018deep} documented ordering and hyperparameter sensitivity---each holding other factors fixed. \citet{messing2026hidden} applied G-theory to LLM evaluation across five methodology facets on a single benchmark (j
+…[truncated 2900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T18:03:54.476708+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T18:03:54.476853+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Variance Decomposition in ML/NLP Evaluation.}
+5	Factorial decomposition of evaluation variance has roots in the ML reproducibility literature. \citet{bouthillier2021accounting} introduced an ANOVA-based template that decomposes benchmark variance across implementation details, hyperparameters, and data splits, establishing that design choices account for a substantial share of reproducibility failures. Subsequent studies applied similar decomposition to specific evaluation facets \citep{dodge2020finetuning, henderson2018deep, magnusson2023reproducibility}. \citet{messing2026hidden} brought Generalizability theory into LLM evaluation, decomposing variance across five methodology facets on a single benchmark (judge identity: 43.8\%; see Positioning below for detailed comparison). \citet{madaan2024quantifying} proposed per-factor variance metrics for LLM evaluation benchmarks but did not cross factors simultaneously. Holistic evaluation frameworks \citep{liang2023helm, kiela2021dynabench} standardize multi-scenario comparison but do not decompose variance sources. \citet{blackwell2024towards} quantified uncertainty in benchmark scores, and \citet{qian2026benchmark} conducted systematic meta-evaluation of LLM benchmarks; \citet{burnell2023rethink} called for rethinking evaluation reporting standards; \citet{saxon2024metrology} advocated model metrology as a framework for rigorous benchmark design. Recently, G-theory has been applied to LLM-based writing assessment \citep{wei2025gtheory} and annotation reliability \citep{varannot2025gtheory}, but these studies address scoring consistency rather than benchmark evaluation variance. \citet{kunievsky2025intent} proposed an alternative decomposition that separates intent uncertainty, articulation variance, and model uncertainty, but this framework does not cross infrastructure and methodology facets in a factorial design. Our work extends these approaches by cross
+…[truncated 4652 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T18:03:54.476987+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T18:03:54.477164+00:00_
+
+1	\section{Method and Experimental Design}
+2	\label{sec:method}
+3	
+4	\subsection{Generalizability Theory}
+5	\label{sec:gtheory}
+6	
+7	Generalizability theory (G-theory) treats each measurement as one observation from a universe of admissible conditions defined by the crossed facets of an evaluation design \cite{shavelson1991generalizability, brennan2001generalizability}. The \emph{object of measurement} is the entity whose consistency is of interest. In our setting, test items ($p$) serve as the object of measurement, and the goal is to determine how reliably item-level scores generalize across the methodological conditions under which they are collected.
+8	
+9	A \emph{G-study} decomposes total observed variance into components $\sigma^2_x$ for each facet $x$ and their interactions. Each component quantifies how much variability that source contributes to the overall measurement. Large interaction components (e.g., $\sigma^2_{pM}$ for item-by-model) indicate that facets do not affect items uniformly but instead create differential difficulty profiles. We estimate variance components via Henderson Method~I, an unbiased ANOVA-based estimator for balanced designs \cite[Ch.~3]{brennan2001generalizability}, with 1,000-resample bootstrap confidence intervals \cite{efron1993bootstrap} (item-level resampling with replacement, preserving the fully-crossed structure across all other facets) \cite{li2023bootstrap}.
+10	
+11	A \emph{D-study} projects the generalizability coefficient under hypothetical designs with different numbers of conditions per facet:
+12	\begin{equation}
+13	G_\text{item} = \frac{\sigma^2_p}{\sigma^2_p + \sigma^2_\text{rel}}
+14	\label{eq:gcoeff}
+15	\end{equation}
+16	where $\sigma^2_\text{rel} = \sum_i \sigma^2_{p \times f_i} / n_{f_i} + \sigma^2_\text{residual} / \prod_i n_{f_i}$ aggregates all item-by-facet interaction variances, each divided by the number of conditions for the corresponding facets \cite[Ch.~4]{brennan2001generalizability}. A D-study projects 
+…[truncated 11788 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T18:03:54.477320+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T18:03:54.477521+00:00_
+
+1	\section{Experiments}
+2	
+3	All experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on a single NVIDIA RTX PRO 6000 GPU (96GB) with binary correctness scoring.
+4	
+5	\subsection{Single-Model Baseline}
+6	\label{sec:single_model}
+7	
+8	We first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.
+9	
+10	\paragraph{Design.} The G-study crosses six facets: 200 items $\times$ 3 numerical precisions (BF16, FP16, FP32) $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 3 temperature levels (0.0, 0.3, 0.7) $\times$ 4 answer orderings, yielding 259,200 binary observations. Variance components are estimated via Henderson Method~I with bootstrap confidence intervals (1,000 resamples).
+11	
+12	\paragraph{Results.} Under binary scoring, item difficulty (\texttt{item\_id}) accounts for 58.4\% of total variance, with the residual term contributing 23.1\%. All main facet effects are negligible ($<$1\% each): precision 0.9\%, prompt template, temperature, seed, and ordering each $<$0.5\%. The interesting structure appears in item-conditional interactions: prompt$\times$item is the largest at 5.5\%, followed by seed$\times$item (4.7\%), precision$\times$item (3.3\%), temperature$\times$item (2.9\%), and ordering$\times$item (0.8\%). This pattern indicates that methodological choices do not shift performance uniformly across items; instead, specific items are differentially sensitive to specific facets---prompt template variation produces the largest item-conditional effect.
+13	
+14	The resulting generalizability coefficient is $G_\text{item} = 0.936$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 55 items in this multi-facet design.
+15	
+16	For text-exact-match scoring (requiring verbatim string matches), the variance struc
+…[truncated 9672 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T18:03:54.477669+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T18:03:54.477792+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	A recommended 3-prompt $\times$ 3-seed design reduces item requirements from 552 to 178 for $G \geq 0.80$, confirmed across five benchmarks under binary scoring; multi-facet designs minimize items when item construction is costly, while single-condition designs suit compute-constrained settings. $G_\text{item}$ and $G_\text{model}$ have different bottlenecks---item count for the former, prompt standardization for the latter---providing orthogonal optimization paths: adding items improves item reliability, while controlling prompt and seed conditions improves model discriminability. All budgets assume binary scoring; extending to other model scales and continuous metrics is a priority. We recommend that benchmark designers adopt multi-facet validation (at minimum 3 prompts $\times$ 3 seeds) as standard practice when sizing pilot studies, and that leaderboard operators average over prompt and seed conditions to improve ranking stability. Code, data, and a D-study calculator will be released upon publication.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T18:03:54.477913+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T18:03:54.478036+00:00_
+
+1	\section{Limitations}
+2	\label{sec:limitations}
+3	
+4	Our eight models share the 2024--2025 instruction-tuning paradigm; temporal correlation may limit exchangeability, and results do not generalize to API-based or base models. Preliminary within-family 72B validation (\S\ref{sec:scale_validation}) suggests stable variance structure across scales, but is limited to a single architecture (Qwen2.5); the Qwen2.5 family shares training recipes and tokenizer, so validating with architecturally distinct families (e.g., Llama-3 70B, Mistral-Large) is necessary before extrapolating budget recommendations to arbitrary model families.
+5	
+6	The benchmark sample ($n = 5$) limits statistical power for format-associated observations ($p = 0.10$); other formats (code generation, multi-turn dialogue) may differ. All D-study budgets reported in this paper are strictly valid only under binary correctness scoring. Our partial-credit analysis (GSM8K, 8 models) shows $G$ drops from 0.86 to 0.77 (crossed design) with all models showing $G_\text{partial} < G_\text{binary}$, suggesting limited transferability to finer-grained scoring rubrics; the analysis is limited to a single benchmark, and its generalizability to other tasks is unknown. Our temperature range (0.0--0.7) does not cover high-temperature regimes ($\tau > 1.0$) sometimes used in generation tasks. Our design varies few-shot example ordering but not example identity, a known variance source. Results depend on vLLM~0.9.2; different inference engines or vLLM versions may alter CUDA-level nondeterminism patterns.
+7	
+8	All eight models may have encountered benchmark items during pre-training; differential contamination across architectures could inflate model$\times$item interaction \citep{golchin2023contamination, oren2024proving}, though consistent variance structures across three independently constructed MC benchmarks provide indirect evidence against contamination as the sole driver. Contamination affects absolute budget est
+…[truncated 153 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T18:03:54.478172+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T18:03:54.478448+00:00_
+
+1	\appendix
+2	\section{Additional Robustness Analyses}
+3	\label{app:robustness}
+4	
+5	We report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.
+6	
+7	\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\rho = 1.0$) relative to Henderson Method~I \cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.
+8	
+9	\paragraph{Accuracy-range stability.} The \texttt{item\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.
+10	
+11	\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \cite[Ch.~12]{brennan2001generalizability}.
+12	
+13	\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\rho = 0.732$ between binary and continuous rankings, excluding residual; \texttt{item\_id} dominant in all 100 replications; top-5 ordering correct in 79\% of replications). Bias analysis by difficulty stratum shows $|\text{bias}| = 0.28$--$0.37$ for items with $p \in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This an
+…[truncated 26927 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T18:03:54.478712+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\bG theory\\b|g-theory|g theory|gtheory",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\bG theory\\b|g-theory|g theory|gtheory",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T18:03:54.478873+00:00_
+
+docs/paper/main.fls:1:PWD /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper
+docs/paper/related_work.tex:5:[Omitted long matching line]
+docs/paper/related_work.tex:14:[Omitted long matching line]
+docs/paper/related_work.tex:17:[Omitted long matching line]
+docs/paper/experiments.tex:110:\citet{zhou2026irt}'s IRT-selected 116 items yield $G = 0.457$ under single-condition but $G = 0.895$ under multi-facet conditions, demonstrating that IRT item selection and G-theory protocol optimization are orthogonal and complementary. An internal consistency check using four-model subsets confirms projection stability ($|\Delta G| \leq 0.029$ for MC, $\leq 0.065$ for FF; Table~\ref{tab:forward_pred}).
+docs/paper/main.bbl:82:  Pandey}]{varannot2025gtheory}
+docs/paper/main.bbl:308:\bibitem[{Mushquash and O'Connor(2006)}]{mushquash2006gtheory}
+docs/paper/main.bbl:403:  Rowley}]{shavelson1989gtheory}
+docs/paper/main.bbl:409:\bibitem[{Song et~al.(2025)Song, Lee, and Jiao}]{wei2025gtheory}
+docs/paper/sections/experiments.tex:3:We apply the G-theory framework from Section~3 to a fully crossed evaluation design spanning multiple models, benchmarks, and methodological facets. All experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on NVIDIA RTX PRO 6000 GPUs (96GB). Binary correctness (1/0) serves as the primary outcome measure throughout; generation-based scoring avoids the log-likelihood artifacts identified by \citet{hua2025flaw}.
+docs/paper/sections/experiments.tex:48:\paragraph{D-study validation.} To test whether G-theory projections generalize beyond the training sample, we estimate a D-study on 3-model subsets and predict the 4-model coefficient. The predicted $G = 0.816$ for $n_\text{model} = 4$ closely matches the observed $G = 0.820$ ($\Delta = 0.004$). Forward projections indicate $G = 0.848$ at 5 models, $G = 0.893$ at 8 models, and $G \geq 0.90$ requires approximately 10 models.
+docs/paper/method.tex:5:\label{sec:gt
+…[truncated 3824 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T18:03:54.479021+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\S\\d+\\.\\d+|\\\\S\\d+",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\S\\d+\\.\\d+|\\\\S\\d+",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T18:03:54.479142+00:00_
+
+docs/paper/method.tex:27:[Omitted long matching line]
+docs/paper/method.tex:79:[Omitted long matching line]
+docs/paper/method.tex:83:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T18:03:54.479256+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\ba [AEIOU]",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\ba [AEIOU]",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T18:03:54.479370+00:00_
+
+docs/paper/acl_natbib.bst:236:          % the space between "} {" matters: a URL of just the right length can cause "\% newline em"
+docs/paper/acl_natbib.bst:1210:% Output a URL.  We can't use the more normal idiom (something like
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T18:03:54.479503+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "teh |adn |benchamrk|evalution|reproducability|reproducibilty|generalizabilty|decompostion|methodolgy|temperture|acheive|nondetermin",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "teh |adn |benchamrk|evalution|reproducability|reproducibilty|generalizabilty|decompostion|methodolgy|temperture|acheive|nondetermin",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T18:03:54.479623+00:00_
+
+docs/paper/related_work.tex:8:[Omitted long matching line]
+docs/paper/main.bbl:161:  nondeterminism in {LLM} inference}.
+docs/paper/main.bbl:453:  mitigating numerical sources of nondeterminism in {LLM} inference}.
+docs/paper/method.tex:70:[Omitted long matching line]
+docs/paper/limitations.tex:6:[Omitted long matching line]
+docs/paper/references.bib:65:  title={Understanding and Mitigating Numerical Sources of Nondeterminism in {LLM} Inference},
+docs/paper/references.bib:82:  title={Defeating Nondeterminism in {LLM} Inference},
+docs/paper/references.bib:87:  url={https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T18:03:54.479744+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\S\\d",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\S\\d",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T18:03:54.479857+00:00_
+
+docs/paper/method.tex:27:[Omitted long matching line]
+docs/paper/method.tex:79:[Omitted long matching line]
+docs/paper/method.tex:83:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T18:03:54.479965+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "multi.?condition|multi.?facet",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "multi.?condition|multi.?facet",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T18:03:54.480098+00:00_
+
+docs/paper/related_work.tex:14:[Omitted long matching line]
+docs/paper/experiments.tex:14:The resulting generalizability coefficient is $G_\text{item} = 0.936$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 55 items in this multi-facet design.
+docs/paper/experiments.tex:87:Table~\ref{tab:dstudy} compares evaluation designs at the $G \geq 0.80$ threshold using single-model (Llama-3.1-8B-Instruct) MMLU variance components. The multi-facet design (1,296 conditions per item) achieves $G = 0.936$ at 200 items and requires only 55 items for $G \geq 0.80$. A single-condition design reaches only $G = 0.592$ at 200 items and requires 552 items---a 10.0$\times$ budget ratio stable across subset sizes (CV = 1.9\%).
+docs/paper/experiments.tex:98:Multi-facet & 1{,}296 & \textbf{55} & 71{,}280 & \textbf{.936} & --- \\
+docs/paper/experiments.tex:107:{\scriptsize $^\dagger$\,PSN-IRT 116 items \cite{zhou2026irt} under single-condition: $G = 0.457$. $^\ddagger$\,Same 116 items under multi-facet: $G = 0.895$.}
+docs/paper/experiments.tex:110:\citet{zhou2026irt}'s IRT-selected 116 items yield $G = 0.457$ under single-condition but $G = 0.895$ under multi-facet conditions, demonstrating that IRT item selection and G-theory protocol optimization are orthogonal and complementary. An internal consistency check using four-model subsets confirms projection stability ($|\Delta G| \leq 0.029$ for MC, $\leq 0.065$ for FF; Table~\ref{tab:forward_pred}).
+docs/paper/experiments.tex:112:[Omitted long matching line]
+docs/paper/conclusion.tex:4:[Omitted long matching line]
+docs/paper/sections/experiments.tex:13:The resulting generalizability coefficient is $G_\text{item} = 0.918$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 72 items in this multi-facet design.
+docs/paper/sectio
+…[truncated 2322 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T18:03:54.480230+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "tradeoff|trade-off|trade off",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "tradeoff|trade-off|trade off",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T18:03:54.480342+00:00_
+
+docs/paper/abstract.tex:1:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T18:03:54.480483+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex",
+  "offset": "26",
+  "limit": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex",
+    "offset": "26",
+    "limit": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T18:03:54.480617+00:00_
+
+26	
+27	\paragraph{Facets.} Items ($p$): 200 MMLU questions selected via purposive stratified sampling across 10 of MMLU's 57 subjects (20 per subject, deterministic selection with arbitrarily chosen seed 42). The 10 subjects span four disciplinary domains---STEM: abstract algebra, college physics, high school mathematics, computer security; humanities: world religions, philosophy; social sciences: US foreign policy, international law; professional: professional medicine, clinical knowledge---ensuring that variance estimates are not dominated by a single knowledge domain. Resampling stability (CV = 3.1\%) was evaluated within these 10 subjects; cross-subject generalization remains untested. Models ($M$): eight open-weight 7--9B parameter instruction-tuned models spanning eight architecture families---DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B-Instruct, Mistral-7B-v0.3-Instruct, OLMo-2-7B, Qwen3-8B, and Yi-1.5-9B (full identifiers in Appendix~\ref{app:models})---treated as a quasi-random facet (\S3.6). Numerical precision ($\pi$): BF16, FP16, and FP32, all evaluated with \texttt{enforce\_eager=True} for fair comparison across precision levels. Prompt template ($\delta$): six surface perturbations of the evaluation instruction \cite{sclar2024formatting}, varying option layout (lettered vs.\ numbered), instruction wording (direct vs.\ contextual), and answer prompt cue for MC benchmarks; for FF benchmarks, templates vary chain-of-thought elicitation strategy (full template text in Appendix~\ref{app:models}). Random seed ($s$): six fixed values (42, 123, 456, 789, 1024, 2048). Sampling temperature ($\tau$): three levels (0.0, 0.3, 0.7) spanning deterministic to moderately stochastic decoding. Answer ordering ($o$): four permutations of few-shot demonstration examples (for MMLU; structurally inert for other benchmarks, see \S\ref{sec:exp002}) \cite{pezeshkpour2024ordering}.
+28	
+29	\paragraph{Sample sizes.} The cross-model BF16 balanced subset yields 460,800 rec
+…[truncated 384 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T18:03:54.480750+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex",
+  "offset": "78",
+  "limit": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex",
+    "offset": "78",
+    "limit": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T18:03:54.480875+00:00_
+
+78	
+79	All findings in this paper are conditioned on binary correctness scoring. This measurement resolution collapses continuous generation quality into a pass/fail outcome, which may amplify item-related variance by reducing within-item response variability and mask finer-grained variance sources (e.g., partial credit, reasoning quality) that would emerge under richer scoring rubrics. The text-exact-match comparison in \S4.1 ($G = 0.007$ vs.\ $0.936$) illustrates how the scoring metric can fundamentally reshape variance structure. A partial-credit analysis on GSM8K (8 models, step-level scoring) confirms this conditionality: $G_\text{item}$ drops from 0.86 to 0.77, with all eight models showing $G_\text{partial} < G_\text{binary}$ (mean $\Delta G = -0.135$; Appendix~\ref{app:robustness}), providing evidence that D-study budgets have limited transferability to finer-grained scoring rubrics.
+80	
+81	\subsection{Model Facet Specification}
+82	
+83	Our target universe comprises open-weight, instruction-tuned models in the 7--9B parameter range (eight architecture families); results may not generalize to API-based, base, or $>$9B models. Our eight purposively selected models are treated as a quasi-random facet \cite{meredith1993measurement, putnick2016measurement}. We report $G$ under random-model assumptions, the more conservative specification: across five benchmarks, treating models as fixed yields $G_\text{fixed}$ of 0.951--0.990 (mean 0.975) versus $G_\text{random}$ of 0.863--0.896 (mean 0.882), a consistent increase of 0.077--0.113 (mean 0.093), because model$\times$item interaction (30--36\%) enters the relative error variance under random assumptions. Consequently, our D-study budgets are upper bounds---practitioners will not under-sample regardless of facet classification. The variance decomposition itself (Tables~\ref{tab:cross_model}--\ref{tab:cross_benchmark}) is invariant to this choice. Leave-one-model-out analysis preserves component rankings across all fiv
+…[truncated 305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T18:03:54.481012+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "nondeterminism|non-determinism",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-i": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "nondeterminism|non-determinism",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex",
+    "-i": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T18:03:54.481127+00:00_
+
+docs/paper/related_work.tex:8:[Omitted long matching line]
+docs/paper/method.tex:70:[Omitted long matching line]
+docs/paper/limitations.tex:6:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T18:03:54.481238+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "item.level|item level|cross.model|cross model|open.weight|open weight|single.condition|single condition|format.associated|format associated",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+  "output_mode": "content",
+  "glob": "*.tex",
+  "-i": "True",
+  "head_limit": "50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "item.level|item level|cross.model|cross model|open.weight|open weight|single.condition|single condition|format.associated|format associated",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+    "output_mode": "content",
+    "glob": "*.tex",
+    "-i": "True",
+    "head_limit": "50"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T18:03:54.481420+00:00_
+
+docs/paper/experiments.tex:3:All experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on a single NVIDIA RTX PRO 6000 GPU (96GB) with binary correctness scoring.
+docs/paper/experiments.tex:8:We first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.
+docs/paper/experiments.tex:18:\subsection{Cross-Model Variance}
+docs/paper/experiments.tex:20:[Omitted long matching line]
+docs/paper/experiments.tex:24:\caption{Variance decomposition for the cross-model MMLU design (8 models, BF16, 460,800 records). Components estimated via Henderson Method~I. $G_\text{item} = 0.896$.}
+docs/paper/experiments.tex:25:\label{tab:cross_model}
+docs/paper/experiments.tex:45:\subsection{Exploratory: Format-Associated Variance Patterns}
+docs/paper/experiments.tex:48:[Omitted long matching line]
+docs/paper/experiments.tex:52:\caption{Format-associated variance structure across five benchmarks (exp-002, 8 models). Variance components (\%) per benchmark; MC = multiple-choice, FF = free-form. Bold = dominant non-residual component. $^\dagger$For MC, reports prompt$\times$item interaction (prompt main effect $<$1\%); for FF, reports prompt main effect (item-conditional interactions absorbed into residual).}
+docs/paper/experiments.tex:87:Table~\ref{tab:dstudy} compares evaluation designs at the $G \geq 0.80$ threshold using single-model (Llama-3.1-8B-Instruct) MMLU variance components. The multi-facet design (1,296 conditions per item) achieves $G = 0.936$ at 200 items and requires only 55 items for $G \geq 0.80$. A single-condition design reaches only $G = 0.592$ at 200 items and requires 552 items---a 10.0$\times$ budget ratio stable across subset sizes (CV = 1.9\%).
+docs/paper/experiments.tex:107:{\scriptsize $^\dagger$\,PSN-IRT 116 items \cite{zhou2026irt} under single-condition: $G = 0.457$. $^\ddagger$\,Same 116 items under multi-facet: $G = 0.895
+…[truncated 7124 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_review_spelling_grammar_20260523T175737",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-23T18:03:54.481681+00:00_
+
+所有检查完成。以下是完整报告。
+
+---
+
+## 论文拼写/语法/术语一致性检查报告
+
+检查范围：`docs/paper/` 下全部 8 个 tex 文件（main.tex, abstract.tex, introduction.tex, related_work.tex, method.tex, experiments.tex, conclusion.tex, limitations.tex, appendix.tex）
+
+---
+
+### 1. 术语一致性问题
+
+#### 1A. "multi-condition" vs "multi-facet" 术语混用 ⚠️
+
+| 位置 | 用法 | 指代 |
+|------|------|------|
+| `abstract.tex:1` | "multi-condition design" | 推荐的 3p×3s 设计 (178 items) |
+| `experiments.tex` 全文 | "multi-facet design" | 完整 1,296-condition 设计 (55 items) |
+| `appendix.tex` 表格 | "Multi-facet (2,304 cond.)" | 跨模型完整设计 |
+
+**问题**：Abstract 用 "multi-condition" 指推荐设计，正文用 "multi-facet" 指完整设计。读者可能误认为两者指同一设计。建议 Abstract 统一为 "multi-facet" 或明确标注 "3-prompt × 3-seed"。
+
+#### 1B. $p$ 符号双重含义 ⚠️
+
+- `method.tex:20`：定义 "$p$ = item"（facet 标签）
+- `appendix.tex:13`："items with $p \in [0.5, 0.8]$"（item difficulty/概率）
+- `appendix.tex` 多处：$p(1-p)$（Bernoulli 方差上界中的概率）
+
+同一符号 $p$ 同时表示 item facet 和 item difficulty。虽然上下文可区分，但容易造成混淆。
+
+#### 1C. 其他术语 ✅ 一致
+
+- **G-theory / G-study / D-study**：全文统一使用连字符形式
+- **Henderson Method~I**：全文一致
+- **nondeterminism**：全文统一不加连字符（3 处）
+- **Benchmark 名称**（MMLU, ARC-Challenge, HellaSwag, GSM8K, MATH）：一致，表格中简写 (Hella.) 合理
+- **BF16 / FP16 / FP32**：一致
+- **exp-001 / exp-002**：正文中统一小写，表格 caption 句首大写 (Exp-001)，符合英文规范
+
+---
+
+### 2. 硬编码章节号（LaTeX 最佳实践违规）⚠️
+
+文件中同时存在 `\S\ref{}` 和硬编码 `\S X.X` 两种引用方式，重排章节后硬编码引用会失效：
+
+| 位置 | 硬编码引用 | 应改为 |
+|------|-----------|--------|
+| `method.tex:27` | `(\S3.6)` | `(\S\ref{sec:model_facet})` |
+| `method.tex:79` | `\S4.1` | `\S\ref{sec:single_model}` |
+| `method.tex:83` | `(\S4.5)` | `(\S\ref{sec:scale_validation})` |
+
+同一文件中 `\S\ref{sec:exp002}`（line 27 末尾）正确使用了 `\ref{}`，说明是遗漏而非风格选择。
+
+---
+
+### 3. 拼写错误 ✅
+
+**未发现拼写错误。** 检查了全部正文文本，包括：
+- 常见误拼模式（teh, adn, benchamrk, evalution, reproducability, generalizabilty, decompostion, methodolgy, temperture 等）均无命中
+- 专业术语（generalizability, reproducibility, decomposition, differential, psychometric, nondeterminism 等）拼写正确
+
+---
+
+### 4. 语法问题 ✅
+
+- **冠词 a/an**：未发现错误（无 "a ANOVA"、"a MMLU"、"an Henderson" 等）
+- **主谓一致**：正确
+- **Oxford comma**：全文一致使用
+- **"tradeoff"**：仅 abstract 出现一次，无 "trade-off" 变体，保持一致
+
+---
+
+### 5. 连字符/大小写一致性 ✅
+
+全文一致使用以下形式，无不一致：
+- `open-weight`（连字符）
+- `instruction-tuned`（连字符）
+- `item-level`（作形容词时连字符）
+- `cross-model`（连字符）
+- `single-condition`（连字符）
+- `format-associated`（连字符）
+- `multi-facet`（连字符）
+- `quasi-random`（连字符）
+
+---
+
+### 6. 其他发现
+
+#### 6A. Table 1 温度 level 与 record count 不一致 ⚠️
+
+Table 1 exp-001 列显示 Temperature = **3** levels，但 Total records = **460,800**†。按 3 temps 计算应为 691,200 (8×200×6×6×3×4)。实际 460,800 = 8×200×6×6×**2**×4。
+
+`method.tex:29` 的 Sample sizes 段落明确写了 "2 temperatures"，与 Table 1 的 "3" 矛盾。虽然脚注说明是 "BF16 balanced subset for cross-model analysis"，但未解释 temperature 从 3 降为 2 的原因。读者验算时会发现数字对不上。
+
+**建议**：在 Table 1 加注说明 cross-model subset 使用 2 个 temperature level，或将 Total records 改为完整 exp-001 的记录数。
+
+#### 6B. Abstract word count ✅
+
+约 155 词，远低于 200 词限制。
+
+---
+
+### 总结
+
+| 类别 | 状态 | 数量 |
+|------|------|------|
+| 术语一致性 | ⚠️ 需注意 | 2 项（multi-condition/multi-facet 混用、$p$ 双重含义） |
+| 硬编码章节号 | ⚠️ 应修复 | 3 处 |
+| 拼写错误 | ✅ 无 | 0 |
+| 语法错误 | ✅ 无 | 0 |
+| 连字符/大小写 | ✅ 一致 | 0 |
+| 表格数据一致性 | ⚠️ 需澄清 | 1 处（Table 1 温度 levels） |
+
+最需要修复的是 3 处硬编码章节号（简单的 find-replace）和 abstract 中 "multi-condition" 与正文 "multi-facet" 的术语统一。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_review_spelling_grammar_20260523T175737"
+}
+```
+
+</details>
+
+---

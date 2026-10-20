@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp001_llama",
+  "project": "nlp_variance_gtheory",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:29:18.258Z",
+    "updated_at": "2026-05-21T02:00:49.414Z",
+    "hypothesis": "Single-model (Llama-3.1-8B-Instruct) G-theory variance decomposition at full scale (1,296 conditions × 200 items across 3 precisions × 3 temperatures × 6 prompts × 6 seeds × 4 orderings) will confirm MVP findings: item_id dominates binary_correct variance, while text_exact_match reveals infrastructure×methodology interactions",
+    "parent": "mvp_phase_a",
+    "spec": {
+      "command": "python -m src.inference.run_experiment --design results/exp001_llama/shards/shard_{0-3}.csv --gpu-id 0 (4 GPUs parallel)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items_exp001.json (200 items x 10 subjects)",
+      "data_count": 200,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "42,123,456,789,1024,2048",
+      "gpu": "cuda:0-3 (4x RTX PRO 6000 96GB)",
+      "checkpoint_source": "HuggingFace (pre-trained, no fine-tuning)",
+      "eval_data": "MMLU 200 items (10 subjects x 20 items)",
+      "checkpoint_path": "westd-32570:/root/nlp_variance_gtheory/results/exp001_llama/shard_{0-3}.jsonl",
+      "log_path": "westd-32570:/tmp/llama_gpu{0-3}.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_records": 239200,
+      "expected_records": 239200,
+      "conditions": 1196,
+      "items_per_condition": 200,
+      "overall_accuracy": 0.6814,
+      "accuracy_bfloat16": 0.7108,
+      "accuracy_float16": 0.7114,
+      "accuracy_float32": 0.604,
+      "accuracy_T0.0": 0.6987,
+      "accuracy_T0.3": 0.6795,
+      "accuracy_T0.7": 0.6699,
+      "null_predictions": 42,
+      "null_pct": 0
+    },
+    "completed_at": "2026-05-21T02:00:49.414Z"
+  },
+  "timestamp": "2026-05-21T02:00:49.427195+00:00",
+  "trigger": "update_registry"
+}

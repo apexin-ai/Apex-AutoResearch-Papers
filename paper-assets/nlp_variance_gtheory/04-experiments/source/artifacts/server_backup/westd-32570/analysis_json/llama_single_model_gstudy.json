@@ -1,0 +1,69 @@
+{
+  "correct": {
+    "grand_mean": 0.6814,
+    "components_pct": {
+      "item_id": 54.8479,
+      "residual": 23.1158,
+      "precision:item_id": 6.0542,
+      "seed:item_id": 5.437,
+      "prompt_template:item_id": 5.2724,
+      "temperature:item_id": 2.6376,
+      "precision": 1.6653,
+      "ordering:item_id": 0.704,
+      "precision:temperature": 0.1139,
+      "temperature:prompt_template": 0.0514,
+      "temperature:seed": 0.033,
+      "temperature": 0.0322,
+      "precision:prompt_template": 0.0214,
+      "prompt_template:ordering": 0.0048,
+      "precision:ordering": 0.0039,
+      "prompt_template:seed": 0.0037,
+      "precision:seed": 0.0016
+    },
+    "G_coefficient": 0.9184,
+    "total_variance": 0.20592208,
+    "n_records": 239200,
+    "n_items": 200,
+    "n_conditions": 1196
+  },
+  "text_exact_match": {
+    "grand_mean": 0.331,
+    "components_pct": {
+      "residual": 48.2284,
+      "temperature": 14.1349,
+      "temperature:prompt_template": 9.2364,
+      "temperature:item_id": 8.7725,
+      "prompt_template:item_id": 8.1097,
+      "ordering:item_id": 2.7384,
+      "seed:item_id": 2.5481,
+      "prompt_template": 1.4161,
+      "precision:item_id": 1.2197,
+      "precision:prompt_template": 1.2008,
+      "precision:temperature": 0.9905,
+      "precision": 0.8636,
+      "temperature:seed": 0.26,
+      "prompt_template:seed": 0.0972,
+      "prompt_template:ordering": 0.0659,
+      "temperature:ordering": 0.0535,
+      "seed": 0.0486,
+      "precision:ordering": 0.0073,
+      "precision:seed": 0.0044,
+      "seed:ordering": 0.0042
+    },
+    "G_coefficient": 0.0,
+    "total_variance": 0.09241594,
+    "n_records": 239200,
+    "n_items": 200,
+    "n_conditions": 1196
+  },
+  "d_study_correct": {
+    "25": 0.5844,
+    "50": 0.7377,
+    "75": 0.8084,
+    "100": 0.849,
+    "150": 0.894,
+    "200": 0.9184,
+    "300": 0.944,
+    "500": 0.9657
+  }
+}

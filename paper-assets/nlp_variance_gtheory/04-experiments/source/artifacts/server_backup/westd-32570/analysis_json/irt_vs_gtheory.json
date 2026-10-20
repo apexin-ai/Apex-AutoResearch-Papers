@@ -1,0 +1,117 @@
+{
+  "irt": {
+    "model": "Rasch (1PL)",
+    "n_items": 200,
+    "difficulty_stats": {
+      "mean": -1.5692,
+      "std": 3.0133,
+      "range": [
+        -6.3919,
+        6.3919
+      ]
+    },
+    "avg_information": 0.0845,
+    "total_information": 16.8985,
+    "min_items_random": 116,
+    "min_items_optimal": 47,
+    "se_threshold": 0.32
+  },
+  "gtheory": {
+    "item_pct": 61.0802,
+    "delta_all_random": 38.9196,
+    "delta_practical": 31.5421,
+    "min_items_all_random": 510,
+    "min_items_practical": 414,
+    "G_at_irt_recommended": {
+      "n_items": 116,
+      "G_all_random": 0.4765,
+      "G_practical": 0.529
+    }
+  },
+  "comparison": {
+    "ratio_all_random": 4.4,
+    "ratio_practical": 3.57,
+    "difficulty_vs_gvariance_spearman_rho": 0.4431,
+    "difficulty_vs_gvariance_p_value": 5.03e-11,
+    "additional_error_sources": {
+      "prompt_template:item_id": 4.5846,
+      "seed:item_id": 4.725,
+      "ordering:item_id": 0.5947,
+      "precision:item_id": 4.1642,
+      "temperature:item_id": 1.8348,
+      "residual": 21.5861
+    }
+  },
+  "d_study_curve": {
+    "10": {
+      "G_all_random": 0.0728,
+      "G_practical": 0.0883,
+      "IRT_SE": 1.0879
+    },
+    "25": {
+      "G_all_random": 0.164,
+      "G_practical": 0.1949,
+      "IRT_SE": 0.6881
+    },
+    "50": {
+      "G_all_random": 0.2818,
+      "G_practical": 0.3262,
+      "IRT_SE": 0.4865
+    },
+    "75": {
+      "G_all_random": 0.3705,
+      "G_practical": 0.4207,
+      "IRT_SE": 0.3972
+    },
+    "100": {
+      "G_all_random": 0.4397,
+      "G_practical": 0.4919,
+      "IRT_SE": 0.344
+    },
+    "116": {
+      "G_all_random": 0.4765,
+      "G_practical": 0.529,
+      "IRT_SE": 0.3194
+    },
+    "150": {
+      "G_all_random": 0.5407,
+      "G_practical": 0.5922,
+      "IRT_SE": 0.2809
+    },
+    "200": {
+      "G_all_random": 0.6108,
+      "G_practical": 0.6595,
+      "IRT_SE": 0.2433
+    },
+    "300": {
+      "G_all_random": 0.7019,
+      "G_practical": 0.7439,
+      "IRT_SE": 0.1986
+    },
+    "413": {
+      "G_all_random": 0.7642,
+      "G_practical": 0.8,
+      "IRT_SE": 0.1693
+    },
+    "500": {
+      "G_all_random": 0.7969,
+      "G_practical": 0.8288,
+      "IRT_SE": 0.1539
+    },
+    "510": {
+      "G_all_random": 0.8001,
+      "G_practical": 0.8316,
+      "IRT_SE": 0.1523
+    },
+    "750": {
+      "G_all_random": 0.8548,
+      "G_practical": 0.879,
+      "IRT_SE": 0.1256
+    },
+    "1000": {
+      "G_all_random": 0.887,
+      "G_practical": 0.9064,
+      "IRT_SE": 0.1088
+    }
+  }
+}

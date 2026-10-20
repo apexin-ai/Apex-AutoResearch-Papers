@@ -1,0 +1,25 @@
+{
+  "exp_id": "mvp_phase_a",
+  "project": "nlp_variance_gtheory",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:55:08.941Z",
+    "updated_at": "2026-05-20T18:55:16.927Z",
+    "hypothesis": "G-theory can successfully decompose infrastructure (precision) × methodology (prompt, seed, ordering, temperature) crossed variance components in LLM evaluation, with at least 2 components exceeding 5% of total variance and at least 1 significant precision×methodology interaction.",
+    "spec": {
+      "command": "bash run_full_mvp.sh (nohup)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items.json + data/few_shot_examples.json",
+      "data_count": 5400,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "42,123,456",
+      "gpu": "cuda:0",
+      "design": "108 conditions = 3 precision x 2 temperature x 3 prompts x 3 seeds x 2 orderings x 50 items"
+    }
+  },
+  "timestamp": "2026-05-20T18:55:16.936049+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,312 @@
+{
+  "method": "D-study forward prediction: 4-model variance components -> 8-model G coefficient",
+  "source_models": [
+    "Gemma-2-9B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "Qwen3-8B"
+  ],
+  "description": "Variance components estimated from 4 exp-001 models, then D-study formula projects G_item at n_model=8. Compared with actual 8-model crossed G-study.",
+  "benchmarks": {
+    "mmlu": {
+      "n_models_source": 4,
+      "n_models_target": 8,
+      "source_models": [
+        "Gemma-2-9B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "Qwen3-8B"
+      ],
+      "target_models": [
+        "DeepSeek-7B",
+        "Gemma-2-9B",
+        "InternLM2.5-7B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "OLMo-2-7B",
+        "Qwen3-8B",
+        "Yi-1.5-9B"
+      ],
+      "source_n_levels": {
+        "model": 4,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "target_n_levels": {
+        "model": 8,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "source_components": {
+        "item_id": 0.0876133124,
+        "model:item_id": 0.0691895248,
+        "residual": 0.043262815,
+        "prompt_template:item_id": 0.0029608526,
+        "seed:item_id": 0.0025039227,
+        "temperature:item_id": 0.00249588,
+        "model": 0.0015897059,
+        "ordering:item_id": 0.0010917321,
+        "model:temperature": 6.01697e-05,
+        "model:prompt_template": 3.90555e-05,
+        "model:seed": 2.79487e-05
+      },
+      "source_total_variance": 0.2108772542,
+      "G_source_4model": 0.815919,
+      "G_predicted": 0.887561,
+      "G_actual": 0.896176,
+      "delta_G": -0.008615,
+      "abs_delta_G": 0.008615,
+      "relative_error_pct": 0.96,
+      "sigma_tau_source": 0.0876133124,
+      "sigma_delta_predicted": 0.0110991368,
+      "sigma_delta_actual": 0.0101037508
+    },
+    "arc": {
+      "n_models_source": 4,
+      "n_models_target": 8,
+      "source_models": [
+        "Gemma-2-9B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "Qwen3-8B"
+      ],
+      "target_models": [
+        "DeepSeek-7B",
+        "Gemma-2-9B",
+        "InternLM2.5-7B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "OLMo-2-7B",
+        "Qwen3-8B",
+        "Yi-1.5-9B"
+      ],
+      "source_n_levels": {
+        "model": 4,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "target_n_levels": {
+        "model": 8,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "source_components": {
+        "item_id": 0.073598366,
+        "model:item_id": 0.057490011,
+        "residual": 0.0124046912,
+        "model": 0.0041272533,
+        "prompt_template:item_id": 0.00191464,
+        "seed:item_id": 0.0005107935,
+        "temperature:item_id": 0.0004278749,
+        "model:prompt_template": 2.5754e-05
+      },
+      "source_total_variance": 0.1505083246,
+      "G_source_4model": 0.830683,
+      "G_predicted": 0.904066,
+      "G_actual": 0.891748,
+      "delta_G": 0.012318,
+      "abs_delta_G": 0.012318,
+      "relative_error_pct": 1.38,
+      "sigma_tau_source": 0.073598366,
+      "sigma_delta_predicted": 0.0078098117,
+      "sigma_delta_actual": 0.0081485166
+    },
+    "hellaswag": {
+      "n_models_source": 4,
+      "n_models_target": 8,
+      "source_models": [
+        "Gemma-2-9B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "Qwen3-8B"
+      ],
+      "target_models": [
+        "DeepSeek-7B",
+        "Gemma-2-9B",
+        "InternLM2.5-7B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "OLMo-2-7B",
+        "Qwen3-8B",
+        "Yi-1.5-9B"
+      ],
+      "source_n_levels": {
+        "model": 4,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "target_n_levels": {
+        "model": 8,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "source_components": {
+        "item_id": 0.0925973765,
+        "model:item_id": 0.067275291,
+        "residual": 0.0355150977,
+        "prompt_template:item_id": 0.0072872914,
+        "model": 0.0030982444,
+        "seed:item_id": 0.0011455453,
+        "temperature:item_id": 0.0007745323,
+        "model:prompt_template": 0.0003722689,
+        "prompt_template": 6.35711e-05,
+        "temperature": 3.50048e-05,
+        "model:seed": 2.71821e-05
+      },
+      "source_total_variance": 0.2082464035,
+      "G_source_4model": 0.832413,
+      "G_predicted": 0.900622,
+      "G_actual": 0.871599,
+      "delta_G": 0.029023,
+      "abs_delta_G": 0.029023,
+      "relative_error_pct": 3.33,
+      "sigma_tau_source": 0.0925973765,
+      "sigma_delta_predicted": 0.0102175649,
+      "sigma_delta_actual": 0.0103926847
+    },
+    "gsm8k": {
+      "n_models_source": 4,
+      "n_models_target": 8,
+      "source_models": [
+        "Gemma-2-9B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "Qwen3-8B"
+      ],
+      "target_models": [
+        "DeepSeek-7B",
+        "Gemma-2-9B",
+        "InternLM2.5-7B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "OLMo-2-7B",
+        "Qwen3-8B",
+        "Yi-1.5-9B"
+      ],
+      "source_n_levels": {
+        "model": 4,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "target_n_levels": {
+        "model": 8,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "source_components": {
+        "residual": 0.0851779363,
+        "model": 0.0399546804,
+        "prompt_template": 0.0323736331,
+        "model:item_id": 0.0319025451,
+        "item_id": 0.031630295,
+        "model:prompt_template": 0.0248572384,
+        "prompt_template:item_id": 0.0145067738,
+        "temperature:item_id": 0.0022471601,
+        "seed:item_id": 0.0010227696,
+        "model:temperature": 4.51713e-05,
+        "temperature:prompt_template": 4.41111e-05
+      },
+      "source_total_variance": 0.2638012123,
+      "G_source_4model": 0.728948,
+      "G_predicted": 0.803474,
+      "G_actual": 0.862852,
+      "delta_G": -0.059378,
+      "abs_delta_G": 0.059378,
+      "relative_error_pct": 6.88,
+      "sigma_tau_source": 0.031630295,
+      "sigma_delta_predicted": 0.007736625,
+      "sigma_delta_actual": 0.0066918897
+    },
+    "math": {
+      "n_models_source": 4,
+      "n_models_target": 8,
+      "source_models": [
+        "Gemma-2-9B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "Qwen3-8B"
+      ],
+      "target_models": [
+        "DeepSeek-7B",
+        "Gemma-2-9B",
+        "InternLM2.5-7B",
+        "Llama-3.1-8B",
+        "Mistral-7B-v0.3",
+        "OLMo-2-7B",
+        "Qwen3-8B",
+        "Yi-1.5-9B"
+      ],
+      "source_n_levels": {
+        "model": 4,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "target_n_levels": {
+        "model": 8,
+        "temperature": 2,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "source_components": {
+        "residual": 0.0855785397,
+        "item_id": 0.0388358045,
+        "model:item_id": 0.0383120215,
+        "model": 0.0292003372,
+        "prompt_template:item_id": 0.0125318922,
+        "model:prompt_template": 0.0046574937,
+        "prompt_template": 0.0035084281,
+        "temperature:item_id": 0.0026155942,
+        "seed:item_id": 0.0007083779,
+        "temperature:prompt_template": 0.0001174409,
+        "model:temperature": 8.62325e-05,
+        "prompt_template:seed": 2.29634e-05
+      },
+      "source_total_variance": 0.2161958778,
+      "G_source_4model": 0.746805,
+      "G_predicted": 0.823203,
+      "G_actual": 0.888034,
+      "delta_G": -0.064831,
+      "abs_delta_G": 0.064831,
+      "relative_error_pct": 7.3,
+      "sigma_tau_source": 0.0388358045,
+      "sigma_delta_predicted": 0.0083406549,
+      "sigma_delta_actual": 0.0062747613
+    }
+  },
+  "summary": {
+    "mean_abs_delta_G": 0.034833,
+    "max_abs_delta_G": 0.064831,
+    "min_abs_delta_G": 0.008615,
+    "mean_relative_error_pct": 3.97,
+    "max_relative_error_pct": 7.3
+  }
+}

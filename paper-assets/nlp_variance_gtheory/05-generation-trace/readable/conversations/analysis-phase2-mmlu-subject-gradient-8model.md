@@ -1,0 +1,1731 @@
+# analysis phase2 mmlu subject gradient 8model
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259.jsonl`
+- **Structured JSON:** [`a1d77f106f10453f5e3d.json`](../../sessions/a1/a1d77f106f10453f5e3d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T22:48:26.986874+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T22:48:26.987162+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T22:48:26.987342+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls -la /root/nlp_variance_gtheory/results/exp002/*mmlu*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "ls -la /root/nlp_variance_gtheory/results/exp002/*mmlu*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T22:48:26.987519+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-19912",
+  "command": "ls -la /root/nlp_variance_gtheory/results/exp002_olmo/*mmlu* /root/nlp_variance_gtheory/results/exp002_yi/*mmlu*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-19912",
+    "command": "ls -la /root/nlp_variance_gtheory/results/exp002_olmo/*mmlu* /root/nlp_variance_gtheory/results/exp002_yi/*mmlu*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T22:48:26.987670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 35209969 May 22 01:07 /root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\n-rw-r--r-- 1 root root 32745019 May 21 17:40 /root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\n-rw-r--r-- 1 root root   265168 May 22 01:06 /root/nlp_variance_gtheory/results/exp002/gpu1_internlm_mmlu.log\\n-rw-r--r-- 1 root root   308250 May 22 01:07 /root/nlp_variance_gtheory/results/exp002/gpu3_deepseek_mmlu.log\\n-rw-r--r-- 1 root root 34039472 May 22 01:06 /root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\n-rw-r--r-- 1 root root 35709309 May 21 17:33 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\n-rw-r--r-- 1 root root 34514017 May 21 17:36 /root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\n-rw-r--r-- 1 root root 33752388 May 22 06:04 /root/nlp_variance_gtheory/results/exp002/olmo_mmlu.jsonl\\n-rw-r--r-- 1 root root 34303340 May 21 17:35 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl\\n-rw-r--r-- 1 root root    27362 May 21 23:32 /root/nlp_variance_gtheory/results/exp002/shard_deepseek_mmlu.csv\\n-rw-r--r-- 1 root root    23906 May 21 16:54 /root/nlp_variance_gtheory/results/exp002/shard_gemma_mmlu.csv\\n-rw-r--r-- 1 root root    26210 May 21 23:32 /root/nlp_variance_gtheory/results/exp002/shard_internlm_mmlu.csv\\n-rw-r--r-- 1 root root    27362 May 21 16:54 /root/nlp_variance_gtheory/results/exp002/shard_llama_mmlu.csv\\n-rw-r--r-- 1 root root    27938 May 21 16:54 /root/nlp_variance_gtheory/results/exp002/shard_mistral_mmlu.csv\\n-rw-r--r-- 1 root root    21494 May 21 16:54 /root/nlp_variance_gtheory/results/exp002/shard_qwen_mmlu.csv\\n-rw-r--r-- 1 root root 35043100 May 22 06:05 /root/nlp_variance_gtheory/results/exp002/yi_mmlu.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T22:48:26.987812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root  33752388 May 22 02:24 /root/nlp_variance_gtheory/results/exp002_olmo/exp002_olmo_mmlu.jsonl\\n-rw-r--r-- 1 root root 168759986 May 22 01:34 /root/nlp_variance_gtheory/results/exp002_olmo/exp002_olmo_mmlu.jsonl.bak_unfiltered\\n-rw-r--r-- 1 root root   1258811 May 22 01:34 /root/nlp_variance_gtheory/results/exp002_olmo/olmo_mmlu.log\\n-rw-r--r-- 1 root root  35043100 May 22 02:31 /root/nlp_variance_gtheory/results/exp002_yi/exp002_yi_mmlu.jsonl\\n-rw-r--r-- 1 root root    469907 May 22 02:27 /root/nlp_variance_gtheory/results/exp002_yi/yi_mmlu.log\\n-rw-r--r-- 1 root root    259554 May 22 02:31 /root/nlp_variance_gtheory/results/exp002_yi/yi_mmlu_filtered.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T22:48:26.987972+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T22:48:26.988146+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | If G is a finite group and H is a\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8737277984619141, \\\"top_logprobs\\\": {\\\" A\\\": -0.8737277984619141, \\\" C\\\": -1.373727798461914, \\\" B\\\": -1.498727798461914, \\\" D\\\": -2.248727798461914, \\\" \\\": -9.373727798461914}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nStatement 1 | If a and b are elements of a group G\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.7932339310646057, \\\"top_logprobs\\\": {\\\" D\\\": -0.7932339310646057, \\\" C\\\": -1.168233871459961, \\\" B\\\": -1.918233871459961, \\\" A\\\": -2.418233871459961, \\\" \\\": -8.168233871459961}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_3\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": nu
+…[truncated 649 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T22:48:26.988323+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"\nimport json\nsubjects = {}\nwith open('/root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        s = d['subject']\n        iid = d['item_id']\n        if s not in subjects:\n            subjects[s] = set()\n        subjects[s].add(iid)\nfor s in sorted(subjects):\n    print(f'{s}: {len(subjects[s])} items')\nprint(f'Total subjects: {len(subjects)}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "python3 -c \"\nimport json\nsubjects = {}\nwith open('/root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        s = d['subject']\n        iid = d['item_id']\n        if s not in subjects:\n            subjects[s] = set()\n        subjects[s].add(iid)\nfor s in sorted(subjects):\n    print(f'{s}: {len(subjects[s])} items')\nprint(f'Total subjects: {len(subjects)}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T22:48:26.988500+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T22:48:26.988632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"subject\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"subject\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T22:48:26.988755+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T22:48:26.988871+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"subject\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"subject\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T22:48:26.989215+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"abstract_algebra\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"college_physics\\\"\\n\\\"subject\\\": \\\"world_religions\\\"\\n\\\"subject\\\": \\\"world_religions\\\"\\n\\\"subject\\\": \\\"world_religions\\\"\\n\\\"subject\\\": \\\"world_religions\\\"\\n\\\"subject\\\": \\\"world_relig
+…[truncated 9732 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T22:48:26.989449+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp004_8model_analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "ls /root/nlp_variance_gtheory/results/exp004_8model_analysis/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T22:48:26.989604+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross_model_gstudy_8model.json\\ndstudy_8model.json\\nlobo_stability.json\\nper_benchmark_gstudy_ff.json\\nper_benchmark_gstudy_mc.json\\nper_benchmark_gstudy_mmlu.json\\npermutation_test_5bm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T22:48:26.989728+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/henderson*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/henderson*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T22:48:26.989843+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T22:48:26.989954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/src -name \"*.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/src -name \"*.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T22:48:26.990082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/src/data/__init__.py\\n/root/nlp_variance_gtheory/src/data/sample_mmlu.py\\n/root/nlp_variance_gtheory/src/data/few_shot.py\\n/root/nlp_variance_gtheory/src/data/prompt_templates.py\\n/root/nlp_variance_gtheory/src/data/sample_benchmarks.py\\n/root/nlp_variance_gtheory/src/design/__init__.py\\n/root/nlp_variance_gtheory/src/design/generate_design.py\\n/root/nlp_variance_gtheory/src/design/shard_design.py\\n/root/nlp_variance_gtheory/src/inference/__init__.py\\n/root/nlp_variance_gtheory/src/inference/vllm_runner.py\\n/root/nlp_variance_gtheory/src/inference/run_experiment.py\\n/root/nlp_variance_gtheory/src/inference/sanity_check.py\\n/root/nlp_variance_gtheory/src/inference/benchmark_utils.py\\n/root/nlp_variance_gtheory/src/analysis/__init__.py\\n/root/nlp_variance_gtheory/src/analysis/variance_decomposition.py\\n/root/nlp_variance_gtheory/src/analysis/d_study.py\\n/root/nlp_variance_gtheory/src/analysis/visualize.py\\n/root/nlp_variance_gtheory/src/analysis/bootstrap_ci.py\\n/root/nlp_variance_gtheory/src/analysis/model_facet_analysis.py\\n/root/nlp_variance_gtheory/src/analysis/reml_em.py\\n/root/nlp_variance_gtheory/src/__init__.py\\n/root/nlp_variance_gtheory/src/config/__init__.py\\n/root/nlp_variance_gtheory/src/config/model_paths.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T22:48:26.990209+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/src/analysis/variance_decomposition.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/src/analysis/variance_decomposition.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T22:48:26.990462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G-theory variance decomposition for LLM evaluation.\\n\\nEstimates variance components for all 6 facets (main effects) and all\\n15 two-way interactions using ANOVA-based estimation (Henderson Method I)\\nfor balanced fully-crossed designs.  Higher-order interactions (≥3-way) are\\nabsorbed into the residual.\\n\\nEstimation treats all facets as random (standard G-study practice).  The\\nfixed/random distinction is used downstream in the D-study to partition\\nuniverse-score variance from error variance.\\n\\nBootstrap 95 %% CIs are computed by resampling items with replacement.\\n\\nFacets\\n------\\nprecision, temperature                    — fixed  (in D-study)\\nprompt_template, seed, ordering, item_id  — random (in D-study)\\n\\nInput:  JSONL from ``run_experiment.py`` (one row per item × condition).\\nOutput: JSON with ANOVA table, variance components, and bootstrap CIs.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom typing import Optional\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nALL_FACETS = [\\n    \\\"precision\\\", \\\"temperature\\\",\\n    \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\",\\n]\\nFIXED_FACETS = [\\\"precision\\\", \\\"temperature\\\"]\\nRANDOM_FACETS = [\\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# ANOVA helpers\\n# ---------------------------------------------------------------------------\\n\\ndef compute_ss(\\n    df: pd.DataFrame,\\n    response: str,\\n    facets: list[str],\\n) -> tuple[dict, dict[str, int]]:\\n    \\\"\\\"\\\"Compute Type-I sums of squares for main effects and 2-way interactions.\\n\\n    For a balanced design, Type I = Type III, so the order of terms does not\\n    matt
+…[truncated 7247 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T22:48:26.990659+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -100 /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -100 /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T22:48:26.990850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"8model_henderson_i_gstudy_mmlu\\\",\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_observations\\\": 460800,\\n  \\\"n_levels\\\": {\\n    \\\"model\\\": 8,\\n    \\\"temperature\\\": 2,\\n    \\\"prompt_template\\\": 6,\\n    \\\"seed\\\": 6,\\n    \\\"ordering\\\": 4,\\n    \\\"item_id\\\": 200\\n  },\\n  \\\"grand_mean_accuracy\\\": 0.645736,\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"variance_components\\\": {\\n    \\\"item_id\\\": {\\n      \\\"estimate\\\": 0.0872124597,\\n      \\\"pct\\\": 37.8812,\\n      \\\"ci_lower\\\": 33.1231,\\n      \\\"ci_upper\\\": 42.1664\\n    },\\n    \\\"model:item_id\\\": {\\n      \\\"estimate\\\": 0.0695501891,\\n      \\\"pct\\\": 30.2095,\\n      \\\"ci_lower\\\": 26.8105,\\n      \\\"ci_upper\\\": 33.3184\\n    },\\n    \\\"residual\\\": {\\n      \\\"estimate\\\": 0.0575714452,\\n      \\\"pct\\\": 25.0065,\\n      \\\"ci_lower\\\": 22.8915,\\n      \\\"ci_upper\\\": 27.2172\\n    },\\n    \\\"model\\\": {\\n      \\\"estimate\\\": 0.0065213123,\\n      \\\"pct\\\": 2.8326,\\n      \\\"ci_lower\\\": 1.8945,\\n      \\\"ci_upper\\\": 4.4692\\n    },\\n    \\\"model:prompt_template\\\": {\\n      \\\"estimate\\\": 0.0036708012,\\n      \\\"pct\\\": 1.5944,\\n      \\\"ci_lower\\\": 1.2734,\\n      \\\"ci_upper\\\": 2.0659\\n    },\\n    \\\"prompt_template:item_id\\\": {\\n      \\\"estimate\\\": 0.0021769413,\\n      \\\"pct\\\": 0.9456,\\n      \\\"ci_lower\\\": 0.8237,\\n      \\\"ci_upper\\\": 1.0798\\n    },\\n    \\\"temperature:item_id\\\": {\\n      \\\"estimate\\\": 0.0012818778,\\n      \\\"pct\\\": 0.5568,\\n      \\\"ci_lower\\\": 0.378,\\n      \\\"ci_upper\\\": 0.781\\n    },\\n    \\\"seed:item_id\\\": {\\n      \\\"estimat
+…[truncated 1065 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T22:48:26.991001+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -80 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cross_model_gstudy_8model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -80 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cross_model_gstudy_8model.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T22:48:26.991174+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"common_models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"Qwen3-8B\\\"\\n  ],\\n  \\\"all_models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"mmlu_6model\\\": {\\n    \\\"n_obs\\\": 345600,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 6,\\n      \\\"temperature\\\": 2,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"accuracy\\\": 0.669476,\\n    \\\"item_id_pct\\\": 40.4828,\\n    \\\"model_item_pct\\\": 31.6036,\\n    \\\"model_pct\\\": 3.051,\\n    \\\"G_item\\\": 0.870521,\\n    \\\"top_components\\\": {\\n      \\\"item_id\\\": 40.4828,\\n      \\\"model:item_id\\\": 31.6036,\\n      \\\"residual\\\": 21.9449,\\n      \\\"model\\\": 3.051,\\n      \\\"prompt_template:item_id\\\": 1.015,\\n      \\\"temperature:item_id\\\": 0.7282\\n    }\\n  },\\n  \\\"comparison_4model\\\": {\\n    \\\"item_id_pct\\\": 41.55,\\n    \\\"model_item_pct\\\": 32.81,\\n    \\\"model_pct\\\": 0.75,\\n    \\\"G_item\\\": 0.8159,\\n    \\\"n_models\\\": 4\\n  },\\n  \\\"delta_vs_4model\\\": {\\n    \\\"item_id_pct_change\\\": -1.0672,\\n    \\\"model_item_pct_change\\\": -1.2064,\\n    \\\"G_item_change\\\": 0.054621\\n  },\\n  \\\"per_benchmark_6model\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"pro
+…[truncated 410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T22:48:26.991363+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T22:48:26.991512+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T22:48:26.991632+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T22:48:26.991747+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T22:48:26.991863+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'in_progress', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'pending', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'pending', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'pending', 'activeForm': 'Comparing results and saving output'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'in_progress', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'pending', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'pending', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'pending', 'activeForm': 'Comparing results and saving output'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T22:48:26.991993+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T22:48:26.992110+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/memory.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/memory.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T22:48:26.992220+00:00_
+
+memory.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T22:48:26.992360+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "STEM|Humanities|item_id%|subject.*gradient|category",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/memory.md",
+  "output_mode": "content",
+  "-C": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "STEM|Humanities|item_id%|subject.*gradient|category",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/memory.md",
+    "output_mode": "content",
+    "-C": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T22:48:26.992532+00:00_
+
+28-启动 nohup 后台任务前，必须先 `ps aux | grep <关键词>` 检查是否已有同名进程。REML 曾因重复启动产生 3 个进程写同一输出文件。
+29-
+30-## G_item 计算 Bug (2026-05-21, 审计确认)
+31:`gstudy_full.py` 和 `exp001b_gstudy.py` 使用了 ICC（SS 比例）而非 Henderson I G 系数。错误公式 `G = item_id% / 100`，正确公式 `G = σ²(item) / [σ²(item) + σ²(δ)]`。修正值：exp-001 单模型 0.611→0.918，exp-001b mean 0.745→0.960。方差百分比不受影响。正确实现参考 `compute_g_coefficients.py`。修正值反而强化叙事（G>0.9 = item ranking 极为稳定）。
+32-
+33-## Within-MMLU Subject-Level Gradient (2026-05-21, 4-model 版)
+34:[Omitted long matching line]
+35-
+36-## Item Heterogeneity 驱动方差结构 (2026-05-21, FF g-study 发现)
+37:[Omitted long matching line]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T22:48:26.992661+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/memory.md",
+  "offset": "33",
+  "limit": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/memory.md",
+    "offset": "33",
+    "limit": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T22:48:26.992784+00:00_
+
+33	## Within-MMLU Subject-Level Gradient (2026-05-21, 4-model 版)
+34	10 个 MMLU subject 的 item_id% 呈显著梯度：STEM mean 27.9% vs Humanities mean 48.4%。Humanities（international_law 57.7%, world_religions 46.2%）的 item 本身差异主导方差；STEM（high_school_math 10.9%, abstract_algebra 19.6%）的 model×item 交互更大（模型在 STEM 题的表现更不一致）。G_item 范围 0.31-0.89。**这支持"reasoning complexity 越高 → item dominance 越低 → model×item interaction 越高"的叙事，可与 exp-002 cross-benchmark 梯度对照引用。**
+35	
+36	## Item Heterogeneity 驱动方差结构 (2026-05-21, FF g-study 发现)
+37	MATH item_id%=26.48% [22.98, 29.84] vs GSM8K item_id%=16.86% [13.32, 19.95]。两者都是 FF benchmark，但 MATH 因题目难度跨度极大（代数→竞赛级）有更高的 item 异质性，导致 item 方差接近 MC 低端（HellaSwag 32%）。**简单 MC/FF 二分不成立——更本质的解释是 item heterogeneity（难度/复杂度跨度）驱动 item_id%**。MC 格式因 distractor 差异天然有高 item 异质性。这可能替代 "format-conditional" 成为论文核心叙事。Cross-benchmark item_id% 排序：MMLU(~42%) > ARC(~38%) > HellaSwag(32%) > MATH(26.48%) > GSM8K(16.86%)。
+38	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T22:48:26.992946+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'in_progress', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'pending', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'pending', 'activeForm': 'Comparing results and saving output'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'in_progress', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'pending', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'pending', 'activeForm': 'Comparing results and saving output'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T22:48:26.993087+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T22:48:26.993274+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat << 'PYEOF' > /root/nlp_variance_gtheory/scripts/d014v2_subject_gradient_8model.py\n\"\"\"D014 Validation 2: 8-model MMLU within-subject gradient analysis.\n\nPer-subject Henderson I variance decomposition across 8 models.\nTests whether item heterogeneity (not format) drives variance structure.\n\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom itertools import combinations\nfrom pathlib import Path\nfrom scipy import stats\n\nSUBJECT_CATEGORIES = {\n    \"abstract_algebra\": \"STEM\",\n    \"college_physics\": \"STEM\",\n    \"high_school_mathematics\": \"STEM\",\n    \"computer_security\": \"STEM\",\n    \"professional_medicine\": \"Other\",\n    \"clinical_knowledge\": \"Other\",\n    \"philosophy\": \"Humanities\",\n    \"international_law\": \"Humanities\",\n    \"world_religions\": \"Humanities\",\n    \"us_foreign_policy\": \"Humanities\",\n}\n\nMODEL_FILES = [\n    \"llama_mmlu.jsonl\",\n    \"mistral_mmlu.jsonl\",\n    \"qwen_mmlu.jsonl\",\n    \"gemma_mmlu.jsonl\",\n    \"deepseek_mmlu.jsonl\",\n    \"internlm_mmlu.jsonl\",\n    \"olmo_mmlu.jsonl\",\n    \"yi_mmlu.jsonl\",\n]\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_all_models(data_dir: str) -> pd.DataFrame:\n    frames = []\n    for mf in MODEL_FILES:\n        p = Path(data_dir) / mf\n        df = pd.read_json(p, lines=True)\n        model_short = mf.replace(\"_mmlu.jsonl\", \"\")\n        df[\"model\"] = model_short\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    for f in FACETS:\n        combined[f] = combined[f].astype(str)\n    return combined\n\n\ndef compute_ss(df, response, facets):\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per_group = N // n_levels[f]\n        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cell_mean in cell_means.items():\n            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per_cell * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        key = f\"{fi}:{fj}\"\n        effects[key] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    return effects, n_levels\n\n\ndef estimate_variance_components(effects, facets, n_levels):\n    vc = {}\n    ms_res = effects[\"residual\"][\"ms\"]\n\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        divisor = 1\n        for fk in facets:\n            if fk not in (fi, fj):\n                divisor *= n_levels[fk]\n        raw = (effects[key][\"ms\"] - ms_res) / divisor\n        vc[key] = max(0.0, raw)\n\n    for f in facets:\n        interaction_contribution = 0.0\n        for fi, fj in combinations(facets, 2):\n            key = f\"{fi}:{fj}\"\n            if f in (fi, fj):\n                other = fj if f == fi else fi\n                coeff = 1\n                for fk in facets:\n                    if fk != f and fk != other:\n                        coeff *= n_levels[fk]\n                interaction_contribution += coeff * vc[key]\n        divisor = 1\n        for fk in facets:\n            if fk != f:\n                divisor *= n_levels[fk]\n        raw = (effects[f][\"ms\"] - interaction_contribution - ms_res) / divisor\n        vc[f] = max(0.0, raw)\n\n    vc[\"residual\"] = max(0.0, ms_res)\n    return vc\n\n\ndef compute_item_heterogeneity(df):\n    \"\"\"std(p) across items: std of per-item mean accuracy (averaged over all conditions & models).\"\"\"\n    item_means = df.groupby(\"item_id\")[\"correct\"].mean()\n    return float(item_means.std())\n\n\ndef analyze_subject(df_subject, subject_name):\n    n_levels_check = {f: df_subject[f].nunique() for f in FACETS}\n    n_obs = len(df_subject)\n    expected = 1\n    for v in n_levels_check.values():\n        expected *= v\n    if n_obs != expected:\n        print(f\"  WARNING: {subject_name} not balanced: {n_obs} obs vs expected {expected}\")\n        print(f\"    levels: {n_levels_check}\")\n\n    effects, n_levels = compute_ss(df_subject, \"correct\", FACETS)\n    vc = estimate_variance_components(effects, FACETS, n_levels)\n    total = sum(vc.values())\n\n    pct = {k: v / total * 100 if total > 0 else 0 for k, v in vc.items()}\n    item_pct = pct.get(\"item_id\", 0)\n    model_item_pct = pct.get(\"model:item_id\", 0)\n\n    sigma2_item = vc.get(\"item_id\", 0)\n    sigma2_delta = total - sigma2_item\n    G_item = sigma2_item / (sigma2_item + sigma2_delta) if (sigma2_item + sigma2_delta) > 0 else 0\n\n    std_p = compute_item_heterogeneity(df_subject)\n    accuracy = float(df_subject[\"correct\"].mean())\n\n    return {\n        \"subject\": subject_name,\n        \"category\": SUBJECT_CATEGORIES.get(subject_name, \"Unknown\"),\n        \"n_obs\": n_obs,\n        \"n_items\": n_levels.get(\"item_id\", 0),\n        \"n_models\": n_levels.get(\"model\", 0),\n        \"accuracy\": round(accuracy, 4),\n        \"item_id_pct\": round(item_pct, 2),\n        \"model_item_pct\": round(model_item_pct, 2),\n        \"model_pct\": round(pct.get(\"model\", 0), 2),\n        \"residual_pct\": round(pct.get(\"residual\", 0), 2),\n        \"G_item\": round(G_item, 4),\n        \"std_p\": round(std_p, 4),\n        \"variance_components\": {k: round(v, 8) for k, v in sorted(vc.items(), key=lambda x: -x[1])},\n        \"pct_components\": {k: round(v, 2) for k, v in sorted(pct.items(), key=lambda x: -x[1])},\n    }\n\n\ndef main():\n    data_dir = \"/root/nlp_variance_gtheory/results/exp002\"\n    output_dir = Path(\"/root/nlp_variance_gtheory/results/exp004_8model_analysis\")\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading 8-model MMLU data...\")\n    df = load_all_models(data_dir)\n    print(f\"Total observations: {len(df)}\")\n    print(f\"Models: {sorted(df['model'].unique())}\")\n    print(f\"Subjects: {sorted(df['subject'].unique())}\")\n\n    subjects = sorted(df[\"subject\"].unique())\n    results = []\n\n    for subj in subjects:\n        print(f\"\\n--- {subj} ({SUBJECT_CATEGORIES.get(subj, '?')}) ---\")\n        df_subj = df[df[\"subject\"] == subj].copy()\n        r = analyze_subject(df_subj, subj)\n        results.append(r)\n        print(f\"  item_id%={r['item_id_pct']:.1f}  model×item%={r['model_item_pct']:.1f}  \"\n              f\"G_item={r['G_item']:.3f}  std(p)={r['std_p']:.4f}  acc={r['accuracy']:.3f}\")\n\n    # Spearman correlation: std_p vs item_id_pct\n    std_ps = [r[\"std_p\"] for r in results]\n    item_pcts = [r[\"item_id_pct\"] for r in results]\n    rho, pval = stats.spearmanr(std_ps, item_pcts)\n\n    # STEM vs Humanities\n    stem = [r for r in results if r[\"category\"] == \"STEM\"]\n    hum = [r for r in results if r[\"category\"] == \"Humanities\"]\n    other = [r for r in results if r[\"category\"] == \"Other\"]\n\n    stem_item_mean = np.mean([r[\"item_id_pct\"] for r in stem])\n    hum_item_mean = np.mean([r[\"item_id_pct\"] for r in hum])\n    other_item_mean = np.mean([r[\"item_id_pct\"] for r in other]) if other else None\n\n    stem_stdp_mean = np.mean([r[\"std_p\"] for r in stem])\n    hum_stdp_mean = np.mean([r[\"std_p\"] for r in hum])\n\n    stem_G_mean = np.mean([r[\"G_item\"] for r in stem])\n    hum_G_mean = np.mean([r[\"G_item\"] for r in hum])\n\n    # 4-model comparison\n    comparison_4model = {\n        \"STEM_mean_item_pct\": 27.9,\n        \"Humanities_mean_item_pct\": 48.4,\n        \"note\": \"From memory.md 4-model results\"\n    }\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY\")\n    print(\"=\" * 70)\n    print(f\"\\nSpearman rho(std_p, item_id%): {rho:.4f}  p={pval:.4f}\")\n    print(f\"\\nSTEM mean item_id%: {stem_item_mean:.1f}  (4-model: 27.9)\")\n    print(f\"Humanities mean item_id%: {hum_item_mean:.1f}  (4-model: 48.4)\")\n    if other_item_mean is not None:\n        print(f\"Other mean item_id%: {other_item_mean:.1f}\")\n    print(f\"\\nSTEM mean std(p): {stem_stdp_mean:.4f}\")\n    print(f\"Humanities mean std(p): {hum_stdp_mean:.4f}\")\n    print(f\"\\nSTEM mean G_item: {stem_G_mean:.4f}\")\n    print(f\"Humanities mean G_item: {hum_G_mean:.4f}\")\n\n    # Subject-level table\n    print(\"\\n\" + \"-\" * 90)\n    print(f\"{'Subject':<28} {'Cat':<6} {'item_id%':>8} {'std_p':>8} {'G_item':>8} {'m×i%':>8} {'acc':>6}\")\n    print(\"-\" * 90)\n    for r in sorted(results, key=lambda x: -x[\"item_id_pct\"]):\n        print(f\"{r['subject']:<28} {r['category']:<6} {r['item_id_pct']:>8.1f} {r['std_p']:>8.4f} \"\n              f\"{r['G_item']:>8.4f} {r['model_item_pct']:>8.1f} {r['accuracy']:>6.3f}\")\n\n    output = {\n        \"experiment\": \"D014_validation2\",\n        \"analysis\": \"8model_mmlu_subject_gradient\",\n        \"n_models\": 8,\n        \"n_subjects\": len(results),\n        \"subjects\": results,\n        \"spearman\": {\n            \"rho\": round(float(rho), 4),\n            \"p_value\": round(float(pval), 4),\n            \"variables\": [\"std_p (item difficulty heterogeneity)\", \"item_id% (Henderson I)\"],\n            \"n\": len(results),\n        },\n        \"group_summary\": {\n            \"STEM\": {\n                \"subjects\": [r[\"subject\"] for r in stem],\n                \"mean_item_pct\": round(float(stem_item_mean), 2),\n                \"mean_std_p\": round(float(stem_stdp_mean), 4),\n                \"mean_G_item\": round(float(stem_G_mean), 4),\n            },\n            \"Humanities\": {\n                \"subjects\": [r[\"subject\"] for r in hum],\n                \"mean_item_pct\": round(float(hum_item_mean), 2),\n                \"mean_std_p\": round(float(hum_stdp_mean), 4),\n                \"mean_G_item\": round(float(hum_G_mean), 4),\n            },\n            \"Other\": {\n                \"subjects\": [r[\"subject\"] for r in other],\n                \"mean_item_pct\": round(float(other_item_mean), 2) if other_item_mean else None,\n            },\n        },\n        \"comparison_4model\": comparison_4model,\n        \"delta_vs_4model\": {\n            \"STEM_item_pct_change\": round(float(stem_item_mean) - 27.9, 2),\n            \"Humanities_item_pct_change\": round(float(hum_item_mean) - 48.4, 2),\n        },\n    }\n\n    out_path = output_dir / \"mmlu_subject_gradient_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n-> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat << 'PYEOF' > /root/nlp_variance_gtheory/scripts/d014v2_subject_gradient_8model.py\n\"\"\"D014 Validation 2: 8-model MMLU within-subject gradient analysis.\n\nPer-subject Henderson I variance decomposition across 8 models.\nTests whether item heterogeneity (not format) drives variance structure.\n\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom itertools import combinations\nfrom pathlib import Path\nfrom scipy import stats\n\nSUBJECT_CATEGORIES = {\n    \"abstract_algebra\": \"STEM\",\n    \"college_physics\": \"STEM\",\n    \"high_school_mathematics\": \"STEM\",\n    \"computer_security\": \"STEM\",\n    \"professional_medicine\": \"Other\",\n    \"clinical_knowledge\": \"Other\",\n    \"philosophy\": \"Humanities\",\n    \"international_law\": \"Humanities\",\n    \"world_religions\": \"Humanities\",\n    \"us_foreign_policy\": \"Humanities\",\n}\n\nMODEL_FILES = [\n    \"llama_mmlu.jsonl\",\n    \"mistral_mmlu.jsonl\",\n    \"qwen_mmlu.jsonl\",\n    \"gemma_mmlu.jsonl\",\n    \"deepseek_mmlu.jsonl\",\n    \"internlm_mmlu.jsonl\",\n    \"olmo_mmlu.jsonl\",\n    \"yi_mmlu.jsonl\",\n]\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_all_models(data_dir: str) -> pd.DataFrame:\n    frames = []\n    for mf in MODEL_FILES:\n        p = Path(data_dir) / mf\n        df = pd.read_json(p, lines=True)\n        model_short = mf.replace(\"_mmlu.jsonl\", \"\")\n        df[\"model\"] = model_short\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    for f in FACETS:\n        combined[f] = combined[f].astype(str)\n    return combined\n\n\ndef compute_ss(df, response, facets):\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per_group = N // n_levels[f]\n        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cell_mean in cell_means.items():\n            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per_cell * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        key = f\"{fi}:{fj}\"\n        effects[key] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    return effects, n_levels\n\n\ndef estimate_variance_components(effects, facets, n_levels):\n    vc = {}\n    ms_res = effects[\"residual\"][\"ms\"]\n\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        divisor = 1\n        for fk in facets:\n            if fk not in (fi, fj):\n                divisor *= n_levels[fk]\n        raw = (effects[key][\"ms\"] - ms_res) / divisor\n        vc[key] = max(0.0, raw)\n\n    for f in facets:\n        interaction_contribution = 0.0\n        for fi, fj in combinations(facets, 2):\n            key = f\"{fi}:{fj}\"\n            if f in (fi, fj):\n                other = fj if f == fi else fi\n                coeff = 1\n                for fk in facets:\n                    if fk != f and fk != other:\n                        coeff *= n_levels[fk]\n                interaction_contribution += coeff * vc[key]\n        divisor = 1\n        for fk in facets:\n            if fk != f:\n                divisor *= n_levels[fk]\n        raw = (effects[f][\"ms\"] - interaction_contribution - ms_res) / divisor\n        vc[f] = max(0.0, raw)\n\n    vc[\"residual\"] = max(0.0, ms_res)\n    return vc\n\n\ndef compute_item_heterogeneity(df):\n    \"\"\"std(p) across items: std of per-item mean accuracy (averaged over all conditions & models).\"\"\"\n    item_means = df.groupby(\"item_id\")[\"correct\"].mean()\n    return float(item_means.std())\n\n\ndef analyze_subject(df_subject, subject_name):\n    n_levels_check = {f: df_subject[f].nunique() for f in FACETS}\n    n_obs = len(df_subject)\n    expected = 1\n    for v in n_levels_check.values():\n        expected *= v\n    if n_obs != expected:\n        print(f\"  WARNING: {subject_name} not balanced: {n_obs} obs vs expected {expected}\")\n        print(f\"    levels: {n_levels_check}\")\n\n    effects, n_levels = compute_ss(df_subject, \"correct\", FACETS)\n    vc = estimate_variance_components(effects, FACETS, n_levels)\n    total = sum(vc.values())\n\n    pct = {k: v / total * 100 if total > 0 else 0 for k, v in vc.items()}\n    item_pct = pct.get(\"item_id\", 0)\n    model_item_pct = pct.get(\"model:item_id\", 0)\n\n    sigma2_item = vc.get(\"item_id\", 0)\n    sigma2_delta = total - sigma2_item\n    G_item = sigma2_item / (sigma2_item + sigma2_delta) if (sigma2_item + sigma2_delta) > 0 else 0\n\n    std_p = compute_item_heterogeneity(df_subject)\n    accuracy = float(df_subject[\"correct\"].mean())\n\n    return {\n        \"subject\": subject_name,\n        \"category\": SUBJECT_CATEGORIES.get(subject_name, \"Unknown\"),\n        \"n_obs\": n_obs,\n        \"n_items\": n_levels.get(\"item_id\", 0),\n        \"n_models\": n_levels.get(\"model\", 0),\n        \"accuracy\": round(accuracy, 4),\n        \"item_id_pct\": round(item_pct, 2),\n        \"model_item_pct\": round(model_item_pct, 2),\n        \"model_pct\": round(pct.get(\"model\", 0), 2),\n        \"residual_pct\": round(pct.get(\"residual\", 0), 2),\n        \"G_item\": round(G_item, 4),\n        \"std_p\": round(std_p, 4),\n        \"variance_components\": {k: round(v, 8) for k, v in sorted(vc.items(), key=lambda x: -x[1])},\n        \"pct_components\": {k: round(v, 2) for k, v in sorted(pct.items(), key=lambda x: -x[1])},\n    }\n\n\ndef main():\n    data_dir = \"/root/nlp_variance_gtheory/results/exp002\"\n    output_dir = Path(\"/root/nlp_variance_gtheory/results/exp004_8model_analysis\")\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading 8-model MMLU data...\")\n    df = load_all_models(data_dir)\n    print(f\"Total observations: {len(df)}\")\n    print(f\"Models: {sorted(df['model'].unique())}\")\n    print(f\"Subjects: {sorted(df['subject'].unique())}\")\n\n    subjects = sorted(df[\"subject\"].unique())\n    results = []\n\n    for subj in subjects:\n        print(f\"\\n--- {subj} ({SUBJECT_CATEGORIES.get(subj, '?')}) ---\")\n        df_subj = df[df[\"subject\"] == subj].copy()\n        r = analyze_subject(df_subj, subj)\n        results.append(r)\n        print(f\"  item_id%={r['item_id_pct']:.1f}  model×item%={r['model_item_pct']:.1f}  \"\n              f\"G_item={r['G_item']:.3f}  std(p)={r['std_p']:.4f}  acc={r['accuracy']:.3f}\")\n\n    # Spearman correlation: std_p vs item_id_pct\n    std_ps = [r[\"std_p\"] for r in results]\n    item_pcts = [r[\"item_id_pct\"] for r in results]\n    rho, pval = stats.spearmanr(std_ps, item_pcts)\n\n    # STEM vs Humanities\n    stem = [r for r in results if r[\"category\"] == \"STEM\"]\n    hum = [r for r in results if r[\"category\"] == \"Humanities\"]\n    other = [r for r in results if r[\"category\"] == \"Other\"]\n\n    stem_item_mean = np.mean([r[\"item_id_pct\"] for r in stem])\n    hum_item_mean = np.mean([r[\"item_id_pct\"] for r in hum])\n    other_item_mean = np.mean([r[\"item_id_pct\"] for r in other]) if other else None\n\n    stem_stdp_mean = np.mean([r[\"std_p\"] for r in stem])\n    hum_stdp_mean = np.mean([r[\"std_p\"] for r in hum])\n\n    stem_G_mean = np.mean([r[\"G_item\"] for r in stem])\n    hum_G_mean = np.mean([r[\"G_item\"] for r in hum])\n\n    # 4-model comparison\n    comparison_4model = {\n        \"STEM_mean_item_pct\": 27.9,\n        \"Humanities_mean_item_pct\": 48.4,\n        \"note\": \"From memory.md 4-model results\"\n    }\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY\")\n    print(\"=\" * 70)\n    print(f\"\\nSpearman rho(std_p, item_id%): {rho:.4f}  p={pval:.4f}\")\n    print(f\"\\nSTEM mean item_id%: {stem_item_mean:.1f}  (4-model: 27.9)\")\n    print(f\"Humanities mean item_id%: {hum_item_mean:.1f}  (4-model: 48.4)\")\n    if other_item_mean is not None:\n        print(f\"Other mean item_id%: {other_item_mean:.1f}\")\n    print(f\"\\nSTEM mean std(p): {stem_stdp_mean:.4f}\")\n    print(f\"Humanities mean std(p): {hum_stdp_mean:.4f}\")\n    print(f\"\\nSTEM mean G_item: {stem_G_mean:.4f}\")\n    print(f\"Humanities mean G_item: {hum_G_mean:.4f}\")\n\n    # Subject-level table\n    print(\"\\n\" + \"-\" * 90)\n    print(f\"{'Subject':<28} {'Cat':<6} {'item_id%':>8} {'std_p':>8} {'G_item':>8} {'m×i%':>8} {'acc':>6}\")\n    print(\"-\" * 90)\n    for r in sorted(results, key=lambda x: -x[\"item_id_pct\"]):\n        print(f\"{r['subject']:<28} {r['category']:<6} {r['item_id_pct']:>8.1f} {r['std_p']:>8.4f} \"\n              f\"{r['G_item']:>8.4f} {r['model_item_pct']:>8.1f} {r['accuracy']:>6.3f}\")\n\n    output = {\n        \"experiment\": \"D014_validation2\",\n        \"analysis\": \"8model_mmlu_subject_gradient\",\n        \"n_models\": 8,\n        \"n_subjects\": len(results),\n        \"subjects\": results,\n        \"spearman\": {\n            \"rho\": round(float(rho), 4),\n            \"p_value\": round(float(pval), 4),\n            \"variables\": [\"std_p (item difficulty heterogeneity)\", \"item_id% (Henderson I)\"],\n            \"n\": len(results),\n        },\n        \"group_summary\": {\n            \"STEM\": {\n                \"subjects\": [r[\"subject\"] for r in stem],\n                \"mean_item_pct\": round(float(stem_item_mean), 2),\n                \"mean_std_p\": round(float(stem_stdp_mean), 4),\n                \"mean_G_item\": round(float(stem_G_mean), 4),\n            },\n            \"Humanities\": {\n                \"subjects\": [r[\"subject\"] for r in hum],\n                \"mean_item_pct\": round(float(hum_item_mean), 2),\n                \"mean_std_p\": round(float(hum_stdp_mean), 4),\n                \"mean_G_item\": round(float(hum_G_mean), 4),\n            },\n            \"Other\": {\n                \"subjects\": [r[\"subject\"] for r in other],\n                \"mean_item_pct\": round(float(other_item_mean), 2) if other_item_mean else None,\n            },\n        },\n        \"comparison_4model\": comparison_4model,\n        \"delta_vs_4model\": {\n            \"STEM_item_pct_change\": round(float(stem_item_mean) - 27.9, 2),\n            \"Humanities_item_pct_change\": round(float(hum_item_mean) - 48.4, 2),\n        },\n    }\n\n    out_path = output_dir / \"mmlu_subject_gradient_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n-> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T22:48:26.993535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T22:48:26.993668+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python scripts/d014v2_subject_gradient_8model.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python scripts/d014v2_subject_gradient_8model.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T22:48:26.993826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading 8-model MMLU data...\\nTotal observations: 460800\\nModels: ['deepseek', 'gemma', 'internlm', 'llama', 'mistral', 'olmo', 'qwen', 'yi']\\nSubjects: ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (STEM) ---\\n  item_id%=24.1  model×item%=32.8  G_item=0.241  std(p)=0.2724  acc=0.457\\n\\n--- clinical_knowledge (Other) ---\\n  item_id%=47.5  model×item%=30.0  G_item=0.474  std(p)=0.3598  acc=0.581\\n\\n--- college_physics (STEM) ---\\n  item_id%=31.6  model×item%=30.1  G_item=0.316  std(p)=0.3018  acc=0.436\\n\\n--- computer_security (STEM) ---\\n  item_id%=37.0  model×item%=24.9  G_item=0.370  std(p)=0.2842  acc=0.740\\n\\n--- high_school_mathematics (STEM) ---\\n  item_id%=10.4  model×item%=41.9  G_item=0.104  std(p)=0.2012  acc=0.385\\n\\n--- international_law (Humanities) ---\\n  item_id%=44.4  model×item%=24.1  G_item=0.444  std(p)=0.3164  acc=0.717\\n\\n--- philosophy (Humanities) ---\\n  item_id%=33.0  model×item%=36.1  G_item=0.330  std(p)=0.2580  acc=0.782\\n\\n--- professional_medicine (Other) ---\\n  item_id%=19.9  model×item%=41.7  G_item=0.199  std(p)=0.2416  acc=0.671\\n\\n--- us_foreign_policy (Humanities) ---\\n  item_id%=20.4  model×item%=36.9  G_item=0.204  std(p)=0.1747  acc=0.864\\n\\n--- world_religions (Humanities) ---\\n  item_id%=42.2  model×item%=27.1  G_item=0.422  std(p)=0.2617  acc=0.826\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n\\nSpearman rho(std_p, item_id%): 0.8061  p=0.0049\\n\\nSTEM mean item_id%: 25.8  (4-model: 27.9)\\nHumanities mean item_id%: 35.0  (4-model: 48.4)\\nOther mean item_id%: 33.7\\n\\nSTEM mean std(p): 0.2649\\nHumanities mean std(p): 0.2527\\n\\nSTEM mea
+…[truncated 1468 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-21T22:48:26.994075+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat << 'PYEOF' > /root/nlp_variance_gtheory/scripts/d014v2_subject_gradient_8model.py\n\"\"\"D014 Validation 2: 8-model MMLU within-subject gradient analysis.\n\nPer-subject Henderson I variance decomposition across 8 models.\nTests whether item heterogeneity (not format) drives variance structure.\n\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom itertools import combinations\nfrom pathlib import Path\nfrom scipy import stats\n\nSUBJECT_CATEGORIES = {\n    \"abstract_algebra\": \"STEM\",\n    \"college_physics\": \"STEM\",\n    \"high_school_mathematics\": \"STEM\",\n    \"computer_security\": \"STEM\",\n    \"professional_medicine\": \"Other\",\n    \"clinical_knowledge\": \"Other\",\n    \"philosophy\": \"Humanities\",\n    \"international_law\": \"Humanities\",\n    \"world_religions\": \"Humanities\",\n    \"us_foreign_policy\": \"Humanities\",\n}\n\nMODEL_FILES = [\n    \"llama_mmlu.jsonl\",\n    \"mistral_mmlu.jsonl\",\n    \"qwen_mmlu.jsonl\",\n    \"gemma_mmlu.jsonl\",\n    \"deepseek_mmlu.jsonl\",\n    \"internlm_mmlu.jsonl\",\n    \"olmo_mmlu.jsonl\",\n    \"yi_mmlu.jsonl\",\n]\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_all_models(data_dir: str) -> pd.DataFrame:\n    frames = []\n    for mf in MODEL_FILES:\n        p = Path(data_dir) / mf\n        df = pd.read_json(p, lines=True)\n        model_short = mf.replace(\"_mmlu.jsonl\", \"\")\n        df[\"model\"] = model_short\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    for f in FACETS:\n        combined[f] = combined[f].astype(str)\n    return combined\n\n\ndef compute_ss(df, response, facets):\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per_group = N // n_levels[f]\n        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cell_mean in cell_means.items():\n            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per_cell * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        key = f\"{fi}:{fj}\"\n        effects[key] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    return effects, n_levels\n\n\ndef estimate_variance_components(effects, facets, n_levels):\n    vc = {}\n    ms_res = effects[\"residual\"][\"ms\"]\n\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        divisor = 1\n        for fk in facets:\n            if fk not in (fi, fj):\n                divisor *= n_levels[fk]\n        raw = (effects[key][\"ms\"] - ms_res) / divisor\n        vc[key] = max(0.0, raw)\n\n    for f in facets:\n        interaction_contribution = 0.0\n        for fi, fj in combinations(facets, 2):\n            key = f\"{fi}:{fj}\"\n            if f in (fi, fj):\n                other = fj if f == fi else fi\n                coeff = 1\n                for fk in facets:\n                    if fk != f and fk != other:\n                        coeff *= n_levels[fk]\n                interaction_contribution += coeff * vc[key]\n        divisor = 1\n        for fk in facets:\n            if fk != f:\n                divisor *= n_levels[fk]\n        raw = (effects[f][\"ms\"] - interaction_contribution - ms_res) / divisor\n        vc[f] = max(0.0, raw)\n\n    vc[\"residual\"] = max(0.0, ms_res)\n    return vc\n\n\ndef compute_g_item(vc, n_levels):\n    \"\"\"D-study G coefficient for item generalizability.\n    \n    G = sigma2(item) / [sigma2(item) + sigma2(delta)]\n    sigma2(delta) = sum of sigma2(f:item)/n_f for all f != item\n                  + sigma2(residual) / prod(n_f for f != item)\n    \"\"\"\n    sigma2_item = vc.get(\"item_id\", 0)\n    \n    other_facets = [f for f in FACETS if f != \"item_id\"]\n    sigma2_delta = 0.0\n    \n    for f in other_facets:\n        key_a = f\"item_id:{f}\"\n        key_b = f\"{f}:item_id\"\n        interaction_var = vc.get(key_a, vc.get(key_b, 0))\n        sigma2_delta += interaction_var / n_levels[f]\n    \n    prod_n = 1\n    for f in other_facets:\n        prod_n *= n_levels[f]\n    sigma2_delta += vc.get(\"residual\", 0) / prod_n\n    \n    denom = sigma2_item + sigma2_delta\n    return sigma2_item / denom if denom > 0 else 0\n\n\ndef compute_item_heterogeneity(df):\n    \"\"\"std(p) across items: std of per-item mean accuracy.\"\"\"\n    item_means = df.groupby(\"item_id\")[\"correct\"].mean()\n    return float(item_means.std())\n\n\ndef analyze_subject(df_subject, subject_name):\n    n_levels_check = {f: df_subject[f].nunique() for f in FACETS}\n    n_obs = len(df_subject)\n    expected = 1\n    for v in n_levels_check.values():\n        expected *= v\n    if n_obs != expected:\n        print(f\"  WARNING: {subject_name} not balanced: {n_obs} obs vs expected {expected}\")\n        print(f\"    levels: {n_levels_check}\")\n\n    effects, n_levels = compute_ss(df_subject, \"correct\", FACETS)\n    vc = estimate_variance_components(effects, FACETS, n_levels)\n    total = sum(vc.values())\n\n    pct = {k: v / total * 100 if total > 0 else 0 for k, v in vc.items()}\n    item_pct = pct.get(\"item_id\", 0)\n    model_item_pct = pct.get(\"model:item_id\", 0)\n\n    G_item = compute_g_item(vc, n_levels)\n\n    std_p = compute_item_heterogeneity(df_subject)\n    accuracy = float(df_subject[\"correct\"].mean())\n\n    return {\n        \"subject\": subject_name,\n        \"category\": SUBJECT_CATEGORIES.get(subject_name, \"Unknown\"),\n        \"n_obs\": n_obs,\n        \"n_items\": n_levels.get(\"item_id\", 0),\n        \"n_models\": n_levels.get(\"model\", 0),\n        \"accuracy\": round(accuracy, 4),\n        \"item_id_pct\": round(item_pct, 2),\n        \"model_item_pct\": round(model_item_pct, 2),\n        \"model_pct\": round(pct.get(\"model\", 0), 2),\n        \"residual_pct\": round(pct.get(\"residual\", 0), 2),\n        \"G_item\": round(G_item, 4),\n        \"std_p\": round(std_p, 4),\n        \"variance_components\": {k: round(v, 8) for k, v in sorted(vc.items(), key=lambda x: -x[1])},\n        \"pct_components\": {k: round(v, 2) for k, v in sorted(pct.items(), key=lambda x: -x[1])},\n    }\n\n\ndef main():\n    data_dir = \"/root/nlp_variance_gtheory/results/exp002\"\n    output_dir = Path(\"/root/nlp_variance_gtheory/results/exp004_8model_analysis\")\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading 8-model MMLU data...\")\n    df = load_all_models(data_dir)\n    print(f\"Total observations: {len(df)}\")\n    print(f\"Models: {sorted(df['model'].unique())}\")\n    print(f\"Subjects: {sorted(df['subject'].unique())}\")\n\n    subjects = sorted(df[\"subject\"].unique())\n    results = []\n\n    for subj in subjects:\n        print(f\"\\n--- {subj} ({SUBJECT_CATEGORIES.get(subj, '?')}) ---\")\n        df_subj = df[df[\"subject\"] == subj].copy()\n        r = analyze_subject(df_subj, subj)\n        results.append(r)\n        print(f\"  item_id%={r['item_id_pct']:.1f}  model×item%={r['model_item_pct']:.1f}  \"\n              f\"G_item={r['G_item']:.3f}  std(p)={r['std_p']:.4f}  acc={r['accuracy']:.3f}\")\n\n    # Spearman correlation: std_p vs item_id_pct\n    std_ps = [r[\"std_p\"] for r in results]\n    item_pcts = [r[\"item_id_pct\"] for r in results]\n    rho, pval = stats.spearmanr(std_ps, item_pcts)\n\n    # STEM vs Humanities\n    stem = [r for r in results if r[\"category\"] == \"STEM\"]\n    hum = [r for r in results if r[\"category\"] == \"Humanities\"]\n    other = [r for r in results if r[\"category\"] == \"Other\"]\n\n    stem_item_mean = np.mean([r[\"item_id_pct\"] for r in stem])\n    hum_item_mean = np.mean([r[\"item_id_pct\"] for r in hum])\n    other_item_mean = np.mean([r[\"item_id_pct\"] for r in other]) if other else None\n\n    stem_stdp_mean = np.mean([r[\"std_p\"] for r in stem])\n    hum_stdp_mean = np.mean([r[\"std_p\"] for r in hum])\n\n    stem_G_mean = np.mean([r[\"G_item\"] for r in stem])\n    hum_G_mean = np.mean([r[\"G_item\"] for r in hum])\n\n    stem_mi_mean = np.mean([r[\"model_item_pct\"] for r in stem])\n    hum_mi_mean = np.mean([r[\"model_item_pct\"] for r in hum])\n\n    # 4-model comparison\n    comparison_4model = {\n        \"STEM_mean_item_pct\": 27.9,\n        \"Humanities_mean_item_pct\": 48.4,\n        \"note\": \"From memory.md 4-model results\"\n    }\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY\")\n    print(\"=\" * 70)\n    print(f\"\\nSpearman rho(std_p, item_id%): {rho:.4f}  p={pval:.4f}\")\n    print(f\"\\nSTEM mean:  item_id%={stem_item_mean:.1f}  m×i%={stem_mi_mean:.1f}  \"\n          f\"std(p)={stem_stdp_mean:.4f}  G_item={stem_G_mean:.4f}  (4-model item_id%: 27.9)\")\n    print(f\"Hum mean:   item_id%={hum_item_mean:.1f}  m×i%={hum_mi_mean:.1f}  \"\n          f\"std(p)={hum_stdp_mean:.4f}  G_item={hum_G_mean:.4f}  (4-model item_id%: 48.4)\")\n    if other_item_mean is not None:\n        print(f\"Other mean: item_id%={other_item_mean:.1f}\")\n\n    # Subject-level table\n    print(\"\\n\" + \"-\" * 95)\n    print(f\"{'Subject':<28} {'Cat':<6} {'item_id%':>8} {'m×i%':>8} {'std_p':>8} {'G_item':>8} {'acc':>6}\")\n    print(\"-\" * 95)\n    for r in sorted(results, key=lambda x: -x[\"item_id_pct\"]):\n        print(f\"{r['subject']:<28} {r['category']:<6} {r['item_id_pct']:>8.1f} {r['model_item_pct']:>8.1f} \"\n              f\"{r['std_p']:>8.4f} {r['G_item']:>8.4f} {r['accuracy']:>6.3f}\")\n\n    output = {\n        \"experiment\": \"D014_validation2\",\n        \"analysis\": \"8model_mmlu_subject_gradient\",\n        \"n_models\": 8,\n        \"n_subjects\": len(results),\n        \"facets\": FACETS,\n        \"subjects\": results,\n        \"spearman\": {\n            \"rho\": round(float(rho), 4),\n            \"p_value\": round(float(pval), 4),\n            \"variables\": [\"std_p (item difficulty heterogeneity)\", \"item_id% (Henderson I)\"],\n            \"n\": len(results),\n        },\n        \"group_summary\": {\n            \"STEM\": {\n                \"subjects\": [r[\"subject\"] for r in stem],\n                \"mean_item_pct\": round(float(stem_item_mean), 2),\n                \"mean_model_item_pct\": round(float(stem_mi_mean), 2),\n                \"mean_std_p\": round(float(stem_stdp_mean), 4),\n                \"mean_G_item\": round(float(stem_G_mean), 4),\n            },\n            \"Humanities\": {\n                \"subjects\": [r[\"subject\"] for r in hum],\n                \"mean_item_pct\": round(float(hum_item_mean), 2),\n                \"mean_model_item_pct\": round(float(hum_mi_mean), 2),\n                \"mean_std_p\": round(float(hum_stdp_mean), 4),\n                \"mean_G_item\": round(float(hum_G_mean), 4),\n            },\n            \"Other\": {\n                \"subjects\": [r[\"subject\"] for r in other],\n                \"mean_item_pct\": round(float(other_item_mean), 2) if other_item_mean else None,\n            },\n        },\n        \"comparison_4model\": comparison_4model,\n        \"delta_vs_4model\": {\n            \"STEM_item_pct_change\": round(float(stem_item_mean) - 27.9, 2),\n            \"Humanities_item_pct_change\": round(float(hum_item_mean) - 48.4, 2),\n        },\n    }\n\n    out_path = output_dir / \"mmlu_subject_gradient_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n-> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat << 'PYEOF' > /root/nlp_variance_gtheory/scripts/d014v2_subject_gradient_8model.py\n\"\"\"D014 Validation 2: 8-model MMLU within-subject gradient analysis.\n\nPer-subject Henderson I variance decomposition across 8 models.\nTests whether item heterogeneity (not format) drives variance structure.\n\"\"\"\n\nimport json\nimport numpy as np\nimport pandas as pd\nfrom itertools import combinations\nfrom pathlib import Path\nfrom scipy import stats\n\nSUBJECT_CATEGORIES = {\n    \"abstract_algebra\": \"STEM\",\n    \"college_physics\": \"STEM\",\n    \"high_school_mathematics\": \"STEM\",\n    \"computer_security\": \"STEM\",\n    \"professional_medicine\": \"Other\",\n    \"clinical_knowledge\": \"Other\",\n    \"philosophy\": \"Humanities\",\n    \"international_law\": \"Humanities\",\n    \"world_religions\": \"Humanities\",\n    \"us_foreign_policy\": \"Humanities\",\n}\n\nMODEL_FILES = [\n    \"llama_mmlu.jsonl\",\n    \"mistral_mmlu.jsonl\",\n    \"qwen_mmlu.jsonl\",\n    \"gemma_mmlu.jsonl\",\n    \"deepseek_mmlu.jsonl\",\n    \"internlm_mmlu.jsonl\",\n    \"olmo_mmlu.jsonl\",\n    \"yi_mmlu.jsonl\",\n]\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_all_models(data_dir: str) -> pd.DataFrame:\n    frames = []\n    for mf in MODEL_FILES:\n        p = Path(data_dir) / mf\n        df = pd.read_json(p, lines=True)\n        model_short = mf.replace(\"_mmlu.jsonl\", \"\")\n        df[\"model\"] = model_short\n        frames.append(df)\n    combined = pd.concat(frames, ignore_index=True)\n    for f in FACETS:\n        combined[f] = combined[f].astype(str)\n    return combined\n\n\ndef compute_ss(df, response, facets):\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per_group = N // n_levels[f]\n        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cell_mean in cell_means.items():\n            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per_cell * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        key = f\"{fi}:{fj}\"\n        effects[key] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    return effects, n_levels\n\n\ndef estimate_variance_components(effects, facets, n_levels):\n    vc = {}\n    ms_res = effects[\"residual\"][\"ms\"]\n\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        divisor = 1\n        for fk in facets:\n            if fk not in (fi, fj):\n                divisor *= n_levels[fk]\n        raw = (effects[key][\"ms\"] - ms_res) / divisor\n        vc[key] = max(0.0, raw)\n\n    for f in facets:\n        interaction_contribution = 0.0\n        for fi, fj in combinations(facets, 2):\n            key = f\"{fi}:{fj}\"\n            if f in (fi, fj):\n                other = fj if f == fi else fi\n                coeff = 1\n                for fk in facets:\n                    if fk != f and fk != other:\n                        coeff *= n_levels[fk]\n                interaction_contribution += coeff * vc[key]\n        divisor = 1\n        for fk in facets:\n            if fk != f:\n                divisor *= n_levels[fk]\n        raw = (effects[f][\"ms\"] - interaction_contribution - ms_res) / divisor\n        vc[f] = max(0.0, raw)\n\n    vc[\"residual\"] = max(0.0, ms_res)\n    return vc\n\n\ndef compute_g_item(vc, n_levels):\n    \"\"\"D-study G coefficient for item generalizability.\n    \n    G = sigma2(item) / [sigma2(item) + sigma2(delta)]\n    sigma2(delta) = sum of sigma2(f:item)/n_f for all f != item\n                  + sigma2(residual) / prod(n_f for f != item)\n    \"\"\"\n    sigma2_item = vc.get(\"item_id\", 0)\n    \n    other_facets = [f for f in FACETS if f != \"item_id\"]\n    sigma2_delta = 0.0\n    \n    for f in other_facets:\n        key_a = f\"item_id:{f}\"\n        key_b = f\"{f}:item_id\"\n        interaction_var = vc.get(key_a, vc.get(key_b, 0))\n        sigma2_delta += interaction_var / n_levels[f]\n    \n    prod_n = 1\n    for f in other_facets:\n        prod_n *= n_levels[f]\n    sigma2_delta += vc.get(\"residual\", 0) / prod_n\n    \n    denom = sigma2_item + sigma2_delta\n    return sigma2_item / denom if denom > 0 else 0\n\n\ndef compute_item_heterogeneity(df):\n    \"\"\"std(p) across items: std of per-item mean accuracy.\"\"\"\n    item_means = df.groupby(\"item_id\")[\"correct\"].mean()\n    return float(item_means.std())\n\n\ndef analyze_subject(df_subject, subject_name):\n    n_levels_check = {f: df_subject[f].nunique() for f in FACETS}\n    n_obs = len(df_subject)\n    expected = 1\n    for v in n_levels_check.values():\n        expected *= v\n    if n_obs != expected:\n        print(f\"  WARNING: {subject_name} not balanced: {n_obs} obs vs expected {expected}\")\n        print(f\"    levels: {n_levels_check}\")\n\n    effects, n_levels = compute_ss(df_subject, \"correct\", FACETS)\n    vc = estimate_variance_components(effects, FACETS, n_levels)\n    total = sum(vc.values())\n\n    pct = {k: v / total * 100 if total > 0 else 0 for k, v in vc.items()}\n    item_pct = pct.get(\"item_id\", 0)\n    model_item_pct = pct.get(\"model:item_id\", 0)\n\n    G_item = compute_g_item(vc, n_levels)\n\n    std_p = compute_item_heterogeneity(df_subject)\n    accuracy = float(df_subject[\"correct\"].mean())\n\n    return {\n        \"subject\": subject_name,\n        \"category\": SUBJECT_CATEGORIES.get(subject_name, \"Unknown\"),\n        \"n_obs\": n_obs,\n        \"n_items\": n_levels.get(\"item_id\", 0),\n        \"n_models\": n_levels.get(\"model\", 0),\n        \"accuracy\": round(accuracy, 4),\n        \"item_id_pct\": round(item_pct, 2),\n        \"model_item_pct\": round(model_item_pct, 2),\n        \"model_pct\": round(pct.get(\"model\", 0), 2),\n        \"residual_pct\": round(pct.get(\"residual\", 0), 2),\n        \"G_item\": round(G_item, 4),\n        \"std_p\": round(std_p, 4),\n        \"variance_components\": {k: round(v, 8) for k, v in sorted(vc.items(), key=lambda x: -x[1])},\n        \"pct_components\": {k: round(v, 2) for k, v in sorted(pct.items(), key=lambda x: -x[1])},\n    }\n\n\ndef main():\n    data_dir = \"/root/nlp_variance_gtheory/results/exp002\"\n    output_dir = Path(\"/root/nlp_variance_gtheory/results/exp004_8model_analysis\")\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading 8-model MMLU data...\")\n    df = load_all_models(data_dir)\n    print(f\"Total observations: {len(df)}\")\n    print(f\"Models: {sorted(df['model'].unique())}\")\n    print(f\"Subjects: {sorted(df['subject'].unique())}\")\n\n    subjects = sorted(df[\"subject\"].unique())\n    results = []\n\n    for subj in subjects:\n        print(f\"\\n--- {subj} ({SUBJECT_CATEGORIES.get(subj, '?')}) ---\")\n        df_subj = df[df[\"subject\"] == subj].copy()\n        r = analyze_subject(df_subj, subj)\n        results.append(r)\n        print(f\"  item_id%={r['item_id_pct']:.1f}  model×item%={r['model_item_pct']:.1f}  \"\n              f\"G_item={r['G_item']:.3f}  std(p)={r['std_p']:.4f}  acc={r['accuracy']:.3f}\")\n\n    # Spearman correlation: std_p vs item_id_pct\n    std_ps = [r[\"std_p\"] for r in results]\n    item_pcts = [r[\"item_id_pct\"] for r in results]\n    rho, pval = stats.spearmanr(std_ps, item_pcts)\n\n    # STEM vs Humanities\n    stem = [r for r in results if r[\"category\"] == \"STEM\"]\n    hum = [r for r in results if r[\"category\"] == \"Humanities\"]\n    other = [r for r in results if r[\"category\"] == \"Other\"]\n\n    stem_item_mean = np.mean([r[\"item_id_pct\"] for r in stem])\n    hum_item_mean = np.mean([r[\"item_id_pct\"] for r in hum])\n    other_item_mean = np.mean([r[\"item_id_pct\"] for r in other]) if other else None\n\n    stem_stdp_mean = np.mean([r[\"std_p\"] for r in stem])\n    hum_stdp_mean = np.mean([r[\"std_p\"] for r in hum])\n\n    stem_G_mean = np.mean([r[\"G_item\"] for r in stem])\n    hum_G_mean = np.mean([r[\"G_item\"] for r in hum])\n\n    stem_mi_mean = np.mean([r[\"model_item_pct\"] for r in stem])\n    hum_mi_mean = np.mean([r[\"model_item_pct\"] for r in hum])\n\n    # 4-model comparison\n    comparison_4model = {\n        \"STEM_mean_item_pct\": 27.9,\n        \"Humanities_mean_item_pct\": 48.4,\n        \"note\": \"From memory.md 4-model results\"\n    }\n\n    print(\"\\n\" + \"=\" * 70)\n    print(\"SUMMARY\")\n    print(\"=\" * 70)\n    print(f\"\\nSpearman rho(std_p, item_id%): {rho:.4f}  p={pval:.4f}\")\n    print(f\"\\nSTEM mean:  item_id%={stem_item_mean:.1f}  m×i%={stem_mi_mean:.1f}  \"\n          f\"std(p)={stem_stdp_mean:.4f}  G_item={stem_G_mean:.4f}  (4-model item_id%: 27.9)\")\n    print(f\"Hum mean:   item_id%={hum_item_mean:.1f}  m×i%={hum_mi_mean:.1f}  \"\n          f\"std(p)={hum_stdp_mean:.4f}  G_item={hum_G_mean:.4f}  (4-model item_id%: 48.4)\")\n    if other_item_mean is not None:\n        print(f\"Other mean: item_id%={other_item_mean:.1f}\")\n\n    # Subject-level table\n    print(\"\\n\" + \"-\" * 95)\n    print(f\"{'Subject':<28} {'Cat':<6} {'item_id%':>8} {'m×i%':>8} {'std_p':>8} {'G_item':>8} {'acc':>6}\")\n    print(\"-\" * 95)\n    for r in sorted(results, key=lambda x: -x[\"item_id_pct\"]):\n        print(f\"{r['subject']:<28} {r['category']:<6} {r['item_id_pct']:>8.1f} {r['model_item_pct']:>8.1f} \"\n              f\"{r['std_p']:>8.4f} {r['G_item']:>8.4f} {r['accuracy']:>6.3f}\")\n\n    output = {\n        \"experiment\": \"D014_validation2\",\n        \"analysis\": \"8model_mmlu_subject_gradient\",\n        \"n_models\": 8,\n        \"n_subjects\": len(results),\n        \"facets\": FACETS,\n        \"subjects\": results,\n        \"spearman\": {\n            \"rho\": round(float(rho), 4),\n            \"p_value\": round(float(pval), 4),\n            \"variables\": [\"std_p (item difficulty heterogeneity)\", \"item_id% (Henderson I)\"],\n            \"n\": len(results),\n        },\n        \"group_summary\": {\n            \"STEM\": {\n                \"subjects\": [r[\"subject\"] for r in stem],\n                \"mean_item_pct\": round(float(stem_item_mean), 2),\n                \"mean_model_item_pct\": round(float(stem_mi_mean), 2),\n                \"mean_std_p\": round(float(stem_stdp_mean), 4),\n                \"mean_G_item\": round(float(stem_G_mean), 4),\n            },\n            \"Humanities\": {\n                \"subjects\": [r[\"subject\"] for r in hum],\n                \"mean_item_pct\": round(float(hum_item_mean), 2),\n                \"mean_model_item_pct\": round(float(hum_mi_mean), 2),\n                \"mean_std_p\": round(float(hum_stdp_mean), 4),\n                \"mean_G_item\": round(float(hum_G_mean), 4),\n            },\n            \"Other\": {\n                \"subjects\": [r[\"subject\"] for r in other],\n                \"mean_item_pct\": round(float(other_item_mean), 2) if other_item_mean else None,\n            },\n        },\n        \"comparison_4model\": comparison_4model,\n        \"delta_vs_4model\": {\n            \"STEM_item_pct_change\": round(float(stem_item_mean) - 27.9, 2),\n            \"Humanities_item_pct_change\": round(float(hum_item_mean) - 48.4, 2),\n        },\n    }\n\n    out_path = output_dir / \"mmlu_subject_gradient_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\n-> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script updated.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T22:48:26.994320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script updated.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-21T22:48:26.994473+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python scripts/d014v2_subject_gradient_8model.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python scripts/d014v2_subject_gradient_8model.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T22:48:26.994669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading 8-model MMLU data...\\nTotal observations: 460800\\nModels: ['deepseek', 'gemma', 'internlm', 'llama', 'mistral', 'olmo', 'qwen', 'yi']\\nSubjects: ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (STEM) ---\\n  item_id%=24.1  model×item%=32.8  G_item=0.822  std(p)=0.2724  acc=0.457\\n\\n--- clinical_knowledge (Other) ---\\n  item_id%=47.5  model×item%=30.0  G_item=0.923  std(p)=0.3598  acc=0.581\\n\\n--- college_physics (STEM) ---\\n  item_id%=31.6  model×item%=30.1  G_item=0.876  std(p)=0.3018  acc=0.436\\n\\n--- computer_security (STEM) ---\\n  item_id%=37.0  model×item%=24.9  G_item=0.908  std(p)=0.2842  acc=0.740\\n\\n--- high_school_mathematics (STEM) ---\\n  item_id%=10.4  model×item%=41.9  G_item=0.614  std(p)=0.2012  acc=0.385\\n\\n--- international_law (Humanities) ---\\n  item_id%=44.4  model×item%=24.1  G_item=0.930  std(p)=0.3164  acc=0.717\\n\\n--- philosophy (Humanities) ---\\n  item_id%=33.0  model×item%=36.1  G_item=0.868  std(p)=0.2580  acc=0.782\\n\\n--- professional_medicine (Other) ---\\n  item_id%=19.9  model×item%=41.7  G_item=0.778  std(p)=0.2416  acc=0.671\\n\\n--- us_foreign_policy (Humanities) ---\\n  item_id%=20.4  model×item%=36.9  G_item=0.802  std(p)=0.1747  acc=0.864\\n\\n--- world_religions (Humanities) ---\\n  item_id%=42.2  model×item%=27.1  G_item=0.910  std(p)=0.2617  acc=0.826\\n\\n======================================================================\\nSUMMARY\\n======================================================================\\n\\nSpearman rho(std_p, item_id%): 0.8061  p=0.0049\\n\\nSTEM mean:  item_id%=25.8  m×i%=32.4  std(p)=0.2649  G_item=0.8050  (4-model item_id%: 27.9)\\nHum mean:   item_id%=35.0  m×i%=31.0  std(p)=0.2527  G_item=0.8776  (4-model item_id%: 48.4)\\nOther 
+…[truncated 1448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-21T22:48:26.994849+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'completed', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'completed', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'completed', 'activeForm': 'Comparing results and saving output'}, {'content': 'Register artifact', 'status': 'in_progress', 'activeForm': 'Registering artifact'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'completed', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'completed', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'completed', 'activeForm': 'Comparing results and saving output'}, {'content': 'Register artifact', 'status': 'in_progress', 'activeForm': 'Registering artifact'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T22:48:26.995001+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-21T22:48:26.995129+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D014v2 8-model MMLU subject gradient",
+  "type": "data",
+  "description": "Per-subject Henderson I variance decomposition (10 subjects × 8 models). Spearman ρ(std_p, item_id%)=0.806 (p=0.005). STEM mean item_id%=25.8%, Humanities=35.0%.",
+  "project": "nlp_variance_gtheory",
+  "exp_id": "exp004",
+  "source_path": "/root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json",
+  "tags": "['D014', 'validation', 'henderson-i', 'subject-gradient', '8model']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D014v2 8-model MMLU subject gradient",
+    "type": "data",
+    "description": "Per-subject Henderson I variance decomposition (10 subjects × 8 models). Spearman ρ(std_p, item_id%)=0.806 (p=0.005). STEM mean item_id%=25.8%, Humanities=35.0%.",
+    "project": "nlp_variance_gtheory",
+    "exp_id": "exp004",
+    "source_path": "/root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json",
+    "tags": "['D014', 'validation', 'henderson-i', 'subject-gradient', '8model']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T22:48:26.995261+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-21T22:48:26.995377+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T22:48:26.995773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"D014_validation2\\\",\\n  \\\"analysis\\\": \\\"8model_mmlu_subject_gradient\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_subjects\\\": 10,\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"subjects\\\": [\\n    {\\n      \\\"subject\\\": \\\"abstract_algebra\\\",\\n      \\\"category\\\": \\\"STEM\\\",\\n      \\\"n_obs\\\": 46080,\\n      \\\"n_items\\\": 20,\\n      \\\"n_models\\\": 8,\\n      \\\"accuracy\\\": 0.4565,\\n      \\\"item_id_pct\\\": 24.12,\\n      \\\"model_item_pct\\\": 32.84,\\n      \\\"model_pct\\\": 0.78,\\n      \\\"residual_pct\\\": 36.24,\\n      \\\"G_item\\\": 0.8221,\\n      \\\"std_p\\\": 0.2724,\\n      \\\"variance_components\\\": {\\n        \\\"residual\\\": 0.09164133,\\n        \\\"model:item_id\\\": 0.08304086,\\n        \\\"item_id\\\": 0.06099267,\\n        \\\"model:prompt_template\\\": 0.00349742,\\n        \\\"seed:item_id\\\": 0.00321678,\\n        \\\"temperature:item_id\\\": 0.00274054,\\n        \\\"prompt_template:item_id\\\": 0.00261785,\\n        \\\"model\\\": 0.0019622,\\n        \\\"ordering:item_id\\\": 0.00174276,\\n        \\\"model:temperature\\\": 0.00051707,\\n        \\\"model:ordering\\\": 0.00035533,\\n        \\\"model:seed\\\": 0.00031197,\\n        \\\"prompt_template:ordering\\\": 0.00011412,\\n        \\\"temperature:seed\\\": 6.222e-05,\\n        \\\"temperature:prompt_template\\\": 4.766e-05,\\n        \\\"temperature:ordering\\\": 1.78e-06,\\n        \\\"prompt_template:seed\\\": 0.0,\\n        \\\"seed:ordering\\\": 0.0,\\n        \\\"temperature\\\": 0.0,\\n        \\\"prompt_template\\\": 0.0,\\n        \\\"seed\\\": 0.0,\\n        \\\"ordering\\\": 0.0\\n      },\\n      \\\"pct_components\\\": {\\n        \\\"residual\\\": 36.24,\\n        \\\"model:item_id\\\": 32.84,\\n        \\\"
+…[truncated 8317 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-21T22:48:26.995977+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "D014v2 8-model MMLU subject gradient",
+  "type": "data",
+  "description": "Per-subject Henderson I variance decomposition (10 subjects x 8 models). Spearman rho(std_p, item_id%)=0.806 (p=0.005). STEM mean item_id%=25.8%, Humanities=35.0%.",
+  "project": "nlp_variance_gtheory",
+  "exp_id": "exp004",
+  "content": "See server file: westd-32570:/root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json",
+  "content_filename": "mmlu_subject_gradient_8model_pointer.txt",
+  "tags": "['D014', 'validation', 'henderson-i', 'subject-gradient', '8model']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "D014v2 8-model MMLU subject gradient",
+    "type": "data",
+    "description": "Per-subject Henderson I variance decomposition (10 subjects x 8 models). Spearman rho(std_p, item_id%)=0.806 (p=0.005). STEM mean item_id%=25.8%, Humanities=35.0%.",
+    "project": "nlp_variance_gtheory",
+    "exp_id": "exp004",
+    "content": "See server file: westd-32570:/root/nlp_variance_gtheory/results/exp004_8model_analysis/mmlu_subject_gradient_8model.json",
+    "content_filename": "mmlu_subject_gradient_8model_pointer.txt",
+    "tags": "['D014', 'validation', 'henderson-i', 'subject-gradient', '8model']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T22:48:26.996132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_03d682\", \"name\": \"D014v2 8-model MMLU subject gradient\", \"type\": \"data\", \"description\": \"Per-subject Henderson I variance decomposition (10 subjects x 8 models). Spearman rho(std_p, item_id%)=0.806 (p=0.005). STEM mean item_id%=25.8%, Humanities=35.0%.\", \"path\": \"projects/nlp_variance_gtheory/artifacts/exp004/data/mmlu_subject_gradient_8model_pointer.txt\", \"url\": null, \"project\": \"nlp_variance_gtheory\", \"exp_id\": \"exp004\", \"skill\": \"\", \"created_at\": \"2026-05-21T22:48:03.494888+00:00\", \"tags\": [\"D014\", \"validation\", \"henderson-i\", \"subject-gradient\", \"8model\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-21T22:48:26.996266+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'completed', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'completed', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'completed', 'activeForm': 'Comparing results and saving output'}, {'content': 'Register artifact', 'status': 'completed', 'activeForm': 'Registering artifact'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Check 4-model subject categorization from memory.md', 'status': 'completed', 'activeForm': 'Checking 4-model subject categorization'}, {'content': 'Write and run per-subject Henderson I analysis script (8 models)', 'status': 'completed', 'activeForm': 'Running per-subject Henderson I analysis'}, {'content': 'Compute item heterogeneity std(p) and Spearman correlation', 'status': 'completed', 'activeForm': 'Computing heterogeneity and correlation'}, {'content': 'Compare with 4-model results, save JSON output', 'status': 'completed', 'activeForm': 'Comparing results and saving output'}, {'content': 'Register artifact', 'status': 'completed', 'activeForm': 'Registering artifact'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T22:48:26.996431+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-21T22:48:26.996613+00:00_
+
+分析完成。结果汇总：
+
+### Subject-Level Table (sorted by item_id%)
+
+| Subject | Cat | item_id% | m×i% | std(p) | G_item | acc |
+|---|---|---|---|---|---|---|
+| clinical_knowledge | Other | 47.5 | 30.0 | 0.360 | 0.923 | 0.581 |
+| international_law | Hum | 44.4 | 24.1 | 0.316 | 0.930 | 0.717 |
+| world_religions | Hum | 42.2 | 27.1 | 0.262 | 0.910 | 0.826 |
+| computer_security | STEM | 37.0 | 24.9 | 0.284 | 0.908 | 0.740 |
+| philosophy | Hum | 33.0 | 36.1 | 0.258 | 0.868 | 0.782 |
+| college_physics | STEM | 31.6 | 30.1 | 0.302 | 0.876 | 0.436 |
+| abstract_algebra | STEM | 24.1 | 32.8 | 0.272 | 0.822 | 0.457 |
+| us_foreign_policy | Hum | 20.4 | 36.9 | 0.175 | 0.802 | 0.864 |
+| professional_medicine | Other | 19.9 | 41.7 | 0.242 | 0.778 | 0.671 |
+| high_school_math | STEM | 10.4 | 41.9 | 0.201 | 0.614 | 0.385 |
+
+### 核心发现
+
+- **Spearman ρ(std_p, item_id%) = 0.806, p = 0.005** — item difficulty 异质性强烈预测 item_id%，支持 "item heterogeneity 而非 format 驱动方差结构" 的假说
+- **STEM vs Humanities gradient 保持但弱化**：STEM mean item_id% = 25.8% (4-model: 27.9, Δ=-2.1), Humanities = 35.0% (4-model: 48.4, Δ=-13.4)
+- Humanities 下降大的原因：us_foreign_policy (20.4%) 和 philosophy (33.0%) 在 8-model 下 model×item 交互吸收了更多方差（分别 36.9% 和 36.1%），说明更多模型增加了 model-specific item 困难模式的解析度
+- **G_item 范围 0.614–0.930**，与 std(p) 高度一致：high_school_math（最低异质性 std_p=0.201）的 G_item 最低（0.614），international_law（高异质性）最高（0.930）
+- 关键洞察：STEM/Humanities 的分界不是决定因素——us_foreign_policy（Humanities）的 item_id% 低于 college_physics（STEM）。真正的驱动力是 item-level difficulty spread
+
+JSON 已保存至 `results/exp004_8model_analysis/mmlu_subject_gradient_8model.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_phase2_mmlu_subject_gradient_8model_20260521T224259"
+}
+```
+
+</details>
+
+---

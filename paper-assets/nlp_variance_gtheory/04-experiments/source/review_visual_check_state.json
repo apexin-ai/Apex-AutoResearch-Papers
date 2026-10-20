@@ -1,0 +1,77 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:18:13.160167+00:00",
+  "completed_at": "2026-05-25T21:21:17.629206+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 15",
+      "message": "末页大面积空白（~85% 留白）。Appendix H \"Use of AI Assistants\" 仅 3 个 bullet point，页面利用率极低。建议与前一个 appendix 合并到同一页，或补充内容填充。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "单页塞入 4 个 display items（Table 5、Table 6、Figure 7、Figure 8），视觉密度过高。Figure 7（item difficulty heterogeneity 柱状图）尺寸偏小，bar label 和 axis text 在打印时可能难以辨认。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "3 张表格（Tables 7-9）+ Conclusion + Limitations 挤在同一页，排版偏紧凑。Table 8 的行间距较窄，审稿人快速浏览时可能感到拥挤。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item（纯 Abstract + Introduction 文本）。首个视觉锚点 Figure 1 出现在第 2 页顶部，位置合理，pipeline 概览图有效传达核心方法论，色块区分清晰——审稿人第一印象良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 全宽 pipeline 图：Factorial Design → G-Study → D-Study → Reproducibility Budgets。Caption 自包含，信息传达清晰。Title-Abstract-Figure 1 三者 story 一致。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 6 heatmap（item variance share by model × benchmark）：y 轴模型名和 x 轴 benchmark 名字号偏小（估计 ~7pt），建议适当放大或改用缩写 + 图注说明。Heatmap 颜色梯度（黄→深红）在灰度打印下区分度可能不足，建议叠加数值标注（目前已有数值，这一点做得好）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 3（bar chart: scope comparison with prior work）仅 3 组柱状对比，信息密度偏低，可考虑与 Table 1 合并为一张综合对比图表。"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 10-11",
+      "message": "Appendix A 连续两页纯文本（robustness analyses），无 display item 穿插。作为统计分析附录尚可接受，但若能将部分定量结果以小表格呈现会改善可读性。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "Display items 密度极高：正文 8 页含 8 figures + 9 tables = 17 个 display items（~2.1/页）。单个 item 质量良好，但总量偏多，审稿人可能感到信息过载。考虑将 Tables 5-6 或 Figure 7 移至 Appendix。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有表格均使用 booktabs 风格（\\toprule/\\midrule/\\bottomrule），无竖线，格式专业统一。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "公式渲染正确，未发现 LaTeX 错误残留、overfull hbox 或 margin 溢出。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "参考文献格式统一，未发现 [?] 未解析引用或编号跳号。"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未发现 section heading 孤悬页底的情况。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 3,
+    "info": 10
+  }
+}

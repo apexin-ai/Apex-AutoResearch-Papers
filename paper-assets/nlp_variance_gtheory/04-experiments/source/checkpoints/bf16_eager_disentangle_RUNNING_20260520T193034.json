@@ -1,0 +1,29 @@
+{
+  "exp_id": "bf16_eager_disentangle",
+  "project": "nlp_variance_gtheory",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:30:14.607Z",
+    "updated_at": "2026-05-20T19:30:34.926Z",
+    "hypothesis": "The 8.5pp accuracy gap between FP32 and BF16 in MVP Phase A is primarily due to engine differences (V0 enforce_eager vs V1 CUDA graph), not numerical precision. Running BF16+enforce_eager should show similar degradation to FP32.",
+    "parent": "mvp_phase_a",
+    "spec": {
+      "command": "python run_bf16_eager.py",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items.json",
+      "data_count": 1800,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "42,123,456",
+      "gpu": "cuda:0",
+      "design": "36 conditions (BF16 + enforce_eager=True)",
+      "checkpoint_source": "meta-llama/Llama-3.1-8B-Instruct (HF)",
+      "eval_data": "MMLU 50 items (5 subjects × 10)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T19:30:34.933591+00:00",
+  "trigger": "update_registry"
+}

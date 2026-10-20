@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp001b_resampling",
+  "project": "nlp_variance_gtheory",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:15.585Z",
+    "updated_at": "2026-05-21T08:37:10.718Z",
+    "hypothesis": "Single-model item_id dominance (~58%) in G-theory decomposition is robust to item sampling — 3 independent 200-item stratified MMLU samples will show consistent item_id%, interaction percentages, and G_item (CV < 10%), ruling out that exp-001's findings are artifacts of the specific 200-item sample. Baseline comparison: Llama single-model 6-facet decomposition.",
+    "parent": "exp001_llama",
+    "server": "westd-32570",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "reproduce": {
+      "server": "westd-32570",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-21T07:53:10.678Z"
+    },
+    "spec": {
+      "command": "bash scripts/run_exp001b.sh (3 samples serial, 4 GPU parallel per sample)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items_exp001b_sample{1,2,3}.json (3×200 items, zero overlap with exp-001 and each other)",
+      "data_count": 600,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "42,123,456,789,1024,2048",
+      "gpu": "cuda:0-3",
+      "checkpoint_source": "HuggingFace (pre-trained, no fine-tuning)",
+      "eval_data": "MMLU 3×200 items (10 subjects × 20 items per sample)",
+      "master_pid": 112600,
+      "sample1_pids": "112700-112703",
+      "precision": "bfloat16 only",
+      "temperatures": "0.0, 0.3, 0.7",
+      "conditions_per_sample": 432,
+      "records_per_sample": 86400,
+      "total_records": 259200
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T08:37:10.767081+00:00",
+  "trigger": "update_registry"
+}

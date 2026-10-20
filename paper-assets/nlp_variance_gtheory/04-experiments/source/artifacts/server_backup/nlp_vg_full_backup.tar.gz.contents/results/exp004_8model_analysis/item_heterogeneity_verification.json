@@ -1,0 +1,152 @@
+{
+  "analysis": "D014_item_heterogeneity_verification",
+  "date": "2026-05-21",
+  "hypothesis": "item difficulty heterogeneity drives item_id variance component",
+  "per_benchmark": {
+    "mmlu": {
+      "benchmark": "mmlu",
+      "n_models": 8,
+      "models_used": [
+        "qwen",
+        "llama",
+        "gemma",
+        "mistral",
+        "internlm",
+        "deepseek",
+        "olmo",
+        "yi"
+      ],
+      "n_items": 200,
+      "item_difficulty_stats": {
+        "mean_p": 0.6457356770833335,
+        "std_p": 0.31195546240905975,
+        "var_p": 0.09731621052685029,
+        "range_p": 0.9986979166666667,
+        "iqr_p": 0.5992838541666665,
+        "min_p": 0.0,
+        "max_p": 0.9986979166666667
+      },
+      "mean_model_item_var": 0.0769610897111304,
+      "item_id_pct": 40.48
+    },
+    "arc": {
+      "benchmark": "arc",
+      "n_models": 8,
+      "models_used": [
+        "qwen",
+        "llama",
+        "gemma",
+        "mistral",
+        "internlm",
+        "deepseek",
+        "olmo",
+        "yi"
+      ],
+      "n_items": 200,
+      "item_difficulty_stats": {
+        "mean_p": 0.7724587673611112,
+        "std_p": 0.2743598312576495,
+        "var_p": 0.07527331700772592,
+        "range_p": 0.9939236111111112,
+        "iqr_p": 0.2681206597222223,
+        "min_p": 0.0,
+        "max_p": 0.9939236111111112
+      },
+      "mean_model_item_var": 0.06768265443293925,
+      "item_id_pct": 42.46
+    },
+    "hellaswag": {
+      "benchmark": "hellaswag",
+      "n_models": 6,
+      "models_used": [
+        "qwen",
+        "llama",
+        "gemma",
+        "mistral",
+        "internlm",
+        "deepseek"
+      ],
+      "n_items": 200,
+      "item_difficulty_stats": {
+        "mean_p": 0.7192013888888888,
+        "std_p": 0.28288089986983683,
+        "var_p": 0.08002160351116866,
+        "range_p": 0.9976851851851852,
+        "iqr_p": 0.42650462962962965,
+        "min_p": 0.0023148148148148147,
+        "max_p": 1.0
+      },
+      "mean_model_item_var": 0.09002716692386831,
+      "item_id_pct": 32.2
+    },
+    "gsm8k": {
+      "benchmark": "gsm8k",
+      "n_models": 8,
+      "models_used": [
+        "qwen",
+        "llama",
+        "gemma",
+        "mistral",
+        "internlm",
+        "deepseek",
+        "olmo",
+        "yi"
+      ],
+      "n_items": 200,
+      "item_difficulty_stats": {
+        "mean_p": 0.5819227430555556,
+        "std_p": 0.22089204598301085,
+        "var_p": 0.04879329597856057,
+        "range_p": 0.8493923611111112,
+        "iqr_p": 0.28157552083333337,
+        "min_p": 0.029079861111111112,
+        "max_p": 0.8784722222222223
+      },
+      "mean_model_item_var": 0.06720018497850529,
+      "item_id_pct": 16.86
+    },
+    "math": {
+      "benchmark": "math",
+      "n_models": 7,
+      "models_used": [
+        "qwen",
+        "llama",
+        "gemma",
+        "mistral",
+        "internlm",
+        "olmo",
+        "yi"
+      ],
+      "n_items": 200,
+      "item_difficulty_stats": {
+        "mean_p": 0.3102529761904762,
+        "std_p": 0.25432045241553153,
+        "var_p": 0.06467889251684063,
+        "range_p": 0.8457341269841271,
+        "iqr_p": 0.47482638888888895,
+        "min_p": 0.0,
+        "max_p": 0.8457341269841271
+      },
+      "mean_model_item_var": 0.05105306276638743,
+      "item_id_pct": 26.48
+    }
+  },
+  "correlation": {
+    "std_p_vs_item_id_pct": {
+      "spearman_rho": 0.7,
+      "p_value": 0.1881204043741873,
+      "supports_hypothesis": false
+    },
+    "mean_model_item_var_vs_item_id_pct": {
+      "spearman_rho": 0.49999999999999994,
+      "p_value": 0.3910022189557703
+    }
+  },
+  "notes": {
+    "hellaswag": "6 models only (OLMo/Yi hellaswag not on this server)",
+    "math": "7 models (DeepSeek excluded, incomplete data)",
+    "mc_item_id_pct": "6-model G-study values for MMLU/ARC/HellaSwag",
+    "ff_item_id_pct": "8-model G-study for GSM8K, 7-model for MATH"
+  },
+  "conclusion": "NOT FULLY SUPPORTED: rho=0.700<0.8. Item difficulty heterogeneity alone does not fully explain item_id variance component."
+}

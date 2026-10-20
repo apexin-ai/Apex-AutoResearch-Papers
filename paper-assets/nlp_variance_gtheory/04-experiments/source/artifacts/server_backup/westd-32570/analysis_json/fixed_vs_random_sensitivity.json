@@ -1,0 +1,334 @@
+{
+  "binary_correct": {
+    "metric": "binary_correct",
+    "analyses": {
+      "all_random": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6108,
+        "fixed_facets": [],
+        "tau_pct": 61.0802,
+        "delta_pct": 38.9198
+      },
+      "temperature_fixed": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6233,
+        "fixed_facets": [
+          "temperature"
+        ],
+        "tau_pct": 61.0802,
+        "delta_pct": 36.9153
+      },
+      "ordering_fixed": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6145,
+        "fixed_facets": [
+          "ordering"
+        ],
+        "tau_pct": 61.0802,
+        "delta_pct": 38.316
+      },
+      "precision_fixed": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6458,
+        "fixed_facets": [
+          "precision"
+        ],
+        "tau_pct": 61.0802,
+        "delta_pct": 33.4943
+      },
+      "three_fixed": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6638,
+        "fixed_facets": [
+          "precision",
+          "temperature",
+          "ordering"
+        ],
+        "tau_pct": 61.0802,
+        "delta_pct": 30.9413
+      },
+      "temp_prec_fixed": {
+        "components_pct": {
+          "item_id": 61.0802,
+          "residual": 21.5861,
+          "seed:item_id": 4.725,
+          "prompt_template:item_id": 4.5846,
+          "precision:item_id": 4.1642,
+          "temperature:item_id": 1.8348,
+          "precision": 1.1913,
+          "ordering:item_id": 0.5947,
+          "temperature": 0.0669,
+          "precision:temperature": 0.0524,
+          "temperature:prompt_template": 0.0303,
+          "prompt_template": 0.0263,
+          "temperature:seed": 0.0197,
+          "seed": 0.0144,
+          "precision:prompt_template": 0.0131,
+          "prompt_template:seed": 0.0049,
+          "prompt_template:ordering": 0.0044,
+          "precision:ordering": 0.0025,
+          "precision:seed": 0.0019,
+          "seed:ordering": 0.0012,
+          "ordering": 0.0005,
+          "temperature:ordering": 0.0004
+        },
+        "G_coefficient": 0.6595,
+        "fixed_facets": [
+          "precision",
+          "temperature"
+        ],
+        "tau_pct": 61.0802,
+        "delta_pct": 31.5422
+      }
+    }
+  },
+  "text_exact_match": {
+    "metric": "text_exact_match",
+    "analyses": {
+      "all_random": {
+        "components_pct": {
+          "temperature": 79.7164,
+          "residual": 8.8527,
+          "precision:temperature": 4.1495,
+          "precision": 2.8134,
+          "temperature:item_id": 0.845,
+          "seed:item_id": 0.6684,
+          "item_id": 0.6637,
+          "temperature:prompt_template": 0.5924,
+          "prompt_template:item_id": 0.5231,
+          "precision:prompt_template": 0.4655,
+          "ordering:item_id": 0.1951,
+          "precision:item_id": 0.1531,
+          "temperature:seed": 0.0863,
+          "precision:seed": 0.0806,
+          "prompt_template": 0.0705,
+          "prompt_template:seed": 0.0621,
+          "seed": 0.0361,
+          "seed:ordering": 0.0142,
+          "ordering": 0.0041,
+          "precision:ordering": 0.0031,
+          "prompt_template:ordering": 0.0028,
+          "temperature:ordering": 0.0019
+        },
+        "G_coefficient": 0.0066,
+        "fixed_facets": [],
+        "tau_pct": 0.6637,
+        "delta_pct": 99.3363
+      },
+      "temperature_fixed": {
+        "components_pct": {
+          "temperature": 79.7164,
+          "residual": 8.8527,
+          "precision:temperature": 4.1495,
+          "precision": 2.8134,
+          "temperature:item_id": 0.845,
+          "seed:item_id": 0.6684,
+          "item_id": 0.6637,
+          "temperature:prompt_template": 0.5924,
+          "prompt_template:item_id": 0.5231,
+          "precision:prompt_template": 0.4655,
+          "ordering:item_id": 0.1951,
+          "precision:item_id": 0.1531,
+          "temperature:seed": 0.0863,
+          "precision:seed": 0.0806,
+          "prompt_template": 0.0705,
+          "prompt_template:seed": 0.0621,
+          "seed": 0.0361,
+          "seed:ordering": 0.0142,
+          "ordering": 0.0041,
+          "precision:ordering": 0.0031,
+          "prompt_template:ordering": 0.0028,
+          "temperature:ordering": 0.0019
+        },
+        "G_coefficient": 0.0454,
+        "fixed_facets": [
+          "temperature"
+        ],
+        "tau_pct": 0.6637,
+        "delta_pct": 13.9448
+      },
+      "temp_prec_fixed": {
+        "components_pct": {
+          "temperature": 79.7164,
+          "residual": 8.8527,
+          "precision:temperature": 4.1495,
+          "precision": 2.8134,
+          "temperature:item_id": 0.845,
+          "seed:item_id": 0.6684,
+          "item_id": 0.6637,
+          "temperature:prompt_template": 0.5924,
+          "prompt_template:item_id": 0.5231,
+          "precision:prompt_template": 0.4655,
+          "ordering:item_id": 0.1951,
+          "precision:item_id": 0.1531,
+          "temperature:seed": 0.0863,
+          "precision:seed": 0.0806,
+          "prompt_template": 0.0705,
+          "prompt_template:seed": 0.0621,
+          "seed": 0.0361,
+          "seed:ordering": 0.0142,
+          "ordering": 0.0041,
+          "precision:ordering": 0.0031,
+          "prompt_template:ordering": 0.0028,
+          "temperature:ordering": 0.0019
+        },
+        "G_coefficient": 0.0598,
+        "fixed_facets": [
+          "precision",
+          "temperature"
+        ],
+        "tau_pct": 0.6637,
+        "delta_pct": 10.4292
+      },
+      "three_fixed": {
+        "components_pct": {
+          "temperature": 79.7164,
+          "residual": 8.8527,
+          "precision:temperature": 4.1495,
+          "precision": 2.8134,
+          "temperature:item_id": 0.845,
+          "seed:item_id": 0.6684,
+          "item_id": 0.6637,
+          "temperature:prompt_template": 0.5924,
+          "prompt_template:item_id": 0.5231,
+          "precision:prompt_template": 0.4655,
+          "ordering:item_id": 0.1951,
+          "precision:item_id": 0.1531,
+          "temperature:seed": 0.0863,
+          "precision:seed": 0.0806,
+          "prompt_template": 0.0705,
+          "prompt_template:seed": 0.0621,
+          "seed": 0.0361,
+          "seed:ordering": 0.0142,
+          "ordering": 0.0041,
+          "precision:ordering": 0.0031,
+          "prompt_template:ordering": 0.0028,
+          "temperature:ordering": 0.0019
+        },
+        "G_coefficient": 0.061,
+        "fixed_facets": [
+          "precision",
+          "temperature",
+          "ordering"
+        ],
+        "tau_pct": 0.6637,
+        "delta_pct": 10.2129
+      }
+    }
+  }
+}

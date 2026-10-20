@@ -1,0 +1,2176 @@
+# analysis exp001 bf16 5facet baseline
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_exp001_bf16_5facet_baseline_20260521T084612.log`
+- **Structured JSON:** [`ce5c0ed7f506221a70c7.json`](../../sessions/ce/ce5c0ed7f506221a70c7.json)
+
+## Before a recorded user message
+
+46 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9bb3379a-2e07-4881-9064-c6a7661e3aa9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779369600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "47277098-27de-4d3a-a9b4-0b9ec0bbc525",
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来执行这个任务。先检查服务器上的数据和代码结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "291cc0ee-e643-4792-a8eb-56fbbf601971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeYUkWDXw947MQ3RDojaBD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12060,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12060
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DrLcvtyMryt1qxnNw5sC1w`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "6ec6e207-488e-4d0f-8aef-0d2b04180ab5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EeYUkWDXw947MQ3RDojaBD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12060,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12060
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T08:46:24.777Z_
+
+<details><summary>↩ Tool result · `toolu_01DrLcvtyMryt1qxnNw5sC1w`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "33acdcac-3a58-4562-b938-cef68ea82cc7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the server for the exp-001 Llama data and the exp-001b G-study script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "4eac13f6-1596-4198-8f11-25b0dac45842",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137QzQE1Z4mUAo33rdjrYFn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019y1rfUPf7QxAUsvnRbwzdb`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "8a7deb7e-4270-4702-8deb-9d8c4826f4c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137QzQE1Z4mUAo33rdjrYFn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013uY66uM9GPJ5BFoKKS62fa`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/scripts/exp001b_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "8326fed9-511e-4042-8381-5cf51577db9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137QzQE1Z4mUAo33rdjrYFn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 899,
+      "cache_read_input_tokens": 23901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 899
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T08:46:29.808Z_
+
+<details><summary>↩ Tool result · `toolu_019y1rfUPf7QxAUsvnRbwzdb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nfigures\\nfloat32_results.jsonl\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "a908db51-b495-4315-b5d2-f0de3aabf2db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_results.jsonl\\\\nanalysis\\\\nbf16_eager_results.jsonl\\\\nd_study_results.json\\\\nd_study_results_text.json\\\\ndesign_matrix_exp001_full.csv\\\\ndryrun_exp001.jsonl\\\\nexp001_gemma\\\\nexp001_gemma_fp32\\\\nexp001_llama\\\\nexp001_mistral\\\\nexp001_pilot\\\\nexp001_qwen\\\\nexp001b\\\\nfigures\\\\nfloat32_results.jsonl\\\\nsanity_check.json\\\\nvariance_components.json\\\\nvariance_components_text.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nfigures\\nfloat32_results.jsonl\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T08:46:30.338Z_
+
+<details><summary>↩ Tool result · `toolu_013uY66uM9GPJ5BFoKKS62fa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/scripts/exp001b_gstudy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "7d657bd0-ad0e-4979-8b63-938bcfd97e86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/scripts/exp001b_gstudy.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/scripts/exp001b_gstudy.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V7Sd1HXFP3CYcSUBRy2kSD`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001_llama/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "1b074b28-8b7e-4754-8cdd-7c692baa2360",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XK7LmgaKtv3YLKR6unQm41",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 24800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T08:46:33.802Z_
+
+<details><summary>↩ Tool result · `toolu_01V7Sd1HXFP3CYcSUBRy2kSD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"llama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "03b4734c-cc4a-4f63-b714-8f1b14d40a34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_shard_0.jsonl\\\\nllama_shard_1.jsonl\\\\nllama_shard_2.jsonl\\\\nllama_shard_3.jsonl\\\\nshards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"llama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WodVwP1wVKHtrxuA7aExva`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "5640dacc-bc2e-4a52-a677-4a1bc253769e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XK7LmgaKtv3YLKR6unQm41",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 24800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016XnJ2bQYNV3QnurLHGSSnt`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp001b_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "8793057d-f2b9-49d2-a00b-d79817ca69db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XK7LmgaKtv3YLKR6unQm41",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 24800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T08:46:34.756Z_
+
+<details><summary>↩ Tool result · `toolu_01WodVwP1wVKHtrxuA7aExva`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbootstrap_vs_jackknife.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\nexp001b_resampling_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nirt_vs_gtheory.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\ntemperature_stratified_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "7105b37d-bc56-4450-b389-8ff81b205c5a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bf16_fp16_only_gstudy.json\\\\nbinary_data_limitation.json\\\\nbootstrap_vs_jackknife.json\\\\ncross_model_2way_precision.csv\\\\ncross_model_2way_precision_meta.json\\\\ncross_model_3way_bf16.csv\\\\ncross_model_3way_bf16_meta.json\\\\ncross_model_4way_bf16.csv\\\\ncross_model_balanced.csv\\\\ncross_model_balanced.jsonl\\\\ncross_model_balanced_meta.json\\\\ncross_model_bootstrap.json\\\\ncross_model_g_coefficients.json\\\\ncross_model_gstudy.json\\\\ncross_model_llama_gemma.csv\\\\ncross_model_llama_gemma.jsonl\\\\ncross_model_reml.json\\\\ncross_model_reml_500iter.json\\\\ndataset_a4_gstudy.json\\\\ndataset_a_gstudy.json\\\\ndataset_b_gstudy.json\\\\nexp001b_resampling_gstudy.json\\\\nexp002_prep_report.md\\\\nfixed_vs_random_sensitivity.json\\\\nirt_vs_gtheory.json\\\\nleave_one_model_out.json\\\\nllama_full.csv\\\\nllama_precision_balanced.csv\\\\nllama_precision_balanced_meta.json\\\\nllama_single_model_gstudy.json\\\\nlomo_matched_spec.json\\\\ntemperature_stratified_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbootstrap_vs_jackknife.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\nexp001b_resampling_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nirt_vs_gtheory.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\ntemperature_stratified_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T08:46:35.297Z_
+
+<details><summary>↩ Tool result · `toolu_016XnJ2bQYNV3QnurLHGSSnt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom pathlib import Path\\nfrom itertools import combinations\\n\\nFACETS = [\\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nSAMPLES = {\\n    \\\"sample1\\\": \\\"results/exp001b/sample1/all_results.jsonl\\\",\\n    \\\"sample2\\\": \\\"results/exp001b/sample2/all_results.jsonl\\\",\\n    \\\"sample3\\\": \\\"results/exp001b/sample3/all_results.jsonl\\\",\\n}\\nBASELINE_PATH = \\\"results/analysis/llama_single_model_gstudy.json\\\"\\nOUTPUT_PATH = \\\"results/analysis/exp001b_resampling_gstudy.json\\\"\\n\\n\\ndef run_gstudy(df, metric=\\\"correct\\\"):\\n    facets = FACETS\\n    for f in facets:\\n        df[f] = df[f].astype(str)\\n\\n    y = df[metric].values.astype(np.float64)\\n    grand_mean = y.mean()\\n    SS_total = ((y - grand_mean) ** 2).sum()\\n    N = len(df)\\n    n = {f: df[f].nunique() for f in facets}\\n\\n    components = {}\\n    main_means = {}\\n\\n    for f in facets:\\n        means = df.groupby(f)[metric].mean()\\n        main_means[f] = means\\n        n_per = N // n[f]\\n        ss = float(n_per * ((means.values - grand_mean) ** 2).sum())\\n        components[f] = ss\\n\\n    for f1, f2 in combinations(facets, 2):\\n        cell_means = df.groupby([f1, f2])[metric].mean().reset_index()\\n        cell_means.columns = [f1, f2, \\\"cell_mean\\\"]\\n        cell_means[\\\"f1_mean\\\"] = cell_means[f1].map(main_means[f1])\\n        cell_means[\\\"f2_mean\\\"] = cell_means[f2].map(main_means[f2])\\n        n_per = N // (n[f1] * n[f2])\\n        deviations = cell_means[\\\"cell_mean\\\"] - cell_means[\\\"f1_mean\\\"] - cell_means[\\\"f2_mean\\\"] + grand_mean\\n        ss = float(n_per * (deviations ** 2).sum())\\n        components[f\\\"{f1}:{f2}\\\"] = ss\\n\\n    ss_explained = sum(components.values())\\n    components[\\\"residual\\\"] = max(0.0, SS_total - ss_explained)\\n\\n    total_var = sum(components.values())\\n    pct = {k: round(v / total_var * 100, 4) for k, v in components.items()}\\n    sorted_pct = dict(sorted(pct.items(), key=lambda x: -x[1]))\\n\\n    G_item = pct.get(\\\"item_id\\\", 0) / 100\\n\\n    item_pct = pct.get(\\\"item_id\\\", 0)\\n    n_items_actual = n[\\\"item_id\\\"]\\n    non_item_pct = sum(v for k, v in pct.items() if k != \\\"item_id\\\")\\n\\n    d_study = {}\\n    for ni in [25, 50, 75, 100, 150, 200, 300, 500]:\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\n        d_study[str(ni)] = round(G_n, 4)\\n\\n    min_items_g80 = None\\n    for ni in range(1, 2001):\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\n        if G_n >= 0.80:\\n            min_items_g80 = ni\\n            break\\n\\n    return {\\n        \\\"grand_mean\\\": round(float(grand_mean), 4),\\n        \\\"components_pct\\\": sorted_pct,\\n        \\\"G_item\\\": round(float(G_item), 4),\\n        \\\"total_variance\\\": round(float(total_var), 4),\\n        \\\"n_records\\\": int(N),\\n        \\\"n_items\\\": int(n[\\\"item_id\\\"]),\\n        \\\"n_conditions\\\": int(N // n[\\\"item_id\\\"]),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n.items()},\\n        \\\"d_study\\\": d_study,\\n        \\\"min_items_g80\\\": min_items_g80,\\n    }\\n\\n\\ndef compute_stability(sample_results, keys):\\n    stability = {}\\n    for key in keys:\\n        values = []\\n        for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]:\\n            v = sample_results[s][\\\"components_pct\\\"].get(key, 0.0)\\n            values.append(v)\\n        mean_v = np.mean(values)\\n        std_v = np.std(values, ddof=1)\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else float(\\\"inf\\\")\\n        stability[key.replace(\\\":\\\", \\\"_\\\") + \\\"_pct\\\"] = {\\n            \\\"values\\\": [round(v, 4) for v in values],\\n            \\\"mean\\\": round(float(mean_v), 4),\\n            \\\"std\\\": round(float(std_v), 4),\\n            \\\"cv\\\": round(float(cv), 2),\\n        }\\n    g_values = [sample_results[s][\\\"G_item\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    mean_g = np.mean(g_values)\\n    std_g = np.std(g_values, ddof=1)\\n    cv_g = (std_g / mean_g * 100) if mean_g > 0 else float(\\\"inf\\\")\\n    stability[\\\"G_item\\\"] = {\\n        \\\"values\\\": [round(v, 4) for v in g_values],\\n        \\\"mean\\\": round(float(mean_g), 4),\\n        \\\"std\\\": round(float(std_g), 4),\\n        \\\"cv\\\": round(float(cv_g), 2),\\n    }\\n    return stability\\n\\n\\ndef main():\\n\\n... [截断: 输出过长，省略 267 字符] ...\\n\\nLoaded {len(df)} records\\\")\\n        result = run_gstudy(df, metric=\\\"correct\\\")\\n        sample_results[name] = result\\n        print(f\\\"  grand_mean={result['grand_mean']}, G_item={result['G_item']}\\\")\\n        print(f\\\"  Top components:\\\")\\n        for k, v in list(result[\\\"components_pct\\\"].items())[:8]:\\n            print(f\\\"    {k:30s}: {v:7.2f}%\\\")\\n\\n    stability_keys = [\\n        \\\"item_id\\\",\\n        \\\"prompt_template:item_id\\\",\\n        \\\"seed:item_id\\\",\\n        \\\"temperature:item_id\\\",\\n        \\\"ordering:item_id\\\",\\n    ]\\n    stability = compute_stability(sample_results, stability_keys)\\n\\n    bl_item_pct = baseline[\\\"correct\\\"][\\\"components_pct\\\"].get(\\\"item_id\\\", 0)\\n    resamp_item_pcts = [sample_results[s][\\\"components_pct\\\"].get(\\\"item_id\\\", 0)\\n                        for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    resamp_mean = float(np.mean(resamp_item_pcts))\\n\\n    comparison = {\\n        \\\"exp001_item_id_pct\\\": bl_item_pct,\\n        \\\"resampling_mean_item_id_pct\\\": round(resamp_mean, 4),\\n        \\\"delta\\\": round(resamp_mean - bl_item_pct, 4),\\n        \\\"note\\\": \\\"exp-001 baseline has 6 facets (incl. precision); exp001b has 5 facets (no precision). ~4% precision:item_id variance redistributed.\\\",\\n    }\\n\\n    output = {\\n        \\\"baseline\\\": baseline[\\\"correct\\\"],\\n        \\\"sample1\\\": sample_results[\\\"sample1\\\"],\\n        \\\"sample2\\\": sample_results[\\\"sample2\\\"],\\n        \\\"sample3\\\": sample_results[\\\"sample3\\\"],\\n        \\\"stability\\\": stability,\\n        \\\"comparison_with_exp001\\\": comparison,\\n    }\\n\\n    Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)\\n    with open(OUTPUT_PATH, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {OUTPUT_PATH}\\\")\\n\\n    # Summary table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"SUMMARY COMPARISON TABLE\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    bl = baseline[\\\"correct\\\"]\\n    header = f\\\"{'Metric':<25} {'exp-001(6f)':>12} {'Sample1':>10} {'Sample2':>10} {'Sample3':>10} {'Mean±Std':>14} {'CV%':>8}\\\"\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    rows = [\\n        (\\\"item_id%\\\", \\\"item_id\\\"),\\n        (\\\"prompt×item%\\\", \\\"prompt_template:item_id\\\"),\\n        (\\\"seed×item%\\\", \\\"seed:item_id\\\"),\\n        (\\\"temp×item%\\\", \\\"temperature:item_id\\\"),\\n        (\\\"order×item%\\\", \\\"ordering:item_id\\\"),\\n        (\\\"residual%\\\", \\\"residual\\\"),\\n    ]\\n    for label, key in rows:\\n        bl_val = bl[\\\"components_pct\\\"].get(key, 0)\\n        vals = [sample_results[s][\\\"components_pct\\\"].get(key, 0) for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n        mean_v = np.mean(vals)\\n        std_v = np.std(vals, ddof=1)\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else 0\\n        print(f\\\"{label:<25} {bl_val:>12.2f} {vals[0]:>10.2f} {vals[1]:>10.2f} {vals[2]:>10.2f} {mean_v:>7.2f}±{std_v:<5.2f} {cv:>7.1f}%\\\")\\n\\n    # G_item row\\n    bl_g = bl[\\\"G_coefficient\\\"]\\n    g_vals = [sample_results[s][\\\"G_item\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    g_mean = np.mean(g_vals)\\n    g_std = np.std(g_vals, ddof=1)\\n    g_cv = (g_std / g_mean * 100) if g_mean > 0 else 0\\n    print(f\\\"{'G_item':<25} {bl_g:>12.4f} {g_vals[0]:>10.4f} {g_vals[1]:>10.4f} {g_vals[2]:>10.4f} {g_mean:>7.4f}±{g_std:<5.4f} {g_cv:>7.1f}%\\\")\\n\\n    # min items for G>=0.80\\n    bl_d = baseline[\\\"correct\\\"].get(\\\"d_study_correct\\\", baseline.get(\\\"d_study_correct\\\", {}))\\n    min_items = [sample_results[s][\\\"min_items_g80\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    min_str = [str(m) if m else \\\">2000\\\" for m in min_items]\\n    print(f\\\"{'min_items(G≥0.80)':<25} {'N/A':>12} {min_str[0]:>10} {min_str[1]:>10} {min_str[2]:>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"STABILITY ASSESSMENT\\\")\\n    print(\\\"=\\\" * 100)\\n    all_stable = True\\n    for key, info in stability.items():\\n        status = \\\"STABLE\\\" if info[\\\"cv\\\"] < 10 else \\\"UNSTABLE\\\"\\n        if info[\\\"cv\\\"] >= 10:\\n            all_stable = False\\n        print(f\\\"  {key:<25}: CV = {info['cv']:>6.2f}%  [{status}]  values = {info['values']}\\\")\\n\\n    print(f\\\"\\\\nOverall: {'ALL STABLE (CV < 10%)' if all_stable else 'SOME COMPONENTS UNSTABLE (CV >= 10%)'}\\\")\\n    print(\\\"DONE\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "66d3f18c-22c4-406c-ab4c-ed4911c8645b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom pathlib import Path\\\\nfrom itertools import combinations\\\\n\\\\nFACETS = [\\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nSAMPLES = {\\\\n    \\\\\\\"sample1\\\\\\\": \\\\\\\"results/exp001b/sample1/all_results.jsonl\\\\\\\",\\\\n    \\\\\\\"sample2\\\\\\\": \\\\\\\"results/exp001b/sample2/all_results.jsonl\\\\\\\",\\\\n    \\\\\\\"sample3\\\\\\\": \\\\\\\"results/exp001b/sample3/all_results.jsonl\\\\\\\",\\\\n}\\\\nBASELINE_PATH = \\\\\\\"results/analysis/llama_single_model_gstudy.json\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"results/analysis/exp001b_resampling_gstudy.json\\\\\\\"\\\\n\\\\n\\\\ndef run_gstudy(df, metric=\\\\\\\"correct\\\\\\\"):\\\\n    facets = FACETS\\\\n    for f in facets:\\\\n        df[f] = df[f].astype(str)\\\\n\\\\n    y = df[metric].values.astype(np.float64)\\\\n    grand_mean = y.mean()\\\\n    SS_total = ((y - grand_mean) ** 2).sum()\\\\n    N = len(df)\\\\n    n = {f: df[f].nunique() for f in facets}\\\\n\\\\n    components = {}\\\\n    main_means = {}\\\\n\\\\n    for f in facets:\\\\n        means = df.groupby(f)[metric].mean()\\\\n        main_means[f] = means\\\\n        n_per = N // n[f]\\\\n        ss = float(n_per * ((means.values - grand_mean) ** 2).sum())\\\\n        components[f] = ss\\\\n\\\\n    for f1, f2 in combinations(facets, 2):\\\\n        cell_means = df.groupby([f1, f2])[metric].mean().reset_index()\\\\n        cell_means.columns = [f1, f2, \\\\\\\"cell_mean\\\\\\\"]\\\\n        cell_means[\\\\\\\"f1_mean\\\\\\\"] = cell_means[f1].map(main_means[f1])\\\\n        cell_means[\\\\\\\"f2_mean\\\\\\\"] = cell_means[f2].map(main_means[f2])\\\\n        n_per = N // (n[f1] * n[f2])\\\\n        deviations = cell_means[\\\\\\\"cell_mean\\\\\\\"] - cell_means[\\\\\\\"f1_mean\\\\\\\"] - cell_means[\\\\\\\"f2_mean\\\\\\\"] + grand_mean\\\\n        ss = float(n_per * (deviations ** 2).sum())\\\\n        components[f\\\\\\\"{f1}:{f2}\\\\\\\"] = ss\\\\n\\\\n    ss_explained = sum(components.values())\\\\n    components[\\\\\\\"residual\\\\\\\"] = max(0.0, SS_total - ss_explained)\\\\n\\\\n    total_var = sum(components.values())\\\\n    pct = {k: round(v / total_var * 100, 4) for k, v in components.items()}\\\\n    sorted_pct = dict(sorted(pct.items(), key=lambda x: -x[1]))\\\\n\\\\n    G_item = pct.get(\\\\\\\"item_id\\\\\\\", 0) / 100\\\\n\\\\n    item_pct = pct.get(\\\\\\\"item_id\\\\\\\", 0)\\\\n    n_items_actual = n[\\\\\\\"item_id\\\\\\\"]\\\\n    non_item_pct = sum(v for k, v in pct.items() if k != \\\\\\\"item_id\\\\\\\")\\\\n\\\\n    d_study = {}\\\\n    for ni in [25, 50, 75, 100, 150, 200, 300, 500]:\\\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\\\n        d_study[str(ni)] = round(G_n, 4)\\\\n\\\\n    min_items_g80 = None\\\\n    for ni in range(1, 2001):\\\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\\\n        if G_n >= 0.80:\\\\n            min_items_g80 = ni\\\\n            break\\\\n\\\\n    return {\\\\n        \\\\\\\"grand_mean\\\\\\\": round(float(grand_mean), 4),\\\\n        \\\\\\\"components_pct\\\\\\\": sorted_pct,\\\\n        \\\\\\\"G_item\\\\\\\": round(float(G_item), 4),\\\\n        \\\\\\\"total_variance\\\\\\\": round(float(total_var), 4),\\\\n        \\\\\\\"n_records\\\\\\\": int(N),\\\\n        \\\\\\\"n_items\\\\\\\": int(n[\\\\\\\"item_id\\\\\\\"]),\\\\n        \\\\\\\"n_conditions\\\\\\\": int(N // n[\\\\\\\"item_id\\\\\\\"]),\\\\n        \\\\\\\"n_levels\\\\\\\": {k: int(v) for k, v in n.items()},\\\\n        \\\\\\\"d_study\\\\\\\": d_study,\\\\n        \\\\\\\"min_items_g80\\\\\\\": min_items_g80,\\\\n    }\\\\n\\\\n\\\\ndef compute_stability(sample_results, keys):\\\\n    stability = {}\\\\n    for key in keys:\\\\n        values = []\\\\n        for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]:\\\\n            v = sample_results[s][\\\\\\\"components_pct\\\\\\\"].get(key, 0.0)\\\\n            values.append(v)\\\\n        mean_v = np.mean(values)\\\\n        std_v = np.std(values, ddof=1)\\\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else float(\\\\\\\"inf\\\\\\\")\\\\n        stability[key.replace(\\\\\\\":\\\\\\\", \\\\\\\"_\\\\\\\") + \\\\\\\"_pct\\\\\\\"] = {\\\\n            \\\\\\\"values\\\\\\\": [round(v, 4) for v in values],\\\\n            \\\\\\\"mean\\\\\\\": round(float(mean_v), 4),\\\\n            \\\\\\\"std\\\\\\\": round(float(std_v), 4),\\\\n            \\\\\\\"cv\\\\\\\": round(float(cv), 2),\\\\n        }\\\\n    g_values = [sample_results[s][\\\\\\\"G_item\\\\\\\"] for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]]\\\\n    mean_g = np.mean(g_values)\\\\n    std_g = np.std(g_values, ddof=1)\\\\n    cv_g = (std_g / mean_g * 100) if mean_g > 0 else float(\\\\\\\"inf\\\\\\\")\\\\n    stability[\\\\\\\"G_item\\\\\\\"] = {\\\\n        \\\\\\\"values\\\\\\\": [round(v, 4) for v in g_values],\\\\n        \\\\\\\"mean\\\\\\\": round(float(mean_g), 4),\\\\n        \\\\\\\"std\\\\\\\": round(float(std_g), 4),\\\\n        \\\\\\\"cv\\\\\\\": round(float(cv_g), 2),\\\\n    }\\\\n    return stability\\\\n\\\\n\\\\ndef main():\\\\n\\\\n... [截断: 输出过长，省略 267 字符] ...\\\\n\\\\nLoaded {len(df)} records\\\\\\\")\\\\n        result = run_gstudy(df, metric=\\\\\\\"correct\\\\\\\")\\\\n        sample_results[name] = result\\\\n        print(f\\\\\\\"  grand_mean={result['grand_mean']}, G_item={result['G_item']}\\\\\\\")\\\\n        print(f\\\\\\\"  Top components:\\\\\\\")\\\\n        for k, v in list(result[\\\\\\\"components_pct\\\\\\\"].items())[:8]:\\\\n            print(f\\\\\\\"    {k:30s}: {v:7.2f}%\\\\\\\")\\\\n\\\\n    stability_keys = [\\\\n        \\\\\\\"item_id\\\\\\\",\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\",\\\\n        \\\\\\\"seed:item_id\\\\\\\",\\\\n        \\\\\\\"temperature:item_id\\\\\\\",\\\\n        \\\\\\\"ordering:item_id\\\\\\\",\\\\n    ]\\\\n    stability = compute_stability(sample_results, stability_keys)\\\\n\\\\n    bl_item_pct = baseline[\\\\\\\"correct\\\\\\\"][\\\\\\\"components_pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0)\\\\n    resamp_item_pcts = [sample_results[s][\\\\\\\"components_pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0)\\\\n                        for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]]\\\\n    resamp_mean = float(np.mean(resamp_item_pcts))\\\\n\\\\n    comparison = {\\\\n        \\\\\\\"exp001_item_id_pct\\\\\\\": bl_item_pct,\\\\n        \\\\\\\"resampling_mean_item_id_pct\\\\\\\": round(resamp_mean, 4),\\\\n        \\\\\\\"delta\\\\\\\": round(resamp_mean - bl_item_pct, 4),\\\\n        \\\\\\\"note\\\\\\\": \\\\\\\"exp-001 baseline has 6 facets (incl. precision); exp001b has 5 facets (no precision). ~4% precision:item_id variance redistributed.\\\\\\\",\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"baseline\\\\\\\": baseline[\\\\\\\"correct\\\\\\\"],\\\\n        \\\\\\\"sample1\\\\\\\": sample_results[\\\\\\\"sample1\\\\\\\"],\\\\n        \\\\\\\"sample2\\\\\\\": sample_results[\\\\\\\"sample2\\\\\\\"],\\\\n        \\\\\\\"sample3\\\\\\\": sample_results[\\\\\\\"sample3\\\\\\\"],\\\\n        \\\\\\\"stability\\\\\\\": stability,\\\\n        \\\\\\\"comparison_with_exp001\\\\\\\": comparison,\\\\n    }\\\\n\\\\n    Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(OUTPUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {OUTPUT_PATH}\\\\\\\")\\\\n\\\\n    # Summary table\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"SUMMARY COMPARISON TABLE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n\\\\n    bl = baseline[\\\\\\\"correct\\\\\\\"]\\\\n    header = f\\\\\\\"{'Metric':<25} {'exp-001(6f)':>12} {'Sample1':>10} {'Sample2':>10} {'Sample3':>10} {'Mean±Std':>14} {'CV%':>8}\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    rows = [\\\\n        (\\\\\\\"item_id%\\\\\\\", \\\\\\\"item_id\\\\\\\"),\\\\n        (\\\\\\\"prompt×item%\\\\\\\", \\\\\\\"prompt_template:item_id\\\\\\\"),\\\\n        (\\\\\\\"seed×item%\\\\\\\", \\\\\\\"seed:item_id\\\\\\\"),\\\\n        (\\\\\\\"temp×item%\\\\\\\", \\\\\\\"temperature:item_id\\\\\\\"),\\\\n        (\\\\\\\"order×item%\\\\\\\", \\\\\\\"ordering:item_id\\\\\\\"),\\\\n        (\\\\\\\"residual%\\\\\\\", \\\\\\\"residual\\\\\\\"),\\\\n    ]\\\\n    for label, key in rows:\\\\n        bl_val = bl[\\\\\\\"components_pct\\\\\\\"].get(key, 0)\\\\n        vals = [sample_results[s][\\\\\\\"components_pct\\\\\\\"].get(key, 0) for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]]\\\\n        mean_v = np.mean(vals)\\\\n        std_v = np.std(vals, ddof=1)\\\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else 0\\\\n        print(f\\\\\\\"{label:<25} {bl_val:>12.2f} {vals[0]:>10.2f} {vals[1]:>10.2f} {vals[2]:>10.2f} {mean_v:>7.2f}±{std_v:<5.2f} {cv:>7.1f}%\\\\\\\")\\\\n\\\\n    # G_item row\\\\n    bl_g = bl[\\\\\\\"G_coefficient\\\\\\\"]\\\\n    g_vals = [sample_results[s][\\\\\\\"G_item\\\\\\\"] for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]]\\\\n    g_mean = np.mean(g_vals)\\\\n    g_std = np.std(g_vals, ddof=1)\\\\n    g_cv = (g_std / g_mean * 100) if g_mean > 0 else 0\\\\n    print(f\\\\\\\"{'G_item':<25} {bl_g:>12.4f} {g_vals[0]:>10.4f} {g_vals[1]:>10.4f} {g_vals[2]:>10.4f} {g_mean:>7.4f}±{g_std:<5.4f} {g_cv:>7.1f}%\\\\\\\")\\\\n\\\\n    # min items for G>=0.80\\\\n    bl_d = baseline[\\\\\\\"correct\\\\\\\"].get(\\\\\\\"d_study_correct\\\\\\\", baseline.get(\\\\\\\"d_study_correct\\\\\\\", {}))\\\\n    min_items = [sample_results[s][\\\\\\\"min_items_g80\\\\\\\"] for s in [\\\\\\\"sample1\\\\\\\", \\\\\\\"sample2\\\\\\\", \\\\\\\"sample3\\\\\\\"]]\\\\n    min_str = [str(m) if m else \\\\\\\">2000\\\\\\\" for m in min_items]\\\\n    print(f\\\\\\\"{'min_items(G≥0.80)':<25} {'N/A':>12} {min_str[0]:>10} {min_str[1]:>10} {min_str[2]:>10}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 100)\\\\n    print(\\\\\\\"STABILITY ASSESSMENT\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 100)\\\\n    all_stable = True\\\\n    for key, info in stability.items():\\\\n        status = \\\\\\\"STABLE\\\\\\\" if info[\\\\\\\"cv\\\\\\\"] < 10 else \\\\\\\"UNSTABLE\\\\\\\"\\\\n        if info[\\\\\\\"cv\\\\\\\"] >= 10:\\\\n            all_stable = False\\\\n        print(f\\\\\\\"  {key:<25}: CV = {info['cv']:>6.2f}%  [{status}]  values = {info['values']}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nOverall: {'ALL STABLE (CV < 10%)' if all_stable else 'SOME COMPONENTS UNSTABLE (CV >= 10%)'}\\\\\\\")\\\\n    print(\\\\\\\"DONE\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom pathlib import Path\\nfrom itertools import combinations\\n\\nFACETS = [\\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nSAMPLES = {\\n    \\\"sample1\\\": \\\"results/exp001b/sample1/all_results.jsonl\\\",\\n    \\\"sample2\\\": \\\"results/exp001b/sample2/all_results.jsonl\\\",\\n    \\\"sample3\\\": \\\"results/exp001b/sample3/all_results.jsonl\\\",\\n}\\nBASELINE_PATH = \\\"results/analysis/llama_single_model_gstudy.json\\\"\\nOUTPUT_PATH = \\\"results/analysis/exp001b_resampling_gstudy.json\\\"\\n\\n\\ndef run_gstudy(df, metric=\\\"correct\\\"):\\n    facets = FACETS\\n    for f in facets:\\n        df[f] = df[f].astype(str)\\n\\n    y = df[metric].values.astype(np.float64)\\n    grand_mean = y.mean()\\n    SS_total = ((y - grand_mean) ** 2).sum()\\n    N = len(df)\\n    n = {f: df[f].nunique() for f in facets}\\n\\n    components = {}\\n    main_means = {}\\n\\n    for f in facets:\\n        means = df.groupby(f)[metric].mean()\\n        main_means[f] = means\\n        n_per = N // n[f]\\n        ss = float(n_per * ((means.values - grand_mean) ** 2).sum())\\n        components[f] = ss\\n\\n    for f1, f2 in combinations(facets, 2):\\n        cell_means = df.groupby([f1, f2])[metric].mean().reset_index()\\n        cell_means.columns = [f1, f2, \\\"cell_mean\\\"]\\n        cell_means[\\\"f1_mean\\\"] = cell_means[f1].map(main_means[f1])\\n        cell_means[\\\"f2_mean\\\"] = cell_means[f2].map(main_means[f2])\\n        n_per = N // (n[f1] * n[f2])\\n        deviations = cell_means[\\\"cell_mean\\\"] - cell_means[\\\"f1_mean\\\"] - cell_means[\\\"f2_mean\\\"] + grand_mean\\n        ss = float(n_per * (deviations ** 2).sum())\\n        components[f\\\"{f1}:{f2}\\\"] = ss\\n\\n    ss_explained = sum(components.values())\\n    components[\\\"residual\\\"] = max(0.0, SS_total - ss_explained)\\n\\n    total_var = sum(components.values())\\n    pct = {k: round(v / total_var * 100, 4) for k, v in components.items()}\\n    sorted_pct = dict(sorted(pct.items(), key=lambda x: -x[1]))\\n\\n    G_item = pct.get(\\\"item_id\\\", 0) / 100\\n\\n    item_pct = pct.get(\\\"item_id\\\", 0)\\n    n_items_actual = n[\\\"item_id\\\"]\\n    non_item_pct = sum(v for k, v in pct.items() if k != \\\"item_id\\\")\\n\\n    d_study = {}\\n    for ni in [25, 50, 75, 100, 150, 200, 300, 500]:\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\n        d_study[str(ni)] = round(G_n, 4)\\n\\n    min_items_g80 = None\\n    for ni in range(1, 2001):\\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\\n        if G_n >= 0.80:\\n            min_items_g80 = ni\\n            break\\n\\n    return {\\n        \\\"grand_mean\\\": round(float(grand_mean), 4),\\n        \\\"components_pct\\\": sorted_pct,\\n        \\\"G_item\\\": round(float(G_item), 4),\\n        \\\"total_variance\\\": round(float(total_var), 4),\\n        \\\"n_records\\\": int(N),\\n        \\\"n_items\\\": int(n[\\\"item_id\\\"]),\\n        \\\"n_conditions\\\": int(N // n[\\\"item_id\\\"]),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n.items()},\\n        \\\"d_study\\\": d_study,\\n        \\\"min_items_g80\\\": min_items_g80,\\n    }\\n\\n\\ndef compute_stability(sample_results, keys):\\n    stability = {}\\n    for key in keys:\\n        values = []\\n        for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]:\\n            v = sample_results[s][\\\"components_pct\\\"].get(key, 0.0)\\n            values.append(v)\\n        mean_v = np.mean(values)\\n        std_v = np.std(values, ddof=1)\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else float(\\\"inf\\\")\\n        stability[key.replace(\\\":\\\", \\\"_\\\") + \\\"_pct\\\"] = {\\n            \\\"values\\\": [round(v, 4) for v in values],\\n            \\\"mean\\\": round(float(mean_v), 4),\\n            \\\"std\\\": round(float(std_v), 4),\\n            \\\"cv\\\": round(float(cv), 2),\\n        }\\n    g_values = [sample_results[s][\\\"G_item\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    mean_g = np.mean(g_values)\\n    std_g = np.std(g_values, ddof=1)\\n    cv_g = (std_g / mean_g * 100) if mean_g > 0 else float(\\\"inf\\\")\\n    stability[\\\"G_item\\\"] = {\\n        \\\"values\\\": [round(v, 4) for v in g_values],\\n        \\\"mean\\\": round(float(mean_g), 4),\\n        \\\"std\\\": round(float(std_g), 4),\\n        \\\"cv\\\": round(float(cv_g), 2),\\n    }\\n    return stability\\n\\n\\ndef main():\\n\\n... [截断: 输出过长，省略 267 字符] ...\\n\\nLoaded {len(df)} records\\\")\\n        result = run_gstudy(df, metric=\\\"correct\\\")\\n        sample_results[name] = result\\n        print(f\\\"  grand_mean={result['grand_mean']}, G_item={result['G_item']}\\\")\\n        print(f\\\"  Top components:\\\")\\n        for k, v in list(result[\\\"components_pct\\\"].items())[:8]:\\n            print(f\\\"    {k:30s}: {v:7.2f}%\\\")\\n\\n    stability_keys = [\\n        \\\"item_id\\\",\\n        \\\"prompt_template:item_id\\\",\\n        \\\"seed:item_id\\\",\\n        \\\"temperature:item_id\\\",\\n        \\\"ordering:item_id\\\",\\n    ]\\n    stability = compute_stability(sample_results, stability_keys)\\n\\n    bl_item_pct = baseline[\\\"correct\\\"][\\\"components_pct\\\"].get(\\\"item_id\\\", 0)\\n    resamp_item_pcts = [sample_results[s][\\\"components_pct\\\"].get(\\\"item_id\\\", 0)\\n                        for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    resamp_mean = float(np.mean(resamp_item_pcts))\\n\\n    comparison = {\\n        \\\"exp001_item_id_pct\\\": bl_item_pct,\\n        \\\"resampling_mean_item_id_pct\\\": round(resamp_mean, 4),\\n        \\\"delta\\\": round(resamp_mean - bl_item_pct, 4),\\n        \\\"note\\\": \\\"exp-001 baseline has 6 facets (incl. precision); exp001b has 5 facets (no precision). ~4% precision:item_id variance redistributed.\\\",\\n    }\\n\\n    output = {\\n        \\\"baseline\\\": baseline[\\\"correct\\\"],\\n        \\\"sample1\\\": sample_results[\\\"sample1\\\"],\\n        \\\"sample2\\\": sample_results[\\\"sample2\\\"],\\n        \\\"sample3\\\": sample_results[\\\"sample3\\\"],\\n        \\\"stability\\\": stability,\\n        \\\"comparison_with_exp001\\\": comparison,\\n    }\\n\\n    Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)\\n    with open(OUTPUT_PATH, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {OUTPUT_PATH}\\\")\\n\\n    # Summary table\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"SUMMARY COMPARISON TABLE\\\")\\n    print(\\\"=\\\" * 100)\\n\\n    bl = baseline[\\\"correct\\\"]\\n    header = f\\\"{'Metric':<25} {'exp-001(6f)':>12} {'Sample1':>10} {'Sample2':>10} {'Sample3':>10} {'Mean±Std':>14} {'CV%':>8}\\\"\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    rows = [\\n        (\\\"item_id%\\\", \\\"item_id\\\"),\\n        (\\\"prompt×item%\\\", \\\"prompt_template:item_id\\\"),\\n        (\\\"seed×item%\\\", \\\"seed:item_id\\\"),\\n        (\\\"temp×item%\\\", \\\"temperature:item_id\\\"),\\n        (\\\"order×item%\\\", \\\"ordering:item_id\\\"),\\n        (\\\"residual%\\\", \\\"residual\\\"),\\n    ]\\n    for label, key in rows:\\n        bl_val = bl[\\\"components_pct\\\"].get(key, 0)\\n        vals = [sample_results[s][\\\"components_pct\\\"].get(key, 0) for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n        mean_v = np.mean(vals)\\n        std_v = np.std(vals, ddof=1)\\n        cv = (std_v / mean_v * 100) if mean_v > 0 else 0\\n        print(f\\\"{label:<25} {bl_val:>12.2f} {vals[0]:>10.2f} {vals[1]:>10.2f} {vals[2]:>10.2f} {mean_v:>7.2f}±{std_v:<5.2f} {cv:>7.1f}%\\\")\\n\\n    # G_item row\\n    bl_g = bl[\\\"G_coefficient\\\"]\\n    g_vals = [sample_results[s][\\\"G_item\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    g_mean = np.mean(g_vals)\\n    g_std = np.std(g_vals, ddof=1)\\n    g_cv = (g_std / g_mean * 100) if g_mean > 0 else 0\\n    print(f\\\"{'G_item':<25} {bl_g:>12.4f} {g_vals[0]:>10.4f} {g_vals[1]:>10.4f} {g_vals[2]:>10.4f} {g_mean:>7.4f}±{g_std:<5.4f} {g_cv:>7.1f}%\\\")\\n\\n    # min items for G>=0.80\\n    bl_d = baseline[\\\"correct\\\"].get(\\\"d_study_correct\\\", baseline.get(\\\"d_study_correct\\\", {}))\\n    min_items = [sample_results[s][\\\"min_items_g80\\\"] for s in [\\\"sample1\\\", \\\"sample2\\\", \\\"sample3\\\"]]\\n    min_str = [str(m) if m else \\\">2000\\\" for m in min_items]\\n    print(f\\\"{'min_items(G≥0.80)':<25} {'N/A':>12} {min_str[0]:>10} {min_str[1]:>10} {min_str[2]:>10}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 100)\\n    print(\\\"STABILITY ASSESSMENT\\\")\\n    print(\\\"=\\\" * 100)\\n    all_stable = True\\n    for key, info in stability.items():\\n        status = \\\"STABLE\\\" if info[\\\"cv\\\"] < 10 else \\\"UNSTABLE\\\"\\n        if info[\\\"cv\\\"] >= 10:\\n            all_stable = False\\n        print(f\\\"  {key:<25}: CV = {info['cv']:>6.2f}%  [{status}]  values = {info['values']}\\\")\\n\\n    print(f\\\"\\\\nOverall: {'ALL STABLE (CV < 10%)' if all_stable else 'SOME COMPONENTS UNSTABLE (CV >= 10%)'}\\\")\\n    print(\\\"DONE\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the data layout and the G-study script. Let me also check the exp-001 Llama data structure to understand the columns and check how many records have bf16.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "ff1f0964-ff4d-4e43-b65d-c07b697791e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRAQg8EeuWYjYLEz4s5oSn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4958,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now let me check the Llama data structure and bf16 record counts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "ae707b21-2a1d-439f-8715-32b7bc9e88c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRAQg8EeuWYjYLEz4s5oSn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4958,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PcBAZYdv2P3mwFDcvGhTWy`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -2 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "9ab1cf87-f1c8-4f47-b8f8-9fddf0472c9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRAQg8EeuWYjYLEz4s5oSn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4958,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T08:46:41.421Z_
+
+<details><summary>↩ Tool result · `toolu_01PcBAZYdv2P3mwFDcvGhTWy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.5794176459312439, \\\"top_logprobs\\\": {\\\" D\\\": -0.5794176459312439, \\\" C\\\": -1.1157336235046387, \\\" B\\\": -2.1883578300476074, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "0f6bec2c-20a1-4e57-ad95-d0ce4f8ae4c5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 2033, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.7, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 1024, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.53, \\\\\\\"answer_logprob\\\\\\\": -0.6409203410148621, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.6409203410148621, \\\\\\\" C\\\\\\\": -1.3560044765472412, \\\\\\\" B\\\\\\\": -1.5347745418548584, \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\": -Infinity, \\\\\\\"!\\\\\\\": -Infinity}}\\\\n{\\\\\\\"condition_id\\\\\\\": 2033, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_14\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.7, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 1024, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"D\\\\\\\\n\\\\\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.53, \\\\\\\"answer_logprob\\\\\\\": -0.5794176459312439, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" D\\\\\\\": -0.5794176459312439, \\\\\\\" C\\\\\\\": -1.1157336235046387, \\\\\\\" B\\\\\\\": -2.1883578300476074, \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\": -Infinity, \\\\\\\"!\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.5794176459312439, \\\"top_logprobs\\\": {\\\" D\\\": -0.5794176459312439, \\\" C\\\": -1.1157336235046387, \\\" B\\\": -2.1883578300476074, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BWXTSX5eNS89cwfBQcXSGE`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "fcde00d4-42ff-4bab-8878-d93a5a2ce6f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRAQg8EeuWYjYLEz4s5oSn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4958,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mtbcj96kyGs6dyfc6bYLnG`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/llama_single_model_gstudy.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "c3f2ee9f-b328-4ec7-8827-279891ef94b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRAQg8EeuWYjYLEz4s5oSn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4958,
+      "cache_read_input_tokens": 25422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4958
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T08:46:42.413Z_
+
+<details><summary>↩ Tool result · `toolu_01BWXTSX5eNS89cwfBQcXSGE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n   239200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "b6e676ee-5b74-447f-ace1-7d59aed2d13c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\\\n   239200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n   239200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T08:46:42.946Z_
+
+<details><summary>↩ Tool result · `toolu_01Mtbcj96kyGs6dyfc6bYLnG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"correct\\\": {\\n    \\\"grand_mean\\\": 0.6814,\\n    \\\"components_pct\\\": {\\n      \\\"item_id\\\": 61.0802,\\n      \\\"residual\\\": 21.5861,\\n      \\\"seed:item_id\\\": 4.725,\\n      \\\"prompt_template:item_id\\\": 4.5846,\\n      \\\"precision:item_id\\\": 4.1642,\\n      \\\"temperature:item_id\\\": 1.8348,\\n      \\\"precision\\\": 1.1913,\\n      \\\"ordering:item_id\\\": 0.5947,\\n      \\\"temperature\\\": 0.0669,\\n      \\\"precision:temperature\\\": 0.0524,\\n      \\\"temperature:prompt_template\\\": 0.0303,\\n      \\\"prompt_template\\\": 0.0263,\\n      \\\"temperature:seed\\\": 0.0197,\\n      \\\"seed\\\": 0.0144,\\n      \\\"precision:prompt_template\\\": 0.0131,\\n      \\\"prompt_template:seed\\\": 0.0049,\\n      \\\"prompt_template:ordering\\\": 0.0044,\\n      \\\"precision:ordering\\\": 0.0025,\\n      \\\"precision:seed\\\": 0.0019,\\n      \\\"seed:ordering\\\": 0.0012,\\n      \\\"ordering\\\": 0.0005,\\n      \\\"temperature:ordering\\\": 0.0004\\n    },\\n    \\\"G_coefficient\\\": 0.6108,\\n    \\\"total_variance\\\": 51928.8508,\\n    \\\"n_records\\\": 239200,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 1196\\n  },\\n  \\\"text_exact_match\\\": {\\n    \\\"grand_mean\\\": 0.331,\\n    \\\"components_pct\\\": {\\n      \\\"temperature\\\": 79.7164,\\n      \\\"residual\\\": 8.8527,\\n      \\\"precision:temperature\\\": 4.1495,\\n      \\\"precision\\\": 2.8134,\\n      \\\"temperature:item_id\\\": 0.845,\\n      \\\"seed:item_id\\\": 0.6684,\\n      \\\"item_id\\\": 0.6637,\\n      \\\"temperature:prompt_template\\\": 0.5924,\\n      \\\"prompt_template:item_id\\\": 0.5231,\\n      \\\"precision:prompt_template\\\": 0.4655,\\n      \\\"ordering:item_id\\\": 0.1951,\\n      \\\"precision:item_id\\\": 0.1531,\\n      \\\"temperature:seed\\\": 0.0863,\\n      \\\"precision:seed\\\": 0.0806,\\n      \\\"prompt_template\\\": 0.0705,\\n      \\\"prompt_template:seed\\\": 0.0621,\\n      \\\"seed\\\": 0.0361,\\n      \\\"seed:ordering\\\": 0.0142,\\n      \\\"ordering\\\": 0.0041,\\n      \\\"precision:ordering\\\": 0.0031,\\n      \\\"prompt_template:ordering\\\": 0.0028,\\n      \\\"temperature:ordering\\\": 0.0019\\n    },\\n    \\\"G_coefficient\\\": 0.0066,\\n    \\\"total_variance\\\": 52970.1691,\\n    \\\"n_records\\\": 239200,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 1196\\n  },\\n  \\\"d_study_correct\\\": {\\n    \\\"25\\\": 0.164,\\n    \\\"50\\\": 0.2818,\\n    \\\"75\\\": 0.3705,\\n    \\\"100\\\": 0.4397,\\n    \\\"150\\\": 0.5407,\\n    \\\"200\\\": 0.6108,\\n    \\\"300\\\": 0.7019,\\n    \\\"500\\\": 0.7969\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "511f3beb-14f1-425d-8b51-77a6223c1101",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"correct\\\\\\\": {\\\\n    \\\\\\\"grand_mean\\\\\\\": 0.6814,\\\\n    \\\\\\\"components_pct\\\\\\\": {\\\\n      \\\\\\\"item_id\\\\\\\": 61.0802,\\\\n      \\\\\\\"residual\\\\\\\": 21.5861,\\\\n      \\\\\\\"seed:item_id\\\\\\\": 4.725,\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": 4.5846,\\\\n      \\\\\\\"precision:item_id\\\\\\\": 4.1642,\\\\n      \\\\\\\"temperature:item_id\\\\\\\": 1.8348,\\\\n      \\\\\\\"precision\\\\\\\": 1.1913,\\\\n      \\\\\\\"ordering:item_id\\\\\\\": 0.5947,\\\\n      \\\\\\\"temperature\\\\\\\": 0.0669,\\\\n      \\\\\\\"precision:temperature\\\\\\\": 0.0524,\\\\n      \\\\\\\"temperature:prompt_template\\\\\\\": 0.0303,\\\\n      \\\\\\\"prompt_template\\\\\\\": 0.0263,\\\\n      \\\\\\\"temperature:seed\\\\\\\": 0.0197,\\\\n      \\\\\\\"seed\\\\\\\": 0.0144,\\\\n      \\\\\\\"precision:prompt_template\\\\\\\": 0.0131,\\\\n      \\\\\\\"prompt_template:seed\\\\\\\": 0.0049,\\\\n      \\\\\\\"prompt_template:ordering\\\\\\\": 0.0044,\\\\n      \\\\\\\"precision:ordering\\\\\\\": 0.0025,\\\\n      \\\\\\\"precision:seed\\\\\\\": 0.0019,\\\\n      \\\\\\\"seed:ordering\\\\\\\": 0.0012,\\\\n      \\\\\\\"ordering\\\\\\\": 0.0005,\\\\n      \\\\\\\"temperature:ordering\\\\\\\": 0.0004\\\\n    },\\\\n    \\\\\\\"G_coefficient\\\\\\\": 0.6108,\\\\n    \\\\\\\"total_variance\\\\\\\": 51928.8508,\\\\n    \\\\\\\"n_records\\\\\\\": 239200,\\\\n    \\\\\\\"n_items\\\\\\\": 200,\\\\n    \\\\\\\"n_conditions\\\\\\\": 1196\\\\n  },\\\\n  \\\\\\\"text_exact_match\\\\\\\": {\\\\n    \\\\\\\"grand_mean\\\\\\\": 0.331,\\\\n    \\\\\\\"components_pct\\\\\\\": {\\\\n      \\\\\\\"temperature\\\\\\\": 79.7164,\\\\n      \\\\\\\"residual\\\\\\\": 8.8527,\\\\n      \\\\\\\"precision:temperature\\\\\\\": 4.1495,\\\\n      \\\\\\\"precision\\\\\\\": 2.8134,\\\\n      \\\\\\\"temperature:item_id\\\\\\\": 0.845,\\\\n      \\\\\\\"seed:item_id\\\\\\\": 0.6684,\\\\n      \\\\\\\"item_id\\\\\\\": 0.6637,\\\\n      \\\\\\\"temperature:prompt_template\\\\\\\": 0.5924,\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": 0.5231,\\\\n      \\\\\\\"precision:prompt_template\\\\\\\": 0.4655,\\\\n      \\\\\\\"ordering:item_id\\\\\\\": 0.1951,\\\\n      \\\\\\\"precision:item_id\\\\\\\": 0.1531,\\\\n      \\\\\\\"temperature:seed\\\\\\\": 0.0863,\\\\n      \\\\\\\"precision:seed\\\\\\\": 0.0806,\\\\n      \\\\\\\"prompt_template\\\\\\\": 0.0705,\\\\n      \\\\\\\"prompt_template:seed\\\\\\\": 0.0621,\\\\n      \\\\\\\"seed\\\\\\\": 0.0361,\\\\n      \\\\\\\"seed:ordering\\\\\\\": 0.0142,\\\\n      \\\\\\\"ordering\\\\\\\": 0.0041,\\\\n      \\\\\\\"precision:ordering\\\\\\\": 0.0031,\\\\n      \\\\\\\"prompt_template:ordering\\\\\\\": 0.0028,\\\\n      \\\\\\\"temperature:ordering\\\\\\\": 0.0019\\\\n    },\\\\n    \\\\\\\"G_coefficient\\\\\\\": 0.0066,\\\\n    \\\\\\\"total_variance\\\\\\\": 52970.1691,\\\\n    \\\\\\\"n_records\\\\\\\": 239200,\\\\n    \\\\\\\"n_items\\\\\\\": 200,\\\\n    \\\\\\\"n_conditions\\\\\\\": 1196\\\\n  },\\\\n  \\\\\\\"d_study_correct\\\\\\\": {\\\\n    \\\\\\\"25\\\\\\\": 0.164,\\\\n    \\\\\\\"50\\\\\\\": 0.2818,\\\\n    \\\\\\\"75\\\\\\\": 0.3705,\\\\n    \\\\\\\"100\\\\\\\": 0.4397,\\\\n    \\\\\\\"150\\\\\\\": 0.5407,\\\\n    \\\\\\\"200\\\\\\\": 0.6108,\\\\n    \\\\\\\"300\\\\\\\": 0.7019,\\\\n    \\\\\\\"500\\\\\\\": 0.7969\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"correct\\\": {\\n    \\\"grand_mean\\\": 0.6814,\\n    \\\"components_pct\\\": {\\n      \\\"item_id\\\": 61.0802,\\n      \\\"residual\\\": 21.5861,\\n      \\\"seed:item_id\\\": 4.725,\\n      \\\"prompt_template:item_id\\\": 4.5846,\\n      \\\"precision:item_id\\\": 4.1642,\\n      \\\"temperature:item_id\\\": 1.8348,\\n      \\\"precision\\\": 1.1913,\\n      \\\"ordering:item_id\\\": 0.5947,\\n      \\\"temperature\\\": 0.0669,\\n      \\\"precision:temperature\\\": 0.0524,\\n      \\\"temperature:prompt_template\\\": 0.0303,\\n      \\\"prompt_template\\\": 0.0263,\\n      \\\"temperature:seed\\\": 0.0197,\\n      \\\"seed\\\": 0.0144,\\n      \\\"precision:prompt_template\\\": 0.0131,\\n      \\\"prompt_template:seed\\\": 0.0049,\\n      \\\"prompt_template:ordering\\\": 0.0044,\\n      \\\"precision:ordering\\\": 0.0025,\\n      \\\"precision:seed\\\": 0.0019,\\n      \\\"seed:ordering\\\": 0.0012,\\n      \\\"ordering\\\": 0.0005,\\n      \\\"temperature:ordering\\\": 0.0004\\n    },\\n    \\\"G_coefficient\\\": 0.6108,\\n    \\\"total_variance\\\": 51928.8508,\\n    \\\"n_records\\\": 239200,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 1196\\n  },\\n  \\\"text_exact_match\\\": {\\n    \\\"grand_mean\\\": 0.331,\\n    \\\"components_pct\\\": {\\n      \\\"temperature\\\": 79.7164,\\n      \\\"residual\\\": 8.8527,\\n      \\\"precision:temperature\\\": 4.1495,\\n      \\\"precision\\\": 2.8134,\\n      \\\"temperature:item_id\\\": 0.845,\\n      \\\"seed:item_id\\\": 0.6684,\\n      \\\"item_id\\\": 0.6637,\\n      \\\"temperature:prompt_template\\\": 0.5924,\\n      \\\"prompt_template:item_id\\\": 0.5231,\\n      \\\"precision:prompt_template\\\": 0.4655,\\n      \\\"ordering:item_id\\\": 0.1951,\\n      \\\"precision:item_id\\\": 0.1531,\\n      \\\"temperature:seed\\\": 0.0863,\\n      \\\"precision:seed\\\": 0.0806,\\n      \\\"prompt_template\\\": 0.0705,\\n      \\\"prompt_template:seed\\\": 0.0621,\\n      \\\"seed\\\": 0.0361,\\n      \\\"seed:ordering\\\": 0.0142,\\n      \\\"ordering\\\": 0.0041,\\n      \\\"precision:ordering\\\": 0.0031,\\n      \\\"prompt_template:ordering\\\": 0.0028,\\n      \\\"temperature:ordering\\\": 0.0019\\n    },\\n    \\\"G_coefficient\\\": 0.0066,\\n    \\\"total_variance\\\": 52970.1691,\\n    \\\"n_records\\\": 239200,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 1196\\n  },\\n  \\\"d_study_correct\\\": {\\n    \\\"25\\\": 0.164,\\n    \\\"50\\\": 0.2818,\\n    \\\"75\\\": 0.3705,\\n    \\\"100\\\": 0.4397,\\n    \\\"150\\\": 0.5407,\\n    \\\"200\\\": 0.6108,\\n    \\\"300\\\": 0.7019,\\n    \\\"500\\\": 0.7969\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. exp-001 Llama data: 239,200 records across 4 shard files, 1,196 conditions (some missing from 1,296), 200 items
+2. The 6-facet baseline results are in `llama_single_model_gstudy.json` - item_id% = 61.08%, G_coefficient = 0.6108
+3. The exp001b G-study script (`exp001b_gstudy.py`) uses 5 facets: temperature, prompt_template, seed, ordering, item_id
+
+
+4. I need to filter for bf16 precision records and run the same 5-facet analysis, so I'm checking how many bf16 records are available and comparing the data structure to the existing exp001b setup.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "3932ec64-28fd-4a06-93ad-a3fcfdb56f17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+Let me check the bf16 record count and the exp001b data for reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "3afe57e4-a35b-44c8-ac10-b4da004ef3be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RAZH62XezVMiia1fCSQXLj`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c '\"bfloat16\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "536e83c9-7a1f-420b-b8f4-fd68ea55c1e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T08:46:52.288Z_
+
+<details><summary>↩ Tool result · `toolu_01RAZH62XezVMiia1fCSQXLj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"22400\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "163cd141-d121-4866-b93b-233360b66b05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22400\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"22400\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011ZuCmWzTjJSPj3obNDxxe8`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c '\"bfloat16\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "bd1659cf-aa9d-45f7-8aa8-e93695d21bc3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T08:46:53.244Z_
+
+<details><summary>↩ Tool result · `toolu_011ZuCmWzTjJSPj3obNDxxe8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"22800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "df03380b-2a1c-413b-b9f6-c7ddde6717cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"22800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XgNTteqQ1vT6Ead7xFErQW`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c '\"bfloat16\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "354b049f-8b60-470e-95aa-1653b98eeded",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T08:46:53.801Z_
+
+<details><summary>↩ Tool result · `toolu_01XgNTteqQ1vT6Ead7xFErQW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21600\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "18c6b025-83f3-47d7-bc16-6a61577363d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21600\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"21600\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0168diXZH8qJTQmHBAV2tAZp`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c '\"bfloat16\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "6ee25b5e-b056-443a-b3c1-f4bd167e98ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GoRfiWaZqbMnNxsLVCWqRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2924,
+      "cache_read_input_tokens": 30380,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T08:46:54.360Z_
+
+<details><summary>↩ Tool result · `toolu_0168diXZH8qJTQmHBAV2tAZp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19600\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "e96e2438-6134-401e-9de4-4aee22e376b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"19600\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"19600\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Total bf16 records: 22400 + 22800 + 21600 + 19600 = 86,400. That matches the expected 432 conditions × 200 items = 86,400. The bf16 subset is complete.
+
+Now let me write the script. I'll base it on the exp001b_gstudy.py but adapted for this task:
+- Load all 4 shards, filter to bf16 only
+- Run 5-facet Henderson I analysis (same as exp001b)
+- Output to results/analysis/exp001_llama_bf16only_5facet.json
+
+
+- Then print a comparison table to display the results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "1ae1a9eb-b574-4aac-ae65-c4f6d6f67957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKq9bukBSytRpMp1PwX512",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 33304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+bf16 total: 22400+22800+21600+19600 = 86,400 records. Complete (432 conditions × 200 items).
+
+Now I'll write and run the analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "7ca24644-aa0d-4c29-8a4c-77f3cfc0c867",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKq9bukBSytRpMp1PwX512",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 33304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013tyzHyMikFXZraexyM1EJG`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat > /root/nlp_variance_gtheory/scripts/exp001_llama_bf16only_5facet.py << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nfrom pathlib import Path\nfrom itertools import combinations\n\nFACETS = [\"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\nSHARD_PATHS = [\n    \"results/exp001_llama/llama_shard_0.jsonl\",\n    \"results/exp001_llama/llama_shard_1.jsonl\",\n    \"results/exp001_llama/llama_shard_2.jsonl\",\n    \"results/exp001_llama/llama_shard_3.jsonl\",\n]\nOUTPUT_PATH = \"results/analysis/exp001_llama_bf16only_5facet.json\"\n\n# exp-001b resampling results for comparison\nEXP001B_SAMPLES = {\n    \"sample1\": {\"item_id\": 75.88, \"prompt_template:item_id\": 4.42, \"seed:item_id\": 5.41,\n                \"temperature:item_id\": 1.64, \"ordering:item_id\": 0.54, \"G_item\": 0.759},\n    \"sample2\": {\"item_id\": 75.38, \"prompt_template:item_id\": 4.35, \"seed:item_id\": 4.87,\n                \"temperature:item_id\": 1.45, \"ordering:item_id\": 0.50, \"G_item\": 0.754},\n    \"sample3\": {\"item_id\": 72.18, \"prompt_template:item_id\": 5.38, \"seed:item_id\": 5.32,\n                \"temperature:item_id\": 2.17, \"ordering:item_id\": 0.63, \"G_item\": 0.722},\n}\n\n\ndef run_gstudy(df, metric=\"correct\"):\n    facets = FACETS\n    for f in facets:\n        df[f] = df[f].astype(str)\n\n    y = df[metric].values.astype(np.float64)\n    grand_mean = y.mean()\n    SS_total = ((y - grand_mean) ** 2).sum()\n    N = len(df)\n    n = {f: df[f].nunique() for f in facets}\n\n    components = {}\n    main_means = {}\n\n    for f in facets:\n        means = df.groupby(f)[metric].mean()\n        main_means[f] = means\n        n_per = N // n[f]\n        ss = float(n_per * ((means.values - grand_mean) ** 2).sum())\n        components[f] = ss\n\n    for f1, f2 in combinations(facets, 2):\n        cell_means = df.groupby([f1, f2])[metric].mean().reset_index()\n        cell_means.columns = [f1, f2, \"cell_mean\"]\n        cell_means[\"f1_mean\"] = cell_means[f1].map(main_means[f1])\n        cell_means[\"f2_mean\"] = cell_means[f2].map(main_means[f2])\n        n_per = N // (n[f1] * n[f2])\n        deviations = cell_means[\"cell_mean\"] - cell_means[\"f1_mean\"] - cell_means[\"f2_mean\"] + grand_mean\n        ss = float(n_per * (deviations ** 2).sum())\n        components[f\"{f1}:{f2}\"] = ss\n\n    ss_explained = sum(components.values())\n    components[\"residual\"] = max(0.0, SS_total - ss_explained)\n\n    total_var = sum(components.values())\n    pct = {k: round(v / total_var * 100, 4) for k, v in components.items()}\n    sorted_pct = dict(sorted(pct.items(), key=lambda x: -x[1]))\n\n    G_item = pct.get(\"item_id\", 0) / 100\n\n    item_pct = pct.get(\"item_id\", 0)\n    n_items_actual = n[\"item_id\"]\n    non_item_pct = sum(v for k, v in pct.items() if k != \"item_id\")\n\n    d_study = {}\n    for ni in [25, 50, 75, 100, 150, 200, 300, 500]:\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\n        d_study[str(ni)] = round(G_n, 4)\n\n    min_items_g80 = None\n    for ni in range(1, 2001):\n        G_n = item_pct / (item_pct + non_item_pct * (n_items_actual / ni))\n        if G_n >= 0.80:\n            min_items_g80 = ni\n            break\n\n    return {\n        \"grand_mean\": round(float(grand_mean), 4),\n        \"components_pct\": sorted_pct,\n        \"G_item\": round(float(G_item), 4),\n        \"total_variance\": round(float(total_var), 4),\n        \"n_records\": int(N),\n        \"n_items\": int(n[\"item_id\"]),\n        \"n_conditions\": int(N // n[\"item_id\"]),\n        \"n_levels\": {k: int(v) for k, v in n.items()},\n        \"d_study\": d_study,\n        \"min_items_g80\": min_items_g80,\n    }\n\n\ndef main():\n    # Load and filter bf16 data\n    dfs = []\n    for path in SHARD_PATHS:\n        df = pd.read_json(path, lines=True)\n        dfs.append(df)\n    df_all = pd.concat(dfs, ignore_index=True)\n    print(f\"Total Llama records: {len(df_all)}\")\n    print(f\"Precision distribution:\\n{df_all['precision'].value_counts()}\")\n\n    df_bf16 = df_all[df_all[\"precision\"] == \"bfloat16\"].copy()\n    print(f\"\\nbf16 subset: {len(df_bf16)} records\")\n    print(f\"Unique items: {df_bf16['item_id'].nunique()}\")\n    n_conds = len(df_bf16) // df_bf16['item_id'].nunique()\n    print(f\"Conditions: {n_conds}\")\n\n    # Verify facet levels\n    for f in FACETS:\n        print(f\"  {f}: {df_bf16[f].nunique()} levels -> {sorted(df_bf16[f].unique())[:5]}...\")\n\n    # Run 5-facet G-study\n    result = run_gstudy(df_bf16, metric=\"correct\")\n    print(f\"\\nG-study results:\")\n    print(f\"  grand_mean = {result['grand_mean']}\")\n    print(f\"  G_item = {result['G_item']}\")\n    print(f\"  Top components:\")\n    for k, v in list(result[\"components_pct\"].items())[:10]:\n        print(f\"    {k:30s}: {v:7.2f}%\")\n\n    # Save output\n    output = {\n        \"description\": \"exp-001 Llama bf16-only 5-facet matched baseline\",\n        \"facets\": FACETS,\n        \"filter\": \"precision == bfloat16\",\n        \"result\": result,\n    }\n    Path(OUTPUT_PATH).parent.mkdir(parents=True, exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nSaved: {OUTPUT_PATH}\")\n\n    # Comparison table\n    r = result\n    s1 = EXP001B_SAMPLES[\"sample1\"]\n    s2 = EXP001B_SAMPLES[\"sample2\"]\n    s3 = EXP001B_SAMPLES[\"sample3\"]\n\n    print(\"\\n\" + \"=\" * 110)\n    print(\"COMPARISON: exp-001 bf16 5-facet (matched baseline) vs exp-001b resampling samples\")\n    print(\"=\" * 110)\n    header = f\"{'Metric':<25} {'bf16-5f baseline':>16} {'Sample1':>10} {'Sample2':>10} {'Sample3':>10} {'Mean±Std':>14} {'Delta':>8}\"\n    print(header)\n    print(\"-\" * len(header))\n\n    rows = [\n        (\"item_id%\", \"item_id\"),\n        (\"prompt×item%\", \"prompt_template:item_id\"),\n        (\"seed×item%\", \"seed:item_id\"),\n        (\"temp×item%\", \"temperature:item_id\"),\n        (\"order×item%\", \"ordering:item_id\"),\n    ]\n    for label, key in rows:\n        bl_val = r[\"components_pct\"].get(key, 0)\n        v1 = s1.get(key, 0)\n        v2 = s2.get(key, 0)\n        v3 = s3.get(key, 0)\n        mean_v = np.mean([v1, v2, v3])\n        std_v = np.std([v1, v2, v3], ddof=1)\n        delta = mean_v - bl_val\n        print(f\"{label:<25} {bl_val:>16.2f} {v1:>10.2f} {v2:>10.2f} {v3:>10.2f} {mean_v:>7.2f}±{std_v:<5.2f} {delta:>+8.2f}\")\n\n    # Residual\n    bl_res = r[\"components_pct\"].get(\"residual\", 0)\n    print(f\"{'residual%':<25} {bl_res:>16.2f}\")\n\n    # G_item\n    bl_g = r[\"G_item\"]\n    g1, g2, g3 = s1[\"G_item\"], s2[\"G_item\"], s3[\"G_item\"]\n    g_mean = np.mean([g1, g2, g3])\n    g_std = np.std([g1, g2, g3], ddof=1)\n    g_delta = g_mean - bl_g\n    print(f\"{'G_item':<25} {bl_g:>16.4f} {g1:>10.4f} {g2:>10.4f} {g3:>10.4f} {g_mean:>7.4f}±{g_std:<6.4f}{g_delta:>+8.4f}\")\n\n    # Also show 6-facet baseline for reference\n    print(\"\\n\" + \"-\" * 110)\n    print(\"Reference: exp-001 Llama 6-facet baseline (from llama_single_model_gstudy.json)\")\n    print(f\"  item_id% = 61.08,  G_item = 0.6108\")\n    print(f\"  precision:item_id% = 4.16,  precision% = 1.19\")\n    print(f\"  Sum of precision-related = ~5.35%\")\n    bf16_item = r[\"components_pct\"].get(\"item_id\", 0)\n    print(f\"\\nDelta decomposition:\")\n    print(f\"  6-facet item_id%:                  61.08\")\n    print(f\"  bf16-5f item_id%:                  {bf16_item:.2f}  (delta = {bf16_item - 61.08:+.2f})\")\n    print(f\"  exp-001b mean item_id%:            74.48  (delta from bf16-5f = {74.48 - bf16_item:+.2f})\")\n    print(f\"  -> Precision removal effect:       {bf16_item - 61.08:+.2f} pp\")\n    print(f\"  -> Item selection effect:           {74.48 - bf16_item:+.2f} pp\")\n\n    print(\"\\nDONE\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "c1fc29bf-6e63-42a7-8c7f-043dba5fd419",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKq9bukBSytRpMp1PwX512",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1176,
+      "cache_read_input_tokens": 33304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1176
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T08:47:43.673Z_
+
+<details><summary>↩ Tool result · `toolu_013tyzHyMikFXZraexyM1EJG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "db25027a-31a1-4bf3-83d8-e54083e1cc65",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VFGNeBLHDHQsTAhdqLuaRK`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python scripts/exp001_llama_bf16only_5facet.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "08c8fa24-142e-4965-9a31-25ba61c05360",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HPqvMFj4QyWHKoQTtnucD2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3492,
+      "cache_read_input_tokens": 34480,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3492
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T08:47:51.059Z_
+
+<details><summary>↩ Tool result · `toolu_01VFGNeBLHDHQsTAhdqLuaRK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total Llama records: 239200\\nPrecision distribution:\\nprecision\\nbfloat16    86400\\nfloat16     86400\\nfloat32     66400\\nName: count, dtype: int64\\n\\nbf16 subset: 86400 records\\nUnique items: 200\\nConditions: 432\\n  temperature: 3 levels -> [np.float64(0.0), np.float64(0.30000000000000004), np.float64(0.7000000000000001)]...\\n  prompt_template: 6 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]...\\n  seed: 6 levels -> [np.int64(42), np.int64(123), np.int64(456), np.int64(789), np.int64(1024)]...\\n  ordering: 4 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4)]...\\n  item_id: 200 levels -> ['abstract_algebra_11', 'abstract_algebra_13', 'abstract_algebra_14', 'abstract_algebra_17', 'abstract_algebra_27']...\\n\\nG-study results:\\n  grand_mean = 0.7108\\n  G_item = 0.74\\n  Top components:\\n    item_id                       :   74.00%\\n    residual                      :   13.15%\\n    seed:item_id                  :    5.42%\\n    prompt_template:item_id       :    4.65%\\n    temperature:item_id           :    1.84%\\n    ordering:item_id              :    0.84%\\n    temperature:seed              :    0.02%\\n    prompt_template               :    0.02%\\n    seed                          :    0.02%\\n    temperature                   :    0.01%\\n\\nSaved: results/analysis/exp001_llama_bf16only_5facet.json\\n\\n==============================================================================================================\\nCOMPARISON: exp-001 bf16 5-facet (matched baseline) vs exp-001b resampling samples\\n==============================================================================================================\\nMetric                    bf16-5f baseline    Sample1    Sample2    Sample3       Mean±Std    Delta\\n---------------------------------------------------------------------------------------------------\\nitem_id%                             74.00      75.88      75.38      72.18   74.48±2.01     +0.48\\nprompt×item%                          4.65       4.42       4.35       5.38    4.72±0.58     +0.06\\nseed×item%                            5.42       5.41       4.87       5.32    5.20±0.29     -0.22\\ntemp×item%                            1.84       1.64       1.45       2.17    1.75±0.37     -0.09\\norder×item%                           0.84       0.54       0.50       0.63    0.56±0.07     -0.29\\nresidual%                            13.15\\nG_item                              0.7400     0.7590     0.7540     0.7220  0.7450±0.0201 +0.0050\\n\\n--------------------------------------------------------------------------------------------------------------\\nReference: exp-001 Llama 6-facet baseline (from llama_single_model_gstudy.json)\\n  item_id% = 61.08,  G_item = 0.6108\\n  precision:item_id% = 4.16,  precision% = 1.19\\n  Sum of precision-related = ~5.35%\\n\\nDelta decomposition:\\n  6-facet item_id%:                  61.08\\n  bf16-5f item_id%:                  74.00  (delta = +12.92)\\n  exp-001b mean item_id%:            74.48  (delta from bf16-5f = +0.48)\\n  -> Precision removal effect:       +12.92 pp\\n  -> Item selection effect:           +0.48 pp\\n\\nDONE\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "3bc2804f-43e0-4beb-b0ba-7aa9127e2f41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total Llama records: 239200\\\\nPrecision distribution:\\\\nprecision\\\\nbfloat16    86400\\\\nfloat16     86400\\\\nfloat32     66400\\\\nName: count, dtype: int64\\\\n\\\\nbf16 subset: 86400 records\\\\nUnique items: 200\\\\nConditions: 432\\\\n  temperature: 3 levels -> [np.float64(0.0), np.float64(0.30000000000000004), np.float64(0.7000000000000001)]...\\\\n  prompt_template: 6 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]...\\\\n  seed: 6 levels -> [np.int64(42), np.int64(123), np.int64(456), np.int64(789), np.int64(1024)]...\\\\n  ordering: 4 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4)]...\\\\n  item_id: 200 levels -> ['abstract_algebra_11', 'abstract_algebra_13', 'abstract_algebra_14', 'abstract_algebra_17', 'abstract_algebra_27']...\\\\n\\\\nG-study results:\\\\n  grand_mean = 0.7108\\\\n  G_item = 0.74\\\\n  Top components:\\\\n    item_id                       :   74.00%\\\\n    residual                      :   13.15%\\\\n    seed:item_id                  :    5.42%\\\\n    prompt_template:item_id       :    4.65%\\\\n    temperature:item_id           :    1.84%\\\\n    ordering:item_id              :    0.84%\\\\n    temperature:seed              :    0.02%\\\\n    prompt_template               :    0.02%\\\\n    seed                          :    0.02%\\\\n    temperature                   :    0.01%\\\\n\\\\nSaved: results/analysis/exp001_llama_bf16only_5facet.json\\\\n\\\\n==============================================================================================================\\\\nCOMPARISON: exp-001 bf16 5-facet (matched baseline) vs exp-001b resampling samples\\\\n==============================================================================================================\\\\nMetric                    bf16-5f baseline    Sample1    Sample2    Sample3       Mean±Std    Delta\\\\n---------------------------------------------------------------------------------------------------\\\\nitem_id%                             74.00      75.88      75.38      72.18   74.48±2.01     +0.48\\\\nprompt×item%                          4.65       4.42       4.35       5.38    4.72±0.58     +0.06\\\\nseed×item%                            5.42       5.41       4.87       5.32    5.20±0.29     -0.22\\\\ntemp×item%                            1.84       1.64       1.45       2.17    1.75±0.37     -0.09\\\\norder×item%                           0.84       0.54       0.50       0.63    0.56±0.07     -0.29\\\\nresidual%                            13.15\\\\nG_item                              0.7400     0.7590     0.7540     0.7220  0.7450±0.0201 +0.0050\\\\n\\\\n--------------------------------------------------------------------------------------------------------------\\\\nReference: exp-001 Llama 6-facet baseline (from llama_single_model_gstudy.json)\\\\n  item_id% = 61.08,  G_item = 0.6108\\\\n  precision:item_id% = 4.16,  precision% = 1.19\\\\n  Sum of precision-related = ~5.35%\\\\n\\\\nDelta decomposition:\\\\n  6-facet item_id%:                  61.08\\\\n  bf16-5f item_id%:                  74.00  (delta = +12.92)\\\\n  exp-001b mean item_id%:            74.48  (delta from bf16-5f = +0.48)\\\\n  -> Precision removal effect:       +12.92 pp\\\\n  -> Item selection effect:           +0.48 pp\\\\n\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total Llama records: 239200\\nPrecision distribution:\\nprecision\\nbfloat16    86400\\nfloat16     86400\\nfloat32     66400\\nName: count, dtype: int64\\n\\nbf16 subset: 86400 records\\nUnique items: 200\\nConditions: 432\\n  temperature: 3 levels -> [np.float64(0.0), np.float64(0.30000000000000004), np.float64(0.7000000000000001)]...\\n  prompt_template: 6 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5)]...\\n  seed: 6 levels -> [np.int64(42), np.int64(123), np.int64(456), np.int64(789), np.int64(1024)]...\\n  ordering: 4 levels -> [np.int64(1), np.int64(2), np.int64(3), np.int64(4)]...\\n  item_id: 200 levels -> ['abstract_algebra_11', 'abstract_algebra_13', 'abstract_algebra_14', 'abstract_algebra_17', 'abstract_algebra_27']...\\n\\nG-study results:\\n  grand_mean = 0.7108\\n  G_item = 0.74\\n  Top components:\\n    item_id                       :   74.00%\\n    residual                      :   13.15%\\n    seed:item_id                  :    5.42%\\n    prompt_template:item_id       :    4.65%\\n    temperature:item_id           :    1.84%\\n    ordering:item_id              :    0.84%\\n    temperature:seed              :    0.02%\\n    prompt_template               :    0.02%\\n    seed                          :    0.02%\\n    temperature                   :    0.01%\\n\\nSaved: results/analysis/exp001_llama_bf16only_5facet.json\\n\\n==============================================================================================================\\nCOMPARISON: exp-001 bf16 5-facet (matched baseline) vs exp-001b resampling samples\\n==============================================================================================================\\nMetric                    bf16-5f baseline    Sample1    Sample2    Sample3       Mean±Std    Delta\\n---------------------------------------------------------------------------------------------------\\nitem_id%                             74.00      75.88      75.38      72.18   74.48±2.01     +0.48\\nprompt×item%                          4.65       4.42       4.35       5.38    4.72±0.58     +0.06\\nseed×item%                            5.42       5.41       4.87       5.32    5.20±0.29     -0.22\\ntemp×item%                            1.84       1.64       1.45       2.17    1.75±0.37     -0.09\\norder×item%                           0.84       0.54       0.50       0.63    0.56±0.07     -0.29\\nresidual%                            13.15\\nG_item                              0.7400     0.7590     0.7540     0.7220  0.7450±0.0201 +0.0050\\n\\n--------------------------------------------------------------------------------------------------------------\\nReference: exp-001 Llama 6-facet baseline (from llama_single_model_gstudy.json)\\n  item_id% = 61.08,  G_item = 0.6108\\n  precision:item_id% = 4.16,  precision% = 1.19\\n  Sum of precision-related = ~5.35%\\n\\nDelta decomposition:\\n  6-facet item_id%:                  61.08\\n  bf16-5f item_id%:                  74.00  (delta = +12.92)\\n  exp-001b mean item_id%:            74.48  (delta from bf16-5f = +0.48)\\n  -> Precision removal effect:       +12.92 pp\\n  -> Item selection effect:           +0.48 pp\\n\\nDONE\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+结果非常清晰。让我验证输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "52fdea7a-6268-44f5-9113-e1317ffc0d90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01175o74pUv2ATrqVZsawKjy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 37972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KdrHpGHi2tKfxzN9sFMuz7`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/exp001_llama_bf16only_5facet.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "d1a7c6bd-ac8c-4bac-9770-d2164be23d27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01175o74pUv2ATrqVZsawKjy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 37972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T08:47:54.999Z_
+
+<details><summary>↩ Tool result · `toolu_01KdrHpGHi2tKfxzN9sFMuz7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"exp-001 Llama bf16-only 5-facet matched baseline\\\",\\n  \\\"facets\\\": [\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"filter\\\": \\\"precision == bfloat16\\\",\\n  \\\"result\\\": {\\n    \\\"grand_mean\\\": 0.7108,\\n    \\\"components_pct\\\": {\\n      \\\"item_id\\\": 73.9972,\\n      \\\"residual\\\": 13.1463,\\n      \\\"seed:item_id\\\": 5.4225,\\n      \\\"prompt_template:item_id\\\": 4.6529,\\n      \\\"temperature:item_id\\\": 1.843,\\n      \\\"ordering:item_id\\\": 0.8432,\\n      \\\"temperature:seed\\\": 0.0231,\\n      \\\"prompt_template\\\": 0.0202,\\n      \\\"seed\\\": 0.0191,\\n      \\\"temperature\\\": 0.0096,\\n      \\\"prompt_template:ordering\\\": 0.0095,\\n      \\\"temperature:prompt_template\\\": 0.0048,\\n      \\\"prompt_template:seed\\\": 0.0033,\\n      \\\"temperature:ordering\\\": 0.0027,\\n      \\\"seed:ordering\\\": 0.0019,\\n      \\\"ordering\\\": 0.0007\\n    },\\n    \\\"G_item\\\": 0.74,\\n    \\\"total_variance\\\": 17759.46,\\n    \\\"n_records\\\": 86400,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 432,\\n    \\\"n_levels\\\": {\\n      \\\"temperature\\\": 3,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"d_study\\\": {\\n      \\\"25\\\": 0.2624,\\n      \\\"50\\\": 0.4157,\\n      \\\"75\\\": 0.5162,\\n      \\\"100\\\": 0.5873,\\n      \\\"150\\\": 0.6809,\\n      \\\"200\\\": 0.74,\\n      \\\"300\\\": 0.8102,\\n      \\\"500\\\": 0.8768\\n    },\\n    \\\"min_items_g80\\\": 282\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "41bf0f80-2905-4c1e-8f62-6d6b7ddc4c9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"exp-001 Llama bf16-only 5-facet matched baseline\\\\\\\",\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"filter\\\\\\\": \\\\\\\"precision == bfloat16\\\\\\\",\\\\n  \\\\\\\"result\\\\\\\": {\\\\n    \\\\\\\"grand_mean\\\\\\\": 0.7108,\\\\n    \\\\\\\"components_pct\\\\\\\": {\\\\n      \\\\\\\"item_id\\\\\\\": 73.9972,\\\\n      \\\\\\\"residual\\\\\\\": 13.1463,\\\\n      \\\\\\\"seed:item_id\\\\\\\": 5.4225,\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": 4.6529,\\\\n      \\\\\\\"temperature:item_id\\\\\\\": 1.843,\\\\n      \\\\\\\"ordering:item_id\\\\\\\": 0.8432,\\\\n      \\\\\\\"temperature:seed\\\\\\\": 0.0231,\\\\n      \\\\\\\"prompt_template\\\\\\\": 0.0202,\\\\n      \\\\\\\"seed\\\\\\\": 0.0191,\\\\n      \\\\\\\"temperature\\\\\\\": 0.0096,\\\\n      \\\\\\\"prompt_template:ordering\\\\\\\": 0.0095,\\\\n      \\\\\\\"temperature:prompt_template\\\\\\\": 0.0048,\\\\n      \\\\\\\"prompt_template:seed\\\\\\\": 0.0033,\\\\n      \\\\\\\"temperature:ordering\\\\\\\": 0.0027,\\\\n      \\\\\\\"seed:ordering\\\\\\\": 0.0019,\\\\n      \\\\\\\"ordering\\\\\\\": 0.0007\\\\n    },\\\\n    \\\\\\\"G_item\\\\\\\": 0.74,\\\\n    \\\\\\\"total_variance\\\\\\\": 17759.46,\\\\n    \\\\\\\"n_records\\\\\\\": 86400,\\\\n    \\\\\\\"n_items\\\\\\\": 200,\\\\n    \\\\\\\"n_conditions\\\\\\\": 432,\\\\n    \\\\\\\"n_levels\\\\\\\": {\\\\n      \\\\\\\"temperature\\\\\\\": 3,\\\\n      \\\\\\\"prompt_template\\\\\\\": 6,\\\\n      \\\\\\\"seed\\\\\\\": 6,\\\\n      \\\\\\\"ordering\\\\\\\": 4,\\\\n      \\\\\\\"item_id\\\\\\\": 200\\\\n    },\\\\n    \\\\\\\"d_study\\\\\\\": {\\\\n      \\\\\\\"25\\\\\\\": 0.2624,\\\\n      \\\\\\\"50\\\\\\\": 0.4157,\\\\n      \\\\\\\"75\\\\\\\": 0.5162,\\\\n      \\\\\\\"100\\\\\\\": 0.5873,\\\\n      \\\\\\\"150\\\\\\\": 0.6809,\\\\n      \\\\\\\"200\\\\\\\": 0.74,\\\\n      \\\\\\\"300\\\\\\\": 0.8102,\\\\n      \\\\\\\"500\\\\\\\": 0.8768\\\\n    },\\\\n    \\\\\\\"min_items_g80\\\\\\\": 282\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"exp-001 Llama bf16-only 5-facet matched baseline\\\",\\n  \\\"facets\\\": [\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"filter\\\": \\\"precision == bfloat16\\\",\\n  \\\"result\\\": {\\n    \\\"grand_mean\\\": 0.7108,\\n    \\\"components_pct\\\": {\\n      \\\"item_id\\\": 73.9972,\\n      \\\"residual\\\": 13.1463,\\n      \\\"seed:item_id\\\": 5.4225,\\n      \\\"prompt_template:item_id\\\": 4.6529,\\n      \\\"temperature:item_id\\\": 1.843,\\n      \\\"ordering:item_id\\\": 0.8432,\\n      \\\"temperature:seed\\\": 0.0231,\\n      \\\"prompt_template\\\": 0.0202,\\n      \\\"seed\\\": 0.0191,\\n      \\\"temperature\\\": 0.0096,\\n      \\\"prompt_template:ordering\\\": 0.0095,\\n      \\\"temperature:prompt_template\\\": 0.0048,\\n      \\\"prompt_template:seed\\\": 0.0033,\\n      \\\"temperature:ordering\\\": 0.0027,\\n      \\\"seed:ordering\\\": 0.0019,\\n      \\\"ordering\\\": 0.0007\\n    },\\n    \\\"G_item\\\": 0.74,\\n    \\\"total_variance\\\": 17759.46,\\n    \\\"n_records\\\": 86400,\\n    \\\"n_items\\\": 200,\\n    \\\"n_conditions\\\": 432,\\n    \\\"n_levels\\\": {\\n      \\\"temperature\\\": 3,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"d_study\\\": {\\n      \\\"25\\\": 0.2624,\\n      \\\"50\\\": 0.4157,\\n      \\\"75\\\": 0.5162,\\n      \\\"100\\\": 0.5873,\\n      \\\"150\\\": 0.6809,\\n      \\\"200\\\": 0.74,\\n      \\\"300\\\": 0.8102,\\n      \\\"500\\\": 0.8768\\n    },\\n    \\\"min_items_g80\\\": 282\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+完成。核心发现：
+
+### 对比表
+
+| Metric | bf16-5f baseline | Sample1 | Sample2 | Sample3 | Mean±Std | Delta |
+|--------|----------------:|--------:|--------:|--------:|---------:|------:|
+| item_id% | **74.00** | 75.88 | 75.38 | 72.18 | 74.48±2.01 | +0.48 |
+| prompt×item% | 4.65 | 4.42 | 4.35 | 5.38 | 4.72±0.58 | +0.06 |
+| seed×item% | 5.42 | 5.41 | 4.87 | 5.32 | 5.20±0.29 | -0.22 |
+| temp×item% | 1.84 | 1.64 | 1.45 | 2.17 | 1.75±0.37 | -0.09 |
+| order×item% | 0.84 | 0.54 | 0.50 | 0.63 | 0.56±0.07 | -0.29 |
+| G_item | **0.7400** | 0.7590 | 0.7540 | 0.7220 | 0.745±0.020 | +0.005 |
+
+### Delta 分解
+
+之前 6-facet→exp-001b 的 13.4pp 差异现在被分解为：
+
+- **Precision facet 移除效应**: 74.00 − 61.08 = **+12.92 pp** (6-facet → bf16-5f)
+- **Item 选择效应**: 74.48 − 74.00 = **+0.48 pp** (bf16-5f → exp-001b mean)
+
+结论：几乎全部差异来自 precision facet 的移除（12.92pp），item 选择效应仅 0.48pp，在 exp-001b 三个 sample 的 ±2.01 标准差范围内。bf16 matched baseline 的 G_item=0.740 与 exp-001b 均值 0.745 几乎一致，确认 exp-001b 的 resampling 结果是可靠的。
+
+输出已保存到 `results/analysis/exp001_llama_bf16only_5facet.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "uuid": "64e216f3-bd44-4efa-bc49-369882119dae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ShFWVfYJDkm6kCjrt91BE7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1111,
+      "cache_read_input_tokens": 39302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1111
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 46_
+
+完成。核心发现：
+
+### 对比表
+
+| Metric | bf16-5f baseline | Sample1 | Sample2 | Sample3 | Mean±Std | Delta |
+|--------|----------------:|--------:|--------:|--------:|---------:|------:|
+| item_id% | **74.00** | 75.88 | 75.38 | 72.18 | 74.48±2.01 | +0.48 |
+| prompt×item% | 4.65 | 4.42 | 4.35 | 5.38 | 4.72±0.58 | +0.06 |
+| seed×item% | 5.42 | 5.41 | 4.87 | 5.32 | 5.20±0.29 | -0.22 |
+| temp×item% | 1.84 | 1.64 | 1.45 | 2.17 | 1.75±0.37 | -0.09 |
+| order×item% | 0.84 | 0.54 | 0.50 | 0.63 | 0.56±0.07 | -0.29 |
+| G_item | **0.7400** | 0.7590 | 0.7540 | 0.7220 | 0.745±0.020 | +0.005 |
+
+### Delta 分解
+
+之前 6-facet→exp-001b 的 13.4pp 差异现在被分解为：
+
+- **Precision facet 移除效应**: 74.00 − 61.08 = **+12.92 pp** (6-facet → bf16-5f)
+- **Item 选择效应**: 74.48 − 74.00 = **+0.48 pp** (bf16-5f → exp-001b mean)
+
+结论：几乎全部差异来自 precision facet 的移除（12.92pp），item 选择效应仅 0.48pp，在 exp-001b 三个 sample 的 ±2.01 标准差范围内。bf16 matched baseline 的 G_item=0.740 与 exp-001b 均值 0.745 几乎一致，确认 exp-001b 的 resampling 结果是可靠的。
+
+输出已保存到 `results/analysis/exp001_llama_bf16only_5facet.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 104203,
+  "duration_api_ms": 97736,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "7a4e7930-ab67-4e2a-90c1-b260a16cfe73",
+  "total_cost_usd": 0.464596,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 28572,
+    "cache_read_input_tokens": 261402,
+    "output_tokens": 6140,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28572,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 630,
+        "cache_read_input_tokens": 39302,
+        "cache_creation_input_tokens": 1111,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1111
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1630,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001755,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 6140,
+      "cacheReadInputTokens": 261402,
+      "cacheCreationInputTokens": 28572,
+      "webSearchRequests": 0,
+      "costUSD": 0.462841,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8658f23d-f7fb-4a92-9b22-515575533094"
+}
+```
+
+</details>
+
+---

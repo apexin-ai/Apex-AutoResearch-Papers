@@ -1,0 +1,178 @@
+{
+  "experiment": "exp-004",
+  "analysis": "8model_henderson_i_gstudy_mmlu",
+  "benchmark": "mmlu",
+  "n_models": 8,
+  "n_observations": 460800,
+  "n_levels": {
+    "model": 8,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean_accuracy": 0.645736,
+  "facets": [
+    "model",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering",
+    "item_id"
+  ],
+  "variance_components": {
+    "item_id": {
+      "estimate": 0.0872124597,
+      "pct": 37.8812,
+      "ci_lower": 33.1231,
+      "ci_upper": 42.1664
+    },
+    "model:item_id": {
+      "estimate": 0.0695501891,
+      "pct": 30.2095,
+      "ci_lower": 26.8105,
+      "ci_upper": 33.3184
+    },
+    "residual": {
+      "estimate": 0.0575714452,
+      "pct": 25.0065,
+      "ci_lower": 22.8915,
+      "ci_upper": 27.2172
+    },
+    "model": {
+      "estimate": 0.0065213123,
+      "pct": 2.8326,
+      "ci_lower": 1.8945,
+      "ci_upper": 4.4692
+    },
+    "model:prompt_template": {
+      "estimate": 0.0036708012,
+      "pct": 1.5944,
+      "ci_lower": 1.2734,
+      "ci_upper": 2.0659
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.0021769413,
+      "pct": 0.9456,
+      "ci_lower": 0.8237,
+      "ci_upper": 1.0798
+    },
+    "temperature:item_id": {
+      "estimate": 0.0012818778,
+      "pct": 0.5568,
+      "ci_lower": 0.378,
+      "ci_upper": 0.781
+    },
+    "seed:item_id": {
+      "estimate": 0.001209092,
+      "pct": 0.5252,
+      "ci_lower": 0.4114,
+      "ci_upper": 0.6385
+    },
+    "ordering:item_id": {
+      "estimate": 0.0007188472,
+      "pct": 0.3122,
+      "ci_lower": 0.2519,
+      "ci_upper": 0.3804
+    },
+    "model:temperature": {
+      "estimate": 0.0001007978,
+      "pct": 0.0438,
+      "ci_lower": 0.0255,
+      "ci_upper": 0.1182
+    },
+    "model:seed": {
+      "estimate": 6.88512e-05,
+      "pct": 0.0299,
+      "ci_lower": 0.0284,
+      "ci_upper": 0.0741
+    },
+    "model:ordering": {
+      "estimate": 6.40528e-05,
+      "pct": 0.0278,
+      "ci_lower": 0.018,
+      "ci_upper": 0.0673
+    },
+    "temperature": {
+      "estimate": 4.67254e-05,
+      "pct": 0.0203,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0605
+    },
+    "prompt_template:ordering": {
+      "estimate": 1.60471e-05,
+      "pct": 0.007,
+      "ci_lower": 0.0042,
+      "ci_upper": 0.0178
+    },
+    "temperature:seed": {
+      "estimate": 1.35914e-05,
+      "pct": 0.0059,
+      "ci_lower": 0.0015,
+      "ci_upper": 0.0332
+    },
+    "ordering": {
+      "estimate": 1.648e-06,
+      "pct": 0.0007,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0132
+    },
+    "temperature:prompt_template": {
+      "estimate": 1.5746e-06,
+      "pct": 0.0007,
+      "ci_lower": 0.0001,
+      "ci_upper": 0.0069
+    },
+    "temperature:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0018
+    },
+    "prompt_template:seed": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0024
+    },
+    "seed:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    },
+    "prompt_template": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0393
+    },
+    "seed": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_lower": 0.0,
+      "ci_upper": 0.0
+    }
+  },
+  "total_variance": 0.230226254,
+  "G_item": 0.896176,
+  "G_item_CI": {
+    "ci_lower": 0.874189,
+    "ci_upper": 0.915197,
+    "mean": 0.895501,
+    "std": 0.010344
+  },
+  "sigma_tau": 0.0872124597,
+  "sigma_delta": 0.0101037508,
+  "models": [
+    "DeepSeek-7B",
+    "Gemma-2-9B",
+    "InternLM2.5-7B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "OLMo-2-7B",
+    "Qwen3-8B",
+    "Yi-1.5-9B"
+  ]
+}

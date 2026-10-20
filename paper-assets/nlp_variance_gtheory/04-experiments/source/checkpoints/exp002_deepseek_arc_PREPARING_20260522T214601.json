@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp002_deepseek_arc",
+  "project": "nlp_variance_gtheory",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T17:39:04.591Z",
+    "updated_at": "2026-05-22T21:46:00.979Z",
+    "hypothesis": "D009 8-model expansion: DeepSeek-LLM-7B-Chat ARC inference — MC benchmark expected item-dominated variance pattern per D010",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T21:46:01.011435+00:00",
+  "trigger": "update_registry"
+}

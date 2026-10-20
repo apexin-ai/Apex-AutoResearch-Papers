@@ -1,0 +1,244 @@
+{
+  "greedy": {
+    "abstract_algebra_81": {
+      "unique_outputs": 1,
+      "all_outputs": [
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | If G is a finite group and H is a"
+      ]
+    },
+    "abstract_algebra_14": {
+      "unique_outputs": 2,
+      "all_outputs": [
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If G is a group of order 12,",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nStatement 1 | If G is a group of order 12,",
+        "D\n\nStatement 1 | If a and b are elements of a group G"
+      ]
+    },
+    "abstract_algebra_3": {
+      "unique_outputs": 1,
+      "all_outputs": [
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA",
+        "D\n\nFind the order of the group of units of Z_7.\nA"
+      ]
+    },
+    "abstract_algebra_94": {
+      "unique_outputs": 2,
+      "all_outputs": [
+        "A\n\nStatement 1 | The group of units of Z_6 is {",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of",
+        "A\n\nStatement 1 | Every finite group is isomorphic to a subgroup of"
+      ]
+    },
+    "abstract_algebra_35": {
+      "unique_outputs": 2,
+      "all_outputs": [
+        "B\n\nStatement 1 | If a and b are elements of a group G",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,",
+        "B\n\nStatement 1 | If G is a group of order 12,"
+      ]
+    }
+  },
+  "stochastic_same_seed": {
+    "abstract_algebra_81": {
+      "unique_outputs": 1,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z"
+      ]
+    },
+    "abstract_algebra_14": {
+      "unique_outputs": 1,
+      "outputs": [
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "C\n\nStatement 1 | If G is a finite group and p is a"
+      ]
+    },
+    "abstract_algebra_3": {
+      "unique_outputs": 1,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "C\n\nFind the order of the multiplicative group of the field F = Z"
+      ]
+    },
+    "abstract_algebra_94": {
+      "unique_outputs": 1,
+      "outputs": [
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free"
+      ]
+    },
+    "abstract_algebra_35": {
+      "unique_outputs": 1,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "C\n\nFind the order of the multiplicative group of the field F = Q"
+      ]
+    }
+  },
+  "stochastic_diff_seeds": {
+    "abstract_algebra_81": {
+      "unique_outputs": 9,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "B\n\nFind the order of the group G = {1, -1,",
+        "C\n\nFind all c in Z_3 such that Z_3[x]/",
+        "B\n\nStatement 1 | If G is a group of order 4,",
+        "A\n\nStatement 1 | If G is a group and a is an element",
+        "A\n\nFind the number of elements in the set of all functions f: Z",
+        "C\n\nFind the number of elements in the group of units of Z_7",
+        "A\n\nStatement 1 | If G is a finite group and H is a",
+        "A\n\nStatement 1 | The number of elements in a direct product of two",
+        "A\n\nStatement 1 | If G is a group and a is an element"
+      ],
+      "accuracy_std": 0.0
+    },
+    "abstract_algebra_14": {
+      "unique_outputs": 9,
+      "outputs": [
+        "C\n\nStatement 1 | If G is a finite group and p is a",
+        "D\n\nThe following are multiple choice questions (with answers) about abstract algebra.",
+        "D\n\nThe following are multiple choice questions (with answers) about abstract algebra.",
+        "D\n\nStatement 1 | If a is an element of a group G,",
+        "D\n\nStatement 1 | If G is a group and a is an element",
+        "D\n\nFind the number of elements in the set of all functions from the set",
+        "D\n\nStatement 1 | The number of elements of the direct product of two",
+        "D\n\nStatement 1 | If G is a group and a,b are elements",
+        "D\n\nStatement 1 | The number of elements of a group is always a",
+        "D\n\nStatement 1 | If G is a group and a, b are"
+      ],
+      "accuracy_std": 0.3
+    },
+    "abstract_algebra_3": {
+      "unique_outputs": 9,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Z",
+        "D\n\nFind the order of the group G = {1, -1,",
+        "D\n\nFind all c in Z_2 such that Z_2[x]/",
+        "D\n\nStatement 1 | If a is an element of a group G,",
+        "D\n\nStatement 1 | If a and b are elements of a group G",
+        "D\n\nFind the number of elements in the set of all functions from the set",
+        "D\n\nFind the order of the general linear group GL(2, Z_",
+        "D\n\nFind the order of the multiplicative group of the field of real numbers",
+        "D\n\nStatement 1 | The number of elements in a direct product of two",
+        "D\n\nFind all c in Z_2 such that Z_2[x]/"
+      ],
+      "accuracy_std": 0.0
+    },
+    "abstract_algebra_94": {
+      "unique_outputs": 9,
+      "outputs": [
+        "A\n\nStatement 1 | Every finite group is a quotient group of a free",
+        "A\n\nStatement 1 | If G is a group of order 6,",
+        "A\n\nStatement 1 | The set of all 2x2 invertible",
+        "A\n\nStatement 1 | If a is an element of a group G,",
+        "A\n\nStatement 1 | If G is a group and a is an element",
+        "A\n\nFind the number of elements in the group G = {a, b",
+        "A\n\nStatement 1 | The number of elements of the direct product of two",
+        "A\n\nStatement 1 | If G is a finite group then G is is",
+        "A\n\nStatement 1 | The number of elements in a direct product of two",
+        "A\n\nStatement 1 | If G is a group of order 6,"
+      ],
+      "accuracy_std": 0.0
+    },
+    "abstract_algebra_35": {
+      "unique_outputs": 10,
+      "outputs": [
+        "C\n\nFind the order of the multiplicative group of the field F = Q",
+        "B\n\nFind the order of the group G = {e, (12)(",
+        "C\n\nStatement 1 | If a and b are elements of a group,",
+        "B\n\nStatement 1 | If a is an element of a group G,",
+        "B\n\nStatement 1 | If G is a group and a is an element",
+        "B\n\nFind the degree of the field extension Q(sqrt(2), sqrt(",
+        "C\n\nStatement 1 | The number of elements of the direct product of two",
+        "C\n\nStatement 1 | If G is a group and a,b are elements",
+        "B\n\nStatement 1 | The number of elements in a set is not changed",
+        "B\n\nStatement 1 | If G is a group of order 6,"
+      ],
+      "accuracy_std": 0.489898
+    }
+  },
+  "summary": {
+    "greedy_deterministic": false,
+    "phase1_seed_control": true,
+    "phase2_sampling_diversity": 9.2,
+    "sanity_check_pass": false
+  }
+}

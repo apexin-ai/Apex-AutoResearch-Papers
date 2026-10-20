@@ -1,0 +1,329 @@
+{
+  "experiment": "exp-004",
+  "analysis": "per_benchmark_henderson_i_gstudy_8model",
+  "benchmark": "hellaswag",
+  "n_models": 8,
+  "models": [
+    "DeepSeek-7B",
+    "Gemma-2-9B",
+    "InternLM2.5-7B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "OLMo-2-7B",
+    "Qwen3-8B",
+    "Yi-1.5-9B"
+  ],
+  "facets": [
+    "model",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering",
+    "item_id"
+  ],
+  "n_observations": 691200,
+  "n_levels": {
+    "model": 8,
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean_accuracy": 0.476415,
+  "variance_components": {
+    "model:temperature": {
+      "estimate": 0.110506119,
+      "pct": 36.4408
+    },
+    "temperature": {
+      "estimate": 0.0630722969,
+      "pct": 20.7989
+    },
+    "residual": {
+      "estimate": 0.0540076756,
+      "pct": 17.8097
+    },
+    "model:item_id": {
+      "estimate": 0.0328786976,
+      "pct": 10.8422
+    },
+    "item_id": {
+      "estimate": 0.0270168317,
+      "pct": 8.9092
+    },
+    "temperature:item_id": {
+      "estimate": 0.0134469811,
+      "pct": 4.4343
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.0019125584,
+      "pct": 0.6307
+    },
+    "seed:item_id": {
+      "estimate": 0.0001780544,
+      "pct": 0.0587
+    },
+    "model:prompt_template": {
+      "estimate": 0.0001705184,
+      "pct": 0.0562
+    },
+    "temperature:prompt_template": {
+      "estimate": 2.32592e-05,
+      "pct": 0.0077
+    },
+    "model:seed": {
+      "estimate": 1.92281e-05,
+      "pct": 0.0063
+    },
+    "temperature:seed": {
+      "estimate": 1.49933e-05,
+      "pct": 0.0049
+    },
+    "prompt_template:seed": {
+      "estimate": 8.322e-07,
+      "pct": 0.0003
+    },
+    "model:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "temperature:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "prompt_template:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "seed:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "ordering:item_id": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "model": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "prompt_template": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "seed": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    }
+  },
+  "total_variance": 0.303248046,
+  "G_item": 0.75103,
+  "G_item_CI": {
+    "mean": 0.749824,
+    "ci_lo": 0.718805,
+    "ci_hi": 0.77969
+  },
+  "sigma_tau": 0.0270168317,
+  "sigma_delta": 0.0089562269,
+  "bootstrap_ci": {
+    "ordering": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "model:item_id": {
+      "mean": 10.8063,
+      "ci_lo": 9.4751,
+      "ci_hi": 12.1561
+    },
+    "temperature:prompt_template": {
+      "mean": 0.0112,
+      "ci_lo": 0.004,
+      "ci_hi": 0.0199
+    },
+    "residual": {
+      "mean": 17.7788,
+      "ci_lo": 16.0795,
+      "ci_hi": 19.334
+    },
+    "ordering:item_id": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "temperature:item_id": {
+      "mean": 4.4092,
+      "ci_lo": 3.5805,
+      "ci_hi": 5.2639
+    },
+    "temperature:ordering": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "prompt_template:item_id": {
+      "mean": 0.629,
+      "ci_lo": 0.5291,
+      "ci_hi": 0.7449
+    },
+    "model:seed": {
+      "mean": 0.0095,
+      "ci_lo": 0.0049,
+      "ci_hi": 0.015
+    },
+    "prompt_template:ordering": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "model:prompt_template": {
+      "mean": 0.079,
+      "ci_lo": 0.0497,
+      "ci_hi": 0.1164
+    },
+    "temperature": {
+      "mean": 20.8267,
+      "ci_lo": 19.2088,
+      "ci_hi": 22.7078
+    },
+    "prompt_template:seed": {
+      "mean": 0.0008,
+      "ci_lo": 0.0001,
+      "ci_hi": 0.0018
+    },
+    "item_id": {
+      "mean": 8.8713,
+      "ci_lo": 6.9584,
+      "ci_hi": 10.9843
+    },
+    "model:temperature": {
+      "mean": 36.5129,
+      "ci_lo": 33.7016,
+      "ci_hi": 39.7745
+    },
+    "model:ordering": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "seed:item_id": {
+      "mean": 0.0584,
+      "ci_lo": 0.0465,
+      "ci_hi": 0.0709
+    },
+    "prompt_template": {
+      "mean": 0.0009,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0079
+    },
+    "seed": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "seed:ordering": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    },
+    "temperature:seed": {
+      "mean": 0.0062,
+      "ci_lo": 0.0023,
+      "ci_hi": 0.0121
+    },
+    "model": {
+      "mean": 0.0,
+      "ci_lo": 0.0,
+      "ci_hi": 0.0
+    }
+  },
+  "ordering_item_id_analysis": {
+    "point_estimate": 0.0,
+    "point_pct": 0.0,
+    "bootstrap": {
+      "raw_mean": 0.0,
+      "raw_ci_lo": 0.0,
+      "raw_ci_hi": 0.0,
+      "pct_nonzero": 0.0
+    },
+    "per_model": {
+      "DeepSeek-7B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "Gemma-2-9B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "InternLM2.5-7B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "Llama-3.1-8B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "Mistral-7B-v0.3": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "OLMo-2-7B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "Qwen3-8B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      },
+      "Yi-1.5-9B": {
+        "ordering_item_pct": 0.0,
+        "ordering_item_raw": 0.0
+      }
+    },
+    "conclusion": "zero (truncated to 0)"
+  },
+  "d_study_curve": [
+    {
+      "n_items": 25,
+      "G_item": 0.273819
+    },
+    {
+      "n_items": 50,
+      "G_item": 0.429919
+    },
+    {
+      "n_items": 75,
+      "G_item": 0.530781
+    },
+    {
+      "n_items": 100,
+      "G_item": 0.601319
+    },
+    {
+      "n_items": 150,
+      "G_item": 0.693478
+    },
+    {
+      "n_items": 200,
+      "G_item": 0.75103
+    },
+    {
+      "n_items": 300,
+      "G_item": 0.818998
+    },
+    {
+      "n_items": 500,
+      "G_item": 0.882923
+    },
+    {
+      "n_items": 1000,
+      "G_item": 0.937821
+    }
+  ],
+  "runtime_seconds": 50.3
+}

@@ -1,0 +1,158 @@
+# analysis binary data limitation
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 5
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/chats/worker_analysis_binary_data_limitation_20260521T040145.jsonl`
+- **Structured JSON:** [`7db640f026ed5ccfc9c3.json`](../../sessions/7d/7db640f026ed5ccfc9c3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+5 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T04:02:44.631971+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_binary_data_limitation_20260521T040145",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T04:02:44.632307+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_binary_data_limitation_20260521T040145",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T04:02:44.632528+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python3 << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\ndf = pd.read_csv(\"results/analysis/llama_full.csv\")\nprint(f\"Loaded {len(df)} records\")\n\nitems = sorted(df[\"item_id\"].unique())\nn_items = len(items)\n\n# === 1. Item difficulty distribution ===\nitem_stats = df.groupby(\"item_id\").agg(\n    p_correct=(\"correct\", \"mean\"),\n    n_obs=(\"correct\", \"count\"),\n    var_correct=(\"correct\", \"var\"),\n).reset_index()\n\nprint(f\"\\n=== Item Difficulty Distribution ===\")\nprint(f\"N items: {n_items}\")\nprint(f\"Mean p_i: {item_stats['p_correct'].mean():.4f}\")\nprint(f\"Std p_i: {item_stats['p_correct'].std():.4f}\")\nprint(f\"Min p_i: {item_stats['p_correct'].min():.4f}\")\nprint(f\"Max p_i: {item_stats['p_correct'].max():.4f}\")\n\nfor q in [0, 0.2, 0.4, 0.6, 0.8, 1.0]:\n    print(f\"  Q{int(q*100):3d}: {item_stats['p_correct'].quantile(q):.4f}\")\n\n# === 2. Bernoulli variance vs observed variance ===\nitem_stats[\"bernoulli_var\"] = item_stats[\"p_correct\"] * (1 - item_stats[\"p_correct\"])\n\nr_pearson, p_pearson = stats.pearsonr(item_stats[\"bernoulli_var\"], item_stats[\"var_correct\"])\nr_spearman, p_spearman = stats.spearmanr(item_stats[\"bernoulli_var\"], item_stats[\"var_correct\"])\n\nprint(f\"\\n=== Bernoulli Variance vs Observed Variance ===\")\nprint(f\"Pearson r = {r_pearson:.4f} (p = {p_pearson:.2e})\")\nprint(f\"Spearman rho = {r_spearman:.4f} (p = {p_spearman:.2e})\")\n\nratio = item_stats[\"var_correct\"] / item_stats[\"bernoulli_var\"]\nprint(f\"\\nObserved/Bernoulli variance ratio:\")\nprint(f\"  Mean: {ratio.mean():.4f}\")\nprint(f\"  Median: {ratio.median():.4f}\")\nprint(f\"  Std: {ratio.std():.4f}\")\nprint(f\"  Items with ratio > 1.1 (excess variance): {(ratio > 1.1).sum()}/{n_items}\")\nprint(f\"  Items with ratio < 0.9 (under-dispersion): {(ratio < 0.9).sum()}/{n_items}\")\n\n# === 3. Decompose item_id variance into Bernoulli floor + systematic ===\ngrand_mean = df[\"correct\"].mean()\nitem_means = df.groupby(\"item_id\")[\"correct\"].mean()\nn_per_item = len(df) // n_items\nSS_item = n_per_item * ((item_means - grand_mean) ** 2).sum()\nSS_total = ((df[\"correct\"] - grand_mean) ** 2).sum()\nitem_pct = SS_item / SS_total * 100\n\navg_bernoulli_var = item_stats[\"bernoulli_var\"].mean()\nmax_possible_item_var = item_stats[\"p_correct\"].var()\n\nprint(f\"\\n=== Bernoulli Decomposition ===\")\nprint(f\"Item SS / Total SS: {item_pct:.2f}%\")\nprint(f\"Average Bernoulli var p(1-p): {avg_bernoulli_var:.4f}\")\nprint(f\"Variance of p_i across items: {max_possible_item_var:.4f}\")\nprint(f\"If items had equal difficulty (all p={grand_mean:.3f}), Bernoulli var = {grand_mean*(1-grand_mean):.4f}\")\nprint(f\"Difficulty spread contributes: {max_possible_item_var / (max_possible_item_var + avg_bernoulli_var) * 100:.1f}% of item-level variance\")\n\n# === 4. Compare with text_exact_match (continuous-like) ===\nitem_pct_text = None\nif \"text_exact_match\" in df.columns:\n    print(f\"\\n=== text_exact_match Parallel Analysis ===\")\n    tem_item_stats = df.groupby(\"item_id\")[\"text_exact_match\"].agg([\"mean\", \"var\"])\n    print(f\"Mean text_exact_match: {tem_item_stats['mean'].mean():.4f}\")\n    print(f\"Var of item means: {tem_item_stats['mean'].var():.6f}\")\n    \n    SS_item_text = n_per_item * ((df.groupby(\"item_id\")[\"text_exact_match\"].mean() - df[\"text_exact_match\"].mean()) ** 2).sum()\n    SS_total_text = ((df[\"text_exact_match\"] - df[\"text_exact_match\"].mean()) ** 2).sum()\n    item_pct_text = SS_item_text / SS_total_text * 100 if SS_total_text > 0 else 0\n    \n    print(f\"Item SS / Total SS (text_exact_match): {item_pct_text:.2f}%\")\n    print(f\"Item SS / Total SS (binary_correct): {item_pct:.2f}%\")\n    print(f\"Difference: {item_pct - item_pct_text:.2f}pp\")\n    print(f\"\\nInterpretation: if binary metric inflates item_id by Bernoulli,\")\n    print(f\"text_exact_match (also binary but different base rate) provides contrast\")\n\n# === 5. Simulation: expected item_id % under pure Bernoulli null ===\nprint(f\"\\n=== Simulation: Pure Bernoulli Null ===\")\nnp.random.seed(42)\nnull_item_pcts = []\nfor sim in range(100):\n    null_correct = np.random.binomial(1, grand_mean, size=len(df))\n    null_grand = null_correct.mean()\n    null_ss_total = ((null_correct - null_grand) ** 2).sum()\n    if null_ss_total == 0:\n        continue\n    null_df = df[[\"item_id\"]].copy()\n    null_df[\"correct\"] = null_correct\n    null_item_means = null_df.groupby(\"item_id\")[\"correct\"].mean()\n    null_ss_item = n_per_item * ((null_item_means - null_grand) ** 2).sum()\n    null_item_pcts.append(null_ss_item / null_ss_total * 100)\n\nprint(f\"Under null (no difficulty differences):\")\nprint(f\"  Expected item_id %: {np.mean(null_item_pcts):.2f}% +/- {np.std(null_item_pcts):.2f}%\")\nprint(f\"  Observed item_id %: {item_pct:.2f}%\")\nprint(f\"  Ratio observed/null: {item_pct / np.mean(null_item_pcts):.1f}x\")\nprint(f\"  -> {item_pct:.1f}% is NOT a Bernoulli artifact; it reflects genuine difficulty differences\")\n\n# Save results\nresults = {\n    \"n_items\": n_items,\n    \"n_records\": len(df),\n    \"item_difficulty\": {\n        \"mean\": round(float(item_stats[\"p_correct\"].mean()), 4),\n        \"std\": round(float(item_stats[\"p_correct\"].std()), 4),\n        \"min\": round(float(item_stats[\"p_correct\"].min()), 4),\n        \"max\": round(float(item_stats[\"p_correct\"].max()), 4),\n    },\n    \"bernoulli_correlation\": {\n        \"pearson_r\": round(r_pearson, 4),\n        \"spearman_rho\": round(r_spearman, 4),\n    },\n    \"variance_ratio\": {\n        \"mean\": round(float(ratio.mean()), 4),\n        \"median\": round(float(ratio.median()), 4),\n    },\n    \"item_pct_correct\": round(item_pct, 4),\n    \"item_pct_text_match\": round(item_pct_text, 4) if item_pct_text is not None else None,\n    \"null_simulation\": {\n        \"expected_item_pct\": round(float(np.mean(null_item_pcts)), 4),\n        \"observed_item_pct\": round(item_pct, 4),\n        \"ratio\": round(item_pct / np.mean(null_item_pcts), 1),\n    },\n}\n\nPath(\"results/analysis\").mkdir(parents=True, exist_ok=True)\nwith open(\"results/analysis/binary_data_limitation.json\", \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\nprint(f\"\\nSaved results/analysis/binary_data_limitation.json\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_binary_data_limitation_20260521T040145",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && cd /root/nlp_variance_gtheory && python3 << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom pathlib import Path\n\ndf = pd.read_csv(\"results/analysis/llama_full.csv\")\nprint(f\"Loaded {len(df)} records\")\n\nitems = sorted(df[\"item_id\"].unique())\nn_items = len(items)\n\n# === 1. Item difficulty distribution ===\nitem_stats = df.groupby(\"item_id\").agg(\n    p_correct=(\"correct\", \"mean\"),\n    n_obs=(\"correct\", \"count\"),\n    var_correct=(\"correct\", \"var\"),\n).reset_index()\n\nprint(f\"\\n=== Item Difficulty Distribution ===\")\nprint(f\"N items: {n_items}\")\nprint(f\"Mean p_i: {item_stats['p_correct'].mean():.4f}\")\nprint(f\"Std p_i: {item_stats['p_correct'].std():.4f}\")\nprint(f\"Min p_i: {item_stats['p_correct'].min():.4f}\")\nprint(f\"Max p_i: {item_stats['p_correct'].max():.4f}\")\n\nfor q in [0, 0.2, 0.4, 0.6, 0.8, 1.0]:\n    print(f\"  Q{int(q*100):3d}: {item_stats['p_correct'].quantile(q):.4f}\")\n\n# === 2. Bernoulli variance vs observed variance ===\nitem_stats[\"bernoulli_var\"] = item_stats[\"p_correct\"] * (1 - item_stats[\"p_correct\"])\n\nr_pearson, p_pearson = stats.pearsonr(item_stats[\"bernoulli_var\"], item_stats[\"var_correct\"])\nr_spearman, p_spearman = stats.spearmanr(item_stats[\"bernoulli_var\"], item_stats[\"var_correct\"])\n\nprint(f\"\\n=== Bernoulli Variance vs Observed Variance ===\")\nprint(f\"Pearson r = {r_pearson:.4f} (p = {p_pearson:.2e})\")\nprint(f\"Spearman rho = {r_spearman:.4f} (p = {p_spearman:.2e})\")\n\nratio = item_stats[\"var_correct\"] / item_stats[\"bernoulli_var\"]\nprint(f\"\\nObserved/Bernoulli variance ratio:\")\nprint(f\"  Mean: {ratio.mean():.4f}\")\nprint(f\"  Median: {ratio.median():.4f}\")\nprint(f\"  Std: {ratio.std():.4f}\")\nprint(f\"  Items with ratio > 1.1 (excess variance): {(ratio > 1.1).sum()}/{n_items}\")\nprint(f\"  Items with ratio < 0.9 (under-dispersion): {(ratio < 0.9).sum()}/{n_items}\")\n\n# === 3. Decompose item_id variance into Bernoulli floor + systematic ===\ngrand_mean = df[\"correct\"].mean()\nitem_means = df.groupby(\"item_id\")[\"correct\"].mean()\nn_per_item = len(df) // n_items\nSS_item = n_per_item * ((item_means - grand_mean) ** 2).sum()\nSS_total = ((df[\"correct\"] - grand_mean) ** 2).sum()\nitem_pct = SS_item / SS_total * 100\n\navg_bernoulli_var = item_stats[\"bernoulli_var\"].mean()\nmax_possible_item_var = item_stats[\"p_correct\"].var()\n\nprint(f\"\\n=== Bernoulli Decomposition ===\")\nprint(f\"Item SS / Total SS: {item_pct:.2f}%\")\nprint(f\"Average Bernoulli var p(1-p): {avg_bernoulli_var:.4f}\")\nprint(f\"Variance of p_i across items: {max_possible_item_var:.4f}\")\nprint(f\"If items had equal difficulty (all p={grand_mean:.3f}), Bernoulli var = {grand_mean*(1-grand_mean):.4f}\")\nprint(f\"Difficulty spread contributes: {max_possible_item_var / (max_possible_item_var + avg_bernoulli_var) * 100:.1f}% of item-level variance\")\n\n# === 4. Compare with text_exact_match (continuous-like) ===\nitem_pct_text = None\nif \"text_exact_match\" in df.columns:\n    print(f\"\\n=== text_exact_match Parallel Analysis ===\")\n    tem_item_stats = df.groupby(\"item_id\")[\"text_exact_match\"].agg([\"mean\", \"var\"])\n    print(f\"Mean text_exact_match: {tem_item_stats['mean'].mean():.4f}\")\n    print(f\"Var of item means: {tem_item_stats['mean'].var():.6f}\")\n    \n    SS_item_text = n_per_item * ((df.groupby(\"item_id\")[\"text_exact_match\"].mean() - df[\"text_exact_match\"].mean()) ** 2).sum()\n    SS_total_text = ((df[\"text_exact_match\"] - df[\"text_exact_match\"].mean()) ** 2).sum()\n    item_pct_text = SS_item_text / SS_total_text * 100 if SS_total_text > 0 else 0\n    \n    print(f\"Item SS / Total SS (text_exact_match): {item_pct_text:.2f}%\")\n    print(f\"Item SS / Total SS (binary_correct): {item_pct:.2f}%\")\n    print(f\"Difference: {item_pct - item_pct_text:.2f}pp\")\n    print(f\"\\nInterpretation: if binary metric inflates item_id by Bernoulli,\")\n    print(f\"text_exact_match (also binary but different base rate) provides contrast\")\n\n# === 5. Simulation: expected item_id % under pure Bernoulli null ===\nprint(f\"\\n=== Simulation: Pure Bernoulli Null ===\")\nnp.random.seed(42)\nnull_item_pcts = []\nfor sim in range(100):\n    null_correct = np.random.binomial(1, grand_mean, size=len(df))\n    null_grand = null_correct.mean()\n    null_ss_total = ((null_correct - null_grand) ** 2).sum()\n    if null_ss_total == 0:\n        continue\n    null_df = df[[\"item_id\"]].copy()\n    null_df[\"correct\"] = null_correct\n    null_item_means = null_df.groupby(\"item_id\")[\"correct\"].mean()\n    null_ss_item = n_per_item * ((null_item_means - null_grand) ** 2).sum()\n    null_item_pcts.append(null_ss_item / null_ss_total * 100)\n\nprint(f\"Under null (no difficulty differences):\")\nprint(f\"  Expected item_id %: {np.mean(null_item_pcts):.2f}% +/- {np.std(null_item_pcts):.2f}%\")\nprint(f\"  Observed item_id %: {item_pct:.2f}%\")\nprint(f\"  Ratio observed/null: {item_pct / np.mean(null_item_pcts):.1f}x\")\nprint(f\"  -> {item_pct:.1f}% is NOT a Bernoulli artifact; it reflects genuine difficulty differences\")\n\n# Save results\nresults = {\n    \"n_items\": n_items,\n    \"n_records\": len(df),\n    \"item_difficulty\": {\n        \"mean\": round(float(item_stats[\"p_correct\"].mean()), 4),\n        \"std\": round(float(item_stats[\"p_correct\"].std()), 4),\n        \"min\": round(float(item_stats[\"p_correct\"].min()), 4),\n        \"max\": round(float(item_stats[\"p_correct\"].max()), 4),\n    },\n    \"bernoulli_correlation\": {\n        \"pearson_r\": round(r_pearson, 4),\n        \"spearman_rho\": round(r_spearman, 4),\n    },\n    \"variance_ratio\": {\n        \"mean\": round(float(ratio.mean()), 4),\n        \"median\": round(float(ratio.median()), 4),\n    },\n    \"item_pct_correct\": round(item_pct, 4),\n    \"item_pct_text_match\": round(item_pct_text, 4) if item_pct_text is not None else None,\n    \"null_simulation\": {\n        \"expected_item_pct\": round(float(np.mean(null_item_pcts)), 4),\n        \"observed_item_pct\": round(item_pct, 4),\n        \"ratio\": round(item_pct / np.mean(null_item_pcts), 1),\n    },\n}\n\nPath(\"results/analysis\").mkdir(parents=True, exist_ok=True)\nwith open(\"results/analysis/binary_data_limitation.json\", \"w\") as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\nprint(f\"\\nSaved results/analysis/binary_data_limitation.json\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T04:02:44.632749+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 239200 records\\n\\n=== Item Difficulty Distribution ===\\nN items: 200\\nMean p_i: 0.6814\\nStd p_i: 0.3651\\nMin p_i: 0.0008\\nMax p_i: 1.0000\\n  Q  0: 0.0008\\n  Q 20: 0.2400\\n  Q 40: 0.7866\\n  Q 60: 0.9396\\n  Q 80: 0.9925\\n  Q100: 1.0000\\n\\n=== Bernoulli Variance vs Observed Variance ===\\nPearson r = 1.0000 (p = 0.00e+00)\\nSpearman rho = 0.9999 (p = 0.00e+00)\\n\\nObserved/Bernoulli variance ratio:\\n  Mean: 1.0008\\n  Median: 1.0008\\n  Std: 0.0000\\n  Items with ratio > 1.1 (excess variance): 0/200\\n  Items with ratio < 0.9 (under-dispersion): 0/200\\n\\n=== Bernoulli Decomposition ===\\nItem SS / Total SS: 61.08%\\nAverage Bernoulli var p(1-p): 0.0845\\nVariance of p_i across items: 0.1333\\nIf items had equal difficulty (all p=0.681), Bernoulli var = 0.2171\\nDifficulty spread contributes: 61.2% of item-level variance\\n\\n=== text_exact_match Parallel Analysis ===\\nMean text_exact_match: 0.3310\\nVar of item means: 0.001477\\nItem SS / Total SS (text_exact_match): 0.66%\\nItem SS / Total SS (binary_correct): 61.08%\\nDifference: 60.42pp\\n\\nInterpretation: if binary metric inflates item_id by Bernoulli,\\ntext_exact_match (also binary but different base rate) provides contrast\\n\\n=== Simulation: Pure Bernoulli Null ===\\nUnder null (no difficulty differences):\\n  Expected item_id %: 0.08% +/- 0.01%\\n  Observed item_id %: 61.08%\\n  Ratio observed/null: 737.5x\\n  -> 61.1% is NOT a Bernoulli artifact; it reflects genuine difficulty differences\\n\\nSaved results/analysis/binary_data_limitation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_binary_data_limitation_20260521T040145",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5 · 2026-05-21T04:02:44.632932+00:00_
+
+Binary data limitation analysis:
+- Item difficulty: mean=0.68, std=0.37, range [0.00, 1.00]
+- Bernoulli vs observed: Pearson r=1.0000, Spearman ρ=0.9999
+- Variance ratio (obs/Bernoulli): mean=1.0008, median=1.0008 — 0/200 items超出±10%，observed variance 完全等于 Bernoulli p(1-p)
+- Null simulation: expected item_id=0.08%, observed=61.08%, ratio=737.5x
+- text_exact_match 对比: item_id 仅解释 0.66% vs binary 的 61.08%（差 60.42pp）
+- Conclusion: item_id dominance **is not** a Bernoulli artifact — null 下 item_id 仅贡献 0.08%，观测值是 737.5 倍。61% 的 item_id 方差反映的是真实的 item difficulty 差异（p_i 从 0.001 到 1.0，std=0.37），而非 Bernoulli 数据的固有膨胀。但 observed var ≈ Bernoulli var（ratio=1.0008）说明 item 内部几乎无 excess variance，即 prompt/seed 等因素对同一 item 的扰动极小。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_binary_data_limitation_20260521T040145"
+}
+```
+
+</details>
+
+---

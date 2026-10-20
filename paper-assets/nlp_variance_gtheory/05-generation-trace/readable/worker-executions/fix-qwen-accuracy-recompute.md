@@ -1,0 +1,805 @@
+# fix qwen accuracy recompute
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_fix_qwen_accuracy_recompute_20260521T074236.log`
+- **Structured JSON:** [`7adeb009283acb7b211f.json`](../../sessions/7a/7adeb009283acb7b211f.json)
+
+## Before a recorded user message
+
+16 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a95690ad-f684-4b9e-a804-4ac8faad0258",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779359400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2b90e3ca-27f1-4407-8627-1efb902aa72c",
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run a quick task to recalculate the overall_accuracy for exp001_qwen based on all 259,200 records. Let me execute this on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "9e592c3d-2e2b-4021-a714-bb349eb47ffa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016joEh5eBcU2F7EwHSRQrFT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11633,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11633
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UP4WzVymeQPMC3X8izFZXz`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "3f02789c-12df-487e-9144-300b88bd49af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016joEh5eBcU2F7EwHSRQrFT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11633,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11633
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T07:42:48.371Z_
+
+<details><summary>↩ Tool result · `toolu_01UP4WzVymeQPMC3X8izFZXz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "46dbc58c-0b69-47e2-8459-fd20ac5bb68f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017ZDHkBBpJTwYmPwWtXosv5`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"\nimport json, glob\nfrom collections import Counter\n\nrecords = []\nfor f in sorted(glob.glob('/root/nlp_variance_gtheory/results/exp001_qwen/shard_[0-3].jsonl')):\n    with open(f) as fh:\n        for line in fh:\n            records.append(json.loads(line))\n\nprint(f'Total records: {len(records)}')\n\nif records:\n    r0 = records[0]\n    print(f'Fields: {sorted(r0.keys())}')\n    print(f'Sample record: precision={r0.get(\\\"precision\\\")}, binary_correct={r0.get(\\\"binary_correct\\\")}, correct={r0.get(\\\"correct\\\")}')\n\nkey = 'binary_correct' if 'binary_correct' in records[0] else 'correct'\ncorrect = sum(1 for r in records if r.get(key, 0) == 1)\nprint(f'Correct ({key}): {correct}/{len(records)} = {correct/len(records):.4f}')\n\nprec = Counter(r['precision'] for r in records)\nprint(f'By precision: {dict(prec)}')\nfor p in sorted(prec.keys()):\n    p_records = [r for r in records if r['precision'] == p]\n    p_correct = sum(1 for r in p_records if r.get(key, 0) == 1)\n    print(f'  {p}: {p_correct}/{len(p_records)} = {p_correct/len(p_records):.4f}')\n\ntemp = Counter(str(r.get('temperature', 'N/A')) for r in records)\nprint(f'By temperature: {dict(temp)}')\n\nconds = len(set(r.get('condition_id') for r in records))\nprint(f'Unique condition_ids: {conds}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "5858c6b2-cdef-4f0b-8ce7-8d2f51e99c33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JycgFrceZQMwbzu8TxZwKC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 484,
+      "cache_read_input_tokens": 23474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 484
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T07:42:55.426Z_
+
+<details><summary>↩ Tool result · `toolu_017ZDHkBBpJTwYmPwWtXosv5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "045a1fdb-85cd-4028-84e7-a58a14014361",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only tool blocks `open(` in python expressions. I need to use a different approach - maybe cat the files and process them, or use ssh_execute instead. Let me try using cat + grep/wc approach, or I could use ssh_execute.
+
+Actually, let me think about this differently. I can use cat to pipe the files and then use grep/wc to count things. But shell metacharacters like | are blocked too.
+
+Let me try ssh_execute instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "f5a76570-7ec2-4fc1-9797-87a242ccb697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTSHbMESpWHmvyvXcHzFWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 23958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+`ssh_read_only` 禁止 `open()`，需要用 `ssh_execute`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "a675d810-d893-4aa3-ace7-92f97907cb0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTSHbMESpWHmvyvXcHzFWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 23958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DvhQqRQo6Rf6Tcn63fdLKp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "e5a5dff5-f48d-4efc-9435-17144dbc4bba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTSHbMESpWHmvyvXcHzFWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 654,
+      "cache_read_input_tokens": 23958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 654
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T07:43:01.295Z_
+
+<details><summary>↩ Tool result · `toolu_01DvhQqRQo6Rf6Tcn63fdLKp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "f88a21ab-87be-41db-a81c-aecbb0148aae",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019BtuQqqT4yo7LPcNnnHETv`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python3 -c \"\nimport json, glob\nfrom collections import Counter\n\nrecords = []\nfor f in sorted(glob.glob('results/exp001_qwen/shard_[0-3].jsonl')):\n    with open(f) as fh:\n        for line in fh:\n            records.append(json.loads(line))\n\nprint(f'Total records: {len(records)}')\n\nif records:\n    r0 = records[0]\n    print(f'Fields: {sorted(r0.keys())}')\n    print(f'Sample record: precision={r0.get(\\\"precision\\\")}, binary_correct={r0.get(\\\"binary_correct\\\")}, correct={r0.get(\\\"correct\\\")}')\n\nkey = 'binary_correct' if 'binary_correct' in records[0] else 'correct'\ncorrect = sum(1 for r in records if r.get(key, 0) == 1)\nprint(f'Correct ({key}): {correct}/{len(records)} = {correct/len(records):.4f}')\n\nprec = Counter(r['precision'] for r in records)\nprint(f'By precision: {dict(prec)}')\nfor p in sorted(prec.keys()):\n    p_records = [r for r in records if r['precision'] == p]\n    p_correct = sum(1 for r in p_records if r.get(key, 0) == 1)\n    print(f'  {p}: {p_correct}/{len(p_records)} = {p_correct/len(p_records):.4f}')\n\ntemp = Counter(str(r.get('temperature', 'N/A')) for r in records)\nprint(f'By temperature: {dict(temp)}')\n\nconds = len(set(r.get('condition_id') for r in records))\nprint(f'Unique condition_ids: {conds}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "226376d0-b7ed-4c84-bb52-1bd0a7809f8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AMhn2VgxwtFK2zkZ61VSwQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 495,
+      "cache_read_input_tokens": 24612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 495
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T07:43:11.778Z_
+
+<details><summary>↩ Tool result · `toolu_019BtuQqqT4yo7LPcNnnHETv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total records: 259200\\nFields: ['answer_logprob', 'condition_id', 'correct', 'generated_text', 'gold_answer', 'item_id', 'latency_ms', 'model', 'ordering', 'precision', 'predicted_answer', 'prompt_template', 'seed', 'subject', 'temperature', 'top_logprobs', 'top_p']\\nSample record: precision=bfloat16, binary_correct=None, correct=0\\nCorrect (correct): 187964/259200 = 0.7252\\nBy precision: {'bfloat16': 100200, 'float16': 79600, 'float32': 79400}\\n  bfloat16: 72749/100200 = 0.7260\\n  float16: 57769/79600 = 0.7257\\n  float32: 57446/79400 = 0.7235\\nBy temperature: {'0.3': 84800, '0.7': 87400, '0.0': 87000}\\nUnique condition_ids: 1227\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "7c85124e-9f04-4652-9edf-f272cba5f279",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total records: 259200\\\\nFields: ['answer_logprob', 'condition_id', 'correct', 'generated_text', 'gold_answer', 'item_id', 'latency_ms', 'model', 'ordering', 'precision', 'predicted_answer', 'prompt_template', 'seed', 'subject', 'temperature', 'top_logprobs', 'top_p']\\\\nSample record: precision=bfloat16, binary_correct=None, correct=0\\\\nCorrect (correct): 187964/259200 = 0.7252\\\\nBy precision: {'bfloat16': 100200, 'float16': 79600, 'float32': 79400}\\\\n  bfloat16: 72749/100200 = 0.7260\\\\n  float16: 57769/79600 = 0.7257\\\\n  float32: 57446/79400 = 0.7235\\\\nBy temperature: {'0.3': 84800, '0.7': 87400, '0.0': 87000}\\\\nUnique condition_ids: 1227\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total records: 259200\\nFields: ['answer_logprob', 'condition_id', 'correct', 'generated_text', 'gold_answer', 'item_id', 'latency_ms', 'model', 'ordering', 'precision', 'predicted_answer', 'prompt_template', 'seed', 'subject', 'temperature', 'top_logprobs', 'top_p']\\nSample record: precision=bfloat16, binary_correct=None, correct=0\\nCorrect (correct): 187964/259200 = 0.7252\\nBy precision: {'bfloat16': 100200, 'float16': 79600, 'float32': 79400}\\n  bfloat16: 72749/100200 = 0.7260\\n  float16: 57769/79600 = 0.7257\\n  float32: 57446/79400 = 0.7235\\nBy temperature: {'0.3': 84800, '0.7': 87400, '0.0': 87000}\\nUnique condition_ids: 1227\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+**exp001_qwen overall accuracy（259,200 条）：0.7252**
+
+| precision | correct | total | accuracy |
+|-----------|---------|-------|----------|
+| bfloat16 | 72,749 | 100,200 | 0.7260 |
+| float16 | 57,769 | 79,600 | 0.7257 |
+| float32 | 57,446 | 79,400 | 0.7235 |
+
+三种 precision 差异极小（< 0.3pp），float32 略低。共 1,227 个 unique condition_id，3 档 temperature（0.0 / 0.3 / 0.7）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "uuid": "a669ffb4-dd66-46a2-bdde-db80184085db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TbCa4yk4uTwLZzTAQn4LAx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 25107,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 978
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 16_
+
+**exp001_qwen overall accuracy（259,200 条）：0.7252**
+
+| precision | correct | total | accuracy |
+|-----------|---------|-------|----------|
+| bfloat16 | 72,749 | 100,200 | 0.7260 |
+| float16 | 57,769 | 79,600 | 0.7257 |
+| float32 | 57,446 | 79,400 | 0.7235 |
+
+三种 precision 差异极小（< 0.3pp），float32 略低。共 1,227 个 unique condition_id，3 档 temperature（0.0 / 0.3 / 0.7）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 31588,
+  "duration_api_ms": 29025,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "a7b96a47-fcb5-462a-89ad-bf2298441575",
+  "total_cost_usd": 0.187666,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 14244,
+    "cache_read_input_tokens": 108992,
+    "output_tokens": 1711,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14244,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 182,
+        "cache_read_input_tokens": 25107,
+        "cache_creation_input_tokens": 978,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 978
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1210,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001315,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 1711,
+      "cacheReadInputTokens": 108992,
+      "cacheCreationInputTokens": 14244,
+      "webSearchRequests": 0,
+      "costUSD": 0.186351,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "596f6105-76d6-48c7-b1f7-8b3bc0b68322"
+}
+```
+
+</details>
+
+---

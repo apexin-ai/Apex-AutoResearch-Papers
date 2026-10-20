@@ -1,0 +1,4917 @@
+# analysis cohens kappa pairwise
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 106
+- **Recorded user turns:** 0
+- **Tool calls:** 37
+- **Original source:** `logs/workers/worker_analysis_cohens_kappa_pairwise_20260522T133438.log`
+- **Structured JSON:** [`5c0c9fb4c95ea65d06ad.json`](../../sessions/5c/5c0c9fb4c95ea65d06ad.json)
+
+## Before a recorded user message
+
+106 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "713699a1-9b82-44f0-9fa6-f4fa857db131",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779472200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "eda49360-7fd4-48a2-9507-3cb5a95fd241",
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll write a script to compute Cohen's κ pairwise agreement and Fleiss' κ, then run it on the server.
+
+First, let me explore the data structure on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f501b6db-b40b-4633-9f1f-e5aaac1c7ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcPgDqrqNBDKTQ7fzFT87B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12676,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12676
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01A3yG9uim3kwUjRz18SFSVf`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "c4eddcd2-157d-4d4b-9472-b342e4d1a052",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcPgDqrqNBDKTQ7fzFT87B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12676,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12676
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T13:34:50.910Z_
+
+<details><summary>↩ Tool result · `toolu_01A3yG9uim3kwUjRz18SFSVf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "483609be-b2b0-4844-8d5e-e2f2f4467510",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me explore the data structure on the server first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "574b2667-30d0-407e-b343-ef2fb6c7699e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7LeFbM1FbEASS1hM8iS6i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 24517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y42MPSXgzLMcumgWYqBRWU`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/autodl-tmp/nlp_variance_gtheory/results/exp002/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "bb154c0f-6ad1-4818-b7a5-52f2ec291cc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7LeFbM1FbEASS1hM8iS6i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 979,
+      "cache_read_input_tokens": 24517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 979
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-22T13:34:56.859Z_
+
+<details><summary>↩ Tool result · `toolu_01Y42MPSXgzLMcumgWYqBRWU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/nlp_variance_gtheory/results/exp002/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "d313d985-6a05-4460-a851-11e07ee52cd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/nlp_variance_gtheory/results/exp002/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/nlp_variance_gtheory/results/exp002/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012n7YWMsCnmJVCfRHLb6y19`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/autodl-tmp/nlp_variance_gtheory/results/ -maxdepth 2 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "e48e8728-7639-43b0-8ba9-d7f80af1621c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G1LrpRATHyFdHwzpsGoCkg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 247,
+      "cache_read_input_tokens": 25496,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 247
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T13:35:01.074Z_
+
+<details><summary>↩ Tool result · `toolu_012n7YWMsCnmJVCfRHLb6y19`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/nlp_variance_gtheory/results/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "22158342-071f-4090-87bd-0a921c304613",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/nlp_variance_gtheory/results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/nlp_variance_gtheory/results/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GzoGyip56xjJfBusaNDTzo`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -maxdepth 3 -name \"*.jsonl\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "51a846ec-94ba-4fd7-83f7-2f06799894b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011uJpsaXNGCm1CrY33ZhyR5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 222,
+      "cache_read_input_tokens": 25743,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 222
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-22T13:35:04.558Z_
+
+<details><summary>↩ Tool result · `toolu_01GzoGyip56xjJfBusaNDTzo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/all_results.jsonl\\n/root/nlp_variance_gtheory/results/float32_results.jsonl\\n/root/nlp_variance_gtheory/results/bf16_eager_results.jsonl\\n/root/nlp_variance_gtheory/results/dryrun_exp001.jsonl\\n/root/nlp_variance_gtheory/results/exp003_scale_7b_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp003_scale_3b_mmlu.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "93806a5b-1143-4c41-a849-0105431f09f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/results/all_results.jsonl\\\\n/root/nlp_variance_gtheory/results/float32_results.jsonl\\\\n/root/nlp_variance_gtheory/results/bf16_eager_results.jsonl\\\\n/root/nlp_variance_gtheory/results/dryrun_exp001.jsonl\\\\n/root/nlp_variance_gtheory/results/exp003_scale_7b_mmlu.jsonl\\\\n/root/nlp_variance_gtheory/results/exp003_scale_3b_mmlu.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/all_results.jsonl\\n/root/nlp_variance_gtheory/results/float32_results.jsonl\\n/root/nlp_variance_gtheory/results/bf16_eager_results.jsonl\\n/root/nlp_variance_gtheory/results/dryrun_exp001.jsonl\\n/root/nlp_variance_gtheory/results/exp003_scale_7b_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp003_scale_3b_mmlu.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The data isn't in the expected location. Let me look more broadly for exp002 data or JSONL files with model/benchmark naming.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f6bd1558-c794-4db8-89e2-5b5b87bf6f43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWoffpF2zoh6v8XZQRdSPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 25965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Data isn't at the expected path. Let me search more broadly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "702f7e1f-5eb4-41b2-92cb-b8ebd7d8fd0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWoffpF2zoh6v8XZQRdSPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 25965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QrXZHbZtHsKfs14FGEQ5eN`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -maxdepth 4 -name \"*exp002*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "350c7daa-b156-4973-a60f-25908bf220d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWoffpF2zoh6v8XZQRdSPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 25965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012cazcj4Bea1qvxWckvCPTa`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "03a25420-0ddb-4ec4-9354-16382ce6a108",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PWoffpF2zoh6v8XZQRdSPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 25965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T13:35:13.430Z_
+
+<details><summary>↩ Tool result · `toolu_01QrXZHbZtHsKfs14FGEQ5eN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/data/gsm8k_items_exp002.json\\n/root/nlp_variance_gtheory/data/arc_items_exp002.json\\n/root/nlp_variance_gtheory/data/hellaswag_items_exp002.json\\n/root/nlp_variance_gtheory/data/math_items_exp002.json\\n/root/nlp_variance_gtheory/results/analysis/exp002_prep_report.md\\n/root/nlp_variance_gtheory/results/analysis/exp002_per_benchmark_gstudy.json\\n/root/nlp_variance_gtheory/results/exp002/design_matrix_exp002_full.csv\\n/root/nlp_variance_gtheory/scripts/dry_run_exp002.py\\n/root/nlp_variance_gtheory/scripts/prepare_few_shot_exp002.py\\n/root/nlp_variance_gtheory/scripts/run_exp002_pilot.sh\\n/root/nlp_variance_gtheory/scripts/run_exp002_full.sh\\n/root/nlp_variance_gtheory/scripts/post_exp002_master.sh\\n/root/nlp_variance_gtheory/design_matrix_exp002.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "c2dcdda8-8bac-44cb-81a2-43b5ce11b905",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/data/gsm8k_items_exp002.json\\\\n/root/nlp_variance_gtheory/data/arc_items_exp002.json\\\\n/root/nlp_variance_gtheory/data/hellaswag_items_exp002.json\\\\n/root/nlp_variance_gtheory/data/math_items_exp002.json\\\\n/root/nlp_variance_gtheory/results/analysis/exp002_prep_report.md\\\\n/root/nlp_variance_gtheory/results/analysis/exp002_per_benchmark_gstudy.json\\\\n/root/nlp_variance_gtheory/results/exp002/design_matrix_exp002_full.csv\\\\n/root/nlp_variance_gtheory/scripts/dry_run_exp002.py\\\\n/root/nlp_variance_gtheory/scripts/prepare_few_shot_exp002.py\\\\n/root/nlp_variance_gtheory/scripts/run_exp002_pilot.sh\\\\n/root/nlp_variance_gtheory/scripts/run_exp002_full.sh\\\\n/root/nlp_variance_gtheory/scripts/post_exp002_master.sh\\\\n/root/nlp_variance_gtheory/design_matrix_exp002.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/data/gsm8k_items_exp002.json\\n/root/nlp_variance_gtheory/data/arc_items_exp002.json\\n/root/nlp_variance_gtheory/data/hellaswag_items_exp002.json\\n/root/nlp_variance_gtheory/data/math_items_exp002.json\\n/root/nlp_variance_gtheory/results/analysis/exp002_prep_report.md\\n/root/nlp_variance_gtheory/results/analysis/exp002_per_benchmark_gstudy.json\\n/root/nlp_variance_gtheory/results/exp002/design_matrix_exp002_full.csv\\n/root/nlp_variance_gtheory/scripts/dry_run_exp002.py\\n/root/nlp_variance_gtheory/scripts/prepare_few_shot_exp002.py\\n/root/nlp_variance_gtheory/scripts/run_exp002_pilot.sh\\n/root/nlp_variance_gtheory/scripts/run_exp002_full.sh\\n/root/nlp_variance_gtheory/scripts/post_exp002_master.sh\\n/root/nlp_variance_gtheory/design_matrix_exp002.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-22T13:35:13.961Z_
+
+<details><summary>↩ Tool result · `toolu_012cazcj4Bea1qvxWckvCPTa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_analysis\\nexp001_bf16_2temp_comparison.json\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nexp003_scale_3b_mmlu.jsonl\\nexp003_scale_7b_mmlu.jsonl\\nexp003_scale_crossed_gstudy_test.json\\nexp003_scale_gstudy.json\\nexp004_8model_analysis\\nfigures\\nfloat32_results.jsonl\\nhenderson_i_unified_numbers.json\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "53e2faf6-5328-41b6-a734-c4b3650fddcf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_results.jsonl\\\\nanalysis\\\\nbf16_eager_results.jsonl\\\\nd_study_results.json\\\\nd_study_results_text.json\\\\ndesign_matrix_exp001_full.csv\\\\ndryrun_exp001.jsonl\\\\nexp001_analysis\\\\nexp001_bf16_2temp_comparison.json\\\\nexp001_gemma\\\\nexp001_gemma_fp32\\\\nexp001_llama\\\\nexp001_mistral\\\\nexp001_pilot\\\\nexp001_qwen\\\\nexp001b\\\\nexp002\\\\nexp002_pilot\\\\nexp003_scale_3b_mmlu.jsonl\\\\nexp003_scale_7b_mmlu.jsonl\\\\nexp003_scale_crossed_gstudy_test.json\\\\nexp003_scale_gstudy.json\\\\nexp004_8model_analysis\\\\nfigures\\\\nfloat32_results.jsonl\\\\nhenderson_i_unified_numbers.json\\\\nsanity_check.json\\\\nvariance_components.json\\\\nvariance_components_text.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_analysis\\nexp001_bf16_2temp_comparison.json\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nexp003_scale_3b_mmlu.jsonl\\nexp003_scale_7b_mmlu.jsonl\\nexp003_scale_crossed_gstudy_test.json\\nexp003_scale_gstudy.json\\nexp004_8model_analysis\\nfigures\\nfloat32_results.jsonl\\nhenderson_i_unified_numbers.json\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FVb7ajvYgCZVt2F9JD85yz`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp002/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "1f852027-f90f-4db6-b37b-feb565611bcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vwZcZC44R6GzP8PTv1AmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 26296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T13:35:18.008Z_
+
+<details><summary>↩ Tool result · `toolu_01FVb7ajvYgCZVt2F9JD85yz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chain_deepseek.log\\nchain_internlm.log\\ndeepseek_arc.jsonl\\ndeepseek_gsm8k.jsonl\\ndeepseek_hellaswag.jsonl\\ndeepseek_math.jsonl\\ndeepseek_math_gpu2.jsonl\\ndeepseek_mmlu.jsonl\\ndesign_matrix_exp002_full.csv\\ndesign_matrix_new_models.csv\\nfull_run.log\\ngemma_arc.jsonl\\ngemma_gsm8k.jsonl\\ngemma_hellaswag.jsonl\\ngemma_math.jsonl\\ngemma_mmlu.jsonl\\ngpu0_internlm_math.log\\ngpu0_qwen.log\\ngpu1_internlm_arc.log\\ngpu1_internlm_gsm8k.log\\ngpu1_internlm_hellaswag.log\\ngpu1_internlm_mmlu.log\\ngpu1_llama.log\\ngpu2_deepseek_math.log\\ngpu2_gemma.log\\ngpu3_deepseek_arc.log\\ngpu3_deepseek_gsm8k.log\\ngpu3_deepseek_hellaswag.log\\ngpu3_deepseek_mmlu.log\\ngpu3_mistral.log\\ninternlm_arc.jsonl\\ninternlm_gsm8k.jsonl\\ninternlm_hellaswag.jsonl\\ninternlm_math.jsonl\\ninternlm_mmlu.jsonl\\nllama_arc.jsonl\\nllama_gsm8k.jsonl\\nllama_hellaswag.jsonl\\nllama_math.jsonl\\nllama_mmlu.jsonl\\nmath_then_new_models.log\\nmistral_arc.jsonl\\nmistral_gsm8k.jsonl\\nmistral_hellaswag.jsonl\\nmistral_math.jsonl\\nmistral_mmlu.jsonl\\nolmo_arc.jsonl\\nolmo_gsm8k.jsonl\\nolmo_math.jsonl\\nolmo_mmlu.jsonl\\nqwen_arc.jsonl\\nqwen_gsm8k.jsonl\\nqwen_hellaswag.jsonl\\nqwen_math.jsonl\\nqwen_mmlu.jsonl\\nshard_0_qwen.csv\\nshard_1_llama.csv\\nshard_2_gemma.csv\\nshard_3_mistral.csv\\nshard_deepseek_arc.csv\\nshard_deepseek_gsm8k.csv\\nshard_deepseek_hellaswag.csv\\nshard_deepseek_math.csv\\nshard_deepseek_mmlu.csv\\nshard_gemma_arc.csv\\nshard_gemma_gsm8k.csv\\nshard_gemma_hellaswag.csv\\nshard_gemma_math.csv\\nshard_gemma_mmlu.csv\\nshard_internlm_arc.csv\\nshard_internlm_gsm8k.csv\\nshard_internlm_hellaswag.csv\\nshard_internlm_math.csv\\nshard_internlm_mmlu.csv\\nshard_llama_arc.csv\\nshard_llama_gsm8k.csv\\nshard_llama_hellaswag.csv\\nshard_llama_math.csv\\nshard_llama_mmlu.csv\\nshard_mistral_arc.csv\\nshard_mistral_gsm8k.csv\\nshard_mistral_hellaswag.csv\\nshard_mistral_math.csv\\nshard_mistral_mmlu.csv\\nshard_qwen_arc.csv\\nshard_qwen_gsm8k.csv\\nshard_qwen_hellaswag.csv\\nshard_qwen_math.csv\\nshard_qwen_mmlu.csv\\nyi_arc.jsonl\\nyi_gsm8k.jsonl\\nyi_math.jsonl\\nyi_mmlu.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "407cd7d4-6e32-4110-90a3-4405bccf835c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chain_deepseek.log\\\\nchain_internlm.log\\\\ndeepseek_arc.jsonl\\\\ndeepseek_gsm8k.jsonl\\\\ndeepseek_hellaswag.jsonl\\\\ndeepseek_math.jsonl\\\\ndeepseek_math_gpu2.jsonl\\\\ndeepseek_mmlu.jsonl\\\\ndesign_matrix_exp002_full.csv\\\\ndesign_matrix_new_models.csv\\\\nfull_run.log\\\\ngemma_arc.jsonl\\\\ngemma_gsm8k.jsonl\\\\ngemma_hellaswag.jsonl\\\\ngemma_math.jsonl\\\\ngemma_mmlu.jsonl\\\\ngpu0_internlm_math.log\\\\ngpu0_qwen.log\\\\ngpu1_internlm_arc.log\\\\ngpu1_internlm_gsm8k.log\\\\ngpu1_internlm_hellaswag.log\\\\ngpu1_internlm_mmlu.log\\\\ngpu1_llama.log\\\\ngpu2_deepseek_math.log\\\\ngpu2_gemma.log\\\\ngpu3_deepseek_arc.log\\\\ngpu3_deepseek_gsm8k.log\\\\ngpu3_deepseek_hellaswag.log\\\\ngpu3_deepseek_mmlu.log\\\\ngpu3_mistral.log\\\\ninternlm_arc.jsonl\\\\ninternlm_gsm8k.jsonl\\\\ninternlm_hellaswag.jsonl\\\\ninternlm_math.jsonl\\\\ninternlm_mmlu.jsonl\\\\nllama_arc.jsonl\\\\nllama_gsm8k.jsonl\\\\nllama_hellaswag.jsonl\\\\nllama_math.jsonl\\\\nllama_mmlu.jsonl\\\\nmath_then_new_models.log\\\\nmistral_arc.jsonl\\\\nmistral_gsm8k.jsonl\\\\nmistral_hellaswag.jsonl\\\\nmistral_math.jsonl\\\\nmistral_mmlu.jsonl\\\\nolmo_arc.jsonl\\\\nolmo_gsm8k.jsonl\\\\nolmo_math.jsonl\\\\nolmo_mmlu.jsonl\\\\nqwen_arc.jsonl\\\\nqwen_gsm8k.jsonl\\\\nqwen_hellaswag.jsonl\\\\nqwen_math.jsonl\\\\nqwen_mmlu.jsonl\\\\nshard_0_qwen.csv\\\\nshard_1_llama.csv\\\\nshard_2_gemma.csv\\\\nshard_3_mistral.csv\\\\nshard_deepseek_arc.csv\\\\nshard_deepseek_gsm8k.csv\\\\nshard_deepseek_hellaswag.csv\\\\nshard_deepseek_math.csv\\\\nshard_deepseek_mmlu.csv\\\\nshard_gemma_arc.csv\\\\nshard_gemma_gsm8k.csv\\\\nshard_gemma_hellaswag.csv\\\\nshard_gemma_math.csv\\\\nshard_gemma_mmlu.csv\\\\nshard_internlm_arc.csv\\\\nshard_internlm_gsm8k.csv\\\\nshard_internlm_hellaswag.csv\\\\nshard_internlm_math.csv\\\\nshard_internlm_mmlu.csv\\\\nshard_llama_arc.csv\\\\nshard_llama_gsm8k.csv\\\\nshard_llama_hellaswag.csv\\\\nshard_llama_math.csv\\\\nshard_llama_mmlu.csv\\\\nshard_mistral_arc.csv\\\\nshard_mistral_gsm8k.csv\\\\nshard_mistral_hellaswag.csv\\\\nshard_mistral_math.csv\\\\nshard_mistral_mmlu.csv\\\\nshard_qwen_arc.csv\\\\nshard_qwen_gsm8k.csv\\\\nshard_qwen_hellaswag.csv\\\\nshard_qwen_math.csv\\\\nshard_qwen_mmlu.csv\\\\nyi_arc.jsonl\\\\nyi_gsm8k.jsonl\\\\nyi_math.jsonl\\\\nyi_mmlu.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"chain_deepseek.log\\nchain_internlm.log\\ndeepseek_arc.jsonl\\ndeepseek_gsm8k.jsonl\\ndeepseek_hellaswag.jsonl\\ndeepseek_math.jsonl\\ndeepseek_math_gpu2.jsonl\\ndeepseek_mmlu.jsonl\\ndesign_matrix_exp002_full.csv\\ndesign_matrix_new_models.csv\\nfull_run.log\\ngemma_arc.jsonl\\ngemma_gsm8k.jsonl\\ngemma_hellaswag.jsonl\\ngemma_math.jsonl\\ngemma_mmlu.jsonl\\ngpu0_internlm_math.log\\ngpu0_qwen.log\\ngpu1_internlm_arc.log\\ngpu1_internlm_gsm8k.log\\ngpu1_internlm_hellaswag.log\\ngpu1_internlm_mmlu.log\\ngpu1_llama.log\\ngpu2_deepseek_math.log\\ngpu2_gemma.log\\ngpu3_deepseek_arc.log\\ngpu3_deepseek_gsm8k.log\\ngpu3_deepseek_hellaswag.log\\ngpu3_deepseek_mmlu.log\\ngpu3_mistral.log\\ninternlm_arc.jsonl\\ninternlm_gsm8k.jsonl\\ninternlm_hellaswag.jsonl\\ninternlm_math.jsonl\\ninternlm_mmlu.jsonl\\nllama_arc.jsonl\\nllama_gsm8k.jsonl\\nllama_hellaswag.jsonl\\nllama_math.jsonl\\nllama_mmlu.jsonl\\nmath_then_new_models.log\\nmistral_arc.jsonl\\nmistral_gsm8k.jsonl\\nmistral_hellaswag.jsonl\\nmistral_math.jsonl\\nmistral_mmlu.jsonl\\nolmo_arc.jsonl\\nolmo_gsm8k.jsonl\\nolmo_math.jsonl\\nolmo_mmlu.jsonl\\nqwen_arc.jsonl\\nqwen_gsm8k.jsonl\\nqwen_hellaswag.jsonl\\nqwen_math.jsonl\\nqwen_mmlu.jsonl\\nshard_0_qwen.csv\\nshard_1_llama.csv\\nshard_2_gemma.csv\\nshard_3_mistral.csv\\nshard_deepseek_arc.csv\\nshard_deepseek_gsm8k.csv\\nshard_deepseek_hellaswag.csv\\nshard_deepseek_math.csv\\nshard_deepseek_mmlu.csv\\nshard_gemma_arc.csv\\nshard_gemma_gsm8k.csv\\nshard_gemma_hellaswag.csv\\nshard_gemma_math.csv\\nshard_gemma_mmlu.csv\\nshard_internlm_arc.csv\\nshard_internlm_gsm8k.csv\\nshard_internlm_hellaswag.csv\\nshard_internlm_math.csv\\nshard_internlm_mmlu.csv\\nshard_llama_arc.csv\\nshard_llama_gsm8k.csv\\nshard_llama_hellaswag.csv\\nshard_llama_math.csv\\nshard_llama_mmlu.csv\\nshard_mistral_arc.csv\\nshard_mistral_gsm8k.csv\\nshard_mistral_hellaswag.csv\\nshard_mistral_math.csv\\nshard_mistral_mmlu.csv\\nshard_qwen_arc.csv\\nshard_qwen_gsm8k.csv\\nshard_qwen_hellaswag.csv\\nshard_qwen_math.csv\\nshard_qwen_mmlu.csv\\nyi_arc.jsonl\\nyi_gsm8k.jsonl\\nyi_math.jsonl\\nyi_mmlu.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MoUALUHv76cWrye5zy24Tn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp004_8model_analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "fee5cacd-e003-4258-ba3d-3c88474405d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013vwZcZC44R6GzP8PTv1AmL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 26296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1049
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-22T13:35:19.111Z_
+
+<details><summary>↩ Tool result · `toolu_01MoUALUHv76cWrye5zy24Tn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"binary_sim_ranking_consistency.json\\nbootstrap_ci_arc.json\\nbootstrap_ci_gsm8k.json\\nbootstrap_ci_hellaswag.json\\nbootstrap_ci_math.json\\nbootstrap_ci_mmlu.json\\nclean_permutation_test.json\\ncross_benchmark_difficulty_heterogeneity.json\\ncross_model_gstudy_8model.json\\ndeepseek_lomo_cross_benchmark.json\\ndefensive_analyses.json\\ndifficulty_vs_item_variance.pdf\\ndifficulty_vs_item_variance.png\\ndstudy_8model.json\\ndstudy_arc.json\\ndstudy_bootstrap_ci.json\\ndstudy_gsm8k.json\\ndstudy_hellaswag.json\\ndstudy_math.json\\nfig1_variance_decomposition.pdf\\nfig1_variance_decomposition.png\\ngitem_consistency_check.json\\nitem_heterogeneity_scatter.png\\nitem_heterogeneity_verification.json\\nlobo_stability.json\\nlomo_8model_mmlu.json\\nmath_8model_verified.json\\nmmlu_subject_gradient_8model.json\\nper_benchmark_gstudy_arc.json\\nper_benchmark_gstudy_ff.json\\nper_benchmark_gstudy_hellaswag.json\\nper_benchmark_gstudy_hellaswag_2temp.json\\nper_benchmark_gstudy_mc.json\\nper_benchmark_gstudy_mmlu.json\\npermutation_test_5bm.json\\nsingle_condition_dstudy.json\\nstratified_bootstrap_comparison.json\\nthree_in_one_8model.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "c7d9a3c8-d724-4151-93b4-af16a293fd4f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"binary_sim_ranking_consistency.json\\\\nbootstrap_ci_arc.json\\\\nbootstrap_ci_gsm8k.json\\\\nbootstrap_ci_hellaswag.json\\\\nbootstrap_ci_math.json\\\\nbootstrap_ci_mmlu.json\\\\nclean_permutation_test.json\\\\ncross_benchmark_difficulty_heterogeneity.json\\\\ncross_model_gstudy_8model.json\\\\ndeepseek_lomo_cross_benchmark.json\\\\ndefensive_analyses.json\\\\ndifficulty_vs_item_variance.pdf\\\\ndifficulty_vs_item_variance.png\\\\ndstudy_8model.json\\\\ndstudy_arc.json\\\\ndstudy_bootstrap_ci.json\\\\ndstudy_gsm8k.json\\\\ndstudy_hellaswag.json\\\\ndstudy_math.json\\\\nfig1_variance_decomposition.pdf\\\\nfig1_variance_decomposition.png\\\\ngitem_consistency_check.json\\\\nitem_heterogeneity_scatter.png\\\\nitem_heterogeneity_verification.json\\\\nlobo_stability.json\\\\nlomo_8model_mmlu.json\\\\nmath_8model_verified.json\\\\nmmlu_subject_gradient_8model.json\\\\nper_benchmark_gstudy_arc.json\\\\nper_benchmark_gstudy_ff.json\\\\nper_benchmark_gstudy_hellaswag.json\\\\nper_benchmark_gstudy_hellaswag_2temp.json\\\\nper_benchmark_gstudy_mc.json\\\\nper_benchmark_gstudy_mmlu.json\\\\npermutation_test_5bm.json\\\\nsingle_condition_dstudy.json\\\\nstratified_bootstrap_comparison.json\\\\nthree_in_one_8model.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"binary_sim_ranking_consistency.json\\nbootstrap_ci_arc.json\\nbootstrap_ci_gsm8k.json\\nbootstrap_ci_hellaswag.json\\nbootstrap_ci_math.json\\nbootstrap_ci_mmlu.json\\nclean_permutation_test.json\\ncross_benchmark_difficulty_heterogeneity.json\\ncross_model_gstudy_8model.json\\ndeepseek_lomo_cross_benchmark.json\\ndefensive_analyses.json\\ndifficulty_vs_item_variance.pdf\\ndifficulty_vs_item_variance.png\\ndstudy_8model.json\\ndstudy_arc.json\\ndstudy_bootstrap_ci.json\\ndstudy_gsm8k.json\\ndstudy_hellaswag.json\\ndstudy_math.json\\nfig1_variance_decomposition.pdf\\nfig1_variance_decomposition.png\\ngitem_consistency_check.json\\nitem_heterogeneity_scatter.png\\nitem_heterogeneity_verification.json\\nlobo_stability.json\\nlomo_8model_mmlu.json\\nmath_8model_verified.json\\nmmlu_subject_gradient_8model.json\\nper_benchmark_gstudy_arc.json\\nper_benchmark_gstudy_ff.json\\nper_benchmark_gstudy_hellaswag.json\\nper_benchmark_gstudy_hellaswag_2temp.json\\nper_benchmark_gstudy_mc.json\\nper_benchmark_gstudy_mmlu.json\\npermutation_test_5bm.json\\nsingle_condition_dstudy.json\\nstratified_bootstrap_comparison.json\\nthree_in_one_8model.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The data is in `/root/nlp_variance_gtheory/results/exp002/`. The JSONL files are named like `{model}_{benchmark}.jsonl`. I see:
+- deepseek: arc, gsm8k, hellaswag, math, mmlu
+- gemma: arc, gsm8k, hellaswag, math, mmlu
+- internlm: arc, gsm8k, hellaswag, math, mmlu
+- llama: arc, gsm8k, hellaswag, math, mmlu
+- mistral: arc, gsm8k, hellaswag, math, mmlu
+
+
+- olmo: arc, gsm8k, math, mmlu (missing hellaswag)
+- qwen: arc, gsm8k, hellaswag, math, mmlu
+- yi: arc, gsm8k, math, mmlu (missing hellaswag)
+
+OLMo and Yi are both missing the hellaswag benchmark, so I need to account for that when examining the data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "04a3ed38-c13e-47e6-82b5-5a749fa6b82d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQi4fayUQnqiZ7FAFUEbvy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1996,
+      "cache_read_input_tokens": 27345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Data is in `/root/nlp_variance_gtheory/results/exp002/`. OLMo and Yi are missing hellaswag. Let me check the JSONL structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "45b4bc59-cc58-47f3-9cfa-2f598aa2d70b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQi4fayUQnqiZ7FAFUEbvy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1996,
+      "cache_read_input_tokens": 27345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L5C3p7EUtpYRRatAu2PA6W`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8db44518-a587-4145-b71e-25f9e7cb435d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQi4fayUQnqiZ7FAFUEbvy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1996,
+      "cache_read_input_tokens": 27345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014bDtD3DA9sks1mCW9qwvPP`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "09e5736a-201f-4c9d-b704-90eabf9412f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQi4fayUQnqiZ7FAFUEbvy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1996,
+      "cache_read_input_tokens": 27345,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1996
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T13:35:27.003Z_
+
+<details><summary>↩ Tool result · `toolu_01L5C3p7EUtpYRRatAu2PA6W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | If G is a finite group and H is a\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8737277984619141, \\\"top_logprobs\\\": {\\\" A\\\": -0.8737277984619141, \\\" C\\\": -1.373727798461914, \\\" B\\\": -1.498727798461914, \\\" D\\\": -2.248727798461914, \\\" \\\": -9.373727798461914}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nStatement 1 | If a and b are elements of a group G\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.7932339310646057, \\\"top_logprobs\\\": {\\\" D\\\": -0.7932339310646057, \\\" C\\\": -1.168233871459961, \\\" B\\\": -1.918233871459961, \\\" A\\\": -2.418233871459961, \\\" \\\": -8.168233871459961}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_3\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nFind the order of the group of units of Z_7.\\\\nA\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"B\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8227007389068604, \\\"top_logprobs\\\": {\\\" D\\\": -0.8227007389068604, \\\" B\\\": -1.3227007389068604, \\\" C\\\": -1.5727007389068604, \\\" A\\\": -2.4477007389068604, \\\" \\\": -9.822700500488281}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8f97bfcc-5bb9-4edd-8a12-5bcabbf9b647",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 1153, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nStatement 1 | If G is a finite group and H is a\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.23, \\\\\\\"answer_logprob\\\\\\\": -0.8737277984619141, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.8737277984619141, \\\\\\\" C\\\\\\\": -1.373727798461914, \\\\\\\" B\\\\\\\": -1.498727798461914, \\\\\\\" D\\\\\\\": -2.248727798461914, \\\\\\\" \\\\\\\": -9.373727798461914}}\\\\n{\\\\\\\"condition_id\\\\\\\": 1153, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_14\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"D\\\\\\\\n\\\\\\\\nStatement 1 | If a and b are elements of a group G\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.23, \\\\\\\"answer_logprob\\\\\\\": -0.7932339310646057, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" D\\\\\\\": -0.7932339310646057, \\\\\\\" C\\\\\\\": -1.168233871459961, \\\\\\\" B\\\\\\\": -1.918233871459961, \\\\\\\" A\\\\\\\": -2.418233871459961, \\\\\\\" \\\\\\\": -8.168233871459961}}\\\\n{\\\\\\\"condition_id\\\\\\\": 1153, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_3\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"D\\\\\\\\n\\\\\\\\nFind the order of the group of units of Z_7.\\\\\\\\nA\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.23, \\\\\\\"answer_logprob\\\\\\\": -0.8227007389068604, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" D\\\\\\\": -0.8227007389068604, \\\\\\\" B\\\\\\\": -1.3227007389068604, \\\\\\\" C\\\\\\\": -1.5727007389068604, \\\\\\\" A\\\\\\\": -2.4477007389068604, \\\\\\\" \\\\\\\": -9.822700500488281}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | If G is a finite group and H is a\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8737277984619141, \\\"top_logprobs\\\": {\\\" A\\\": -0.8737277984619141, \\\" C\\\": -1.373727798461914, \\\" B\\\": -1.498727798461914, \\\" D\\\": -2.248727798461914, \\\" \\\": -9.373727798461914}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nStatement 1 | If a and b are elements of a group G\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.7932339310646057, \\\"top_logprobs\\\": {\\\" D\\\": -0.7932339310646057, \\\" C\\\": -1.168233871459961, \\\" B\\\": -1.918233871459961, \\\" A\\\": -2.418233871459961, \\\" \\\": -8.168233871459961}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_3\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nFind the order of the group of units of Z_7.\\\\nA\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"B\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8227007389068604, \\\"top_logprobs\\\": {\\\" D\\\": -0.8227007389068604, \\\" B\\\": -1.3227007389068604, \\\" C\\\": -1.5727007389068604, \\\" A\\\": -2.4477007389068604, \\\" \\\": -9.822700500488281}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T13:35:27.544Z_
+
+<details><summary>↩ Tool result · `toolu_014bDtD3DA9sks1mCW9qwvPP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_91\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Cindy has 4 pets.\\\\nMarcia has 4 + 2 = 6 pets.\\\\nJan has 6 * 3 = 18 pets.\\\\nThe total number of pets is 4 + 6 + 18 = 28.\\\\nThe answer is 28.\\\", \\\"predicted_answer\\\": \\\"28\\\", \\\"gold_answer\\\": \\\"28\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.226076602935791, \\\"top_logprobs\\\": {\\\"C\\\": -1.226076602935791, \\\"Marc\\\": -1.226076602935791, \\\"First\\\": -2.476076602935791, \\\"Step\\\": -2.976076602935791, \\\"We\\\": -3.226076602935791}}\\n{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_1239\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"First, we need to find out how many minutes they have to clean the classrooms in total. They have 5 days, and each day is 8 hours long. So, they have 5 * 8 = 40 hours. Since there are 60 minutes in an hour, they have 40 * 60 = 2400 minutes to clean the classrooms.\\\\nNext, we need to find out how many minutes it takes to clean all the classrooms. There are 80 classrooms, and it takes 15 minutes to clean each one. So, it takes 80 * 15 = 1200 minutes to clean all the classrooms.\\\\nNow, we need to find out what percentage of their day is spent cleaning classrooms. To do this, we need to divide the number of minutes spent cleaning classrooms (1200) by the total number of minutes they have to clean the classrooms (2400). This gives us 1200 / 2400 = 0.5.\\\\nTo convert this to a percentage, we multiply by 100. So, 0.5 * 100 = 50%.\\\\nThe answer is 50.\\\", \\\"predicted_answer\\\": \\\"50\\\", \\\"gold_answer\\\": \\\"50\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.6342226266860962, \\\"top_logprobs\\\": {\\\"First\\\": -1.6342226266860962, \\\"The\\\": -1.6967226266860962, \\\"They\\\": -2.5092225074768066, \\\"1\\\": -2.6342225074768066, \\\"Step\\\": -2.8217225074768066}}\\n{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_649\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Fishio received 2000 likes on the photo after 1 week.\\\\nThree weeks later, the number of likes was 70 times as many as the initial number of likes.\\\\nSo, the number of likes after 4 weeks is 70 * 2000 = 140000.\\\\nThe total number of likes is 140000 + 20000 = 160000.\\\\nThe final answer is: 160000\\\", \\\"predicted_answer\\\": \\\"160000\\\", \\\"gold_answer\\\": \\\"162000\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.835200309753418, \\\"top_logprobs\\\": {\\\"Fish\\\": -1.835200309753418, \\\"First\\\": -2.085200309753418, \\\"The\\\": -2.335200309753418, \\\"Step\\\": -2.647700309753418, \\\"She\\\": -2.960200309753418}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ee72789e-32de-48e6-9ef5-5834fed24e19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 1441, \\\\\\\"item_id\\\\\\\": \\\\\\\"gsm8k_91\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"subject\\\\\\\": null, \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"Cindy has 4 pets.\\\\\\\\nMarcia has 4 + 2 = 6 pets.\\\\\\\\nJan has 6 * 3 = 18 pets.\\\\\\\\nThe total number of pets is 4 + 6 + 18 = 28.\\\\\\\\nThe answer is 28.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"correct\\\\\\\": 1, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 112.62, \\\\\\\"answer_logprob\\\\\\\": -1.226076602935791, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\"C\\\\\\\": -1.226076602935791, \\\\\\\"Marc\\\\\\\": -1.226076602935791, \\\\\\\"First\\\\\\\": -2.476076602935791, \\\\\\\"Step\\\\\\\": -2.976076602935791, \\\\\\\"We\\\\\\\": -3.226076602935791}}\\\\n{\\\\\\\"condition_id\\\\\\\": 1441, \\\\\\\"item_id\\\\\\\": \\\\\\\"gsm8k_1239\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"subject\\\\\\\": null, \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"First, we need to find out how many minutes they have to clean the classrooms in total. They have 5 days, and each day is 8 hours long. So, they have 5 * 8 = 40 hours. Since there are 60 minutes in an hour, they have 40 * 60 = 2400 minutes to clean the classrooms.\\\\\\\\nNext, we need to find out how many minutes it takes to clean all the classrooms. There are 80 classrooms, and it takes 15 minutes to clean each one. So, it takes 80 * 15 = 1200 minutes to clean all the classrooms.\\\\\\\\nNow, we need to find out what percentage of their day is spent cleaning classrooms. To do this, we need to divide the number of minutes spent cleaning classrooms (1200) by the total number of minutes they have to clean the classrooms (2400). This gives us 1200 / 2400 = 0.5.\\\\\\\\nTo convert this to a percentage, we multiply by 100. So, 0.5 * 100 = 50%.\\\\\\\\nThe answer is 50.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"50\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"50\\\\\\\", \\\\\\\"correct\\\\\\\": 1, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 112.62, \\\\\\\"answer_logprob\\\\\\\": -1.6342226266860962, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\"First\\\\\\\": -1.6342226266860962, \\\\\\\"The\\\\\\\": -1.6967226266860962, \\\\\\\"They\\\\\\\": -2.5092225074768066, \\\\\\\"1\\\\\\\": -2.6342225074768066, \\\\\\\"Step\\\\\\\": -2.8217225074768066}}\\\\n{\\\\\\\"condition_id\\\\\\\": 1441, \\\\\\\"item_id\\\\\\\": \\\\\\\"gsm8k_649\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"subject\\\\\\\": null, \\\\\\\"model\\\\\\\": \\\\\\\"meta-llama/Llama-3.1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"Fishio received 2000 likes on the photo after 1 week.\\\\\\\\nThree weeks later, the number of likes was 70 times as many as the initial number of likes.\\\\\\\\nSo, the number of likes after 4 weeks is 70 * 2000 = 140000.\\\\\\\\nThe total number of likes is 140000 + 20000 = 160000.\\\\\\\\nThe final answer is: 160000\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"160000\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"162000\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 112.62, \\\\\\\"answer_logprob\\\\\\\": -1.835200309753418, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\"Fish\\\\\\\": -1.835200309753418, \\\\\\\"First\\\\\\\": -2.085200309753418, \\\\\\\"The\\\\\\\": -2.335200309753418, \\\\\\\"Step\\\\\\\": -2.647700309753418, \\\\\\\"She\\\\\\\": -2.960200309753418}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_91\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Cindy has 4 pets.\\\\nMarcia has 4 + 2 = 6 pets.\\\\nJan has 6 * 3 = 18 pets.\\\\nThe total number of pets is 4 + 6 + 18 = 28.\\\\nThe answer is 28.\\\", \\\"predicted_answer\\\": \\\"28\\\", \\\"gold_answer\\\": \\\"28\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.226076602935791, \\\"top_logprobs\\\": {\\\"C\\\": -1.226076602935791, \\\"Marc\\\": -1.226076602935791, \\\"First\\\": -2.476076602935791, \\\"Step\\\": -2.976076602935791, \\\"We\\\": -3.226076602935791}}\\n{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_1239\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"First, we need to find out how many minutes they have to clean the classrooms in total. They have 5 days, and each day is 8 hours long. So, they have 5 * 8 = 40 hours. Since there are 60 minutes in an hour, they have 40 * 60 = 2400 minutes to clean the classrooms.\\\\nNext, we need to find out how many minutes it takes to clean all the classrooms. There are 80 classrooms, and it takes 15 minutes to clean each one. So, it takes 80 * 15 = 1200 minutes to clean all the classrooms.\\\\nNow, we need to find out what percentage of their day is spent cleaning classrooms. To do this, we need to divide the number of minutes spent cleaning classrooms (1200) by the total number of minutes they have to clean the classrooms (2400). This gives us 1200 / 2400 = 0.5.\\\\nTo convert this to a percentage, we multiply by 100. So, 0.5 * 100 = 50%.\\\\nThe answer is 50.\\\", \\\"predicted_answer\\\": \\\"50\\\", \\\"gold_answer\\\": \\\"50\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.6342226266860962, \\\"top_logprobs\\\": {\\\"First\\\": -1.6342226266860962, \\\"The\\\": -1.6967226266860962, \\\"They\\\": -2.5092225074768066, \\\"1\\\": -2.6342225074768066, \\\"Step\\\": -2.8217225074768066}}\\n{\\\"condition_id\\\": 1441, \\\"item_id\\\": \\\"gsm8k_649\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Fishio received 2000 likes on the photo after 1 week.\\\\nThree weeks later, the number of likes was 70 times as many as the initial number of likes.\\\\nSo, the number of likes after 4 weeks is 70 * 2000 = 140000.\\\\nThe total number of likes is 140000 + 20000 = 160000.\\\\nThe final answer is: 160000\\\", \\\"predicted_answer\\\": \\\"160000\\\", \\\"gold_answer\\\": \\\"162000\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 112.62, \\\"answer_logprob\\\": -1.835200309753418, \\\"top_logprobs\\\": {\\\"Fish\\\": -1.835200309753418, \\\"First\\\": -2.085200309753418, \\\"The\\\": -2.335200309753418, \\\"Step\\\": -2.647700309753418, \\\"She\\\": -2.960200309753418}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data structure. Each JSONL file has rows with fields including `item_id`, `correct` (0/1), `temperature`, `prompt_template`, `seed`, `ordering`, `model`, `benchmark`.
+
+Each file has multiple conditions (different temperature, prompt_template, seed, ordering combos). The baseline condition is T=0.0, P=1, S=42, O=1.
+
+Let me check the number of conditions per file and verify the baseline condition exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "534b8c2e-0890-44a0-bc9f-04f19d73f0c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EHUDasBx2fqSzGBndpYNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 29341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Good, I understand the data structure. Let me check available conditions and item counts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8e63e48d-e661-4ccf-b8da-3468ef7e1fc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EHUDasBx2fqSzGBndpYNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 29341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SBb4fQJzDzgSF6StNXkz9W`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"\nimport json\nf = open('/root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl')\nconds = set()\nfor line in f:\n    r = json.loads(line)\n    conds.add((r['temperature'], r['prompt_template'], r['seed'], r['ordering']))\nf.close()\nfor c in sorted(conds):\n    print(c)\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "c5c8cc5f-de2a-4e9c-ac24-51aabf433c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EHUDasBx2fqSzGBndpYNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 29341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-22T13:35:34.465Z_
+
+<details><summary>↩ Tool result · `toolu_01SBb4fQJzDzgSF6StNXkz9W`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "cbc38126-c64e-4b8a-83cd-59cf40d4411f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xt5oHbANjKy3PDoSqVhrgy`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"\nimport json, os\nd = '/root/nlp_variance_gtheory/results/exp002/'\nfor f in sorted(os.listdir(d)):\n    if f.endswith('.jsonl'):\n        count = sum(1 for _ in open(d+f))\n        print(f'{f}: {count} rows')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "16f4c543-be41-4192-b96d-8310064c9ca3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017EHUDasBx2fqSzGBndpYNF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3448,
+      "cache_read_input_tokens": 29341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3448
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-22T13:35:35.760Z_
+
+<details><summary>↩ Tool result · `toolu_01Xt5oHbANjKy3PDoSqVhrgy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ed452878-7fe3-4b87-a94a-f6d078693b3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EERnMGxL8uYauNYAhy7USR`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp002/*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "bd571535-d021-402c-a61e-219b12e591f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFKExZAXQp2LhvFfpKpdMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 32789,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T13:35:39.993Z_
+
+<details><summary>↩ Tool result · `toolu_01EERnMGxL8uYauNYAhy7USR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_mmlu.jsonl\\n   2246400 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "55c1b99e-6ebb-4471-a00b-483c9c30cdca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_arc.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_mmlu.jsonl\\\\n   2246400 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/olmo_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/yi_mmlu.jsonl\\n   2246400 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TG1EhUpTyfZViSszbLzp1H`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c \"\\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1\" /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "9e5eda79-5119-4e6f-9ee7-7322a0326b7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFKExZAXQp2LhvFfpKpdMi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 728,
+      "cache_read_input_tokens": 32789,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 728
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T13:35:40.806Z_
+
+<details><summary>↩ Tool result · `toolu_01TG1EhUpTyfZViSszbLzp1H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "43358acb-a17e-4e2f-9a9a-3f344e616446",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Each file has 57600 rows. The baseline condition (T=0.0, P=1, S=42, O=1) has 200 items for llama_mmlu. So 57600/200 = 288 conditions per model-benchmark. 
+
+OLMo and Yi don't have hellaswag files. Let me also ignore `deepseek_math_gpu2.jsonl` as it looks like a duplicate.
+
+Now I have a clear picture:
+
+
+- 8 models: llama, gemma, mistral, qwen, olmo, yi, internlm, deepseek
+- 5 benchmarks: mmlu, arc, gsm8k, hellaswag, math
+- OLMo and Yi missing hellaswag → hellaswag has 6 models
+- Each file: 57600 rows, 200 items per condition, ~288 conditions
+- Baseline condition: temperature=0.0, prompt_template=1, seed=42, ordering=1
+
+Let me verify that the 200 items per baseline condition holds across all benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "4832d276-b898-495e-a0fe-88dd5b4a5140",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Each file has 57600 rows, 200 items per baseline condition. OLMo and Yi lack hellaswag → 6 models for hellaswag. Let me check item counts per benchmark.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "7ab5d5d3-7717-4345-bb8a-178804143d63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FaWtxfGomj2Rt3aKu11DNS`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c \"\\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1\" /root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "35cc9b7c-850f-4563-b8df-192e2287fca4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-22T13:35:51.037Z_
+
+<details><summary>↩ Tool result · `toolu_01FaWtxfGomj2Rt3aKu11DNS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "1345f28a-2c27-4301-881f-b21390a7e3f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019cQcjdVccoFm7YknWS9qfu`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c \"\\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1\" /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8ed9d955-906f-405e-bb16-cfb4a0ee0f46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-22T13:35:51.957Z_
+
+<details><summary>↩ Tool result · `toolu_019cQcjdVccoFm7YknWS9qfu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "57219641-65aa-4ec7-8506-e80251f29d8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ryx3q4KeLGVqQPQJmLS7Ec`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c \"\\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1\" /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "c8e44b74-a8d8-43b1-a404-baf2eafcaa2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T13:35:52.900Z_
+
+<details><summary>↩ Tool result · `toolu_01Ryx3q4KeLGVqQPQJmLS7Ec`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ee6ff6b8-50c2-4183-b31e-9bb85e941498",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KgfLXi8wMmgQLBKjbeon5G`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -c \"\\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1\" /root/nlp_variance_gtheory/results/exp002/llama_math.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "9280e205-93c1-4b2e-ac20-bc31e2e13011",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNi4p1nFc4MtL468m7Y8vT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1691,
+      "cache_read_input_tokens": 33517,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1691
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T13:35:53.778Z_
+
+<details><summary>↩ Tool result · `toolu_01KgfLXi8wMmgQLBKjbeon5G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "a8e35a72-dd2f-4c09-aec8-2caa34939456",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"200\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All benchmarks have 200 items per baseline condition. Now I have all the information I need to write the script. Let me also check what model names look like in the data to map them correctly.
+
+From the head output:
+- llama: "meta-llama/Llama-3.1-8B-Instruct"
+
+Let me check a couple more to get the model name mapping right. Actually, the model field in the data has the full HF model name, but for reporting purposes I should use shorter names. Let me just get them from the data.
+
+Actually, I have enough info. Let me write the script. The key details:
+
+
+- Data dir: `/root/nlp_variance_gtheory/results/exp002/`
+- Files: `{model_short}_{benchmark}.jsonl`
+- model_short: llama, gemma, mistral, qwen, olmo, yi, internlm, deepseek
+- benchmarks: mmlu, arc, gsm8k, hellaswag, math
+- OLMo and Yi missing hellaswag
+- Baseline: temperature=0.0, prompt_template=1, seed=42, ordering=1
+- Ignore `deepseek_math_gpu2.jsonl`
+
+Now I need to compute Cohen's κ for pairwise model comparisons using the observed and expected agreement proportions, then extend to Fleiss' κ to measure agreement across all models simultaneously. Let me write the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ad2505b8-e2e2-4150-aced-b7027a9094c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQZkP2gSTffAjer6VuRmo4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 35208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+All benchmarks have 200 items per baseline condition. Now I'll write the script and deploy it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "51c65e88-fafe-4aab-ad11-172b65239ae1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQZkP2gSTffAjer6VuRmo4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 35208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UwEkY56PrAc5ETVP7VboV4`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "7ba016d8-e8b6-4d79-8847-714c9682803d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LQZkP2gSTffAjer6VuRmo4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1394,
+      "cache_read_input_tokens": 35208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1394
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-22T13:36:05.338Z_
+
+<details><summary>↩ Tool result · `toolu_01UwEkY56PrAc5ETVP7VboV4`</summary>
+
+```text
+data
+figures
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "468b613d-9941-4a7b-bf13-53dce6451d1b",
+  "tool_use_result": {
+    "stdout": "data\nfigures",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01RGUtGhzenaRLrnvQm2TmB3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/scripts/exp004_cohens_kappa.py",
+  "content": "\"\"\"\nCohen's kappa pairwise agreement + Fleiss' kappa for 8 models × 5 benchmarks.\nBaseline condition: temperature=0.0, prompt_template=1, seed=42, ordering=1.\n\"\"\"\nimport json\nimport os\nimport sys\nfrom itertools import combinations\nfrom collections import defaultdict\n\nDATA_DIR = \"/root/nlp_variance_gtheory/results/exp002\"\nOUTPUT_PATH = \"/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\"\n\nMODEL_SHORTS = [\"llama\", \"gemma\", \"mistral\", \"qwen\", \"olmo\", \"yi\", \"internlm\", \"deepseek\"]\nBENCHMARKS = [\"mmlu\", \"arc\", \"gsm8k\", \"hellaswag\", \"math\"]\n\nBASELINE = {\"temperature\": 0.0, \"prompt_template\": 1, \"seed\": 42, \"ordering\": 1}\n\n\ndef load_baseline(model_short, benchmark):\n    \"\"\"Load item_id -> correct for baseline condition.\"\"\"\n    path = os.path.join(DATA_DIR, f\"{model_short}_{benchmark}.jsonl\")\n    if not os.path.exists(path):\n        return None\n    items = {}\n    with open(path) as f:\n        for line in f:\n            r = json.loads(line)\n            if (r[\"temperature\"] == BASELINE[\"temperature\"]\n                    and r[\"prompt_template\"] == BASELINE[\"prompt_template\"]\n                    and r[\"seed\"] == BASELINE[\"seed\"]\n                    and r[\"ordering\"] == BASELINE[\"ordering\"]):\n                items[r[\"item_id\"]] = r[\"correct\"]\n    return items\n\n\ndef cohens_kappa(labels_a, labels_b):\n    \"\"\"Compute Cohen's kappa for two binary label vectors (same length).\"\"\"\n    n = len(labels_a)\n    assert n == len(labels_b) and n > 0\n    agree = sum(a == b for a, b in zip(labels_a, labels_b))\n    po = agree / n\n    p1_a = sum(labels_a) / n\n    p1_b = sum(labels_b) / n\n    p0_a = 1 - p1_a\n    p0_b = 1 - p1_b\n    pe = p1_a * p1_b + p0_a * p0_b\n    if pe == 1.0:\n        return 1.0, po, pe\n    kappa = (po - pe) / (1 - pe)\n    return kappa, po, pe\n\n\ndef fleiss_kappa(ratings_matrix):\n    \"\"\"\n    Fleiss' kappa for binary ratings.\n    ratings_matrix: list of [n_raters_correct, n_raters_total] per item.\n    Equivalently: list of lists where each sublist is binary votes per rater.\n\n    Input: list of dicts {item_id: correct} for each rater,\n    but we'll compute from a matrix of (n_items x n_raters).\n    \"\"\"\n    # ratings_matrix: n_items x n_raters, values 0/1\n    n_items = len(ratings_matrix)\n    n_raters = len(ratings_matrix[0])\n\n    if n_items == 0 or n_raters < 2:\n        return None\n\n    # For each item, count category assignments\n    # Categories: 0 and 1\n    P_bar = 0.0\n    p_cat = [0.0, 0.0]  # proportion assigned to each category\n\n    for row in ratings_matrix:\n        n1 = sum(row)\n        n0 = n_raters - n1\n        P_bar += (n0 * (n0 - 1) + n1 * (n1 - 1)) / (n_raters * (n_raters - 1))\n        p_cat[0] += n0\n        p_cat[1] += n1\n\n    P_bar /= n_items\n    total_ratings = n_items * n_raters\n    p_cat[0] /= total_ratings\n    p_cat[1] /= total_ratings\n\n    Pe = p_cat[0] ** 2 + p_cat[1] ** 2\n\n    if Pe == 1.0:\n        return 1.0\n\n    return (P_bar - Pe) / (1 - Pe)\n\n\ndef get_model_display_name(short):\n    names = {\n        \"llama\": \"Llama-3.1-8B\",\n        \"gemma\": \"Gemma-2-9B\",\n        \"mistral\": \"Mistral-7B\",\n        \"qwen\": \"Qwen3-8B\",\n        \"olmo\": \"OLMo-2-7B\",\n        \"yi\": \"Yi-1.5-9B\",\n        \"internlm\": \"InternLM2.5-7B\",\n        \"deepseek\": \"DeepSeek-7B\",\n    }\n    return names.get(short, short)\n\n\ndef main():\n    results = {\n        \"method\": \"Cohen's kappa\",\n        \"condition\": \"baseline (T=0, P=1, S=42, O=1)\",\n        \"benchmarks\": {}\n    }\n\n    summary_rows = []\n\n    for bm in BENCHMARKS:\n        # Load all models for this benchmark\n        model_data = {}\n        for ms in MODEL_SHORTS:\n            data = load_baseline(ms, bm)\n            if data and len(data) > 0:\n                model_data[ms] = data\n\n        available_models = sorted(model_data.keys())\n        n_models = len(available_models)\n        print(f\"\\n{'='*60}\")\n        print(f\"Benchmark: {bm.upper()} — {n_models} models: {', '.join(get_model_display_name(m) for m in available_models)}\")\n\n        # Find common items across all models\n        common_items = set(model_data[available_models[0]].keys())\n        for ms in available_models[1:]:\n            common_items &= set(model_data[ms].keys())\n        common_items = sorted(common_items)\n        print(f\"Common items: {len(common_items)}\")\n\n        # Pairwise Cohen's kappa\n        pairs = []\n        for ma, mb in combinations(available_models, 2):\n            labels_a = [model_data[ma][item] for item in common_items]\n            labels_b = [model_data[mb][item] for item in common_items]\n            kappa, po, pe = cohens_kappa(labels_a, labels_b)\n            pairs.append({\n                \"model_a\": get_model_display_name(ma),\n                \"model_b\": get_model_display_name(mb),\n                \"kappa\": round(kappa, 4),\n                \"po\": round(po, 4),\n                \"pe\": round(pe, 4),\n            })\n\n        kappas = [p[\"kappa\"] for p in pairs]\n        mean_k = sum(kappas) / len(kappas)\n        min_k = min(kappas)\n        max_k = max(kappas)\n\n        # Fleiss' kappa\n        ratings_matrix = []\n        for item in common_items:\n            row = [model_data[ms][item] for ms in available_models]\n            ratings_matrix.append(row)\n        fk = fleiss_kappa(ratings_matrix)\n\n        results[\"benchmarks\"][bm] = {\n            \"n_models\": n_models,\n            \"n_pairs\": len(pairs),\n            \"n_items\": len(common_items),\n            \"mean_kappa\": round(mean_k, 4),\n            \"min_kappa\": round(min_k, 4),\n            \"max_kappa\": round(max_k, 4),\n            \"fleiss_kappa\": round(fk, 4) if fk is not None else None,\n            \"pairs\": sorted(pairs, key=lambda x: x[\"kappa\"]),\n        }\n\n        summary_rows.append((bm, n_models, len(common_items), len(pairs),\n                             mean_k, min_k, max_k, fk))\n\n        # Print top-3 and bottom-3\n        sorted_pairs = sorted(pairs, key=lambda x: x[\"kappa\"])\n        print(f\"  Mean κ={mean_k:.4f}, Min κ={min_k:.4f}, Max κ={max_k:.4f}, Fleiss κ={fk:.4f}\")\n        print(f\"  Lowest 3:\")\n        for p in sorted_pairs[:3]:\n            print(f\"    {p['model_a']:>16s} × {p['model_b']:<16s}  κ={p['kappa']:.4f}  po={p['po']:.4f}\")\n        print(f\"  Highest 3:\")\n        for p in sorted_pairs[-3:]:\n            print(f\"    {p['model_a']:>16s} × {p['model_b']:<16s}  κ={p['kappa']:.4f}  po={p['po']:.4f}\")\n\n    # Summary table\n    print(f\"\\n{'='*60}\")\n    print(f\"{'Benchmark':>12s} {'Models':>6s} {'Items':>6s} {'Pairs':>6s} {'Mean_κ':>8s} {'Min_κ':>8s} {'Max_κ':>8s} {'Fleiss_κ':>9s}\")\n    print(\"-\" * 70)\n    for row in summary_rows:\n        bm, nm, ni, np_, mk, mink, maxk, fk = row\n        print(f\"{bm:>12s} {nm:>6d} {ni:>6d} {np_:>6d} {mk:>8.4f} {mink:>8.4f} {maxk:>8.4f} {fk:>9.4f}\")\n\n    # Save\n    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ea5f7c5e-0987-453e-83f9-9dda888fcbef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QwQxkJ8M1XoKzoqspMXo8v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 544,
+      "cache_read_input_tokens": 36602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 544
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T13:36:40.991Z_
+
+<details><summary>↩ Tool result · `toolu_01RGUtGhzenaRLrnvQm2TmB3`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/scripts/exp004_cohens_kappa.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f73be06e-2d6b-47e3-b522-14b8acf9132f",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/scripts/exp004_cohens_kappa.py",
+    "content": "\"\"\"\nCohen's kappa pairwise agreement + Fleiss' kappa for 8 models × 5 benchmarks.\nBaseline condition: temperature=0.0, prompt_template=1, seed=42, ordering=1.\n\"\"\"\nimport json\nimport os\nimport sys\nfrom itertools import combinations\nfrom collections import defaultdict\n\nDATA_DIR = \"/root/nlp_variance_gtheory/results/exp002\"\nOUTPUT_PATH = \"/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\"\n\nMODEL_SHORTS = [\"llama\", \"gemma\", \"mistral\", \"qwen\", \"olmo\", \"yi\", \"internlm\", \"deepseek\"]\nBENCHMARKS = [\"mmlu\", \"arc\", \"gsm8k\", \"hellaswag\", \"math\"]\n\nBASELINE = {\"temperature\": 0.0, \"prompt_template\": 1, \"seed\": 42, \"ordering\": 1}\n\n\ndef load_baseline(model_short, benchmark):\n    \"\"\"Load item_id -> correct for baseline condition.\"\"\"\n    path = os.path.join(DATA_DIR, f\"{model_short}_{benchmark}.jsonl\")\n    if not os.path.exists(path):\n        return None\n    items = {}\n    with open(path) as f:\n        for line in f:\n            r = json.loads(line)\n            if (r[\"temperature\"] == BASELINE[\"temperature\"]\n                    and r[\"prompt_template\"] == BASELINE[\"prompt_template\"]\n                    and r[\"seed\"] == BASELINE[\"seed\"]\n                    and r[\"ordering\"] == BASELINE[\"ordering\"]):\n                items[r[\"item_id\"]] = r[\"correct\"]\n    return items\n\n\ndef cohens_kappa(labels_a, labels_b):\n    \"\"\"Compute Cohen's kappa for two binary label vectors (same length).\"\"\"\n    n = len(labels_a)\n    assert n == len(labels_b) and n > 0\n    agree = sum(a == b for a, b in zip(labels_a, labels_b))\n    po = agree / n\n    p1_a = sum(labels_a) / n\n    p1_b = sum(labels_b) / n\n    p0_a = 1 - p1_a\n    p0_b = 1 - p1_b\n    pe = p1_a * p1_b + p0_a * p0_b\n    if pe == 1.0:\n        return 1.0, po, pe\n    kappa = (po - pe) / (1 - pe)\n    return kappa, po, pe\n\n\ndef fleiss_kappa(ratings_matrix):\n    \"\"\"\n    Fleiss' kappa for binary ratings.\n    ratings_matrix: list of [n_raters_correct, n_raters_total] per item.\n    Equivalently: list of lists where each sublist is binary votes per rater.\n\n    Input: list of dicts {item_id: correct} for each rater,\n    but we'll compute from a matrix of (n_items x n_raters).\n    \"\"\"\n    # ratings_matrix: n_items x n_raters, values 0/1\n    n_items = len(ratings_matrix)\n    n_raters = len(ratings_matrix[0])\n\n    if n_items == 0 or n_raters < 2:\n        return None\n\n    # For each item, count category assignments\n    # Categories: 0 and 1\n    P_bar = 0.0\n    p_cat = [0.0, 0.0]  # proportion assigned to each category\n\n    for row in ratings_matrix:\n        n1 = sum(row)\n        n0 = n_raters - n1\n        P_bar += (n0 * (n0 - 1) + n1 * (n1 - 1)) / (n_raters * (n_raters - 1))\n        p_cat[0] += n0\n        p_cat[1] += n1\n\n    P_bar /= n_items\n    total_ratings = n_items * n_raters\n    p_cat[0] /= total_ratings\n    p_cat[1] /= total_ratings\n\n    Pe = p_cat[0] ** 2 + p_cat[1] ** 2\n\n    if Pe == 1.0:\n        return 1.0\n\n    return (P_bar - Pe) / (1 - Pe)\n\n\ndef get_model_display_name(short):\n    names = {\n        \"llama\": \"Llama-3.1-8B\",\n        \"gemma\": \"Gemma-2-9B\",\n        \"mistral\": \"Mistral-7B\",\n        \"qwen\": \"Qwen3-8B\",\n        \"olmo\": \"OLMo-2-7B\",\n        \"yi\": \"Yi-1.5-9B\",\n        \"internlm\": \"InternLM2.5-7B\",\n        \"deepseek\": \"DeepSeek-7B\",\n    }\n    return names.get(short, short)\n\n\ndef main():\n    results = {\n        \"method\": \"Cohen's kappa\",\n        \"condition\": \"baseline (T=0, P=1, S=42, O=1)\",\n        \"benchmarks\": {}\n    }\n\n    summary_rows = []\n\n    for bm in BENCHMARKS:\n        # Load all models for this benchmark\n        model_data = {}\n        for ms in MODEL_SHORTS:\n            data = load_baseline(ms, bm)\n            if data and len(data) > 0:\n                model_data[ms] = data\n\n        available_models = sorted(model_data.keys())\n        n_models = len(available_models)\n        print(f\"\\n{'='*60}\")\n        print(f\"Benchmark: {bm.upper()} — {n_models} models: {', '.join(get_model_display_name(m) for m in available_models)}\")\n\n        # Find common items across all models\n        common_items = set(model_data[available_models[0]].keys())\n        for ms in available_models[1:]:\n            common_items &= set(model_data[ms].keys())\n        common_items = sorted(common_items)\n        print(f\"Common items: {len(common_items)}\")\n\n        # Pairwise Cohen's kappa\n        pairs = []\n        for ma, mb in combinations(available_models, 2):\n            labels_a = [model_data[ma][item] for item in common_items]\n            labels_b = [model_data[mb][item] for item in common_items]\n            kappa, po, pe = cohens_kappa(labels_a, labels_b)\n            pairs.append({\n                \"model_a\": get_model_display_name(ma),\n                \"model_b\": get_model_display_name(mb),\n                \"kappa\": round(kappa, 4),\n                \"po\": round(po, 4),\n                \"pe\": round(pe, 4),\n            })\n\n        kappas = [p[\"kappa\"] for p in pairs]\n        mean_k = sum(kappas) / len(kappas)\n        min_k = min(kappas)\n        max_k = max(kappas)\n\n        # Fleiss' kappa\n        ratings_matrix = []\n        for item in common_items:\n            row = [model_data[ms][item] for ms in available_models]\n            ratings_matrix.append(row)\n        fk = fleiss_kappa(ratings_matrix)\n\n        results[\"benchmarks\"][bm] = {\n            \"n_models\": n_models,\n            \"n_pairs\": len(pairs),\n            \"n_items\": len(common_items),\n            \"mean_kappa\": round(mean_k, 4),\n            \"min_kappa\": round(min_k, 4),\n            \"max_kappa\": round(max_k, 4),\n            \"fleiss_kappa\": round(fk, 4) if fk is not None else None,\n            \"pairs\": sorted(pairs, key=lambda x: x[\"kappa\"]),\n        }\n\n        summary_rows.append((bm, n_models, len(common_items), len(pairs),\n                             mean_k, min_k, max_k, fk))\n\n        # Print top-3 and bottom-3\n        sorted_pairs = sorted(pairs, key=lambda x: x[\"kappa\"])\n        print(f\"  Mean κ={mean_k:.4f}, Min κ={min_k:.4f}, Max κ={max_k:.4f}, Fleiss κ={fk:.4f}\")\n        print(f\"  Lowest 3:\")\n        for p in sorted_pairs[:3]:\n            print(f\"    {p['model_a']:>16s} × {p['model_b']:<16s}  κ={p['kappa']:.4f}  po={p['po']:.4f}\")\n        print(f\"  Highest 3:\")\n        for p in sorted_pairs[-3:]:\n            print(f\"    {p['model_a']:>16s} × {p['model_b']:<16s}  κ={p['kappa']:.4f}  po={p['po']:.4f}\")\n\n    # Summary table\n    print(f\"\\n{'='*60}\")\n    print(f\"{'Benchmark':>12s} {'Models':>6s} {'Items':>6s} {'Pairs':>6s} {'Mean_κ':>8s} {'Min_κ':>8s} {'Max_κ':>8s} {'Fleiss_κ':>9s}\")\n    print(\"-\" * 70)\n    for row in summary_rows:\n        bm, nm, ni, np_, mk, mink, maxk, fk = row\n        print(f\"{bm:>12s} {nm:>6d} {ni:>6d} {np_:>6d} {mk:>8.4f} {mink:>8.4f} {maxk:>8.4f} {fk:>9.4f}\")\n\n    # Save\n    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+Now uploading and running on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "603183e7-6d67-40d4-8bef-e9783cb3815e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRohKqkfqHKqPrBBJhHCu3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2768,
+      "cache_read_input_tokens": 37146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2768
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XjJRqxg4oRzHRZgANPAoyQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat > /root/nlp_variance_gtheory/scripts/exp004_cohens_kappa.py << 'PYEOF'\n\"\"\"\nCohen's kappa pairwise agreement + Fleiss' kappa for 8 models x 5 benchmarks.\nBaseline condition: temperature=0.0, prompt_template=1, seed=42, ordering=1.\n\"\"\"\nimport json\nimport os\nimport sys\nfrom itertools import combinations\nfrom collections import defaultdict\n\nDATA_DIR = \"/root/nlp_variance_gtheory/results/exp002\"\nOUTPUT_PATH = \"/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\"\n\nMODEL_SHORTS = [\"llama\", \"gemma\", \"mistral\", \"qwen\", \"olmo\", \"yi\", \"internlm\", \"deepseek\"]\nBENCHMARKS = [\"mmlu\", \"arc\", \"gsm8k\", \"hellaswag\", \"math\"]\n\nBASELINE = {\"temperature\": 0.0, \"prompt_template\": 1, \"seed\": 42, \"ordering\": 1}\n\n\ndef load_baseline(model_short, benchmark):\n    path = os.path.join(DATA_DIR, f\"{model_short}_{benchmark}.jsonl\")\n    if not os.path.exists(path):\n        return None\n    items = {}\n    with open(path) as f:\n        for line in f:\n            r = json.loads(line)\n            if (r[\"temperature\"] == BASELINE[\"temperature\"]\n                    and r[\"prompt_template\"] == BASELINE[\"prompt_template\"]\n                    and r[\"seed\"] == BASELINE[\"seed\"]\n                    and r[\"ordering\"] == BASELINE[\"ordering\"]):\n                items[r[\"item_id\"]] = r[\"correct\"]\n    return items\n\n\ndef cohens_kappa(labels_a, labels_b):\n    n = len(labels_a)\n    assert n == len(labels_b) and n > 0\n    agree = sum(a == b for a, b in zip(labels_a, labels_b))\n    po = agree / n\n    p1_a = sum(labels_a) / n\n    p1_b = sum(labels_b) / n\n    p0_a = 1 - p1_a\n    p0_b = 1 - p1_b\n    pe = p1_a * p1_b + p0_a * p0_b\n    if pe == 1.0:\n        return 1.0, po, pe\n    kappa = (po - pe) / (1 - pe)\n    return kappa, po, pe\n\n\ndef fleiss_kappa(ratings_matrix):\n    n_items = len(ratings_matrix)\n    n_raters = len(ratings_matrix[0])\n    if n_items == 0 or n_raters < 2:\n        return None\n    P_bar = 0.0\n    p_cat = [0.0, 0.0]\n    for row in ratings_matrix:\n        n1 = sum(row)\n        n0 = n_raters - n1\n        P_bar += (n0 * (n0 - 1) + n1 * (n1 - 1)) / (n_raters * (n_raters - 1))\n        p_cat[0] += n0\n        p_cat[1] += n1\n    P_bar /= n_items\n    total_ratings = n_items * n_raters\n    p_cat[0] /= total_ratings\n    p_cat[1] /= total_ratings\n    Pe = p_cat[0] ** 2 + p_cat[1] ** 2\n    if Pe == 1.0:\n        return 1.0\n    return (P_bar - Pe) / (1 - Pe)\n\n\ndef get_model_display_name(short):\n    names = {\n        \"llama\": \"Llama-3.1-8B\",\n        \"gemma\": \"Gemma-2-9B\",\n        \"mistral\": \"Mistral-7B\",\n        \"qwen\": \"Qwen3-8B\",\n        \"olmo\": \"OLMo-2-7B\",\n        \"yi\": \"Yi-1.5-9B\",\n        \"internlm\": \"InternLM2.5-7B\",\n        \"deepseek\": \"DeepSeek-7B\",\n    }\n    return names.get(short, short)\n\n\ndef main():\n    results = {\n        \"method\": \"Cohen's kappa\",\n        \"condition\": \"baseline (T=0, P=1, S=42, O=1)\",\n        \"benchmarks\": {}\n    }\n    summary_rows = []\n\n    for bm in BENCHMARKS:\n        model_data = {}\n        for ms in MODEL_SHORTS:\n            data = load_baseline(ms, bm)\n            if data and len(data) > 0:\n                model_data[ms] = data\n\n        available_models = sorted(model_data.keys())\n        n_models = len(available_models)\n        print(f\"\\n{'='*60}\")\n        print(f\"Benchmark: {bm.upper()} -- {n_models} models: {', '.join(get_model_display_name(m) for m in available_models)}\")\n\n        common_items = set(model_data[available_models[0]].keys())\n        for ms in available_models[1:]:\n            common_items &= set(model_data[ms].keys())\n        common_items = sorted(common_items)\n        print(f\"Common items: {len(common_items)}\")\n\n        pairs = []\n        for ma, mb in combinations(available_models, 2):\n            labels_a = [model_data[ma][item] for item in common_items]\n            labels_b = [model_data[mb][item] for item in common_items]\n            kappa, po, pe = cohens_kappa(labels_a, labels_b)\n            pairs.append({\n                \"model_a\": get_model_display_name(ma),\n                \"model_b\": get_model_display_name(mb),\n                \"kappa\": round(kappa, 4),\n                \"po\": round(po, 4),\n                \"pe\": round(pe, 4),\n            })\n\n        kappas = [p[\"kappa\"] for p in pairs]\n        mean_k = sum(kappas) / len(kappas)\n        min_k = min(kappas)\n        max_k = max(kappas)\n\n        ratings_matrix = []\n        for item in common_items:\n            row = [model_data[ms][item] for ms in available_models]\n            ratings_matrix.append(row)\n        fk = fleiss_kappa(ratings_matrix)\n\n        results[\"benchmarks\"][bm] = {\n            \"n_models\": n_models,\n            \"n_pairs\": len(pairs),\n            \"n_items\": len(common_items),\n            \"mean_kappa\": round(mean_k, 4),\n            \"min_kappa\": round(min_k, 4),\n            \"max_kappa\": round(max_k, 4),\n            \"fleiss_kappa\": round(fk, 4) if fk is not None else None,\n            \"pairs\": sorted(pairs, key=lambda x: x[\"kappa\"]),\n        }\n        summary_rows.append((bm, n_models, len(common_items), len(pairs),\n                             mean_k, min_k, max_k, fk))\n\n        sorted_pairs = sorted(pairs, key=lambda x: x[\"kappa\"])\n        print(f\"  Mean k={mean_k:.4f}, Min k={min_k:.4f}, Max k={max_k:.4f}, Fleiss k={fk:.4f}\")\n        print(f\"  Lowest 3:\")\n        for p in sorted_pairs[:3]:\n            print(f\"    {p['model_a']:>16s} x {p['model_b']:<16s}  k={p['kappa']:.4f}  po={p['po']:.4f}\")\n        print(f\"  Highest 3:\")\n        for p in sorted_pairs[-3:]:\n            print(f\"    {p['model_a']:>16s} x {p['model_b']:<16s}  k={p['kappa']:.4f}  po={p['po']:.4f}\")\n\n    print(f\"\\n{'='*60}\")\n    print(f\"{'Benchmark':>12s} {'Models':>6s} {'Items':>6s} {'Pairs':>6s} {'Mean_k':>8s} {'Min_k':>8s} {'Max_k':>8s} {'Fleiss_k':>9s}\")\n    print(\"-\" * 70)\n    for row in summary_rows:\n        bm, nm, ni, np_, mk, mink, maxk, fk = row\n        print(f\"{bm:>12s} {nm:>6d} {ni:>6d} {np_:>6d} {mk:>8.4f} {mink:>8.4f} {maxk:>8.4f} {fk:>9.4f}\")\n\n    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)\n    with open(OUTPUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nSaved to {OUTPUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "4fcdf95c-59bb-4120-80f3-e618b6a0f8f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RRohKqkfqHKqPrBBJhHCu3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2768,
+      "cache_read_input_tokens": 37146,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2768
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T13:37:03.588Z_
+
+<details><summary>↩ Tool result · `toolu_01XjJRqxg4oRzHRZgANPAoyQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8796c40a-db62-4b02-a2e6-7388db576f14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GNn5JUTUesLh9UVXrxQP6R`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python scripts/exp004_cohens_kappa.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "8db6fcb7-d4ed-4b86-b612-6a65775b58c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ee8pgmw2P7dm2PDSVKQZbx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2551,
+      "cache_read_input_tokens": 39914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2551
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T13:37:20.932Z_
+
+<details><summary>↩ Tool result · `toolu_01GNn5JUTUesLh9UVXrxQP6R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nBenchmark: MMLU -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.4606, Min k=0.2409, Max k=0.6115, Fleiss k=0.4558\\n  Lowest 3:\\n         DeepSeek-7B x InternLM2.5-7B    k=0.2409  po=0.6300\\n         DeepSeek-7B x Qwen3-8B          k=0.3402  po=0.6800\\n         DeepSeek-7B x Gemma-2-9B        k=0.3410  po=0.6800\\n  Highest 3:\\n      InternLM2.5-7B x Yi-1.5-9B         k=0.5575  po=0.8150\\n        Llama-3.1-8B x Yi-1.5-9B         k=0.5814  po=0.8250\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6115  po=0.8400\\n\\n============================================================\\nBenchmark: ARC -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3764, Min k=0.0416, Max k=0.7408, Fleiss k=0.3312\\n  Lowest 3:\\n         DeepSeek-7B x Yi-1.5-9B         k=0.0416  po=0.5300\\n          Mistral-7B x Yi-1.5-9B         k=0.0768  po=0.5550\\n          Gemma-2-9B x Yi-1.5-9B         k=0.1185  po=0.5850\\n  Highest 3:\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6020  po=0.8900\\n        Llama-3.1-8B x OLMo-2-7B         k=0.6211  po=0.8750\\n          Gemma-2-9B x Llama-3.1-8B      k=0.7408  po=0.9300\\n\\n============================================================\\nBenchmark: GSM8K -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3346, Min k=0.1165, Max k=0.5897, Fleiss k=0.3092\\n  Lowest 3:\\n         DeepSeek-7B x Qwen3-8B          k=0.1165  po=0.5450\\n          Mistral-7B x Qwen3-8B          k=0.1675  po=0.5650\\n         DeepSeek-7B x InternLM2.5-7B    k=0.1872  po=0.5850\\n  Highest 3:\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.4983  po=0.8050\\n          Gemma-2-9B x Yi-1.5-9B         k=0.5034  po=0.8550\\n          Gemma-2-9B x Llama-3.1-8B      k=0.5897  po=0.8500\\n\\n============================================================\\nBenchmark: HELLASWAG -- 6 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, Qwen3-8B\\nCommon items: 200\\n  Mean k=0.3318, Min k=0.0977, Max k=0.4818, Fleiss k=0.3337\\n  Lowest 3:\\n         DeepSeek-7B x InternLM2.5-7B    k=0.0977  po=0.6200\\n      InternLM2.5-7B x Mistral-7B        k=0.1079  po=0.6650\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.1341  po=0.7000\\n  Highest 3:\\n          Gemma-2-9B x Qwen3-8B          k=0.4707  po=0.7950\\n        Llama-3.1-8B x Mistral-7B        k=0.4713  po=0.7650\\n          Gemma-2-9B x Llama-3.1-8B      k=0.4818  po=0.7850\\n\\n============================================================\\nBenchmark: MATH -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3256, Min k=0.0138, Max k=0.6066, Fleiss k=0.3246\\n  Lowest 3:\\n        Llama-3.1-8B x Mistral-7B        k=0.0138  po=0.6600\\n         DeepSeek-7B x Qwen3-8B          k=0.1415  po=0.5300\\n          Mistral-7B x Yi-1.5-9B         k=0.1592  po=0.6550\\n  Highest 3:\\n          Gemma-2-9B x Yi-1.5-9B         k=0.4788  po=0.7550\\n      InternLM2.5-7B x OLMo-2-7B         k=0.5253  po=0.7750\\n      InternLM2.5-7B x Qwen3-8B          k=0.6066  po=0.8000\\n\\n============================================================\\n   Benchmark Models  Items  Pairs   Mean_k    Min_k    Max_k  Fleiss_k\\n----------------------------------------------------------------------\\n        mmlu      8    200     28   0.4606   0.2409   0.6115    0.4558\\n         arc      8    200     28   0.3764   0.0416   0.7408    0.3312\\n       gsm8k      8    200     28   0.3346   0.1165   0.5897    0.3092\\n   hellaswag      6    200     15   0.3318   0.0977   0.4818    0.3337\\n        math      8    200     28   0.3256   0.0138   0.6066    0.3246\\n\\nSaved to /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 14.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f2c01b65-40b8-42b7-9a0c-4ce04105fca9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\nBenchmark: MMLU -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\\\nCommon items: 200\\\\n  Mean k=0.4606, Min k=0.2409, Max k=0.6115, Fleiss k=0.4558\\\\n  Lowest 3:\\\\n         DeepSeek-7B x InternLM2.5-7B    k=0.2409  po=0.6300\\\\n         DeepSeek-7B x Qwen3-8B          k=0.3402  po=0.6800\\\\n         DeepSeek-7B x Gemma-2-9B        k=0.3410  po=0.6800\\\\n  Highest 3:\\\\n      InternLM2.5-7B x Yi-1.5-9B         k=0.5575  po=0.8150\\\\n        Llama-3.1-8B x Yi-1.5-9B         k=0.5814  po=0.8250\\\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6115  po=0.8400\\\\n\\\\n============================================================\\\\nBenchmark: ARC -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\\\nCommon items: 200\\\\n  Mean k=0.3764, Min k=0.0416, Max k=0.7408, Fleiss k=0.3312\\\\n  Lowest 3:\\\\n         DeepSeek-7B x Yi-1.5-9B         k=0.0416  po=0.5300\\\\n          Mistral-7B x Yi-1.5-9B         k=0.0768  po=0.5550\\\\n          Gemma-2-9B x Yi-1.5-9B         k=0.1185  po=0.5850\\\\n  Highest 3:\\\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6020  po=0.8900\\\\n        Llama-3.1-8B x OLMo-2-7B         k=0.6211  po=0.8750\\\\n          Gemma-2-9B x Llama-3.1-8B      k=0.7408  po=0.9300\\\\n\\\\n============================================================\\\\nBenchmark: GSM8K -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\\\nCommon items: 200\\\\n  Mean k=0.3346, Min k=0.1165, Max k=0.5897, Fleiss k=0.3092\\\\n  Lowest 3:\\\\n         DeepSeek-7B x Qwen3-8B          k=0.1165  po=0.5450\\\\n          Mistral-7B x Qwen3-8B          k=0.1675  po=0.5650\\\\n         DeepSeek-7B x InternLM2.5-7B    k=0.1872  po=0.5850\\\\n  Highest 3:\\\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.4983  po=0.8050\\\\n          Gemma-2-9B x Yi-1.5-9B         k=0.5034  po=0.8550\\\\n          Gemma-2-9B x Llama-3.1-8B      k=0.5897  po=0.8500\\\\n\\\\n============================================================\\\\nBenchmark: HELLASWAG -- 6 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, Qwen3-8B\\\\nCommon items: 200\\\\n  Mean k=0.3318, Min k=0.0977, Max k=0.4818, Fleiss k=0.3337\\\\n  Lowest 3:\\\\n         DeepSeek-7B x InternLM2.5-7B    k=0.0977  po=0.6200\\\\n      InternLM2.5-7B x Mistral-7B        k=0.1079  po=0.6650\\\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.1341  po=0.7000\\\\n  Highest 3:\\\\n          Gemma-2-9B x Qwen3-8B          k=0.4707  po=0.7950\\\\n        Llama-3.1-8B x Mistral-7B        k=0.4713  po=0.7650\\\\n          Gemma-2-9B x Llama-3.1-8B      k=0.4818  po=0.7850\\\\n\\\\n============================================================\\\\nBenchmark: MATH -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\\\nCommon items: 200\\\\n  Mean k=0.3256, Min k=0.0138, Max k=0.6066, Fleiss k=0.3246\\\\n  Lowest 3:\\\\n        Llama-3.1-8B x Mistral-7B        k=0.0138  po=0.6600\\\\n         DeepSeek-7B x Qwen3-8B          k=0.1415  po=0.5300\\\\n          Mistral-7B x Yi-1.5-9B         k=0.1592  po=0.6550\\\\n  Highest 3:\\\\n          Gemma-2-9B x Yi-1.5-9B         k=0.4788  po=0.7550\\\\n      InternLM2.5-7B x OLMo-2-7B         k=0.5253  po=0.7750\\\\n      InternLM2.5-7B x Qwen3-8B          k=0.6066  po=0.8000\\\\n\\\\n============================================================\\\\n   Benchmark Models  Items  Pairs   Mean_k    Min_k    Max_k  Fleiss_k\\\\n----------------------------------------------------------------------\\\\n        mmlu      8    200     28   0.4606   0.2409   0.6115    0.4558\\\\n         arc      8    200     28   0.3764   0.0416   0.7408    0.3312\\\\n       gsm8k      8    200     28   0.3346   0.1165   0.5897    0.3092\\\\n   hellaswag      6    200     15   0.3318   0.0977   0.4818    0.3337\\\\n        math      8    200     28   0.3256   0.0138   0.6066    0.3246\\\\n\\\\nSaved to /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\nBenchmark: MMLU -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.4606, Min k=0.2409, Max k=0.6115, Fleiss k=0.4558\\n  Lowest 3:\\n         DeepSeek-7B x InternLM2.5-7B    k=0.2409  po=0.6300\\n         DeepSeek-7B x Qwen3-8B          k=0.3402  po=0.6800\\n         DeepSeek-7B x Gemma-2-9B        k=0.3410  po=0.6800\\n  Highest 3:\\n      InternLM2.5-7B x Yi-1.5-9B         k=0.5575  po=0.8150\\n        Llama-3.1-8B x Yi-1.5-9B         k=0.5814  po=0.8250\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6115  po=0.8400\\n\\n============================================================\\nBenchmark: ARC -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3764, Min k=0.0416, Max k=0.7408, Fleiss k=0.3312\\n  Lowest 3:\\n         DeepSeek-7B x Yi-1.5-9B         k=0.0416  po=0.5300\\n          Mistral-7B x Yi-1.5-9B         k=0.0768  po=0.5550\\n          Gemma-2-9B x Yi-1.5-9B         k=0.1185  po=0.5850\\n  Highest 3:\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.6020  po=0.8900\\n        Llama-3.1-8B x OLMo-2-7B         k=0.6211  po=0.8750\\n          Gemma-2-9B x Llama-3.1-8B      k=0.7408  po=0.9300\\n\\n============================================================\\nBenchmark: GSM8K -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3346, Min k=0.1165, Max k=0.5897, Fleiss k=0.3092\\n  Lowest 3:\\n         DeepSeek-7B x Qwen3-8B          k=0.1165  po=0.5450\\n          Mistral-7B x Qwen3-8B          k=0.1675  po=0.5650\\n         DeepSeek-7B x InternLM2.5-7B    k=0.1872  po=0.5850\\n  Highest 3:\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.4983  po=0.8050\\n          Gemma-2-9B x Yi-1.5-9B         k=0.5034  po=0.8550\\n          Gemma-2-9B x Llama-3.1-8B      k=0.5897  po=0.8500\\n\\n============================================================\\nBenchmark: HELLASWAG -- 6 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, Qwen3-8B\\nCommon items: 200\\n  Mean k=0.3318, Min k=0.0977, Max k=0.4818, Fleiss k=0.3337\\n  Lowest 3:\\n         DeepSeek-7B x InternLM2.5-7B    k=0.0977  po=0.6200\\n      InternLM2.5-7B x Mistral-7B        k=0.1079  po=0.6650\\n      InternLM2.5-7B x Llama-3.1-8B      k=0.1341  po=0.7000\\n  Highest 3:\\n          Gemma-2-9B x Qwen3-8B          k=0.4707  po=0.7950\\n        Llama-3.1-8B x Mistral-7B        k=0.4713  po=0.7650\\n          Gemma-2-9B x Llama-3.1-8B      k=0.4818  po=0.7850\\n\\n============================================================\\nBenchmark: MATH -- 8 models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\\nCommon items: 200\\n  Mean k=0.3256, Min k=0.0138, Max k=0.6066, Fleiss k=0.3246\\n  Lowest 3:\\n        Llama-3.1-8B x Mistral-7B        k=0.0138  po=0.6600\\n         DeepSeek-7B x Qwen3-8B          k=0.1415  po=0.5300\\n          Mistral-7B x Yi-1.5-9B         k=0.1592  po=0.6550\\n  Highest 3:\\n          Gemma-2-9B x Yi-1.5-9B         k=0.4788  po=0.7550\\n      InternLM2.5-7B x OLMo-2-7B         k=0.5253  po=0.7750\\n      InternLM2.5-7B x Qwen3-8B          k=0.6066  po=0.8000\\n\\n============================================================\\n   Benchmark Models  Items  Pairs   Mean_k    Min_k    Max_k  Fleiss_k\\n----------------------------------------------------------------------\\n        mmlu      8    200     28   0.4606   0.2409   0.6115    0.4558\\n         arc      8    200     28   0.3764   0.0416   0.7408    0.3312\\n       gsm8k      8    200     28   0.3346   0.1165   0.5897    0.3092\\n   hellaswag      6    200     15   0.3318   0.0977   0.4818    0.3337\\n        math      8    200     28   0.3256   0.0138   0.6066    0.3246\\n\\nSaved to /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 14.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+Script ran successfully. Now let me pull the JSON result to local.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "220736ac-d04c-401c-876f-f520747e0808",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJtJ5CELSXjvk28ZnT2Ern",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 42465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GJbAnK6VEtz7psX2KpeZrj`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "6da0b357-0add-4afd-91ab-d1dd0230ef4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJtJ5CELSXjvk28ZnT2Ern",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2251,
+      "cache_read_input_tokens": 42465,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2251
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-22T13:37:25.955Z_
+
+<details><summary>↩ Tool result · `toolu_01GJbAnK6VEtz7psX2KpeZrj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cohen's kappa\\\",\\n  \\\"condition\\\": \\\"baseline (T=0, P=1, S=42, O=1)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_models\\\": 8,\\n      \\\"n_pairs\\\": 28,\\n      \\\"n_items\\\": 200,\\n      \\\"mean_kappa\\\": 0.4606,\\n      \\\"min_kappa\\\": 0.2409,\\n      \\\"max_kappa\\\": 0.6115,\\n      \\\"fleiss_kappa\\\": 0.4558,\\n      \\\"pairs\\\": [\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2409,\\n          \\\"po\\\": 0.63,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3402,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.341,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5144\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.3447,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3714,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5625\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3964,\\n          \\\"po\\\": 0.745,\\n          \\\"pe\\\": 0.5775\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4078,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4255,\\n          \\\"po\\\": 0.72,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4312,\\n          \\\"po\\\": 0.75,\\n          \\\"pe\\\": 0.5605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4416,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5075\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4573,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5117\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4658,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5975\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.471,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5936\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4749,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4886,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.56\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4903,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5487\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.62\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5014,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5388\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5056,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5183,\\n          \\\"po\\\": 0.795,\\n          \\\"pe\\\": 0.5744\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": \\n\\n... [截断: 输出过长，省略 14035 字符] ...\\n\\n,\\n          \\\"po\\\": 0.64,\\n          \\\"pe\\\": 0.5448\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.2108,\\n          \\\"po\\\": 0.57,\\n          \\\"pe\\\": 0.4552\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.2256,\\n          \\\"po\\\": 0.74,\\n          \\\"pe\\\": 0.6642\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.2343,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.7518\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.2393,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5794\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2487,\\n          \\\"po\\\": 0.66,\\n          \\\"pe\\\": 0.5474\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.2789,\\n          \\\"po\\\": 0.7,\\n          \\\"pe\\\": 0.5839\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.2965,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5949\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.3092,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.5585\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3198,\\n          \\\"po\\\": 0.64,\\n          \\\"pe\\\": 0.4708\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3232,\\n          \\\"po\\\": 0.755,\\n          \\\"pe\\\": 0.638\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.3304,\\n          \\\"po\\\": 0.7,\\n          \\\"pe\\\": 0.552\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3397,\\n          \\\"po\\\": 0.66,\\n          \\\"pe\\\": 0.485\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.353,\\n          \\\"po\\\": 0.71,\\n          \\\"pe\\\": 0.5517\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3644,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.646\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.384,\\n          \\\"po\\\": 0.71,\\n          \\\"pe\\\": 0.5292\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3943,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.546\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4099,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.4831\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4101,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5169\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.4202,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.474\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4268,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.59\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.464,\\n          \\\"po\\\": 0.74,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4788,\\n          \\\"po\\\": 0.755,\\n          \\\"pe\\\": 0.5299\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5253,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.526\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.6066,\\n          \\\"po\\\": 0.8,\\n          \\\"pe\\\": 0.4915\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "27e23a6e-926c-4b0b-9cc0-ba8ad56e3067",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"Cohen's kappa\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"baseline (T=0, P=1, S=42, O=1)\\\\\\\",\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_models\\\\\\\": 8,\\\\n      \\\\\\\"n_pairs\\\\\\\": 28,\\\\n      \\\\\\\"n_items\\\\\\\": 200,\\\\n      \\\\\\\"mean_kappa\\\\\\\": 0.4606,\\\\n      \\\\\\\"min_kappa\\\\\\\": 0.2409,\\\\n      \\\\\\\"max_kappa\\\\\\\": 0.6115,\\\\n      \\\\\\\"fleiss_kappa\\\\\\\": 0.4558,\\\\n      \\\\\\\"pairs\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2409,\\\\n          \\\\\\\"po\\\\\\\": 0.63,\\\\n          \\\\\\\"pe\\\\\\\": 0.5126\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3402,\\\\n          \\\\\\\"po\\\\\\\": 0.68,\\\\n          \\\\\\\"pe\\\\\\\": 0.515\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.341,\\\\n          \\\\\\\"po\\\\\\\": 0.68,\\\\n          \\\\\\\"pe\\\\\\\": 0.5144\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3447,\\\\n          \\\\\\\"po\\\\\\\": 0.715,\\\\n          \\\\\\\"pe\\\\\\\": 0.5651\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3714,\\\\n          \\\\\\\"po\\\\\\\": 0.725,\\\\n          \\\\\\\"pe\\\\\\\": 0.5625\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3964,\\\\n          \\\\\\\"po\\\\\\\": 0.745,\\\\n          \\\\\\\"pe\\\\\\\": 0.5775\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4078,\\\\n          \\\\\\\"po\\\\\\\": 0.735,\\\\n          \\\\\\\"pe\\\\\\\": 0.5525\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4255,\\\\n          \\\\\\\"po\\\\\\\": 0.72,\\\\n          \\\\\\\"pe\\\\\\\": 0.5126\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4312,\\\\n          \\\\\\\"po\\\\\\\": 0.75,\\\\n          \\\\\\\"pe\\\\\\\": 0.5605\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4416,\\\\n          \\\\\\\"po\\\\\\\": 0.725,\\\\n          \\\\\\\"pe\\\\\\\": 0.5075\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4573,\\\\n          \\\\\\\"po\\\\\\\": 0.735,\\\\n          \\\\\\\"pe\\\\\\\": 0.5117\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4658,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5975\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.471,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5936\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4739,\\\\n          \\\\\\\"po\\\\\\\": 0.79,\\\\n          \\\\\\\"pe\\\\\\\": 0.6008\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4739,\\\\n          \\\\\\\"po\\\\\\\": 0.79,\\\\n          \\\\\\\"pe\\\\\\\": 0.6008\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4749,\\\\n          \\\\\\\"po\\\\\\\": 0.765,\\\\n          \\\\\\\"pe\\\\\\\": 0.5525\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4886,\\\\n          \\\\\\\"po\\\\\\\": 0.775,\\\\n          \\\\\\\"pe\\\\\\\": 0.56\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4903,\\\\n          \\\\\\\"po\\\\\\\": 0.77,\\\\n          \\\\\\\"pe\\\\\\\": 0.5487\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5,\\\\n          \\\\\\\"po\\\\\\\": 0.81,\\\\n          \\\\\\\"pe\\\\\\\": 0.62\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5014,\\\\n          \\\\\\\"po\\\\\\\": 0.77,\\\\n          \\\\\\\"pe\\\\\\\": 0.5388\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5056,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5651\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5183,\\\\n          \\\\\\\"po\\\\\\\": 0.795,\\\\n          \\\\\\\"pe\\\\\\\": 0.5744\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 14035 字符] ...\\\\n\\\\n,\\\\n          \\\\\\\"po\\\\\\\": 0.64,\\\\n          \\\\\\\"pe\\\\\\\": 0.5448\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2108,\\\\n          \\\\\\\"po\\\\\\\": 0.57,\\\\n          \\\\\\\"pe\\\\\\\": 0.4552\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2256,\\\\n          \\\\\\\"po\\\\\\\": 0.74,\\\\n          \\\\\\\"pe\\\\\\\": 0.6642\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2343,\\\\n          \\\\\\\"po\\\\\\\": 0.81,\\\\n          \\\\\\\"pe\\\\\\\": 0.7518\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2393,\\\\n          \\\\\\\"po\\\\\\\": 0.68,\\\\n          \\\\\\\"pe\\\\\\\": 0.5794\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2487,\\\\n          \\\\\\\"po\\\\\\\": 0.66,\\\\n          \\\\\\\"pe\\\\\\\": 0.5474\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2789,\\\\n          \\\\\\\"po\\\\\\\": 0.7,\\\\n          \\\\\\\"pe\\\\\\\": 0.5839\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2965,\\\\n          \\\\\\\"po\\\\\\\": 0.715,\\\\n          \\\\\\\"pe\\\\\\\": 0.5949\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3092,\\\\n          \\\\\\\"po\\\\\\\": 0.695,\\\\n          \\\\\\\"pe\\\\\\\": 0.5585\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3198,\\\\n          \\\\\\\"po\\\\\\\": 0.64,\\\\n          \\\\\\\"pe\\\\\\\": 0.4708\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3232,\\\\n          \\\\\\\"po\\\\\\\": 0.755,\\\\n          \\\\\\\"pe\\\\\\\": 0.638\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3304,\\\\n          \\\\\\\"po\\\\\\\": 0.7,\\\\n          \\\\\\\"pe\\\\\\\": 0.552\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3397,\\\\n          \\\\\\\"po\\\\\\\": 0.66,\\\\n          \\\\\\\"pe\\\\\\\": 0.485\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.353,\\\\n          \\\\\\\"po\\\\\\\": 0.71,\\\\n          \\\\\\\"pe\\\\\\\": 0.5517\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3644,\\\\n          \\\\\\\"po\\\\\\\": 0.775,\\\\n          \\\\\\\"pe\\\\\\\": 0.646\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.384,\\\\n          \\\\\\\"po\\\\\\\": 0.71,\\\\n          \\\\\\\"pe\\\\\\\": 0.5292\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3943,\\\\n          \\\\\\\"po\\\\\\\": 0.725,\\\\n          \\\\\\\"pe\\\\\\\": 0.546\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4099,\\\\n          \\\\\\\"po\\\\\\\": 0.695,\\\\n          \\\\\\\"pe\\\\\\\": 0.4831\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4101,\\\\n          \\\\\\\"po\\\\\\\": 0.715,\\\\n          \\\\\\\"pe\\\\\\\": 0.5169\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4202,\\\\n          \\\\\\\"po\\\\\\\": 0.695,\\\\n          \\\\\\\"pe\\\\\\\": 0.474\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4268,\\\\n          \\\\\\\"po\\\\\\\": 0.765,\\\\n          \\\\\\\"pe\\\\\\\": 0.59\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.464,\\\\n          \\\\\\\"po\\\\\\\": 0.74,\\\\n          \\\\\\\"pe\\\\\\\": 0.515\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4788,\\\\n          \\\\\\\"po\\\\\\\": 0.755,\\\\n          \\\\\\\"pe\\\\\\\": 0.5299\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5253,\\\\n          \\\\\\\"po\\\\\\\": 0.775,\\\\n          \\\\\\\"pe\\\\\\\": 0.526\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.6066,\\\\n          \\\\\\\"po\\\\\\\": 0.8,\\\\n          \\\\\\\"pe\\\\\\\": 0.4915\\\\n        }\\\\n      ]\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cohen's kappa\\\",\\n  \\\"condition\\\": \\\"baseline (T=0, P=1, S=42, O=1)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_models\\\": 8,\\n      \\\"n_pairs\\\": 28,\\n      \\\"n_items\\\": 200,\\n      \\\"mean_kappa\\\": 0.4606,\\n      \\\"min_kappa\\\": 0.2409,\\n      \\\"max_kappa\\\": 0.6115,\\n      \\\"fleiss_kappa\\\": 0.4558,\\n      \\\"pairs\\\": [\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2409,\\n          \\\"po\\\": 0.63,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3402,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.341,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5144\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.3447,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3714,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5625\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3964,\\n          \\\"po\\\": 0.745,\\n          \\\"pe\\\": 0.5775\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4078,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4255,\\n          \\\"po\\\": 0.72,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4312,\\n          \\\"po\\\": 0.75,\\n          \\\"pe\\\": 0.5605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4416,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5075\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4573,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5117\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4658,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5975\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.471,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5936\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4749,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4886,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.56\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4903,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5487\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.62\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5014,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5388\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5056,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5183,\\n          \\\"po\\\": 0.795,\\n          \\\"pe\\\": 0.5744\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": \\n\\n... [截断: 输出过长，省略 14035 字符] ...\\n\\n,\\n          \\\"po\\\": 0.64,\\n          \\\"pe\\\": 0.5448\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.2108,\\n          \\\"po\\\": 0.57,\\n          \\\"pe\\\": 0.4552\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.2256,\\n          \\\"po\\\": 0.74,\\n          \\\"pe\\\": 0.6642\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.2343,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.7518\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.2393,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5794\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2487,\\n          \\\"po\\\": 0.66,\\n          \\\"pe\\\": 0.5474\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.2789,\\n          \\\"po\\\": 0.7,\\n          \\\"pe\\\": 0.5839\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.2965,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5949\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.3092,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.5585\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3198,\\n          \\\"po\\\": 0.64,\\n          \\\"pe\\\": 0.4708\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3232,\\n          \\\"po\\\": 0.755,\\n          \\\"pe\\\": 0.638\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.3304,\\n          \\\"po\\\": 0.7,\\n          \\\"pe\\\": 0.552\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3397,\\n          \\\"po\\\": 0.66,\\n          \\\"pe\\\": 0.485\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.353,\\n          \\\"po\\\": 0.71,\\n          \\\"pe\\\": 0.5517\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3644,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.646\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.384,\\n          \\\"po\\\": 0.71,\\n          \\\"pe\\\": 0.5292\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.3943,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.546\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4099,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.4831\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4101,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5169\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.4202,\\n          \\\"po\\\": 0.695,\\n          \\\"pe\\\": 0.474\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4268,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.59\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.464,\\n          \\\"po\\\": 0.74,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4788,\\n          \\\"po\\\": 0.755,\\n          \\\"pe\\\": 0.5299\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5253,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.526\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.6066,\\n          \\\"po\\\": 0.8,\\n          \\\"pe\\\": 0.4915\\n        }\\n      ]\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the full JSON. Now let me save it locally. The output was truncated in the display but the file on the server has the complete data. Let me copy it locally using scp or just re-read it and write it.
+
+Actually, I should just use Bash to scp the file from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "e755e6e9-b0d0-4f31-b333-33c16d9efa37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYFuDqHkhJ5tDuaPjhrGAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5479,
+      "cache_read_input_tokens": 44716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VNPgFyhbLfrjJM7W9Qs2cS`</summary>
+
+```json
+{
+  "command": "scp connect.westd.seetacloud.com:/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/cohens_kappa_pairwise.json",
+  "description": "Download kappa results JSON from server",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "750be79e-a1ce-4229-9ec3-8a1cf200b206",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MYFuDqHkhJ5tDuaPjhrGAW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5479,
+      "cache_read_input_tokens": 44716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T13:37:35.231Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VNPgFyhbLfrjJM7W9Qs2cS`</summary>
+
+```text
+Exit code 255
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Permission denied, please try again.
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ubuntu@connect.westd.seetacloud.com: Permission denied ().
+scp: Connection closed
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "51a12797-9a88-416f-977e-6deca4ee89e8",
+  "tool_use_result": "Error: Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nubuntu@connect.westd.seetacloud.com: Permission denied ().\r\nscp: Connection closed"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+SCP didn't work. The SSH config probably uses a different approach. Let me read the JSON via the MCP tool and write it locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ef9314ac-d512-4f1f-aa85-e2a45a4a9d32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhQZJ46TSAySxeQmfxpoD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 50195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+SCP failed due to SSH config. I'll read the full JSON via the MCP tool and write locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ca913c37-ada1-4605-980b-8c12ce16415d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhQZJ46TSAySxeQmfxpoD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 50195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01S3Q6wYamzmiYYZTmR1qSLm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "a38076f1-c819-4876-862f-8fdc8a561809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GhQZJ46TSAySxeQmfxpoD1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 400,
+      "cache_read_input_tokens": 50195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 400
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T13:37:39.115Z_
+
+<details><summary>↩ Tool result · `toolu_01S3Q6wYamzmiYYZTmR1qSLm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "6be18bf9-bd96-4177-ac73-9fc37e636a2e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to get the full JSON content from the server and write it locally. Let me use ssh_read_only to cat the file, but it was truncated last time. Let me try reading it in parts or use a different approach.
+
+Actually, let me just have the server print the JSON to stdout and capture it. The truncation was in the MCP tool display. Let me try reading it with head/tail to get the full content piece by piece. Or better, let me check the file size first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "d7dc1b50-b17d-433b-8f76-08ed61c654b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dqd9PqHKBJBej1MiFJ1uWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 50595,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 604
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R6Q8tktqPyuxh4uxTP9yUQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -c /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "1a5258b2-5f4b-4c8a-ad79-9a4794fd0ea7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dqd9PqHKBJBej1MiFJ1uWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 50595,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 604
+      },
+      "output_tokens": 29,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-22T13:37:46.434Z_
+
+<details><summary>↩ Tool result · `toolu_01R6Q8tktqPyuxh4uxTP9yUQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"22035 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "3def030a-457d-4136-abac-8586e6a5ede5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22035 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"22035 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+22KB file. Let me read it in chunks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "56a19b8f-5f47-44f7-a42f-1b37441d878c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy7mm3cqeVPzQzErxo6EGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 51199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 357
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SJ9yFYEG9eV3xkvgZoJMJV`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -200 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "2f92d429-d295-4995-95d1-a29a776aada5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dy7mm3cqeVPzQzErxo6EGd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 357,
+      "cache_read_input_tokens": 51199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 357
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T13:37:50.780Z_
+
+<details><summary>↩ Tool result · `toolu_01SJ9yFYEG9eV3xkvgZoJMJV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cohen's kappa\\\",\\n  \\\"condition\\\": \\\"baseline (T=0, P=1, S=42, O=1)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_models\\\": 8,\\n      \\\"n_pairs\\\": 28,\\n      \\\"n_items\\\": 200,\\n      \\\"mean_kappa\\\": 0.4606,\\n      \\\"min_kappa\\\": 0.2409,\\n      \\\"max_kappa\\\": 0.6115,\\n      \\\"fleiss_kappa\\\": 0.4558,\\n      \\\"pairs\\\": [\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2409,\\n          \\\"po\\\": 0.63,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3402,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.341,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5144\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.3447,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3714,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5625\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3964,\\n          \\\"po\\\": 0.745,\\n          \\\"pe\\\": 0.5775\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4078,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4255,\\n          \\\"po\\\": 0.72,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4312,\\n          \\\"po\\\": 0.75,\\n          \\\"pe\\\": 0.5605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4416,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5075\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4573,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5117\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4658,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5975\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.471,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5936\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4749,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4886,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.56\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4903,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5487\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.62\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5014,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5388\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5056,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5183,\\n          \\\"po\\\": 0.795,\\n          \\\"pe\\\": 0.5744\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.519,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5211,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5093\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5443,\\n          \\\"po\\\": 0.82,\\n          \\\"pe\\\": 0.605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.5575,\\n          \\\"po\\\": 0.815,\\n          \\\"pe\\\": 0.5819\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.5814,\\n          \\\"po\\\": 0.825,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "645b3bb6-aa5a-4894-9fad-fdb8bc98776a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"Cohen's kappa\\\\\\\",\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"baseline (T=0, P=1, S=42, O=1)\\\\\\\",\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_models\\\\\\\": 8,\\\\n      \\\\\\\"n_pairs\\\\\\\": 28,\\\\n      \\\\\\\"n_items\\\\\\\": 200,\\\\n      \\\\\\\"mean_kappa\\\\\\\": 0.4606,\\\\n      \\\\\\\"min_kappa\\\\\\\": 0.2409,\\\\n      \\\\\\\"max_kappa\\\\\\\": 0.6115,\\\\n      \\\\\\\"fleiss_kappa\\\\\\\": 0.4558,\\\\n      \\\\\\\"pairs\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.2409,\\\\n          \\\\\\\"po\\\\\\\": 0.63,\\\\n          \\\\\\\"pe\\\\\\\": 0.5126\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3402,\\\\n          \\\\\\\"po\\\\\\\": 0.68,\\\\n          \\\\\\\"pe\\\\\\\": 0.515\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.341,\\\\n          \\\\\\\"po\\\\\\\": 0.68,\\\\n          \\\\\\\"pe\\\\\\\": 0.5144\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3447,\\\\n          \\\\\\\"po\\\\\\\": 0.715,\\\\n          \\\\\\\"pe\\\\\\\": 0.5651\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3714,\\\\n          \\\\\\\"po\\\\\\\": 0.725,\\\\n          \\\\\\\"pe\\\\\\\": 0.5625\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.3964,\\\\n          \\\\\\\"po\\\\\\\": 0.745,\\\\n          \\\\\\\"pe\\\\\\\": 0.5775\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4078,\\\\n          \\\\\\\"po\\\\\\\": 0.735,\\\\n          \\\\\\\"pe\\\\\\\": 0.5525\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4255,\\\\n          \\\\\\\"po\\\\\\\": 0.72,\\\\n          \\\\\\\"pe\\\\\\\": 0.5126\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4312,\\\\n          \\\\\\\"po\\\\\\\": 0.75,\\\\n          \\\\\\\"pe\\\\\\\": 0.5605\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4416,\\\\n          \\\\\\\"po\\\\\\\": 0.725,\\\\n          \\\\\\\"pe\\\\\\\": 0.5075\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4573,\\\\n          \\\\\\\"po\\\\\\\": 0.735,\\\\n          \\\\\\\"pe\\\\\\\": 0.5117\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4658,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5975\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.471,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5936\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4739,\\\\n          \\\\\\\"po\\\\\\\": 0.79,\\\\n          \\\\\\\"pe\\\\\\\": 0.6008\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4739,\\\\n          \\\\\\\"po\\\\\\\": 0.79,\\\\n          \\\\\\\"pe\\\\\\\": 0.6008\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4749,\\\\n          \\\\\\\"po\\\\\\\": 0.765,\\\\n          \\\\\\\"pe\\\\\\\": 0.5525\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4886,\\\\n          \\\\\\\"po\\\\\\\": 0.775,\\\\n          \\\\\\\"pe\\\\\\\": 0.56\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.4903,\\\\n          \\\\\\\"po\\\\\\\": 0.77,\\\\n          \\\\\\\"pe\\\\\\\": 0.5487\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5,\\\\n          \\\\\\\"po\\\\\\\": 0.81,\\\\n          \\\\\\\"pe\\\\\\\": 0.62\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5014,\\\\n          \\\\\\\"po\\\\\\\": 0.77,\\\\n          \\\\\\\"pe\\\\\\\": 0.5388\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5056,\\\\n          \\\\\\\"po\\\\\\\": 0.785,\\\\n          \\\\\\\"pe\\\\\\\": 0.5651\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5183,\\\\n          \\\\\\\"po\\\\\\\": 0.795,\\\\n          \\\\\\\"pe\\\\\\\": 0.5744\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.519,\\\\n          \\\\\\\"po\\\\\\\": 0.81,\\\\n          \\\\\\\"pe\\\\\\\": 0.605\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Mistral-7B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5211,\\\\n          \\\\\\\"po\\\\\\\": 0.765,\\\\n          \\\\\\\"pe\\\\\\\": 0.5093\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Qwen3-8B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5443,\\\\n          \\\\\\\"po\\\\\\\": 0.82,\\\\n          \\\\\\\"pe\\\\\\\": 0.605\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5575,\\\\n          \\\\\\\"po\\\\\\\": 0.815,\\\\n          \\\\\\\"pe\\\\\\\": 0.5819\\\\n        },\\\\n        {\\\\n          \\\\\\\"model_a\\\\\\\": \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n          \\\\\\\"model_b\\\\\\\": \\\\\\\"Yi-1.5-9B\\\\\\\",\\\\n          \\\\\\\"kappa\\\\\\\": 0.5814,\\\\n          \\\\\\\"po\\\\\\\": 0.825,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"Cohen's kappa\\\",\\n  \\\"condition\\\": \\\"baseline (T=0, P=1, S=42, O=1)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_models\\\": 8,\\n      \\\"n_pairs\\\": 28,\\n      \\\"n_items\\\": 200,\\n      \\\"mean_kappa\\\": 0.4606,\\n      \\\"min_kappa\\\": 0.2409,\\n      \\\"max_kappa\\\": 0.6115,\\n      \\\"fleiss_kappa\\\": 0.4558,\\n      \\\"pairs\\\": [\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.2409,\\n          \\\"po\\\": 0.63,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3402,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.515\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Gemma-2-9B\\\",\\n          \\\"kappa\\\": 0.341,\\n          \\\"po\\\": 0.68,\\n          \\\"pe\\\": 0.5144\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.3447,\\n          \\\"po\\\": 0.715,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3714,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5625\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.3964,\\n          \\\"po\\\": 0.745,\\n          \\\"pe\\\": 0.5775\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4078,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4255,\\n          \\\"po\\\": 0.72,\\n          \\\"pe\\\": 0.5126\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4312,\\n          \\\"po\\\": 0.75,\\n          \\\"pe\\\": 0.5605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4416,\\n          \\\"po\\\": 0.725,\\n          \\\"pe\\\": 0.5075\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4573,\\n          \\\"po\\\": 0.735,\\n          \\\"pe\\\": 0.5117\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Qwen3-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4658,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5975\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.471,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5936\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"kappa\\\": 0.4739,\\n          \\\"po\\\": 0.79,\\n          \\\"pe\\\": 0.6008\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4749,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5525\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.4886,\\n          \\\"po\\\": 0.775,\\n          \\\"pe\\\": 0.56\\n        },\\n        {\\n          \\\"model_a\\\": \\\"OLMo-2-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.4903,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5487\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.62\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Mistral-7B\\\",\\n          \\\"model_b\\\": \\\"OLMo-2-7B\\\",\\n          \\\"kappa\\\": 0.5014,\\n          \\\"po\\\": 0.77,\\n          \\\"pe\\\": 0.5388\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5056,\\n          \\\"po\\\": 0.785,\\n          \\\"pe\\\": 0.5651\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Gemma-2-9B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5183,\\n          \\\"po\\\": 0.795,\\n          \\\"pe\\\": 0.5744\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.519,\\n          \\\"po\\\": 0.81,\\n          \\\"pe\\\": 0.605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"DeepSeek-7B\\\",\\n          \\\"model_b\\\": \\\"Mistral-7B\\\",\\n          \\\"kappa\\\": 0.5211,\\n          \\\"po\\\": 0.765,\\n          \\\"pe\\\": 0.5093\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Qwen3-8B\\\",\\n          \\\"kappa\\\": 0.5443,\\n          \\\"po\\\": 0.82,\\n          \\\"pe\\\": 0.605\\n        },\\n        {\\n          \\\"model_a\\\": \\\"InternLM2.5-7B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.5575,\\n          \\\"po\\\": 0.815,\\n          \\\"pe\\\": 0.5819\\n        },\\n        {\\n          \\\"model_a\\\": \\\"Llama-3.1-8B\\\",\\n          \\\"model_b\\\": \\\"Yi-1.5-9B\\\",\\n          \\\"kappa\\\": 0.5814,\\n          \\\"po\\\": 0.825,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file is too big to read in one head command through MCP. Let me use a different approach - have the server compress the JSON into a single line, or use a Python one-liner to base64 encode it, then decode locally. Actually, the simplest approach would be to have the script on the server also output the JSON to stdout so I can capture it. But even easier - let me just re-run the script with the output path changed, or write the JSON locally by having the server compact-print it.
+
+Actually, let me just use the ssh_execute tool to print a compact version and then write it locally.
+
+
+Actually, I can read the file in chunks using head and tail commands to grab different sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f716f63f-c8e7-4e38-ad16-25404495a301",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaJgkiG3AU3SAfUVufBCBN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3283,
+      "cache_read_input_tokens": 51556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PNSESYgrwiBg31gY22apmY`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "965c3848-f3b1-48a1-94b4-86267d4e4860",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaJgkiG3AU3SAfUVufBCBN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3283,
+      "cache_read_input_tokens": 51556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-22T13:37:58.341Z_
+
+<details><summary>↩ Tool result · `toolu_01PNSESYgrwiBg31gY22apmY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"949 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "16997484-b117-4bad-93cf-06c57acfb40e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"949 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"949 /root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+949 lines. Let me compact it on server and read.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "d0b9a6ef-f7d9-441f-b88f-ccc98e6ef1c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MPzAR86wVM6tHGg33dM1r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 408,
+      "cache_read_input_tokens": 54839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 408
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ebub5WfMph74edm5AU7e2z`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json') as f:\n    data = json.load(f)\n# Write compact version\nwith open('/tmp/kappa_compact.json', 'w') as f:\n    json.dump(data, f, separators=(',', ':'))\nprint('OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "9f59f068-8b58-408d-be44-dd2712d4b7ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018MPzAR86wVM6tHGg33dM1r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 408,
+      "cache_read_input_tokens": 54839,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 408
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T13:38:03.354Z_
+
+<details><summary>↩ Tool result · `toolu_01Ebub5WfMph74edm5AU7e2z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "24317979-f987-4f23-b1e1-2dee417ae6ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015bM6cBe8K3RfE9Dd8Mu4DQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_compact.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "db4f9b04-ccd0-4f1d-aa5c-c82ca6d78bb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsxbMuwWddgc51Z3Wimr6s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 337,
+      "cache_read_input_tokens": 55247,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 337
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T13:38:06.691Z_
+
+<details><summary>↩ Tool result · `toolu_015bM6cBe8K3RfE9Dd8Mu4DQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"method\\\":\\\"Cohen's kappa\\\",\\\"condition\\\":\\\"baseline (T=0, P=1, S=42, O=1)\\\",\\\"benchmarks\\\":{\\\"mmlu\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.4606,\\\"min_kappa\\\":0.2409,\\\"max_kappa\\\":0.6115,\\\"fleiss_kappa\\\":0.4558,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.63,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3402,\\\"po\\\":0.68,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.341,\\\"po\\\":0.68,\\\"pe\\\":0.5144},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3447,\\\"po\\\":0.715,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3714,\\\"po\\\":0.725,\\\"pe\\\":0.5625},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3964,\\\"po\\\":0.745,\\\"pe\\\":0.5775},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4078,\\\"po\\\":0.735,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4255,\\\"po\\\":0.72,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4312,\\\"po\\\":0.75,\\\"pe\\\":0.5605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4416,\\\"po\\\":0.725,\\\"pe\\\":0.5075},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4573,\\\"po\\\":0.735,\\\"pe\\\":0.5117},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4658,\\\"po\\\":0.785,\\\"pe\\\":0.5975},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.471,\\\"po\\\":0.785,\\\"pe\\\":0.5936},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4749,\\\"po\\\":0.765,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4886,\\\"po\\\":0.775,\\\"pe\\\":0.56},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4903,\\\"po\\\":0.77,\\\"pe\\\":0.5487},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5,\\\"po\\\":0.81,\\\"pe\\\":0.62},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5014,\\\"po\\\":0.77,\\\"pe\\\":0.5388},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5056,\\\"po\\\":0.785,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5183,\\\"po\\\":0.795,\\\"pe\\\":0.5744},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.519,\\\"po\\\":0.81,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5211,\\\"po\\\":0.765,\\\"pe\\\":0.5093},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5443,\\\"po\\\":0.82,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5575,\\\"po\\\":0.815,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5814,\\\"po\\\":0.825,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.6115,\\\"po\\\":0.84,\\\"pe\\\":0.5882}]},\\\"arc\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3764,\\\"min_kappa\\\":0.0416,\\\"max_kappa\\\":0.7408,\\\"fleiss_kappa\\\":0.3312,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0416,\\\"po\\\":0.53,\\\"pe\\\":0.5096},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0768,\\\"po\\\":0.555,\\\"pe\\\":0.518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1185,\\\"po\\\":0.585,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1221,\\\"po\\\":0.58,\\\"pe\\\":0.5216},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1412,\\\"po\\\":0.595,\\\"pe\\\":0.5284},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.147,\\\"po\\\":0.595,\\\"pe\\\":0.5252},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1497,\\\"po\\\":0.6,\\\"pe\\\":0.5296},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2647,\\\"po\\\":0.68,\\\"pe\\\":0.5648},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2888,\\\"po\\\":0.705,\\\"pe\\\":0.5852},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2947,\\\"po\\\":0.71,\\\"pe\\\":0.5888},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3089,\\\"po\\\":0.715,\\\"pe\\\":0.5876},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3253,\\\"po\\\":0.775,\\\"pe\\\":0.6665},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.725,\\\"pe\\\":0.5756},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3828,\\\"po\\\":0.79,\\\"pe\\\":0.6597},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"\\n\\n... [截断: 输出过长，省略 3703 字符] ...\\n\\n,\\\"pe\\\":0.6344}]},\\\"hellaswag\\\":{\\\"n_models\\\":6,\\\"n_pairs\\\":15,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3318,\\\"min_kappa\\\":0.0977,\\\"max_kappa\\\":0.4818,\\\"fleiss_kappa\\\":0.3337,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.0977,\\\"po\\\":0.62,\\\"pe\\\":0.5789},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.1079,\\\"po\\\":0.665,\\\"pe\\\":0.6245},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.1341,\\\"po\\\":0.7,\\\"pe\\\":0.6536},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2247,\\\"po\\\":0.77,\\\"pe\\\":0.7034},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2397,\\\"po\\\":0.765,\\\"pe\\\":0.6909},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3384,\\\"po\\\":0.7,\\\"pe\\\":0.5465},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3531,\\\"po\\\":0.695,\\\"pe\\\":0.5285},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3754,\\\"po\\\":0.715,\\\"pe\\\":0.5437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3977,\\\"po\\\":0.72,\\\"pe\\\":0.5352},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4021,\\\"po\\\":0.745,\\\"pe\\\":0.5735},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.42,\\\"po\\\":0.75,\\\"pe\\\":0.569},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4626,\\\"po\\\":0.78,\\\"pe\\\":0.5907},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4707,\\\"po\\\":0.795,\\\"pe\\\":0.6127},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4713,\\\"po\\\":0.765,\\\"pe\\\":0.5555},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4818,\\\"po\\\":0.785,\\\"pe\\\":0.5851}]},\\\"math\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3256,\\\"min_kappa\\\":0.0138,\\\"max_kappa\\\":0.6066,\\\"fleiss_kappa\\\":0.3246,\\\"pairs\\\":[{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.0138,\\\"po\\\":0.66,\\\"pe\\\":0.6552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1415,\\\"po\\\":0.53,\\\"pe\\\":0.4526},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1592,\\\"po\\\":0.655,\\\"pe\\\":0.5897},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2091,\\\"po\\\":0.64,\\\"pe\\\":0.5448},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2108,\\\"po\\\":0.57,\\\"pe\\\":0.4552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.2256,\\\"po\\\":0.74,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2343,\\\"po\\\":0.81,\\\"pe\\\":0.7518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2393,\\\"po\\\":0.68,\\\"pe\\\":0.5794},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2487,\\\"po\\\":0.66,\\\"pe\\\":0.5474},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.2789,\\\"po\\\":0.7,\\\"pe\\\":0.5839},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2965,\\\"po\\\":0.715,\\\"pe\\\":0.5949},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3092,\\\"po\\\":0.695,\\\"pe\\\":0.5585},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3198,\\\"po\\\":0.64,\\\"pe\\\":0.4708},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3232,\\\"po\\\":0.755,\\\"pe\\\":0.638},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3304,\\\"po\\\":0.7,\\\"pe\\\":0.552},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3397,\\\"po\\\":0.66,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.353,\\\"po\\\":0.71,\\\"pe\\\":0.5517},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3644,\\\"po\\\":0.775,\\\"pe\\\":0.646},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.384,\\\"po\\\":0.71,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3943,\\\"po\\\":0.725,\\\"pe\\\":0.546},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4099,\\\"po\\\":0.695,\\\"pe\\\":0.4831},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4101,\\\"po\\\":0.715,\\\"pe\\\":0.5169},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4202,\\\"po\\\":0.695,\\\"pe\\\":0.474},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4268,\\\"po\\\":0.765,\\\"pe\\\":0.59},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.464,\\\"po\\\":0.74,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4788,\\\"po\\\":0.755,\\\"pe\\\":0.5299},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5253,\\\"po\\\":0.775,\\\"pe\\\":0.526},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.6066,\\\"po\\\":0.8,\\\"pe\\\":0.4915}]}}}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f4bab2dc-d531-46aa-99b5-7a6899866fa5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"method\\\\\\\":\\\\\\\"Cohen's kappa\\\\\\\",\\\\\\\"condition\\\\\\\":\\\\\\\"baseline (T=0, P=1, S=42, O=1)\\\\\\\",\\\\\\\"benchmarks\\\\\\\":{\\\\\\\"mmlu\\\\\\\":{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.4606,\\\\\\\"min_kappa\\\\\\\":0.2409,\\\\\\\"max_kappa\\\\\\\":0.6115,\\\\\\\"fleiss_kappa\\\\\\\":0.4558,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2409,\\\\\\\"po\\\\\\\":0.63,\\\\\\\"pe\\\\\\\":0.5126},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3402,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.515},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.341,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5144},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3447,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5651},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3714,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5625},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3964,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.5775},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4078,\\\\\\\"po\\\\\\\":0.735,\\\\\\\"pe\\\\\\\":0.5525},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4255,\\\\\\\"po\\\\\\\":0.72,\\\\\\\"pe\\\\\\\":0.5126},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4312,\\\\\\\"po\\\\\\\":0.75,\\\\\\\"pe\\\\\\\":0.5605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4416,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5075},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4573,\\\\\\\"po\\\\\\\":0.735,\\\\\\\"pe\\\\\\\":0.5117},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4658,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5975},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.471,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5936},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4739,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6008},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4739,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6008},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4749,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5525},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4886,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.56},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4903,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.5487},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.62},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5014,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.5388},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5056,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5651},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5183,\\\\\\\"po\\\\\\\":0.795,\\\\\\\"pe\\\\\\\":0.5744},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.519,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5211,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5093},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5443,\\\\\\\"po\\\\\\\":0.82,\\\\\\\"pe\\\\\\\":0.605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5575,\\\\\\\"po\\\\\\\":0.815,\\\\\\\"pe\\\\\\\":0.5819},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5814,\\\\\\\"po\\\\\\\":0.825,\\\\\\\"pe\\\\\\\":0.5819},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.6115,\\\\\\\"po\\\\\\\":0.84,\\\\\\\"pe\\\\\\\":0.5882}]},\\\\\\\"arc\\\\\\\":{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3764,\\\\\\\"min_kappa\\\\\\\":0.0416,\\\\\\\"max_kappa\\\\\\\":0.7408,\\\\\\\"fleiss_kappa\\\\\\\":0.3312,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0416,\\\\\\\"po\\\\\\\":0.53,\\\\\\\"pe\\\\\\\":0.5096},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0768,\\\\\\\"po\\\\\\\":0.555,\\\\\\\"pe\\\\\\\":0.518},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1185,\\\\\\\"po\\\\\\\":0.585,\\\\\\\"pe\\\\\\\":0.5292},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1221,\\\\\\\"po\\\\\\\":0.58,\\\\\\\"pe\\\\\\\":0.5216},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1412,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.5284},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.147,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.5252},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1497,\\\\\\\"po\\\\\\\":0.6,\\\\\\\"pe\\\\\\\":0.5296},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2647,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5648},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2888,\\\\\\\"po\\\\\\\":0.705,\\\\\\\"pe\\\\\\\":0.5852},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2947,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5888},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3089,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5876},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3253,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.6665},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.352,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5756},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3828,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6597},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 3703 字符] ...\\\\n\\\\n,\\\\\\\"pe\\\\\\\":0.6344}]},\\\\\\\"hellaswag\\\\\\\":{\\\\\\\"n_models\\\\\\\":6,\\\\\\\"n_pairs\\\\\\\":15,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3318,\\\\\\\"min_kappa\\\\\\\":0.0977,\\\\\\\"max_kappa\\\\\\\":0.4818,\\\\\\\"fleiss_kappa\\\\\\\":0.3337,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0977,\\\\\\\"po\\\\\\\":0.62,\\\\\\\"pe\\\\\\\":0.5789},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1079,\\\\\\\"po\\\\\\\":0.665,\\\\\\\"pe\\\\\\\":0.6245},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1341,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.6536},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2247,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.7034},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2397,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.6909},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3384,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.5465},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3531,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.5285},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3754,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5437},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3977,\\\\\\\"po\\\\\\\":0.72,\\\\\\\"pe\\\\\\\":0.5352},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4021,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.5735},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.42,\\\\\\\"po\\\\\\\":0.75,\\\\\\\"pe\\\\\\\":0.569},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4626,\\\\\\\"po\\\\\\\":0.78,\\\\\\\"pe\\\\\\\":0.5907},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4707,\\\\\\\"po\\\\\\\":0.795,\\\\\\\"pe\\\\\\\":0.6127},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4713,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5555},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4818,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5851}]},\\\\\\\"math\\\\\\\":{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3256,\\\\\\\"min_kappa\\\\\\\":0.0138,\\\\\\\"max_kappa\\\\\\\":0.6066,\\\\\\\"fleiss_kappa\\\\\\\":0.3246,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0138,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.6552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1415,\\\\\\\"po\\\\\\\":0.53,\\\\\\\"pe\\\\\\\":0.4526},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1592,\\\\\\\"po\\\\\\\":0.655,\\\\\\\"pe\\\\\\\":0.5897},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2091,\\\\\\\"po\\\\\\\":0.64,\\\\\\\"pe\\\\\\\":0.5448},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2108,\\\\\\\"po\\\\\\\":0.57,\\\\\\\"pe\\\\\\\":0.4552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2256,\\\\\\\"po\\\\\\\":0.74,\\\\\\\"pe\\\\\\\":0.6642},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2343,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.7518},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2393,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5794},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2487,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.5474},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2789,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.5839},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2965,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5949},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3092,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.5585},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3198,\\\\\\\"po\\\\\\\":0.64,\\\\\\\"pe\\\\\\\":0.4708},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3232,\\\\\\\"po\\\\\\\":0.755,\\\\\\\"pe\\\\\\\":0.638},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3304,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3397,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.485},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.353,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5517},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3644,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.646},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.384,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5292},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3943,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.546},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4099,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.4831},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4101,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5169},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4202,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.474},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4268,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.59},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.464,\\\\\\\"po\\\\\\\":0.74,\\\\\\\"pe\\\\\\\":0.515},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4788,\\\\\\\"po\\\\\\\":0.755,\\\\\\\"pe\\\\\\\":0.5299},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5253,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.526},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.6066,\\\\\\\"po\\\\\\\":0.8,\\\\\\\"pe\\\\\\\":0.4915}]}}}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"method\\\":\\\"Cohen's kappa\\\",\\\"condition\\\":\\\"baseline (T=0, P=1, S=42, O=1)\\\",\\\"benchmarks\\\":{\\\"mmlu\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.4606,\\\"min_kappa\\\":0.2409,\\\"max_kappa\\\":0.6115,\\\"fleiss_kappa\\\":0.4558,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.63,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3402,\\\"po\\\":0.68,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.341,\\\"po\\\":0.68,\\\"pe\\\":0.5144},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3447,\\\"po\\\":0.715,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3714,\\\"po\\\":0.725,\\\"pe\\\":0.5625},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3964,\\\"po\\\":0.745,\\\"pe\\\":0.5775},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4078,\\\"po\\\":0.735,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4255,\\\"po\\\":0.72,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4312,\\\"po\\\":0.75,\\\"pe\\\":0.5605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4416,\\\"po\\\":0.725,\\\"pe\\\":0.5075},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4573,\\\"po\\\":0.735,\\\"pe\\\":0.5117},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4658,\\\"po\\\":0.785,\\\"pe\\\":0.5975},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.471,\\\"po\\\":0.785,\\\"pe\\\":0.5936},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4749,\\\"po\\\":0.765,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4886,\\\"po\\\":0.775,\\\"pe\\\":0.56},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4903,\\\"po\\\":0.77,\\\"pe\\\":0.5487},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5,\\\"po\\\":0.81,\\\"pe\\\":0.62},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5014,\\\"po\\\":0.77,\\\"pe\\\":0.5388},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5056,\\\"po\\\":0.785,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5183,\\\"po\\\":0.795,\\\"pe\\\":0.5744},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.519,\\\"po\\\":0.81,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5211,\\\"po\\\":0.765,\\\"pe\\\":0.5093},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5443,\\\"po\\\":0.82,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5575,\\\"po\\\":0.815,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5814,\\\"po\\\":0.825,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.6115,\\\"po\\\":0.84,\\\"pe\\\":0.5882}]},\\\"arc\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3764,\\\"min_kappa\\\":0.0416,\\\"max_kappa\\\":0.7408,\\\"fleiss_kappa\\\":0.3312,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0416,\\\"po\\\":0.53,\\\"pe\\\":0.5096},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0768,\\\"po\\\":0.555,\\\"pe\\\":0.518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1185,\\\"po\\\":0.585,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1221,\\\"po\\\":0.58,\\\"pe\\\":0.5216},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1412,\\\"po\\\":0.595,\\\"pe\\\":0.5284},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.147,\\\"po\\\":0.595,\\\"pe\\\":0.5252},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1497,\\\"po\\\":0.6,\\\"pe\\\":0.5296},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2647,\\\"po\\\":0.68,\\\"pe\\\":0.5648},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2888,\\\"po\\\":0.705,\\\"pe\\\":0.5852},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2947,\\\"po\\\":0.71,\\\"pe\\\":0.5888},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3089,\\\"po\\\":0.715,\\\"pe\\\":0.5876},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3253,\\\"po\\\":0.775,\\\"pe\\\":0.6665},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.725,\\\"pe\\\":0.5756},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3828,\\\"po\\\":0.79,\\\"pe\\\":0.6597},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"\\n\\n... [截断: 输出过长，省略 3703 字符] ...\\n\\n,\\\"pe\\\":0.6344}]},\\\"hellaswag\\\":{\\\"n_models\\\":6,\\\"n_pairs\\\":15,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3318,\\\"min_kappa\\\":0.0977,\\\"max_kappa\\\":0.4818,\\\"fleiss_kappa\\\":0.3337,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.0977,\\\"po\\\":0.62,\\\"pe\\\":0.5789},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.1079,\\\"po\\\":0.665,\\\"pe\\\":0.6245},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.1341,\\\"po\\\":0.7,\\\"pe\\\":0.6536},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2247,\\\"po\\\":0.77,\\\"pe\\\":0.7034},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2397,\\\"po\\\":0.765,\\\"pe\\\":0.6909},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3384,\\\"po\\\":0.7,\\\"pe\\\":0.5465},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3531,\\\"po\\\":0.695,\\\"pe\\\":0.5285},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3754,\\\"po\\\":0.715,\\\"pe\\\":0.5437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3977,\\\"po\\\":0.72,\\\"pe\\\":0.5352},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4021,\\\"po\\\":0.745,\\\"pe\\\":0.5735},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.42,\\\"po\\\":0.75,\\\"pe\\\":0.569},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4626,\\\"po\\\":0.78,\\\"pe\\\":0.5907},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4707,\\\"po\\\":0.795,\\\"pe\\\":0.6127},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4713,\\\"po\\\":0.765,\\\"pe\\\":0.5555},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4818,\\\"po\\\":0.785,\\\"pe\\\":0.5851}]},\\\"math\\\":{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3256,\\\"min_kappa\\\":0.0138,\\\"max_kappa\\\":0.6066,\\\"fleiss_kappa\\\":0.3246,\\\"pairs\\\":[{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.0138,\\\"po\\\":0.66,\\\"pe\\\":0.6552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1415,\\\"po\\\":0.53,\\\"pe\\\":0.4526},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1592,\\\"po\\\":0.655,\\\"pe\\\":0.5897},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2091,\\\"po\\\":0.64,\\\"pe\\\":0.5448},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2108,\\\"po\\\":0.57,\\\"pe\\\":0.4552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.2256,\\\"po\\\":0.74,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2343,\\\"po\\\":0.81,\\\"pe\\\":0.7518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2393,\\\"po\\\":0.68,\\\"pe\\\":0.5794},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2487,\\\"po\\\":0.66,\\\"pe\\\":0.5474},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.2789,\\\"po\\\":0.7,\\\"pe\\\":0.5839},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2965,\\\"po\\\":0.715,\\\"pe\\\":0.5949},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3092,\\\"po\\\":0.695,\\\"pe\\\":0.5585},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3198,\\\"po\\\":0.64,\\\"pe\\\":0.4708},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3232,\\\"po\\\":0.755,\\\"pe\\\":0.638},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3304,\\\"po\\\":0.7,\\\"pe\\\":0.552},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3397,\\\"po\\\":0.66,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.353,\\\"po\\\":0.71,\\\"pe\\\":0.5517},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3644,\\\"po\\\":0.775,\\\"pe\\\":0.646},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.384,\\\"po\\\":0.71,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3943,\\\"po\\\":0.725,\\\"pe\\\":0.546},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4099,\\\"po\\\":0.695,\\\"pe\\\":0.4831},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4101,\\\"po\\\":0.715,\\\"pe\\\":0.5169},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4202,\\\"po\\\":0.695,\\\"pe\\\":0.474},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4268,\\\"po\\\":0.765,\\\"pe\\\":0.59},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.464,\\\"po\\\":0.74,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4788,\\\"po\\\":0.755,\\\"pe\\\":0.5299},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5253,\\\"po\\\":0.775,\\\"pe\\\":0.526},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.6066,\\\"po\\\":0.8,\\\"pe\\\":0.4915}]}}}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the full compact JSON. But the MCP tool output shows it was truncated in the middle for `arc`. Let me check... actually, looking at the output more carefully, I see `... [截断: 输出过长，省略 3703 字符] ...` - this means 3703 characters were truncated. The output includes mmlu, then arc (truncated), then hellaswag and math fully. So the gsm8k section was in the truncated part.
+
+I need to get the full data. Let me split the read into parts. Or better, let me write a script that splits the JSON per benchmark and reads each one separately.
+
+
+Actually, I'm thinking through different approaches here. I could have the server write individual benchmark JSONs and read each one separately, or maybe have it output the pretty-printed version in chunks. But the simplest approach would be to modify the Python script to write the file somewhere accessible, though that won't work since the local and server are different machines. Let me try reconstructing the JSON from the summary data I already have plus reading the truncated parts separately. Actually, the better approach is to have the server split the output and read it in parts - I could try using head -c to get specific byte ranges from the compact JSON.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "560b0dda-4547-45f8-b089-9cf40d4cc71a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgKovCMWRy5FYDRN3RRJ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 55584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+The output got truncated. Let me read the middle section (the `arc` and `gsm8k` parts).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ff99bee9-cfab-4319-8a10-a7d8d3ec77cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgKovCMWRy5FYDRN3RRJ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 55584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_012oe4A9LoD9SwSjyyGK48gq`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nwith open('/root/nlp_variance_gtheory/results/exp004_8model_analysis/cohens_kappa_pairwise.json') as f:\n    data = json.load(f)\n# Split into per-benchmark files\nfor bm in ['mmlu','arc','gsm8k','hellaswag','math']:\n    with open(f'/tmp/kappa_{bm}.json', 'w') as f:\n        json.dump(data['benchmarks'][bm], f, separators=(',', ':'))\nprint('Split OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "1db5bce4-6c72-49b9-9c95-1c87cbe45c1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgKovCMWRy5FYDRN3RRJ9a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6603,
+      "cache_read_input_tokens": 55584,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6603
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T13:38:21.803Z_
+
+<details><summary>↩ Tool result · `toolu_012oe4A9LoD9SwSjyyGK48gq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Split OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "12d368d0-0192-46c1-a124-2d6f30b1d434",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Split OK\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Split OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RfujRXqKQeeqTTTebtFnHf`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_arc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "60918954-dd18-4e8d-88ee-3bc32d06d75f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuezQv84g8pi7eWuYxanHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 62187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XRhAZQyUDQcuZ8tQy6WUMc`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_gsm8k.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "d3b86136-c170-491a-b6db-3a23ab49185d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuezQv84g8pi7eWuYxanHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 703,
+      "cache_read_input_tokens": 62187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 703
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-22T13:38:25.461Z_
+
+<details><summary>↩ Tool result · `toolu_01RfujRXqKQeeqTTTebtFnHf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3764,\\\"min_kappa\\\":0.0416,\\\"max_kappa\\\":0.7408,\\\"fleiss_kappa\\\":0.3312,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0416,\\\"po\\\":0.53,\\\"pe\\\":0.5096},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0768,\\\"po\\\":0.555,\\\"pe\\\":0.518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1185,\\\"po\\\":0.585,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1221,\\\"po\\\":0.58,\\\"pe\\\":0.5216},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1412,\\\"po\\\":0.595,\\\"pe\\\":0.5284},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.147,\\\"po\\\":0.595,\\\"pe\\\":0.5252},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1497,\\\"po\\\":0.6,\\\"pe\\\":0.5296},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2647,\\\"po\\\":0.68,\\\"pe\\\":0.5648},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2888,\\\"po\\\":0.705,\\\"pe\\\":0.5852},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2947,\\\"po\\\":0.71,\\\"pe\\\":0.5888},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3089,\\\"po\\\":0.715,\\\"pe\\\":0.5876},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3253,\\\"po\\\":0.775,\\\"pe\\\":0.6665},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.725,\\\"pe\\\":0.5756},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3828,\\\"po\\\":0.79,\\\"pe\\\":0.6597},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4283,\\\"po\\\":0.745,\\\"pe\\\":0.554},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.432,\\\"po\\\":0.785,\\\"pe\\\":0.6215},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4341,\\\"po\\\":0.81,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4883,\\\"po\\\":0.845,\\\"pe\\\":0.6971},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4976,\\\"po\\\":0.82,\\\"pe\\\":0.6417},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5003,\\\"po\\\":0.85,\\\"pe\\\":0.6998},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5154,\\\"po\\\":0.885,\\\"pe\\\":0.7627},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5317,\\\"po\\\":0.875,\\\"pe\\\":0.7331},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5621,\\\"po\\\":0.865,\\\"pe\\\":0.6917},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.5848,\\\"po\\\":0.9,\\\"pe\\\":0.7591},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5868,\\\"po\\\":0.905,\\\"pe\\\":0.7701},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.602,\\\"po\\\":0.89,\\\"pe\\\":0.7236},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.6211,\\\"po\\\":0.875,\\\"pe\\\":0.6701},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.7408,\\\"po\\\":0.93,\\\"pe\\\":0.7299}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "7350a75e-bb59-4edc-8b71-be1dacfa2388",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3764,\\\\\\\"min_kappa\\\\\\\":0.0416,\\\\\\\"max_kappa\\\\\\\":0.7408,\\\\\\\"fleiss_kappa\\\\\\\":0.3312,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0416,\\\\\\\"po\\\\\\\":0.53,\\\\\\\"pe\\\\\\\":0.5096},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0768,\\\\\\\"po\\\\\\\":0.555,\\\\\\\"pe\\\\\\\":0.518},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1185,\\\\\\\"po\\\\\\\":0.585,\\\\\\\"pe\\\\\\\":0.5292},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1221,\\\\\\\"po\\\\\\\":0.58,\\\\\\\"pe\\\\\\\":0.5216},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1412,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.5284},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.147,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.5252},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1497,\\\\\\\"po\\\\\\\":0.6,\\\\\\\"pe\\\\\\\":0.5296},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2647,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5648},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2888,\\\\\\\"po\\\\\\\":0.705,\\\\\\\"pe\\\\\\\":0.5852},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2947,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5888},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3089,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5876},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3253,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.6665},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.352,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5756},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3828,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6597},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4283,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.554},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.432,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.6215},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4341,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.6642},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4883,\\\\\\\"po\\\\\\\":0.845,\\\\\\\"pe\\\\\\\":0.6971},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4976,\\\\\\\"po\\\\\\\":0.82,\\\\\\\"pe\\\\\\\":0.6417},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5003,\\\\\\\"po\\\\\\\":0.85,\\\\\\\"pe\\\\\\\":0.6998},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5154,\\\\\\\"po\\\\\\\":0.885,\\\\\\\"pe\\\\\\\":0.7627},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5317,\\\\\\\"po\\\\\\\":0.875,\\\\\\\"pe\\\\\\\":0.7331},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5621,\\\\\\\"po\\\\\\\":0.865,\\\\\\\"pe\\\\\\\":0.6917},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5848,\\\\\\\"po\\\\\\\":0.9,\\\\\\\"pe\\\\\\\":0.7591},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5868,\\\\\\\"po\\\\\\\":0.905,\\\\\\\"pe\\\\\\\":0.7701},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.602,\\\\\\\"po\\\\\\\":0.89,\\\\\\\"pe\\\\\\\":0.7236},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.6211,\\\\\\\"po\\\\\\\":0.875,\\\\\\\"pe\\\\\\\":0.6701},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.7408,\\\\\\\"po\\\\\\\":0.93,\\\\\\\"pe\\\\\\\":0.7299}]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3764,\\\"min_kappa\\\":0.0416,\\\"max_kappa\\\":0.7408,\\\"fleiss_kappa\\\":0.3312,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0416,\\\"po\\\":0.53,\\\"pe\\\":0.5096},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0768,\\\"po\\\":0.555,\\\"pe\\\":0.518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1185,\\\"po\\\":0.585,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1221,\\\"po\\\":0.58,\\\"pe\\\":0.5216},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1412,\\\"po\\\":0.595,\\\"pe\\\":0.5284},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.147,\\\"po\\\":0.595,\\\"pe\\\":0.5252},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1497,\\\"po\\\":0.6,\\\"pe\\\":0.5296},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2647,\\\"po\\\":0.68,\\\"pe\\\":0.5648},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2888,\\\"po\\\":0.705,\\\"pe\\\":0.5852},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2947,\\\"po\\\":0.71,\\\"pe\\\":0.5888},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3089,\\\"po\\\":0.715,\\\"pe\\\":0.5876},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3253,\\\"po\\\":0.775,\\\"pe\\\":0.6665},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.725,\\\"pe\\\":0.5756},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3828,\\\"po\\\":0.79,\\\"pe\\\":0.6597},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4283,\\\"po\\\":0.745,\\\"pe\\\":0.554},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.432,\\\"po\\\":0.785,\\\"pe\\\":0.6215},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4341,\\\"po\\\":0.81,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4883,\\\"po\\\":0.845,\\\"pe\\\":0.6971},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4976,\\\"po\\\":0.82,\\\"pe\\\":0.6417},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5003,\\\"po\\\":0.85,\\\"pe\\\":0.6998},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5154,\\\"po\\\":0.885,\\\"pe\\\":0.7627},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5317,\\\"po\\\":0.875,\\\"pe\\\":0.7331},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5621,\\\"po\\\":0.865,\\\"pe\\\":0.6917},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.5848,\\\"po\\\":0.9,\\\"pe\\\":0.7591},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5868,\\\"po\\\":0.905,\\\"pe\\\":0.7701},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.602,\\\"po\\\":0.89,\\\"pe\\\":0.7236},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.6211,\\\"po\\\":0.875,\\\"pe\\\":0.6701},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.7408,\\\"po\\\":0.93,\\\"pe\\\":0.7299}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-22T13:38:25.991Z_
+
+<details><summary>↩ Tool result · `toolu_01XRhAZQyUDQcuZ8tQy6WUMc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3346,\\\"min_kappa\\\":0.1165,\\\"max_kappa\\\":0.5897,\\\"fleiss_kappa\\\":0.3092,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1165,\\\"po\\\":0.545,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1675,\\\"po\\\":0.565,\\\"pe\\\":0.4775},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.1872,\\\"po\\\":0.585,\\\"pe\\\":0.4894},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2105,\\\"po\\\":0.595,\\\"pe\\\":0.487},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2145,\\\"po\\\":0.6,\\\"pe\\\":0.4908},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2204,\\\"po\\\":0.595,\\\"pe\\\":0.4805},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2214,\\\"po\\\":0.745,\\\"pe\\\":0.6725},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2296,\\\"po\\\":0.6,\\\"pe\\\":0.4808},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.61,\\\"pe\\\":0.4862},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2731,\\\"po\\\":0.625,\\\"pe\\\":0.4841},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2914,\\\"po\\\":0.75,\\\"pe\\\":0.6472},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.298,\\\"po\\\":0.64,\\\"pe\\\":0.4872},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3431,\\\"po\\\":0.775,\\\"pe\\\":0.6575},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.755,\\\"pe\\\":0.6219},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3562,\\\"po\\\":0.67,\\\"pe\\\":0.4874},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3693,\\\"po\\\":0.81,\\\"pe\\\":0.6988},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.381,\\\"po\\\":0.775,\\\"pe\\\":0.6365},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3866,\\\"po\\\":0.785,\\\"pe\\\":0.6495},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3898,\\\"po\\\":0.8,\\\"pe\\\":0.6722},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3902,\\\"po\\\":0.69,\\\"pe\\\":0.4916},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4038,\\\"po\\\":0.845,\\\"pe\\\":0.74},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4146,\\\"po\\\":0.85,\\\"pe\\\":0.7437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4186,\\\"po\\\":0.71,\\\"pe\\\":0.5012},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4298,\\\"po\\\":0.77,\\\"pe\\\":0.5966},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4703,\\\"po\\\":0.825,\\\"pe\\\":0.6696},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4983,\\\"po\\\":0.805,\\\"pe\\\":0.6113},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5034,\\\"po\\\":0.855,\\\"pe\\\":0.708},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.5897,\\\"po\\\":0.85,\\\"pe\\\":0.6344}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "e58bc403-a158-430a-ab8b-9b6d86e3d47e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3346,\\\\\\\"min_kappa\\\\\\\":0.1165,\\\\\\\"max_kappa\\\\\\\":0.5897,\\\\\\\"fleiss_kappa\\\\\\\":0.3092,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1165,\\\\\\\"po\\\\\\\":0.545,\\\\\\\"pe\\\\\\\":0.485},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1675,\\\\\\\"po\\\\\\\":0.565,\\\\\\\"pe\\\\\\\":0.4775},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1872,\\\\\\\"po\\\\\\\":0.585,\\\\\\\"pe\\\\\\\":0.4894},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2105,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.487},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2145,\\\\\\\"po\\\\\\\":0.6,\\\\\\\"pe\\\\\\\":0.4908},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2204,\\\\\\\"po\\\\\\\":0.595,\\\\\\\"pe\\\\\\\":0.4805},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2214,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.6725},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2296,\\\\\\\"po\\\\\\\":0.6,\\\\\\\"pe\\\\\\\":0.4808},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2409,\\\\\\\"po\\\\\\\":0.61,\\\\\\\"pe\\\\\\\":0.4862},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2731,\\\\\\\"po\\\\\\\":0.625,\\\\\\\"pe\\\\\\\":0.4841},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2914,\\\\\\\"po\\\\\\\":0.75,\\\\\\\"pe\\\\\\\":0.6472},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.298,\\\\\\\"po\\\\\\\":0.64,\\\\\\\"pe\\\\\\\":0.4872},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3431,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.6575},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.352,\\\\\\\"po\\\\\\\":0.755,\\\\\\\"pe\\\\\\\":0.6219},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3562,\\\\\\\"po\\\\\\\":0.67,\\\\\\\"pe\\\\\\\":0.4874},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3693,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.6988},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.381,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.6365},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3866,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.6495},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3898,\\\\\\\"po\\\\\\\":0.8,\\\\\\\"pe\\\\\\\":0.6722},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3902,\\\\\\\"po\\\\\\\":0.69,\\\\\\\"pe\\\\\\\":0.4916},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4038,\\\\\\\"po\\\\\\\":0.845,\\\\\\\"pe\\\\\\\":0.74},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4146,\\\\\\\"po\\\\\\\":0.85,\\\\\\\"pe\\\\\\\":0.7437},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4186,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5012},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4298,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.5966},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4703,\\\\\\\"po\\\\\\\":0.825,\\\\\\\"pe\\\\\\\":0.6696},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4983,\\\\\\\"po\\\\\\\":0.805,\\\\\\\"pe\\\\\\\":0.6113},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5034,\\\\\\\"po\\\\\\\":0.855,\\\\\\\"pe\\\\\\\":0.708},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5897,\\\\\\\"po\\\\\\\":0.85,\\\\\\\"pe\\\\\\\":0.6344}]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3346,\\\"min_kappa\\\":0.1165,\\\"max_kappa\\\":0.5897,\\\"fleiss_kappa\\\":0.3092,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1165,\\\"po\\\":0.545,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1675,\\\"po\\\":0.565,\\\"pe\\\":0.4775},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.1872,\\\"po\\\":0.585,\\\"pe\\\":0.4894},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2105,\\\"po\\\":0.595,\\\"pe\\\":0.487},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2145,\\\"po\\\":0.6,\\\"pe\\\":0.4908},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2204,\\\"po\\\":0.595,\\\"pe\\\":0.4805},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2214,\\\"po\\\":0.745,\\\"pe\\\":0.6725},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2296,\\\"po\\\":0.6,\\\"pe\\\":0.4808},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.61,\\\"pe\\\":0.4862},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2731,\\\"po\\\":0.625,\\\"pe\\\":0.4841},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2914,\\\"po\\\":0.75,\\\"pe\\\":0.6472},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.298,\\\"po\\\":0.64,\\\"pe\\\":0.4872},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3431,\\\"po\\\":0.775,\\\"pe\\\":0.6575},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.755,\\\"pe\\\":0.6219},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3562,\\\"po\\\":0.67,\\\"pe\\\":0.4874},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3693,\\\"po\\\":0.81,\\\"pe\\\":0.6988},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.381,\\\"po\\\":0.775,\\\"pe\\\":0.6365},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3866,\\\"po\\\":0.785,\\\"pe\\\":0.6495},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3898,\\\"po\\\":0.8,\\\"pe\\\":0.6722},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3902,\\\"po\\\":0.69,\\\"pe\\\":0.4916},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4038,\\\"po\\\":0.845,\\\"pe\\\":0.74},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4146,\\\"po\\\":0.85,\\\"pe\\\":0.7437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4186,\\\"po\\\":0.71,\\\"pe\\\":0.5012},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4298,\\\"po\\\":0.77,\\\"pe\\\":0.5966},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4703,\\\"po\\\":0.825,\\\"pe\\\":0.6696},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4983,\\\"po\\\":0.805,\\\"pe\\\":0.6113},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5034,\\\"po\\\":0.855,\\\"pe\\\":0.708},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.5897,\\\"po\\\":0.85,\\\"pe\\\":0.6344}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 5 benchmark data. Let me also read the mmlu, hellaswag, and math data to reconstruct the full JSON. Actually, I already have mmlu, hellaswag, and math from the earlier compact read. Let me reconstruct the full JSON locally now.
+
+From the first compact read, I got mmlu fully, then arc was truncated but now I have it, then gsm8k I now have, then hellaswag and math were in the output.
+
+Let me just read the mmlu, hellaswag, and math individual files too to be safe, then construct the full JSON locally.
+
+
+I've got all the pieces I need across the different reads, so I'll just pull the remaining individual files and assemble everything into the complete JSON locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "73422b1d-de76-4edb-aea9-ea7f3d1e4761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aA8rxVr5PNVKccyjuMron",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4583,
+      "cache_read_input_tokens": 62890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+Now I have arc and gsm8k. Let me read the other 3.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "5b3fcd24-06d4-4548-b67d-9b95bb09ea10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aA8rxVr5PNVKccyjuMron",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4583,
+      "cache_read_input_tokens": 62890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016GvmatfkZDvG8zxvsK579A`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "93b7bcd8-8748-4b98-a219-3493c6c6edf0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aA8rxVr5PNVKccyjuMron",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4583,
+      "cache_read_input_tokens": 62890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012hJeWCiJowxLmaME8c7XP2`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_hellaswag.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "f1691b86-6ae3-4882-b616-1be7a5988fd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aA8rxVr5PNVKccyjuMron",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4583,
+      "cache_read_input_tokens": 62890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LVTkQ5Ax4ysQZ4BBCEwhNg`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /tmp/kappa_math.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "e754bd26-f2ef-491c-9848-3d192061b5c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aA8rxVr5PNVKccyjuMron",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4583,
+      "cache_read_input_tokens": 62890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4583
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-22T13:38:36.744Z_
+
+<details><summary>↩ Tool result · `toolu_016GvmatfkZDvG8zxvsK579A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.4606,\\\"min_kappa\\\":0.2409,\\\"max_kappa\\\":0.6115,\\\"fleiss_kappa\\\":0.4558,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.63,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3402,\\\"po\\\":0.68,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.341,\\\"po\\\":0.68,\\\"pe\\\":0.5144},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3447,\\\"po\\\":0.715,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3714,\\\"po\\\":0.725,\\\"pe\\\":0.5625},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3964,\\\"po\\\":0.745,\\\"pe\\\":0.5775},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4078,\\\"po\\\":0.735,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4255,\\\"po\\\":0.72,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4312,\\\"po\\\":0.75,\\\"pe\\\":0.5605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4416,\\\"po\\\":0.725,\\\"pe\\\":0.5075},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4573,\\\"po\\\":0.735,\\\"pe\\\":0.5117},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4658,\\\"po\\\":0.785,\\\"pe\\\":0.5975},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.471,\\\"po\\\":0.785,\\\"pe\\\":0.5936},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4749,\\\"po\\\":0.765,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4886,\\\"po\\\":0.775,\\\"pe\\\":0.56},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4903,\\\"po\\\":0.77,\\\"pe\\\":0.5487},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5,\\\"po\\\":0.81,\\\"pe\\\":0.62},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5014,\\\"po\\\":0.77,\\\"pe\\\":0.5388},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5056,\\\"po\\\":0.785,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5183,\\\"po\\\":0.795,\\\"pe\\\":0.5744},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.519,\\\"po\\\":0.81,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5211,\\\"po\\\":0.765,\\\"pe\\\":0.5093},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5443,\\\"po\\\":0.82,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5575,\\\"po\\\":0.815,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5814,\\\"po\\\":0.825,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.6115,\\\"po\\\":0.84,\\\"pe\\\":0.5882}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "627b14ba-2cb1-44f0-8ba2-70b75ebb9477",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.4606,\\\\\\\"min_kappa\\\\\\\":0.2409,\\\\\\\"max_kappa\\\\\\\":0.6115,\\\\\\\"fleiss_kappa\\\\\\\":0.4558,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2409,\\\\\\\"po\\\\\\\":0.63,\\\\\\\"pe\\\\\\\":0.5126},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3402,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.515},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.341,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5144},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3447,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5651},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3714,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5625},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3964,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.5775},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4078,\\\\\\\"po\\\\\\\":0.735,\\\\\\\"pe\\\\\\\":0.5525},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4255,\\\\\\\"po\\\\\\\":0.72,\\\\\\\"pe\\\\\\\":0.5126},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4312,\\\\\\\"po\\\\\\\":0.75,\\\\\\\"pe\\\\\\\":0.5605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4416,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.5075},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4573,\\\\\\\"po\\\\\\\":0.735,\\\\\\\"pe\\\\\\\":0.5117},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4658,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5975},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.471,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5936},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4739,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6008},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4739,\\\\\\\"po\\\\\\\":0.79,\\\\\\\"pe\\\\\\\":0.6008},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4749,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5525},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4886,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.56},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4903,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.5487},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.62},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5014,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.5388},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5056,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5651},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5183,\\\\\\\"po\\\\\\\":0.795,\\\\\\\"pe\\\\\\\":0.5744},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.519,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5211,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5093},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5443,\\\\\\\"po\\\\\\\":0.82,\\\\\\\"pe\\\\\\\":0.605},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5575,\\\\\\\"po\\\\\\\":0.815,\\\\\\\"pe\\\\\\\":0.5819},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5814,\\\\\\\"po\\\\\\\":0.825,\\\\\\\"pe\\\\\\\":0.5819},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.6115,\\\\\\\"po\\\\\\\":0.84,\\\\\\\"pe\\\\\\\":0.5882}]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.4606,\\\"min_kappa\\\":0.2409,\\\"max_kappa\\\":0.6115,\\\"fleiss_kappa\\\":0.4558,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.63,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3402,\\\"po\\\":0.68,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.341,\\\"po\\\":0.68,\\\"pe\\\":0.5144},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3447,\\\"po\\\":0.715,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3714,\\\"po\\\":0.725,\\\"pe\\\":0.5625},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3964,\\\"po\\\":0.745,\\\"pe\\\":0.5775},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4078,\\\"po\\\":0.735,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4255,\\\"po\\\":0.72,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4312,\\\"po\\\":0.75,\\\"pe\\\":0.5605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4416,\\\"po\\\":0.725,\\\"pe\\\":0.5075},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4573,\\\"po\\\":0.735,\\\"pe\\\":0.5117},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4658,\\\"po\\\":0.785,\\\"pe\\\":0.5975},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.471,\\\"po\\\":0.785,\\\"pe\\\":0.5936},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4749,\\\"po\\\":0.765,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4886,\\\"po\\\":0.775,\\\"pe\\\":0.56},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4903,\\\"po\\\":0.77,\\\"pe\\\":0.5487},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5,\\\"po\\\":0.81,\\\"pe\\\":0.62},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5014,\\\"po\\\":0.77,\\\"pe\\\":0.5388},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5056,\\\"po\\\":0.785,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5183,\\\"po\\\":0.795,\\\"pe\\\":0.5744},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.519,\\\"po\\\":0.81,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5211,\\\"po\\\":0.765,\\\"pe\\\":0.5093},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5443,\\\"po\\\":0.82,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5575,\\\"po\\\":0.815,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5814,\\\"po\\\":0.825,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.6115,\\\"po\\\":0.84,\\\"pe\\\":0.5882}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-22T13:38:37.274Z_
+
+<details><summary>↩ Tool result · `toolu_012hJeWCiJowxLmaME8c7XP2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":6,\\\"n_pairs\\\":15,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3318,\\\"min_kappa\\\":0.0977,\\\"max_kappa\\\":0.4818,\\\"fleiss_kappa\\\":0.3337,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.0977,\\\"po\\\":0.62,\\\"pe\\\":0.5789},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.1079,\\\"po\\\":0.665,\\\"pe\\\":0.6245},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.1341,\\\"po\\\":0.7,\\\"pe\\\":0.6536},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2247,\\\"po\\\":0.77,\\\"pe\\\":0.7034},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2397,\\\"po\\\":0.765,\\\"pe\\\":0.6909},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3384,\\\"po\\\":0.7,\\\"pe\\\":0.5465},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3531,\\\"po\\\":0.695,\\\"pe\\\":0.5285},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3754,\\\"po\\\":0.715,\\\"pe\\\":0.5437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3977,\\\"po\\\":0.72,\\\"pe\\\":0.5352},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4021,\\\"po\\\":0.745,\\\"pe\\\":0.5735},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.42,\\\"po\\\":0.75,\\\"pe\\\":0.569},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4626,\\\"po\\\":0.78,\\\"pe\\\":0.5907},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4707,\\\"po\\\":0.795,\\\"pe\\\":0.6127},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4713,\\\"po\\\":0.765,\\\"pe\\\":0.5555},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4818,\\\"po\\\":0.785,\\\"pe\\\":0.5851}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "2599fa09-6039-4f1b-96ce-6bd5337ee31b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"n_models\\\\\\\":6,\\\\\\\"n_pairs\\\\\\\":15,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3318,\\\\\\\"min_kappa\\\\\\\":0.0977,\\\\\\\"max_kappa\\\\\\\":0.4818,\\\\\\\"fleiss_kappa\\\\\\\":0.3337,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0977,\\\\\\\"po\\\\\\\":0.62,\\\\\\\"pe\\\\\\\":0.5789},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1079,\\\\\\\"po\\\\\\\":0.665,\\\\\\\"pe\\\\\\\":0.6245},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1341,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.6536},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2247,\\\\\\\"po\\\\\\\":0.77,\\\\\\\"pe\\\\\\\":0.7034},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2397,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.6909},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3384,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.5465},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3531,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.5285},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3754,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5437},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3977,\\\\\\\"po\\\\\\\":0.72,\\\\\\\"pe\\\\\\\":0.5352},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4021,\\\\\\\"po\\\\\\\":0.745,\\\\\\\"pe\\\\\\\":0.5735},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.42,\\\\\\\"po\\\\\\\":0.75,\\\\\\\"pe\\\\\\\":0.569},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4626,\\\\\\\"po\\\\\\\":0.78,\\\\\\\"pe\\\\\\\":0.5907},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4707,\\\\\\\"po\\\\\\\":0.795,\\\\\\\"pe\\\\\\\":0.6127},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4713,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.5555},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4818,\\\\\\\"po\\\\\\\":0.785,\\\\\\\"pe\\\\\\\":0.5851}]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":6,\\\"n_pairs\\\":15,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3318,\\\"min_kappa\\\":0.0977,\\\"max_kappa\\\":0.4818,\\\"fleiss_kappa\\\":0.3337,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.0977,\\\"po\\\":0.62,\\\"pe\\\":0.5789},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.1079,\\\"po\\\":0.665,\\\"pe\\\":0.6245},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.1341,\\\"po\\\":0.7,\\\"pe\\\":0.6536},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2247,\\\"po\\\":0.77,\\\"pe\\\":0.7034},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2397,\\\"po\\\":0.765,\\\"pe\\\":0.6909},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3384,\\\"po\\\":0.7,\\\"pe\\\":0.5465},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3531,\\\"po\\\":0.695,\\\"pe\\\":0.5285},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3754,\\\"po\\\":0.715,\\\"pe\\\":0.5437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3977,\\\"po\\\":0.72,\\\"pe\\\":0.5352},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4021,\\\"po\\\":0.745,\\\"pe\\\":0.5735},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.42,\\\"po\\\":0.75,\\\"pe\\\":0.569},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4626,\\\"po\\\":0.78,\\\"pe\\\":0.5907},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4707,\\\"po\\\":0.795,\\\"pe\\\":0.6127},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4713,\\\"po\\\":0.765,\\\"pe\\\":0.5555},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4818,\\\"po\\\":0.785,\\\"pe\\\":0.5851}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-22T13:38:37.812Z_
+
+<details><summary>↩ Tool result · `toolu_01LVTkQ5Ax4ysQZ4BBCEwhNg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3256,\\\"min_kappa\\\":0.0138,\\\"max_kappa\\\":0.6066,\\\"fleiss_kappa\\\":0.3246,\\\"pairs\\\":[{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.0138,\\\"po\\\":0.66,\\\"pe\\\":0.6552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1415,\\\"po\\\":0.53,\\\"pe\\\":0.4526},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1592,\\\"po\\\":0.655,\\\"pe\\\":0.5897},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2091,\\\"po\\\":0.64,\\\"pe\\\":0.5448},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2108,\\\"po\\\":0.57,\\\"pe\\\":0.4552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.2256,\\\"po\\\":0.74,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2343,\\\"po\\\":0.81,\\\"pe\\\":0.7518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2393,\\\"po\\\":0.68,\\\"pe\\\":0.5794},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2487,\\\"po\\\":0.66,\\\"pe\\\":0.5474},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.2789,\\\"po\\\":0.7,\\\"pe\\\":0.5839},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2965,\\\"po\\\":0.715,\\\"pe\\\":0.5949},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3092,\\\"po\\\":0.695,\\\"pe\\\":0.5585},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3198,\\\"po\\\":0.64,\\\"pe\\\":0.4708},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3232,\\\"po\\\":0.755,\\\"pe\\\":0.638},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3304,\\\"po\\\":0.7,\\\"pe\\\":0.552},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3397,\\\"po\\\":0.66,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.353,\\\"po\\\":0.71,\\\"pe\\\":0.5517},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3644,\\\"po\\\":0.775,\\\"pe\\\":0.646},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.384,\\\"po\\\":0.71,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3943,\\\"po\\\":0.725,\\\"pe\\\":0.546},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4099,\\\"po\\\":0.695,\\\"pe\\\":0.4831},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4101,\\\"po\\\":0.715,\\\"pe\\\":0.5169},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4202,\\\"po\\\":0.695,\\\"pe\\\":0.474},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4268,\\\"po\\\":0.765,\\\"pe\\\":0.59},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.464,\\\"po\\\":0.74,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4788,\\\"po\\\":0.755,\\\"pe\\\":0.5299},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5253,\\\"po\\\":0.775,\\\"pe\\\":0.526},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.6066,\\\"po\\\":0.8,\\\"pe\\\":0.4915}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "00204725-ae83-4d12-a70e-90a4f969b719",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"n_models\\\\\\\":8,\\\\\\\"n_pairs\\\\\\\":28,\\\\\\\"n_items\\\\\\\":200,\\\\\\\"mean_kappa\\\\\\\":0.3256,\\\\\\\"min_kappa\\\\\\\":0.0138,\\\\\\\"max_kappa\\\\\\\":0.6066,\\\\\\\"fleiss_kappa\\\\\\\":0.3246,\\\\\\\"pairs\\\\\\\":[{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.0138,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.6552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1415,\\\\\\\"po\\\\\\\":0.53,\\\\\\\"pe\\\\\\\":0.4526},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.1592,\\\\\\\"po\\\\\\\":0.655,\\\\\\\"pe\\\\\\\":0.5897},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2091,\\\\\\\"po\\\\\\\":0.64,\\\\\\\"pe\\\\\\\":0.5448},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2108,\\\\\\\"po\\\\\\\":0.57,\\\\\\\"pe\\\\\\\":0.4552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2256,\\\\\\\"po\\\\\\\":0.74,\\\\\\\"pe\\\\\\\":0.6642},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2343,\\\\\\\"po\\\\\\\":0.81,\\\\\\\"pe\\\\\\\":0.7518},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2393,\\\\\\\"po\\\\\\\":0.68,\\\\\\\"pe\\\\\\\":0.5794},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2487,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.5474},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2789,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.5839},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.2965,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5949},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3092,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.5585},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3198,\\\\\\\"po\\\\\\\":0.64,\\\\\\\"pe\\\\\\\":0.4708},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Mistral-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3232,\\\\\\\"po\\\\\\\":0.755,\\\\\\\"pe\\\\\\\":0.638},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3304,\\\\\\\"po\\\\\\\":0.7,\\\\\\\"pe\\\\\\\":0.552},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3397,\\\\\\\"po\\\\\\\":0.66,\\\\\\\"pe\\\\\\\":0.485},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.353,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5517},{\\\\\\\"model_a\\\\\\\":\\\\\\\"DeepSeek-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3644,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.646},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.384,\\\\\\\"po\\\\\\\":0.71,\\\\\\\"pe\\\\\\\":0.5292},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.3943,\\\\\\\"po\\\\\\\":0.725,\\\\\\\"pe\\\\\\\":0.546},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4099,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.4831},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4101,\\\\\\\"po\\\\\\\":0.715,\\\\\\\"pe\\\\\\\":0.5169},{\\\\\\\"model_a\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4202,\\\\\\\"po\\\\\\\":0.695,\\\\\\\"pe\\\\\\\":0.474},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Llama-3.1-8B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4268,\\\\\\\"po\\\\\\\":0.765,\\\\\\\"pe\\\\\\\":0.59},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.464,\\\\\\\"po\\\\\\\":0.74,\\\\\\\"pe\\\\\\\":0.515},{\\\\\\\"model_a\\\\\\\":\\\\\\\"Gemma-2-9B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Yi-1.5-9B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.4788,\\\\\\\"po\\\\\\\":0.755,\\\\\\\"pe\\\\\\\":0.5299},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"OLMo-2-7B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.5253,\\\\\\\"po\\\\\\\":0.775,\\\\\\\"pe\\\\\\\":0.526},{\\\\\\\"model_a\\\\\\\":\\\\\\\"InternLM2.5-7B\\\\\\\",\\\\\\\"model_b\\\\\\\":\\\\\\\"Qwen3-8B\\\\\\\",\\\\\\\"kappa\\\\\\\":0.6066,\\\\\\\"po\\\\\\\":0.8,\\\\\\\"pe\\\\\\\":0.4915}]}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3256,\\\"min_kappa\\\":0.0138,\\\"max_kappa\\\":0.6066,\\\"fleiss_kappa\\\":0.3246,\\\"pairs\\\":[{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.0138,\\\"po\\\":0.66,\\\"pe\\\":0.6552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1415,\\\"po\\\":0.53,\\\"pe\\\":0.4526},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1592,\\\"po\\\":0.655,\\\"pe\\\":0.5897},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2091,\\\"po\\\":0.64,\\\"pe\\\":0.5448},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2108,\\\"po\\\":0.57,\\\"pe\\\":0.4552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.2256,\\\"po\\\":0.74,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2343,\\\"po\\\":0.81,\\\"pe\\\":0.7518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2393,\\\"po\\\":0.68,\\\"pe\\\":0.5794},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2487,\\\"po\\\":0.66,\\\"pe\\\":0.5474},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.2789,\\\"po\\\":0.7,\\\"pe\\\":0.5839},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2965,\\\"po\\\":0.715,\\\"pe\\\":0.5949},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3092,\\\"po\\\":0.695,\\\"pe\\\":0.5585},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3198,\\\"po\\\":0.64,\\\"pe\\\":0.4708},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3232,\\\"po\\\":0.755,\\\"pe\\\":0.638},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3304,\\\"po\\\":0.7,\\\"pe\\\":0.552},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3397,\\\"po\\\":0.66,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.353,\\\"po\\\":0.71,\\\"pe\\\":0.5517},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3644,\\\"po\\\":0.775,\\\"pe\\\":0.646},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.384,\\\"po\\\":0.71,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3943,\\\"po\\\":0.725,\\\"pe\\\":0.546},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4099,\\\"po\\\":0.695,\\\"pe\\\":0.4831},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4101,\\\"po\\\":0.715,\\\"pe\\\":0.5169},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4202,\\\"po\\\":0.695,\\\"pe\\\":0.474},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4268,\\\"po\\\":0.765,\\\"pe\\\":0.59},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.464,\\\"po\\\":0.74,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4788,\\\"po\\\":0.755,\\\"pe\\\":0.5299},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5253,\\\"po\\\":0.775,\\\"pe\\\":0.526},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.6066,\\\"po\\\":0.8,\\\"pe\\\":0.4915}]}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 5 benchmark JSONs. Let me assemble the full JSON and write it locally.
+
+I'll parse each benchmark JSON from the tool outputs and assemble the full structure. Let me write this as a Python script locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "14b3a6b3-c077-4db1-870c-694c55e6a689",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MgXhEgLpnuBqVZdt3JhhW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6075,
+      "cache_read_input_tokens": 67473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102_
+
+Got all 5 benchmarks. Now assembling the full JSON locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ccc7fd80-a444-40a8-ab79-5ad6218d273e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MgXhEgLpnuBqVZdt3JhhW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6075,
+      "cache_read_input_tokens": 67473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013rxciTy5TsaFFTiWp42krg`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data && python3 -c \"\nimport json\n\nmmlu = json.loads('{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.4606,\\\"min_kappa\\\":0.2409,\\\"max_kappa\\\":0.6115,\\\"fleiss_kappa\\\":0.4558,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.63,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3402,\\\"po\\\":0.68,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.341,\\\"po\\\":0.68,\\\"pe\\\":0.5144},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3447,\\\"po\\\":0.715,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3714,\\\"po\\\":0.725,\\\"pe\\\":0.5625},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3964,\\\"po\\\":0.745,\\\"pe\\\":0.5775},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4078,\\\"po\\\":0.735,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4255,\\\"po\\\":0.72,\\\"pe\\\":0.5126},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4312,\\\"po\\\":0.75,\\\"pe\\\":0.5605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4416,\\\"po\\\":0.725,\\\"pe\\\":0.5075},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4573,\\\"po\\\":0.735,\\\"pe\\\":0.5117},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4658,\\\"po\\\":0.785,\\\"pe\\\":0.5975},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.471,\\\"po\\\":0.785,\\\"pe\\\":0.5936},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4739,\\\"po\\\":0.79,\\\"pe\\\":0.6008},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4749,\\\"po\\\":0.765,\\\"pe\\\":0.5525},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4886,\\\"po\\\":0.775,\\\"pe\\\":0.56},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4903,\\\"po\\\":0.77,\\\"pe\\\":0.5487},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5,\\\"po\\\":0.81,\\\"pe\\\":0.62},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5014,\\\"po\\\":0.77,\\\"pe\\\":0.5388},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5056,\\\"po\\\":0.785,\\\"pe\\\":0.5651},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5183,\\\"po\\\":0.795,\\\"pe\\\":0.5744},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.519,\\\"po\\\":0.81,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.5211,\\\"po\\\":0.765,\\\"pe\\\":0.5093},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5443,\\\"po\\\":0.82,\\\"pe\\\":0.605},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5575,\\\"po\\\":0.815,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5814,\\\"po\\\":0.825,\\\"pe\\\":0.5819},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.6115,\\\"po\\\":0.84,\\\"pe\\\":0.5882}]}')\n\narc = json.loads('{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3764,\\\"min_kappa\\\":0.0416,\\\"max_kappa\\\":0.7408,\\\"fleiss_kappa\\\":0.3312,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0416,\\\"po\\\":0.53,\\\"pe\\\":0.5096},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.0768,\\\"po\\\":0.555,\\\"pe\\\":0.518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1185,\\\"po\\\":0.585,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1221,\\\"po\\\":0.58,\\\"pe\\\":0.5216},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1412,\\\"po\\\":0.595,\\\"pe\\\":0.5284},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.147,\\\"po\\\":0.595,\\\"pe\\\":0.5252},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1497,\\\"po\\\":0.6,\\\"pe\\\":0.5296},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2647,\\\"po\\\":0.68,\\\"pe\\\":0.5648},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2888,\\\"po\\\":0.705,\\\"pe\\\":0.5852},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2947,\\\"po\\\":0.71,\\\"pe\\\":0.5888},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3089,\\\"po\\\":0.715,\\\"pe\\\":0.5876},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3253,\\\"po\\\":0.775,\\\"pe\\\":0.6665},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.725,\\\"pe\\\":0.5756},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3828,\\\"po\\\":0.79,\\\"pe\\\":0.6597},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4283,\\\"po\\\":0.745,\\\"pe\\\":0.554},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.432,\\\"po\\\":0.785,\\\"pe\\\":0.6215},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4341,\\\"po\\\":0.81,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4883,\\\"po\\\":0.845,\\\"pe\\\":0.6971},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4976,\\\"po\\\":0.82,\\\"pe\\\":0.6417},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5003,\\\"po\\\":0.85,\\\"pe\\\":0.6998},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5154,\\\"po\\\":0.885,\\\"pe\\\":0.7627},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5317,\\\"po\\\":0.875,\\\"pe\\\":0.7331},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5621,\\\"po\\\":0.865,\\\"pe\\\":0.6917},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.5848,\\\"po\\\":0.9,\\\"pe\\\":0.7591},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.5868,\\\"po\\\":0.905,\\\"pe\\\":0.7701},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.602,\\\"po\\\":0.89,\\\"pe\\\":0.7236},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.6211,\\\"po\\\":0.875,\\\"pe\\\":0.6701},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.7408,\\\"po\\\":0.93,\\\"pe\\\":0.7299}]}')\n\ngsm8k = json.loads('{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3346,\\\"min_kappa\\\":0.1165,\\\"max_kappa\\\":0.5897,\\\"fleiss_kappa\\\":0.3092,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1165,\\\"po\\\":0.545,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1675,\\\"po\\\":0.565,\\\"pe\\\":0.4775},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.1872,\\\"po\\\":0.585,\\\"pe\\\":0.4894},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2105,\\\"po\\\":0.595,\\\"pe\\\":0.487},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2145,\\\"po\\\":0.6,\\\"pe\\\":0.4908},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2204,\\\"po\\\":0.595,\\\"pe\\\":0.4805},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2214,\\\"po\\\":0.745,\\\"pe\\\":0.6725},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2296,\\\"po\\\":0.6,\\\"pe\\\":0.4808},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2409,\\\"po\\\":0.61,\\\"pe\\\":0.4862},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2731,\\\"po\\\":0.625,\\\"pe\\\":0.4841},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.2914,\\\"po\\\":0.75,\\\"pe\\\":0.6472},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.298,\\\"po\\\":0.64,\\\"pe\\\":0.4872},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3431,\\\"po\\\":0.775,\\\"pe\\\":0.6575},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.352,\\\"po\\\":0.755,\\\"pe\\\":0.6219},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3562,\\\"po\\\":0.67,\\\"pe\\\":0.4874},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3693,\\\"po\\\":0.81,\\\"pe\\\":0.6988},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.381,\\\"po\\\":0.775,\\\"pe\\\":0.6365},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3866,\\\"po\\\":0.785,\\\"pe\\\":0.6495},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3898,\\\"po\\\":0.8,\\\"pe\\\":0.6722},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3902,\\\"po\\\":0.69,\\\"pe\\\":0.4916},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4038,\\\"po\\\":0.845,\\\"pe\\\":0.74},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4146,\\\"po\\\":0.85,\\\"pe\\\":0.7437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4186,\\\"po\\\":0.71,\\\"pe\\\":0.5012},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4298,\\\"po\\\":0.77,\\\"pe\\\":0.5966},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.4703,\\\"po\\\":0.825,\\\"pe\\\":0.6696},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4983,\\\"po\\\":0.805,\\\"pe\\\":0.6113},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.5034,\\\"po\\\":0.855,\\\"pe\\\":0.708},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.5897,\\\"po\\\":0.85,\\\"pe\\\":0.6344}]}')\n\nhellaswag = json.loads('{\\\"n_models\\\":6,\\\"n_pairs\\\":15,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3318,\\\"min_kappa\\\":0.0977,\\\"max_kappa\\\":0.4818,\\\"fleiss_kappa\\\":0.3337,\\\"pairs\\\":[{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.0977,\\\"po\\\":0.62,\\\"pe\\\":0.5789},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.1079,\\\"po\\\":0.665,\\\"pe\\\":0.6245},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.1341,\\\"po\\\":0.7,\\\"pe\\\":0.6536},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2247,\\\"po\\\":0.77,\\\"pe\\\":0.7034},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2397,\\\"po\\\":0.765,\\\"pe\\\":0.6909},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3384,\\\"po\\\":0.7,\\\"pe\\\":0.5465},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.3531,\\\"po\\\":0.695,\\\"pe\\\":0.5285},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.3754,\\\"po\\\":0.715,\\\"pe\\\":0.5437},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.3977,\\\"po\\\":0.72,\\\"pe\\\":0.5352},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4021,\\\"po\\\":0.745,\\\"pe\\\":0.5735},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.42,\\\"po\\\":0.75,\\\"pe\\\":0.569},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4626,\\\"po\\\":0.78,\\\"pe\\\":0.5907},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4707,\\\"po\\\":0.795,\\\"pe\\\":0.6127},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.4713,\\\"po\\\":0.765,\\\"pe\\\":0.5555},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.4818,\\\"po\\\":0.785,\\\"pe\\\":0.5851}]}')\n\nmath = json.loads('{\\\"n_models\\\":8,\\\"n_pairs\\\":28,\\\"n_items\\\":200,\\\"mean_kappa\\\":0.3256,\\\"min_kappa\\\":0.0138,\\\"max_kappa\\\":0.6066,\\\"fleiss_kappa\\\":0.3246,\\\"pairs\\\":[{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.0138,\\\"po\\\":0.66,\\\"pe\\\":0.6552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.1415,\\\"po\\\":0.53,\\\"pe\\\":0.4526},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.1592,\\\"po\\\":0.655,\\\"pe\\\":0.5897},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2091,\\\"po\\\":0.64,\\\"pe\\\":0.5448},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.2108,\\\"po\\\":0.57,\\\"pe\\\":0.4552},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.2256,\\\"po\\\":0.74,\\\"pe\\\":0.6642},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2343,\\\"po\\\":0.81,\\\"pe\\\":0.7518},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Mistral-7B\\\",\\\"kappa\\\":0.2393,\\\"po\\\":0.68,\\\"pe\\\":0.5794},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.2487,\\\"po\\\":0.66,\\\"pe\\\":0.5474},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Gemma-2-9B\\\",\\\"kappa\\\":0.2789,\\\"po\\\":0.7,\\\"pe\\\":0.5839},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.2965,\\\"po\\\":0.715,\\\"pe\\\":0.5949},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3092,\\\"po\\\":0.695,\\\"pe\\\":0.5585},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3198,\\\"po\\\":0.64,\\\"pe\\\":0.4708},{\\\"model_a\\\":\\\"Mistral-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3232,\\\"po\\\":0.755,\\\"pe\\\":0.638},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.3304,\\\"po\\\":0.7,\\\"pe\\\":0.552},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.3397,\\\"po\\\":0.66,\\\"pe\\\":0.485},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.353,\\\"po\\\":0.71,\\\"pe\\\":0.5517},{\\\"model_a\\\":\\\"DeepSeek-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3644,\\\"po\\\":0.775,\\\"pe\\\":0.646},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Llama-3.1-8B\\\",\\\"kappa\\\":0.384,\\\"po\\\":0.71,\\\"pe\\\":0.5292},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.3943,\\\"po\\\":0.725,\\\"pe\\\":0.546},{\\\"model_a\\\":\\\"Qwen3-8B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4099,\\\"po\\\":0.695,\\\"pe\\\":0.4831},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4101,\\\"po\\\":0.715,\\\"pe\\\":0.5169},{\\\"model_a\\\":\\\"OLMo-2-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.4202,\\\"po\\\":0.695,\\\"pe\\\":0.474},{\\\"model_a\\\":\\\"Llama-3.1-8B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.4268,\\\"po\\\":0.765,\\\"pe\\\":0.59},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"InternLM2.5-7B\\\",\\\"kappa\\\":0.464,\\\"po\\\":0.74,\\\"pe\\\":0.515},{\\\"model_a\\\":\\\"Gemma-2-9B\\\",\\\"model_b\\\":\\\"Yi-1.5-9B\\\",\\\"kappa\\\":0.4788,\\\"po\\\":0.755,\\\"pe\\\":0.5299},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"OLMo-2-7B\\\",\\\"kappa\\\":0.5253,\\\"po\\\":0.775,\\\"pe\\\":0.526},{\\\"model_a\\\":\\\"InternLM2.5-7B\\\",\\\"model_b\\\":\\\"Qwen3-8B\\\",\\\"kappa\\\":0.6066,\\\"po\\\":0.8,\\\"pe\\\":0.4915}]}')\n\nresult = {\n    'method': \\\"Cohen's kappa\\\",\n    'condition': 'baseline (T=0, P=1, S=42, O=1)',\n    'benchmarks': {\n        'mmlu': mmlu,\n        'arc': arc,\n        'gsm8k': gsm8k,\n        'hellaswag': hellaswag,\n        'math': math,\n    }\n}\n\nwith open('cohens_kappa_pairwise.json', 'w') as f:\n    json.dump(result, f, indent=2)\nprint('Written OK')\n# Verify\nwith open('cohens_kappa_pairwise.json') as f:\n    d = json.load(f)\nfor bm in d['benchmarks']:\n    b = d['benchmarks'][bm]\n    print(f'{bm}: {b[\\\"n_models\\\"]} models, {b[\\\"n_pairs\\\"]} pairs, mean_k={b[\\\"mean_kappa\\\"]}, fleiss_k={b[\\\"fleiss_kappa\\\"]}')\n\"\n",
+  "description": "Assemble full kappa JSON locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "21e5a21f-afdb-4681-96a4-c0f70d24ac6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011MgXhEgLpnuBqVZdt3JhhW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6075,
+      "cache_read_input_tokens": 67473,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-22T13:39:57.691Z_
+
+<details><summary>↩ Tool result · `toolu_013rxciTy5TsaFFTiWp42krg`</summary>
+
+```text
+Written OK
+mmlu: 8 models, 28 pairs, mean_k=0.4606, fleiss_k=0.4558
+arc: 8 models, 28 pairs, mean_k=0.3764, fleiss_k=0.3312
+gsm8k: 8 models, 28 pairs, mean_k=0.3346, fleiss_k=0.3092
+hellaswag: 6 models, 15 pairs, mean_k=0.3318, fleiss_k=0.3337
+math: 8 models, 28 pairs, mean_k=0.3256, fleiss_k=0.3246
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "a23f95fd-54c6-4d1a-9309-09822ef67dd6",
+  "tool_use_result": {
+    "stdout": "Written OK\nmmlu: 8 models, 28 pairs, mean_k=0.4606, fleiss_k=0.4558\narc: 8 models, 28 pairs, mean_k=0.3764, fleiss_k=0.3312\ngsm8k: 8 models, 28 pairs, mean_k=0.3346, fleiss_k=0.3092\nhellaswag: 6 models, 15 pairs, mean_k=0.3318, fleiss_k=0.3337\nmath: 8 models, 28 pairs, mean_k=0.3256, fleiss_k=0.3246",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+All done. Summary:
+
+| Benchmark | Models | Pairs | Mean κ | Min κ | Max κ | Fleiss κ |
+|-----------|--------|-------|--------|-------|-------|----------|
+| MMLU | 8 | 28 | 0.461 | 0.241 | 0.612 | 0.456 |
+| ARC | 8 | 28 | 0.376 | 0.042 | 0.741 | 0.331 |
+| GSM8K | 8 | 28 | 0.335 | 0.117 | 0.590 | 0.309 |
+| HellaSwag | 6 | 15 | 0.332 | 0.098 | 0.482 | 0.334 |
+| MATH | 8 | 28 | 0.326 | 0.014 | 0.607 | 0.325 |
+
+Key findings:
+- All κ values are positive (models agree more than chance), as expected
+- MMLU has highest inter-model agreement (mean κ=0.46, "moderate"), likely because its MC format constrains variance
+- MATH has lowest mean κ=0.33 ("fair") and widest range — Llama×Mistral κ=0.014 (near-random) while InternLM×Qwen κ=0.61
+- ARC has the widest spread (0.04–0.74); Yi-1.5-9B is a consistent outlier with very low agreement against most models on ARC
+- HellaSwag only has 6 models (OLMo/Yi missing)
+- Fleiss κ tracks closely with mean pairwise κ across all benchmarks
+
+Script saved at server `/root/nlp_variance_gtheory/scripts/exp004_cohens_kappa.py`, results at local `artifacts/exp004/data/cohens_kappa_pairwise.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "uuid": "ef17983c-fb31-47cf-8e8e-140b68de4e11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RXUs24WAy9eCGNBTAq9AyZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8160,
+      "cache_read_input_tokens": 73548,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8160
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 106_
+
+All done. Summary:
+
+| Benchmark | Models | Pairs | Mean κ | Min κ | Max κ | Fleiss κ |
+|-----------|--------|-------|--------|-------|-------|----------|
+| MMLU | 8 | 28 | 0.461 | 0.241 | 0.612 | 0.456 |
+| ARC | 8 | 28 | 0.376 | 0.042 | 0.741 | 0.331 |
+| GSM8K | 8 | 28 | 0.335 | 0.117 | 0.590 | 0.309 |
+| HellaSwag | 6 | 15 | 0.332 | 0.098 | 0.482 | 0.334 |
+| MATH | 8 | 28 | 0.326 | 0.014 | 0.607 | 0.325 |
+
+Key findings:
+- All κ values are positive (models agree more than chance), as expected
+- MMLU has highest inter-model agreement (mean κ=0.46, "moderate"), likely because its MC format constrains variance
+- MATH has lowest mean κ=0.33 ("fair") and widest range — Llama×Mistral κ=0.014 (near-random) while InternLM×Qwen κ=0.61
+- ARC has the widest spread (0.04–0.74); Yi-1.5-9B is a consistent outlier with very low agreement against most models on ARC
+- HellaSwag only has 6 models (OLMo/Yi missing)
+- Fleiss κ tracks closely with mean pairwise κ across all benchmarks
+
+Script saved at server `/root/nlp_variance_gtheory/scripts/exp004_cohens_kappa.py`, results at local `artifacts/exp004/data/cohens_kappa_pairwise.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 322566,
+  "duration_api_ms": 297751,
+  "num_turns": 38,
+  "stop_reason": "end_turn",
+  "session_id": "bb21612d-4202-4437-9446-a297a65fb8cb",
+  "total_cost_usd": 1.5124077500000002,
+  "usage": {
+    "input_tokens": 33,
+    "cache_creation_input_tokens": 69867,
+    "cache_read_input_tokens": 1134214,
+    "output_tokens": 20265,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 69867,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 487,
+        "cache_read_input_tokens": 73548,
+        "cache_creation_input_tokens": 8160,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8160
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1742,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001842,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 33,
+      "outputTokens": 20265,
+      "cacheReadInputTokens": 1134214,
+      "cacheCreationInputTokens": 69867,
+      "webSearchRequests": 0,
+      "costUSD": 1.5105657499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "53a89a1d-3ccf-4aa0-a9db-13df65eedd89"
+}
+```
+
+</details>
+
+---

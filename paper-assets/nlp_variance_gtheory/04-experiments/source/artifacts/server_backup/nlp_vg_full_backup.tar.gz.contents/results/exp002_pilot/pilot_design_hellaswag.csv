@@ -1,0 +1,11 @@
+condition_id,model,benchmark,items_file,precision,temperature,top_p,prompt_template,seed,ordering
+2017,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,42,1
+2018,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,42,2
+2019,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,42,3
+2020,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,42,4
+2021,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,123,1
+2022,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,123,2
+2023,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,123,3
+2024,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,123,4
+2025,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,456,1
+2026,meta-llama/Llama-3.1-8B-Instruct,hellaswag,data/hellaswag_items_exp002.json,bfloat16,0.0,,1,456,2

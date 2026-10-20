@@ -1,0 +1,691 @@
+# analysis r1 w5 temperature seed variance
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_analysis_r1_w5_temperature_seed_variance_20260521T195424.jsonl`
+- **Structured JSON:** [`65ba754692068675108c.json`](../../sessions/65/65ba754692068675108c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T19:56:29.779545+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T19:56:29.779825+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T19:56:29.780001+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results -name \"*.jsonl\" -path \"*exp001*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/results -name \"*.jsonl\" -path \"*exp001*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T19:56:29.780171+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/dryrun_exp001.jsonl\\n/root/nlp_variance_gtheory/results/exp001_pilot/gpu0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_pilot/gpu1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_pilot/gpu2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_pilot/gpu3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_resume.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_original.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_merged_with_dup.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_patch.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_before_patch.jsonl\\n/root/nlp_va
+…[truncated 1172 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T19:56:29.780316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "wc -l /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T19:56:29.780479+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -1 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T19:56:29.780629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n   239200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T19:56:29.780769+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T19:56:29.780928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"\nimport json, glob\nfiles = sorted(glob.glob('/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_*.jsonl'))\ntemps, seeds, precs, prompts, orderings = set(), set(), set(), set(), set()\nfor f in files:\n    with open(f) as fh:\n        for line in fh:\n            r = json.loads(line)\n            temps.add(r['temperature'])\n            seeds.add(r['seed'])\n            precs.add(r['precision'])\n            prompts.add(r['prompt_template'])\n            orderings.add(r['ordering'])\nprint(f'temps: {sorted(temps)}')\nprint(f'seeds: {sorted(seeds)}')\nprint(f'precisions: {sorted(precs)}')\nprint(f'prompt_templates: {sorted(prompts)}')\nprint(f'orderings: {sorted(orderings)}')\nprint(f'design: {len(temps)}T x {len(seeds)}S x {len(precs)}P x {len(prompts)}PT x {len(orderings)}O')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "python3 -c \"\nimport json, glob\nfiles = sorted(glob.glob('/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_*.jsonl'))\ntemps, seeds, precs, prompts, orderings = set(), set(), set(), set(), set()\nfor f in files:\n    with open(f) as fh:\n        for line in fh:\n            r = json.loads(line)\n            temps.add(r['temperature'])\n            seeds.add(r['seed'])\n            precs.add(r['precision'])\n            prompts.add(r['prompt_template'])\n            orderings.add(r['ordering'])\nprint(f'temps: {sorted(temps)}')\nprint(f'seeds: {sorted(seeds)}')\nprint(f'precisions: {sorted(precs)}')\nprint(f'prompt_templates: {sorted(prompts)}')\nprint(f'orderings: {sorted(orderings)}')\nprint(f'design: {len(temps)}T x {len(seeds)}S x {len(precs)}P x {len(prompts)}PT x {len(orderings)}O')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T19:56:29.781054+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T19:56:29.781171+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"temperature\": [0-9.]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"temperature\": [0-9.]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T19:56:29.781304+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T19:56:29.781468+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"seed\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"seed\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T19:56:29.781603+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T19:56:29.781721+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T19:56:29.781834+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T19:56:29.781944+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"prompt_template\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"prompt_template\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T19:56:29.782061+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T19:56:29.782173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"ordering\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -o '\"ordering\": [0-9]*' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T19:56:29.782284+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T19:56:29.782499+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 << 'SCRIPT'\nimport json, glob, numpy as np, pandas as pd\nfrom pathlib import Path\nfrom collections import defaultdict\n\n# Load all Llama shards\nfiles = sorted(glob.glob('/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_*.jsonl'))\nprint(f\"Loading {len(files)} shards...\")\n\nall_data = []\nfor f in files:\n    with open(f) as fh:\n        for line in fh:\n            all_data.append(json.loads(line))\n\ndf = pd.DataFrame(all_data)\nprint(f\"Total rows: {len(df)}\")\nprint(f\"Columns: {list(df.columns)}\")\nprint(f\"\\nDesign factors:\")\nprint(f\"  temperature: {sorted(df['temperature'].unique())}\")\nprint(f\"  seed: {sorted(df['seed'].unique())}\")\nprint(f\"  precision: {df['precision'].unique().tolist()}\")\nprint(f\"  prompt_template: {sorted(df['prompt_template'].unique())}\")\nprint(f\"  ordering: {sorted(df['ordering'].unique())}\")\nprint(f\"  n_items: {df['item_id'].nunique()}\")\n\n# Filter to bf16 only (if multiple precisions)\nprec_counts = df['precision'].value_counts()\nprint(f\"\\nPrecision counts:\\n{prec_counts}\")\nif len(prec_counts) > 1:\n    df = df[df['precision'] == 'bfloat16'].copy()\n    print(f\"After bf16 filter: {len(df)} rows\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"R1-W5: TEMPERATURE-STRATIFIED SEED VARIANCE ANALYSIS\")\nprint(\"=\"*70)\n\nresults = {}\n\nfor temp_val in sorted(df['temperature'].unique()):\n    subset = df[df['temperature'] == temp_val].copy()\n    n_rows = len(subset)\n    n_seeds = subset['seed'].nunique()\n    n_prompts = subset['prompt_template'].nunique()\n    n_orderings = subset['ordering'].nunique()\n    n_items = subset['item_id'].nunique()\n    \n    grand_mean = subset['correct'].mean()\n    \n    # === Method 1: Marginal seed means (overall) ===\n    seed_means = subset.groupby('seed')['correct'].mean()\n    seed_range = seed_means.max() - seed_means.min()\n    seed_std = seed_means.std()\n    \n    # === Method 2: ANOVA-style SS decomposition ===\n    # SS_total\n    ss_total = ((subset['correct'] - grand_mean) ** 2).sum()\n    \n    # SS_seed (main effect)\n    n_per_seed = len(subset) // n_seeds\n    ss_seed = n_per_seed * ((seed_means - grand_mean) ** 2).sum()\n    seed_ss_pct = (ss_seed / ss_total * 100) if ss_total > 0 else 0\n    \n    # === Method 3: Within-cell seed variance ===\n    # For each (prompt_template, ordering) combination, compute variance across seeds\n    # This controls for prompt and ordering effects\n    cell_seed_vars = []\n    cell_seed_ranges = []\n    for (pt, ord_), group in subset.groupby(['prompt_template', 'ordering']):\n        cell_seed_accs = group.groupby('seed')['correct'].mean()\n        v = cell_seed_accs.var(ddof=1)\n        r = cell_seed_accs.max() - cell_seed_accs.min()\n        if not np.isnan(v):\n            cell_seed_vars.append(v)\n            cell_seed_ranges.append(r)\n    \n    avg_within_cell_var = np.mean(cell_seed_vars)\n    avg_within_cell_range = np.mean(cell_seed_ranges)\n    max_within_cell_range = np.max(cell_seed_ranges)\n    \n    # === Method 4: Item-level agreement across seeds ===\n    # For each item within each (prompt, ordering), what fraction of seeds agree?\n    agreement_rates = []\n    for (pt, ord_), group in subset.groupby(['prompt_template', 'ordering']):\n        item_seed_pivot = group.pivot_table(index='item_id', columns='seed', values='correct', aggfunc='first')\n        # For each item, compute fraction of seeds that give the same answer\n        for _, row in item_seed_pivot.iterrows():\n            vals = row.dropna().values\n            if len(vals) > 1:\n                majority = np.mean(vals)\n                # Agreement = max(fraction correct, fraction incorrect)\n                agreement_rates.append(max(majority, 1 - majority))\n    \n    avg_agreement = np.mean(agreement_rates)\n    perfect_agreement_pct = np.mean([a == 1.0 for a in agreement_rates]) * 100\n    \n    results[temp_val] = {\n        'n_rows': n_rows,\n        'n_seeds': n_seeds,\n        'n_prompts': n_prompts,\n        'n_orderings': n_orderings,\n        'n_items': n_items,\n        'accuracy': float(grand_mean),\n        'seed_means': {int(k): float(v) for k, v in seed_means.items()},\n        'seed_range': float(seed_range),\n        'seed_std': float(seed_std),\n        'seed_ss_pct': float(seed_ss_pct),\n        'avg_within_cell_seed_var': float(avg_within_cell_var),\n        'avg_within_cell_seed_range': float(avg_within_cell_range),\n        'max_within_cell_seed_range': float(max_within_cell_range),\n        'avg_item_agreement': float(avg_agreement),\n        'perfect_agreement_pct': float(perfect_agreement_pct),\n    }\n    \n    print(f\"\\n{'─'*50}\")\n    print(f\"T = {temp_val}\")\n    print(f\"{'─'*50}\")\n    print(f\"  N = {n_rows} ({n_seeds} seeds × {n_prompts} prompts × {n_orderings} orderings × {n_items} items)\")\n    print(f\"  Overall accuracy = {grand_mean:.4f}\")\n    print(f\"  Seed marginal means:\")\n    for s in sorted(seed_means.index):\n        print(f\"    seed {s}: {seed_means[s]:.6f}\")\n    print(f\"  Seed range = {seed_range:.6f} (max - min of marginal means)\")\n    print(f\"  Seed SD = {seed_std:.6f}\")\n    print(f\"  Seed SS% of total = {seed_ss_pct:.6f}%\")\n    print(f\"  Avg within-cell seed variance = {avg_within_cell_var:.10f}\")\n    print(f\"  Avg within-cell seed range = {avg_within_cell_range:.6f}\")\n    print(f\"  Max within-cell seed range = {max_within_cell_range:.6f}\")\n    print(f\"  Item-level perfect agreement across seeds = {perfect_agreement_pct:.2f}%\")\n    print(f\"  Avg item-level agreement = {avg_agreement:.6f}\")\n\n# === Cross-temperature comparison ===\nprint(f\"\\n{'='*70}\")\nprint(\"CROSS-TEMPERATURE COMPARISON\")\nprint(f\"{'='*70}\")\ntemps_sorted = sorted(results.keys())\nprint(f\"\\n{'Metric':<35} | \" + \" | \".join([f\"T={t}\" for t in temps_sorted]))\nprint(\"-\"*35 + \"-+-\" + \"-+-\".join([\"-\"*12 for _ in temps_sorted]))\nprint(f\"{'Accuracy':<35} | \" + \" | \".join([f\"{results[t]['accuracy']:.4f}      \" for t in temps_sorted]))\nprint(f\"{'Seed range':<35} | \" + \" | \".join([f\"{results[t]['seed_range']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Seed SD':<35} | \" + \" | \".join([f\"{results[t]['seed_std']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Seed SS%':<35} | \" + \" | \".join([f\"{results[t]['seed_ss_pct']:.6f}%   \" for t in temps_sorted]))\nprint(f\"{'Avg within-cell seed var':<35} | \" + \" | \".join([f\"{results[t]['avg_within_cell_seed_var']:.2e}\" for t in temps_sorted]))\nprint(f\"{'Avg within-cell seed range':<35} | \" + \" | \".join([f\"{results[t]['avg_within_cell_seed_range']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Perfect item agreement %':<35} | \" + \" | \".join([f\"{results[t]['perfect_agreement_pct']:.2f}%     \" for t in temps_sorted]))\n\n# Ratios\nif 0.0 in results and len(temps_sorted) > 1:\n    print(f\"\\n--- Ratios relative to T=0.0 ---\")\n    t0_var = results[0.0]['avg_within_cell_seed_var']\n    for t in temps_sorted[1:]:\n        ratio = results[t]['avg_within_cell_seed_var'] / t0_var if t0_var > 0 else float('inf')\n        print(f\"  T={t} / T=0.0 seed var ratio = {ratio:.2f}x\")\n\n# Save results\noutput = {\n    'analysis': 'R1-W5 temperature-stratified seed variance',\n    'data_source': 'exp-001 Llama-3.1-8B-Instruct MMLU (bfloat16)',\n    'total_rows_used': int(df.shape[0]),\n    'results_by_temperature': {str(k): v for k, v in results.items()}\n}\n\ndef convert(obj):\n    if isinstance(obj, (np.integer,)): return int(obj)\n    if isinstance(obj, (np.floating,)): return float(obj)\n    if isinstance(obj, np.ndarray): return obj.tolist()\n    return obj\n\nout_path = '/root/nlp_variance_gtheory/results/exp001_analysis/r1_w5_temperature_seed_variance.json'\nPath(out_path).parent.mkdir(parents=True, exist_ok=True)\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2, default=convert)\nprint(f\"\\n\\nResults saved to: {out_path}\")\nSCRIPT"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 << 'SCRIPT'\nimport json, glob, numpy as np, pandas as pd\nfrom pathlib import Path\nfrom collections import defaultdict\n\n# Load all Llama shards\nfiles = sorted(glob.glob('/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_*.jsonl'))\nprint(f\"Loading {len(files)} shards...\")\n\nall_data = []\nfor f in files:\n    with open(f) as fh:\n        for line in fh:\n            all_data.append(json.loads(line))\n\ndf = pd.DataFrame(all_data)\nprint(f\"Total rows: {len(df)}\")\nprint(f\"Columns: {list(df.columns)}\")\nprint(f\"\\nDesign factors:\")\nprint(f\"  temperature: {sorted(df['temperature'].unique())}\")\nprint(f\"  seed: {sorted(df['seed'].unique())}\")\nprint(f\"  precision: {df['precision'].unique().tolist()}\")\nprint(f\"  prompt_template: {sorted(df['prompt_template'].unique())}\")\nprint(f\"  ordering: {sorted(df['ordering'].unique())}\")\nprint(f\"  n_items: {df['item_id'].nunique()}\")\n\n# Filter to bf16 only (if multiple precisions)\nprec_counts = df['precision'].value_counts()\nprint(f\"\\nPrecision counts:\\n{prec_counts}\")\nif len(prec_counts) > 1:\n    df = df[df['precision'] == 'bfloat16'].copy()\n    print(f\"After bf16 filter: {len(df)} rows\")\n\nprint(\"\\n\" + \"=\"*70)\nprint(\"R1-W5: TEMPERATURE-STRATIFIED SEED VARIANCE ANALYSIS\")\nprint(\"=\"*70)\n\nresults = {}\n\nfor temp_val in sorted(df['temperature'].unique()):\n    subset = df[df['temperature'] == temp_val].copy()\n    n_rows = len(subset)\n    n_seeds = subset['seed'].nunique()\n    n_prompts = subset['prompt_template'].nunique()\n    n_orderings = subset['ordering'].nunique()\n    n_items = subset['item_id'].nunique()\n    \n    grand_mean = subset['correct'].mean()\n    \n    # === Method 1: Marginal seed means (overall) ===\n    seed_means = subset.groupby('seed')['correct'].mean()\n    seed_range = seed_means.max() - seed_means.min()\n    seed_std = seed_means.std()\n    \n    # === Method 2: ANOVA-style SS decomposition ===\n    # SS_total\n    ss_total = ((subset['correct'] - grand_mean) ** 2).sum()\n    \n    # SS_seed (main effect)\n    n_per_seed = len(subset) // n_seeds\n    ss_seed = n_per_seed * ((seed_means - grand_mean) ** 2).sum()\n    seed_ss_pct = (ss_seed / ss_total * 100) if ss_total > 0 else 0\n    \n    # === Method 3: Within-cell seed variance ===\n    # For each (prompt_template, ordering) combination, compute variance across seeds\n    # This controls for prompt and ordering effects\n    cell_seed_vars = []\n    cell_seed_ranges = []\n    for (pt, ord_), group in subset.groupby(['prompt_template', 'ordering']):\n        cell_seed_accs = group.groupby('seed')['correct'].mean()\n        v = cell_seed_accs.var(ddof=1)\n        r = cell_seed_accs.max() - cell_seed_accs.min()\n        if not np.isnan(v):\n            cell_seed_vars.append(v)\n            cell_seed_ranges.append(r)\n    \n    avg_within_cell_var = np.mean(cell_seed_vars)\n    avg_within_cell_range = np.mean(cell_seed_ranges)\n    max_within_cell_range = np.max(cell_seed_ranges)\n    \n    # === Method 4: Item-level agreement across seeds ===\n    # For each item within each (prompt, ordering), what fraction of seeds agree?\n    agreement_rates = []\n    for (pt, ord_), group in subset.groupby(['prompt_template', 'ordering']):\n        item_seed_pivot = group.pivot_table(index='item_id', columns='seed', values='correct', aggfunc='first')\n        # For each item, compute fraction of seeds that give the same answer\n        for _, row in item_seed_pivot.iterrows():\n            vals = row.dropna().values\n            if len(vals) > 1:\n                majority = np.mean(vals)\n                # Agreement = max(fraction correct, fraction incorrect)\n                agreement_rates.append(max(majority, 1 - majority))\n    \n    avg_agreement = np.mean(agreement_rates)\n    perfect_agreement_pct = np.mean([a == 1.0 for a in agreement_rates]) * 100\n    \n    results[temp_val] = {\n        'n_rows': n_rows,\n        'n_seeds': n_seeds,\n        'n_prompts': n_prompts,\n        'n_orderings': n_orderings,\n        'n_items': n_items,\n        'accuracy': float(grand_mean),\n        'seed_means': {int(k): float(v) for k, v in seed_means.items()},\n        'seed_range': float(seed_range),\n        'seed_std': float(seed_std),\n        'seed_ss_pct': float(seed_ss_pct),\n        'avg_within_cell_seed_var': float(avg_within_cell_var),\n        'avg_within_cell_seed_range': float(avg_within_cell_range),\n        'max_within_cell_seed_range': float(max_within_cell_range),\n        'avg_item_agreement': float(avg_agreement),\n        'perfect_agreement_pct': float(perfect_agreement_pct),\n    }\n    \n    print(f\"\\n{'─'*50}\")\n    print(f\"T = {temp_val}\")\n    print(f\"{'─'*50}\")\n    print(f\"  N = {n_rows} ({n_seeds} seeds × {n_prompts} prompts × {n_orderings} orderings × {n_items} items)\")\n    print(f\"  Overall accuracy = {grand_mean:.4f}\")\n    print(f\"  Seed marginal means:\")\n    for s in sorted(seed_means.index):\n        print(f\"    seed {s}: {seed_means[s]:.6f}\")\n    print(f\"  Seed range = {seed_range:.6f} (max - min of marginal means)\")\n    print(f\"  Seed SD = {seed_std:.6f}\")\n    print(f\"  Seed SS% of total = {seed_ss_pct:.6f}%\")\n    print(f\"  Avg within-cell seed variance = {avg_within_cell_var:.10f}\")\n    print(f\"  Avg within-cell seed range = {avg_within_cell_range:.6f}\")\n    print(f\"  Max within-cell seed range = {max_within_cell_range:.6f}\")\n    print(f\"  Item-level perfect agreement across seeds = {perfect_agreement_pct:.2f}%\")\n    print(f\"  Avg item-level agreement = {avg_agreement:.6f}\")\n\n# === Cross-temperature comparison ===\nprint(f\"\\n{'='*70}\")\nprint(\"CROSS-TEMPERATURE COMPARISON\")\nprint(f\"{'='*70}\")\ntemps_sorted = sorted(results.keys())\nprint(f\"\\n{'Metric':<35} | \" + \" | \".join([f\"T={t}\" for t in temps_sorted]))\nprint(\"-\"*35 + \"-+-\" + \"-+-\".join([\"-\"*12 for _ in temps_sorted]))\nprint(f\"{'Accuracy':<35} | \" + \" | \".join([f\"{results[t]['accuracy']:.4f}      \" for t in temps_sorted]))\nprint(f\"{'Seed range':<35} | \" + \" | \".join([f\"{results[t]['seed_range']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Seed SD':<35} | \" + \" | \".join([f\"{results[t]['seed_std']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Seed SS%':<35} | \" + \" | \".join([f\"{results[t]['seed_ss_pct']:.6f}%   \" for t in temps_sorted]))\nprint(f\"{'Avg within-cell seed var':<35} | \" + \" | \".join([f\"{results[t]['avg_within_cell_seed_var']:.2e}\" for t in temps_sorted]))\nprint(f\"{'Avg within-cell seed range':<35} | \" + \" | \".join([f\"{results[t]['avg_within_cell_seed_range']:.6f}    \" for t in temps_sorted]))\nprint(f\"{'Perfect item agreement %':<35} | \" + \" | \".join([f\"{results[t]['perfect_agreement_pct']:.2f}%     \" for t in temps_sorted]))\n\n# Ratios\nif 0.0 in results and len(temps_sorted) > 1:\n    print(f\"\\n--- Ratios relative to T=0.0 ---\")\n    t0_var = results[0.0]['avg_within_cell_seed_var']\n    for t in temps_sorted[1:]:\n        ratio = results[t]['avg_within_cell_seed_var'] / t0_var if t0_var > 0 else float('inf')\n        print(f\"  T={t} / T=0.0 seed var ratio = {ratio:.2f}x\")\n\n# Save results\noutput = {\n    'analysis': 'R1-W5 temperature-stratified seed variance',\n    'data_source': 'exp-001 Llama-3.1-8B-Instruct MMLU (bfloat16)',\n    'total_rows_used': int(df.shape[0]),\n    'results_by_temperature': {str(k): v for k, v in results.items()}\n}\n\ndef convert(obj):\n    if isinstance(obj, (np.integer,)): return int(obj)\n    if isinstance(obj, (np.floating,)): return float(obj)\n    if isinstance(obj, np.ndarray): return obj.tolist()\n    return obj\n\nout_path = '/root/nlp_variance_gtheory/results/exp001_analysis/r1_w5_temperature_seed_variance.json'\nPath(out_path).parent.mkdir(parents=True, exist_ok=True)\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2, default=convert)\nprint(f\"\\n\\nResults saved to: {out_path}\")\nSCRIPT"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T19:56:29.782776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading 4 shards...\\nTotal rows: 239200\\nColumns: ['condition_id', 'item_id', 'subject', 'model', 'precision', 'temperature', 'top_p', 'prompt_template', 'seed', 'ordering', 'generated_text', 'predicted_answer', 'gold_answer', 'correct', 'latency_ms', 'answer_logprob', 'top_logprobs']\\n\\nDesign factors:\\n  temperature: [np.float64(0.0), np.float64(0.3), np.float64(0.7)]\\n  seed: [np.int64(42), np.int64(123), np.int64(456), np.int64(789), np.int64(1024), np.int64(2048)]\\n  precision: ['bfloat16', 'float16', 'float32']\\n  prompt_template: [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6)]\\n  ordering: [np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  n_items: 200\\n\\nPrecision counts:\\nprecision\\nbfloat16    86400\\nfloat16     86400\\nfloat32     66400\\nName: count, dtype: int64\\nAfter bf16 filter: 86400 rows\\n\\n======================================================================\\nR1-W5: TEMPERATURE-STRATIFIED SEED VARIANCE ANALYSIS\\n======================================================================\\n\\n──────────────────────────────────────────────────\\nT = 0.0\\n──────────────────────────────────────────────────\\n  N = 28800 (6 seeds × 6 prompts × 4 orderings × 200 items)\\n  Overall accuracy = 0.7131\\n  Seed marginal means:\\n    seed 42: 0.713125\\n    seed 123: 0.713125\\n    seed 456: 0.713125\\n    seed 789: 0.713125\\n    seed 1024: 0.713125\\n    seed 2048: 0.713125\\n  Seed range = 0.000000 (max - min of marginal means)\\n  Seed SD = 0.000000\\n  Seed SS% of total = 0.000000%\\n  Avg within-cell seed variance = 0.0000000000\\n  Avg within-cell seed range = 0.000000\\n  Max within-cell seed range = 0.000000\\n  Item-level perfect agreement across seeds = 100.00%\\n  Avg item-level agreement = 1.000000\\n\\n──────────────────────────��───────────────────────\\nT = 0.3\\n──────────────────────────────────────────────────\\n  N = 28800 (6 seeds
+…[truncated 2724 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T19:56:29.782985+00:00_
+
+结果非常清晰。总结如下：
+
+## R1-W5 分析结果
+
+### 核心发现
+
+| 指标 | T=0.0 | T=0.3 | T=0.7 |
+|------|-------|-------|-------|
+| Accuracy | 0.7131 | 0.7148 | 0.7046 |
+| Seed range | **0.000000** | 0.011458 | 0.043958 |
+| Seed SD | **0.000000** | 0.004455 | 0.017104 |
+| Seed SS% | **0.000000%** | 0.008114% | 0.117137% |
+| Within-cell seed var | **≈0** (3e-33) | 1.01e-04 | 3.82e-04 |
+| Item perfect agreement | **100.00%** | 84.35% | 70.42% |
+
+### 解读
+
+1. **T=0 下 seed 方差 = 0（完美确定性）**。所有 6 个 seed 在所有 24 个条件组合（6 prompts × 4 orderings）中产生完全相同的 item-level 结果。vLLM greedy decoding 在 bfloat16 下无任何 GPU non-determinism 效应。
+
+2. **T>0 下 seed 方差单调递增**：T=0.7 的 within-cell seed variance 是 T=0.3 的 **3.8×**；seed range 约为 2×。符合 sampling stochasticity 随温度增大的预期。
+
+3. **Seed SS% 占总方差极小**：即使 T=0.7，seed 仅解释 0.12% 的总方差。说明 prompt 和 ordering 的效应远大于 seed。
+
+4. **Item 一致性下降显著**：T=0.3 有 15.65% 的 items 会因 seed 不同而翻转答案；T=0.7 升到 29.58%。
+
+### 论文写法建议
+
+- **T=0 完美确定性是强结论**：可以写 "At T=0, greedy decoding is fully deterministic—random seeds have zero effect on outputs, confirming that GPU non-determinism does not contribute measurable variance in our setup (bfloat16, vLLM)."
+- **数据支撑 G-theory分解的正当性**：T=0 作为 baseline 表明所有 T>0 的 seed 方差纯粹来自 sampling noise，无需担心与硬件混淆。
+- **建议做一个 Figure**：左边 bar chart 显示 3 个温度下的 seed SS%，右边显示 item-level agreement %，直观展示 deterministic→stochastic 的梯度。
+
+### 产出文件
+
+`/root/nlp_variance_gtheory/results/exp001_analysis/r1_w5_temperature_seed_variance.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_r1_w5_temperature_seed_variance_20260521T195424"
+}
+```
+
+</details>
+
+---

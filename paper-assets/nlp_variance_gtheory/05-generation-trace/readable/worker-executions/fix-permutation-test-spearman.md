@@ -1,0 +1,1583 @@
+# fix permutation test spearman
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/workers/worker_fix_permutation_test_spearman_20260521T142846.log`
+- **Structured JSON:** [`756b18f65265f0127709.json`](../../sessions/75/756b18f65265f0127709.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5f0a59d6-ed69-478c-b323-4a9be861eb7f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779388200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d1182200-6733-4003-9d57-096021d582f0",
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the current script to understand its structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "4adf95a1-ab3f-46f7-ad6a-65e293f0d99d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5qjeQNWbcHrn4aEFmTesC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12234
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D8uG28RkZrmfugX9NwqPYo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "5fc20839-9d9c-4643-bcd3-1919e1a6a1c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W5qjeQNWbcHrn4aEFmTesC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12234,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12234
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T14:28:59.755Z_
+
+<details><summary>↩ Tool result · `toolu_01D8uG28RkZrmfugX9NwqPYo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "e3d1a1e6-1f42-4cad-920a-43736ff057be",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the current script first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "2d497e89-1bce-4a3c-8c6c-efec35e41f55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vpt2fwUE9j17Mm6fPZou5u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WyyAd2FwrgnEa3q93Mcg62`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "f82007b7-878b-45d2-844c-241014163af2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vpt2fwUE9j17Mm6fPZou5u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 685,
+      "cache_read_input_tokens": 24075,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 685
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T14:29:08.469Z_
+
+<details><summary>↩ Tool result · `toolu_01WyyAd2FwrgnEa3q93Mcg62`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"\\n\\n... [截断: 输出过长，省略 2588 字符] ...\\n\\n   benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "97a6bd32-5b76-4111-b087-102ff549fece",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Gradient permutation test across 5 benchmarks.\\\\n\\\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\\\npermutation test over 5! = 120 orderings.\\\\n\\\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\\\nOutput: results/analysis/gradient_permutation_test.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"math\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 2588 字符] ...\\\\n\\\\n   benchmark_stats = {}\\\\n    for bm in df[\\\\\\\"benchmark\\\\\\\"].unique():\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        result = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n        benchmark_stats[bm] = {\\\\n            \\\\\\\"item_id_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"n_obs\\\\\\\": len(df_bm),\\\\n            \\\\\\\"accuracy\\\\\\\": float(df_bm[\\\\\\\"correct\\\\\\\"].mean()),\\\\n        }\\\\n        print(f\\\\\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\\\\\"\\\\n              f\\\\\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\\\n        if exp001 and \\\\\\\"variance_components\\\\\\\" in exp001:\\\\n            vc = exp001[\\\\\\\"variance_components\\\\\\\"]\\\\n            item_pct = vc.get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            mi_pct = vc.get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            benchmark_stats[\\\\\\\"mmlu_exp001\\\\\\\"] = {\\\\n                \\\\\\\"item_id_pct\\\\\\\": item_pct,\\\\n                \\\\\\\"model_item_pct\\\\\\\": mi_pct,\\\\n                \\\\\\\"n_obs\\\\\\\": exp001.get(\\\\\\\"n_observations\\\\\\\", 0),\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp-001\\\\\\\",\\\\n            }\\\\n            print(f\\\\\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\\\n    print(f\\\\\\\"\\\\\\\\nBenchmarks for gradient test: {available_benchmarks}\\\\\\\", flush=True)\\\\n\\\\n    item_pcts = {bm: benchmark_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available_benchmarks}\\\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available_benchmarks}\\\\n\\\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\\\\\"decreasing\\\\\\\")\\\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n    both_monotonic = test_item_dec[\\\\\\\"observed_is_monotonic\\\\\\\"] and test_mi_inc[\\\\\\\"observed_is_monotonic\\\\\\\"]\\\\n    n_both = 0\\\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\\\n    for perm in all_perms:\\\\n        perm_item = [item_vals[i] for i in perm]\\\\n        perm_mi = [mi_vals[i] for i in perm]\\\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\\\n            n_both += 1\\\\n    p_joint = n_both / len(all_perms)\\\\n\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002 (+ optional exp-001)\\\\\\\",\\\\n        \\\\\\\"benchmark_order_hypothesis\\\\\\\": BENCHMARK_ORDER,\\\\n        \\\\\\\"benchmark_stats\\\\\\\": benchmark_stats,\\\\n        \\\\\\\"tests\\\\\\\": {\\\\n            \\\\\\\"item_id_decreasing\\\\\\\": test_item_dec,\\\\n            \\\\\\\"model_item_increasing\\\\\\\": test_mi_inc,\\\\n            \\\\\\\"joint_test\\\\\\\": {\\\\n                \\\\\\\"observed_both_monotonic\\\\\\\": both_monotonic,\\\\n                \\\\\\\"n_permutations\\\\\\\": len(all_perms),\\\\n                \\\\\\\"n_joint_monotonic\\\\\\\": n_both,\\\\n                \\\\\\\"p_value\\\\\\\": round(p_joint, 6),\\\\n                \\\\\\\"significant_at_0.05\\\\\\\": p_joint <= 0.05,\\\\n            },\\\\n        },\\\\n        \\\\\\\"interpretation\\\\\\\": (\\\\n            \\\\\\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\\\\\"\\\\n            \\\\\\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\\\\\"\\\\n            f\\\\\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\\\\\"\\\\n        ),\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRESULTS:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"\\n\\n... [截断: 输出过长，省略 2588 字符] ...\\n\\n   benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full file by reading it in parts. I need to see the `permutation_test` function and `is_monotonic_decreasing`/`is_monotonic_increasing` functions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "79ae3367-ad5c-4aa3-9c9e-b90e4d8a1051",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GgXb7KGyzFVRsDRpaNVSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3724,
+      "cache_read_input_tokens": 24760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3724
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Output was truncated. Let me get the missing middle section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "0212bf9b-7c9f-4406-98a6-d246c7e63f76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GgXb7KGyzFVRsDRpaNVSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3724,
+      "cache_read_input_tokens": 24760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3724
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BqgDcuTW715xELnuWgKdZp`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "64996044-0b6b-40be-bd9e-f901443d2770",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GgXb7KGyzFVRsDRpaNVSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3724,
+      "cache_read_input_tokens": 24760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3724
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T14:29:13.424Z_
+
+<details><summary>↩ Tool result · `toolu_01BqgDcuTW715xELnuWgKdZp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"255 /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "9f2a4bb1-4501-4669-a5e0-5a2b4581b7a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"255 /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"255 /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018FmSboGwP3pkqMQ5qKEwvV`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -160 /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "ac5c170d-dfd5-40db-a51e-7b2b9db9bb8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GgXb7KGyzFVRsDRpaNVSz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3724,
+      "cache_read_input_tokens": 24760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3724
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T14:29:14.357Z_
+
+<details><summary>↩ Tool result · `toolu_018FmSboGwP3pkqMQ5qKEwvV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n    return {\\\"vc\\\": vc, \\\"pct\\\": pct, \\\"n_levels\\\": n_levels, \\\"total_var\\\": total_var}\\n\\n\\ndef is_monotonic_decreasing(values: list[float]) -> bool:\\n    return all(a >= b for a, b in zip(values, values[1:]))\\n\\n\\ndef is_monotonic_increasing(values: list[float]) -> bool:\\n    return all(a <= b for a, b in zip(values, values[1:]))\\n\\n\\ndef permutation_test(values_by_benchmark: dict[str, float], benchmark_order: list[str],\\n                     test_direction: str) -> dict:\\n    \\\"\\\"\\\"Exact permutation test: how many of 5! orderings show the observed monotonic trend?\\n\\n    test_direction: \\\"decreasing\\\" or \\\"increasing\\\"\\n    \\\"\\\"\\\"\\n    ordered_values = [values_by_benchmark[bm] for bm in benchmark_order]\\n    check_fn = is_monotonic_decreasing if test_direction == \\\"decreasing\\\" else is_monotonic_increasing\\n\\n    observed_monotonic = check_fn(ordered_values)\\n\\n    n_benchmarks = len(benchmark_order)\\n    all_perms = list(permutations(range(n_benchmarks)))\\n    n_total = len(all_perms)\\n\\n    n_monotonic = 0\\n    for perm in all_perms:\\n        permuted = [ordered_values[i] for i in perm]\\n        if check_fn(permuted):\\n            n_monotonic += 1\\n\\n    p_value = n_monotonic / n_total\\n\\n    return {\\n        \\\"observed_order\\\": benchmark_order,\\n        \\\"observed_values\\\": ordered_values,\\n        \\\"observed_is_monotonic\\\": observed_monotonic,\\n        \\\"direction\\\": test_direction,\\n        \\\"n_permutations\\\": n_total,\\n        \\\"n_monotonic\\\": n_monotonic,\\n        \\\"p_value\\\": round(p_value, 6),\\n        \\\"significant_at_0.05\\\": p_value <= 0.05,\\n    }\\n\\n\\ndef load_exp001_gstudy(path: str) -> dict | None:\\n    \\\"\\\"\\\"Load exp-001 G-study results if available.\\\"\\\"\\\"\\n    p = Path(path)\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        return json.load(f)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Gradient permutation test across benchmarks\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory with exp-002 JSONL files\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "b3e7db49-3664-4a87-a69d-a7dbd1af3c48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Gradient permutation test across 5 benchmarks.\\\\n\\\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\\\npermutation test over 5! = 120 orderings.\\\\n\\\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\\\nOutput: results/analysis/gradient_permutation_test.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"math\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    total_var = sum(vc.values())\\\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\\\n    return {\\\\\\\"vc\\\\\\\": vc, \\\\\\\"pct\\\\\\\": pct, \\\\\\\"n_levels\\\\\\\": n_levels, \\\\\\\"total_var\\\\\\\": total_var}\\\\n\\\\n\\\\ndef is_monotonic_decreasing(values: list[float]) -> bool:\\\\n    return all(a >= b for a, b in zip(values, values[1:]))\\\\n\\\\n\\\\ndef is_monotonic_increasing(values: list[float]) -> bool:\\\\n    return all(a <= b for a, b in zip(values, values[1:]))\\\\n\\\\n\\\\ndef permutation_test(values_by_benchmark: dict[str, float], benchmark_order: list[str],\\\\n                     test_direction: str) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Exact permutation test: how many of 5! orderings show the observed monotonic trend?\\\\n\\\\n    test_direction: \\\\\\\"decreasing\\\\\\\" or \\\\\\\"increasing\\\\\\\"\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ordered_values = [values_by_benchmark[bm] for bm in benchmark_order]\\\\n    check_fn = is_monotonic_decreasing if test_direction == \\\\\\\"decreasing\\\\\\\" else is_monotonic_increasing\\\\n\\\\n    observed_monotonic = check_fn(ordered_values)\\\\n\\\\n    n_benchmarks = len(benchmark_order)\\\\n    all_perms = list(permutations(range(n_benchmarks)))\\\\n    n_total = len(all_perms)\\\\n\\\\n    n_monotonic = 0\\\\n    for perm in all_perms:\\\\n        permuted = [ordered_values[i] for i in perm]\\\\n        if check_fn(permuted):\\\\n            n_monotonic += 1\\\\n\\\\n    p_value = n_monotonic / n_total\\\\n\\\\n    return {\\\\n        \\\\\\\"observed_order\\\\\\\": benchmark_order,\\\\n        \\\\\\\"observed_values\\\\\\\": ordered_values,\\\\n        \\\\\\\"observed_is_monotonic\\\\\\\": observed_monotonic,\\\\n        \\\\\\\"direction\\\\\\\": test_direction,\\\\n        \\\\\\\"n_permutations\\\\\\\": n_total,\\\\n        \\\\\\\"n_monotonic\\\\\\\": n_monotonic,\\\\n        \\\\\\\"p_value\\\\\\\": round(p_value, 6),\\\\n        \\\\\\\"significant_at_0.05\\\\\\\": p_value <= 0.05,\\\\n    }\\\\n\\\\n\\\\ndef load_exp001_gstudy(path: str) -> dict | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load exp-001 G-study results if available.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    p = Path(path)\\\\n    if not p.exists():\\\\n        return None\\\\n    with open(p) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Gradient permutation test across benchmarks\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\", help=\\\\\\\"Directory with exp-002 JSONL files\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n    return {\\\"vc\\\": vc, \\\"pct\\\": pct, \\\"n_levels\\\": n_levels, \\\"total_var\\\": total_var}\\n\\n\\ndef is_monotonic_decreasing(values: list[float]) -> bool:\\n    return all(a >= b for a, b in zip(values, values[1:]))\\n\\n\\ndef is_monotonic_increasing(values: list[float]) -> bool:\\n    return all(a <= b for a, b in zip(values, values[1:]))\\n\\n\\ndef permutation_test(values_by_benchmark: dict[str, float], benchmark_order: list[str],\\n                     test_direction: str) -> dict:\\n    \\\"\\\"\\\"Exact permutation test: how many of 5! orderings show the observed monotonic trend?\\n\\n    test_direction: \\\"decreasing\\\" or \\\"increasing\\\"\\n    \\\"\\\"\\\"\\n    ordered_values = [values_by_benchmark[bm] for bm in benchmark_order]\\n    check_fn = is_monotonic_decreasing if test_direction == \\\"decreasing\\\" else is_monotonic_increasing\\n\\n    observed_monotonic = check_fn(ordered_values)\\n\\n    n_benchmarks = len(benchmark_order)\\n    all_perms = list(permutations(range(n_benchmarks)))\\n    n_total = len(all_perms)\\n\\n    n_monotonic = 0\\n    for perm in all_perms:\\n        permuted = [ordered_values[i] for i in perm]\\n        if check_fn(permuted):\\n            n_monotonic += 1\\n\\n    p_value = n_monotonic / n_total\\n\\n    return {\\n        \\\"observed_order\\\": benchmark_order,\\n        \\\"observed_values\\\": ordered_values,\\n        \\\"observed_is_monotonic\\\": observed_monotonic,\\n        \\\"direction\\\": test_direction,\\n        \\\"n_permutations\\\": n_total,\\n        \\\"n_monotonic\\\": n_monotonic,\\n        \\\"p_value\\\": round(p_value, 6),\\n        \\\"significant_at_0.05\\\": p_value <= 0.05,\\n    }\\n\\n\\ndef load_exp001_gstudy(path: str) -> dict | None:\\n    \\\"\\\"\\\"Load exp-001 G-study results if available.\\\"\\\"\\\"\\n    p = Path(path)\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        return json.load(f)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Gradient permutation test across benchmarks\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory with exp-002 JSONL files\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get lines 160-255.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "3a7e6073-4201-48a4-a192-013a9e9c68dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AsUWVM8AVteHU455byDcbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3130,
+      "cache_read_input_tokens": 28484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DTA4sb29yXp94gekBzuxAn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -n +160 /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "2bc27180-6388-474c-af88-9b6c3e564f1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AsUWVM8AVteHU455byDcbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3130,
+      "cache_read_input_tokens": 28484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3130
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T14:29:18.121Z_
+
+<details><summary>↩ Tool result · `toolu_01DTA4sb29yXp94gekBzuxAn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory with exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--exp001-gstudy\\\", default=None, help=\\\"Path to exp-001 G-study JSON (optional, for 5th benchmark)\\\")\\n    parser.add_argument(\\\"--use-exp001-mmlu\\\", action=\\\"store_true\\\", help=\\\"Use exp-001 MMLU instead of exp-002 MMLU\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/gradient_permutation_test.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "0f49a0b3-9709-4d2b-b062-ae82d0c73a5e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\", help=\\\\\\\"Directory with exp-002 JSONL files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--exp001-gstudy\\\\\\\", default=None, help=\\\\\\\"Path to exp-001 G-study JSON (optional, for 5th benchmark)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--use-exp001-mmlu\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Use exp-001 MMLU instead of exp-002 MMLU\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/gradient_permutation_test.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    benchmark_stats = {}\\\\n    for bm in df[\\\\\\\"benchmark\\\\\\\"].unique():\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        result = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n        benchmark_stats[bm] = {\\\\n            \\\\\\\"item_id_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"n_obs\\\\\\\": len(df_bm),\\\\n            \\\\\\\"accuracy\\\\\\\": float(df_bm[\\\\\\\"correct\\\\\\\"].mean()),\\\\n        }\\\\n        print(f\\\\\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\\\\\"\\\\n              f\\\\\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\\\n        if exp001 and \\\\\\\"variance_components\\\\\\\" in exp001:\\\\n            vc = exp001[\\\\\\\"variance_components\\\\\\\"]\\\\n            item_pct = vc.get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            mi_pct = vc.get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            benchmark_stats[\\\\\\\"mmlu_exp001\\\\\\\"] = {\\\\n                \\\\\\\"item_id_pct\\\\\\\": item_pct,\\\\n                \\\\\\\"model_item_pct\\\\\\\": mi_pct,\\\\n                \\\\\\\"n_obs\\\\\\\": exp001.get(\\\\\\\"n_observations\\\\\\\", 0),\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp-001\\\\\\\",\\\\n            }\\\\n            print(f\\\\\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\\\n    print(f\\\\\\\"\\\\\\\\nBenchmarks for gradient test: {available_benchmarks}\\\\\\\", flush=True)\\\\n\\\\n    item_pcts = {bm: benchmark_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available_benchmarks}\\\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available_benchmarks}\\\\n\\\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\\\\\"decreasing\\\\\\\")\\\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n    both_monotonic = test_item_dec[\\\\\\\"observed_is_monotonic\\\\\\\"] and test_mi_inc[\\\\\\\"observed_is_monotonic\\\\\\\"]\\\\n    n_both = 0\\\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\\\n    for perm in all_perms:\\\\n        perm_item = [item_vals[i] for i in perm]\\\\n        perm_mi = [mi_vals[i] for i in perm]\\\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\\\n            n_both += 1\\\\n    p_joint = n_both / len(all_perms)\\\\n\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002 (+ optional exp-001)\\\\\\\",\\\\n        \\\\\\\"benchmark_order_hypothesis\\\\\\\": BENCHMARK_ORDER,\\\\n        \\\\\\\"benchmark_stats\\\\\\\": benchmark_stats,\\\\n        \\\\\\\"tests\\\\\\\": {\\\\n            \\\\\\\"item_id_decreasing\\\\\\\": test_item_dec,\\\\n            \\\\\\\"model_item_increasing\\\\\\\": test_mi_inc,\\\\n            \\\\\\\"joint_test\\\\\\\": {\\\\n                \\\\\\\"observed_both_monotonic\\\\\\\": both_monotonic,\\\\n                \\\\\\\"n_permutations\\\\\\\": len(all_perms),\\\\n                \\\\\\\"n_joint_monotonic\\\\\\\": n_both,\\\\n                \\\\\\\"p_value\\\\\\\": round(p_joint, 6),\\\\n                \\\\\\\"significant_at_0.05\\\\\\\": p_joint <= 0.05,\\\\n            },\\\\n        },\\\\n        \\\\\\\"interpretation\\\\\\\": (\\\\n            \\\\\\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\\\\\"\\\\n            \\\\\\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\\\\\"\\\\n            f\\\\\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\\\\\"\\\\n        ),\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRESULTS:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory with exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--exp001-gstudy\\\", default=None, help=\\\"Path to exp-001 G-study JSON (optional, for 5th benchmark)\\\")\\n    parser.add_argument(\\\"--use-exp001-mmlu\\\", action=\\\"store_true\\\", help=\\\"Use exp-001 MMLU instead of exp-002 MMLU\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/gradient_permutation_test.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now I have the full picture. The script is 255 lines. The key functions to replace are:
+
+1. `is_monotonic_decreasing` / `is_monotonic_increasing` (lines ~105-109)
+2. `permutation_test` (lines ~112-138) — uses binary monotonicity check
+3. `main()` — joint test section and output structure
+
+I'll write the replacement script now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "4a4f389d-17b0-42b0-85bd-3f0e5d999af8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDsCh8BNX6BDB97tGCdNNW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2227,
+      "cache_read_input_tokens": 31614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2227
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01435vgrnJg8413iuNZarKCb`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat > /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py << 'PYTHON_EOF'\n\"\"\"Gradient permutation test across benchmarks.\n\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\nincreases) across benchmarks ordered by cognitive complexity, using Spearman rho\nas the test statistic with an exact permutation test.\n\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\nOutput: results/analysis/gradient_permutation_test.json\n\nUsage:\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport time\nfrom itertools import combinations, permutations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\nfrom src.config.model_paths import normalize_model_name\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\nBENCHMARK_ORDER = [\"mmlu\", \"arc\", \"hellaswag\", \"gsm8k\", \"math\"]\n\n\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\n    data_path = Path(data_dir)\n    jsonl_files = sorted(data_path.glob(\"*.jsonl\"))\n    if not jsonl_files:\n        raise FileNotFoundError(f\"No JSONL files in {data_dir}\")\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\n    df = pd.concat(frames, ignore_index=True)\n    if \"top_logprobs\" in df.columns:\n        df.drop(columns=[\"top_logprobs\"], inplace=True)\n    df[\"model\"] = df[\"model\"].map(normalize_model_name).fillna(df[\"model\"])\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n    return df\n\n\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n\n    effects = {}\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model_sum = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model_sum)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n        vc[key] = max(0.0, raw)\n\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        interaction_contrib = 0.0\n        for fj in facets:\n            if fj == fi:\n                continue\n            int_key = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\n            interaction_contrib += coeff_ij * vc[int_key]\n        raw = (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\n        vc[fi] = max(0.0, raw)\n\n    vc[\"residual\"] = ms_res\n    total_var = sum(vc.values())\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\n    return {\"vc\": vc, \"pct\": pct, \"n_levels\": n_levels, \"total_var\": total_var}\n\n\ndef spearman_permutation_test(values_by_benchmark: dict[str, float],\n                              benchmark_order: list[str],\n                              direction: str) -> dict:\n    \"\"\"Exact permutation test using Spearman rho as the test statistic.\n\n    direction: \"decreasing\" (expect negative rho) or \"increasing\" (expect positive rho)\n    \"\"\"\n    ordered_values = [values_by_benchmark[bm] for bm in benchmark_order]\n    positions = list(range(len(ordered_values)))\n\n    rho_obs, _ = spearmanr(positions, ordered_values)\n    tau_obs, tau_p_asymptotic = kendalltau(positions, ordered_values)\n\n    all_perms = list(permutations(ordered_values))\n    n_total = len(all_perms)\n\n    if direction == \"decreasing\":\n        # H1: rho < 0, count permutations with rho <= observed\n        n_extreme = sum(1 for perm in all_perms if spearmanr(positions, perm)[0] <= rho_obs)\n    else:\n        # H1: rho > 0, count permutations with rho >= observed\n        n_extreme = sum(1 for perm in all_perms if spearmanr(positions, perm)[0] >= rho_obs)\n\n    p_value = n_extreme / n_total\n\n    return {\n        \"observed_order\": benchmark_order,\n        \"observed_values\": [round(v, 4) for v in ordered_values],\n        \"observed_rho\": round(float(rho_obs), 6),\n        \"direction\": direction,\n        \"n_permutations\": n_total,\n        \"n_extreme\": n_extreme,\n        \"p_value\": round(p_value, 6),\n        \"significant_at_0.05\": p_value <= 0.05,\n        \"kendall_tau\": round(float(tau_obs), 6),\n        \"kendall_p\": round(float(tau_p_asymptotic), 6),\n    }\n\n\ndef load_exp001_gstudy(path: str) -> dict | None:\n    p = Path(path)\n    if not p.exists():\n        return None\n    with open(p) as f:\n        return json.load(f)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Gradient permutation test across benchmarks\")\n    parser.add_argument(\"--data-dir\", default=\"results/exp002\", help=\"Directory with exp-002 JSONL files\")\n    parser.add_argument(\"--exp001-gstudy\", default=None, help=\"Path to exp-001 G-study JSON (optional, for 5th benchmark)\")\n    parser.add_argument(\"--use-exp001-mmlu\", action=\"store_true\", help=\"Use exp-001 MMLU instead of exp-002 MMLU\")\n    parser.add_argument(\"--output\", default=\"results/analysis/gradient_permutation_test.json\")\n    args = parser.parse_args()\n\n    t0 = time.time()\n    df = load_exp002_data(args.data_dir)\n    print(f\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\", flush=True)\n\n    benchmark_stats = {}\n    for bm in df[\"benchmark\"].unique():\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        result = compute_henderson_i(df_bm, \"correct\", FACETS)\n        benchmark_stats[bm] = {\n            \"item_id_pct\": result[\"pct\"].get(\"item_id\", 0.0),\n            \"model_item_pct\": result[\"pct\"].get(\"model:item_id\", 0.0),\n            \"n_obs\": len(df_bm),\n            \"accuracy\": float(df_bm[\"correct\"].mean()),\n        }\n        print(f\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \"\n              f\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\", flush=True)\n\n    if args.exp001_gstudy and args.use_exp001_mmlu:\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\n        if exp001 and \"variance_components\" in exp001:\n            vc = exp001[\"variance_components\"]\n            item_pct = vc.get(\"item_id\", {}).get(\"pct\", 0.0)\n            mi_pct = vc.get(\"model:item_id\", {}).get(\"pct\", 0.0)\n            benchmark_stats[\"mmlu_exp001\"] = {\n                \"item_id_pct\": item_pct,\n                \"model_item_pct\": mi_pct,\n                \"n_obs\": exp001.get(\"n_observations\", 0),\n                \"source\": \"exp-001\",\n            }\n            print(f\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\", flush=True)\n\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\n    print(f\"\\nBenchmarks for gradient test: {available_benchmarks}\", flush=True)\n\n    item_pcts = {bm: benchmark_stats[bm][\"item_id_pct\"] for bm in available_benchmarks}\n    model_item_pcts = {bm: benchmark_stats[bm][\"model_item_pct\"] for bm in available_benchmarks}\n\n    test_item = spearman_permutation_test(item_pcts, available_benchmarks, \"decreasing\")\n    test_model_item = spearman_permutation_test(model_item_pcts, available_benchmarks, \"increasing\")\n\n    results = {\n        \"experiment\": \"exp-002 (+ optional exp-001)\",\n        \"test_statistic\": \"spearman_rho\",\n        \"n_benchmarks\": len(available_benchmarks),\n        \"n_permutations\": test_item[\"n_permutations\"],\n        \"benchmark_order_hypothesis\": BENCHMARK_ORDER,\n        \"benchmarks_used\": available_benchmarks,\n        \"benchmark_stats\": benchmark_stats,\n        \"item_id_gradient\": {\n            \"observed_values\": test_item[\"observed_values\"],\n            \"observed_rho\": test_item[\"observed_rho\"],\n            \"p_value\": test_item[\"p_value\"],\n            \"n_extreme\": test_item[\"n_extreme\"],\n            \"significant_at_0.05\": test_item[\"significant_at_0.05\"],\n            \"kendall_tau\": test_item[\"kendall_tau\"],\n            \"kendall_p\": test_item[\"kendall_p\"],\n            \"direction\": \"decreasing\",\n        },\n        \"model_item_gradient\": {\n            \"observed_values\": test_model_item[\"observed_values\"],\n            \"observed_rho\": test_model_item[\"observed_rho\"],\n            \"p_value\": test_model_item[\"p_value\"],\n            \"n_extreme\": test_model_item[\"n_extreme\"],\n            \"significant_at_0.05\": test_model_item[\"significant_at_0.05\"],\n            \"kendall_tau\": test_model_item[\"kendall_tau\"],\n            \"kendall_p\": test_model_item[\"kendall_p\"],\n            \"direction\": \"increasing\",\n        },\n        \"interpretation\": (\n            \"Spearman rho measures rank correlation between benchmark position \"\n            \"(knowledge-retrieval -> reasoning) and variance component percentage. \"\n            \"P-value from exact permutation test over all k! orderings. \"\n            f\"For {len(available_benchmarks)} benchmarks, k! = {test_item['n_permutations']}.\"\n        ),\n    }\n\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    print(f\"\\nRESULTS:\", flush=True)\n    print(f\"  item_id gradient:     rho={test_item['observed_rho']:.4f}, \"\n          f\"p={test_item['p_value']:.4f}, \"\n          f\"tau={test_item['kendall_tau']:.4f}\", flush=True)\n    print(f\"  model:item gradient:  rho={test_model_item['observed_rho']:.4f}, \"\n          f\"p={test_model_item['p_value']:.4f}, \"\n          f\"tau={test_model_item['kendall_tau']:.4f}\", flush=True)\n    print(f\"\\nRuntime: {time.time()-t0:.1f}s\", flush=True)\n    print(f\"-> {args.output}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "07b57543-f24c-43ea-8fef-1b2703417377",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDsCh8BNX6BDB97tGCdNNW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2227,
+      "cache_read_input_tokens": 31614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2227
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T14:30:03.567Z_
+
+<details><summary>↩ Tool result · `toolu_01435vgrnJg8413iuNZarKCb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "8b9c4692-7395-4b2e-ab29-29d8110971b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+File written. Now syntax check + run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "db49981a-29c0-479c-8313-48ab8d9be1e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H82Pp8iTA99ezqejxA9RKr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 33841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KLfzbTTvzytusFX2svp4i7`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -m py_compile scripts/exp002_analysis/gradient_permutation_test.py && echo \"SYNTAX_OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "0664bdb6-9268-4a7b-ba4d-5ada0e46533f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H82Pp8iTA99ezqejxA9RKr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4110,
+      "cache_read_input_tokens": 33841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4110
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T14:30:08.540Z_
+
+<details><summary>↩ Tool result · `toolu_01KLfzbTTvzytusFX2svp4i7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "89c66d65-2b0c-40a4-8027-c3141b1db43a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Syntax OK. Running the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "9254fbdb-21b1-4854-9854-5fd36d3dbbfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MgPvWDkG9ncTyygBvjVyUw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 373,
+      "cache_read_input_tokens": 37951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 373
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EdagXpKJBdyZRktMWH9C24`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "5fc3f822-63c8-4085-b089-a7907c5160b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MgPvWDkG9ncTyygBvjVyUw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 373,
+      "cache_read_input_tokens": 37951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 373
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T14:30:29.964Z_
+
+<details><summary>↩ Tool result · `toolu_01EdagXpKJBdyZRktMWH9C24`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 1005600 records (13.9s)\\n  arc: item_id=48.90%, model:item=38.20%\\n  gsm8k: item_id=11.99%, model:item=12.09%\\n  hellaswag: item_id=44.47%, model:item=32.31%\\n  math: item_id=0.00%, model:item=28.35%\\n  mmlu: item_id=41.55%, model:item=32.81%\\n\\nBenchmarks for gradient test: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\n\\nRESULTS:\\n  item_id gradient:     rho=-0.7000, p=0.1167, tau=-0.6000\\n  model:item gradient:  rho=-0.8000, p=0.9583, tau=-0.6000\\n\\nRuntime: 16.3s\\n-> results/analysis/gradient_permutation_test.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "3041ab8d-c626-4a87-b118-75f9fd935fc9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 1005600 records (13.9s)\\\\n  arc: item_id=48.90%, model:item=38.20%\\\\n  gsm8k: item_id=11.99%, model:item=12.09%\\\\n  hellaswag: item_id=44.47%, model:item=32.31%\\\\n  math: item_id=0.00%, model:item=28.35%\\\\n  mmlu: item_id=41.55%, model:item=32.81%\\\\n\\\\nBenchmarks for gradient test: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\\\n\\\\nRESULTS:\\\\n  item_id gradient:     rho=-0.7000, p=0.1167, tau=-0.6000\\\\n  model:item gradient:  rho=-0.8000, p=0.9583, tau=-0.6000\\\\n\\\\nRuntime: 16.3s\\\\n-> results/analysis/gradient_permutation_test.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 1005600 records (13.9s)\\n  arc: item_id=48.90%, model:item=38.20%\\n  gsm8k: item_id=11.99%, model:item=12.09%\\n  hellaswag: item_id=44.47%, model:item=32.31%\\n  math: item_id=0.00%, model:item=28.35%\\n  mmlu: item_id=41.55%, model:item=32.81%\\n\\nBenchmarks for gradient test: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\n\\nRESULTS:\\n  item_id gradient:     rho=-0.7000, p=0.1167, tau=-0.6000\\n  model:item gradient:  rho=-0.8000, p=0.9583, tau=-0.6000\\n\\nRuntime: 16.3s\\n-> results/analysis/gradient_permutation_test.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The results are interesting. Let me read the JSON output to get full details.
+
+Key observations:
+- item_id gradient: rho=-0.7000, p=0.1167 (not significant at 0.05) — this is the 5-benchmark version with MATH having 0% item_id
+- model:item gradient: rho=-0.8000, p=0.9583 — this is going the WRONG direction! The model:item values are NOT increasing, they're actually somewhat decreasing.
+
+Wait, let me look at the data more carefully:
+
+
+- mmlu: item_id=41.55%, model:item=32.81%
+- arc: item_id=48.90%, model:item=38.20%
+- hellaswag: item_id=44.47%, model:item=32.31%
+- gsm8k: item_id=11.99%, model:item=12.09%
+- math: item_id=0.00%, model:item=28.35%
+
+The model:item values across benchmarks are [32.81, 38.20, 32.31, 12.09, 28.35] — they're bouncing around with no clear upward trend, which explains the negative correlation and the high p-value indicating this isn't statistically significant.
+
+Actually, I need to reconsider the permutation test logic here. Since we're testing for an increasing direction and the observed rho is negative, almost all permutations will have rho values greater than or equal to the observed value, which pushes the p-value close to 1. That's the correct behavior — it's telling us the data doesn't support the hypothesis that model:item performance is increasing across benchmarks. Let me check the JSON output to see the full details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "c032d22d-99e9-4cef-92ba-088ac0a76ebc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013E4YxtJZEbe86VvQJeYs39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 38324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BzhnroNorbfMg9WoReP2kK`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/gradient_permutation_test.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "ec098643-33cc-4929-8dab-7affed6601e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013E4YxtJZEbe86VvQJeYs39",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 511,
+      "cache_read_input_tokens": 38324,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 511
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T14:30:42.885Z_
+
+<details><summary>↩ Tool result · `toolu_01BzhnroNorbfMg9WoReP2kK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n  \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n  \\\"n_benchmarks\\\": 5,\\n  \\\"n_permutations\\\": 120,\\n  \\\"benchmark_order_hypothesis\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmarks_used\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmark_stats\\\": {\\n    \\\"arc\\\": {\\n      \\\"item_id_pct\\\": 48.89986395195155,\\n      \\\"model_item_pct\\\": 38.19723003554425,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.8178298611111111\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"item_id_pct\\\": 11.990200787528359,\\n      \\\"model_item_pct\\\": 12.093403522004287,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.5557638888888888\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"item_id_pct\\\": 44.46529444603867,\\n      \\\"model_item_pct\\\": 32.30561962034519,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.7079513888888889\\n    },\\n    \\\"math\\\": {\\n      \\\"item_id_pct\\\": 0.0,\\n      \\\"model_item_pct\\\": 28.351153115121768,\\n      \\\"n_obs\\\": 84000,\\n      \\\"accuracy\\\": 0.2621785714285714\\n    },\\n    \\\"mmlu\\\": {\\n      \\\"item_id_pct\\\": 41.54706618382246,\\n      \\\"model_item_pct\\\": 32.810330873372344,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.7002473958333333\\n    }\\n  },\\n  \\\"item_id_gradient\\\": {\\n    \\\"observed_values\\\": [\\n      41.5471,\\n      48.8999,\\n      44.4653,\\n      11.9902,\\n      0.0\\n    ],\\n    \\\"observed_rho\\\": -0.7,\\n    \\\"p_value\\\": 0.116667,\\n    \\\"n_extreme\\\": 14,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.6,\\n    \\\"kendall_p\\\": 0.233333,\\n    \\\"direction\\\": \\\"decreasing\\\"\\n  },\\n  \\\"model_item_gradient\\\": {\\n    \\\"observed_values\\\": [\\n      32.8103,\\n      38.1972,\\n      32.3056,\\n      12.0934,\\n      28.3512\\n    ],\\n    \\\"observed_rho\\\": -0.8,\\n    \\\"p_value\\\": 0.958333,\\n    \\\"n_extreme\\\": 115,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.6,\\n    \\\"kendall_p\\\": 0.233333,\\n    \\\"direction\\\": \\\"increasing\\\"\\n  },\\n  \\\"interpretation\\\": \\\"Spearman rho measures rank correlation between benchmark position (knowledge-retrieval -> reasoning) and variance component percentage. P-value from exact permutation test over all k! orderings. For 5 benchmarks, k! = 120.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "d309b7b9-0e90-4683-a705-077d46521a25",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002 (+ optional exp-001)\\\\\\\",\\\\n  \\\\\\\"test_statistic\\\\\\\": \\\\\\\"spearman_rho\\\\\\\",\\\\n  \\\\\\\"n_benchmarks\\\\\\\": 5,\\\\n  \\\\\\\"n_permutations\\\\\\\": 120,\\\\n  \\\\\\\"benchmark_order_hypothesis\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks_used\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmark_stats\\\\\\\": {\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 48.89986395195155,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 38.19723003554425,\\\\n      \\\\\\\"n_obs\\\\\\\": 230400,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.8178298611111111\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 11.990200787528359,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 12.093403522004287,\\\\n      \\\\\\\"n_obs\\\\\\\": 230400,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5557638888888888\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 44.46529444603867,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 32.30561962034519,\\\\n      \\\\\\\"n_obs\\\\\\\": 230400,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7079513888888889\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 0.0,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 28.351153115121768,\\\\n      \\\\\\\"n_obs\\\\\\\": 84000,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.2621785714285714\\\\n    },\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 41.54706618382246,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 32.810330873372344,\\\\n      \\\\\\\"n_obs\\\\\\\": 230400,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7002473958333333\\\\n    }\\\\n  },\\\\n  \\\\\\\"item_id_gradient\\\\\\\": {\\\\n    \\\\\\\"observed_values\\\\\\\": [\\\\n      41.5471,\\\\n      48.8999,\\\\n      44.4653,\\\\n      11.9902,\\\\n      0.0\\\\n    ],\\\\n    \\\\\\\"observed_rho\\\\\\\": -0.7,\\\\n    \\\\\\\"p_value\\\\\\\": 0.116667,\\\\n    \\\\\\\"n_extreme\\\\\\\": 14,\\\\n    \\\\\\\"significant_at_0.05\\\\\\\": false,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.6,\\\\n    \\\\\\\"kendall_p\\\\\\\": 0.233333,\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"decreasing\\\\\\\"\\\\n  },\\\\n  \\\\\\\"model_item_gradient\\\\\\\": {\\\\n    \\\\\\\"observed_values\\\\\\\": [\\\\n      32.8103,\\\\n      38.1972,\\\\n      32.3056,\\\\n      12.0934,\\\\n      28.3512\\\\n    ],\\\\n    \\\\\\\"observed_rho\\\\\\\": -0.8,\\\\n    \\\\\\\"p_value\\\\\\\": 0.958333,\\\\n    \\\\\\\"n_extreme\\\\\\\": 115,\\\\n    \\\\\\\"significant_at_0.05\\\\\\\": false,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.6,\\\\n    \\\\\\\"kendall_p\\\\\\\": 0.233333,\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"increasing\\\\\\\"\\\\n  },\\\\n  \\\\\\\"interpretation\\\\\\\": \\\\\\\"Spearman rho measures rank correlation between benchmark position (knowledge-retrieval -> reasoning) and variance component percentage. P-value from exact permutation test over all k! orderings. For 5 benchmarks, k! = 120.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n  \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n  \\\"n_benchmarks\\\": 5,\\n  \\\"n_permutations\\\": 120,\\n  \\\"benchmark_order_hypothesis\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmarks_used\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmark_stats\\\": {\\n    \\\"arc\\\": {\\n      \\\"item_id_pct\\\": 48.89986395195155,\\n      \\\"model_item_pct\\\": 38.19723003554425,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.8178298611111111\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"item_id_pct\\\": 11.990200787528359,\\n      \\\"model_item_pct\\\": 12.093403522004287,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.5557638888888888\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"item_id_pct\\\": 44.46529444603867,\\n      \\\"model_item_pct\\\": 32.30561962034519,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.7079513888888889\\n    },\\n    \\\"math\\\": {\\n      \\\"item_id_pct\\\": 0.0,\\n      \\\"model_item_pct\\\": 28.351153115121768,\\n      \\\"n_obs\\\": 84000,\\n      \\\"accuracy\\\": 0.2621785714285714\\n    },\\n    \\\"mmlu\\\": {\\n      \\\"item_id_pct\\\": 41.54706618382246,\\n      \\\"model_item_pct\\\": 32.810330873372344,\\n      \\\"n_obs\\\": 230400,\\n      \\\"accuracy\\\": 0.7002473958333333\\n    }\\n  },\\n  \\\"item_id_gradient\\\": {\\n    \\\"observed_values\\\": [\\n      41.5471,\\n      48.8999,\\n      44.4653,\\n      11.9902,\\n      0.0\\n    ],\\n    \\\"observed_rho\\\": -0.7,\\n    \\\"p_value\\\": 0.116667,\\n    \\\"n_extreme\\\": 14,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.6,\\n    \\\"kendall_p\\\": 0.233333,\\n    \\\"direction\\\": \\\"decreasing\\\"\\n  },\\n  \\\"model_item_gradient\\\": {\\n    \\\"observed_values\\\": [\\n      32.8103,\\n      38.1972,\\n      32.3056,\\n      12.0934,\\n      28.3512\\n    ],\\n    \\\"observed_rho\\\": -0.8,\\n    \\\"p_value\\\": 0.958333,\\n    \\\"n_extreme\\\": 115,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.6,\\n    \\\"kendall_p\\\": 0.233333,\\n    \\\"direction\\\": \\\"increasing\\\"\\n  },\\n  \\\"interpretation\\\": \\\"Spearman rho measures rank correlation between benchmark position (knowledge-retrieval -> reasoning) and variance component percentage. P-value from exact permutation test over all k! orderings. For 5 benchmarks, k! = 120.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+修改完成，脚本已用 Spearman ρ 替换了二元 is_monotonic 统计量。
+
+**结果汇总（5 benchmarks: mmlu → arc → hellaswag → gsm8k → math）：**
+
+### item_id% 梯度（假设递减）
+| Benchmark | item_id% |
+|-----------|----------|
+| mmlu | 41.55 |
+| arc | 48.90 |
+| hellaswag | 44.47 |
+| gsm8k | 11.99 |
+| math | 0.00 |
+
+- **ρ = -0.70**, exact p = 0.1167（14/120 permutations）
+- **τ = -0.60**, p = 0.233
+- 不显著（p > 0.05），主要因为 arc > mmlu 打破了严格单调，但整体趋势是递减的
+
+### model:item_id% 梯度（假设递增）
+| Benchmark | model:item% |
+|-----------|-------------|
+| mmlu | 32.81 |
+| arc | 38.20 |
+| hellaswag | 32.31 |
+| gsm8k | 12.09 |
+| math | 28.35 |
+
+- **ρ = -0.80**, exact p = 0.9583
+- **τ = -0.60**, p = 0.233
+- model:item 实际上是**递减**而非递增，假设不成立
+
+### 注意
+MATH 的 item_id%=0.00 是异常值（可能是数据问题或所有 item 难度一致），5 benchmark 结果中 model:item 梯度方向与假设相反。可能需要排除 MATH 用 4 benchmarks 重新分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "uuid": "b4681a28-1d84-41d4-89f2-664a65473633",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gwbd8um4nKZMYYkG1GFy2v",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 38835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1820
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+修改完成，脚本已用 Spearman ρ 替换了二元 is_monotonic 统计量。
+
+**结果汇总（5 benchmarks: mmlu → arc → hellaswag → gsm8k → math）：**
+
+### item_id% 梯度（假设递减）
+| Benchmark | item_id% |
+|-----------|----------|
+| mmlu | 41.55 |
+| arc | 48.90 |
+| hellaswag | 44.47 |
+| gsm8k | 11.99 |
+| math | 0.00 |
+
+- **ρ = -0.70**, exact p = 0.1167（14/120 permutations）
+- **τ = -0.60**, p = 0.233
+- 不显著（p > 0.05），主要因为 arc > mmlu 打破了严格单调，但整体趋势是递减的
+
+### model:item_id% 梯度（假设递增）
+| Benchmark | model:item% |
+|-----------|-------------|
+| mmlu | 32.81 |
+| arc | 38.20 |
+| hellaswag | 32.31 |
+| gsm8k | 12.09 |
+| math | 28.35 |
+
+- **ρ = -0.80**, exact p = 0.9583
+- **τ = -0.60**, p = 0.233
+- model:item 实际上是**递减**而非递增，假设不成立
+
+### 注意
+MATH 的 item_id%=0.00 是异常值（可能是数据问题或所有 item 难度一致），5 benchmark 结果中 model:item 梯度方向与假设相反。可能需要排除 MATH 用 4 benchmarks 重新分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 118440,
+  "duration_api_ms": 97996,
+  "num_turns": 10,
+  "stop_reason": "end_turn",
+  "session_id": "37239bf9-7e5f-4fc0-b2b4-34d94ef4b69a",
+  "total_cost_usd": 0.46813400000000005,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 28814,
+    "cache_read_input_tokens": 269725,
+    "output_tokens": 6048,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28814,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 486,
+        "cache_read_input_tokens": 38835,
+        "cache_creation_input_tokens": 1820,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1820
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1804,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0019190000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 6048,
+      "cacheReadInputTokens": 269725,
+      "cacheCreationInputTokens": 28814,
+      "webSearchRequests": 0,
+      "costUSD": 0.46621500000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f5fb3a0d-9fb3-4961-af2c-d14c3129ab3c"
+}
+```
+
+</details>
+
+---

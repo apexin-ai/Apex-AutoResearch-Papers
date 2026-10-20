@@ -1,0 +1,191 @@
+{
+  "experiment": "exp-004",
+  "analysis": "8model_henderson_i_gstudy_arc",
+  "benchmark": "arc",
+  "n_models": 8,
+  "n_observations": 460800,
+  "n_levels": {
+    "model": 8,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean_accuracy": 0.772459,
+  "facets": [
+    "model",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering",
+    "item_id"
+  ],
+  "variance_components": {
+    "item_id": {
+      "estimate": 0.0671248004,
+      "pct": 37.8845,
+      "pct_ci_lo": 30.374,
+      "pct_ci_hi": 45.3228
+    },
+    "model:item_id": {
+      "estimate": 0.0597623659,
+      "pct": 33.7293,
+      "pct_ci_lo": 29.1153,
+      "pct_ci_hi": 37.8657
+    },
+    "residual": {
+      "estimate": 0.0273654728,
+      "pct": 15.4448,
+      "pct_ci_lo": 13.4346,
+      "pct_ci_hi": 17.4527
+    },
+    "model:prompt_template": {
+      "estimate": 0.0141751724,
+      "pct": 8.0003,
+      "pct_ci_lo": 6.4834,
+      "pct_ci_hi": 10.0274
+    },
+    "model": {
+      "estimate": 0.0054499659,
+      "pct": 3.0759,
+      "pct_ci_lo": 1.9447,
+      "pct_ci_hi": 4.9904
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.0025655713,
+      "pct": 1.448,
+      "pct_ci_lo": 1.2435,
+      "pct_ci_hi": 1.6964
+    },
+    "temperature:item_id": {
+      "estimate": 0.0003782411,
+      "pct": 0.2135,
+      "pct_ci_lo": 0.1251,
+      "pct_ci_hi": 0.3264
+    },
+    "seed:item_id": {
+      "estimate": 0.0002977664,
+      "pct": 0.1681,
+      "pct_ci_lo": 0.1163,
+      "pct_ci_hi": 0.2234
+    },
+    "model:seed": {
+      "estimate": 2.69593e-05,
+      "pct": 0.0152,
+      "pct_ci_lo": 0.0117,
+      "pct_ci_hi": 0.0397
+    },
+    "model:temperature": {
+      "estimate": 1.65634e-05,
+      "pct": 0.0093,
+      "pct_ci_lo": 0.0031,
+      "pct_ci_hi": 0.0446
+    },
+    "temperature:prompt_template": {
+      "estimate": 7.1458e-06,
+      "pct": 0.004,
+      "pct_ci_lo": 0.001,
+      "pct_ci_hi": 0.0127
+    },
+    "prompt_template:seed": {
+      "estimate": 6.8749e-06,
+      "pct": 0.0039,
+      "pct_ci_lo": 0.0027,
+      "pct_ci_hi": 0.0079
+    },
+    "temperature:seed": {
+      "estimate": 5.6348e-06,
+      "pct": 0.0032,
+      "pct_ci_lo": 0.0015,
+      "pct_ci_hi": 0.0115
+    },
+    "model:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "temperature:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "prompt_template:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "seed:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "ordering:item_id": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "temperature": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0074
+    },
+    "prompt_template": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.1498
+    },
+    "seed": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    },
+    "ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "pct_ci_lo": 0.0,
+      "pct_ci_hi": 0.0
+    }
+  },
+  "total_variance": 0.1771825345,
+  "G_item": 0.891748,
+  "G_item_ci_lo": 0.856544,
+  "G_item_ci_hi": 0.918306,
+  "G_item_se": 0.016562,
+  "sigma_tau": 0.0671248004,
+  "sigma_delta": 0.0081485166,
+  "d_study_curve": {
+    "25": 0.507319,
+    "50": 0.67314,
+    "75": 0.755449,
+    "100": 0.804643,
+    "150": 0.86069,
+    "200": 0.891748,
+    "300": 0.92513,
+    "500": 0.953691,
+    "1000": 0.976297
+  },
+  "min_items_G_0.80": 98,
+  "bootstrap": {
+    "n_iterations": 500,
+    "method": "item_level_resampling"
+  },
+  "models": [
+    "DeepSeek-7B",
+    "Gemma-2-9B",
+    "InternLM2.5-7B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "OLMo-2-7B",
+    "Qwen3-8B",
+    "Yi-1.5-9B"
+  ]
+}

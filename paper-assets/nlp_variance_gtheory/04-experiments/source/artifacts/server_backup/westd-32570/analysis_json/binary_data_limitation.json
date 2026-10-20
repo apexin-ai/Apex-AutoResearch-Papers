@@ -1,0 +1,25 @@
+{
+  "n_items": 200,
+  "n_records": 239200,
+  "item_difficulty": {
+    "mean": 0.6814,
+    "std": 0.3651,
+    "min": 0.0008,
+    "max": 1.0
+  },
+  "bernoulli_correlation": {
+    "pearson_r": 1.0,
+    "spearman_rho": 0.9999
+  },
+  "variance_ratio": {
+    "mean": 1.0008,
+    "median": 1.0008
+  },
+  "item_pct_correct": 61.0802,
+  "item_pct_text_match": 0.6637,
+  "null_simulation": {
+    "expected_item_pct": 0.0828,
+    "observed_item_pct": 61.0802,
+    "ratio": 737.5
+  }
+}

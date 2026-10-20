@@ -1,0 +1,175 @@
+{
+  "experiment": "exp-004",
+  "design_note": "6 common models, balanced",
+  "benchmark_order": [
+    "mmlu",
+    "arc",
+    "hellaswag",
+    "gsm8k",
+    "math"
+  ],
+  "full_set": {
+    "item_id_values": {
+      "mmlu": 40.4828,
+      "arc": 42.4597,
+      "hellaswag": 32.2017,
+      "gsm8k": 14.5817,
+      "math": 20.4922
+    },
+    "model_item_values": {
+      "mmlu": 31.6036,
+      "arc": 38.049,
+      "hellaswag": 37.1442,
+      "gsm8k": 13.4846,
+      "math": 17.6884
+    }
+  },
+  "lobo_results": {
+    "mmlu": {
+      "dropped": "mmlu",
+      "remaining": [
+        "arc",
+        "hellaswag",
+        "gsm8k",
+        "math"
+      ],
+      "item_id_values": {
+        "arc": 42.4597,
+        "hellaswag": 32.2017,
+        "gsm8k": 14.5817,
+        "math": 20.4922
+      },
+      "model_item_values": {
+        "arc": 38.049,
+        "hellaswag": 37.1442,
+        "gsm8k": 13.4846,
+        "math": 17.6884
+      },
+      "item_id_monotonic": false,
+      "model_item_monotonic": false,
+      "both_monotonic": false,
+      "item_id_rho": 0.8,
+      "item_id_p": 0.166667,
+      "model_item_rho": -0.8,
+      "model_item_p": 0.958333
+    },
+    "arc": {
+      "dropped": "arc",
+      "remaining": [
+        "mmlu",
+        "hellaswag",
+        "gsm8k",
+        "math"
+      ],
+      "item_id_values": {
+        "mmlu": 40.4828,
+        "hellaswag": 32.2017,
+        "gsm8k": 14.5817,
+        "math": 20.4922
+      },
+      "model_item_values": {
+        "mmlu": 31.6036,
+        "hellaswag": 37.1442,
+        "gsm8k": 13.4846,
+        "math": 17.6884
+      },
+      "item_id_monotonic": false,
+      "model_item_monotonic": false,
+      "both_monotonic": false,
+      "item_id_rho": 0.8,
+      "item_id_p": 0.166667,
+      "model_item_rho": -0.6,
+      "model_item_p": 0.833333
+    },
+    "hellaswag": {
+      "dropped": "hellaswag",
+      "remaining": [
+        "mmlu",
+        "arc",
+        "gsm8k",
+        "math"
+      ],
+      "item_id_values": {
+        "mmlu": 40.4828,
+        "arc": 42.4597,
+        "gsm8k": 14.5817,
+        "math": 20.4922
+      },
+      "model_item_values": {
+        "mmlu": 31.6036,
+        "arc": 38.049,
+        "gsm8k": 13.4846,
+        "math": 17.6884
+      },
+      "item_id_monotonic": false,
+      "model_item_monotonic": false,
+      "both_monotonic": false,
+      "item_id_rho": 0.6,
+      "item_id_p": 0.208333,
+      "model_item_rho": -0.6,
+      "model_item_p": 0.833333
+    },
+    "gsm8k": {
+      "dropped": "gsm8k",
+      "remaining": [
+        "mmlu",
+        "arc",
+        "hellaswag",
+        "math"
+      ],
+      "item_id_values": {
+        "mmlu": 40.4828,
+        "arc": 42.4597,
+        "hellaswag": 32.2017,
+        "math": 20.4922
+      },
+      "model_item_values": {
+        "mmlu": 31.6036,
+        "arc": 38.049,
+        "hellaswag": 37.1442,
+        "math": 17.6884
+      },
+      "item_id_monotonic": false,
+      "model_item_monotonic": false,
+      "both_monotonic": false,
+      "item_id_rho": 0.8,
+      "item_id_p": 0.166667,
+      "model_item_rho": -0.4,
+      "model_item_p": 0.791667
+    },
+    "math": {
+      "dropped": "math",
+      "remaining": [
+        "mmlu",
+        "arc",
+        "hellaswag",
+        "gsm8k"
+      ],
+      "item_id_values": {
+        "mmlu": 40.4828,
+        "arc": 42.4597,
+        "hellaswag": 32.2017,
+        "gsm8k": 14.5817
+      },
+      "model_item_values": {
+        "mmlu": 31.6036,
+        "arc": 38.049,
+        "hellaswag": 37.1442,
+        "gsm8k": 13.4846
+      },
+      "item_id_monotonic": false,
+      "model_item_monotonic": false,
+      "both_monotonic": false,
+      "item_id_rho": 0.8,
+      "item_id_p": 0.166667,
+      "model_item_rho": -0.4,
+      "model_item_p": 0.791667
+    }
+  },
+  "summary": {
+    "n_benchmarks": 5,
+    "n_drops": 5,
+    "n_gradient_preserved": 0,
+    "gradient_robust": false
+  }
+}

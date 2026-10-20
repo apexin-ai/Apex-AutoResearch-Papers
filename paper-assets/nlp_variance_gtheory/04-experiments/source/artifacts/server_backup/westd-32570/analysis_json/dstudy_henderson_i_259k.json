@@ -1,0 +1,157 @@
+{
+  "data_source": "llama_full_259200.csv",
+  "n_records": 259200,
+  "six_facet": {
+    "variance_components": {
+      "item_id": 0.1271120031,
+      "residual": 0.0502927384,
+      "prompt_template:item_id": 0.0118973392,
+      "seed:item_id": 0.0102602214,
+      "precision:item_id": 0.0071904578,
+      "temperature:item_id": 0.0063796481,
+      "precision": 0.0019769631,
+      "ordering:item_id": 0.0016752615,
+      "precision:temperature": 0.0005776215,
+      "precision:prompt_template": 0.0001137231,
+      "temperature:prompt_template": 9.90357e-05,
+      "temperature:seed": 7.10278e-05,
+      "temperature": 2.16786e-05,
+      "prompt_template:ordering": 1.46781e-05,
+      "prompt_template:seed": 7.8237e-06,
+      "precision:seed": 3.3714e-06,
+      "precision:ordering": 2.1001e-06,
+      "temperature:ordering": 0.0,
+      "seed:ordering": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "precision": 3,
+      "temperature": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    },
+    "total_variance": 0.2176956927,
+    "sigma_tau": 0.1271120031,
+    "sigma_delta": 0.0086739169,
+    "G_item": 0.936121,
+    "dstudy": {
+      "25": {
+        "G_item": 0.646869
+      },
+      "50": {
+        "G_item": 0.785575
+      },
+      "72": {
+        "G_item": 0.840653
+      },
+      "100": {
+        "G_item": 0.879912
+      },
+      "116": {
+        "G_item": 0.894733
+      },
+      "150": {
+        "G_item": 0.916603
+      },
+      "200": {
+        "G_item": 0.936121
+      },
+      "300": {
+        "G_item": 0.956487
+      },
+      "500": {
+        "G_item": 0.97343
+      },
+      "631": {
+        "G_item": 0.978829
+      },
+      "800": {
+        "G_item": 0.983227
+      },
+      "1000": {
+        "G_item": 0.986536
+      }
+    },
+    "n_G80": 55,
+    "n_G90": 123,
+    "n_G95": 260,
+    "G_at_200": 0.936121
+  },
+  "bf16_five_facet": {
+    "variance_components": {
+      "item_id": 0.1464130129,
+      "residual": 0.0280888431,
+      "seed:item_id": 0.0130522511,
+      "prompt_template:item_id": 0.0111442446,
+      "temperature:item_id": 0.005515902,
+      "ordering:item_id": 0.0020624892,
+      "temperature:seed": 7.97052e-05,
+      "prompt_template:ordering": 2.35204e-05,
+      "temperature:prompt_template": 1.18059e-05,
+      "temperature:ordering": 7.3187e-06,
+      "prompt_template:seed": 0.0,
+      "seed:ordering": 0.0,
+      "temperature": 0.0,
+      "prompt_template": 0.0,
+      "seed": 0.0,
+      "ordering": 0.0
+    },
+    "n_levels": {
+      "temperature": 3,
+      "prompt_template": 6,
+      "seed": 6,
+      "ordering": 4,
+      "item_id": 200
+    },
+    "total_variance": 0.206399093,
+    "sigma_tau": 0.1464130129,
+    "sigma_delta": 0.0064520261,
+    "G_item": 0.957793,
+    "dstudy": {
+      "25": {
+        "G_item": 0.739351
+      },
+      "50": {
+        "G_item": 0.850146
+      },
+      "72": {
+        "G_item": 0.890941
+      },
+      "100": {
+        "G_item": 0.919004
+      },
+      "116": {
+        "G_item": 0.929387
+      },
+      "150": {
+        "G_item": 0.944504
+      },
+      "200": {
+        "G_item": 0.957793
+      },
+      "300": {
+        "G_item": 0.97146
+      },
+      "500": {
+        "G_item": 0.982678
+      },
+      "631": {
+        "G_item": 0.986225
+      },
+      "800": {
+        "G_item": 0.989103
+      },
+      "1000": {
+        "G_item": 0.991264
+      }
+    },
+    "n_G80": 36,
+    "n_G90": 80,
+    "n_G95": 168,
+    "G_at_200": 0.957793
+  }
+}

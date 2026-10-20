@@ -1,0 +1,95 @@
+{
+  "formula": "G(n) = tau / (tau + N * sigma2_delta / n), Spearman-Brown prophecy",
+  "N_items_study": 200,
+  "variance_components": {
+    "item": 0.1271120031,
+    "precision_item": 0.0071904578,
+    "temperature_item": 0.0063796481,
+    "prompt_item": 0.0118973392,
+    "seed_item": 0.0102602214,
+    "ordering_item": 0.0016752615,
+    "residual": 0.0502927384
+  },
+  "multi_facet": {
+    "conditions": 1296,
+    "n_levels": {
+      "precision": 3,
+      "temperature": 3,
+      "prompt": 6,
+      "seed": 6,
+      "ordering": 4
+    },
+    "sigma2_delta_per_item": 0.0086739169,
+    "n_G80": 55,
+    "G_116": 0.894733,
+    "G_200": 0.936121,
+    "G_projections": {
+      "25": 0.646869,
+      "50": 0.785575,
+      "75": 0.846046,
+      "100": 0.879912,
+      "116": 0.894733,
+      "150": 0.916603,
+      "200": 0.936121,
+      "300": 0.956487,
+      "500": 0.97343,
+      "1000": 0.986536
+    }
+  },
+  "partial_4": {
+    "conditions": 4,
+    "n_levels": {
+      "precision": 1,
+      "temperature": 1,
+      "prompt": 2,
+      "seed": 2,
+      "ordering": 1
+    },
+    "sigma2_delta_per_item": 0.0388973323,
+    "n_G80": 245,
+    "G_116": 0.654621,
+    "G_200": 0.765692,
+    "G_projections": {
+      "25": 0.290018,
+      "50": 0.449634,
+      "75": 0.550654,
+      "100": 0.620341,
+      "116": 0.654621,
+      "150": 0.710222,
+      "200": 0.765692,
+      "300": 0.830561,
+      "500": 0.890945,
+      "1000": 0.942328
+    }
+  },
+  "single_condition": {
+    "conditions": 1,
+    "n_levels": {
+      "precision": 1,
+      "temperature": 1,
+      "prompt": 1,
+      "seed": 1,
+      "ordering": 1
+    },
+    "sigma2_delta_per_item": 0.0876956664,
+    "n_G80": 552,
+    "G_116": 0.456726,
+    "G_200": 0.591748,
+    "G_projections": {
+      "25": 0.153391,
+      "50": 0.265983,
+      "75": 0.352143,
+      "100": 0.4202,
+      "116": 0.456726,
+      "150": 0.520866,
+      "200": 0.591748,
+      "300": 0.68496,
+      "500": 0.783722,
+      "1000": 0.878749
+    }
+  },
+  "ratio_single_vs_multi": 10.04,
+  "ratio_partial_vs_multi": 4.45,
+  "source": "unified_henderson_i_numbers.json (single_model_6facet, 259200 records)",
+  "method": "Henderson I variance components, negatives truncated to 0"
+}

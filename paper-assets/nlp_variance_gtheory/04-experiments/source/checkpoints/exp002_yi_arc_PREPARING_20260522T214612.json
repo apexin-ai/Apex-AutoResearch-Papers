@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp002_yi_arc",
+  "project": "nlp_variance_gtheory",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:39:34.713Z",
+    "updated_at": "2026-05-22T21:46:12.425Z",
+    "hypothesis": "D009 8-model expansion: Yi-1.5-9B-Chat ARC inference — MC benchmark expected item-dominated variance pattern per D010",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T21:46:12.458852+00:00",
+  "trigger": "update_registry"
+}

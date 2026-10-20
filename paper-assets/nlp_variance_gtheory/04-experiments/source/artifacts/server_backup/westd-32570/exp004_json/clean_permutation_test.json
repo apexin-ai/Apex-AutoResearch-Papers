@@ -1,0 +1,45 @@
+{
+  "analysis": "clean_permutation_test_mc_vs_ff",
+  "mc_benchmarks": {
+    "MMLU": 37.88,
+    "ARC": 37.88,
+    "HellaSwag": 34.27
+  },
+  "ff_benchmarks": {
+    "GSM8K": 16.86,
+    "MATH": 24.03
+  },
+  "mc_mean_item_id_pct": 36.6767,
+  "ff_mean_item_id_pct": 20.445,
+  "observed_difference_pp": 16.2317,
+  "permutation_test": {
+    "type": "exhaustive",
+    "n_permutations": 10,
+    "count_ge_observed": 1,
+    "p_value_one_sided": 0.1,
+    "note": "n=5, minimum possible p = 1/C(5,3) = 0.10; describes format-conditional variance structure, not statistical significance"
+  },
+  "effect_size": {
+    "cohens_d": 1.7339,
+    "cohens_d_95_ci": [
+      1.7199,
+      1.8257
+    ],
+    "difference_95_ci_pp": [
+      11.4433,
+      21.02
+    ]
+  },
+  "all_permutation_diffs_sorted": [
+    16.2317,
+    7.6983,
+    4.69,
+    4.69,
+    1.7233,
+    -1.285,
+    -1.285,
+    -9.8183,
+    -9.8183,
+    -12.8267
+  ]
+}

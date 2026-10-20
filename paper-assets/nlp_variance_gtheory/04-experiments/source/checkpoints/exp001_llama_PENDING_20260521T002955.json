@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp001_llama",
+  "project": "nlp_variance_gtheory",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:29:18.258Z",
+    "updated_at": "2026-05-21T00:29:55.451Z",
+    "hypothesis": "Single-model (Llama-3.1-8B-Instruct) G-theory variance decomposition at full scale (1,296 conditions × 200 items across 3 precisions × 3 temperatures × 6 prompts × 6 seeds × 4 orderings) will confirm MVP findings: item_id dominates binary_correct variance, while text_exact_match reveals infrastructure×methodology interactions",
+    "parent": "mvp_phase_a"
+  },
+  "timestamp": "2026-05-21T00:29:55.504288+00:00",
+  "trigger": "update_registry"
+}

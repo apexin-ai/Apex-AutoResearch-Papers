@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp001_pilot",
+  "project": "nlp_variance_gtheory",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:06:01.765Z",
+    "updated_at": "2026-05-21T00:06:04.983Z",
+    "hypothesis": "exp-001 pipeline (4-GPU sharding, model_path mapping, offset-based splitting, 200 items) produces correct and complete JSONL output with all 15 fields, suitable for downstream G-theory analysis code development"
+  },
+  "timestamp": "2026-05-21T00:06:05.019070+00:00",
+  "trigger": "update_registry"
+}

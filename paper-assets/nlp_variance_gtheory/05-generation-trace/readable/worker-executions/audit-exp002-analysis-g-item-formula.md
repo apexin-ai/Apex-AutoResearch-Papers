@@ -1,0 +1,3233 @@
+# audit exp002 analysis g item formula
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 68
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_audit_exp002_analysis_g_item_formula_20260521T120118.log`
+- **Structured JSON:** [`03dbcf2a6b286398025f.json`](../../sessions/03/03dbcf2a6b286398025f.json)
+
+## Before a recorded user message
+
+68 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0f6e70c0-c706-4311-905e-37215be0eb40",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779378000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "47621380-ada8-41c0-a286-8c93b11ef21c",
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to audit 6 scripts in `scripts/exp002_analysis/` on a remote server for correct G_item formula usage. Let me start by reading all 6 scripts from the server.
+
+Let me first load the necessary MCP tools, then read the scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "859d01de-9622-4740-886f-4a70354d5f47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WrJ9zVzqE9eX8KZbj36BR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11706,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11706
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先加载远程执行工具，然后读取 6 个脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "93aeed43-6ad4-4be8-8b46-46823f4a0e28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WrJ9zVzqE9eX8KZbj36BR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11706,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11706
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XodbV9xvc1UTncmvXWNKk5`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "89f1f9f6-5d44-4fa6-81fb-4c1e4cc89000",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WrJ9zVzqE9eX8KZbj36BR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11706,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11706
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T12:01:28.795Z_
+
+<details><summary>↩ Tool result · `toolu_01XodbV9xvc1UTncmvXWNKk5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "204620e2-73e7-41ca-8342-bca2d82f3bba",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read all 6 scripts. I'll start by listing the directory and then reading each script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "32e9ff8c-0725-473a-b544-493f39d7067f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJa9Rc9z3Lr2Czw9yQUizt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 771,
+      "cache_read_input_tokens": 23547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 771
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先列出目录确认文件存在，然后并行读取 6 个脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "18923950-c774-46d2-87d9-5563352d1a81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJa9Rc9z3Lr2Czw9yQUizt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 771,
+      "cache_read_input_tokens": 23547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 771
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WN7SpfxYqEehafcKP4L8VW`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls -la /root/nlp_variance_gtheory/scripts/exp002_analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "bbc7ef08-588a-45d7-b39c-e9a63c2e87c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JJa9Rc9z3Lr2Czw9yQUizt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 771,
+      "cache_read_input_tokens": 23547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 771
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T12:01:33.746Z_
+
+<details><summary>↩ Tool result · `toolu_01WN7SpfxYqEehafcKP4L8VW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 76\\ndrwxr-xr-x 3 1000 1000  4096 May 21 18:48 .\\ndrwxr-xr-x 3 root root  4096 May 21 19:55 ..\\ndrwxr-xr-x 2 root root  4096 May 21 18:48 __pycache__\\n-rw-r--r-- 1 1000 1000  7923 May 21 18:10 cross_benchmark_dstudy.py\\n-rw-r--r-- 1 1000 1000 10588 May 21 18:48 gradient_permutation_test.py\\n-rw-r--r-- 1 1000 1000  6900 May 21 18:09 gsm8k_answer_reextract.py\\n-rw-r--r-- 1 1000 1000  8430 May 21 18:08 leave_one_benchmark_out.py\\n-rw-r--r-- 1 1000 1000 10865 May 21 18:07 per_benchmark_gstudy.py\\n-rw-r--r-- 1 1000 1000 10215 May 21 18:09 within_format_gradient.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "9049ee91-d132-4d4c-8105-4617818a55ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 76\\\\ndrwxr-xr-x 3 1000 1000  4096 May 21 18:48 .\\\\ndrwxr-xr-x 3 root root  4096 May 21 19:55 ..\\\\ndrwxr-xr-x 2 root root  4096 May 21 18:48 __pycache__\\\\n-rw-r--r-- 1 1000 1000  7923 May 21 18:10 cross_benchmark_dstudy.py\\\\n-rw-r--r-- 1 1000 1000 10588 May 21 18:48 gradient_permutation_test.py\\\\n-rw-r--r-- 1 1000 1000  6900 May 21 18:09 gsm8k_answer_reextract.py\\\\n-rw-r--r-- 1 1000 1000  8430 May 21 18:08 leave_one_benchmark_out.py\\\\n-rw-r--r-- 1 1000 1000 10865 May 21 18:07 per_benchmark_gstudy.py\\\\n-rw-r--r-- 1 1000 1000 10215 May 21 18:09 within_format_gradient.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 76\\ndrwxr-xr-x 3 1000 1000  4096 May 21 18:48 .\\ndrwxr-xr-x 3 root root  4096 May 21 19:55 ..\\ndrwxr-xr-x 2 root root  4096 May 21 18:48 __pycache__\\n-rw-r--r-- 1 1000 1000  7923 May 21 18:10 cross_benchmark_dstudy.py\\n-rw-r--r-- 1 1000 1000 10588 May 21 18:48 gradient_permutation_test.py\\n-rw-r--r-- 1 1000 1000  6900 May 21 18:09 gsm8k_answer_reextract.py\\n-rw-r--r-- 1 1000 1000  8430 May 21 18:08 leave_one_benchmark_out.py\\n-rw-r--r-- 1 1000 1000 10865 May 21 18:07 per_benchmark_gstudy.py\\n-rw-r--r-- 1 1000 1000 10215 May 21 18:09 within_format_gradient.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+6 个文件都在。并行读取全部脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "61914232-f411-4782-a378-f2aa641d35c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TJKPLKXCozLzbJUQAqfwaQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "3e5ecae2-dd9e-4622-b68f-e3ca3f04d751",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T12:01:37.413Z_
+
+<details><summary>↩ Tool result · `toolu_01TJKPLKXCozLzbJUQAqfwaQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "e2f9d2af-b7d0-4a54-a431-fe3e599862ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\\\n\\\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\\\n        — per-benchmark variance components, G_item, D-study projections.\\\\n\\\\nFacets (7, within each benchmark):\\\\n  model, temperature, prompt_template, seed, ordering, item_id\\\\n  + all 2-way interactions. Residual absorbs >=3-way.\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Henderson Method I: SS -> EMS -> variance components.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, n_levels, effects\\\\n\\\\n\\\\n\\\\n\\\\n... [截断: 输出过长，省略 2863 字符] ...\\\\n\\\\n other) if other else 1\\\\n        non_item_error += est / divisor\\\\n\\\\n    for ni in range(1, max_items + 1):\\\\n        ratio = n_actual / ni\\\\n        sigma_delta_ni = non_item_error * ratio\\\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\\\n        if g >= target_g:\\\\n            return ni\\\\n    return None\\\\n\\\\n\\\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\\\\\", flush=True)\\\\n\\\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n    total_var = sum(vc.values())\\\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\\\n\\\\n    print(f\\\\\\\"  G_item = {g_item:.6f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\\\n\\\\n    return {\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_observations\\\\\\\": len(df_bm),\\\\n        \\\\\\\"n_levels\\\\\\\": {k: int(v) for k, v in n_levels.items()},\\\\n        \\\\\\\"grand_mean_accuracy\\\\\\\": round(float(df_bm[\\\\\\\"correct\\\\\\\"].mean()), 6),\\\\n        \\\\\\\"variance_components\\\\\\\": {\\\\n            k: {\\\\\\\"estimate\\\\\\\": round(v, 10), \\\\\\\"pct\\\\\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\\\n        },\\\\n        \\\\\\\"total_variance\\\\\\\": round(total_var, 10),\\\\n        \\\\\\\"G_item\\\\\\\": round(g_item, 6),\\\\n        \\\\\\\"sigma_tau\\\\\\\": round(sigma_tau, 10),\\\\n        \\\\\\\"sigma_delta\\\\\\\": round(sigma_delta, 10),\\\\n        \\\\\\\"d_study_curve\\\\\\\": d_curve,\\\\n        \\\\\\\"min_items_G_0.80\\\\\\\": min_80,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Per-benchmark Henderson I G-study for exp-002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\", help=\\\\\\\"Directory containing exp-002 JSONL files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Models: {sorted(df['model'].unique())}\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for bm in BENCHMARKS:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        if len(df_bm) == 0:\\\\n            print(f\\\\\\\"WARNING: no data for benchmark '{bm}', skipping\\\\\\\", flush=True)\\\\n            continue\\\\n        results[bm] = analyze_benchmark(df_bm, bm)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"gradient_check\\\\\\\": {\\\\n            bm: results[bm][\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n            for bm in results\\\\n        },\\\\n        \\\\\\\"g_item_by_benchmark\\\\\\\": {bm: results[bm][\\\\\\\"G_item\\\\\\\"] for bm in results},\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"per_benchmark_henderson_i_gstudy\\\\\\\",\\\\n        \\\\\\\"facets\\\\\\\": FACETS,\\\\n        \\\\\\\"benchmarks\\\\\\\": results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\\\\\", flush=True)\\\\n    for bm in results:\\\\n        r = results[bm]\\\\n        item_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        mi_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        min_n = r[\\\\\\\"min_items_G_0.80\\\\\\\"]\\\\n        print(f\\\\\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal runtime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019w4JuTsHHbRVvqZryeAnoQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/cross_benchmark_dstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "c625e9b0-cefa-4ea9-a289-093a54a55ee2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T12:01:38.360Z_
+
+<details><summary>↩ Tool result · `toolu_019w4JuTsHHbRVvqZryeAnoQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark D-study comparison.\\n\\nFor each benchmark, computes:\\n  - D-study curves (item count vs G coefficient)\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/cross_benchmark_dstudy.json\\n\\nUsage:\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\nG_TARGETS = [0.80, 0.90, 0.95]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\n\\n\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\n    \\\"\\\"\\\"Compute G_item for a given number of items (D-study projection).\\n\\n    Uses the correct formula: scale error by n_actual/n_items.\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta_actual = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\n\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\n    total = sigma_item + sigma_delta_n\\n    return sigma_item / total if total > 0 else 0.0\\n\\n\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\n    for ni in range(1, max_items + 1):\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Cross-benchmark D-study comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/cross_benchmark_dstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for '{bm}', skipping\\\", flush=True)\\n            continue\\n\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\n        total_var = sum(vc.values())\\n\\n        curve = {}\\n        for ni in ITEM_COUNTS:\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\n            curve[ni] = round(g, 6)\\n\\n        min_items = {}\\n        for target in G_TARGETS:\\n            n = find_min_items(vc, n_levels, target)\\n            min_items[str(target)] = n\\n\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\"item_id\\\"])\\n\\n        results[bm] = {\\n            \\\"n_items_actual\\\": n_levels[\\\"item_id\\\"],\\n            \\\"G_current\\\": round(g_current, 6),\\n            \\\"item_id_pct\\\": round(vc.get(\\\"item_id\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\n            \\\"d_study_curve\\\": curve,\\n            \\\"min_items_for_G\\\": min_items,\\n            \\\"accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        }\\n\\n        print(f\\\"\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\", flush=True)\\n        print(f\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"cross_benchmark_dstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"item_counts_evaluated\\\": ITEM_COUNTS,\\n        \\\"g_targets\\\": G_TARGETS,\\n        \\\"benchmarks\\\": results,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\", flush=True)\\n    print(\\\"-\\\" * 58, flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        m80 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.8\\\", \\\">5000\\\"))\\n        m90 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.9\\\", \\\">5000\\\"))\\n        m95 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.95\\\", \\\">5000\\\"))\\n        print(f\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "d0065347-5f3c-4665-a45f-22bd59724107",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark D-study comparison.\\\\n\\\\nFor each benchmark, computes:\\\\n  - D-study curves (item count vs G coefficient)\\\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/cross_benchmark_dstudy.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\\\nG_TARGETS = [0.80, 0.90, 0.95]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\\\n\\\\n\\\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute G_item for a given number of items (D-study projection).\\\\n\\\\n    Uses the correct formula: scale error by n_actual/n_items.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    n_actual = n_levels[\\\\\\\"item_id\\\\\\\"]\\\\n    non_item = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n\\\\n    sigma_delta_actual = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\\\n\\\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\\\n    total = sigma_item + sigma_delta_n\\\\n    return sigma_item / total if total > 0 else 0.0\\\\n\\\\n\\\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\\\n    for ni in range(1, max_items + 1):\\\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\\\n        if g >= target_g:\\\\n            return ni\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Cross-benchmark D-study comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/cross_benchmark_dstudy.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for bm in BENCHMARKS:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        if len(df_bm) == 0:\\\\n            print(f\\\\\\\"WARNING: no data for '{bm}', skipping\\\\\\\", flush=True)\\\\n            continue\\\\n\\\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\\\n        total_var = sum(vc.values())\\\\n\\\\n        curve = {}\\\\n        for ni in ITEM_COUNTS:\\\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\\\n            curve[ni] = round(g, 6)\\\\n\\\\n        min_items = {}\\\\n        for target in G_TARGETS:\\\\n            n = find_min_items(vc, n_levels, target)\\\\n            min_items[str(target)] = n\\\\n\\\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\\\\\"item_id\\\\\\\"])\\\\n\\\\n        results[bm] = {\\\\n            \\\\\\\"n_items_actual\\\\\\\": n_levels[\\\\\\\"item_id\\\\\\\"],\\\\n            \\\\\\\"G_current\\\\\\\": round(g_current, 6),\\\\n            \\\\\\\"item_id_pct\\\\\\\": round(vc.get(\\\\\\\"item_id\\\\\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\\\n            \\\\\\\"d_study_curve\\\\\\\": curve,\\\\n            \\\\\\\"min_items_for_G\\\\\\\": min_items,\\\\n            \\\\\\\"accuracy\\\\\\\": round(float(df_bm[\\\\\\\"correct\\\\\\\"].mean()), 6),\\\\n        }\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\\\\\", flush=True)\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_benchmark_dstudy\\\\\\\",\\\\n        \\\\\\\"facets\\\\\\\": FACETS,\\\\n        \\\\\\\"item_counts_evaluated\\\\\\\": ITEM_COUNTS,\\\\n        \\\\\\\"g_targets\\\\\\\": G_TARGETS,\\\\n        \\\\\\\"benchmarks\\\\\\\": results,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"-\\\\\\\" * 58, flush=True)\\\\n    for bm in results:\\\\n        r = results[bm]\\\\n        m80 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.8\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        m90 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.9\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        m95 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.95\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        print(f\\\\\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark D-study comparison.\\n\\nFor each benchmark, computes:\\n  - D-study curves (item count vs G coefficient)\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/cross_benchmark_dstudy.json\\n\\nUsage:\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\nG_TARGETS = [0.80, 0.90, 0.95]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\n\\n\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\n    \\\"\\\"\\\"Compute G_item for a given number of items (D-study projection).\\n\\n    Uses the correct formula: scale error by n_actual/n_items.\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta_actual = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\n\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\n    total = sigma_item + sigma_delta_n\\n    return sigma_item / total if total > 0 else 0.0\\n\\n\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\n    for ni in range(1, max_items + 1):\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Cross-benchmark D-study comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/cross_benchmark_dstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for '{bm}', skipping\\\", flush=True)\\n            continue\\n\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\n        total_var = sum(vc.values())\\n\\n        curve = {}\\n        for ni in ITEM_COUNTS:\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\n            curve[ni] = round(g, 6)\\n\\n        min_items = {}\\n        for target in G_TARGETS:\\n            n = find_min_items(vc, n_levels, target)\\n            min_items[str(target)] = n\\n\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\"item_id\\\"])\\n\\n        results[bm] = {\\n            \\\"n_items_actual\\\": n_levels[\\\"item_id\\\"],\\n            \\\"G_current\\\": round(g_current, 6),\\n            \\\"item_id_pct\\\": round(vc.get(\\\"item_id\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\n            \\\"d_study_curve\\\": curve,\\n            \\\"min_items_for_G\\\": min_items,\\n            \\\"accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        }\\n\\n        print(f\\\"\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\", flush=True)\\n        print(f\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"cross_benchmark_dstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"item_counts_evaluated\\\": ITEM_COUNTS,\\n        \\\"g_targets\\\": G_TARGETS,\\n        \\\"benchmarks\\\": results,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\", flush=True)\\n    print(\\\"-\\\" * 58, flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        m80 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.8\\\", \\\">5000\\\"))\\n        m90 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.9\\\", \\\">5000\\\"))\\n        m95 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.95\\\", \\\">5000\\\"))\\n        print(f\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0177GgrzPDdacyHUZZFtJ4nE`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "24ca6b74-fa02-46ae-b5a9-9ff4d7f28e72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T12:01:38.883Z_
+
+<details><summary>↩ Tool result · `toolu_0177GgrzPDdacyHUZZFtJ4nE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"\\n\\n... [截断: 输出过长，省略 2588 字符] ...\\n\\n   benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "3da4b676-176a-4fa8-bfac-144c78fbba6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Gradient permutation test across 5 benchmarks.\\\\n\\\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\\\npermutation test over 5! = 120 orderings.\\\\n\\\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\\\nOutput: results/analysis/gradient_permutation_test.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"math\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 2588 字符] ...\\\\n\\\\n   benchmark_stats = {}\\\\n    for bm in df[\\\\\\\"benchmark\\\\\\\"].unique():\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        result = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n        benchmark_stats[bm] = {\\\\n            \\\\\\\"item_id_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"n_obs\\\\\\\": len(df_bm),\\\\n            \\\\\\\"accuracy\\\\\\\": float(df_bm[\\\\\\\"correct\\\\\\\"].mean()),\\\\n        }\\\\n        print(f\\\\\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\\\\\"\\\\n              f\\\\\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\\\n        if exp001 and \\\\\\\"variance_components\\\\\\\" in exp001:\\\\n            vc = exp001[\\\\\\\"variance_components\\\\\\\"]\\\\n            item_pct = vc.get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            mi_pct = vc.get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            benchmark_stats[\\\\\\\"mmlu_exp001\\\\\\\"] = {\\\\n                \\\\\\\"item_id_pct\\\\\\\": item_pct,\\\\n                \\\\\\\"model_item_pct\\\\\\\": mi_pct,\\\\n                \\\\\\\"n_obs\\\\\\\": exp001.get(\\\\\\\"n_observations\\\\\\\", 0),\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp-001\\\\\\\",\\\\n            }\\\\n            print(f\\\\\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\\\n    print(f\\\\\\\"\\\\\\\\nBenchmarks for gradient test: {available_benchmarks}\\\\\\\", flush=True)\\\\n\\\\n    item_pcts = {bm: benchmark_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available_benchmarks}\\\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available_benchmarks}\\\\n\\\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\\\\\"decreasing\\\\\\\")\\\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n    both_monotonic = test_item_dec[\\\\\\\"observed_is_monotonic\\\\\\\"] and test_mi_inc[\\\\\\\"observed_is_monotonic\\\\\\\"]\\\\n    n_both = 0\\\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\\\n    for perm in all_perms:\\\\n        perm_item = [item_vals[i] for i in perm]\\\\n        perm_mi = [mi_vals[i] for i in perm]\\\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\\\n            n_both += 1\\\\n    p_joint = n_both / len(all_perms)\\\\n\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002 (+ optional exp-001)\\\\\\\",\\\\n        \\\\\\\"benchmark_order_hypothesis\\\\\\\": BENCHMARK_ORDER,\\\\n        \\\\\\\"benchmark_stats\\\\\\\": benchmark_stats,\\\\n        \\\\\\\"tests\\\\\\\": {\\\\n            \\\\\\\"item_id_decreasing\\\\\\\": test_item_dec,\\\\n            \\\\\\\"model_item_increasing\\\\\\\": test_mi_inc,\\\\n            \\\\\\\"joint_test\\\\\\\": {\\\\n                \\\\\\\"observed_both_monotonic\\\\\\\": both_monotonic,\\\\n                \\\\\\\"n_permutations\\\\\\\": len(all_perms),\\\\n                \\\\\\\"n_joint_monotonic\\\\\\\": n_both,\\\\n                \\\\\\\"p_value\\\\\\\": round(p_joint, 6),\\\\n                \\\\\\\"significant_at_0.05\\\\\\\": p_joint <= 0.05,\\\\n            },\\\\n        },\\\\n        \\\\\\\"interpretation\\\\\\\": (\\\\n            \\\\\\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\\\\\"\\\\n            \\\\\\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\\\\\"\\\\n            f\\\\\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\\\\\"\\\\n        ),\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRESULTS:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\\\\\"\\\\n          f\\\\\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across 5 benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using an exact\\npermutation test over 5! = 120 orderings.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"\\n\\n... [截断: 输出过长，省略 2588 字符] ...\\n\\n   benchmark_stats = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n        benchmark_stats[bm] = {\\n            \\\"item_id_pct\\\": result[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item_dec = permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_mi_inc = permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    both_monotonic = test_item_dec[\\\"observed_is_monotonic\\\"] and test_mi_inc[\\\"observed_is_monotonic\\\"]\\n    n_both = 0\\n    all_perms = list(permutations(range(len(available_benchmarks))))\\n    item_vals = [item_pcts[bm] for bm in available_benchmarks]\\n    mi_vals = [model_item_pcts[bm] for bm in available_benchmarks]\\n    for perm in all_perms:\\n        perm_item = [item_vals[i] for i in perm]\\n        perm_mi = [mi_vals[i] for i in perm]\\n        if is_monotonic_decreasing(perm_item) and is_monotonic_increasing(perm_mi):\\n            n_both += 1\\n    p_joint = n_both / len(all_perms)\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"tests\\\": {\\n            \\\"item_id_decreasing\\\": test_item_dec,\\n            \\\"model_item_increasing\\\": test_mi_inc,\\n            \\\"joint_test\\\": {\\n                \\\"observed_both_monotonic\\\": both_monotonic,\\n                \\\"n_permutations\\\": len(all_perms),\\n                \\\"n_joint_monotonic\\\": n_both,\\n                \\\"p_value\\\": round(p_joint, 6),\\n                \\\"significant_at_0.05\\\": p_joint <= 0.05,\\n            },\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Under H0 (no systematic ordering), each of the k! permutations is equally likely. \\\"\\n            \\\"The p-value = (# permutations with observed monotonic pattern) / k!. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {len(all_perms)}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: p={test_item_dec['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_item_dec['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  model:item increasing: p={test_mi_inc['p_value']:.4f} \\\"\\n          f\\\"(monotonic={test_mi_inc['observed_is_monotonic']})\\\", flush=True)\\n    print(f\\\"  joint: p={p_joint:.4f} (both={both_monotonic})\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0139Ag9q3TkMBijwgcFLjeN5`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/leave_one_benchmark_out.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "0a3e0bea-b2bf-4589-bf6c-966196c81e70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T12:01:39.842Z_
+
+<details><summary>↩ Tool result · `toolu_0139Ag9q3TkMBijwgcFLjeN5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Leave-one-benchmark-out gradient robustness test.\\n\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\npreserved on the remaining benchmarks.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/leave_one_benchmark_out.json\\n\\nUsage:\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute Henderson I variance component percentages.\\\"\\\"\\\"\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n\\n\\ndef is_monotonic_decre\\n\\n... [截断: 输出过长，省略 430 字符] ...\\n\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\n    return n_match / len(all_perms)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Leave-one-benchmark-out gradient robustness\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/leave_one_benchmark_out.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\"benchmark\\\"].unique()]\\n    print(f\\\"Benchmarks: {available}\\\", flush=True)\\n\\n    full_stats = {}\\n    for bm in available:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\n        full_stats[bm] = {\\n            \\\"item_id_pct\\\": pcts.get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": pcts.get(\\\"model:item_id\\\", 0.0),\\n        }\\n\\n    full_item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in available]\\n    full_mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in available]\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\n\\n    print(f\\\"\\\\nFull set gradient:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\", flush=True)\\n\\n    lobo_results = {}\\n    for drop_bm in available:\\n        remaining = [bm for bm in available if bm != drop_bm]\\n        item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in remaining]\\n        mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in remaining]\\n\\n        item_dec = is_monotonic_decreasing(item_vals)\\n        mi_inc = is_monotonic_increasing(mi_vals)\\n\\n        p_item = permutation_p_value(item_vals, \\\"decreasing\\\")\\n        p_mi = permutation_p_value(mi_vals, \\\"increasing\\\")\\n\\n        lobo_results[drop_bm] = {\\n            \\\"dropped\\\": drop_bm,\\n            \\\"remaining\\\": remaining,\\n            \\\"item_id_pct_values\\\": {bm: round(full_stats[bm][\\\"item_id_pct\\\"], 4) for bm in remaining},\\n            \\\"model_item_pct_values\\\": {bm: round(full_stats[bm][\\\"model_item_pct\\\"], 4) for bm in remaining},\\n            \\\"item_id_monotonic_decreasing\\\": item_dec,\\n            \\\"model_item_monotonic_increasing\\\": mi_inc,\\n            \\\"both_preserved\\\": item_dec and mi_inc,\\n            \\\"p_item_decreasing\\\": round(p_item, 6),\\n            \\\"p_model_item_increasing\\\": round(p_mi, 6),\\n        }\\n\\n        status = \\\"PRESERVED\\\" if (item_dec and mi_inc) else \\\"BROKEN\\\"\\n        print(f\\\"\\\\n  Drop {drop_bm}: {status}\\\", flush=True)\\n        print(f\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\", flush=True)\\n\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\"both_preserved\\\"])\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n        \\\"benchmark_order\\\": available,\\n        \\\"full_set\\\": {\\n            \\\"item_id_monotonic_decreasing\\\": full_item_dec,\\n            \\\"model_item_monotonic_increasing\\\": full_mi_inc,\\n            \\\"benchmark_stats\\\": {\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\n                for bm in available\\n            },\\n        },\\n        \\\"lobo_results\\\": lobo_results,\\n        \\\"summary\\\": {\\n            \\\"n_benchmarks\\\": len(available),\\n            \\\"n_drops\\\": len(lobo_results),\\n            \\\"n_gradient_preserved\\\": n_preserved,\\n            \\\"gradient_robust\\\": n_preserved == len(lobo_results),\\n        },\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\", flush=True)\\n    print(f\\\"Runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "4ff82ef2-f316-4cf3-aa82-396ef9de06ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Leave-one-benchmark-out gradient robustness test.\\\\n\\\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\\\npreserved on the remaining benchmarks.\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/leave_one_benchmark_out.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Henderson I variance component percentages.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    total_var = sum(vc.values())\\\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\\\n\\\\n\\\\ndef is_monotonic_decre\\\\n\\\\n... [截断: 输出过长，省略 430 字符] ...\\\\n\\\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\\\n    return n_match / len(all_perms)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Leave-one-benchmark-out gradient robustness\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/leave_one_benchmark_out.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\\\\\"benchmark\\\\\\\"].unique()]\\\\n    print(f\\\\\\\"Benchmarks: {available}\\\\\\\", flush=True)\\\\n\\\\n    full_stats = {}\\\\n    for bm in available:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\\\n        full_stats[bm] = {\\\\n            \\\\\\\"item_id_pct\\\\\\\": pcts.get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": pcts.get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n        }\\\\n\\\\n    full_item_vals = [full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available]\\\\n    full_mi_vals = [full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available]\\\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nFull set gradient:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\\\\\", flush=True)\\\\n\\\\n    lobo_results = {}\\\\n    for drop_bm in available:\\\\n        remaining = [bm for bm in available if bm != drop_bm]\\\\n        item_vals = [full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in remaining]\\\\n        mi_vals = [full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in remaining]\\\\n\\\\n        item_dec = is_monotonic_decreasing(item_vals)\\\\n        mi_inc = is_monotonic_increasing(mi_vals)\\\\n\\\\n        p_item = permutation_p_value(item_vals, \\\\\\\"decreasing\\\\\\\")\\\\n        p_mi = permutation_p_value(mi_vals, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n        lobo_results[drop_bm] = {\\\\n            \\\\\\\"dropped\\\\\\\": drop_bm,\\\\n            \\\\\\\"remaining\\\\\\\": remaining,\\\\n            \\\\\\\"item_id_pct_values\\\\\\\": {bm: round(full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"], 4) for bm in remaining},\\\\n            \\\\\\\"model_item_pct_values\\\\\\\": {bm: round(full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"], 4) for bm in remaining},\\\\n            \\\\\\\"item_id_monotonic_decreasing\\\\\\\": item_dec,\\\\n            \\\\\\\"model_item_monotonic_increasing\\\\\\\": mi_inc,\\\\n            \\\\\\\"both_preserved\\\\\\\": item_dec and mi_inc,\\\\n            \\\\\\\"p_item_decreasing\\\\\\\": round(p_item, 6),\\\\n            \\\\\\\"p_model_item_increasing\\\\\\\": round(p_mi, 6),\\\\n        }\\\\n\\\\n        status = \\\\\\\"PRESERVED\\\\\\\" if (item_dec and mi_inc) else \\\\\\\"BROKEN\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n  Drop {drop_bm}: {status}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\\\\\", flush=True)\\\\n\\\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\\\\\"both_preserved\\\\\\\"])\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"leave_one_benchmark_out\\\\\\\",\\\\n        \\\\\\\"benchmark_order\\\\\\\": available,\\\\n        \\\\\\\"full_set\\\\\\\": {\\\\n            \\\\\\\"item_id_monotonic_decreasing\\\\\\\": full_item_dec,\\\\n            \\\\\\\"model_item_monotonic_increasing\\\\\\\": full_mi_inc,\\\\n            \\\\\\\"benchmark_stats\\\\\\\": {\\\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\\\n                for bm in available\\\\n            },\\\\n        },\\\\n        \\\\\\\"lobo_results\\\\\\\": lobo_results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"n_benchmarks\\\\\\\": len(available),\\\\n            \\\\\\\"n_drops\\\\\\\": len(lobo_results),\\\\n            \\\\\\\"n_gradient_preserved\\\\\\\": n_preserved,\\\\n            \\\\\\\"gradient_robust\\\\\\\": n_preserved == len(lobo_results),\\\\n        },\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Runtime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Leave-one-benchmark-out gradient robustness test.\\n\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\npreserved on the remaining benchmarks.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/leave_one_benchmark_out.json\\n\\nUsage:\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute Henderson I variance component percentages.\\\"\\\"\\\"\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n\\n\\ndef is_monotonic_decre\\n\\n... [截断: 输出过长，省略 430 字符] ...\\n\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\n    return n_match / len(all_perms)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Leave-one-benchmark-out gradient robustness\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/leave_one_benchmark_out.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\"benchmark\\\"].unique()]\\n    print(f\\\"Benchmarks: {available}\\\", flush=True)\\n\\n    full_stats = {}\\n    for bm in available:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\n        full_stats[bm] = {\\n            \\\"item_id_pct\\\": pcts.get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": pcts.get(\\\"model:item_id\\\", 0.0),\\n        }\\n\\n    full_item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in available]\\n    full_mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in available]\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\n\\n    print(f\\\"\\\\nFull set gradient:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\", flush=True)\\n\\n    lobo_results = {}\\n    for drop_bm in available:\\n        remaining = [bm for bm in available if bm != drop_bm]\\n        item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in remaining]\\n        mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in remaining]\\n\\n        item_dec = is_monotonic_decreasing(item_vals)\\n        mi_inc = is_monotonic_increasing(mi_vals)\\n\\n        p_item = permutation_p_value(item_vals, \\\"decreasing\\\")\\n        p_mi = permutation_p_value(mi_vals, \\\"increasing\\\")\\n\\n        lobo_results[drop_bm] = {\\n            \\\"dropped\\\": drop_bm,\\n            \\\"remaining\\\": remaining,\\n            \\\"item_id_pct_values\\\": {bm: round(full_stats[bm][\\\"item_id_pct\\\"], 4) for bm in remaining},\\n            \\\"model_item_pct_values\\\": {bm: round(full_stats[bm][\\\"model_item_pct\\\"], 4) for bm in remaining},\\n            \\\"item_id_monotonic_decreasing\\\": item_dec,\\n            \\\"model_item_monotonic_increasing\\\": mi_inc,\\n            \\\"both_preserved\\\": item_dec and mi_inc,\\n            \\\"p_item_decreasing\\\": round(p_item, 6),\\n            \\\"p_model_item_increasing\\\": round(p_mi, 6),\\n        }\\n\\n        status = \\\"PRESERVED\\\" if (item_dec and mi_inc) else \\\"BROKEN\\\"\\n        print(f\\\"\\\\n  Drop {drop_bm}: {status}\\\", flush=True)\\n        print(f\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\", flush=True)\\n\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\"both_preserved\\\"])\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n        \\\"benchmark_order\\\": available,\\n        \\\"full_set\\\": {\\n            \\\"item_id_monotonic_decreasing\\\": full_item_dec,\\n            \\\"model_item_monotonic_increasing\\\": full_mi_inc,\\n            \\\"benchmark_stats\\\": {\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\n                for bm in available\\n            },\\n        },\\n        \\\"lobo_results\\\": lobo_results,\\n        \\\"summary\\\": {\\n            \\\"n_benchmarks\\\": len(available),\\n            \\\"n_drops\\\": len(lobo_results),\\n            \\\"n_gradient_preserved\\\": n_preserved,\\n            \\\"gradient_robust\\\": n_preserved == len(lobo_results),\\n        },\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\", flush=True)\\n    print(f\\\"Runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016rP9nWma3aFSfbiJhJswLZ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/within_format_gradient.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "5372c606-ff13-4f58-9513-af92eb0515f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012ADEZZNLTdrSWaKbC5nrfQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/gsm8k_answer_reextract.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "dd5b21c0-b009-4204-a04f-ef5321eb78b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KPaP6QA6qVER4jbHuvxzWt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 579,
+      "cache_read_input_tokens": 24318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 579
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T12:01:40.650Z_
+
+<details><summary>↩ Tool result · `toolu_016rP9nWma3aFSfbiJhJswLZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Within-format gradient analysis.\\n\\nGroups benchmarks by item format:\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\n  Free-form: GSM8K (generative numeric answer)\\n\\nChecks:\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\n  2. Compares variance structure between MC and free-form groups.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/within_format_gradient.json\\n\\nUsage:\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nMC_BENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nMC_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nFREE_FORM_BENCHMARKS = [\\\"gsm8k\\\"]\\n\\nFORMAT_GROUPS = {\\n    \\\"multiple_choice\\\": MC_BENCHMARKS,\\n    \\\"free_form\\\": FREE_FORM_BENCHMARKS,\\n}\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, ra\\n\\n... [截断: 输出过长，省略 2215 字符] ...\\n\\nsult[\\\"pct\\\"].get(\\\"ordering\\\", 0.0),\\n            \\\"residual_pct\\\": result[\\\"pct\\\"].get(\\\"residual\\\", 0.0),\\n            \\\"G_item\\\": round(g_item, 6),\\n            \\\"accuracy\\\": result[\\\"grand_mean\\\"],\\n            \\\"n_obs\\\": result[\\\"n_obs\\\"],\\n        }\\n\\n    # --- MC group internal gradient ---\\n    mc_available = [bm for bm in MC_ORDER if bm in per_benchmark]\\n    mc_item_vals = [per_benchmark[bm][\\\"item_id_pct\\\"] for bm in mc_available]\\n    mc_mi_vals = [per_benchmark[bm][\\\"model_item_pct\\\"] for bm in mc_available]\\n\\n    mc_item_dec = all(a >= b for a, b in zip(mc_item_vals, mc_item_vals[1:]))\\n    mc_mi_inc = all(a <= b for a, b in zip(mc_mi_vals, mc_mi_vals[1:]))\\n\\n    n_mc = len(mc_available)\\n    all_perms = list(permutations(range(n_mc)))\\n    n_item_dec = sum(1 for p in all_perms\\n                     if all(mc_item_vals[p[i]] >= mc_item_vals[p[i+1]] for i in range(n_mc-1)))\\n    n_mi_inc = sum(1 for p in all_perms\\n                   if all(mc_mi_vals[p[i]] <= mc_mi_vals[p[i+1]] for i in range(n_mc-1)))\\n\\n    mc_gradient = {\\n        \\\"benchmarks\\\": mc_available,\\n        \\\"item_id_pct\\\": {bm: round(per_benchmark[bm][\\\"item_id_pct\\\"], 4) for bm in mc_available},\\n        \\\"model_item_pct\\\": {bm: round(per_benchmark[bm][\\\"model_item_pct\\\"], 4) for bm in mc_available},\\n        \\\"item_id_monotonic_decreasing\\\": mc_item_dec,\\n        \\\"model_item_monotonic_increasing\\\": mc_mi_inc,\\n        \\\"p_item_decreasing\\\": round(n_item_dec / len(all_perms), 6),\\n        \\\"p_model_item_increasing\\\": round(n_mi_inc / len(all_perms), 6),\\n    }\\n\\n    print(f\\\"\\\\nMC group gradient ({mc_available}):\\\", flush=True)\\n    print(f\\\"  item_id dec: {mc_item_dec} {[f'{v:.2f}' for v in mc_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item inc: {mc_mi_inc} {[f'{v:.2f}' for v in mc_mi_vals]}\\\", flush=True)\\n\\n    # --- MC vs free-form structure comparison ---\\n    mc_avg = {}\\n    for key in [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"temperature_pct\\\",\\n                \\\"prompt_template_pct\\\", \\\"seed_pct\\\", \\\"ordering_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]:\\n        vals = [per_benchmark[bm][key] for bm in mc_available]\\n        mc_avg[key] = round(float(np.mean(vals)), 4)\\n\\n    ff_avg = {}\\n    ff_available = [bm for bm in FREE_FORM_BENCHMARKS if bm in per_benchmark]\\n    if ff_available:\\n        for key in [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"temperature_pct\\\",\\n                    \\\"prompt_template_pct\\\", \\\"seed_pct\\\", \\\"ordering_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]:\\n            vals = [per_benchmark[bm][key] for bm in ff_available]\\n            ff_avg[key] = round(float(np.mean(vals)), 4)\\n\\n    comparison_keys = [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]\\n    format_comparison = {\\n        \\\"mc_group\\\": {\\\"benchmarks\\\": mc_available, \\\"average\\\": mc_avg},\\n        \\\"free_form_group\\\": {\\\"benchmarks\\\": ff_available, \\\"average\\\": ff_avg},\\n        \\\"differences\\\": {\\n            k: round(mc_avg.get(k, 0) - ff_avg.get(k, 0), 4)\\n            for k in comparison_keys\\n        } if ff_avg else {},\\n    }\\n\\n    print(f\\\"\\\\nFormat comparison:\\\", flush=True)\\n    print(f\\\"  {'Metric':<20} {'MC avg':>10} {'Free-form':>10} {'Diff':>10}\\\", flush=True)\\n    for k in comparison_keys:\\n        mc_v = mc_avg.get(k, 0)\\n        ff_v = ff_avg.get(k, 0)\\n        print(f\\\"  {k:<20} {mc_v:>10.2f} {ff_v:>10.2f} {mc_v-ff_v:>+10.2f}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"within_format_gradient\\\",\\n        \\\"format_groups\\\": {g: bms for g, bms in FORMAT_GROUPS.items()},\\n        \\\"per_benchmark\\\": {\\n            bm: {k: round(v, 4) if isinstance(v, float) else v for k, v in stats.items()}\\n            for bm, stats in per_benchmark.items()\\n        },\\n        \\\"mc_group_gradient\\\": mc_gradient,\\n        \\\"format_comparison\\\": format_comparison,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "735f5adf-0e85-4ec9-b6df-d3b416f976e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Within-format gradient analysis.\\\\n\\\\nGroups benchmarks by item format:\\\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\\\n  Free-form: GSM8K (generative numeric answer)\\\\n\\\\nChecks:\\\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\\\n  2. Compares variance structure between MC and free-form groups.\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/within_format_gradient.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nMC_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\nMC_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\nFREE_FORM_BENCHMARKS = [\\\\\\\"gsm8k\\\\\\\"]\\\\n\\\\nFORMAT_GROUPS = {\\\\n    \\\\\\\"multiple_choice\\\\\\\": MC_BENCHMARKS,\\\\n    \\\\\\\"free_form\\\\\\\": FREE_FORM_BENCHMARKS,\\\\n}\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, ra\\\\n\\\\n... [截断: 输出过长，省略 2215 字符] ...\\\\n\\\\nsult[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"ordering\\\\\\\", 0.0),\\\\n            \\\\\\\"residual_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"residual\\\\\\\", 0.0),\\\\n            \\\\\\\"G_item\\\\\\\": round(g_item, 6),\\\\n            \\\\\\\"accuracy\\\\\\\": result[\\\\\\\"grand_mean\\\\\\\"],\\\\n            \\\\\\\"n_obs\\\\\\\": result[\\\\\\\"n_obs\\\\\\\"],\\\\n        }\\\\n\\\\n    # --- MC group internal gradient ---\\\\n    mc_available = [bm for bm in MC_ORDER if bm in per_benchmark]\\\\n    mc_item_vals = [per_benchmark[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in mc_available]\\\\n    mc_mi_vals = [per_benchmark[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in mc_available]\\\\n\\\\n    mc_item_dec = all(a >= b for a, b in zip(mc_item_vals, mc_item_vals[1:]))\\\\n    mc_mi_inc = all(a <= b for a, b in zip(mc_mi_vals, mc_mi_vals[1:]))\\\\n\\\\n    n_mc = len(mc_available)\\\\n    all_perms = list(permutations(range(n_mc)))\\\\n    n_item_dec = sum(1 for p in all_perms\\\\n                     if all(mc_item_vals[p[i]] >= mc_item_vals[p[i+1]] for i in range(n_mc-1)))\\\\n    n_mi_inc = sum(1 for p in all_perms\\\\n                   if all(mc_mi_vals[p[i]] <= mc_mi_vals[p[i+1]] for i in range(n_mc-1)))\\\\n\\\\n    mc_gradient = {\\\\n        \\\\\\\"benchmarks\\\\\\\": mc_available,\\\\n        \\\\\\\"item_id_pct\\\\\\\": {bm: round(per_benchmark[bm][\\\\\\\"item_id_pct\\\\\\\"], 4) for bm in mc_available},\\\\n        \\\\\\\"model_item_pct\\\\\\\": {bm: round(per_benchmark[bm][\\\\\\\"model_item_pct\\\\\\\"], 4) for bm in mc_available},\\\\n        \\\\\\\"item_id_monotonic_decreasing\\\\\\\": mc_item_dec,\\\\n        \\\\\\\"model_item_monotonic_increasing\\\\\\\": mc_mi_inc,\\\\n        \\\\\\\"p_item_decreasing\\\\\\\": round(n_item_dec / len(all_perms), 6),\\\\n        \\\\\\\"p_model_item_increasing\\\\\\\": round(n_mi_inc / len(all_perms), 6),\\\\n    }\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nMC group gradient ({mc_available}):\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id dec: {mc_item_dec} {[f'{v:.2f}' for v in mc_item_vals]}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item inc: {mc_mi_inc} {[f'{v:.2f}' for v in mc_mi_vals]}\\\\\\\", flush=True)\\\\n\\\\n    # --- MC vs free-form structure comparison ---\\\\n    mc_avg = {}\\\\n    for key in [\\\\\\\"item_id_pct\\\\\\\", \\\\\\\"model_item_pct\\\\\\\", \\\\\\\"model_pct\\\\\\\", \\\\\\\"temperature_pct\\\\\\\",\\\\n                \\\\\\\"prompt_template_pct\\\\\\\", \\\\\\\"seed_pct\\\\\\\", \\\\\\\"ordering_pct\\\\\\\", \\\\\\\"residual_pct\\\\\\\", \\\\\\\"G_item\\\\\\\"]:\\\\n        vals = [per_benchmark[bm][key] for bm in mc_available]\\\\n        mc_avg[key] = round(float(np.mean(vals)), 4)\\\\n\\\\n    ff_avg = {}\\\\n    ff_available = [bm for bm in FREE_FORM_BENCHMARKS if bm in per_benchmark]\\\\n    if ff_available:\\\\n        for key in [\\\\\\\"item_id_pct\\\\\\\", \\\\\\\"model_item_pct\\\\\\\", \\\\\\\"model_pct\\\\\\\", \\\\\\\"temperature_pct\\\\\\\",\\\\n                    \\\\\\\"prompt_template_pct\\\\\\\", \\\\\\\"seed_pct\\\\\\\", \\\\\\\"ordering_pct\\\\\\\", \\\\\\\"residual_pct\\\\\\\", \\\\\\\"G_item\\\\\\\"]:\\\\n            vals = [per_benchmark[bm][key] for bm in ff_available]\\\\n            ff_avg[key] = round(float(np.mean(vals)), 4)\\\\n\\\\n    comparison_keys = [\\\\\\\"item_id_pct\\\\\\\", \\\\\\\"model_item_pct\\\\\\\", \\\\\\\"model_pct\\\\\\\", \\\\\\\"residual_pct\\\\\\\", \\\\\\\"G_item\\\\\\\"]\\\\n    format_comparison = {\\\\n        \\\\\\\"mc_group\\\\\\\": {\\\\\\\"benchmarks\\\\\\\": mc_available, \\\\\\\"average\\\\\\\": mc_avg},\\\\n        \\\\\\\"free_form_group\\\\\\\": {\\\\\\\"benchmarks\\\\\\\": ff_available, \\\\\\\"average\\\\\\\": ff_avg},\\\\n        \\\\\\\"differences\\\\\\\": {\\\\n            k: round(mc_avg.get(k, 0) - ff_avg.get(k, 0), 4)\\\\n            for k in comparison_keys\\\\n        } if ff_avg else {},\\\\n    }\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nFormat comparison:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  {'Metric':<20} {'MC avg':>10} {'Free-form':>10} {'Diff':>10}\\\\\\\", flush=True)\\\\n    for k in comparison_keys:\\\\n        mc_v = mc_avg.get(k, 0)\\\\n        ff_v = ff_avg.get(k, 0)\\\\n        print(f\\\\\\\"  {k:<20} {mc_v:>10.2f} {ff_v:>10.2f} {mc_v-ff_v:>+10.2f}\\\\\\\", flush=True)\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"within_format_gradient\\\\\\\",\\\\n        \\\\\\\"format_groups\\\\\\\": {g: bms for g, bms in FORMAT_GROUPS.items()},\\\\n        \\\\\\\"per_benchmark\\\\\\\": {\\\\n            bm: {k: round(v, 4) if isinstance(v, float) else v for k, v in stats.items()}\\\\n            for bm, stats in per_benchmark.items()\\\\n        },\\\\n        \\\\\\\"mc_group_gradient\\\\\\\": mc_gradient,\\\\n        \\\\\\\"format_comparison\\\\\\\": format_comparison,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Within-format gradient analysis.\\n\\nGroups benchmarks by item format:\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\n  Free-form: GSM8K (generative numeric answer)\\n\\nChecks:\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\n  2. Compares variance structure between MC and free-form groups.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/within_format_gradient.json\\n\\nUsage:\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nMC_BENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nMC_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nFREE_FORM_BENCHMARKS = [\\\"gsm8k\\\"]\\n\\nFORMAT_GROUPS = {\\n    \\\"multiple_choice\\\": MC_BENCHMARKS,\\n    \\\"free_form\\\": FREE_FORM_BENCHMARKS,\\n}\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, ra\\n\\n... [截断: 输出过长，省略 2215 字符] ...\\n\\nsult[\\\"pct\\\"].get(\\\"ordering\\\", 0.0),\\n            \\\"residual_pct\\\": result[\\\"pct\\\"].get(\\\"residual\\\", 0.0),\\n            \\\"G_item\\\": round(g_item, 6),\\n            \\\"accuracy\\\": result[\\\"grand_mean\\\"],\\n            \\\"n_obs\\\": result[\\\"n_obs\\\"],\\n        }\\n\\n    # --- MC group internal gradient ---\\n    mc_available = [bm for bm in MC_ORDER if bm in per_benchmark]\\n    mc_item_vals = [per_benchmark[bm][\\\"item_id_pct\\\"] for bm in mc_available]\\n    mc_mi_vals = [per_benchmark[bm][\\\"model_item_pct\\\"] for bm in mc_available]\\n\\n    mc_item_dec = all(a >= b for a, b in zip(mc_item_vals, mc_item_vals[1:]))\\n    mc_mi_inc = all(a <= b for a, b in zip(mc_mi_vals, mc_mi_vals[1:]))\\n\\n    n_mc = len(mc_available)\\n    all_perms = list(permutations(range(n_mc)))\\n    n_item_dec = sum(1 for p in all_perms\\n                     if all(mc_item_vals[p[i]] >= mc_item_vals[p[i+1]] for i in range(n_mc-1)))\\n    n_mi_inc = sum(1 for p in all_perms\\n                   if all(mc_mi_vals[p[i]] <= mc_mi_vals[p[i+1]] for i in range(n_mc-1)))\\n\\n    mc_gradient = {\\n        \\\"benchmarks\\\": mc_available,\\n        \\\"item_id_pct\\\": {bm: round(per_benchmark[bm][\\\"item_id_pct\\\"], 4) for bm in mc_available},\\n        \\\"model_item_pct\\\": {bm: round(per_benchmark[bm][\\\"model_item_pct\\\"], 4) for bm in mc_available},\\n        \\\"item_id_monotonic_decreasing\\\": mc_item_dec,\\n        \\\"model_item_monotonic_increasing\\\": mc_mi_inc,\\n        \\\"p_item_decreasing\\\": round(n_item_dec / len(all_perms), 6),\\n        \\\"p_model_item_increasing\\\": round(n_mi_inc / len(all_perms), 6),\\n    }\\n\\n    print(f\\\"\\\\nMC group gradient ({mc_available}):\\\", flush=True)\\n    print(f\\\"  item_id dec: {mc_item_dec} {[f'{v:.2f}' for v in mc_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item inc: {mc_mi_inc} {[f'{v:.2f}' for v in mc_mi_vals]}\\\", flush=True)\\n\\n    # --- MC vs free-form structure comparison ---\\n    mc_avg = {}\\n    for key in [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"temperature_pct\\\",\\n                \\\"prompt_template_pct\\\", \\\"seed_pct\\\", \\\"ordering_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]:\\n        vals = [per_benchmark[bm][key] for bm in mc_available]\\n        mc_avg[key] = round(float(np.mean(vals)), 4)\\n\\n    ff_avg = {}\\n    ff_available = [bm for bm in FREE_FORM_BENCHMARKS if bm in per_benchmark]\\n    if ff_available:\\n        for key in [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"temperature_pct\\\",\\n                    \\\"prompt_template_pct\\\", \\\"seed_pct\\\", \\\"ordering_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]:\\n            vals = [per_benchmark[bm][key] for bm in ff_available]\\n            ff_avg[key] = round(float(np.mean(vals)), 4)\\n\\n    comparison_keys = [\\\"item_id_pct\\\", \\\"model_item_pct\\\", \\\"model_pct\\\", \\\"residual_pct\\\", \\\"G_item\\\"]\\n    format_comparison = {\\n        \\\"mc_group\\\": {\\\"benchmarks\\\": mc_available, \\\"average\\\": mc_avg},\\n        \\\"free_form_group\\\": {\\\"benchmarks\\\": ff_available, \\\"average\\\": ff_avg},\\n        \\\"differences\\\": {\\n            k: round(mc_avg.get(k, 0) - ff_avg.get(k, 0), 4)\\n            for k in comparison_keys\\n        } if ff_avg else {},\\n    }\\n\\n    print(f\\\"\\\\nFormat comparison:\\\", flush=True)\\n    print(f\\\"  {'Metric':<20} {'MC avg':>10} {'Free-form':>10} {'Diff':>10}\\\", flush=True)\\n    for k in comparison_keys:\\n        mc_v = mc_avg.get(k, 0)\\n        ff_v = ff_avg.get(k, 0)\\n        print(f\\\"  {k:<20} {mc_v:>10.2f} {ff_v:>10.2f} {mc_v-ff_v:>+10.2f}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"within_format_gradient\\\",\\n        \\\"format_groups\\\": {g: bms for g, bms in FORMAT_GROUPS.items()},\\n        \\\"per_benchmark\\\": {\\n            bm: {k: round(v, 4) if isinstance(v, float) else v for k, v in stats.items()}\\n            for bm, stats in per_benchmark.items()\\n        },\\n        \\\"mc_group_gradient\\\": mc_gradient,\\n        \\\"format_comparison\\\": format_comparison,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T12:01:41.166Z_
+
+<details><summary>↩ Tool result · `toolu_012ADEZZNLTdrSWaKbC5nrfQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Re-extract GSM8K answers with stop-sequence truncation.\\n\\nChecks whether the original answer extraction differs from a corrected version\\nthat first truncates generated_text at common stop sequences (e.g. \\\"\\\\n\\\\n\\\",\\n\\\"Question:\\\", \\\"Q:\\\") before extracting the numeric answer. If discrepancies\\nexist, outputs a corrected JSONL.\\n\\nInput:  exp-002 GSM8K JSONL records\\nOutput: results/analysis/gsm8k_answer_reextract.json  (report)\\n        results/analysis/gsm8k_corrected.jsonl         (optional, if diffs found)\\n\\nUsage:\\n  python scripts/exp002_analysis/gsm8k_answer_reextract.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nSTOP_SEQUENCES = [\\\"\\\\n\\\\n\\\", \\\"\\\\nQuestion:\\\", \\\"\\\\nQ:\\\", \\\"\\\\nProblem:\\\", \\\"####\\\"]\\n\\nGSM8K_ANSWER_PATTERN = re.compile(r\\\"(?:####\\\\s*|(?:the answer is|= |equals )\\\\s*)(-?[\\\\d,]+(?:\\\\.\\\\d+)?)\\\")\\nNUMERIC_PATTERN = re.compile(r\\\"(-?[\\\\d,]+(?:\\\\.\\\\d+)?)\\\")\\n\\n\\ndef truncate_at_stop(text: str) -> str:\\n    \\\"\\\"\\\"Truncate generated text at the earliest stop sequence.\\\"\\\"\\\"\\n    earliest_pos = len(text)\\n    for stop in STOP_SEQUENCES:\\n        pos = text.find(stop)\\n        if pos != -1 and pos < earliest_pos:\\n            earliest_pos = pos\\n    return text[:earliest_pos].strip()\\n\\n\\ndef extract_gsm8k_answer_original(text: str) -> str | None:\\n    \\\"\\\"\\\"Original extraction: take first number-like token from generated text.\\\"\\\"\\\"\\n    if text is None:\\n        return None\\n    text = text.strip()\\n    m = GSM8K_ANSWER_PATTERN.search(text)\\n    if m:\\n        return m.group(1).replace(\\\",\\\", \\\"\\\")\\n    m = NUMERIC_PATTERN.search(text)\\n    if m:\\n        return m.group(1).replace(\\\",\\\", \\\"\\\")\\n    return None\\n\\n\\ndef extract_gsm8k_answer_fixed(text: str) -> str | None:\\n    \\\"\\\"\\\"Fixed extraction: truncate at stop sequences first, then extract.\\\"\\\"\\\"\\n    if text is None:\\n        return None\\n    truncated = truncate_at_stop(text)\\n    return extract_gsm8k_answer_original(truncated)\\n\\n\\ndef normalize_numeric(answer: str | None) -> str | None:\\n    \\\"\\\"\\\"Normalize numeric answer: remove leading zeros, trailing .0, etc.\\\"\\\"\\\"\\n    if answer is None:\\n        return None\\n    answer = answer.replace(\\\",\\\", \\\"\\\").strip()\\n    try:\\n        val = float(answer)\\n        if val == int(val):\\n            return str(int(val))\\n        return str(val)\\n    except ValueError:\\n        return answer\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"GSM8K answer re-extraction with stop-sequence truncation\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/gsm8k_answer_reextract.json\\\")\\n    parser.add_argument(\\\"--corrected-output\\\", default=\\\"results/analysis/gsm8k_corrected.jsonl\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n\\n    data_path = Path(args.data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {args.data_dir}\\\")\\n\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    df = df[df[\\\"benchmark\\\"] == \\\"gsm8k\\\"].reset_index(drop=True)\\n\\n    if len(df) == 0:\\n        print(\\\"No GSM8K records found.\\\", flush=True)\\n        return\\n\\n    print(f\\\"GSM8K records: {len(df)} ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    df[\\\"original_predicted\\\"] = df[\\\"predicted_answer\\\"].copy()\\n    df[\\\"reextracted_answer\\\"] = df[\\\"generated_text\\\"].apply(extract_gsm8k_answer_fixed)\\n\\n    df[\\\"original_norm\\\"] = df[\\\"original_predicted\\\"].apply(normalize_numeric)\\n    df[\\\"reextracted_norm\\\"] = df[\\\"reextracted_answer\\\"].apply(normalize_numeric)\\n    df[\\\"gold_norm\\\"] = df[\\\"gold_answer\\\"].apply(normalize_numeric)\\n\\n    df[\\\"original_correct\\\"] = (df[\\\"original_norm\\\"] == df[\\\"gold_norm\\\"]).astype(int)\\n    df[\\\"reextracted_correct\\\"] = (df[\\\"reextracted_norm\\\"] == df[\\\"gold_norm\\\"]).astype(int)\\n\\n    differs = df[\\\"original_norm\\\"] != df[\\\"reextracted_norm\\\"]\\n    n_diff = differs.sum()\\n    n_total = len(df)\\n    pct_diff = n_diff / n_total * 100\\n\\n    orig_acc = df[\\\"original_correct\\\"].mean()\\n    reext_acc = df[\\\"reextracted_correct\\\"].mean()\\n\\n    print(f\\\"\\\\nDifferences: {n_diff}/{n_total} ({pct_diff:.2f}%)\\\", flush=True)\\n    print(f\\\"Original accuracy:     {orig_acc:.6f}\\\", flush=True)\\n    print(f\\\"Re-extracted accuracy: {reext_acc:.6f}\\\", flush=True)\\n    print(f\\\"Delta:                 {reext_acc - orig_acc:+.6f}\\\", flush=True)\\n\\n    diff_details = []\\n    if n_diff > 0:\\n        diff_df = df[differs].head(20)\\n        for _, row in diff_df.iterrows():\\n            diff_details.append({\\n                \\\"item_id\\\": row[\\\"item_id\\\"],\\n                \\\"condition_id\\\": int(row[\\\"condition_id\\\"]),\\n                \\\"gold\\\": row[\\\"gold_norm\\\"],\\n                \\\"original\\\": row[\\\"original_norm\\\"],\\n                \\\"reextracted\\\": row[\\\"reextracted_norm\\\"],\\n                \\\"generated_text_preview\\\": row[\\\"generated_text\\\"][:200],\\n                \\\"original_correct\\\": int(row[\\\"original_correct\\\"]),\\n                \\\"reextracted_correct\\\": int(row[\\\"reextracted_correct\\\"]),\\n            })\\n\\n    flipped_to_correct = ((df[\\\"original_correct\\\"] == 0) & (df[\\\"reextracted_correct\\\"] == 1)).sum()\\n    flipped_to_wrong = ((df[\\\"original_correct\\\"] == 1) & (df[\\\"reextracted_correct\\\"] == 0)).sum()\\n\\n    report = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"gsm8k_answer_reextract\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_differences\\\": int(n_diff),\\n        \\\"pct_differences\\\": round(pct_diff, 4),\\n        \\\"original_accuracy\\\": round(float(orig_acc), 6),\\n        \\\"reextracted_accuracy\\\": round(float(reext_acc), 6),\\n        \\\"accuracy_delta\\\": round(float(reext_acc - orig_acc), 6),\\n        \\\"flipped_to_correct\\\": int(flipped_to_correct),\\n        \\\"flipped_to_wrong\\\": int(flipped_to_wrong),\\n        \\\"stop_sequences_used\\\": STOP_SEQUENCES,\\n        \\\"sample_differences\\\": diff_details,\\n        \\\"corrected_file\\\": args.corrected_output if n_diff > 0 else None,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n\\n    if n_diff > 0:\\n        df[\\\"predicted_answer\\\"] = df[\\\"reextracted_norm\\\"]\\n        df[\\\"correct\\\"] = df[\\\"reextracted_correct\\\"]\\n        cols_to_drop = [\\\"original_predicted\\\", \\\"reextracted_answer\\\", \\\"original_norm\\\",\\n                        \\\"reextracted_norm\\\", \\\"gold_norm\\\", \\\"original_correct\\\", \\\"reextracted_correct\\\"]\\n        df_out = df.drop(columns=[c for c in cols_to_drop if c in df.columns])\\n        with open(args.corrected_output, \\\"w\\\") as f:\\n            for _, row in df_out.iterrows():\\n                f.write(json.dumps(row.to_dict(), ensure_ascii=False, default=str) + \\\"\\\\n\\\")\\n        print(f\\\"Corrected JSONL -> {args.corrected_output}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "7c4886e5-5863-40a4-9795-ff557490bc48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Re-extract GSM8K answers with stop-sequence truncation.\\\\n\\\\nChecks whether the original answer extraction differs from a corrected version\\\\nthat first truncates generated_text at common stop sequences (e.g. \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n\\\\\\\"Question:\\\\\\\", \\\\\\\"Q:\\\\\\\") before extracting the numeric answer. If discrepancies\\\\nexist, outputs a corrected JSONL.\\\\n\\\\nInput:  exp-002 GSM8K JSONL records\\\\nOutput: results/analysis/gsm8k_answer_reextract.json  (report)\\\\n        results/analysis/gsm8k_corrected.jsonl         (optional, if diffs found)\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gsm8k_answer_reextract.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nSTOP_SEQUENCES = [\\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\", \\\\\\\"\\\\\\\\nQuestion:\\\\\\\", \\\\\\\"\\\\\\\\nQ:\\\\\\\", \\\\\\\"\\\\\\\\nProblem:\\\\\\\", \\\\\\\"####\\\\\\\"]\\\\n\\\\nGSM8K_ANSWER_PATTERN = re.compile(r\\\\\\\"(?:####\\\\\\\\s*|(?:the answer is|= |equals )\\\\\\\\s*)(-?[\\\\\\\\d,]+(?:\\\\\\\\.\\\\\\\\d+)?)\\\\\\\")\\\\nNUMERIC_PATTERN = re.compile(r\\\\\\\"(-?[\\\\\\\\d,]+(?:\\\\\\\\.\\\\\\\\d+)?)\\\\\\\")\\\\n\\\\n\\\\ndef truncate_at_stop(text: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Truncate generated text at the earliest stop sequence.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    earliest_pos = len(text)\\\\n    for stop in STOP_SEQUENCES:\\\\n        pos = text.find(stop)\\\\n        if pos != -1 and pos < earliest_pos:\\\\n            earliest_pos = pos\\\\n    return text[:earliest_pos].strip()\\\\n\\\\n\\\\ndef extract_gsm8k_answer_original(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Original extraction: take first number-like token from generated text.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if text is None:\\\\n        return None\\\\n    text = text.strip()\\\\n    m = GSM8K_ANSWER_PATTERN.search(text)\\\\n    if m:\\\\n        return m.group(1).replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    m = NUMERIC_PATTERN.search(text)\\\\n    if m:\\\\n        return m.group(1).replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef extract_gsm8k_answer_fixed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Fixed extraction: truncate at stop sequences first, then extract.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if text is None:\\\\n        return None\\\\n    truncated = truncate_at_stop(text)\\\\n    return extract_gsm8k_answer_original(truncated)\\\\n\\\\n\\\\ndef normalize_numeric(answer: str | None) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Normalize numeric answer: remove leading zeros, trailing .0, etc.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if answer is None:\\\\n        return None\\\\n    answer = answer.replace(\\\\\\\",\\\\\\\", \\\\\\\"\\\\\\\").strip()\\\\n    try:\\\\n        val = float(answer)\\\\n        if val == int(val):\\\\n            return str(int(val))\\\\n        return str(val)\\\\n    except ValueError:\\\\n        return answer\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"GSM8K answer re-extraction with stop-sequence truncation\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/gsm8k_answer_reextract.json\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--corrected-output\\\\\\\", default=\\\\\\\"results/analysis/gsm8k_corrected.jsonl\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n\\\\n    data_path = Path(args.data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {args.data_dir}\\\\\\\")\\\\n\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    df = df[df[\\\\\\\"benchmark\\\\\\\"] == \\\\\\\"gsm8k\\\\\\\"].reset_index(drop=True)\\\\n\\\\n    if len(df) == 0:\\\\n        print(\\\\\\\"No GSM8K records found.\\\\\\\", flush=True)\\\\n        return\\\\n\\\\n    print(f\\\\\\\"GSM8K records: {len(df)} ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    df[\\\\\\\"original_predicted\\\\\\\"] = df[\\\\\\\"predicted_answer\\\\\\\"].copy()\\\\n    df[\\\\\\\"reextracted_answer\\\\\\\"] = df[\\\\\\\"generated_text\\\\\\\"].apply(extract_gsm8k_answer_fixed)\\\\n\\\\n    df[\\\\\\\"original_norm\\\\\\\"] = df[\\\\\\\"original_predicted\\\\\\\"].apply(normalize_numeric)\\\\n    df[\\\\\\\"reextracted_norm\\\\\\\"] = df[\\\\\\\"reextracted_answer\\\\\\\"].apply(normalize_numeric)\\\\n    df[\\\\\\\"gold_norm\\\\\\\"] = df[\\\\\\\"gold_answer\\\\\\\"].apply(normalize_numeric)\\\\n\\\\n    df[\\\\\\\"original_correct\\\\\\\"] = (df[\\\\\\\"original_norm\\\\\\\"] == df[\\\\\\\"gold_norm\\\\\\\"]).astype(int)\\\\n    df[\\\\\\\"reextracted_correct\\\\\\\"] = (df[\\\\\\\"reextracted_norm\\\\\\\"] == df[\\\\\\\"gold_norm\\\\\\\"]).astype(int)\\\\n\\\\n    differs = df[\\\\\\\"original_norm\\\\\\\"] != df[\\\\\\\"reextracted_norm\\\\\\\"]\\\\n    n_diff = differs.sum()\\\\n    n_total = len(df)\\\\n    pct_diff = n_diff / n_total * 100\\\\n\\\\n    orig_acc = df[\\\\\\\"original_correct\\\\\\\"].mean()\\\\n    reext_acc = df[\\\\\\\"reextracted_correct\\\\\\\"].mean()\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDifferences: {n_diff}/{n_total} ({pct_diff:.2f}%)\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Original accuracy:     {orig_acc:.6f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Re-extracted accuracy: {reext_acc:.6f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Delta:                 {reext_acc - orig_acc:+.6f}\\\\\\\", flush=True)\\\\n\\\\n    diff_details = []\\\\n    if n_diff > 0:\\\\n        diff_df = df[differs].head(20)\\\\n        for _, row in diff_df.iterrows():\\\\n            diff_details.append({\\\\n                \\\\\\\"item_id\\\\\\\": row[\\\\\\\"item_id\\\\\\\"],\\\\n                \\\\\\\"condition_id\\\\\\\": int(row[\\\\\\\"condition_id\\\\\\\"]),\\\\n                \\\\\\\"gold\\\\\\\": row[\\\\\\\"gold_norm\\\\\\\"],\\\\n                \\\\\\\"original\\\\\\\": row[\\\\\\\"original_norm\\\\\\\"],\\\\n                \\\\\\\"reextracted\\\\\\\": row[\\\\\\\"reextracted_norm\\\\\\\"],\\\\n                \\\\\\\"generated_text_preview\\\\\\\": row[\\\\\\\"generated_text\\\\\\\"][:200],\\\\n                \\\\\\\"original_correct\\\\\\\": int(row[\\\\\\\"original_correct\\\\\\\"]),\\\\n                \\\\\\\"reextracted_correct\\\\\\\": int(row[\\\\\\\"reextracted_correct\\\\\\\"]),\\\\n            })\\\\n\\\\n    flipped_to_correct = ((df[\\\\\\\"original_correct\\\\\\\"] == 0) & (df[\\\\\\\"reextracted_correct\\\\\\\"] == 1)).sum()\\\\n    flipped_to_wrong = ((df[\\\\\\\"original_correct\\\\\\\"] == 1) & (df[\\\\\\\"reextracted_correct\\\\\\\"] == 0)).sum()\\\\n\\\\n    report = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"gsm8k_answer_reextract\\\\\\\",\\\\n        \\\\\\\"n_total\\\\\\\": n_total,\\\\n        \\\\\\\"n_differences\\\\\\\": int(n_diff),\\\\n        \\\\\\\"pct_differences\\\\\\\": round(pct_diff, 4),\\\\n        \\\\\\\"original_accuracy\\\\\\\": round(float(orig_acc), 6),\\\\n        \\\\\\\"reextracted_accuracy\\\\\\\": round(float(reext_acc), 6),\\\\n        \\\\\\\"accuracy_delta\\\\\\\": round(float(reext_acc - orig_acc), 6),\\\\n        \\\\\\\"flipped_to_correct\\\\\\\": int(flipped_to_correct),\\\\n        \\\\\\\"flipped_to_wrong\\\\\\\": int(flipped_to_wrong),\\\\n        \\\\\\\"stop_sequences_used\\\\\\\": STOP_SEQUENCES,\\\\n        \\\\\\\"sample_differences\\\\\\\": diff_details,\\\\n        \\\\\\\"corrected_file\\\\\\\": args.corrected_output if n_diff > 0 else None,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\\\n\\\\n    if n_diff > 0:\\\\n        df[\\\\\\\"predicted_answer\\\\\\\"] = df[\\\\\\\"reextracted_norm\\\\\\\"]\\\\n        df[\\\\\\\"correct\\\\\\\"] = df[\\\\\\\"reextracted_correct\\\\\\\"]\\\\n        cols_to_drop = [\\\\\\\"original_predicted\\\\\\\", \\\\\\\"reextracted_answer\\\\\\\", \\\\\\\"original_norm\\\\\\\",\\\\n                        \\\\\\\"reextracted_norm\\\\\\\", \\\\\\\"gold_norm\\\\\\\", \\\\\\\"original_correct\\\\\\\", \\\\\\\"reextracted_correct\\\\\\\"]\\\\n        df_out = df.drop(columns=[c for c in cols_to_drop if c in df.columns])\\\\n        with open(args.corrected_output, \\\\\\\"w\\\\\\\") as f:\\\\n            for _, row in df_out.iterrows():\\\\n                f.write(json.dumps(row.to_dict(), ensure_ascii=False, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n        print(f\\\\\\\"Corrected JSONL -> {args.corrected_output}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Re-extract GSM8K answers with stop-sequence truncation.\\n\\nChecks whether the original answer extraction differs from a corrected version\\nthat first truncates generated_text at common stop sequences (e.g. \\\"\\\\n\\\\n\\\",\\n\\\"Question:\\\", \\\"Q:\\\") before extracting the numeric answer. If discrepancies\\nexist, outputs a corrected JSONL.\\n\\nInput:  exp-002 GSM8K JSONL records\\nOutput: results/analysis/gsm8k_answer_reextract.json  (report)\\n        results/analysis/gsm8k_corrected.jsonl         (optional, if diffs found)\\n\\nUsage:\\n  python scripts/exp002_analysis/gsm8k_answer_reextract.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nSTOP_SEQUENCES = [\\\"\\\\n\\\\n\\\", \\\"\\\\nQuestion:\\\", \\\"\\\\nQ:\\\", \\\"\\\\nProblem:\\\", \\\"####\\\"]\\n\\nGSM8K_ANSWER_PATTERN = re.compile(r\\\"(?:####\\\\s*|(?:the answer is|= |equals )\\\\s*)(-?[\\\\d,]+(?:\\\\.\\\\d+)?)\\\")\\nNUMERIC_PATTERN = re.compile(r\\\"(-?[\\\\d,]+(?:\\\\.\\\\d+)?)\\\")\\n\\n\\ndef truncate_at_stop(text: str) -> str:\\n    \\\"\\\"\\\"Truncate generated text at the earliest stop sequence.\\\"\\\"\\\"\\n    earliest_pos = len(text)\\n    for stop in STOP_SEQUENCES:\\n        pos = text.find(stop)\\n        if pos != -1 and pos < earliest_pos:\\n            earliest_pos = pos\\n    return text[:earliest_pos].strip()\\n\\n\\ndef extract_gsm8k_answer_original(text: str) -> str | None:\\n    \\\"\\\"\\\"Original extraction: take first number-like token from generated text.\\\"\\\"\\\"\\n    if text is None:\\n        return None\\n    text = text.strip()\\n    m = GSM8K_ANSWER_PATTERN.search(text)\\n    if m:\\n        return m.group(1).replace(\\\",\\\", \\\"\\\")\\n    m = NUMERIC_PATTERN.search(text)\\n    if m:\\n        return m.group(1).replace(\\\",\\\", \\\"\\\")\\n    return None\\n\\n\\ndef extract_gsm8k_answer_fixed(text: str) -> str | None:\\n    \\\"\\\"\\\"Fixed extraction: truncate at stop sequences first, then extract.\\\"\\\"\\\"\\n    if text is None:\\n        return None\\n    truncated = truncate_at_stop(text)\\n    return extract_gsm8k_answer_original(truncated)\\n\\n\\ndef normalize_numeric(answer: str | None) -> str | None:\\n    \\\"\\\"\\\"Normalize numeric answer: remove leading zeros, trailing .0, etc.\\\"\\\"\\\"\\n    if answer is None:\\n        return None\\n    answer = answer.replace(\\\",\\\", \\\"\\\").strip()\\n    try:\\n        val = float(answer)\\n        if val == int(val):\\n            return str(int(val))\\n        return str(val)\\n    except ValueError:\\n        return answer\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"GSM8K answer re-extraction with stop-sequence truncation\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/gsm8k_answer_reextract.json\\\")\\n    parser.add_argument(\\\"--corrected-output\\\", default=\\\"results/analysis/gsm8k_corrected.jsonl\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n\\n    data_path = Path(args.data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {args.data_dir}\\\")\\n\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    df = df[df[\\\"benchmark\\\"] == \\\"gsm8k\\\"].reset_index(drop=True)\\n\\n    if len(df) == 0:\\n        print(\\\"No GSM8K records found.\\\", flush=True)\\n        return\\n\\n    print(f\\\"GSM8K records: {len(df)} ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    df[\\\"original_predicted\\\"] = df[\\\"predicted_answer\\\"].copy()\\n    df[\\\"reextracted_answer\\\"] = df[\\\"generated_text\\\"].apply(extract_gsm8k_answer_fixed)\\n\\n    df[\\\"original_norm\\\"] = df[\\\"original_predicted\\\"].apply(normalize_numeric)\\n    df[\\\"reextracted_norm\\\"] = df[\\\"reextracted_answer\\\"].apply(normalize_numeric)\\n    df[\\\"gold_norm\\\"] = df[\\\"gold_answer\\\"].apply(normalize_numeric)\\n\\n    df[\\\"original_correct\\\"] = (df[\\\"original_norm\\\"] == df[\\\"gold_norm\\\"]).astype(int)\\n    df[\\\"reextracted_correct\\\"] = (df[\\\"reextracted_norm\\\"] == df[\\\"gold_norm\\\"]).astype(int)\\n\\n    differs = df[\\\"original_norm\\\"] != df[\\\"reextracted_norm\\\"]\\n    n_diff = differs.sum()\\n    n_total = len(df)\\n    pct_diff = n_diff / n_total * 100\\n\\n    orig_acc = df[\\\"original_correct\\\"].mean()\\n    reext_acc = df[\\\"reextracted_correct\\\"].mean()\\n\\n    print(f\\\"\\\\nDifferences: {n_diff}/{n_total} ({pct_diff:.2f}%)\\\", flush=True)\\n    print(f\\\"Original accuracy:     {orig_acc:.6f}\\\", flush=True)\\n    print(f\\\"Re-extracted accuracy: {reext_acc:.6f}\\\", flush=True)\\n    print(f\\\"Delta:                 {reext_acc - orig_acc:+.6f}\\\", flush=True)\\n\\n    diff_details = []\\n    if n_diff > 0:\\n        diff_df = df[differs].head(20)\\n        for _, row in diff_df.iterrows():\\n            diff_details.append({\\n                \\\"item_id\\\": row[\\\"item_id\\\"],\\n                \\\"condition_id\\\": int(row[\\\"condition_id\\\"]),\\n                \\\"gold\\\": row[\\\"gold_norm\\\"],\\n                \\\"original\\\": row[\\\"original_norm\\\"],\\n                \\\"reextracted\\\": row[\\\"reextracted_norm\\\"],\\n                \\\"generated_text_preview\\\": row[\\\"generated_text\\\"][:200],\\n                \\\"original_correct\\\": int(row[\\\"original_correct\\\"]),\\n                \\\"reextracted_correct\\\": int(row[\\\"reextracted_correct\\\"]),\\n            })\\n\\n    flipped_to_correct = ((df[\\\"original_correct\\\"] == 0) & (df[\\\"reextracted_correct\\\"] == 1)).sum()\\n    flipped_to_wrong = ((df[\\\"original_correct\\\"] == 1) & (df[\\\"reextracted_correct\\\"] == 0)).sum()\\n\\n    report = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"gsm8k_answer_reextract\\\",\\n        \\\"n_total\\\": n_total,\\n        \\\"n_differences\\\": int(n_diff),\\n        \\\"pct_differences\\\": round(pct_diff, 4),\\n        \\\"original_accuracy\\\": round(float(orig_acc), 6),\\n        \\\"reextracted_accuracy\\\": round(float(reext_acc), 6),\\n        \\\"accuracy_delta\\\": round(float(reext_acc - orig_acc), 6),\\n        \\\"flipped_to_correct\\\": int(flipped_to_correct),\\n        \\\"flipped_to_wrong\\\": int(flipped_to_wrong),\\n        \\\"stop_sequences_used\\\": STOP_SEQUENCES,\\n        \\\"sample_differences\\\": diff_details,\\n        \\\"corrected_file\\\": args.corrected_output if n_diff > 0 else None,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, ensure_ascii=False)\\n\\n    if n_diff > 0:\\n        df[\\\"predicted_answer\\\"] = df[\\\"reextracted_norm\\\"]\\n        df[\\\"correct\\\"] = df[\\\"reextracted_correct\\\"]\\n        cols_to_drop = [\\\"original_predicted\\\", \\\"reextracted_answer\\\", \\\"original_norm\\\",\\n                        \\\"reextracted_norm\\\", \\\"gold_norm\\\", \\\"original_correct\\\", \\\"reextracted_correct\\\"]\\n        df_out = df.drop(columns=[c for c in cols_to_drop if c in df.columns])\\n        with open(args.corrected_output, \\\"w\\\") as f:\\n            for _, row in df_out.iterrows():\\n                f.write(json.dumps(row.to_dict(), ensure_ascii=False, default=str) + \\\"\\\\n\\\")\\n        print(f\\\"Corrected JSONL -> {args.corrected_output}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 6 scripts. Let me analyze each one for G_item calculations. Some outputs were truncated, so I need to check the truncated parts for some scripts. Let me first analyze what I can see, then read the truncated portions.
+
+## Script 1: per_benchmark_gstudy.py
+
+The output was truncated. I can see there's a `compute_g_item` function being called, and `d_study_curve` and `find_min_items_for_g` functions. The truncated section seems to include these functions. Let me read the truncated part.
+
+Key observations from visible code:
+
+
+- Has `compute_henderson_i` - looks correct
+- Calls `compute_g_item(vc, n_levels)` - I need to see this function
+- Calls `d_study_curve(vc, n_levels, item_counts)` - I need to see this function
+- Has `find_min_items_for_g` function - partially visible, uses `sigma_item` and `sigma_delta_ni`
+
+Let me look at the truncated part. The function `compute_g_item` and `d_study_curve` are in the truncated 2863 characters. And `find_min_items_for_g` is partially visible.
+
+## Script 2: cross_benchmark_dstudy.py
+
+Now I'm moving on to examine the second script.
+
+I see there's a `compute_g_for_n_items` function that takes the variance components and calculates generalizability for a specific number of items. It extracts the item variance, then iterates through the variance components to accumulate the error variance, handling the residual separately and checking which components involve the item facet.
+
+Wait, I'm second-guessing the delta calculation formula here. Let me reconsider what the correct approach should be for computing the error variance contribution. For `model:item_id`, the divisor is just `n_levels["model"]`, which matches the formula. The script correctly skips components without `item_id` since they don't affect delta, then applies D-study scaling by multiplying `sigma_delta_actual` by the ratio of actual to current item counts. When those counts match, the generalizability coefficient simplifies to the correct form. This implementation is sound.
+
+Now looking at the gradient permutation test script, I need to trace through what `compute_henderson_i` returns—it's a dict with a "pct" key that gets unpacked into the benchmark stats, but the function definition got cut off mid-code.
+
+Looking at the loop that processes each benchmark, I can see it's extracting variance component percentages (item_id_pct and model_item_pct) from the result dictionary. These percentages represent the proportion of total variance, not the G_item values themselves—so the script is using variance decomposition proportions for the gradient monotonicity test rather than computing the actual generalizability coefficients.
+
+The next few scripts follow a similar pattern: Script 4 also computes variance percentages for gradient robustness testing without calculating G_item, while Script 5 appears to actually compute G_item along with sigma_tau and sigma_delta based on the per-benchmark stats I can see, though the output got cut off before I could see the full compute_g_item function or how those values are being calculated.
+
+Script 6 handles answer re-extraction and accuracy calculations with no G_item computation involved. I need to go back and examine the truncated sections of Scripts 1, 3, and 5 to understand the complete picture of where and how G_item is being computed across these analyses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "0faec6a5-2ec0-4c37-853b-6d441e8ef0b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNhgpF238fVGFk13qWUryY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22379,
+      "cache_read_input_tokens": 24897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+部分脚本输出被截断。需要读取 per_benchmark_gstudy.py、gradient_permutation_test.py 和 within_format_gradient.py 中被截断的关键函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "27d95bf7-5f33-4099-aeaf-f2823c1f3431",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNhgpF238fVGFk13qWUryY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22379,
+      "cache_read_input_tokens": 24897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VMMzUerDETsYvD58sNcJF1`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"def compute_g_item\\|def d_study_curve\\|G_item\\|g_item\\|sigma_tau\\|sigma_delta\\|tau\\|delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "d466cc27-16bb-4e9c-928d-7f26831faddb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNhgpF238fVGFk13qWUryY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22379,
+      "cache_read_input_tokens": 24897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T12:02:30.377Z_
+
+<details><summary>↩ Tool result · `toolu_01VMMzUerDETsYvD58sNcJF1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "919c8f11-a49d-44de-85ac-a959aae0c787",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016r7EuNJq6dvFdZYuZPpyD7`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"def compute_g\\|G_item\\|g_item\\|g_coeff\\|sigma_tau\\|sigma_delta\\|tau\\|delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "32156e4c-750c-4024-b82d-c4bb99631e5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNhgpF238fVGFk13qWUryY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22379,
+      "cache_read_input_tokens": 24897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T12:02:31.022Z_
+
+<details><summary>↩ Tool result · `toolu_016r7EuNJq6dvFdZYuZPpyD7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "0a2a78d5-8a20-4821-8c9c-bddde781e296",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BEpaYBc2ETVaRYZ6abwDJn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"def compute_g\\|G_item\\|g_item\\|g_coeff\\|sigma_tau\\|sigma_delta\\|tau\\|delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/within_format_gradient.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "caedb1a0-a729-4579-a2bd-2d591f5fd2f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SNhgpF238fVGFk13qWUryY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22379,
+      "cache_read_input_tokens": 24897,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 22379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T12:02:31.641Z_
+
+<details><summary>↩ Tool result · `toolu_01BEpaYBc2ETVaRYZ6abwDJn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "8931eae2-040f-4449-9e89-d93fb772351d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use pipe. Let me use grep -n with -E flag for extended regex, no pipe.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "8e33d637-e4ab-44a2-b029-b95f9a73c349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpr5YagSF1GmiFoP4uaDfy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+管道被禁止。用 grep -E 和 sed 分别读取截断部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "f3e8155b-e909-48f4-bbc1-7caf7dbf4984",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpr5YagSF1GmiFoP4uaDfy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S6ymm5iF4jzb9G1ym7dkmp`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n -E \"def compute_g|G_item|g_item|sigma_tau|sigma_delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "a4ea4ab4-915a-43d4-905b-891eac32989c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpr5YagSF1GmiFoP4uaDfy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T12:02:41.499Z_
+
+<details><summary>↩ Tool result · `toolu_01S6ymm5iF4jzb9G1ym7dkmp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "e17a21e0-227e-4b74-8b0e-bf1147b89503",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CS7qxSheohdaK7efaCrtPV`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n -E \"def compute_g|G_item|g_item|g_coeff|sigma_tau|sigma_delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "ada17e87-2231-45d6-9959-0cba0ef1c183",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpr5YagSF1GmiFoP4uaDfy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T12:02:42.458Z_
+
+<details><summary>↩ Tool result · `toolu_01CS7qxSheohdaK7efaCrtPV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "5b64f7d2-6de9-4124-85ae-eacf7918b150",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M13oKTS5wVHoNfvb2PkVGD`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n -E \"def compute_g|G_item|g_item|g_coeff|sigma_tau|sigma_delta\" /root/nlp_variance_gtheory/scripts/exp002_analysis/within_format_gradient.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "2cb657d7-e986-4f56-b3f6-512f9c9a3ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rpr5YagSF1GmiFoP4uaDfy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2748,
+      "cache_read_input_tokens": 47276,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2748
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T12:02:42.950Z_
+
+<details><summary>↩ Tool result · `toolu_01M13oKTS5wVHoNfvb2PkVGD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "76e2497e-8b39-40ee-8f9a-f55c77a838a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in `-E` patterns is being blocked. Let me use grep -n with simple patterns, or just read the specific line ranges.
+
+Let me read specific line ranges of each file using `head` and `tail` to get the truncated sections. First, let me use `wc -l` to get the line count, then use `head`/`tail` to read the missing parts.
+
+Actually, let me just use grep without pipe or special chars. The issue is the `|` in the regex pattern being treated as a shell metacharacter.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "6654dc4c-51f0-4a22-8427-a482b2270bdf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMwhdSHbjPih1gnmwuy26y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 50024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Enm2JGABkZ7tQQz2XNUwU`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"compute_g\" /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "38ce599c-3ee5-42ff-90da-7d2b7518a01b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMwhdSHbjPih1gnmwuy26y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 50024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T12:02:49.453Z_
+
+<details><summary>↩ Tool result · `toolu_017Enm2JGABkZ7tQQz2XNUwU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"105:def compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\n198:    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "f133ccbd-09d6-4810-83ef-1d831a2c2cc3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"105:def compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\\\n198:    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"105:def compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\n198:    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UVY7x4wTpCQ2SH9qsWFXwn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"G_item\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "38ac4933-f1ce-4444-93aa-7b448ff1d6b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMwhdSHbjPih1gnmwuy26y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 50024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SGzRxt2AUw4v8KybqQZFHz`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"compute_g\" /root/nlp_variance_gtheory/scripts/exp002_analysis/within_format_gradient.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "9693e2dd-e500-4d66-b944-fede5c901f0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMwhdSHbjPih1gnmwuy26y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 818,
+      "cache_read_input_tokens": 50024,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 818
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T12:02:50.406Z_
+
+<details><summary>↩ Tool result · `toolu_01UVY7x4wTpCQ2SH9qsWFXwn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "fe5325b1-b0dd-4a1e-b514-786c8897acda",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T12:02:50.938Z_
+
+<details><summary>↩ Tool result · `toolu_01SGzRxt2AUw4v8KybqQZFHz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"123:def compute_g_item(vc: dict, n_levels: dict) -> float:\\n155:        g_item = compute_g_item(result[\\\"vc\\\"], result[\\\"n_levels\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "adb702c2-db74-4b52-b424-9ac0903a7916",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"123:def compute_g_item(vc: dict, n_levels: dict) -> float:\\\\n155:        g_item = compute_g_item(result[\\\\\\\"vc\\\\\\\"], result[\\\\\\\"n_levels\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"123:def compute_g_item(vc: dict, n_levels: dict) -> float:\\n155:        g_item = compute_g_item(result[\\\"vc\\\"], result[\\\"n_levels\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I know:
+1. per_benchmark_gstudy.py: `compute_g_item` at line 105, called at line 198
+2. gradient_permutation_test.py: No G_item matches - doesn't compute G_item
+3. within_format_gradient.py: `compute_g_item` at line 123, called at line 155
+
+Let me read the specific functions. For per_benchmark_gstudy.py, I'll read lines 105-145 or so, and for within_format_gradient.py, I'll read lines 123-155.
+
+
+I should also look for `d_study_curve` and `find_min_items_for_g` in per_benchmark_gstudy.py to understand the full picture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "4f16f7cf-9548-44f5-8faf-d654f8fd285c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013v4WnpKeGB2q6teUcNPWEW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 50842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 991
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0118gSWSnzxhF5xKY5gTAn9T`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -180 /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "5637a83f-52a7-49ae-8886-8d5d2d6599f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013v4WnpKeGB2q6teUcNPWEW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 50842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 991
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T12:02:56.874Z_
+
+<details><summary>↩ Tool result · `toolu_0118gSWSnzxhF5xKY5gTAn9T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\ndef compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\n    \\\"\\\"\\\"G_item: object of measurement = item_id.\\n\\n    sigma_tau = sigma^2(item_id)\\n    sigma_delta = sum of X:item_id / n_X terms + residual / prod(n_X for X != item_id)\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            sigma_delta += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n        sigma_delta += est / divisor\\n\\n    g = sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\n    return g, sigma_item, sigma_delta\\n\\n\\ndef d_study_curve(vc: dict, n_levels: dict, item_counts: list[int]) -> dict:\\n    \\\"\\\"\\\"D-study: vary n_items, hold other facets at actual levels.\\\"\\\"\\\"\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n\\n    non_item_error = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            non_item_error += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n        non_item_error += est / divisor\\n\\n    curve = {}\\n    for ni in item_counts:\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g_ni = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        curve[ni] = round(g_ni, 6)\\n    return curve\\n\\n\\ndef find_min_items_for_g(vc: dict, n_levels: dict, target_g: float, max_items: int = 2000) -> int | None:\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n\\n    non_item_error = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            non_item_error += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "37436fdb-67b2-40fd-bb34-3a9802676677",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\\\n\\\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\\\n        — per-benchmark variance components, G_item, D-study projections.\\\\n\\\\nFacets (7, within each benchmark):\\\\n  model, temperature, prompt_template, seed, ordering, item_id\\\\n  + all 2-way interactions. Residual absorbs >=3-way.\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Henderson Method I: SS -> EMS -> variance components.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, n_levels, effects\\\\n\\\\n\\\\ndef compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"G_item: object of measurement = item_id.\\\\n\\\\n    sigma_tau = sigma^2(item_id)\\\\n    sigma_delta = sum of X:item_id / n_X terms + residual / prod(n_X for X != item_id)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    non_item_facets = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n\\\\n    sigma_delta = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\\\n            sigma_delta += est / divisor\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\\\n        sigma_delta += est / divisor\\\\n\\\\n    g = sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\\\n    return g, sigma_item, sigma_delta\\\\n\\\\n\\\\ndef d_study_curve(vc: dict, n_levels: dict, item_counts: list[int]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"D-study: vary n_items, hold other facets at actual levels.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    non_item_facets = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    n_actual = n_levels[\\\\\\\"item_id\\\\\\\"]\\\\n\\\\n    non_item_error = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\\\n            non_item_error += est / divisor\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\\\n        non_item_error += est / divisor\\\\n\\\\n    curve = {}\\\\n    for ni in item_counts:\\\\n        ratio = n_actual / ni\\\\n        sigma_delta_ni = non_item_error * ratio\\\\n        g_ni = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\\\n        curve[ni] = round(g_ni, 6)\\\\n    return curve\\\\n\\\\n\\\\ndef find_min_items_for_g(vc: dict, n_levels: dict, target_g: float, max_items: int = 2000) -> int | None:\\\\n    non_item_facets = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    n_actual = n_levels[\\\\\\\"item_id\\\\\\\"]\\\\n\\\\n    non_item_error = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\\\n            non_item_error += est / divisor\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\ndef compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:\\n    \\\"\\\"\\\"G_item: object of measurement = item_id.\\n\\n    sigma_tau = sigma^2(item_id)\\n    sigma_delta = sum of X:item_id / n_X terms + residual / prod(n_X for X != item_id)\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            sigma_delta += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n        sigma_delta += est / divisor\\n\\n    g = sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\n    return g, sigma_item, sigma_delta\\n\\n\\ndef d_study_curve(vc: dict, n_levels: dict, item_counts: list[int]) -> dict:\\n    \\\"\\\"\\\"D-study: vary n_items, hold other facets at actual levels.\\\"\\\"\\\"\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n\\n    non_item_error = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            non_item_error += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n        non_item_error += est / divisor\\n\\n    curve = {}\\n    for ni in item_counts:\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g_ni = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        curve[ni] = round(g_ni, 6)\\n    return curve\\n\\n\\ndef find_min_items_for_g(vc: dict, n_levels: dict, target_g: float, max_items: int = 2000) -> int | None:\\n    non_item_facets = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n\\n    non_item_error = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            divisor = prod(n_levels[f] for f in non_item_facets)\\n            non_item_error += est / divisor\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        divisor = prod(n_levels[f] for f in other) if other else 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012X9WGRysEbAJkehBYpfcCC`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -155 /root/nlp_variance_gtheory/scripts/exp002_analysis/within_format_gradient.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "d476bda3-eaed-46fb-987e-b1d20aff8bd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013v4WnpKeGB2q6teUcNPWEW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 50842,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 991
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T12:02:57.385Z_
+
+<details><summary>↩ Tool result · `toolu_012X9WGRysEbAJkehBYpfcCC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Within-format gradient analysis.\\n\\nGroups benchmarks by item format:\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\n  Free-form: GSM8K (generative numeric answer)\\n\\nChecks:\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\n  2. Compares variance structure between MC and free-form groups.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/within_format_gradient.json\\n\\nUsage:\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nMC_BENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nMC_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nFREE_FORM_BENCHMARKS = [\\\"gsm8k\\\"]\\n\\nFORMAT_GROUPS = {\\n    \\\"multiple_choice\\\": MC_BENCHMARKS,\\n    \\\"free_form\\\": FREE_FORM_BENCHMARKS,\\n}\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n    return {\\n        \\\"vc\\\": vc,\\n        \\\"pct\\\": pct,\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"total_var\\\": total_var,\\n        \\\"grand_mean\\\": float(grand_mean),\\n        \\\"n_obs\\\": len(df),\\n    }\\n\\n\\ndef compute_g_item(vc: dict, n_levels: dict) -> float:\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_delta = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta += est / (prod(n_levels[f] for f in other) if other else 1)\\n    return sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Within-format gradient analysis\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/within_format_gradient.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    per_benchmark = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, FACETS)\\n        g_item = compute_g_item(result[\\\"vc\\\"], result[\\\"n_levels\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "6f745ab6-3f7b-42e2-9755-5f2d14277588",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Within-format gradient analysis.\\\\n\\\\nGroups benchmarks by item format:\\\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\\\n  Free-form: GSM8K (generative numeric answer)\\\\n\\\\nChecks:\\\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\\\n  2. Compares variance structure between MC and free-form groups.\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/within_format_gradient.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nMC_BENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\nMC_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\nFREE_FORM_BENCHMARKS = [\\\\\\\"gsm8k\\\\\\\"]\\\\n\\\\nFORMAT_GROUPS = {\\\\n    \\\\\\\"multiple_choice\\\\\\\": MC_BENCHMARKS,\\\\n    \\\\\\\"free_form\\\\\\\": FREE_FORM_BENCHMARKS,\\\\n}\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    total_var = sum(vc.values())\\\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\\\n    return {\\\\n        \\\\\\\"vc\\\\\\\": vc,\\\\n        \\\\\\\"pct\\\\\\\": pct,\\\\n        \\\\\\\"n_levels\\\\\\\": {k: int(v) for k, v in n_levels.items()},\\\\n        \\\\\\\"total_var\\\\\\\": total_var,\\\\n        \\\\\\\"grand_mean\\\\\\\": float(grand_mean),\\\\n        \\\\\\\"n_obs\\\\\\\": len(df),\\\\n    }\\\\n\\\\n\\\\ndef compute_g_item(vc: dict, n_levels: dict) -> float:\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    non_item = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n    sigma_delta = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            sigma_delta += est / prod(n_levels[f] for f in non_item)\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        sigma_delta += est / (prod(n_levels[f] for f in other) if other else 1)\\\\n    return sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Within-format gradient analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/within_format_gradient.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    per_benchmark = {}\\\\n    for bm in df[\\\\\\\"benchmark\\\\\\\"].unique():\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        result = compute_henderson_i(df_bm, FACETS)\\\\n        g_item = compute_g_item(result[\\\\\\\"vc\\\\\\\"], result[\\\\\\\"n_levels\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Within-format gradient analysis.\\n\\nGroups benchmarks by item format:\\n  MC group:  MMLU + ARC + HellaSwag (multiple-choice)\\n  Free-form: GSM8K (generative numeric answer)\\n\\nChecks:\\n  1. Whether the gradient (item_id% decreasing) holds within the MC group.\\n  2. Compares variance structure between MC and free-form groups.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/within_format_gradient.json\\n\\nUsage:\\n  python scripts/exp002_analysis/within_format_gradient.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nMC_BENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nMC_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\nFREE_FORM_BENCHMARKS = [\\\"gsm8k\\\"]\\n\\nFORMAT_GROUPS = {\\n    \\\"multiple_choice\\\": MC_BENCHMARKS,\\n    \\\"free_form\\\": FREE_FORM_BENCHMARKS,\\n}\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> dict:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    pct = {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n    return {\\n        \\\"vc\\\": vc,\\n        \\\"pct\\\": pct,\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"total_var\\\": total_var,\\n        \\\"grand_mean\\\": float(grand_mean),\\n        \\\"n_obs\\\": len(df),\\n    }\\n\\n\\ndef compute_g_item(vc: dict, n_levels: dict) -> float:\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n    sigma_delta = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta += est / (prod(n_levels[f] for f in other) if other else 1)\\n    return sigma_item / (sigma_item + sigma_delta) if (sigma_item + sigma_delta) > 0 else 0.0\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Within-format gradient analysis\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/within_format_gradient.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    per_benchmark = {}\\n    for bm in df[\\\"benchmark\\\"].unique():\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        result = compute_henderson_i(df_bm, FACETS)\\n        g_item = compute_g_item(result[\\\"vc\\\"], result[\\\"n_levels\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also check if the `gradient_permutation_test.py` has a G_item calculation. From earlier grep, it returned no matches for "G_item". Let me also check for "g_item" and "g_coeff".
+
+Actually, the grep for "G_item" in gradient_permutation_test.py returned exit code 1 (no matches). Let me also check for g_item and g_coeff.
+
+Wait, I already read the full script earlier but it was truncated. Let me check the truncated part of gradient_permutation_test.py more carefully. 
+
+I see that the compute_henderson_i function returns a dictionary, which is different from what per_benchmark_gstudy.py does. Looking at the main function, it seems to return something with a "pct" key, so let me trace through the return statement to understand the structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "888182b9-00d6-40a5-b6d8-f60a2f395030",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Up7QSgFciaAPD9Fmvik1uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6170,
+      "cache_read_input_tokens": 51833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+还需要确认 gradient_permutation_test.py 中 compute_henderson_i 的返回值格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "35ae9f38-3239-479e-8fa1-53a209fc69ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Up7QSgFciaAPD9Fmvik1uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6170,
+      "cache_read_input_tokens": 51833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vh6KuGxjtEw3c2UJC3DAf1`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"g_item\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "5c5c6fd8-3c58-405f-8527-4f9f74653cf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Up7QSgFciaAPD9Fmvik1uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6170,
+      "cache_read_input_tokens": 51833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T12:03:06.587Z_
+
+<details><summary>↩ Tool result · `toolu_01Vh6KuGxjtEw3c2UJC3DAf1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "a5a8bcda-ad9a-4211-860c-088240fe436f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016jPG8H3UxLkmRCcV3y3NpG`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"g_coeff\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "1c32624a-dd86-4610-ba20-9d75bbb281c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Up7QSgFciaAPD9Fmvik1uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6170,
+      "cache_read_input_tokens": 51833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T12:03:07.101Z_
+
+<details><summary>↩ Tool result · `toolu_016jPG8H3UxLkmRCcV3y3NpG`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "f103572f-eb3f-4f77-8711-ff5210c991e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JSdf5Ksynx8LDjpeytJoNo`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"return\" /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "05ae93c7-7720-4fb2-97cf-c535724533d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Up7QSgFciaAPD9Fmvik1uQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6170,
+      "cache_read_input_tokens": 51833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6170
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T12:03:07.802Z_
+
+<details><summary>↩ Tool result · `toolu_01JSdf5Ksynx8LDjpeytJoNo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"46:    return df\\n103:    return {\\\"vc\\\": vc, \\\"pct\\\": pct, \\\"n_levels\\\": n_levels, \\\"total_var\\\": total_var}\\n107:    return all(a >= b for a, b in zip(values, values[1:]))\\n111:    return all(a <= b for a, b in zip(values, values[1:]))\\n137:    return {\\n153:        return None\\n155:        return json.load(f)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "53625d5b-a39e-4882-8d76-88ff2ba70d6e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"46:    return df\\\\n103:    return {\\\\\\\"vc\\\\\\\": vc, \\\\\\\"pct\\\\\\\": pct, \\\\\\\"n_levels\\\\\\\": n_levels, \\\\\\\"total_var\\\\\\\": total_var}\\\\n107:    return all(a >= b for a, b in zip(values, values[1:]))\\\\n111:    return all(a <= b for a, b in zip(values, values[1:]))\\\\n137:    return {\\\\n153:        return None\\\\n155:        return json.load(f)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"46:    return df\\n103:    return {\\\"vc\\\": vc, \\\"pct\\\": pct, \\\"n_levels\\\": n_levels, \\\"total_var\\\": total_var}\\n107:    return all(a >= b for a, b in zip(values, values[1:]))\\n111:    return all(a <= b for a, b in zip(values, values[1:]))\\n137:    return {\\n153:        return None\\n155:        return json.load(f)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Confirmed: `gradient_permutation_test.py` has no `g_item` or `g_coeff` or `G_item` anywhere. Its `compute_henderson_i` returns `{"vc": vc, "pct": pct, "n_levels": n_levels, "total_var": total_var}` and uses only `pct` (variance percentage) values for permutation testing. No G_item calculation.
+
+Now let me also double check `leave_one_benchmark_out.py` - it uses `compute_variance_pcts` which returns percentages. Let me verify there's no G_item in it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "e9bd52ec-00f4-4100-81ca-affb9f2e4aa9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xUjLxfD7LVukcsZs34nu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 58003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HPZZSru8N9qiXeVuSA4Wuw`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"g_item\" /root/nlp_variance_gtheory/scripts/exp002_analysis/leave_one_benchmark_out.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "aa9e99e8-7d03-4524-9b3d-c95834c243b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xUjLxfD7LVukcsZs34nu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 58003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-21T12:03:14.218Z_
+
+<details><summary>↩ Tool result · `toolu_01HPZZSru8N9qiXeVuSA4Wuw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "9e0a3900-4ba9-43fe-93ea-c89f8be624ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011L1bR2Mt49q6fBpBxjCz5V`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"G_item\" /root/nlp_variance_gtheory/scripts/exp002_analysis/leave_one_benchmark_out.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "08d0e4f1-cb86-478d-bc98-5931fee30890",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012xUjLxfD7LVukcsZs34nu7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1007,
+      "cache_read_input_tokens": 58003,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1007
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T12:03:14.801Z_
+
+<details><summary>↩ Tool result · `toolu_011L1bR2Mt49q6fBpBxjCz5V`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "0c587f68-6e60-4370-bd63-42154c1f1c56",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Good. `leave_one_benchmark_out.py` has no G_item at all - confirmed.
+
+Now let me compile my analysis:
+
+## Summary of all 6 scripts:
+
+### 1. per_benchmark_gstudy.py — **HAS G_item, CORRECT**
+`compute_g_item` at line 105:
+```python
+def compute_g_item(vc: dict, n_levels: dict) -> tuple[float, float, float]:
+    sigma_item = vc.get("item_id", 0.0)
+    non_item_facets = [f for f in FACETS if f != "item_id"]
+
+
+```
+
+Continuing with the function logic...
+
+```
+
+I'm finishing the divisor calculation for components that include item_id, then accumulating the delta variance. After that, I compute the generalizability coefficient as the ratio of item variance to total variance, returning the coefficient along with both variance components. The implementation correctly handles the variance decomposition formula with proper handling of residual and interaction terms.
+
+Now I'm checking the second file's implementation of the same generalizability calculation for a variable number of items, which follows the same correct pattern for computing G_item. The D-study scaling factor is working correctly too. Looking at the other files, most of them don't compute G_item at all—they just work with variance component percentages for their analyses. But within_format_gradient.py does have the correct G_item implementation...
+
+Defining the G_item calculation...
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "6e0abfaf-1751-4d08-a1bb-569565ab32b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF8LUwXwzo4MZMVQn6Ddpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 602,
+      "cache_read_input_tokens": 59010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+审计完成。全部 6 个脚本已完整审查。
+
+## 审计结果
+
+| 脚本 | 有 G_item 计算 | 公式正确 | 备注 |
+|------|:---:|:---:|------|
+| `per_benchmark_gstudy.py` | ✓ | ✓ | `compute_g_item` (L105), `d_study_curve` (L135), `find_min_items_for_g` (L155) — 三处均正确 |
+| `cross_benchmark_dstudy.py` | ✓ | ✓ | `compute_g_for_n_items` — 含 D-study 缩放 `n_actual/n_items`，正确 |
+| `gradient_permutation_test.py` | ✗ | — | 仅使用 variance component 百分比 (item_id_pct)，无 G_item |
+| `leave_one_benchmark_out.py` | ✗ | — | 仅使用 variance component 百分比，无 G_item |
+| `within_format_gradient.py` | ✓ | ✓ | `compute_g_item` (L123) — 逻辑与 per_benchmark_gstudy.py 一致 |
+| `gsm8k_answer_reextract.py` | ✗ | — | 纯答案提取脚本，无方差分解 |
+
+## 公式验证细节
+
+三个包含 G_item 的脚本均使用相同的正确模式：
+
+```
+tau = vc["item_id"]
+delta = Σ(vc[facet:item_id] / n_levels[facet]) + vc["residual"] / Π(n_levels[f] for f in non_item)
+G = tau / (tau + delta)
+```
+
+关键校验点：
+- **只累加含 item_id 的交互项** — `if "item_id" not in facets_in: continue` ✓
+- **除数取交互中非 item_id 的 facet 水平数之积** — `prod(n_levels[f] for f in other)` ✓
+- **residual 除数取全部非 item_id facet 水平数之积** ✓
+- **未使用 ICC (`vc['item_id'] / sum(vc.values())`)** ✓
+- **未使用 SS 比例 (`item_id_pct / 100`)** ✓
+
+**结论：6 个脚本全部通过审计，无需修复。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "uuid": "918b5691-90a7-4492-bad2-db9100181052",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GF8LUwXwzo4MZMVQn6Ddpg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 602,
+      "cache_read_input_tokens": 59010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 602
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 68_
+
+审计完成。全部 6 个脚本已完整审查。
+
+## 审计结果
+
+| 脚本 | 有 G_item 计算 | 公式正确 | 备注 |
+|------|:---:|:---:|------|
+| `per_benchmark_gstudy.py` | ✓ | ✓ | `compute_g_item` (L105), `d_study_curve` (L135), `find_min_items_for_g` (L155) — 三处均正确 |
+| `cross_benchmark_dstudy.py` | ✓ | ✓ | `compute_g_for_n_items` — 含 D-study 缩放 `n_actual/n_items`，正确 |
+| `gradient_permutation_test.py` | ✗ | — | 仅使用 variance component 百分比 (item_id_pct)，无 G_item |
+| `leave_one_benchmark_out.py` | ✗ | — | 仅使用 variance component 百分比，无 G_item |
+| `within_format_gradient.py` | ✓ | ✓ | `compute_g_item` (L123) — 逻辑与 per_benchmark_gstudy.py 一致 |
+| `gsm8k_answer_reextract.py` | ✗ | — | 纯答案提取脚本，无方差分解 |
+
+## 公式验证细节
+
+三个包含 G_item 的脚本均使用相同的正确模式：
+
+```
+tau = vc["item_id"]
+delta = Σ(vc[facet:item_id] / n_levels[facet]) + vc["residual"] / Π(n_levels[f] for f in non_item)
+G = tau / (tau + delta)
+```
+
+关键校验点：
+- **只累加含 item_id 的交互项** — `if "item_id" not in facets_in: continue` ✓
+- **除数取交互中非 item_id 的 facet 水平数之积** — `prod(n_levels[f] for f in other)` ✓
+- **residual 除数取全部非 item_id facet 水平数之积** ✓
+- **未使用 ICC (`vc['item_id'] / sum(vc.values())`)** ✓
+- **未使用 SS 比例 (`item_id_pct / 100`)** ✓
+
+**结论：6 个脚本全部通过审计，无需修复。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 140511,
+  "duration_api_ms": 138113,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "257d5616-eaac-4bb5-a5b2-82378e6735a7",
+  "total_cost_usd": 0.69507725,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 47771,
+    "cache_read_input_tokens": 401591,
+    "output_tokens": 7770,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 47771,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2138,
+        "cache_read_input_tokens": 59010,
+        "cache_creation_input_tokens": 602,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 602
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1283,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0013930000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 7770,
+      "cacheReadInputTokens": 401591,
+      "cacheCreationInputTokens": 47771,
+      "webSearchRequests": 0,
+      "costUSD": 0.69368425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "83cfa791-30c5-4372-96f2-ca543cbcfe34"
+}
+```
+
+</details>
+
+---

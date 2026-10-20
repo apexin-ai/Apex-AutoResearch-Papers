@@ -1,0 +1,51 @@
+{
+  "n_records": 383400,
+  "n_models": 3,
+  "models": [
+    "gemma-2-9b-it",
+    "llama-3.1-8b-instruct",
+    "mistral-7b-instruct-v0.3"
+  ],
+  "n_conditions_per_model": 639,
+  "items_per_cell": 200,
+  "factor_levels": {
+    "model": [
+      "gemma-2-9b-it",
+      "llama-3.1-8b-instruct",
+      "mistral-7b-instruct-v0.3"
+    ],
+    "precision": [
+      "bfloat16",
+      "float32"
+    ],
+    "temperature": [
+      0.0,
+      0.3,
+      0.7
+    ],
+    "prompt_template": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "seed": [
+      42,
+      123,
+      456,
+      789,
+      1024,
+      2048
+    ],
+    "ordering": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "n_item_ids": 200,
+  "balance_method": "intersection of conditions across all models, bf16+fp32 only"
+}

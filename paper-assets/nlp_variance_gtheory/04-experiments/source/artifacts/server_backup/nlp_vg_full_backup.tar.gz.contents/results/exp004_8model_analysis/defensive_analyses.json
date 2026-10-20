@@ -1,0 +1,239 @@
+{
+  "experiment": "exp-004",
+  "analysis": "phase2_defensive_analyses",
+  "timestamp": "2026-05-22 06:55:32",
+  "data_note": {
+    "hellaswag": "6 models (OLMo/Yi missing)",
+    "math": "7 models (DeepSeek excluded, placeholder data)",
+    "other_benchmarks": "8 models"
+  },
+  "part_a_bernoulli_baseline": {
+    "mmlu": {
+      "n_items": 200,
+      "n_conditions_per_item": 2304,
+      "grand_mean_accuracy": 0.645736,
+      "observed_between_item_var": 0.09731621,
+      "bernoulli_expected_sampling_var": 9.929e-05,
+      "ratio": 980.1,
+      "mean_item_bernoulli_var_p1mp": 0.131931
+    },
+    "arc": {
+      "n_items": 200,
+      "n_conditions_per_item": 2304,
+      "grand_mean_accuracy": 0.772459,
+      "observed_between_item_var": 0.07527332,
+      "bernoulli_expected_sampling_var": 7.629e-05,
+      "ratio": 986.7,
+      "mean_item_bernoulli_var_p1mp": 0.100869
+    },
+    "hellaswag": {
+      "n_items": 200,
+      "n_conditions_per_item": 1728,
+      "grand_mean_accuracy": 0.719201,
+      "observed_between_item_var": 0.0800216,
+      "bernoulli_expected_sampling_var": 0.00011687,
+      "ratio": 684.7,
+      "mean_item_bernoulli_var_p1mp": 0.122329
+    },
+    "gsm8k": {
+      "n_items": 200,
+      "n_conditions_per_item": 2304,
+      "grand_mean_accuracy": 0.581923,
+      "observed_between_item_var": 0.0487933,
+      "bernoulli_expected_sampling_var": 0.00010559,
+      "ratio": 462.1,
+      "mean_item_bernoulli_var_p1mp": 0.194739
+    },
+    "math": {
+      "n_items": 200,
+      "n_conditions_per_item": 2016,
+      "grand_mean_accuracy": 0.310253,
+      "observed_between_item_var": 0.06467889,
+      "bernoulli_expected_sampling_var": 0.00010615,
+      "ratio": 609.3,
+      "mean_item_bernoulli_var_p1mp": 0.149641
+    }
+  },
+  "part_b_mmlu_subsampling": {
+    "50": {
+      "n_items": 50,
+      "n_repeats": 100,
+      "item_id_pct_mean": 37.5875,
+      "item_id_pct_std": 4.4329,
+      "item_id_pct_min": 28.751,
+      "item_id_pct_max": 47.6868,
+      "G_item_mean": 0.892294,
+      "G_item_std": 0.019479,
+      "G_item_min": 0.846922,
+      "G_item_max": 0.926106
+    },
+    "100": {
+      "n_items": 100,
+      "n_repeats": 100,
+      "item_id_pct_mean": 38.3106,
+      "item_id_pct_std": 2.3081,
+      "item_id_pct_min": 33.3719,
+      "item_id_pct_max": 45.2424,
+      "G_item_mean": 0.897634,
+      "G_item_std": 0.009688,
+      "G_item_min": 0.875485,
+      "G_item_max": 0.92321
+    },
+    "150": {
+      "n_items": 150,
+      "n_repeats": 100,
+      "item_id_pct_mean": 37.669,
+      "item_id_pct_std": 1.5267,
+      "item_id_pct_min": 34.2281,
+      "item_id_pct_max": 41.7464,
+      "G_item_mean": 0.895108,
+      "G_item_std": 0.006539,
+      "G_item_min": 0.878513,
+      "G_item_max": 0.910601
+    },
+    "200_reference": {
+      "n_items": 200,
+      "item_id_pct": 37.8812,
+      "G_item": 0.896176
+    }
+  },
+  "part_c_lobo_stability": {
+    "full_set": {
+      "mc_benchmarks": [
+        "mmlu",
+        "arc",
+        "hellaswag"
+      ],
+      "ff_benchmarks": [
+        "gsm8k",
+        "math"
+      ],
+      "mc_mean_item_id_pct": 35.9891,
+      "ff_mean_item_id_pct": 21.6672,
+      "diff_mc_minus_ff": 14.3219,
+      "conclusion": "MC > FF"
+    },
+    "lobo_results": {
+      "mmlu": {
+        "removed": "mmlu",
+        "removed_format": "MC",
+        "remaining_mc": [
+          "arc",
+          "hellaswag"
+        ],
+        "remaining_ff": [
+          "gsm8k",
+          "math"
+        ],
+        "mc_mean_item_id_pct": 35.0431,
+        "ff_mean_item_id_pct": 21.6672,
+        "diff_mc_minus_ff": 13.3759,
+        "conclusion": "MC > FF",
+        "stable": true
+      },
+      "arc": {
+        "removed": "arc",
+        "removed_format": "MC",
+        "remaining_mc": [
+          "mmlu",
+          "hellaswag"
+        ],
+        "remaining_ff": [
+          "gsm8k",
+          "math"
+        ],
+        "mc_mean_item_id_pct": 35.0414,
+        "ff_mean_item_id_pct": 21.6672,
+        "diff_mc_minus_ff": 13.3742,
+        "conclusion": "MC > FF",
+        "stable": true
+      },
+      "hellaswag": {
+        "removed": "hellaswag",
+        "removed_format": "MC",
+        "remaining_mc": [
+          "mmlu",
+          "arc"
+        ],
+        "remaining_ff": [
+          "gsm8k",
+          "math"
+        ],
+        "mc_mean_item_id_pct": 37.8829,
+        "ff_mean_item_id_pct": 21.6672,
+        "diff_mc_minus_ff": 16.2157,
+        "conclusion": "MC > FF",
+        "stable": true
+      },
+      "gsm8k": {
+        "removed": "gsm8k",
+        "removed_format": "FF",
+        "remaining_mc": [
+          "mmlu",
+          "arc",
+          "hellaswag"
+        ],
+        "remaining_ff": [
+          "math"
+        ],
+        "mc_mean_item_id_pct": 35.9891,
+        "ff_mean_item_id_pct": 26.4785,
+        "diff_mc_minus_ff": 9.5106,
+        "conclusion": "MC > FF",
+        "stable": true
+      },
+      "math": {
+        "removed": "math",
+        "removed_format": "FF",
+        "remaining_mc": [
+          "mmlu",
+          "arc",
+          "hellaswag"
+        ],
+        "remaining_ff": [
+          "gsm8k"
+        ],
+        "mc_mean_item_id_pct": 35.9891,
+        "ff_mean_item_id_pct": 16.8559,
+        "diff_mc_minus_ff": 19.1332,
+        "conclusion": "MC > FF",
+        "stable": true
+      }
+    },
+    "all_stable": true,
+    "note_hellaswag": "Removing HellaSwag (lowest MC item_id%): diff=16.2157",
+    "note_math": "Removing MATH (highest FF item_id%): diff=19.1332"
+  },
+  "per_benchmark_gstudy": {
+    "mmlu": {
+      "item_id_pct": 37.8812,
+      "G_item": 0.896176,
+      "n_models": 8,
+      "n_items": 200
+    },
+    "arc": {
+      "item_id_pct": 37.8845,
+      "G_item": 0.891748,
+      "n_models": 8,
+      "n_items": 200
+    },
+    "hellaswag": {
+      "item_id_pct": 32.2017,
+      "G_item": 0.824029,
+      "n_models": 6,
+      "n_items": 200
+    },
+    "gsm8k": {
+      "item_id_pct": 16.8559,
+      "G_item": 0.862852,
+      "n_models": 8,
+      "n_items": 200
+    },
+    "math": {
+      "item_id_pct": 26.4785,
+      "G_item": 0.888941,
+      "n_models": 7,
+      "n_items": 200
+    }
+  }
+}

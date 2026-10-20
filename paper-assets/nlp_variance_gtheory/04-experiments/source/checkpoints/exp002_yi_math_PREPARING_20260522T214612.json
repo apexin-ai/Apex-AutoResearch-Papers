@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp002_yi_math",
+  "project": "nlp_variance_gtheory",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:59:09.445Z",
+    "updated_at": "2026-05-22T21:46:12.792Z",
+    "hypothesis": "D009 8-model expansion: Yi-1.5-9B-Chat MATH inference — free-form benchmark expected methodology-dominated variance pattern per D010",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T21:46:12.828247+00:00",
+  "trigger": "update_registry"
+}

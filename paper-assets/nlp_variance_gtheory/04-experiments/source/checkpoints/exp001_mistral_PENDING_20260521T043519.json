@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp001_mistral",
+  "project": "nlp_variance_gtheory",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T04:34:53.849Z",
+    "updated_at": "2026-05-21T04:35:19.573Z",
+    "hypothesis": "Mistral-7B-Instruct-v0.3 variance decomposition at full scale (1,296 conditions × 200 items) will contribute to cross-model G-theory analysis — model-as-facet tests whether item_id dominance holds across architecturally diverse models (Claim 1)",
+    "parent": "exp001_llama"
+  },
+  "timestamp": "2026-05-21T04:35:19.589711+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,80 @@
+# infra check westd19912 and 15695 status
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_infra_check_westd19912_and_15695_status_20260521T163930_result.json`
+- **Structured JSON:** [`ecd2a156de97bd7ac49e.json`](../../sessions/ec/ecd2a156de97bd7ac49e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+行数一致，数据完整。以下是汇总报告：
+
+---
+
+## 状态汇总
+
+### 1. westd-19912 (4×RTX PRO 6000 Blackwell, 96GB each)
+
+| 项目 | 状态 |
+|------|------|
+| GPU | 4×GPU 全部空闲 (0% util, 0 MiB) |
+| 模型下载 | OLMo-2-7B: **6.1GB/~13.6GB (~45%)**，Yi-1.5-9B: **8.1GB/~16.5GB (~49%)** |
+| 下载速度 | ~1MB/s (ModelScope) |
+| 预计完成 | OLMo ~2h, Yi ~2.3h (约北京时间 02:40 / 03:00) |
+| 推理链 | `auto_chain_19912.sh` 已启动，在 `wait_for_model` 循环中等模型（每60s检查一次）|
+| 实验类型 | **exp002** (5 benchmarks × 2 models，4GPU 并行) |
+| 已有数据 | exp002_olmo/ 和 exp002_yi/ 为空（尚未开始推理）|
+
+### 2. westd-15695 (1×RTX PRO 6000 Blackwell, 96GB)
+
+| 项目 | 状态 |
+|------|------|
+| GPU | 1×GPU, 96% util, 89GB/98GB (VLLM 引擎) |
+| 当前任务 | OLMo GSM8K: **72,400/86,400 行 (~84%)** |
+| 实验类型 | **exp001** |
+
+已完成数据：
+
+| 文件 | 行数 | 状态 |
+|------|------|------|
+| olmo_mmlu.jsonl | 86,400 | ✅ 完成 |
+| olmo_arc.jsonl | 86,400 | ✅ 完成 |
+| yi_mmlu.jsonl | 86,400 | ✅ 完成 |
+| olmo_gsm8k.jsonl | 72,400 | ⏳ 进行中 (~84%) |
+
+Chain 后续队列：OLMo HellaSwag → Yi ARC → Yi HellaSwag → Yi GSM8K
+
+### 3. 数据抢救
+
+| 文件 | SCP 结果 | 验证 |
+|------|---------|------|
+| exp001_olmo/olmo_mmlu.jsonl | ✅ 成功 | 86,400 行一致 |
+| exp001_olmo/olmo_arc.jsonl | ✅ 成功 | 86,400 行一致 |
+| exp001_yi/yi_mmlu.jsonl | ✅ 成功 | 86,400 行一致 |
+| exp001_olmo/olmo_gsm8k.jsonl | ⏳ 跳过 | 仍在写入中，完成后再 scp |
+
+### 4. 推理链调整
+
+**无需调整。** westd-19912 跑的是 **exp002**（不同实验设计矩阵），westd-15695 跑的是 **exp001**，两者完全独立无重复。westd-19912 chain 脚本的 `wait_for_model` 逻辑会在模型下载完成后自动启动推理，预计约 2-2.5 小时后开始。
+
+### 5. GPU 利用率汇总
+
+| 服务器 | GPU 0 | GPU 1 | GPU 2 | GPU 3 |
+|--------|-------|-------|-------|-------|
+| westd-19912 | 0% (等模型) | 0% | 0% | 0% |
+| westd-15695 | 96% (OLMo GSM8K) | — | — | — |
+
+---

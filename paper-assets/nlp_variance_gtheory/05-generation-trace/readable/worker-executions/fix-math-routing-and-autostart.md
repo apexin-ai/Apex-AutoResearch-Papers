@@ -1,0 +1,2934 @@
+# fix math routing and autostart
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/workers/worker_fix_math_routing_and_autostart_20260521T120018.log`
+- **Structured JSON:** [`ba28772bdc2385938483.json`](../../sessions/ba/ba28772bdc2385938483.json)
+
+## Before a recorded user message
+
+63 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "495f7f07-a34f-4125-a514-4a98298bf326",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779378000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ce32367d-e304-4be9-a879-f04819fbe57f",
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants two fixes done serially:
+
+1. Fix (a): Check how `_build_prompt` in `run_experiment.py` handles math benchmark - whether it uses `format_math_prompt()` directly or via `BENCHMARK_TEMPLATES` routing. Server: westd-32570.
+
+2. Fix (b): Add filesize check to `auto_start.sh` on westd-15695.
+
+Let me start with Fix (a). I need to read the relevant files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "de376aa3-f9db-4396-ba6c-d01e747dfa08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VuQsMXgf55HQ6Do8yG1tD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11954,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11954
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始 Fix (a)。先读取相关源码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "dfae3c13-6d5e-4cd6-97f7-23e3031f24b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VuQsMXgf55HQ6Do8yG1tD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11954,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11954
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WP4tJS55ZGwbebaaxrAfMS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "a3fceb5d-1382-47bd-a951-10e55ca05e71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VuQsMXgf55HQ6Do8yG1tD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11954,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11954
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T12:00:32.453Z_
+
+<details><summary>↩ Tool result · `toolu_01WP4tJS55ZGwbebaaxrAfMS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "c91589e6-e537-4703-bca5-262278b7651f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014dGamUFu2cY9Zjn62ytdB9`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/src/inference/run_experiment.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "a0e28549-16ed-4a39-bfb0-1ae6c9fddc1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMoDJzUCXLN219c2pbjZfE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 23795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NY5uXCEnkoaqp6jZsZeW7e`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/src/inference/prompt_templates.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "2745ac63-9441-40ab-b427-83057a2da033",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NMoDJzUCXLN219c2pbjZfE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 816,
+      "cache_read_input_tokens": 23795,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 816
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T12:00:37.900Z_
+
+<details><summary>↩ Tool result · `toolu_014dGamUFu2cY9Zjn62ytdB9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Execute the full G-theory experiment from a design matrix.\\n\\nSupports multiple benchmarks (MMLU, GSM8K, ARC-Challenge, HellaSwag) via\\nthe --benchmark flag.  Default is MMLU for backward compatibility with exp-001.\\n\\nInput:\\n    - design_matrix.csv  (from ``generate_design.py``)\\n    - items JSON          (benchmark-specific)\\n    - few_shot JSON          (auto-selected per benchmark, or --zero-shot)\\n\\nOutput:\\n    - results/experiment_results.jsonl — one JSON object per item × condition\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport sys\\nfrom pathlib import Path\\n\\nimport pandas as pd\\n\\nfrom src.config.model_paths import resolve_model_path\\nfrom src.data.prompt_templates import ANSWER_MAP, format_prompt\\nfrom src.inference.benchmark_utils import (\\n    BENCHMARK_MAX_TOKENS,\\n    BENCHMARK_STOP_SEQS,\\n    extract_gsm8k_answer,\\n    extract_math_answer,\\n    extract_mc_answer,\\n    format_arc_prompt,\\n    format_gsm8k_prompt,\\n    format_hellaswag_prompt,\\n    format_math_prompt,\\n    get_mc_gold,\\n    score_gsm8k,\\n    score_math,\\n    score_mc,\\n)\\nfrom src.inference.vllm_runner import VLLMRunner\\n\\nANSWER_PATTERN = re.compile(r\\\"^\\\\s*([A-Da-d])\\\\b\\\")\\n\\nDEFAULT_ITEMS = {\\n    \\\"mmlu\\\": \\\"data/mmlu_items.json\\\",\\n    \\\"gsm8k\\\": \\\"data/gsm8k_items_exp002.json\\\",\\n    \\\"arc\\\": \\\"data/arc_items_exp002.json\\\",\\n    \\\"hellaswag\\\": \\\"data/hellaswag_items_exp002.json\\\",\\n    \\\"math\\\": \\\"data/math_items_exp002.json\\\",\\n}\\n\\nDEFAULT_FEW_SHOT = {\\n    \\\"mmlu\\\": \\\"data/few_shot_examples.json\\\",\\n    \\\"gsm8k\\\": \\\"data/few_shot_gsm8k.json\\\",\\n    \\\"arc\\\": \\\"data/few_shot_arc.json\\\",\\n    \\\"hellaswag\\\": \\\"data/few_shot_hellaswag.json\\\",\\n    \\\"math\\\": \\\"data/few_shot_math.json\\\",\\n}\\n\\n\\ndef extract_answer(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract a single A/B/C/D letter from the start of generated text.\\\"\\\"\\\"\\n    m = ANSWER_PATTERN.match(text)\\n    return m.group(1).upper() if m else None\\n\\n\\ndef load_data(items_path: str, few_shot_path: str):\\n    with open(items_path) as f:\\n        items = json.load(f)\\n    with open(few_shot_path) as f:\\n        few_shot = json.load(f)\\n    return items, few_shot\\n\\n\\ndef _build_prompt(benchmark: str, item: dict, template_id: int,\\n                  ordering: int, few_shot: dict | None) -> str:\\n    \\\"\\\"\\\"Route to the correct prompt builder based on benchmark.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        subject = item[\\\"subject\\\"]\\n        examples = few_shot[subject][str(ordering)] if few_shot else None\\n        return format_prompt(\\n            template_id=template_id,\\n            subject=subject,\\n            question=item[\\\"question\\\"],\\n            choices=item[\\\"choices\\\"],\\n            few_shot_examples=examples,\\n        )\\n    elif benchmark == \\\"gsm8k\\\":\\n        return format_gsm8k_prompt(template_id, item[\\\"question\\\"], few_shot)\\n    elif benchmark == \\\"arc\\\":\\n        labels = item.get(\\\"metadata\\\", {}).get(\\\"labels\\\")\\n        return format_arc_prompt(\\n            template_id, item[\\\"question\\\"], item[\\\"choices\\\"], labels, few_shot\\n        )\\n    elif benchmark == \\\"hellaswag\\\":\\n        return format_hellaswag_prompt(\\n            template_id, item[\\\"question\\\"], item[\\\"choices\\\"], few_shot\\n        )\\n    elif benchmark == \\\"math\\\":\\n        return format_math_prompt(template_id, item[\\\"question\\\"], few_shot)\\n    raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef _extract_and_score(benchmark: str, generated_text: str, item: dict):\\n    \\\"\\\"\\\"Extract predicted answer and score it.\\n\\n    Returns (predicted, gold, correct, text_exact_match).\\n    \\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        predicted = extract_answer(generated_text)\\n        gold = ANSWER_MAP[item[\\\"answer_idx\\\"]]\\n        correct = int(predicted == gold) if predicted else 0\\n        text_exact_match = int(generated_text.strip() == gold)\\n    elif benchmark == \\\"gsm8k\\\":\\n        predicted = extract_gsm8k_answer(generated_text)\\n        gold = item[\\\"answer\\\"]\\n        correct = score_gsm8k(predicted, gold)\\n        raw = item.get(\\\"metadata\\\", {}).get(\\\"raw_answer\\\", \\\"\\\")\\n        text_exact_match = int(generated_text.strip() == raw.strip())\\n    elif benchmark in (\\\"arc\\\", \\\"hellaswag\\\"):\\n        predict\\n\\n... [截断: 输出过长，省略 3933 字符] ...\\n\\n        n_correct = 0\\n                for result, item in zip(results, item_meta):\\n                    predicted, gold, correct, text_exact_match = _extract_and_score(\\n                        benchmark, result.generated_text, item\\n                    )\\n                    n_correct += correct\\n\\n                    record = {\\n                        \\\"condition_id\\\": cond_id,\\n                        \\\"item_id\\\": item[\\\"item_id\\\"],\\n                        \\\"benchmark\\\": benchmark,\\n                        \\\"subject\\\": item.get(\\\"subject\\\"),\\n                        \\\"model\\\": model_name,\\n                        \\\"precision\\\": precision,\\n                        \\\"temperature\\\": temperature,\\n                        \\\"top_p\\\": top_p,\\n                        \\\"prompt_template\\\": prompt_template,\\n                        \\\"seed\\\": seed,\\n                        \\\"ordering\\\": ordering,\\n                        \\\"generated_text\\\": result.generated_text,\\n                        \\\"predicted_answer\\\": predicted,\\n                        \\\"gold_answer\\\": gold,\\n                        \\\"correct\\\": correct,\\n                        \\\"text_exact_match\\\": text_exact_match,\\n                        \\\"latency_ms\\\": result.latency_ms,\\n                        \\\"answer_logprob\\\": result.answer_logprob,\\n                        \\\"top_logprobs\\\": result.top_logprobs,\\n                    }\\n                    outfile.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n                outfile.flush()\\n                print(\\n                    f\\\"  Condition {cond_id:>3d}: \\\"\\n                    f\\\"{n_correct}/{len(items)} correct\\\"\\n                )\\n\\n            del runner\\n\\n    print(f\\\"Experiment complete → {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"Run G-theory experiment\\\")\\n    parser.add_argument(\\\"--design\\\", default=\\\"design_matrix.csv\\\")\\n    parser.add_argument(\\\"--items\\\", default=None,\\n                        help=\\\"Path to items JSON (auto-selected per benchmark if omitted)\\\")\\n    parser.add_argument(\\\"--few-shot\\\", default=None,\\n                        help=\\\"Path to few-shot JSON (auto-selected per benchmark if omitted)\\\")\\n    parser.add_argument(\\\"--zero-shot\\\", action=\\\"store_true\\\",\\n                        help=\\\"Disable few-shot examples\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/experiment_results.jsonl\\\")\\n    parser.add_argument(\\n        \\\"--benchmark\\\",\\n        default=\\\"mmlu\\\",\\n        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"math\\\"],\\n        help=\\\"Benchmark to run (default: mmlu)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--precision\\\",\\n        default=None,\\n        help=\\\"Only run conditions for this precision (float32, bfloat16, float16)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--gpu-id\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"GPU device index passed to VLLMRunner\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--max-conditions\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Limit conditions to run (0 = all, for dry-run)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--max-items\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Limit items per condition (0 = all, for dry-run)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--offset\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Skip first N conditions (for multi-GPU sharding)\\\",\\n    )\\n    args = parser.parse_args()\\n\\n    items_path = args.items or DEFAULT_ITEMS.get(args.benchmark, \\\"data/mmlu_items.json\\\")\\n    if args.zero_shot:\\n        few_shot_path = None\\n    elif args.few_shot:\\n        few_shot_path = args.few_shot\\n    else:\\n        default_fs = DEFAULT_FEW_SHOT.get(args.benchmark)\\n        few_shot_path = default_fs if default_fs and Path(default_fs).exists() else None\\n\\n    run_experiment(\\n        args.design, items_path, args.output,\\n        benchmark=args.benchmark,\\n        few_shot_path=few_shot_path,\\n        precision_filter=args.precision,\\n        gpu_id=args.gpu_id,\\n        max_conditions=args.max_conditions,\\n        max_items=args.max_items,\\n        offset=args.offset,\\n    )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "4962cd14-67fe-43b2-9697-abc43f08783f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Execute the full G-theory experiment from a design matrix.\\\\n\\\\nSupports multiple benchmarks (MMLU, GSM8K, ARC-Challenge, HellaSwag) via\\\\nthe --benchmark flag.  Default is MMLU for backward compatibility with exp-001.\\\\n\\\\nInput:\\\\n    - design_matrix.csv  (from ``generate_design.py``)\\\\n    - items JSON          (benchmark-specific)\\\\n    - few_shot JSON          (auto-selected per benchmark, or --zero-shot)\\\\n\\\\nOutput:\\\\n    - results/experiment_results.jsonl — one JSON object per item × condition\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport pandas as pd\\\\n\\\\nfrom src.config.model_paths import resolve_model_path\\\\nfrom src.data.prompt_templates import ANSWER_MAP, format_prompt\\\\nfrom src.inference.benchmark_utils import (\\\\n    BENCHMARK_MAX_TOKENS,\\\\n    BENCHMARK_STOP_SEQS,\\\\n    extract_gsm8k_answer,\\\\n    extract_math_answer,\\\\n    extract_mc_answer,\\\\n    format_arc_prompt,\\\\n    format_gsm8k_prompt,\\\\n    format_hellaswag_prompt,\\\\n    format_math_prompt,\\\\n    get_mc_gold,\\\\n    score_gsm8k,\\\\n    score_math,\\\\n    score_mc,\\\\n)\\\\nfrom src.inference.vllm_runner import VLLMRunner\\\\n\\\\nANSWER_PATTERN = re.compile(r\\\\\\\"^\\\\\\\\s*([A-Da-d])\\\\\\\\b\\\\\\\")\\\\n\\\\nDEFAULT_ITEMS = {\\\\n    \\\\\\\"mmlu\\\\\\\": \\\\\\\"data/mmlu_items.json\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\": \\\\\\\"data/gsm8k_items_exp002.json\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\": \\\\\\\"data/arc_items_exp002.json\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\": \\\\\\\"data/hellaswag_items_exp002.json\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\": \\\\\\\"data/math_items_exp002.json\\\\\\\",\\\\n}\\\\n\\\\nDEFAULT_FEW_SHOT = {\\\\n    \\\\\\\"mmlu\\\\\\\": \\\\\\\"data/few_shot_examples.json\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\": \\\\\\\"data/few_shot_gsm8k.json\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\": \\\\\\\"data/few_shot_arc.json\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\": \\\\\\\"data/few_shot_hellaswag.json\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\": \\\\\\\"data/few_shot_math.json\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef extract_answer(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract a single A/B/C/D letter from the start of generated text.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = ANSWER_PATTERN.match(text)\\\\n    return m.group(1).upper() if m else None\\\\n\\\\n\\\\ndef load_data(items_path: str, few_shot_path: str):\\\\n    with open(items_path) as f:\\\\n        items = json.load(f)\\\\n    with open(few_shot_path) as f:\\\\n        few_shot = json.load(f)\\\\n    return items, few_shot\\\\n\\\\n\\\\ndef _build_prompt(benchmark: str, item: dict, template_id: int,\\\\n                  ordering: int, few_shot: dict | None) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Route to the correct prompt builder based on benchmark.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        subject = item[\\\\\\\"subject\\\\\\\"]\\\\n        examples = few_shot[subject][str(ordering)] if few_shot else None\\\\n        return format_prompt(\\\\n            template_id=template_id,\\\\n            subject=subject,\\\\n            question=item[\\\\\\\"question\\\\\\\"],\\\\n            choices=item[\\\\\\\"choices\\\\\\\"],\\\\n            few_shot_examples=examples,\\\\n        )\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        return format_gsm8k_prompt(template_id, item[\\\\\\\"question\\\\\\\"], few_shot)\\\\n    elif benchmark == \\\\\\\"arc\\\\\\\":\\\\n        labels = item.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\\\\"labels\\\\\\\")\\\\n        return format_arc_prompt(\\\\n            template_id, item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"], labels, few_shot\\\\n        )\\\\n    elif benchmark == \\\\\\\"hellaswag\\\\\\\":\\\\n        return format_hellaswag_prompt(\\\\n            template_id, item[\\\\\\\"question\\\\\\\"], item[\\\\\\\"choices\\\\\\\"], few_shot\\\\n        )\\\\n    elif benchmark == \\\\\\\"math\\\\\\\":\\\\n        return format_math_prompt(template_id, item[\\\\\\\"question\\\\\\\"], few_shot)\\\\n    raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n\\\\ndef _extract_and_score(benchmark: str, generated_text: str, item: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract predicted answer and score it.\\\\n\\\\n    Returns (predicted, gold, correct, text_exact_match).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        predicted = extract_answer(generated_text)\\\\n        gold = ANSWER_MAP[item[\\\\\\\"answer_idx\\\\\\\"]]\\\\n        correct = int(predicted == gold) if predicted else 0\\\\n        text_exact_match = int(generated_text.strip() == gold)\\\\n    elif benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        predicted = extract_gsm8k_answer(generated_text)\\\\n        gold = item[\\\\\\\"answer\\\\\\\"]\\\\n        correct = score_gsm8k(predicted, gold)\\\\n        raw = item.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\\\\"raw_answer\\\\\\\", \\\\\\\"\\\\\\\")\\\\n        text_exact_match = int(generated_text.strip() == raw.strip())\\\\n    elif benchmark in (\\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"):\\\\n        predict\\\\n\\\\n... [截断: 输出过长，省略 3933 字符] ...\\\\n\\\\n        n_correct = 0\\\\n                for result, item in zip(results, item_meta):\\\\n                    predicted, gold, correct, text_exact_match = _extract_and_score(\\\\n                        benchmark, result.generated_text, item\\\\n                    )\\\\n                    n_correct += correct\\\\n\\\\n                    record = {\\\\n                        \\\\\\\"condition_id\\\\\\\": cond_id,\\\\n                        \\\\\\\"item_id\\\\\\\": item[\\\\\\\"item_id\\\\\\\"],\\\\n                        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n                        \\\\\\\"subject\\\\\\\": item.get(\\\\\\\"subject\\\\\\\"),\\\\n                        \\\\\\\"model\\\\\\\": model_name,\\\\n                        \\\\\\\"precision\\\\\\\": precision,\\\\n                        \\\\\\\"temperature\\\\\\\": temperature,\\\\n                        \\\\\\\"top_p\\\\\\\": top_p,\\\\n                        \\\\\\\"prompt_template\\\\\\\": prompt_template,\\\\n                        \\\\\\\"seed\\\\\\\": seed,\\\\n                        \\\\\\\"ordering\\\\\\\": ordering,\\\\n                        \\\\\\\"generated_text\\\\\\\": result.generated_text,\\\\n                        \\\\\\\"predicted_answer\\\\\\\": predicted,\\\\n                        \\\\\\\"gold_answer\\\\\\\": gold,\\\\n                        \\\\\\\"correct\\\\\\\": correct,\\\\n                        \\\\\\\"text_exact_match\\\\\\\": text_exact_match,\\\\n                        \\\\\\\"latency_ms\\\\\\\": result.latency_ms,\\\\n                        \\\\\\\"answer_logprob\\\\\\\": result.answer_logprob,\\\\n                        \\\\\\\"top_logprobs\\\\\\\": result.top_logprobs,\\\\n                    }\\\\n                    outfile.write(json.dumps(record, ensure_ascii=False) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n                outfile.flush()\\\\n                print(\\\\n                    f\\\\\\\"  Condition {cond_id:>3d}: \\\\\\\"\\\\n                    f\\\\\\\"{n_correct}/{len(items)} correct\\\\\\\"\\\\n                )\\\\n\\\\n            del runner\\\\n\\\\n    print(f\\\\\\\"Experiment complete → {output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Run G-theory experiment\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--design\\\\\\\", default=\\\\\\\"design_matrix.csv\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--items\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Path to items JSON (auto-selected per benchmark if omitted)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--few-shot\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Path to few-shot JSON (auto-selected per benchmark if omitted)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--zero-shot\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Disable few-shot examples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/experiment_results.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\n        \\\\\\\"--benchmark\\\\\\\",\\\\n        default=\\\\\\\"mmlu\\\\\\\",\\\\n        choices=[\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"math\\\\\\\"],\\\\n        help=\\\\\\\"Benchmark to run (default: mmlu)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--precision\\\\\\\",\\\\n        default=None,\\\\n        help=\\\\\\\"Only run conditions for this precision (float32, bfloat16, float16)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--gpu-id\\\\\\\",\\\\n        type=int,\\\\n        default=0,\\\\n        help=\\\\\\\"GPU device index passed to VLLMRunner\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-conditions\\\\\\\",\\\\n        type=int,\\\\n        default=0,\\\\n        help=\\\\\\\"Limit conditions to run (0 = all, for dry-run)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--max-items\\\\\\\",\\\\n        type=int,\\\\n        default=0,\\\\n        help=\\\\\\\"Limit items per condition (0 = all, for dry-run)\\\\\\\",\\\\n    )\\\\n    parser.add_argument(\\\\n        \\\\\\\"--offset\\\\\\\",\\\\n        type=int,\\\\n        default=0,\\\\n        help=\\\\\\\"Skip first N conditions (for multi-GPU sharding)\\\\\\\",\\\\n    )\\\\n    args = parser.parse_args()\\\\n\\\\n    items_path = args.items or DEFAULT_ITEMS.get(args.benchmark, \\\\\\\"data/mmlu_items.json\\\\\\\")\\\\n    if args.zero_shot:\\\\n        few_shot_path = None\\\\n    elif args.few_shot:\\\\n        few_shot_path = args.few_shot\\\\n    else:\\\\n        default_fs = DEFAULT_FEW_SHOT.get(args.benchmark)\\\\n        few_shot_path = default_fs if default_fs and Path(default_fs).exists() else None\\\\n\\\\n    run_experiment(\\\\n        args.design, items_path, args.output,\\\\n        benchmark=args.benchmark,\\\\n        few_shot_path=few_shot_path,\\\\n        precision_filter=args.precision,\\\\n        gpu_id=args.gpu_id,\\\\n        max_conditions=args.max_conditions,\\\\n        max_items=args.max_items,\\\\n        offset=args.offset,\\\\n    )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Execute the full G-theory experiment from a design matrix.\\n\\nSupports multiple benchmarks (MMLU, GSM8K, ARC-Challenge, HellaSwag) via\\nthe --benchmark flag.  Default is MMLU for backward compatibility with exp-001.\\n\\nInput:\\n    - design_matrix.csv  (from ``generate_design.py``)\\n    - items JSON          (benchmark-specific)\\n    - few_shot JSON          (auto-selected per benchmark, or --zero-shot)\\n\\nOutput:\\n    - results/experiment_results.jsonl — one JSON object per item × condition\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport sys\\nfrom pathlib import Path\\n\\nimport pandas as pd\\n\\nfrom src.config.model_paths import resolve_model_path\\nfrom src.data.prompt_templates import ANSWER_MAP, format_prompt\\nfrom src.inference.benchmark_utils import (\\n    BENCHMARK_MAX_TOKENS,\\n    BENCHMARK_STOP_SEQS,\\n    extract_gsm8k_answer,\\n    extract_math_answer,\\n    extract_mc_answer,\\n    format_arc_prompt,\\n    format_gsm8k_prompt,\\n    format_hellaswag_prompt,\\n    format_math_prompt,\\n    get_mc_gold,\\n    score_gsm8k,\\n    score_math,\\n    score_mc,\\n)\\nfrom src.inference.vllm_runner import VLLMRunner\\n\\nANSWER_PATTERN = re.compile(r\\\"^\\\\s*([A-Da-d])\\\\b\\\")\\n\\nDEFAULT_ITEMS = {\\n    \\\"mmlu\\\": \\\"data/mmlu_items.json\\\",\\n    \\\"gsm8k\\\": \\\"data/gsm8k_items_exp002.json\\\",\\n    \\\"arc\\\": \\\"data/arc_items_exp002.json\\\",\\n    \\\"hellaswag\\\": \\\"data/hellaswag_items_exp002.json\\\",\\n    \\\"math\\\": \\\"data/math_items_exp002.json\\\",\\n}\\n\\nDEFAULT_FEW_SHOT = {\\n    \\\"mmlu\\\": \\\"data/few_shot_examples.json\\\",\\n    \\\"gsm8k\\\": \\\"data/few_shot_gsm8k.json\\\",\\n    \\\"arc\\\": \\\"data/few_shot_arc.json\\\",\\n    \\\"hellaswag\\\": \\\"data/few_shot_hellaswag.json\\\",\\n    \\\"math\\\": \\\"data/few_shot_math.json\\\",\\n}\\n\\n\\ndef extract_answer(text: str) -> str | None:\\n    \\\"\\\"\\\"Extract a single A/B/C/D letter from the start of generated text.\\\"\\\"\\\"\\n    m = ANSWER_PATTERN.match(text)\\n    return m.group(1).upper() if m else None\\n\\n\\ndef load_data(items_path: str, few_shot_path: str):\\n    with open(items_path) as f:\\n        items = json.load(f)\\n    with open(few_shot_path) as f:\\n        few_shot = json.load(f)\\n    return items, few_shot\\n\\n\\ndef _build_prompt(benchmark: str, item: dict, template_id: int,\\n                  ordering: int, few_shot: dict | None) -> str:\\n    \\\"\\\"\\\"Route to the correct prompt builder based on benchmark.\\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        subject = item[\\\"subject\\\"]\\n        examples = few_shot[subject][str(ordering)] if few_shot else None\\n        return format_prompt(\\n            template_id=template_id,\\n            subject=subject,\\n            question=item[\\\"question\\\"],\\n            choices=item[\\\"choices\\\"],\\n            few_shot_examples=examples,\\n        )\\n    elif benchmark == \\\"gsm8k\\\":\\n        return format_gsm8k_prompt(template_id, item[\\\"question\\\"], few_shot)\\n    elif benchmark == \\\"arc\\\":\\n        labels = item.get(\\\"metadata\\\", {}).get(\\\"labels\\\")\\n        return format_arc_prompt(\\n            template_id, item[\\\"question\\\"], item[\\\"choices\\\"], labels, few_shot\\n        )\\n    elif benchmark == \\\"hellaswag\\\":\\n        return format_hellaswag_prompt(\\n            template_id, item[\\\"question\\\"], item[\\\"choices\\\"], few_shot\\n        )\\n    elif benchmark == \\\"math\\\":\\n        return format_math_prompt(template_id, item[\\\"question\\\"], few_shot)\\n    raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef _extract_and_score(benchmark: str, generated_text: str, item: dict):\\n    \\\"\\\"\\\"Extract predicted answer and score it.\\n\\n    Returns (predicted, gold, correct, text_exact_match).\\n    \\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        predicted = extract_answer(generated_text)\\n        gold = ANSWER_MAP[item[\\\"answer_idx\\\"]]\\n        correct = int(predicted == gold) if predicted else 0\\n        text_exact_match = int(generated_text.strip() == gold)\\n    elif benchmark == \\\"gsm8k\\\":\\n        predicted = extract_gsm8k_answer(generated_text)\\n        gold = item[\\\"answer\\\"]\\n        correct = score_gsm8k(predicted, gold)\\n        raw = item.get(\\\"metadata\\\", {}).get(\\\"raw_answer\\\", \\\"\\\")\\n        text_exact_match = int(generated_text.strip() == raw.strip())\\n    elif benchmark in (\\\"arc\\\", \\\"hellaswag\\\"):\\n        predict\\n\\n... [截断: 输出过长，省略 3933 字符] ...\\n\\n        n_correct = 0\\n                for result, item in zip(results, item_meta):\\n                    predicted, gold, correct, text_exact_match = _extract_and_score(\\n                        benchmark, result.generated_text, item\\n                    )\\n                    n_correct += correct\\n\\n                    record = {\\n                        \\\"condition_id\\\": cond_id,\\n                        \\\"item_id\\\": item[\\\"item_id\\\"],\\n                        \\\"benchmark\\\": benchmark,\\n                        \\\"subject\\\": item.get(\\\"subject\\\"),\\n                        \\\"model\\\": model_name,\\n                        \\\"precision\\\": precision,\\n                        \\\"temperature\\\": temperature,\\n                        \\\"top_p\\\": top_p,\\n                        \\\"prompt_template\\\": prompt_template,\\n                        \\\"seed\\\": seed,\\n                        \\\"ordering\\\": ordering,\\n                        \\\"generated_text\\\": result.generated_text,\\n                        \\\"predicted_answer\\\": predicted,\\n                        \\\"gold_answer\\\": gold,\\n                        \\\"correct\\\": correct,\\n                        \\\"text_exact_match\\\": text_exact_match,\\n                        \\\"latency_ms\\\": result.latency_ms,\\n                        \\\"answer_logprob\\\": result.answer_logprob,\\n                        \\\"top_logprobs\\\": result.top_logprobs,\\n                    }\\n                    outfile.write(json.dumps(record, ensure_ascii=False) + \\\"\\\\n\\\")\\n\\n                outfile.flush()\\n                print(\\n                    f\\\"  Condition {cond_id:>3d}: \\\"\\n                    f\\\"{n_correct}/{len(items)} correct\\\"\\n                )\\n\\n            del runner\\n\\n    print(f\\\"Experiment complete → {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    parser = argparse.ArgumentParser(description=\\\"Run G-theory experiment\\\")\\n    parser.add_argument(\\\"--design\\\", default=\\\"design_matrix.csv\\\")\\n    parser.add_argument(\\\"--items\\\", default=None,\\n                        help=\\\"Path to items JSON (auto-selected per benchmark if omitted)\\\")\\n    parser.add_argument(\\\"--few-shot\\\", default=None,\\n                        help=\\\"Path to few-shot JSON (auto-selected per benchmark if omitted)\\\")\\n    parser.add_argument(\\\"--zero-shot\\\", action=\\\"store_true\\\",\\n                        help=\\\"Disable few-shot examples\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/experiment_results.jsonl\\\")\\n    parser.add_argument(\\n        \\\"--benchmark\\\",\\n        default=\\\"mmlu\\\",\\n        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"math\\\"],\\n        help=\\\"Benchmark to run (default: mmlu)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--precision\\\",\\n        default=None,\\n        help=\\\"Only run conditions for this precision (float32, bfloat16, float16)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--gpu-id\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"GPU device index passed to VLLMRunner\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--max-conditions\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Limit conditions to run (0 = all, for dry-run)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--max-items\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Limit items per condition (0 = all, for dry-run)\\\",\\n    )\\n    parser.add_argument(\\n        \\\"--offset\\\",\\n        type=int,\\n        default=0,\\n        help=\\\"Skip first N conditions (for multi-GPU sharding)\\\",\\n    )\\n    args = parser.parse_args()\\n\\n    items_path = args.items or DEFAULT_ITEMS.get(args.benchmark, \\\"data/mmlu_items.json\\\")\\n    if args.zero_shot:\\n        few_shot_path = None\\n    elif args.few_shot:\\n        few_shot_path = args.few_shot\\n    else:\\n        default_fs = DEFAULT_FEW_SHOT.get(args.benchmark)\\n        few_shot_path = default_fs if default_fs and Path(default_fs).exists() else None\\n\\n    run_experiment(\\n        args.design, items_path, args.output,\\n        benchmark=args.benchmark,\\n        few_shot_path=few_shot_path,\\n        precision_filter=args.precision,\\n        gpu_id=args.gpu_id,\\n        max_conditions=args.max_conditions,\\n        max_items=args.max_items,\\n        offset=args.offset,\\n    )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T12:00:38.430Z_
+
+<details><summary>↩ Tool result · `toolu_01NY5uXCEnkoaqp6jZsZeW7e`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/nlp_variance_gtheory/src/inference/prompt_templates.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "4bab4370-beca-4aa9-b376-32fc6f8ed2ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/nlp_variance_gtheory/src/inference/prompt_templates.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/nlp_variance_gtheory/src/inference/prompt_templates.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `prompt_templates.py` is in `src/data/` not `src/inference/`. Let me read it from the correct path, and also check the benchmark_utils for `format_math_prompt`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "226f74d0-ed07-4c26-b24b-e80876ea6ede",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKfq2P7mK3pgCmruKijT1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3553,
+      "cache_read_input_tokens": 24611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3553
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+`prompt_templates.py` 在 `src/data/` 下。读取它和 `benchmark_utils.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "822c033d-8a47-4a8c-91d4-f13c4d34fe1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKfq2P7mK3pgCmruKijT1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3553,
+      "cache_read_input_tokens": 24611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3553
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RpVigy92i2u4v6JrrA2gxy`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/src/data/prompt_templates.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "0ad14e6f-204e-4cd4-a90b-ab97e0903966",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKfq2P7mK3pgCmruKijT1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3553,
+      "cache_read_input_tokens": 24611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3553
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T12:00:54.108Z_
+
+<details><summary>↩ Tool result · `toolu_01RpVigy92i2u4v6JrrA2gxy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMLU prompt templates — 6 semantically equivalent paraphrases.\\n\\nEach template formats a multiple-choice question with optional few-shot\\nexamples.  Variation follows Brittlebench-style surface perturbation:\\ndifferent wording and layout, identical semantic content.\\n\\nOutput: a single string ready for LLM input.\\n\\\"\\\"\\\"\\n\\nTEMPLATES = {\\n    1: {\\n        \\\"system\\\": (\\n            \\\"The following are multiple choice questions (with answers) \\\"\\n            \\\"about {subject}.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"A. {A}\\\\nB. {B}\\\\nC. {C}\\\\nD. {D}\\\\n\\\"\\n            \\\"Answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"A. {A}\\\\nB. {B}\\\\nC. {C}\\\\nD. {D}\\\\n\\\"\\n            \\\"Answer:\\\"\\n        ),\\n    },\\n    2: {\\n        \\\"system\\\": (\\n            \\\"Answer the following {subject} questions by selecting \\\"\\n            \\\"the correct option.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"Question: {question}\\\\n\\\"\\n            \\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\n\\\"\\n            \\\"Correct answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"Question: {question}\\\\n\\\"\\n            \\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\n\\\"\\n            \\\"Correct answer:\\\"\\n        ),\\n    },\\n    3: {\\n        \\\"system\\\": (\\n            \\\"Below are {subject} multiple-choice problems. \\\"\\n            \\\"Pick the right letter.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"Q: {question}\\\\n\\\"\\n            \\\"  A) {A}\\\\n  B) {B}\\\\n  C) {C}\\\\n  D) {D}\\\\n\\\"\\n            \\\"A: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"Q: {question}\\\\n\\\"\\n            \\\"  A) {A}\\\\n  B) {B}\\\\n  C) {C}\\\\n  D) {D}\\\\n\\\"\\n            \\\"A:\\\"\\n        ),\\n    },\\n    4: {\\n        \\\"system\\\": (\\n            \\\"Answer the following {subject} question by selecting \\\"\\n            \\\"A, B, C, or D.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"- A. {A}\\\\n- B. {B}\\\\n- C. {C}\\\\n- D. {D}\\\\n\\\"\\n            \\\"Answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"- A. {A}\\\\n- B. {B}\\\\n- C. {C}\\\\n- D. {D}\\\\n\\\"\\n            \\\"Answer:\\\"\\n        ),\\n    },\\n    5: {\\n        \\\"system\\\": (\\n            \\\"Below is a {subject} exam question with four possible answers. \\\"\\n            \\\"Choose the correct one.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Option A: {A}\\\\nOption B: {B}\\\\nOption C: {C}\\\\nOption D: {D}\\\\n\\\"\\n            \\\"Correct: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Option A: {A}\\\\nOption B: {B}\\\\nOption C: {C}\\\\nOption D: {D}\\\\n\\\"\\n            \\\"Correct:\\\"\\n        ),\\n    },\\n    6: {\\n        \\\"system\\\": \\\"Question ({subject}):\\\\n\\\",\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Choices:\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\n\\\"\\n            \\\"Your answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Choices:\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\n\\\"\\n            \\\"Your answer:\\\"\\n        ),\\n    },\\n}\\n\\nANSWER_MAP = {0: \\\"A\\\", 1: \\\"B\\\", 2: \\\"C\\\", 3: \\\"D\\\"}\\n\\n\\ndef format_prompt(\\n    template_id: int,\\n    subject: str,\\n    question: str,\\n    choices: list[str],\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    \\\"\\\"\\\"Build a complete prompt string for one MMLU item.\\n\\n    Args:\\n        template_id: 1–6.\\n        subject: MMLU subject name (e.g. \\\"abstract_algebra\\\").\\n        question: Question text.\\n        choices: List of 4 answer strings [A, B, C, D].\\n        few_shot_examples: Optional list of dicts, each with keys\\n            ``question``, ``choices`` (list[str]), ``answer_idx`` (int 0-3).\\n\\n    Returns:\\n        Full prompt string.\\n    \\\"\\\"\\\"\\n    tmpl = TEMPLATES[template_id]\\n    subject_display = subject.replace(\\\"_\\\", \\\" \\\")\\n    parts = [tmpl[\\\"system\\\"].format(subject=subject_display)]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            parts.append(\\n                tmpl[\\\"shot\\\"].format(\\n                    question=ex[\\\"question\\\"],\\n                    A=ex[\\\"choices\\\"][0],\\n                    B=ex[\\\"choices\\\"][1],\\n                    C=ex[\\\"choices\\\"][2],\\n  \\n\\n... [截断: 输出过长，省略 6587 字符] ...\\n\\n    \\\"system\\\": (\\n            \\\"You are evaluating text coherence. \\\"\\n            \\\"Choose the most natural continuation.\\\\n\\\\n\\\"\\n        ),\\n        \\\"choice_style\\\": \\\"bulleted\\\",\\n        \\\"shot\\\": \\\"{question}\\\\n{choices}\\\\nAnswer: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\n{choices}\\\\nAnswer:\\\",\\n    },\\n    5: {\\n        \\\"system\\\": (\\n            \\\"Read the following passage and select the most logical \\\"\\n            \\\"continuation from the options.\\\\n\\\\n\\\"\\n        ),\\n        \\\"choice_style\\\": \\\"verbose\\\",\\n        \\\"shot\\\": \\\"{question}\\\\n{choices}\\\\nCorrect: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\n{choices}\\\\nCorrect:\\\",\\n    },\\n    6: {\\n        \\\"system\\\": \\\"Complete the text:\\\\n\\\",\\n        \\\"choice_style\\\": \\\"compact\\\",\\n        \\\"shot\\\": \\\"{question}\\\\nOptions:\\\\n{choices}\\\\nYour answer: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\nOptions:\\\\n{choices}\\\\nYour answer:\\\",\\n    },\\n}\\n\\n\\nBENCHMARK_TEMPLATES = {\\n    \\\"mmlu\\\": TEMPLATES,\\n    \\\"gsm8k\\\": GSM8K_TEMPLATES,\\n    \\\"arc_challenge\\\": ARC_TEMPLATES,\\n    \\\"hellaswag\\\": HELLASWAG_TEMPLATES,\\n}\\n\\n# MATH templates are defined in benchmark_utils.py — imported here for routing\\ntry:\\n    from src.inference.benchmark_utils import MATH_TEMPLATES\\n    BENCHMARK_TEMPLATES[\\\"math\\\"] = MATH_TEMPLATES\\nexcept ImportError:\\n    pass\\n\\n\\ndef format_benchmark_prompt(\\n    benchmark: str,\\n    template_id: int,\\n    question: str,\\n    choices: list[str] | None = None,\\n    few_shot_examples: list[dict] | None = None,\\n    subject: str | None = None,\\n) -> str:\\n    \\\"\\\"\\\"Build a prompt for any supported benchmark.\\n\\n    Args:\\n        benchmark: One of \\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"hellaswag\\\".\\n        template_id: 1-6.\\n        question: Question or context text.\\n        choices: Answer choices (None for GSM8K).\\n        few_shot_examples: Optional few-shot dicts matching the benchmark item schema.\\n        subject: MMLU subject (required for mmlu, ignored otherwise).\\n    \\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        return format_prompt(\\n            template_id=template_id,\\n            subject=subject or \\\"\\\",\\n            question=question,\\n            choices=choices or [],\\n            few_shot_examples=few_shot_examples,\\n        )\\n\\n    if benchmark == \\\"gsm8k\\\":\\n        return _format_gsm8k(template_id, question, few_shot_examples)\\n\\n    if benchmark == \\\"math\\\":\\n        from src.inference.benchmark_utils import format_math_prompt\\n        return format_math_prompt(template_id, question, few_shot_examples)\\n\\n    if benchmark in (\\\"arc_challenge\\\", \\\"hellaswag\\\"):\\n        tmpl_dict = ARC_TEMPLATES if benchmark == \\\"arc_challenge\\\" else HELLASWAG_TEMPLATES\\n        return _format_mc(tmpl_dict, template_id, question, choices, few_shot_examples)\\n\\n    raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef _format_gsm8k(\\n    template_id: int,\\n    question: str,\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    tmpl = GSM8K_TEMPLATES[template_id]\\n    parts = [tmpl[\\\"system\\\"]]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            chain = ex.get(\\\"metadata\\\", {}).get(\\n                \\\"raw_answer\\\", f\\\"#### {ex.get('answer', '')}\\\"\\n            )\\n            parts.append(tmpl[\\\"shot\\\"].format(question=ex[\\\"question\\\"], chain=chain))\\n\\n    parts.append(tmpl[\\\"query\\\"].format(question=question))\\n    return \\\"\\\".join(parts)\\n\\n\\ndef _format_mc(\\n    tmpl_dict: dict,\\n    template_id: int,\\n    question: str,\\n    choices: list[str],\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    tmpl = tmpl_dict[template_id]\\n    choice_fn = _CHOICE_FORMATTERS[tmpl[\\\"choice_style\\\"]]\\n    parts = [tmpl[\\\"system\\\"]]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            choices_str = choice_fn(ex[\\\"choices\\\"])\\n            answer = _answer_label(ex[\\\"answer_idx\\\"])\\n            parts.append(\\n                tmpl[\\\"shot\\\"].format(\\n                    question=ex[\\\"question\\\"], choices=choices_str, answer=answer\\n                )\\n            )\\n\\n    choices_str = choice_fn(choices)\\n    parts.append(tmpl[\\\"query\\\"].format(question=question, choices=choices_str))\\n    return \\\"\\\".join(parts)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "ea7989e9-6c8c-40cb-b191-094d8ba46a35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MMLU prompt templates — 6 semantically equivalent paraphrases.\\\\n\\\\nEach template formats a multiple-choice question with optional few-shot\\\\nexamples.  Variation follows Brittlebench-style surface perturbation:\\\\ndifferent wording and layout, identical semantic content.\\\\n\\\\nOutput: a single string ready for LLM input.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nTEMPLATES = {\\\\n    1: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"The following are multiple choice questions (with answers) \\\\\\\"\\\\n            \\\\\\\"about {subject}.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"A. {A}\\\\\\\\nB. {B}\\\\\\\\nC. {C}\\\\\\\\nD. {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Answer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"A. {A}\\\\\\\\nB. {B}\\\\\\\\nC. {C}\\\\\\\\nD. {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Answer:\\\\\\\"\\\\n        ),\\\\n    },\\\\n    2: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"Answer the following {subject} questions by selecting \\\\\\\"\\\\n            \\\\\\\"the correct option.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"Question: {question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Correct answer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"Question: {question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Correct answer:\\\\\\\"\\\\n        ),\\\\n    },\\\\n    3: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"Below are {subject} multiple-choice problems. \\\\\\\"\\\\n            \\\\\\\"Pick the right letter.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"Q: {question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"  A) {A}\\\\\\\\n  B) {B}\\\\\\\\n  C) {C}\\\\\\\\n  D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"A: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"Q: {question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"  A) {A}\\\\\\\\n  B) {B}\\\\\\\\n  C) {C}\\\\\\\\n  D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"A:\\\\\\\"\\\\n        ),\\\\n    },\\\\n    4: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"Answer the following {subject} question by selecting \\\\\\\"\\\\n            \\\\\\\"A, B, C, or D.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"- A. {A}\\\\\\\\n- B. {B}\\\\\\\\n- C. {C}\\\\\\\\n- D. {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Answer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"- A. {A}\\\\\\\\n- B. {B}\\\\\\\\n- C. {C}\\\\\\\\n- D. {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Answer:\\\\\\\"\\\\n        ),\\\\n    },\\\\n    5: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"Below is a {subject} exam question with four possible answers. \\\\\\\"\\\\n            \\\\\\\"Choose the correct one.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Option A: {A}\\\\\\\\nOption B: {B}\\\\\\\\nOption C: {C}\\\\\\\\nOption D: {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Correct: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Option A: {A}\\\\\\\\nOption B: {B}\\\\\\\\nOption C: {C}\\\\\\\\nOption D: {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Correct:\\\\\\\"\\\\n        ),\\\\n    },\\\\n    6: {\\\\n        \\\\\\\"system\\\\\\\": \\\\\\\"Question ({subject}):\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"shot\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Choices:\\\\\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Your answer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"query\\\\\\\": (\\\\n            \\\\\\\"{question}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Choices:\\\\\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\\\\\n\\\\\\\"\\\\n            \\\\\\\"Your answer:\\\\\\\"\\\\n        ),\\\\n    },\\\\n}\\\\n\\\\nANSWER_MAP = {0: \\\\\\\"A\\\\\\\", 1: \\\\\\\"B\\\\\\\", 2: \\\\\\\"C\\\\\\\", 3: \\\\\\\"D\\\\\\\"}\\\\n\\\\n\\\\ndef format_prompt(\\\\n    template_id: int,\\\\n    subject: str,\\\\n    question: str,\\\\n    choices: list[str],\\\\n    few_shot_examples: list[dict] | None = None,\\\\n) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a complete prompt string for one MMLU item.\\\\n\\\\n    Args:\\\\n        template_id: 1–6.\\\\n        subject: MMLU subject name (e.g. \\\\\\\"abstract_algebra\\\\\\\").\\\\n        question: Question text.\\\\n        choices: List of 4 answer strings [A, B, C, D].\\\\n        few_shot_examples: Optional list of dicts, each with keys\\\\n            ``question``, ``choices`` (list[str]), ``answer_idx`` (int 0-3).\\\\n\\\\n    Returns:\\\\n        Full prompt string.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    tmpl = TEMPLATES[template_id]\\\\n    subject_display = subject.replace(\\\\\\\"_\\\\\\\", \\\\\\\" \\\\\\\")\\\\n    parts = [tmpl[\\\\\\\"system\\\\\\\"].format(subject=subject_display)]\\\\n\\\\n    if few_shot_examples:\\\\n        for ex in few_shot_examples:\\\\n            parts.append(\\\\n                tmpl[\\\\\\\"shot\\\\\\\"].format(\\\\n                    question=ex[\\\\\\\"question\\\\\\\"],\\\\n                    A=ex[\\\\\\\"choices\\\\\\\"][0],\\\\n                    B=ex[\\\\\\\"choices\\\\\\\"][1],\\\\n                    C=ex[\\\\\\\"choices\\\\\\\"][2],\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 6587 字符] ...\\\\n\\\\n    \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"You are evaluating text coherence. \\\\\\\"\\\\n            \\\\\\\"Choose the most natural continuation.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"choice_style\\\\\\\": \\\\\\\"bulleted\\\\\\\",\\\\n        \\\\\\\"shot\\\\\\\": \\\\\\\"{question}\\\\\\\\n{choices}\\\\\\\\nAnswer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"query\\\\\\\": \\\\\\\"{question}\\\\\\\\n{choices}\\\\\\\\nAnswer:\\\\\\\",\\\\n    },\\\\n    5: {\\\\n        \\\\\\\"system\\\\\\\": (\\\\n            \\\\\\\"Read the following passage and select the most logical \\\\\\\"\\\\n            \\\\\\\"continuation from the options.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n        ),\\\\n        \\\\\\\"choice_style\\\\\\\": \\\\\\\"verbose\\\\\\\",\\\\n        \\\\\\\"shot\\\\\\\": \\\\\\\"{question}\\\\\\\\n{choices}\\\\\\\\nCorrect: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"query\\\\\\\": \\\\\\\"{question}\\\\\\\\n{choices}\\\\\\\\nCorrect:\\\\\\\",\\\\n    },\\\\n    6: {\\\\n        \\\\\\\"system\\\\\\\": \\\\\\\"Complete the text:\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"choice_style\\\\\\\": \\\\\\\"compact\\\\\\\",\\\\n        \\\\\\\"shot\\\\\\\": \\\\\\\"{question}\\\\\\\\nOptions:\\\\\\\\n{choices}\\\\\\\\nYour answer: {answer}\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"query\\\\\\\": \\\\\\\"{question}\\\\\\\\nOptions:\\\\\\\\n{choices}\\\\\\\\nYour answer:\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\n\\\\nBENCHMARK_TEMPLATES = {\\\\n    \\\\\\\"mmlu\\\\\\\": TEMPLATES,\\\\n    \\\\\\\"gsm8k\\\\\\\": GSM8K_TEMPLATES,\\\\n    \\\\\\\"arc_challenge\\\\\\\": ARC_TEMPLATES,\\\\n    \\\\\\\"hellaswag\\\\\\\": HELLASWAG_TEMPLATES,\\\\n}\\\\n\\\\n# MATH templates are defined in benchmark_utils.py — imported here for routing\\\\ntry:\\\\n    from src.inference.benchmark_utils import MATH_TEMPLATES\\\\n    BENCHMARK_TEMPLATES[\\\\\\\"math\\\\\\\"] = MATH_TEMPLATES\\\\nexcept ImportError:\\\\n    pass\\\\n\\\\n\\\\ndef format_benchmark_prompt(\\\\n    benchmark: str,\\\\n    template_id: int,\\\\n    question: str,\\\\n    choices: list[str] | None = None,\\\\n    few_shot_examples: list[dict] | None = None,\\\\n    subject: str | None = None,\\\\n) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a prompt for any supported benchmark.\\\\n\\\\n    Args:\\\\n        benchmark: One of \\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc_challenge\\\\\\\", \\\\\\\"hellaswag\\\\\\\".\\\\n        template_id: 1-6.\\\\n        question: Question or context text.\\\\n        choices: Answer choices (None for GSM8K).\\\\n        few_shot_examples: Optional few-shot dicts matching the benchmark item schema.\\\\n        subject: MMLU subject (required for mmlu, ignored otherwise).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if benchmark == \\\\\\\"mmlu\\\\\\\":\\\\n        return format_prompt(\\\\n            template_id=template_id,\\\\n            subject=subject or \\\\\\\"\\\\\\\",\\\\n            question=question,\\\\n            choices=choices or [],\\\\n            few_shot_examples=few_shot_examples,\\\\n        )\\\\n\\\\n    if benchmark == \\\\\\\"gsm8k\\\\\\\":\\\\n        return _format_gsm8k(template_id, question, few_shot_examples)\\\\n\\\\n    if benchmark == \\\\\\\"math\\\\\\\":\\\\n        from src.inference.benchmark_utils import format_math_prompt\\\\n        return format_math_prompt(template_id, question, few_shot_examples)\\\\n\\\\n    if benchmark in (\\\\\\\"arc_challenge\\\\\\\", \\\\\\\"hellaswag\\\\\\\"):\\\\n        tmpl_dict = ARC_TEMPLATES if benchmark == \\\\\\\"arc_challenge\\\\\\\" else HELLASWAG_TEMPLATES\\\\n        return _format_mc(tmpl_dict, template_id, question, choices, few_shot_examples)\\\\n\\\\n    raise ValueError(f\\\\\\\"Unknown benchmark: {benchmark}\\\\\\\")\\\\n\\\\n\\\\ndef _format_gsm8k(\\\\n    template_id: int,\\\\n    question: str,\\\\n    few_shot_examples: list[dict] | None = None,\\\\n) -> str:\\\\n    tmpl = GSM8K_TEMPLATES[template_id]\\\\n    parts = [tmpl[\\\\\\\"system\\\\\\\"]]\\\\n\\\\n    if few_shot_examples:\\\\n        for ex in few_shot_examples:\\\\n            chain = ex.get(\\\\\\\"metadata\\\\\\\", {}).get(\\\\n                \\\\\\\"raw_answer\\\\\\\", f\\\\\\\"#### {ex.get('answer', '')}\\\\\\\"\\\\n            )\\\\n            parts.append(tmpl[\\\\\\\"shot\\\\\\\"].format(question=ex[\\\\\\\"question\\\\\\\"], chain=chain))\\\\n\\\\n    parts.append(tmpl[\\\\\\\"query\\\\\\\"].format(question=question))\\\\n    return \\\\\\\"\\\\\\\".join(parts)\\\\n\\\\n\\\\ndef _format_mc(\\\\n    tmpl_dict: dict,\\\\n    template_id: int,\\\\n    question: str,\\\\n    choices: list[str],\\\\n    few_shot_examples: list[dict] | None = None,\\\\n) -> str:\\\\n    tmpl = tmpl_dict[template_id]\\\\n    choice_fn = _CHOICE_FORMATTERS[tmpl[\\\\\\\"choice_style\\\\\\\"]]\\\\n    parts = [tmpl[\\\\\\\"system\\\\\\\"]]\\\\n\\\\n    if few_shot_examples:\\\\n        for ex in few_shot_examples:\\\\n            choices_str = choice_fn(ex[\\\\\\\"choices\\\\\\\"])\\\\n            answer = _answer_label(ex[\\\\\\\"answer_idx\\\\\\\"])\\\\n            parts.append(\\\\n                tmpl[\\\\\\\"shot\\\\\\\"].format(\\\\n                    question=ex[\\\\\\\"question\\\\\\\"], choices=choices_str, answer=answer\\\\n                )\\\\n            )\\\\n\\\\n    choices_str = choice_fn(choices)\\\\n    parts.append(tmpl[\\\\\\\"query\\\\\\\"].format(question=question, choices=choices_str))\\\\n    return \\\\\\\"\\\\\\\".join(parts)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMLU prompt templates — 6 semantically equivalent paraphrases.\\n\\nEach template formats a multiple-choice question with optional few-shot\\nexamples.  Variation follows Brittlebench-style surface perturbation:\\ndifferent wording and layout, identical semantic content.\\n\\nOutput: a single string ready for LLM input.\\n\\\"\\\"\\\"\\n\\nTEMPLATES = {\\n    1: {\\n        \\\"system\\\": (\\n            \\\"The following are multiple choice questions (with answers) \\\"\\n            \\\"about {subject}.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"A. {A}\\\\nB. {B}\\\\nC. {C}\\\\nD. {D}\\\\n\\\"\\n            \\\"Answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"A. {A}\\\\nB. {B}\\\\nC. {C}\\\\nD. {D}\\\\n\\\"\\n            \\\"Answer:\\\"\\n        ),\\n    },\\n    2: {\\n        \\\"system\\\": (\\n            \\\"Answer the following {subject} questions by selecting \\\"\\n            \\\"the correct option.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"Question: {question}\\\\n\\\"\\n            \\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\n\\\"\\n            \\\"Correct answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"Question: {question}\\\\n\\\"\\n            \\\"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\\\n\\\"\\n            \\\"Correct answer:\\\"\\n        ),\\n    },\\n    3: {\\n        \\\"system\\\": (\\n            \\\"Below are {subject} multiple-choice problems. \\\"\\n            \\\"Pick the right letter.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"Q: {question}\\\\n\\\"\\n            \\\"  A) {A}\\\\n  B) {B}\\\\n  C) {C}\\\\n  D) {D}\\\\n\\\"\\n            \\\"A: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"Q: {question}\\\\n\\\"\\n            \\\"  A) {A}\\\\n  B) {B}\\\\n  C) {C}\\\\n  D) {D}\\\\n\\\"\\n            \\\"A:\\\"\\n        ),\\n    },\\n    4: {\\n        \\\"system\\\": (\\n            \\\"Answer the following {subject} question by selecting \\\"\\n            \\\"A, B, C, or D.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"- A. {A}\\\\n- B. {B}\\\\n- C. {C}\\\\n- D. {D}\\\\n\\\"\\n            \\\"Answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"- A. {A}\\\\n- B. {B}\\\\n- C. {C}\\\\n- D. {D}\\\\n\\\"\\n            \\\"Answer:\\\"\\n        ),\\n    },\\n    5: {\\n        \\\"system\\\": (\\n            \\\"Below is a {subject} exam question with four possible answers. \\\"\\n            \\\"Choose the correct one.\\\\n\\\\n\\\"\\n        ),\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Option A: {A}\\\\nOption B: {B}\\\\nOption C: {C}\\\\nOption D: {D}\\\\n\\\"\\n            \\\"Correct: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Option A: {A}\\\\nOption B: {B}\\\\nOption C: {C}\\\\nOption D: {D}\\\\n\\\"\\n            \\\"Correct:\\\"\\n        ),\\n    },\\n    6: {\\n        \\\"system\\\": \\\"Question ({subject}):\\\\n\\\",\\n        \\\"shot\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Choices:\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\n\\\"\\n            \\\"Your answer: {answer}\\\\n\\\\n\\\"\\n        ),\\n        \\\"query\\\": (\\n            \\\"{question}\\\\n\\\"\\n            \\\"Choices:\\\\n(A) {A} (B) {B} (C) {C} (D) {D}\\\\n\\\"\\n            \\\"Your answer:\\\"\\n        ),\\n    },\\n}\\n\\nANSWER_MAP = {0: \\\"A\\\", 1: \\\"B\\\", 2: \\\"C\\\", 3: \\\"D\\\"}\\n\\n\\ndef format_prompt(\\n    template_id: int,\\n    subject: str,\\n    question: str,\\n    choices: list[str],\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    \\\"\\\"\\\"Build a complete prompt string for one MMLU item.\\n\\n    Args:\\n        template_id: 1–6.\\n        subject: MMLU subject name (e.g. \\\"abstract_algebra\\\").\\n        question: Question text.\\n        choices: List of 4 answer strings [A, B, C, D].\\n        few_shot_examples: Optional list of dicts, each with keys\\n            ``question``, ``choices`` (list[str]), ``answer_idx`` (int 0-3).\\n\\n    Returns:\\n        Full prompt string.\\n    \\\"\\\"\\\"\\n    tmpl = TEMPLATES[template_id]\\n    subject_display = subject.replace(\\\"_\\\", \\\" \\\")\\n    parts = [tmpl[\\\"system\\\"].format(subject=subject_display)]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            parts.append(\\n                tmpl[\\\"shot\\\"].format(\\n                    question=ex[\\\"question\\\"],\\n                    A=ex[\\\"choices\\\"][0],\\n                    B=ex[\\\"choices\\\"][1],\\n                    C=ex[\\\"choices\\\"][2],\\n  \\n\\n... [截断: 输出过长，省略 6587 字符] ...\\n\\n    \\\"system\\\": (\\n            \\\"You are evaluating text coherence. \\\"\\n            \\\"Choose the most natural continuation.\\\\n\\\\n\\\"\\n        ),\\n        \\\"choice_style\\\": \\\"bulleted\\\",\\n        \\\"shot\\\": \\\"{question}\\\\n{choices}\\\\nAnswer: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\n{choices}\\\\nAnswer:\\\",\\n    },\\n    5: {\\n        \\\"system\\\": (\\n            \\\"Read the following passage and select the most logical \\\"\\n            \\\"continuation from the options.\\\\n\\\\n\\\"\\n        ),\\n        \\\"choice_style\\\": \\\"verbose\\\",\\n        \\\"shot\\\": \\\"{question}\\\\n{choices}\\\\nCorrect: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\n{choices}\\\\nCorrect:\\\",\\n    },\\n    6: {\\n        \\\"system\\\": \\\"Complete the text:\\\\n\\\",\\n        \\\"choice_style\\\": \\\"compact\\\",\\n        \\\"shot\\\": \\\"{question}\\\\nOptions:\\\\n{choices}\\\\nYour answer: {answer}\\\\n\\\\n\\\",\\n        \\\"query\\\": \\\"{question}\\\\nOptions:\\\\n{choices}\\\\nYour answer:\\\",\\n    },\\n}\\n\\n\\nBENCHMARK_TEMPLATES = {\\n    \\\"mmlu\\\": TEMPLATES,\\n    \\\"gsm8k\\\": GSM8K_TEMPLATES,\\n    \\\"arc_challenge\\\": ARC_TEMPLATES,\\n    \\\"hellaswag\\\": HELLASWAG_TEMPLATES,\\n}\\n\\n# MATH templates are defined in benchmark_utils.py — imported here for routing\\ntry:\\n    from src.inference.benchmark_utils import MATH_TEMPLATES\\n    BENCHMARK_TEMPLATES[\\\"math\\\"] = MATH_TEMPLATES\\nexcept ImportError:\\n    pass\\n\\n\\ndef format_benchmark_prompt(\\n    benchmark: str,\\n    template_id: int,\\n    question: str,\\n    choices: list[str] | None = None,\\n    few_shot_examples: list[dict] | None = None,\\n    subject: str | None = None,\\n) -> str:\\n    \\\"\\\"\\\"Build a prompt for any supported benchmark.\\n\\n    Args:\\n        benchmark: One of \\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"hellaswag\\\".\\n        template_id: 1-6.\\n        question: Question or context text.\\n        choices: Answer choices (None for GSM8K).\\n        few_shot_examples: Optional few-shot dicts matching the benchmark item schema.\\n        subject: MMLU subject (required for mmlu, ignored otherwise).\\n    \\\"\\\"\\\"\\n    if benchmark == \\\"mmlu\\\":\\n        return format_prompt(\\n            template_id=template_id,\\n            subject=subject or \\\"\\\",\\n            question=question,\\n            choices=choices or [],\\n            few_shot_examples=few_shot_examples,\\n        )\\n\\n    if benchmark == \\\"gsm8k\\\":\\n        return _format_gsm8k(template_id, question, few_shot_examples)\\n\\n    if benchmark == \\\"math\\\":\\n        from src.inference.benchmark_utils import format_math_prompt\\n        return format_math_prompt(template_id, question, few_shot_examples)\\n\\n    if benchmark in (\\\"arc_challenge\\\", \\\"hellaswag\\\"):\\n        tmpl_dict = ARC_TEMPLATES if benchmark == \\\"arc_challenge\\\" else HELLASWAG_TEMPLATES\\n        return _format_mc(tmpl_dict, template_id, question, choices, few_shot_examples)\\n\\n    raise ValueError(f\\\"Unknown benchmark: {benchmark}\\\")\\n\\n\\ndef _format_gsm8k(\\n    template_id: int,\\n    question: str,\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    tmpl = GSM8K_TEMPLATES[template_id]\\n    parts = [tmpl[\\\"system\\\"]]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            chain = ex.get(\\\"metadata\\\", {}).get(\\n                \\\"raw_answer\\\", f\\\"#### {ex.get('answer', '')}\\\"\\n            )\\n            parts.append(tmpl[\\\"shot\\\"].format(question=ex[\\\"question\\\"], chain=chain))\\n\\n    parts.append(tmpl[\\\"query\\\"].format(question=question))\\n    return \\\"\\\".join(parts)\\n\\n\\ndef _format_mc(\\n    tmpl_dict: dict,\\n    template_id: int,\\n    question: str,\\n    choices: list[str],\\n    few_shot_examples: list[dict] | None = None,\\n) -> str:\\n    tmpl = tmpl_dict[template_id]\\n    choice_fn = _CHOICE_FORMATTERS[tmpl[\\\"choice_style\\\"]]\\n    parts = [tmpl[\\\"system\\\"]]\\n\\n    if few_shot_examples:\\n        for ex in few_shot_examples:\\n            choices_str = choice_fn(ex[\\\"choices\\\"])\\n            answer = _answer_label(ex[\\\"answer_idx\\\"])\\n            parts.append(\\n                tmpl[\\\"shot\\\"].format(\\n                    question=ex[\\\"question\\\"], choices=choices_str, answer=answer\\n                )\\n            )\\n\\n    choices_str = choice_fn(choices)\\n    parts.append(tmpl[\\\"query\\\"].format(question=question, choices=choices_str))\\n    return \\\"\\\".join(parts)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VqonSHBPZuYsNpnXucQiKt`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"format_math_prompt\\|MATH_TEMPLATES\\|BENCHMARK_TEMPLATES\" /root/nlp_variance_gtheory/src/inference/benchmark_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "7fe01251-d081-43e6-a29c-71bdb4affd1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKfq2P7mK3pgCmruKijT1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3553,
+      "cache_read_input_tokens": 24611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3553
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T12:00:54.263Z_
+
+<details><summary>↩ Tool result · `toolu_01VqonSHBPZuYsNpnXucQiKt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "df668624-145d-465b-a7e4-6dbea0a7d4cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me grep without the pipe.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "b2e31e14-a127-4061-b338-620ac2dbfaf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCzmmbjrfbmbirKtLiC4CN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 28164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015TsyG9rWXTTqfAgVGKoxge`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"format_math_prompt\\|MATH_TEMPLATES\" /root/nlp_variance_gtheory/src/inference/benchmark_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "657e9024-6850-48d2-9af9-b43b4f22eac7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WCzmmbjrfbmbirKtLiC4CN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 28164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T12:00:58.201Z_
+
+<details><summary>↩ Tool result · `toolu_015TsyG9rWXTTqfAgVGKoxge`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "9e48a71e-caed-4ca2-b6fa-2d51d1c8289e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rp4ZKLdaGDrxyWugHqBjQv`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"format_math_prompt\\|MATH_TEMPLATES\" /root/nlp_variance_gtheory/src/inference/benchmark_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "d0cf0006-aa44-4ecd-afd9-4b7ccf6f1308",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113ZXkJcmqT5vuXjJvfuka6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 32299,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T12:01:01.538Z_
+
+<details><summary>↩ Tool result · `toolu_01Rp4ZKLdaGDrxyWugHqBjQv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "96c5c8fe-ecd7-4a41-bbb2-4e665f3adf77",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in the grep pattern with `\|` is being interpreted as a pipe. Let me use `-e` flags instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "bcbac20a-f0d5-4b64-89ca-1a8b36c39c3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H43Xiw7n9QhDZk9v856LHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 32536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LsBpjzbrgdeBuAHDcKLuYW`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n -e \"format_math_prompt\" -e \"MATH_TEMPLATES\" /root/nlp_variance_gtheory/src/inference/benchmark_utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "1c43d1c5-fff4-44dd-9237-6e2cd135f915",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H43Xiw7n9QhDZk9v856LHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 32536,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T12:01:05.374Z_
+
+<details><summary>↩ Tool result · `toolu_01LsBpjzbrgdeBuAHDcKLuYW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"81:def format_math_prompt(\\n87:    MATH_TEMPLATES = {\\n119:    tmpl = MATH_TEMPLATES.get(template_id, MATH_TEMPLATES[1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "9ac67ec1-3e18-4000-8d12-9c91b43cbeb0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"81:def format_math_prompt(\\\\n87:    MATH_TEMPLATES = {\\\\n119:    tmpl = MATH_TEMPLATES.get(template_id, MATH_TEMPLATES[1])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"81:def format_math_prompt(\\n87:    MATH_TEMPLATES = {\\n119:    tmpl = MATH_TEMPLATES.get(template_id, MATH_TEMPLATES[1])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+关键发现：`MATH_TEMPLATES` 是 `format_math_prompt()` 函数内的**局部变量**（第87行在函数定义第81行内部），不是模块级变量。所以 `prompt_templates.py` 的 `from src.inference.benchmark_utils import MATH_TEMPLATES` 必然失败（因为它不是模块级导出）。
+
+但这不影响实验运行。`run_experiment.py` 的 `_build_prompt` 对 `benchmark == "math"` 直接调用 `format_math_prompt()`，不经过 `BENCHMARK_TEMPLATES` routing。
+
+运行验证测试确认。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "cfb82b57-b958-4c17-ab69-66eff11f45d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXGivyVkLdiz4bPBiECp8t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 397,
+      "cache_read_input_tokens": 32751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 397
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NLtUKFXRNuagao7iDPyMzn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nfrom src.inference.benchmark_utils import format_math_prompt\nprint('format_math_prompt importable:', True)\nresult = format_math_prompt(1, 'What is 2+2?', None)\nprint('Prompt generated:', len(result), 'chars')\nprint('---')\nprint(result[:200])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "b4705e0b-8dce-44a6-b7a8-40aa460f9439",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXGivyVkLdiz4bPBiECp8t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 397,
+      "cache_read_input_tokens": 32751,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 397
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T12:01:14.518Z_
+
+<details><summary>↩ Tool result · `toolu_01NLtUKFXRNuagao7iDPyMzn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"format_math_prompt importable: True\\nPrompt generated: 128 chars\\n---\\nSolve the following math problem step by step. Put your final answer in \\\\boxed{}.\\n\\nQ: What is 2+2?\\nA: Let's think step by step.\\n\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "e5714f10-178f-4062-921e-f6799178e8d2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"format_math_prompt importable: True\\\\nPrompt generated: 128 chars\\\\n---\\\\nSolve the following math problem step by step. Put your final answer in \\\\\\\\boxed{}.\\\\n\\\\nQ: What is 2+2?\\\\nA: Let's think step by step.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"format_math_prompt importable: True\\nPrompt generated: 128 chars\\n---\\nSolve the following math problem step by step. Put your final answer in \\\\boxed{}.\\n\\nQ: What is 2+2?\\nA: Let's think step by step.\\n\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+**Fix (a) 结论**：安全，无需修复。
+
+- `run_experiment.py:_build_prompt` 对 `benchmark == "math"` 直接调用 `format_math_prompt()`，不经过 `BENCHMARK_TEMPLATES` routing
+- `prompt_templates.py` 的 `try: from ... import MATH_TEMPLATES` 确实会失败（`MATH_TEMPLATES` 是函数内局部变量，非模块级导出），但 `except ImportError: pass` 静默跳过
+- `BENCHMARK_TEMPLATES["math"]` 不被填充，但也没有任何代码路径依赖它——`format_benchmark_prompt()` 对 math 也是直接 `from src.inference.benchmark_utils import format_math_prompt` 内联导入
+- 验证通过：`format_math_prompt` 可正常 import 并生成 prompt
+
+---
+
+开始 Fix (b)。读取 westd-15695 的 `auto_start.sh`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "e6a72f92-fc47-4dea-bcda-8fddf111eae5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpYJotzyyWMtFBYcEYtH7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 33148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 564
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0123qM1bwfoCSLFdZ1oayFuq`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "cat /root/nlp_variance_gtheory/auto_start.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "15b3eb30-ce75-44b3-8898-d545c574bc02",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpYJotzyyWMtFBYcEYtH7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 33148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 564
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XAniRWSbWvrcRzodWA72B9`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "cat /root/auto_start.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "b39dfa0a-e769-446d-aa9a-3469111d4951",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HpYJotzyyWMtFBYcEYtH7i",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 564,
+      "cache_read_input_tokens": 33148,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 564
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T12:01:23.571Z_
+
+<details><summary>↩ Tool result · `toolu_0123qM1bwfoCSLFdZ1oayFuq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/nlp_variance_gtheory\\n\\nYI_DIR=\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat\\\"\\nOLMO_DIR=\\\"/root/autodl-tmp/.hf_cache/allenai/OLMo-2-1124-7B-Instruct\\\"\\n\\n# Expected sizes (approximate, in MB)\\n# Yi: 4 shards, ~18GB total\\n# OLMo: 3 shards, ~14GB total\\n\\necho \\\"Waiting for model downloads to complete...\\\"\\nwhile true; do\\n    WGET_COUNT=$(ps aux | grep wget | grep -v grep | wc -l)\\n    YI_SIZE=$(du -sm \\\"$YI_DIR\\\" 2>/dev/null | awk '{print $1}')\\n    OLMO_SIZE=$(du -sm \\\"$OLMO_DIR\\\" 2>/dev/null | awk '{print $1}')\\n    echo \\\"[$(date +%H:%M:%S)] wget procs: $WGET_COUNT | Yi: ${YI_SIZE}MB | OLMo: ${OLMO_SIZE}MB\\\"\\n\\n    if [ \\\"$WGET_COUNT\\\" -eq 0 ]; then\\n        echo \\\"All downloads complete!\\\"\\n        break\\n    fi\\n    sleep 60\\ndone\\n\\n# Verify downloads\\nYI_SHARDS=$(ls \\\"$YI_DIR\\\"/model-*.safetensors 2>/dev/null | wc -l)\\nOLMO_SHARDS=$(ls \\\"$OLMO_DIR\\\"/model-*.safetensors 2>/dev/null | wc -l)\\necho \\\"Yi shards: $YI_SHARDS, OLMo shards: $OLMO_SHARDS\\\"\\n\\nif [ \\\"$YI_SHARDS\\\" -lt 4 ] || [ \\\"$OLMO_SHARDS\\\" -lt 3 ]; then\\n    echo \\\"ERROR: Not all model shards downloaded!\\\"\\n    exit 1\\nfi\\n\\n# Run Yi first\\necho \\\"=== Starting Yi inference ===\\\"\\nexport CUDA_VISIBLE_DEVICES=0\\nexport VLLM_USE_V1=0\\npython3 -m src.inference.run_experiment \\\\\\n    --design results/design_yi.csv \\\\\\n    --items data/mmlu_items_exp001.json \\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\n    --output results/exp001_yi/results.jsonl \\\\\\n    --benchmark mmlu \\\\\\n    --gpu-id 0 \\\\\\n    2>&1 | tee results/exp001_yi/run.log\\n\\necho \\\"=== Yi complete, starting OLMo ===\\\"\\npython3 -m src.inference.run_experiment \\\\\\n    --design results/design_olmo.csv \\\\\\n    --items data/mmlu_items_exp001.json \\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\n    --output results/exp001_olmo/results.jsonl \\\\\\n    --benchmark mmlu \\\\\\n    --gpu-id 0 \\\\\\n    2>&1 | tee results/exp001_olmo/run.log\\n\\necho \\\"=== All inference complete ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "02e9ef9e-52b0-4855-9ada-cbc1f7b3270b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/nlp_variance_gtheory\\\\n\\\\nYI_DIR=\\\\\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat\\\\\\\"\\\\nOLMO_DIR=\\\\\\\"/root/autodl-tmp/.hf_cache/allenai/OLMo-2-1124-7B-Instruct\\\\\\\"\\\\n\\\\n# Expected sizes (approximate, in MB)\\\\n# Yi: 4 shards, ~18GB total\\\\n# OLMo: 3 shards, ~14GB total\\\\n\\\\necho \\\\\\\"Waiting for model downloads to complete...\\\\\\\"\\\\nwhile true; do\\\\n    WGET_COUNT=$(ps aux | grep wget | grep -v grep | wc -l)\\\\n    YI_SIZE=$(du -sm \\\\\\\"$YI_DIR\\\\\\\" 2>/dev/null | awk '{print $1}')\\\\n    OLMO_SIZE=$(du -sm \\\\\\\"$OLMO_DIR\\\\\\\" 2>/dev/null | awk '{print $1}')\\\\n    echo \\\\\\\"[$(date +%H:%M:%S)] wget procs: $WGET_COUNT | Yi: ${YI_SIZE}MB | OLMo: ${OLMO_SIZE}MB\\\\\\\"\\\\n\\\\n    if [ \\\\\\\"$WGET_COUNT\\\\\\\" -eq 0 ]; then\\\\n        echo \\\\\\\"All downloads complete!\\\\\\\"\\\\n        break\\\\n    fi\\\\n    sleep 60\\\\ndone\\\\n\\\\n# Verify downloads\\\\nYI_SHARDS=$(ls \\\\\\\"$YI_DIR\\\\\\\"/model-*.safetensors 2>/dev/null | wc -l)\\\\nOLMO_SHARDS=$(ls \\\\\\\"$OLMO_DIR\\\\\\\"/model-*.safetensors 2>/dev/null | wc -l)\\\\necho \\\\\\\"Yi shards: $YI_SHARDS, OLMo shards: $OLMO_SHARDS\\\\\\\"\\\\n\\\\nif [ \\\\\\\"$YI_SHARDS\\\\\\\" -lt 4 ] || [ \\\\\\\"$OLMO_SHARDS\\\\\\\" -lt 3 ]; then\\\\n    echo \\\\\\\"ERROR: Not all model shards downloaded!\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\n# Run Yi first\\\\necho \\\\\\\"=== Starting Yi inference ===\\\\\\\"\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport VLLM_USE_V1=0\\\\npython3 -m src.inference.run_experiment \\\\\\\\\\\\n    --design results/design_yi.csv \\\\\\\\\\\\n    --items data/mmlu_items_exp001.json \\\\\\\\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\\\\\\\n    --output results/exp001_yi/results.jsonl \\\\\\\\\\\\n    --benchmark mmlu \\\\\\\\\\\\n    --gpu-id 0 \\\\\\\\\\\\n    2>&1 | tee results/exp001_yi/run.log\\\\n\\\\necho \\\\\\\"=== Yi complete, starting OLMo ===\\\\\\\"\\\\npython3 -m src.inference.run_experiment \\\\\\\\\\\\n    --design results/design_olmo.csv \\\\\\\\\\\\n    --items data/mmlu_items_exp001.json \\\\\\\\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\\\\\\\n    --output results/exp001_olmo/results.jsonl \\\\\\\\\\\\n    --benchmark mmlu \\\\\\\\\\\\n    --gpu-id 0 \\\\\\\\\\\\n    2>&1 | tee results/exp001_olmo/run.log\\\\n\\\\necho \\\\\\\"=== All inference complete ===\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/nlp_variance_gtheory\\n\\nYI_DIR=\\\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat\\\"\\nOLMO_DIR=\\\"/root/autodl-tmp/.hf_cache/allenai/OLMo-2-1124-7B-Instruct\\\"\\n\\n# Expected sizes (approximate, in MB)\\n# Yi: 4 shards, ~18GB total\\n# OLMo: 3 shards, ~14GB total\\n\\necho \\\"Waiting for model downloads to complete...\\\"\\nwhile true; do\\n    WGET_COUNT=$(ps aux | grep wget | grep -v grep | wc -l)\\n    YI_SIZE=$(du -sm \\\"$YI_DIR\\\" 2>/dev/null | awk '{print $1}')\\n    OLMO_SIZE=$(du -sm \\\"$OLMO_DIR\\\" 2>/dev/null | awk '{print $1}')\\n    echo \\\"[$(date +%H:%M:%S)] wget procs: $WGET_COUNT | Yi: ${YI_SIZE}MB | OLMo: ${OLMO_SIZE}MB\\\"\\n\\n    if [ \\\"$WGET_COUNT\\\" -eq 0 ]; then\\n        echo \\\"All downloads complete!\\\"\\n        break\\n    fi\\n    sleep 60\\ndone\\n\\n# Verify downloads\\nYI_SHARDS=$(ls \\\"$YI_DIR\\\"/model-*.safetensors 2>/dev/null | wc -l)\\nOLMO_SHARDS=$(ls \\\"$OLMO_DIR\\\"/model-*.safetensors 2>/dev/null | wc -l)\\necho \\\"Yi shards: $YI_SHARDS, OLMo shards: $OLMO_SHARDS\\\"\\n\\nif [ \\\"$YI_SHARDS\\\" -lt 4 ] || [ \\\"$OLMO_SHARDS\\\" -lt 3 ]; then\\n    echo \\\"ERROR: Not all model shards downloaded!\\\"\\n    exit 1\\nfi\\n\\n# Run Yi first\\necho \\\"=== Starting Yi inference ===\\\"\\nexport CUDA_VISIBLE_DEVICES=0\\nexport VLLM_USE_V1=0\\npython3 -m src.inference.run_experiment \\\\\\n    --design results/design_yi.csv \\\\\\n    --items data/mmlu_items_exp001.json \\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\n    --output results/exp001_yi/results.jsonl \\\\\\n    --benchmark mmlu \\\\\\n    --gpu-id 0 \\\\\\n    2>&1 | tee results/exp001_yi/run.log\\n\\necho \\\"=== Yi complete, starting OLMo ===\\\"\\npython3 -m src.inference.run_experiment \\\\\\n    --design results/design_olmo.csv \\\\\\n    --items data/mmlu_items_exp001.json \\\\\\n    --few-shot data/few_shot_exp001.json \\\\\\n    --output results/exp001_olmo/results.jsonl \\\\\\n    --benchmark mmlu \\\\\\n    --gpu-id 0 \\\\\\n    2>&1 | tee results/exp001_olmo/run.log\\n\\necho \\\"=== All inference complete ===\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T12:01:24.090Z_
+
+<details><summary>↩ Tool result · `toolu_01XAniRWSbWvrcRzodWA72B9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/auto_start.sh: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "98dfed64-9951-4f71-8585-0d17d40e40fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/auto_start.sh: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/auto_start.sh: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Found it at `/root/nlp_variance_gtheory/auto_start.sh`. Now I can see the current verification logic:
+
+```bash
+# Verify downloads
+YI_SHARDS=$(ls "$YI_DIR"/model-*.safetensors 2>/dev/null | wc -l)
+OLMO_SHARDS=$(ls "$OLMO_DIR"/model-*.safetensors 2>/dev/null | wc -l)
+echo "Yi shards: $YI_SHARDS, OLMo shards: $OLMO_SHARDS"
+
+
+```
+
+The script validates shard counts but doesn't check file sizes, so I need to add filesize validation after the shard count check. Yi-1.5-9B-Chat requires at least 17GB across its 4 shards, and OLMo-2-7B-Instruct needs at least 13GB across 3 shards.
+
+Adding filesize checks...
+
+Now I need to verify if the script is currently running as PID 7309.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "32e0370d-b167-4451-a576-f68a411d2a28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Qwer11PoK5J3RtfJuEvwR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1640,
+      "cache_read_input_tokens": 33712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+找到了。检查当前运行状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "c0149d0a-2d3d-45ce-a174-d28c75ab63a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Qwer11PoK5J3RtfJuEvwR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1640,
+      "cache_read_input_tokens": 33712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012oSZ6LNCCCZcyAL3sTDEgf`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "ps -p 7309 -o pid,cmd 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "928d0b21-6838-47ca-9143-859079ca1cd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Qwer11PoK5J3RtfJuEvwR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1640,
+      "cache_read_input_tokens": 33712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1640
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T12:01:39.527Z_
+
+<details><summary>↩ Tool result · `toolu_012oSZ6LNCCCZcyAL3sTDEgf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "57ad94ec-e546-4422-817d-a948431c108c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XMVJP7cR5zAyTFc7ns1dKb`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "ps -p 7309 -o pid,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "e2058918-f4f9-4eff-a381-fbd6dfc287c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRqVkL8YYeSrkSMnPxcVh4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 35352,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 517
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T12:01:41.911Z_
+
+<details><summary>↩ Tool result · `toolu_01XMVJP7cR5zAyTFc7ns1dKb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n  7309 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "5c99245e-e8d3-40c3-aaec-db72cb8105ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n  7309 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\\\\\"AUTO_PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n  7309 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018v4LeiTubojV5yjP1mMJyb`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "tail -20 /tmp/auto_start.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "c07764fb-755c-4d24-935c-2279ba372d22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KjyYDHSXLkuyRsLRDuvm6c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 35869,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T12:01:44.798Z_
+
+<details><summary>↩ Tool result · `toolu_018v4LeiTubojV5yjP1mMJyb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[19:41:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:42:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:43:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:44:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:45:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:46:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:47:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:48:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:49:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:50:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:51:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:52:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:53:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:54:47] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:55:47] wget procs: 7 | Yi: 3587MB | OLMo: 8015MB\\n[19:56:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:57:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:58:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:59:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[20:00:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "04cf49c8-bff4-4241-9245-3b760622483c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[19:41:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:42:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:43:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:44:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:45:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:46:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:47:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\\\n[19:48:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:49:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:50:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:51:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:52:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:53:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:54:47] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\\\n[19:55:47] wget procs: 7 | Yi: 3587MB | OLMo: 8015MB\\\\n[19:56:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n[19:57:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n[19:58:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n[19:59:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n[20:00:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[19:41:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:42:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:43:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:44:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:45:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:46:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:47:46] wget procs: 7 | Yi: 2563MB | OLMo: 7503MB\\n[19:48:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:49:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:50:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:51:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:52:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:53:46] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:54:47] wget procs: 7 | Yi: 3587MB | OLMo: 7503MB\\n[19:55:47] wget procs: 7 | Yi: 3587MB | OLMo: 8015MB\\n[19:56:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:57:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:58:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[19:59:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n[20:00:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The script is still in the download-waiting loop (wget procs: 6, still downloading). Good - the filesize check hasn't been reached yet. I can safely modify the auto_start.sh to add the filesize check.
+
+Let me write the modified script. The key section to modify is the "Verify downloads" part. I need to add filesize checks after the shard count checks.
+
+Current verification:
+```bash
+# Verify downloads
+YI_SHARDS=$(ls "$YI_DIR"/model-*.safetensors 2>/dev/null | wc -l)
+
+
+```
+
+Adding filesize validation...
+
+```
+Writing shell validation...
+```
+
+bash
+# Verify the download completed successfully
+if [ -f "$DOWNLOAD_FILE" ] && [ -s "$DOWNLOAD_FILE" ]; then
+    echo "Download verified successfully"
+    # Process the file
+else
+    echo "Download verification failed"
+    exit 1
+fi
+```
+
+Since bash parses the entire script into memory before execution, modifying the file won't affect the currently running process. I need to restart it to apply the changes.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "993b1e9f-6266-4e26-b75e-dd05d9b02be0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6rpd8x2mE4RdoZij8T5nj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 36102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 829
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+下载仍在进行（wget procs: 6），验证代码尚未执行。修改文件后需重启进程才能生效（bash 已将整个脚本加载到内存）。
+
+写入修改后的 `auto_start.sh`：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "f241c3f8-de50-4078-8fcd-90f9321c524d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6rpd8x2mE4RdoZij8T5nj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 36102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 829
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Y4CK8UAAW5yvzkXsEcvq3n`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "cat > /root/nlp_variance_gtheory/auto_start.sh << 'SCRIPT_EOF'\n#!/bin/bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/nlp_variance_gtheory\n\nYI_DIR=\"/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat\"\nOLMO_DIR=\"/root/autodl-tmp/.hf_cache/allenai/OLMo-2-1124-7B-Instruct\"\n\n# Expected sizes (approximate, in MB)\n# Yi: 4 shards, ~18GB total\n# OLMo: 3 shards, ~14GB total\n\necho \"Waiting for model downloads to complete...\"\nwhile true; do\n    WGET_COUNT=$(ps aux | grep wget | grep -v grep | wc -l)\n    YI_SIZE=$(du -sm \"$YI_DIR\" 2>/dev/null | awk '{print $1}')\n    OLMO_SIZE=$(du -sm \"$OLMO_DIR\" 2>/dev/null | awk '{print $1}')\n    echo \"[$(date +%H:%M:%S)] wget procs: $WGET_COUNT | Yi: ${YI_SIZE}MB | OLMo: ${OLMO_SIZE}MB\"\n\n    if [ \"$WGET_COUNT\" -eq 0 ]; then\n        echo \"All downloads complete!\"\n        break\n    fi\n    sleep 60\ndone\n\n# Verify downloads — shard count\nYI_SHARDS=$(ls \"$YI_DIR\"/model-*.safetensors 2>/dev/null | wc -l)\nOLMO_SHARDS=$(ls \"$OLMO_DIR\"/model-*.safetensors 2>/dev/null | wc -l)\necho \"Yi shards: $YI_SHARDS, OLMo shards: $OLMO_SHARDS\"\n\nif [ \"$YI_SHARDS\" -lt 4 ] || [ \"$OLMO_SHARDS\" -lt 3 ]; then\n    echo \"ERROR: Not all model shards downloaded!\"\n    exit 1\nfi\n\n# Verify downloads — filesize (catch truncated shards)\nYI_BYTES=$(du -sb \"$YI_DIR\" | cut -f1)\nOLMO_BYTES=$(du -sb \"$OLMO_DIR\" | cut -f1)\necho \"Yi size: ${YI_BYTES} bytes, OLMo size: ${OLMO_BYTES} bytes\"\n\nif [ \"${YI_BYTES:-0}\" -lt 17000000000 ]; then\n    echo \"ERROR: Yi model incomplete: ${YI_BYTES} bytes < 17GB threshold\"\n    exit 1\nfi\n\nif [ \"${OLMO_BYTES:-0}\" -lt 13000000000 ]; then\n    echo \"ERROR: OLMo model incomplete: ${OLMO_BYTES} bytes < 13GB threshold\"\n    exit 1\nfi\n\necho \"Model integrity check passed.\"\n\n# Run Yi first\necho \"=== Starting Yi inference ===\"\nexport CUDA_VISIBLE_DEVICES=0\nexport VLLM_USE_V1=0\npython3 -m src.inference.run_experiment \\\n    --design results/design_yi.csv \\\n    --items data/mmlu_items_exp001.json \\\n    --few-shot data/few_shot_exp001.json \\\n    --output results/exp001_yi/results.jsonl \\\n    --benchmark mmlu \\\n    --gpu-id 0 \\\n    2>&1 | tee results/exp001_yi/run.log\n\necho \"=== Yi complete, starting OLMo ===\"\npython3 -m src.inference.run_experiment \\\n    --design results/design_olmo.csv \\\n    --items data/mmlu_items_exp001.json \\\n    --few-shot data/few_shot_exp001.json \\\n    --output results/exp001_olmo/results.jsonl \\\n    --benchmark mmlu \\\n    --gpu-id 0 \\\n    2>&1 | tee results/exp001_olmo/run.log\n\necho \"=== All inference complete ===\"\nSCRIPT_EOF\necho \"Written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "7c385a51-738f-466e-84e5-36b114d60637",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N6rpd8x2mE4RdoZij8T5nj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 36102,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 829
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T12:02:29.099Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4CK8UAAW5yvzkXsEcvq3n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "3abca296-d4b6-4599-9a92-6a1f4c86b0a6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+文件已写入。现在杀掉旧进程并重启。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "71553c25-1836-4118-ba3d-fb47e3f12b13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SiHRHZjoLvWAY5xFyhuYm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 36931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0191gpSoohcKV5bLTMpTmoXy`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "kill 7309 2>/dev/null; sleep 1; ps -p 7309 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"KILLED\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "7cde837b-2aa0-4d32-ae93-0053beab0134",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SiHRHZjoLvWAY5xFyhuYm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2417,
+      "cache_read_input_tokens": 36931,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2417
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T12:02:36.761Z_
+
+<details><summary>↩ Tool result · `toolu_0191gpSoohcKV5bLTMpTmoXy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "5198cb92-8bd5-4b82-9ccf-24ecf1913233",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"KILLED\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"KILLED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016fFNw3VA7VVvwUajrWu4wD`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \"AUTO_PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "e2f0c1d1-852c-49a3-adca-3508a3e36353",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmjRqtLvCgaXE4JbnTHm1g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 39348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 227
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T12:03:09.996Z_
+
+<details><summary>↩ Tool result · `toolu_016fFNw3VA7VVvwUajrWu4wD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"'\\n\\nStdout:\\n\\nAUTO_PID=11066\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "1795ebf5-0d7f-4577-af01-0e0dbf24979c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\\\\\"AUTO_PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nAUTO_PID=11066\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"'\\n\\nStdout:\\n\\nAUTO_PID=11066\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+进程已重启，PID 11066。验证新进程正在运行且 filesize 检查已加入。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "d10a0b28-e67b-4180-878c-1f90fd059e40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vLjU3a9tJZGoEAqYtrGkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 39575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 281
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012orpfnfrF7G35xH7HB4ANg`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "ps -p 11066 -o pid,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "72e29206-9b6d-4e4c-a008-c9d896babcba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vLjU3a9tJZGoEAqYtrGkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 39575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 281
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T12:03:17.037Z_
+
+<details><summary>↩ Tool result · `toolu_012orpfnfrF7G35xH7HB4ANg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n 11066 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "f6900d2f-e1f5-4a17-829f-1ce07680dc0e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n 11066 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\\\\\"AUTO_PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID CMD\\n 11066 bash -c cd /root/nlp_variance_gtheory && nohup bash auto_start.sh > /tmp/auto_start.log 2>&1 & echo \\\"AUTO_PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DccsWFM2txDwDQhJvcijA3`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "tail -5 /tmp/auto_start.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "57d986c0-02ae-4582-9266-ced9a44250aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vLjU3a9tJZGoEAqYtrGkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 39575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 281
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T12:03:17.646Z_
+
+<details><summary>↩ Tool result · `toolu_01DccsWFM2txDwDQhJvcijA3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Waiting for model downloads to complete...\\n[20:02:40] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000[20:02:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "69349330-6792-4e0b-9700-dc9fbc616a5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Waiting for model downloads to complete...\\\\n[20:02:40] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000\\\\u0000[20:02:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Waiting for model downloads to complete...\\n[20:02:40] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000\\u0000[20:02:47] wget procs: 6 | Yi: 3511MB | OLMo: 8015MB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016P11YxbULRCHbLZvh3URDA`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "grep -n \"filesize\\|BYTES\\|17000000000\\|13000000000\" /root/nlp_variance_gtheory/auto_start.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "0dd6f5ba-9fe5-4085-9877-d531907201ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014vLjU3a9tJZGoEAqYtrGkQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 281,
+      "cache_read_input_tokens": 39575,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 281
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T12:03:18.136Z_
+
+<details><summary>↩ Tool result · `toolu_016P11YxbULRCHbLZvh3URDA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "371cb7ad-7a21-4111-8e43-07b8e4c62325",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014um8qvcyXppyP19wzGsbcM`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "grep -n \"BYTES\\|17000000000\\|13000000000\\|filesize\\|incomplete\" /root/nlp_variance_gtheory/auto_start.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "bb0f2e14-585a-4000-9046-3ff79d310329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0137fu4vp2CcGmxhPor1jDsr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16835,
+      "cache_read_input_tokens": 39856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16835
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T12:03:22.105Z_
+
+<details><summary>↩ Tool result · `toolu_014um8qvcyXppyP19wzGsbcM`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "2b4ba818-1442-4e4a-abbd-4a163cdcc0a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0137TyuTXJMX4LgohkK73PGs`</summary>
+
+```json
+{
+  "server": "westd-15695",
+  "command": "grep -n \"BYTES\" /root/nlp_variance_gtheory/auto_start.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "072b5595-5f47-474f-af64-96186d0e834d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qqg5wn4nyTs9QnJEUbtvj3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 220,
+      "cache_read_input_tokens": 56691,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 220
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T12:03:24.977Z_
+
+<details><summary>↩ Tool result · `toolu_0137TyuTXJMX4LgohkK73PGs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37:YI_BYTES=$(du -sb \\\"$YI_DIR\\\" | cut -f1)\\n38:OLMO_BYTES=$(du -sb \\\"$OLMO_DIR\\\" | cut -f1)\\n39:echo \\\"Yi size: ${YI_BYTES} bytes, OLMo size: ${OLMO_BYTES} bytes\\\"\\n41:if [ \\\"${YI_BYTES:-0}\\\" -lt 17000000000 ]; then\\n42:    echo \\\"ERROR: Yi model incomplete: ${YI_BYTES} bytes < 17GB threshold\\\"\\n46:if [ \\\"${OLMO_BYTES:-0}\\\" -lt 13000000000 ]; then\\n47:    echo \\\"ERROR: OLMo model incomplete: ${OLMO_BYTES} bytes < 13GB threshold\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "19775f85-790f-4de3-8c7e-07aeae83cb23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"37:YI_BYTES=$(du -sb \\\\\\\"$YI_DIR\\\\\\\" | cut -f1)\\\\n38:OLMO_BYTES=$(du -sb \\\\\\\"$OLMO_DIR\\\\\\\" | cut -f1)\\\\n39:echo \\\\\\\"Yi size: ${YI_BYTES} bytes, OLMo size: ${OLMO_BYTES} bytes\\\\\\\"\\\\n41:if [ \\\\\\\"${YI_BYTES:-0}\\\\\\\" -lt 17000000000 ]; then\\\\n42:    echo \\\\\\\"ERROR: Yi model incomplete: ${YI_BYTES} bytes < 17GB threshold\\\\\\\"\\\\n46:if [ \\\\\\\"${OLMO_BYTES:-0}\\\\\\\" -lt 13000000000 ]; then\\\\n47:    echo \\\\\\\"ERROR: OLMo model incomplete: ${OLMO_BYTES} bytes < 13GB threshold\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"37:YI_BYTES=$(du -sb \\\"$YI_DIR\\\" | cut -f1)\\n38:OLMO_BYTES=$(du -sb \\\"$OLMO_DIR\\\" | cut -f1)\\n39:echo \\\"Yi size: ${YI_BYTES} bytes, OLMo size: ${OLMO_BYTES} bytes\\\"\\n41:if [ \\\"${YI_BYTES:-0}\\\" -lt 17000000000 ]; then\\n42:    echo \\\"ERROR: Yi model incomplete: ${YI_BYTES} bytes < 17GB threshold\\\"\\n46:if [ \\\"${OLMO_BYTES:-0}\\\" -lt 13000000000 ]; then\\n47:    echo \\\"ERROR: OLMo model incomplete: ${OLMO_BYTES} bytes < 13GB threshold\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+两个 Fix 均已完成。
+
+**Fix (a)**: `_build_prompt` 对 `benchmark == "math"` 直接调用 `format_math_prompt()`，不依赖 `BENCHMARK_TEMPLATES["math"]`。`prompt_templates.py` 的 `try/except ImportError: pass` 虽然确实失败（`MATH_TEMPLATES` 是函数局部变量），但没有代码路径受影响。**安全，无需修复。**
+
+**Fix (b)**: `auto_start.sh` 已添加 filesize 检查（Yi ≥ 17GB, OLMo ≥ 13GB），位于 shard 数量检查之后。旧进程 PID 7309 已终止，新进程 PID 11066 已启动并正常运行在下载等待循环中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "uuid": "87e9afab-d4eb-4cba-891a-41a7cb4ada05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULGZmPgWjuF1isEHpqafp3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 56911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 405
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 63_
+
+两个 Fix 均已完成。
+
+**Fix (a)**: `_build_prompt` 对 `benchmark == "math"` 直接调用 `format_math_prompt()`，不依赖 `BENCHMARK_TEMPLATES["math"]`。`prompt_templates.py` 的 `try/except ImportError: pass` 虽然确实失败（`MATH_TEMPLATES` 是函数局部变量），但没有代码路径受影响。**安全，无需修复。**
+
+**Fix (b)**: `auto_start.sh` 已添加 filesize 检查（Yi ≥ 17GB, OLMo ≥ 13GB），位于 shard 数量检查之后。旧进程 PID 7309 已终止，新进程 PID 11066 已启动并正常运行在下载等待循环中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 189158,
+  "duration_api_ms": 153677,
+  "num_turns": 23,
+  "stop_reason": "end_turn",
+  "session_id": "59d4ea64-532b-461b-936c-91f9da7ec1c8",
+  "total_cost_usd": 0.7491007499999999,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 45475,
+    "cache_read_input_tokens": 629492,
+    "output_tokens": 5935,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45475,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 233,
+        "cache_read_input_tokens": 56911,
+        "cache_creation_input_tokens": 405,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 405
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1531,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016510000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 5935,
+      "cacheReadInputTokens": 629492,
+      "cacheCreationInputTokens": 45475,
+      "webSearchRequests": 0,
+      "costUSD": 0.7474497499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f593023d-5797-48e1-b0df-a6021623645f"
+}
+```
+
+</details>
+
+---

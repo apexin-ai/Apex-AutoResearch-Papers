@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp001_gemma",
+  "project": "nlp_variance_gtheory",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:00:51.314Z",
+    "updated_at": "2026-05-21T02:19:51.018Z",
+    "hypothesis": "Gemma-2-9b-it variance decomposition at full scale (1,296 conditions × 200 items) will show model-specific variance structure differences compared to Llama — enabling model-as-facet analysis (Claim 1 make-or-break)",
+    "parent": "exp001_llama",
+    "spec": {
+      "command": "python -m src.inference.run_experiment --design results/exp001_gemma/shards/shard_{0-3}.csv --gpu-id {0-3} (4 GPUs parallel, nohup)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items_exp001.json (200 items x 10 subjects)",
+      "data_count": 200,
+      "model_name": "google/gemma-2-9b-it",
+      "seed": "42,123,456,789,1024,2048",
+      "gpu": "cuda:0-3 (4x RTX PRO 6000 96GB)",
+      "checkpoint_source": "HuggingFace (pre-trained, no fine-tuning)",
+      "eval_data": "MMLU 200 items (10 subjects x 20 items)"
+    }
+  },
+  "timestamp": "2026-05-21T02:19:51.033133+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,263 @@
+{
+  "dataset": "A-4",
+  "description": "4 models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B) x bf16 only, fully crossed",
+  "n_observations": 345600,
+  "n_levels": {
+    "model": 4,
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean": 0.7014670138888889,
+  "total_variance": 0.2094116482511765,
+  "model_accuracies": {
+    "gemma-2-9b-it": 0.7311226851851852,
+    "llama-3.1-8b-instruct": 0.7108333333333333,
+    "mistral-7b-instruct-v0.3": 0.6375810185185186,
+    "qwen3-8b": 0.7263310185185186
+  },
+  "variance_components_ems": {
+    "residual": {
+      "estimate": 0.04112504957221074,
+      "pct": 19.546133489131964,
+      "ci_95_lower_pct": 17.079460634578474,
+      "ci_95_upper_pct": 21.66215216840251
+    },
+    "model:item_id": {
+      "estimate": 0.07077083602117985,
+      "pct": 33.63634141227101,
+      "ci_95_lower_pct": 28.403783030649297,
+      "ci_95_upper_pct": 37.86331353856019
+    },
+    "temperature:item_id": {
+      "estimate": 0.0013693394228968586,
+      "pct": 0.6508269638648393,
+      "ci_95_lower_pct": 0.42563847889720724,
+      "ci_95_upper_pct": 0.9052073107692409
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.0030141106077090168,
+      "pct": 1.432562608486166,
+      "ci_95_lower_pct": 1.1997864521761648,
+      "ci_95_upper_pct": 1.6734667379141035
+    },
+    "seed:item_id": {
+      "estimate": 0.002784839735601544,
+      "pct": 1.3235935222966497,
+      "ci_95_lower_pct": 1.0775488602242351,
+      "ci_95_upper_pct": 1.659477351049782
+    },
+    "ordering:item_id": {
+      "estimate": 0.001141425752529593,
+      "pct": 0.5425029357764493,
+      "ci_95_lower_pct": 0.4038321017699014,
+      "ci_95_upper_pct": 0.715915459839182
+    },
+    "item_id": {
+      "estimate": 0.0885143925028329,
+      "pct": 42.069593825824256,
+      "ci_95_lower_pct": 36.02887372118093,
+      "ci_95_upper_pct": 48.75752271653799
+    },
+    "model": {
+      "estimate": 0.0015346118057422435,
+      "pct": 0.7293785058268873,
+      "ci_95_lower_pct": 0.15658939133237854,
+      "ci_95_upper_pct": 2.0660753677152797
+    },
+    "temperature": {
+      "estimate": 1.6059073216196604e-05,
+      "pct": 0.0076326421988711255,
+      "ci_95_lower_pct": 0.0,
+      "ci_95_upper_pct": 0.04342851471429699
+    },
+    "prompt_template": {
+      "estimate": 2.6995267618958842e-05,
+      "pct": 0.012830455159172865,
+      "ci_95_lower_pct": 0.0014021098511543127,
+      "ci_95_upper_pct": 0.05270278488044489
+    },
+    "seed": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_95_lower_pct": 0.0,
+      "ci_95_upper_pct": 0.01548537425845651
+    },
+    "ordering": {
+      "estimate": 0.0,
+      "pct": 0.0,
+      "ci_95_lower_pct": 0.0,
+      "ci_95_upper_pct": 0.007840515340397881
+    },
+    "model:temperature": {
+      "estimate": 3.665065012416456e-05,
+      "pct": 0.017419516991280835,
+      "ci_95_lower_pct": null,
+      "ci_95_upper_pct": null
+    },
+    "model:prompt_template": {
+      "estimate": 4.183356297981031e-05,
+      "pct": 0.019882879530482366,
+      "ci_95_lower_pct": null,
+      "ci_95_upper_pct": null
+    },
+    "model:seed": {
+      "estimate": 1.9099509481868133e-05,
+      "pct": 0.009077717006858011,
+      "ci_95_lower_pct": null,
+      "ci_95_upper_pct": null
+    },
+    "model:ordering": {
+      "estimate": 4.678296197026591e-06,
+      "pct": 0.002223525635105138,
+      "ci_95_lower_pct": null,
+      "ci_95_upper_pct": null
+    }
+  },
+  "g_item": {
+    "g": 0.8200393953762789,
+    "ci_95": [
+      0.7816151334721506,
+      0.8608753262042315
+    ],
+    "sigma_tau": 0.0885143925028329,
+    "sigma_delta": 0.019424802860113846
+  },
+  "d_study_model_sweep": [
+    {
+      "n_models": 1,
+      "g_item": 0.549476,
+      "sigma_delta": 0.07257433
+    },
+    {
+      "n_models": 2,
+      "g_item": 0.70442,
+      "sigma_delta": 0.03714131
+    },
+    {
+      "n_models": 3,
+      "g_item": 0.777501,
+      "sigma_delta": 0.02533031
+    },
+    {
+      "n_models": 4,
+      "g_item": 0.820039,
+      "sigma_delta": 0.0194248
+    },
+    {
+      "n_models": 5,
+      "g_item": 0.847872,
+      "sigma_delta": 0.0158815
+    },
+    {
+      "n_models": 6,
+      "g_item": 0.867502,
+      "sigma_delta": 0.0135193
+    },
+    {
+      "n_models": 8,
+      "g_item": 0.893354,
+      "sigma_delta": 0.01056655
+    },
+    {
+      "n_models": 10,
+      "g_item": 0.909619,
+      "sigma_delta": 0.0087949
+    }
+  ],
+  "per_model_interaction_contribution": {
+    "gemma-2-9b-it": 23.95,
+    "llama-3.1-8b-instruct": 19.69,
+    "mistral-7b-instruct-v0.3": 29.25,
+    "qwen3-8b": 27.11
+  },
+  "bootstrap": {
+    "n_resamples": 200,
+    "seed": 42,
+    "method": "item cluster resampling (numpy 6D array)"
+  },
+  "anova_table": {
+    "model": {
+      "ss": 489.61375868055524,
+      "df": 3,
+      "ms": 163.20458622685175
+    },
+    "temperature": {
+      "ss": 5.3597395833333,
+      "df": 2,
+      "ms": 2.67986979166665
+    },
+    "prompt_template": {
+      "ss": 12.320581597222185,
+      "df": 5,
+      "ms": 2.464116319444437
+    },
+    "seed": {
+      "ss": 1.0343315972222258,
+      "df": 5,
+      "ms": 0.20686631944444517
+    },
+    "ordering": {
+      "ss": 0.47922164351851176,
+      "df": 3,
+      "ms": 0.15974054783950392
+    },
+    "item_id": {
+      "ss": 37117.26698784722,
+      "df": 199,
+      "ms": 186.51892958717198
+    },
+    "model:item_id": {
+      "ss": 18276.63334780098,
+      "df": 597,
+      "ms": 30.61412621072191
+    },
+    "model:temperature": {
+      "ss": 6.5799826388889,
+      "df": 6,
+      "ms": 1.0966637731481501
+    },
+    "model:prompt_template": {
+      "ss": 9.652925347222189,
+      "df": 15,
+      "ms": 0.6435283564814792
+    },
+    "model:seed": {
+      "ss": 4.742369791666678,
+      "df": 15,
+      "ms": 0.31615798611111184
+    },
+    "model:ordering": {
+      "ss": 1.279586226851866,
+      "df": 9,
+      "ms": 0.14217624742798513
+    },
+    "temperature:item_id": {
+      "ss": 330.28609374999894,
+      "df": 398,
+      "ms": 0.8298645571608013
+    },
+    "prompt_template:item_id": {
+      "ss": 904.6429600694455,
+      "df": 995,
+      "ms": 0.9091889045924075
+    },
+    "seed:item_id": {
+      "ss": 838.9430989583282,
+      "df": 995,
+      "ms": 0.8431588934254555
+    },
+    "ordering:item_id": {
+      "ss": 318.929921875002,
+      "df": 597,
+      "ms": 0.534220974664995
+    },
+    "residual": {
+      "ss": 14054.691316550881,
+      "df": 341755,
+      "ms": 0.04112504957221074
+    }
+  }
+}

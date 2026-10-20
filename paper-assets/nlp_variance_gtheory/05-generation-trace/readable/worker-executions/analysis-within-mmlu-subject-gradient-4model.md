@@ -1,0 +1,4003 @@
+# analysis within mmlu subject gradient 4model
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 84
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_analysis_within_mmlu_subject_gradient_4model_20260521T113035.log`
+- **Structured JSON:** [`f23897a893cc715a7cc2.json`](../../sessions/f2/f23897a893cc715a7cc2.json)
+
+## Before a recorded user message
+
+84 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f9acf9f2-8183-4101-a20c-78b63fbf8a42",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779378000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d48dbeaf-9422-4a1f-91c1-8dfe3675ff48",
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by examining the existing analysis code and data structure on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "f5907733-fa93-40b8-beb9-bf80952ea93c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PqFJVcTBsB7MbKgmW7AxN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12015,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12015
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Uc2TZyPFAu6M44ZBaK3AAS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "554fad1c-1d61-4be0-8556-cfaccacbf243",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017PqFJVcTBsB7MbKgmW7AxN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12015,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12015
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T11:30:47.417Z_
+
+<details><summary>↩ Tool result · `toolu_01Uc2TZyPFAu6M44ZBaK3AAS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "2a522e57-10e1-4c4a-874c-22f3e3661370",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by examining the existing analysis code and data structure on the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ea0ac325-27ce-48b3-9920-e749af1d6a7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeURQDiHuemavmXq96N53A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XT69MzHWFmBPbDc78isoqg`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001_llama/ /root/nlp_variance_gtheory/results/exp001_gemma/ /root/nlp_variance_gtheory/results/exp001_mistral/ /root/nlp_variance_gtheory/results/exp001_qwen/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ee8757c9-6892-481d-a692-6238b1cb0b6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeURQDiHuemavmXq96N53A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T11:30:52.073Z_
+
+<details><summary>↩ Tool result · `toolu_01XT69MzHWFmBPbDc78isoqg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "004dac2d-3a26-46c0-b81f-123c3aff9e68",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EzuFSiXvPRitodU7QADCnm`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -5 /root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "1263c5ad-7ce7-4277-bd56-25e80f63a4ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeURQDiHuemavmXq96N53A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AxCaQRhDrGG6znsEHYo6Zh`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "7e6eee15-0faf-4c80-9398-453cdcdb852e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeURQDiHuemavmXq96N53A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T11:30:53.754Z_
+
+<details><summary>↩ Tool result · `toolu_01EzuFSiXvPRitodU7QADCnm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "59c72217-9374-4f02-b8f1-353953a67850",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UNpNyG5eSEyJdKDL9NnzK9`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "4d67b8e6-2a0d-445b-9a61-488455dc8a34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeURQDiHuemavmXq96N53A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 889,
+      "cache_read_input_tokens": 23856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 889
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T11:30:54.272Z_
+
+<details><summary>↩ Tool result · `toolu_01AxCaQRhDrGG6znsEHYo6Zh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "8e538514-f95a-4c9b-9919-b490840e0b3a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\\\n\\\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\\\n        — per-benchmark variance components, G_item, D-study projections.\\\\n\\\\nFacets (7, within each benchmark):\\\\n  model, temperature, prompt_template, seed, ordering, item_id\\\\n  + all 2-way interactions. Residual absorbs >=3-way.\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Henderson Method I: SS -> EMS -> variance components.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, n_levels, effects\\\\n\\\\n\\\\n\\\\n\\\\n... [截断: 输出过长，省略 2863 字符] ...\\\\n\\\\n other) if other else 1\\\\n        non_item_error += est / divisor\\\\n\\\\n    for ni in range(1, max_items + 1):\\\\n        ratio = n_actual / ni\\\\n        sigma_delta_ni = non_item_error * ratio\\\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\\\n        if g >= target_g:\\\\n            return ni\\\\n    return None\\\\n\\\\n\\\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\\\\\", flush=True)\\\\n\\\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n    total_var = sum(vc.values())\\\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\\\n\\\\n    print(f\\\\\\\"  G_item = {g_item:.6f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\\\n\\\\n    return {\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_observations\\\\\\\": len(df_bm),\\\\n        \\\\\\\"n_levels\\\\\\\": {k: int(v) for k, v in n_levels.items()},\\\\n        \\\\\\\"grand_mean_accuracy\\\\\\\": round(float(df_bm[\\\\\\\"correct\\\\\\\"].mean()), 6),\\\\n        \\\\\\\"variance_components\\\\\\\": {\\\\n            k: {\\\\\\\"estimate\\\\\\\": round(v, 10), \\\\\\\"pct\\\\\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\\\n        },\\\\n        \\\\\\\"total_variance\\\\\\\": round(total_var, 10),\\\\n        \\\\\\\"G_item\\\\\\\": round(g_item, 6),\\\\n        \\\\\\\"sigma_tau\\\\\\\": round(sigma_tau, 10),\\\\n        \\\\\\\"sigma_delta\\\\\\\": round(sigma_delta, 10),\\\\n        \\\\\\\"d_study_curve\\\\\\\": d_curve,\\\\n        \\\\\\\"min_items_G_0.80\\\\\\\": min_80,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Per-benchmark Henderson I G-study for exp-002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\", help=\\\\\\\"Directory containing exp-002 JSONL files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Models: {sorted(df['model'].unique())}\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for bm in BENCHMARKS:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        if len(df_bm) == 0:\\\\n            print(f\\\\\\\"WARNING: no data for benchmark '{bm}', skipping\\\\\\\", flush=True)\\\\n            continue\\\\n        results[bm] = analyze_benchmark(df_bm, bm)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"gradient_check\\\\\\\": {\\\\n            bm: results[bm][\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n            for bm in results\\\\n        },\\\\n        \\\\\\\"g_item_by_benchmark\\\\\\\": {bm: results[bm][\\\\\\\"G_item\\\\\\\"] for bm in results},\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"per_benchmark_henderson_i_gstudy\\\\\\\",\\\\n        \\\\\\\"facets\\\\\\\": FACETS,\\\\n        \\\\\\\"benchmarks\\\\\\\": results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\\\\\", flush=True)\\\\n    for bm in results:\\\\n        r = results[bm]\\\\n        item_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        mi_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        min_n = r[\\\\\\\"min_items_G_0.80\\\\\\\"]\\\\n        print(f\\\\\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal runtime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T11:30:54.801Z_
+
+<details><summary>↩ Tool result · `toolu_01UNpNyG5eSEyJdKDL9NnzK9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bernoulli_adjustment.json\\nbf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbinary_simulation_recovery_matched.json\\nbootstrap_vs_jackknife.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\ndstudy_progressive_validation.json\\nexp001_llama_bf16only_5facet.json\\nexp001b_resampling_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nglmm_logistic_link.json\\nirt_vs_gtheory.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\nmodel_as_fixed_gstudy.json\\nsimulation_binary_recovery.json\\ntemp_stratified_seed.json\\ntemperature_stratified_analysis.json\\nwithin_mmlu_subject_gradient.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "d1ce79c9-ba6e-49de-80fd-4b4650b3bd15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bernoulli_adjustment.json\\\\nbf16_fp16_only_gstudy.json\\\\nbinary_data_limitation.json\\\\nbinary_simulation_recovery_matched.json\\\\nbootstrap_vs_jackknife.json\\\\ncross_model_2way_precision.csv\\\\ncross_model_2way_precision_meta.json\\\\ncross_model_3way_bf16.csv\\\\ncross_model_3way_bf16_meta.json\\\\ncross_model_4way_bf16.csv\\\\ncross_model_balanced.csv\\\\ncross_model_balanced.jsonl\\\\ncross_model_balanced_meta.json\\\\ncross_model_bootstrap.json\\\\ncross_model_g_coefficients.json\\\\ncross_model_gstudy.json\\\\ncross_model_llama_gemma.csv\\\\ncross_model_llama_gemma.jsonl\\\\ncross_model_reml.json\\\\ncross_model_reml_500iter.json\\\\ndataset_a4_gstudy.json\\\\ndataset_a_gstudy.json\\\\ndataset_b_gstudy.json\\\\ndstudy_progressive_validation.json\\\\nexp001_llama_bf16only_5facet.json\\\\nexp001b_resampling_gstudy.json\\\\nexp002_prep_report.md\\\\nfixed_vs_random_sensitivity.json\\\\nglmm_logistic_link.json\\\\nirt_vs_gtheory.json\\\\nleave_one_model_out.json\\\\nllama_full.csv\\\\nllama_precision_balanced.csv\\\\nllama_precision_balanced_meta.json\\\\nllama_single_model_gstudy.json\\\\nlomo_matched_spec.json\\\\nmodel_as_fixed_gstudy.json\\\\nsimulation_binary_recovery.json\\\\ntemp_stratified_seed.json\\\\ntemperature_stratified_analysis.json\\\\nwithin_mmlu_subject_gradient.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bernoulli_adjustment.json\\nbf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbinary_simulation_recovery_matched.json\\nbootstrap_vs_jackknife.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\ndstudy_progressive_validation.json\\nexp001_llama_bf16only_5facet.json\\nexp001b_resampling_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nglmm_logistic_link.json\\nirt_vs_gtheory.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\nmodel_as_fixed_gstudy.json\\nsimulation_binary_recovery.json\\ntemp_stratified_seed.json\\ntemperature_stratified_analysis.json\\nwithin_mmlu_subject_gradient.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the actual file structure for exp001 data and also look at the existing within_mmlu_subject_gradient.json for reference.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "3dd4de6d-ed72-45df-a846-2c80a402b755",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSEwhBuSFKNsW6oUChBGAo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5088,
+      "cache_read_input_tokens": 24745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+Let me find the actual data files and check the existing gradient analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "4908a100-939e-4e50-8861-92fe2264cda9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSEwhBuSFKNsW6oUChBGAo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5088,
+      "cache_read_input_tokens": 24745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018pvp4j4AQ9CPSBPN1KRyj9`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results -name \"shard_*.jsonl\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "9408bb38-a40d-4ad4-bc29-d678a214a08e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSEwhBuSFKNsW6oUChBGAo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5088,
+      "cache_read_input_tokens": 24745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JeR69Qc6DungGUs5p6AJB1`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/within_mmlu_subject_gradient.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "99250e94-1a9e-46c4-9b6d-ad70eebde387",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSEwhBuSFKNsW6oUChBGAo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5088,
+      "cache_read_input_tokens": 24745,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T11:31:00.397Z_
+
+<details><summary>↩ Tool result · `toolu_018pvp4j4AQ9CPSBPN1KRyj9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_resume.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_original.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_merged_with_dup.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_patch.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_before_patch.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "c57773bc-312b-4d77-9385-35bf2d1f73f7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_resume.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_original.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_merged_with_dup.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_patch.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_before_patch.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_0.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_2.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_3.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_1.jsonl\\\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_0.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001_gemma_fp32/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_resume.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_original.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_merged_with_dup.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_patch.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3_before_patch.jsonl\\n/root/nlp_variance_gtheory/results/exp001_qwen/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample1/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample2/shard_0.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_2.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_3.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_1.jsonl\\n/root/nlp_variance_gtheory/results/exp001b/sample3/shard_0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T11:31:00.979Z_
+
+<details><summary>↩ Tool result · `toolu_01JeR69Qc6DungGUs5p6AJB1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Within-MMLU subject gradient: 7-facet Henderson I G-study per subject on 4-model balanced bf16 data\\\",\\n  \\\"data_source\\\": \\\"cross_model_4way_bf16.csv\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"precision\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"n_subjects\\\": 10,\\n  \\\"subjects\\\": {\\n    \\\"abstract_algebra\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.5102,\\n      \\\"item_id_pct\\\": 19.56,\\n      \\\"model_pct\\\": 0.76,\\n      \\\"model_item_pct\\\": 42.12,\\n      \\\"G_item\\\": 0.0,\\n      \\\"total_variance\\\": 0.25521734,\\n      \\\"variance_components\\\": {\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.10749151,\\n          \\\"pct\\\": 42.12\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.07763739,\\n          \\\"pct\\\": 30.42\\n        },\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.04991694,\\n          \\\"pct\\\": 19.56\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00697143,\\n          \\\"pct\\\": 2.73\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00449063,\\n          \\\"pct\\\": 1.76\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00334432,\\n          \\\"pct\\\": 1.31\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00193005,\\n          \\\"pct\\\": 0.76\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00191847,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00075194,\\n          \\\"pct\\\": 0.29\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.0002316,\\n          \\\"pct\\\": 0.09\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 0.00021247,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 0.00013331,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 7.742e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 6.728e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 4.257e-05,\\n          \\\"pct\\\": 0.02\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    },\\n    \\\"clinical_knowledge\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.6204,\\n      \\\"item_id_pct\\\": 57.68,\\n      \\\"model_pct\\\": 0.75,\\n      \\\"model_item_pct\\\": 31.98,\\n      \\\"G_item\\\": 0.0,\\n      \\\"total_variance\\\": 0.24414242,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.14082408,\\n          \\\"pct\\\": 57.68\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.07807292,\\n          \\\"pct\\\": 31.98\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.01923997,\\n          \\\"pct\\\": 7.88\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00183775,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00172011,\\n          \\\"pct\\\": 0.7\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00110842,\\n          \\\"pct\\\": 0.45\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00057772,\\n          \\\"pct\\\": 0.24\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00030192,\\n          \\\"pct\\\": 0.12\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00020617,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"model:seed\\\": {\\n\\n\\n... [截断: 输出过长，省略 18587 字符] ...\\n\\n\\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    },\\n    \\\"world_religions\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.8609,\\n      \\\"item_id_pct\\\": 46.15,\\n      \\\"model_pct\\\": 0.18,\\n      \\\"model_item_pct\\\": 22.47,\\n      \\\"G_item\\\": 0.0142,\\n      \\\"total_variance\\\": 0.12328252,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0568979,\\n          \\\"pct\\\": 46.15\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.03060577,\\n          \\\"pct\\\": 24.83\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.02770021,\\n          \\\"pct\\\": 22.47\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00247636,\\n          \\\"pct\\\": 2.01\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00220206,\\n          \\\"pct\\\": 1.79\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00152785,\\n          \\\"pct\\\": 1.24\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00054725,\\n          \\\"pct\\\": 0.44\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00039486,\\n          \\\"pct\\\": 0.32\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.00032394,\\n          \\\"pct\\\": 0.26\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00022202,\\n          \\\"pct\\\": 0.18\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 0.00010694,\\n          \\\"pct\\\": 0.09\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 9.206e-05,\\n          \\\"pct\\\": 0.07\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 6.037e-05,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 5.002e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 4.665e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 1.658e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.169e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    }\\n  },\\n  \\\"correlations\\\": {\\n    \\\"pearson_accuracy_vs_item_id\\\": {\\n      \\\"r\\\": 0.3007,\\n      \\\"p\\\": 0.3985\\n    },\\n    \\\"pearson_accuracy_vs_model_item\\\": {\\n      \\\"r\\\": -0.1083,\\n      \\\"p\\\": 0.7658\\n    },\\n    \\\"pearson_accuracy_vs_model\\\": {\\n      \\\"r\\\": 0.0627,\\n      \\\"p\\\": 0.8634\\n    },\\n    \\\"pearson_accuracy_vs_G_item\\\": {\\n      \\\"r\\\": -0.521,\\n      \\\"p\\\": 0.1225\\n    },\\n    \\\"spearman_accuracy_vs_item_id\\\": {\\n      \\\"rho\\\": 0.1636,\\n      \\\"p\\\": 0.6515\\n    },\\n    \\\"spearman_accuracy_vs_model_item\\\": {\\n      \\\"rho\\\": -0.1273,\\n      \\\"p\\\": 0.7261\\n    }\\n  },\\n  \\\"gradient_summary\\\": {\\n    \\\"item_id_pct_range\\\": 50.25,\\n    \\\"item_id_pct_mean\\\": 35.37,\\n    \\\"item_id_pct_std\\\": 16.86,\\n    \\\"item_id_pct_cv\\\": 0.477,\\n    \\\"model_item_pct_range\\\": 43.24\\n  },\\n  \\\"gradient_exists\\\": true,\\n  \\\"conclusion\\\": \\\"item_id variance share ranges from 7.5% to 57.7% across 10 MMLU subjects (CV=0.48). Pearson r(accuracy, item_id%)=0.301 (p=0.399), Spearman rho=0.164 (p=0.651). A clear gradient exists: subjects with higher accuracy tend to have higher item_id dominance. model\\\\u00d7item interaction ranges from 22.5% to 65.7%, r(accuracy, model\\\\u00d7item%)=-0.108 (p=0.766).\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "dc6ec227-2293-4b3b-b812-c2b823d046bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"description\\\\\\\": \\\\\\\"Within-MMLU subject gradient: 7-facet Henderson I G-study per subject on 4-model balanced bf16 data\\\\\\\",\\\\n  \\\\\\\"data_source\\\\\\\": \\\\\\\"cross_model_4way_bf16.csv\\\\\\\",\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"precision\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"n_subjects\\\\\\\": 10,\\\\n  \\\\\\\"subjects\\\\\\\": {\\\\n    \\\\\\\"abstract_algebra\\\\\\\": {\\\\n      \\\\\\\"n_items\\\\\\\": 20,\\\\n      \\\\\\\"n_observations\\\\\\\": 34560,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5102,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 19.56,\\\\n      \\\\\\\"model_pct\\\\\\\": 0.76,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 42.12,\\\\n      \\\\\\\"G_item\\\\\\\": 0.0,\\\\n      \\\\\\\"total_variance\\\\\\\": 0.25521734,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.10749151,\\\\n          \\\\\\\"pct\\\\\\\": 42.12\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.07763739,\\\\n          \\\\\\\"pct\\\\\\\": 30.42\\\\n        },\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.04991694,\\\\n          \\\\\\\"pct\\\\\\\": 19.56\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00697143,\\\\n          \\\\\\\"pct\\\\\\\": 2.73\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00449063,\\\\n          \\\\\\\"pct\\\\\\\": 1.76\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00334432,\\\\n          \\\\\\\"pct\\\\\\\": 1.31\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00193005,\\\\n          \\\\\\\"pct\\\\\\\": 0.76\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00191847,\\\\n          \\\\\\\"pct\\\\\\\": 0.75\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00075194,\\\\n          \\\\\\\"pct\\\\\\\": 0.29\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0002316,\\\\n          \\\\\\\"pct\\\\\\\": 0.09\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00021247,\\\\n          \\\\\\\"pct\\\\\\\": 0.08\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00013331,\\\\n          \\\\\\\"pct\\\\\\\": 0.05\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 7.742e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.03\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.728e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.03\\\\n        },\\\\n        \\\\\\\"model:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 4.257e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.02\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 3,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 20\\\\n      }\\\\n    },\\\\n    \\\\\\\"clinical_knowledge\\\\\\\": {\\\\n      \\\\\\\"n_items\\\\\\\": 20,\\\\n      \\\\\\\"n_observations\\\\\\\": 34560,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6204,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 57.68,\\\\n      \\\\\\\"model_pct\\\\\\\": 0.75,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.98,\\\\n      \\\\\\\"G_item\\\\\\\": 0.0,\\\\n      \\\\\\\"total_variance\\\\\\\": 0.24414242,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.14082408,\\\\n          \\\\\\\"pct\\\\\\\": 57.68\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.07807292,\\\\n          \\\\\\\"pct\\\\\\\": 31.98\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.01923997,\\\\n          \\\\\\\"pct\\\\\\\": 7.88\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00183775,\\\\n          \\\\\\\"pct\\\\\\\": 0.75\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00172011,\\\\n          \\\\\\\"pct\\\\\\\": 0.7\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00110842,\\\\n          \\\\\\\"pct\\\\\\\": 0.45\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00057772,\\\\n          \\\\\\\"pct\\\\\\\": 0.24\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00030192,\\\\n          \\\\\\\"pct\\\\\\\": 0.12\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00020617,\\\\n          \\\\\\\"pct\\\\\\\": 0.08\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n\\\\n\\\\n... [截断: 输出过长，省略 18587 字符] ...\\\\n\\\\n\\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 3,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 20\\\\n      }\\\\n    },\\\\n    \\\\\\\"world_religions\\\\\\\": {\\\\n      \\\\\\\"n_items\\\\\\\": 20,\\\\n      \\\\\\\"n_observations\\\\\\\": 34560,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.8609,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 46.15,\\\\n      \\\\\\\"model_pct\\\\\\\": 0.18,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 22.47,\\\\n      \\\\\\\"G_item\\\\\\\": 0.0142,\\\\n      \\\\\\\"total_variance\\\\\\\": 0.12328252,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0568979,\\\\n          \\\\\\\"pct\\\\\\\": 46.15\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.03060577,\\\\n          \\\\\\\"pct\\\\\\\": 24.83\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.02770021,\\\\n          \\\\\\\"pct\\\\\\\": 22.47\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00247636,\\\\n          \\\\\\\"pct\\\\\\\": 2.01\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00220206,\\\\n          \\\\\\\"pct\\\\\\\": 1.79\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00152785,\\\\n          \\\\\\\"pct\\\\\\\": 1.24\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00054725,\\\\n          \\\\\\\"pct\\\\\\\": 0.44\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00039486,\\\\n          \\\\\\\"pct\\\\\\\": 0.32\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00032394,\\\\n          \\\\\\\"pct\\\\\\\": 0.26\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00022202,\\\\n          \\\\\\\"pct\\\\\\\": 0.18\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00010694,\\\\n          \\\\\\\"pct\\\\\\\": 0.09\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 9.206e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.07\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.037e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.05\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 5.002e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.04\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 4.665e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.04\\\\n        },\\\\n        \\\\\\\"model:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.658e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.01\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.169e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.01\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 3,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 20\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"correlations\\\\\\\": {\\\\n    \\\\\\\"pearson_accuracy_vs_item_id\\\\\\\": {\\\\n      \\\\\\\"r\\\\\\\": 0.3007,\\\\n      \\\\\\\"p\\\\\\\": 0.3985\\\\n    },\\\\n    \\\\\\\"pearson_accuracy_vs_model_item\\\\\\\": {\\\\n      \\\\\\\"r\\\\\\\": -0.1083,\\\\n      \\\\\\\"p\\\\\\\": 0.7658\\\\n    },\\\\n    \\\\\\\"pearson_accuracy_vs_model\\\\\\\": {\\\\n      \\\\\\\"r\\\\\\\": 0.0627,\\\\n      \\\\\\\"p\\\\\\\": 0.8634\\\\n    },\\\\n    \\\\\\\"pearson_accuracy_vs_G_item\\\\\\\": {\\\\n      \\\\\\\"r\\\\\\\": -0.521,\\\\n      \\\\\\\"p\\\\\\\": 0.1225\\\\n    },\\\\n    \\\\\\\"spearman_accuracy_vs_item_id\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.1636,\\\\n      \\\\\\\"p\\\\\\\": 0.6515\\\\n    },\\\\n    \\\\\\\"spearman_accuracy_vs_model_item\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.1273,\\\\n      \\\\\\\"p\\\\\\\": 0.7261\\\\n    }\\\\n  },\\\\n  \\\\\\\"gradient_summary\\\\\\\": {\\\\n    \\\\\\\"item_id_pct_range\\\\\\\": 50.25,\\\\n    \\\\\\\"item_id_pct_mean\\\\\\\": 35.37,\\\\n    \\\\\\\"item_id_pct_std\\\\\\\": 16.86,\\\\n    \\\\\\\"item_id_pct_cv\\\\\\\": 0.477,\\\\n    \\\\\\\"model_item_pct_range\\\\\\\": 43.24\\\\n  },\\\\n  \\\\\\\"gradient_exists\\\\\\\": true,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"item_id variance share ranges from 7.5% to 57.7% across 10 MMLU subjects (CV=0.48). Pearson r(accuracy, item_id%)=0.301 (p=0.399), Spearman rho=0.164 (p=0.651). A clear gradient exists: subjects with higher accuracy tend to have higher item_id dominance. model\\\\\\\\u00d7item interaction ranges from 22.5% to 65.7%, r(accuracy, model\\\\\\\\u00d7item%)=-0.108 (p=0.766).\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"description\\\": \\\"Within-MMLU subject gradient: 7-facet Henderson I G-study per subject on 4-model balanced bf16 data\\\",\\n  \\\"data_source\\\": \\\"cross_model_4way_bf16.csv\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"precision\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"n_subjects\\\": 10,\\n  \\\"subjects\\\": {\\n    \\\"abstract_algebra\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.5102,\\n      \\\"item_id_pct\\\": 19.56,\\n      \\\"model_pct\\\": 0.76,\\n      \\\"model_item_pct\\\": 42.12,\\n      \\\"G_item\\\": 0.0,\\n      \\\"total_variance\\\": 0.25521734,\\n      \\\"variance_components\\\": {\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.10749151,\\n          \\\"pct\\\": 42.12\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.07763739,\\n          \\\"pct\\\": 30.42\\n        },\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.04991694,\\n          \\\"pct\\\": 19.56\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00697143,\\n          \\\"pct\\\": 2.73\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00449063,\\n          \\\"pct\\\": 1.76\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00334432,\\n          \\\"pct\\\": 1.31\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00193005,\\n          \\\"pct\\\": 0.76\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00191847,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00075194,\\n          \\\"pct\\\": 0.29\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.0002316,\\n          \\\"pct\\\": 0.09\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 0.00021247,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 0.00013331,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 7.742e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 6.728e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 4.257e-05,\\n          \\\"pct\\\": 0.02\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    },\\n    \\\"clinical_knowledge\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.6204,\\n      \\\"item_id_pct\\\": 57.68,\\n      \\\"model_pct\\\": 0.75,\\n      \\\"model_item_pct\\\": 31.98,\\n      \\\"G_item\\\": 0.0,\\n      \\\"total_variance\\\": 0.24414242,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.14082408,\\n          \\\"pct\\\": 57.68\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.07807292,\\n          \\\"pct\\\": 31.98\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.01923997,\\n          \\\"pct\\\": 7.88\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00183775,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00172011,\\n          \\\"pct\\\": 0.7\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00110842,\\n          \\\"pct\\\": 0.45\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00057772,\\n          \\\"pct\\\": 0.24\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00030192,\\n          \\\"pct\\\": 0.12\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00020617,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"model:seed\\\": {\\n\\n\\n... [截断: 输出过长，省略 18587 字符] ...\\n\\n\\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    },\\n    \\\"world_religions\\\": {\\n      \\\"n_items\\\": 20,\\n      \\\"n_observations\\\": 34560,\\n      \\\"accuracy\\\": 0.8609,\\n      \\\"item_id_pct\\\": 46.15,\\n      \\\"model_pct\\\": 0.18,\\n      \\\"model_item_pct\\\": 22.47,\\n      \\\"G_item\\\": 0.0142,\\n      \\\"total_variance\\\": 0.12328252,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0568979,\\n          \\\"pct\\\": 46.15\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.03060577,\\n          \\\"pct\\\": 24.83\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.02770021,\\n          \\\"pct\\\": 22.47\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.00247636,\\n          \\\"pct\\\": 2.01\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00220206,\\n          \\\"pct\\\": 1.79\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.00152785,\\n          \\\"pct\\\": 1.24\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.00054725,\\n          \\\"pct\\\": 0.44\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.00039486,\\n          \\\"pct\\\": 0.32\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.00032394,\\n          \\\"pct\\\": 0.26\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.00022202,\\n          \\\"pct\\\": 0.18\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 0.00010694,\\n          \\\"pct\\\": 0.09\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 9.206e-05,\\n          \\\"pct\\\": 0.07\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 6.037e-05,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 5.002e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 4.665e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 1.658e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.169e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      }\\n    }\\n  },\\n  \\\"correlations\\\": {\\n    \\\"pearson_accuracy_vs_item_id\\\": {\\n      \\\"r\\\": 0.3007,\\n      \\\"p\\\": 0.3985\\n    },\\n    \\\"pearson_accuracy_vs_model_item\\\": {\\n      \\\"r\\\": -0.1083,\\n      \\\"p\\\": 0.7658\\n    },\\n    \\\"pearson_accuracy_vs_model\\\": {\\n      \\\"r\\\": 0.0627,\\n      \\\"p\\\": 0.8634\\n    },\\n    \\\"pearson_accuracy_vs_G_item\\\": {\\n      \\\"r\\\": -0.521,\\n      \\\"p\\\": 0.1225\\n    },\\n    \\\"spearman_accuracy_vs_item_id\\\": {\\n      \\\"rho\\\": 0.1636,\\n      \\\"p\\\": 0.6515\\n    },\\n    \\\"spearman_accuracy_vs_model_item\\\": {\\n      \\\"rho\\\": -0.1273,\\n      \\\"p\\\": 0.7261\\n    }\\n  },\\n  \\\"gradient_summary\\\": {\\n    \\\"item_id_pct_range\\\": 50.25,\\n    \\\"item_id_pct_mean\\\": 35.37,\\n    \\\"item_id_pct_std\\\": 16.86,\\n    \\\"item_id_pct_cv\\\": 0.477,\\n    \\\"model_item_pct_range\\\": 43.24\\n  },\\n  \\\"gradient_exists\\\": true,\\n  \\\"conclusion\\\": \\\"item_id variance share ranges from 7.5% to 57.7% across 10 MMLU subjects (CV=0.48). Pearson r(accuracy, item_id%)=0.301 (p=0.399), Spearman rho=0.164 (p=0.651). A clear gradient exists: subjects with higher accuracy tend to have higher item_id dominance. model\\\\u00d7item interaction ranges from 22.5% to 65.7%, r(accuracy, model\\\\u00d7item%)=-0.108 (p=0.766).\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see that the existing `within_mmlu_subject_gradient.json` already uses 4 models and `cross_model_4way_bf16.csv` as data source. Let me check what data that CSV has and compare with what the user is asking. The user says the existing one is "Llama only" but the JSON shows `"model": 4` levels. Let me check the data more carefully.
+
+Wait, looking at the JSON more carefully, it has `n_levels.model: 4` for all subjects, so it IS already a 4-model analysis. 
+
+But the user is saying the existing one at `results/analysis/within_mmlu_subject_gradient.json` is Llama only, while this new request is for a 4-model version. There's a discrepancy here - either the user is mistaken about what's in that file, or they're referring to a different version. Let me look at the actual raw data the user wants me to use from exp-001 JSONL files, since the existing analysis uses `cross_model_4way_bf16.csv` which might be preprocessed or from a different experiment.
+
+I need to check what shard files are actually available. Looking at the directory structure, I can see exp001_gemma and exp001_mistral directories with shard files, but I'm not seeing exp001_llama in the results yet - let me verify the exact directory listing to make sure I have all four models available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "256df24f-9b2b-4632-9310-892a8b4045e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgHCVbF8hokjHVy4h2wbKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 29833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+I notice no `exp001_llama` directory in the find results. Let me check that and the data structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "feb413e4-77c1-4a55-99bc-0fe2656bbcd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgHCVbF8hokjHVy4h2wbKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 29833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TxtVApWw8XX48WS6fpAX8m`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "fcf7c30b-0c23-4d1f-a436-5ff4e4cc004f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgHCVbF8hokjHVy4h2wbKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 29833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T11:31:20.196Z_
+
+<details><summary>↩ Tool result · `toolu_01TxtVApWw8XX48WS6fpAX8m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nfigures\\nfloat32_results.jsonl\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "4b04546e-5bd0-460c-a92a-3c72de69072e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_results.jsonl\\\\nanalysis\\\\nbf16_eager_results.jsonl\\\\nd_study_results.json\\\\nd_study_results_text.json\\\\ndesign_matrix_exp001_full.csv\\\\ndryrun_exp001.jsonl\\\\nexp001_gemma\\\\nexp001_gemma_fp32\\\\nexp001_llama\\\\nexp001_mistral\\\\nexp001_pilot\\\\nexp001_qwen\\\\nexp001b\\\\nexp002\\\\nexp002_pilot\\\\nfigures\\\\nfloat32_results.jsonl\\\\nsanity_check.json\\\\nvariance_components.json\\\\nvariance_components_text.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nfigures\\nfloat32_results.jsonl\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UJLqJUkiFwwVHZnaXnjwwH`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -2 /root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "629148c3-1787-47cb-8409-d706b3113203",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AgHCVbF8hokjHVy4h2wbKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 29833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5894
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T11:31:21.043Z_
+
+<details><summary>↩ Tool result · `toolu_01UJLqJUkiFwwVHZnaXnjwwH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 3191, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"B\\\", \\\"predicted_answer\\\": \\\"B\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 310.63, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" B\\\": 0.0, \\\"\\\": -Infinity}}\\n{\\\"condition_id\\\": 3191, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"C\\\\n\\\\nLet G be a group and H be a normal subgroup of G.\\\", \\\"predicted_answer\\\": \\\"C\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 1, \\\"latency_ms\\\": 310.63, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" C\\\": 0.0, \\\"\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "79f1b38a-7736-4191-827e-f0fc46105d86",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 3191, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.3, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 2048, \\\\\\\"ordering\\\\\\\": 3, \\\\\\\"generated_text\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"B\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 310.63, \\\\\\\"answer_logprob\\\\\\\": 0.0, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" B\\\\\\\": 0.0, \\\\\\\"\\\\\\\": -Infinity}}\\\\n{\\\\\\\"condition_id\\\\\\\": 3191, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_14\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.3, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 2048, \\\\\\\"ordering\\\\\\\": 3, \\\\\\\"generated_text\\\\\\\": \\\\\\\"C\\\\\\\\n\\\\\\\\nLet G be a group and H be a normal subgroup of G.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"C\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"C\\\\\\\", \\\\\\\"correct\\\\\\\": 1, \\\\\\\"latency_ms\\\\\\\": 310.63, \\\\\\\"answer_logprob\\\\\\\": 0.0, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" C\\\\\\\": 0.0, \\\\\\\"\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 3191, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"B\\\", \\\"predicted_answer\\\": \\\"B\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 310.63, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" B\\\": 0.0, \\\"\\\": -Infinity}}\\n{\\\"condition_id\\\": 3191, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"C\\\\n\\\\nLet G be a group and H be a normal subgroup of G.\\\", \\\"predicted_answer\\\": \\\"C\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 1, \\\"latency_ms\\\": 310.63, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" C\\\": 0.0, \\\"\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the data structure. The field is `correct` (not `binary_correct` as the user mentioned). Let me also check the Llama data and see the subjects.
+
+Also note that Gemma data has `precision: bfloat16` - there's also an `exp001_gemma_fp32` folder. 
+
+Let me check the Llama data and also check what subjects are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "6b06db9a-53cb-4415-8225-baa5d003d39d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZVnCfFGkkVsDjdqqMThfQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2002,
+      "cache_read_input_tokens": 35727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DUfgHu7WWfVaWkgrsQz4qs`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001_llama/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ac5f5d6a-544e-4235-81fb-61da71362093",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZVnCfFGkkVsDjdqqMThfQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2002,
+      "cache_read_input_tokens": 35727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T11:31:26.387Z_
+
+<details><summary>↩ Tool result · `toolu_01DUfgHu7WWfVaWkgrsQz4qs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"llama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "67d93be6-ffa7-44be-97c1-e25a18cc1f50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_shard_0.jsonl\\\\nllama_shard_1.jsonl\\\\nllama_shard_2.jsonl\\\\nllama_shard_3.jsonl\\\\nshards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"llama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FHBdSezhFruPGRXAXbKEYT`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "4559252d-4cef-48d9-828a-53cafec1c448",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZVnCfFGkkVsDjdqqMThfQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2002,
+      "cache_read_input_tokens": 35727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FDpEBZK8nFmW6XC8htCcwN`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "2aac5416-1977-4f9a-9af6-b27fc784d053",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JZVnCfFGkkVsDjdqqMThfQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2002,
+      "cache_read_input_tokens": 35727,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2002
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T11:31:27.477Z_
+
+<details><summary>↩ Tool result · `toolu_01FHBdSezhFruPGRXAXbKEYT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "eeae1e64-cb88-4e5a-a8d7-e2b386a77a83",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/nlp_variance_gtheory/results/exp001_llama/shard_0.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T11:31:28.003Z_
+
+<details><summary>↩ Tool result · `toolu_01FDpEBZK8nFmW6XC8htCcwN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 4487, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"mistralai/Mistral-7B-Instruct-v0.3\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"A\\\\n\\\\nLet G be a group with |G| = 15\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 28.05, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" A\\\": 0.0, \\\"\\\": -Infinity, \\\"[INST]\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ea92fe69-2ab5-45d8-87fe-f5fc224a44d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 4487, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"mistralai/Mistral-7B-Instruct-v0.3\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.3, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 2048, \\\\\\\"ordering\\\\\\\": 3, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nLet G be a group with |G| = 15\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 28.05, \\\\\\\"answer_logprob\\\\\\\": 0.0, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": 0.0, \\\\\\\"\\\\\\\": -Infinity, \\\\\\\"[INST]\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 4487, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"mistralai/Mistral-7B-Instruct-v0.3\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"A\\\\n\\\\nLet G be a group with |G| = 15\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 28.05, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" A\\\": 0.0, \\\"\\\": -Infinity, \\\"[INST]\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Llama files are named `llama_shard_*.jsonl` not `shard_*.jsonl`. Let me check those.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "c4988b8e-e1d6-45c2-8432-80b9e28deb77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Llama files have different naming. Let me check the data and also understand the existing balanced CSV.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "e2305026-08f3-4a6b-8d6f-7c569506b235",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nb6R59pJMP1CXq4cAuujHi`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "fc548ada-8fad-4432-a32a-f68c2d77abb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T11:31:32.752Z_
+
+<details><summary>↩ Tool result · `toolu_01Nb6R59pJMP1CXq4cAuujHi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "e97a4d62-ccf4-4d1d-9fee-b41eb2b809d9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 2033, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.7, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 1024, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.53, \\\\\\\"answer_logprob\\\\\\\": -0.6409203410148621, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.6409203410148621, \\\\\\\" C\\\\\\\": -1.3560044765472412, \\\\\\\" B\\\\\\\": -1.5347745418548584, \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\": -Infinity, \\\\\\\"!\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RLt4bN8WSiGPvbV8Dqt49m`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "c84df254-2410-4133-93bc-cbfad7cb879b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T11:31:33.694Z_
+
+<details><summary>↩ Tool result · `toolu_01RLt4bN8WSiGPvbV8Dqt49m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 599, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"Qwen/Qwen3-8B\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | The set of all real numbers is a field.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 44.46, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" A\\\": 0.0, \\\"#\\\": -Infinity, \\\"!\\\": -Infinity, \\\"$\\\": -Infinity, \\\"\\\\\\\"\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "6f191906-0b6f-47b8-a6ff-8d332e33b8fd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 599, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-8B\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.3, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 2048, \\\\\\\"ordering\\\\\\\": 3, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nStatement 1 | The set of all real numbers is a field.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 44.46, \\\\\\\"answer_logprob\\\\\\\": 0.0, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": 0.0, \\\\\\\"#\\\\\\\": -Infinity, \\\\\\\"!\\\\\\\": -Infinity, \\\\\\\"$\\\\\\\": -Infinity, \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 599, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"Qwen/Qwen3-8B\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.3, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 2048, \\\"ordering\\\": 3, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | The set of all real numbers is a field.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 44.46, \\\"answer_logprob\\\": 0.0, \\\"top_logprobs\\\": {\\\" A\\\": 0.0, \\\"#\\\": -Infinity, \\\"!\\\": -Infinity, \\\"$\\\": -Infinity, \\\"\\\\\\\"\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012bW9x6uhmCQJQw9kxMeQ1n`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "0aac4045-de0d-42be-a246-83947cd42052",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AQQB9iZx6b2H5ScARCUXXu`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -2 /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "775c5bfc-f457-4942-a0a0-1dfe6f8cc7c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fja5XDd4ewLfTr4vbEcWcK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 37729,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T11:31:34.655Z_
+
+<details><summary>↩ Tool result · `toolu_012bW9x6uhmCQJQw9kxMeQ1n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1121525 /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "83efbc2d-f757-4e31-8afd-c1834ce13106",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1121525 /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"1121525 /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T11:31:35.174Z_
+
+<details><summary>↩ Tool result · `toolu_01AQQB9iZx6b2H5ScARCUXXu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\"A\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "759d9a15-311d-4318-a874-6a12e5b6b2de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\\\\\"A\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\"A\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The existing `cross_model_4way_bf16.csv` already has 1.1M+ records with all 4 models, bf16 only, and has normalized model names. The existing `within_mmlu_subject_gradient.json` was already built from this data with 4 models.
+
+Wait - the user says "那个是 Llama only" but it clearly shows `model: 4`. Either the user is confused, or there was an earlier version that was Llama only.
+
+Regardless, the user wants me to do this analysis. 
+
+Looking at the existing analysis, it uses `cross_model_4way_bf16.csv` with only bfloat16 precision, so precision is constant throughout. The JSON lists 7 facets including precision, but the n_levels only shows 6 - model, temperature, prompt_template, seed, ordering, and item_id - suggesting precision was dropped from the actual analysis since it has no variation.
+
+The user's request mentions a `binary_correct` field, but the data actually contains `correct` as a 0/1 binary variable. Looking at what they're asking for: merge 4 models grouped by subject, apply Henderson Method I variance decomposition per subject, output to a specific JSON format in `results/exp001_analysis/`. The existing analysis lives in `results/analysis/`, so this appears to be a different output location or iteration.
+
+The existing JSON has some issues—all G_item values are essentially zero, which seems problematic, and it lists `precision` as a facet despite only having bf16 data. I think the user wants a clean rerun using the raw exp-001 JSONL files directly. I'll load all 4 models' data from their exp001 directories, filter to bf16 only (since that's what all models have), and use 6 facets: model, temperature, prompt_template, seed, ordering, and item_id. The response variable is `correct`, and I'll compute the variance decomposition separately for each subject.
+
+Now I'm working through the analysis pipeline: computing item percentages and model-by-item percentages, calculating G_item and accuracy metrics, classifying items as STEM or humanities, and generating a baseline with all subjects merged. I need to figure out the data subset strategy since the models have different precision options available—Llama and Mistral have both bf16 and fp16, Gemma is bf16-only, and there's a separate fp32 directory for Gemma to consider.
+
+The most practical approach is to standardize on bf16 across all four models since they all support it, which keeps precision constant and removes it from the facet analysis. I'll write a script that loads the raw JSONL files from exp001 for each model, filters to bf16 only, and determines what temperature, prompt, seed, and ordering combinations are available to establish a balanced experimental design.
+
+I need to identify the common factor levels across all models and then apply Henderson I generalizability analysis per subject. Looking at the ten MMLU subjects available, I can categorize them into STEM (abstract algebra, college chemistry, machine learning, formal logic) and humanities/social sciences (moral scenarios, world religions, professional psychology, clinical knowledge, high school geography, econometrics). Looking at the official MMLU categorization, formal_logic actually falls under humanities rather than STEM, so I should align with that standard taxonomy. For this analysis though, a straightforward STEM versus non-STEM split seems more useful—keeping abstract_algebra, college_chemistry, and machine_learning as STEM, with everything else grouped as non-STEM. I could also present both the standard breakdown and the binary split to show whether there's a performance gradient across categories.
+
+Now I'm writing a script to load the data and compute these metrics, using the Henderson implementation that's already available. Since the raw JSONL files contain over 930K records, I'll need to handle the data loading carefully, though modern systems should have enough RAM to manage it. I could alternatively use the existing balanced CSV file if it matches what's needed, but I'll stick with the raw JSONL as requested.
+
+Writing the analysis script...
+
+Looking at the facets the user specified, I notice precision is listed but the bf16-only design means it has no variation. I should work with 6 facets instead and note that precision is held constant. Though checking the model directories, some models might have both bf16 and fp32 variants available, so I need to decide whether to use bf16 only for consistency or include multiple precisions if they're available across all four models.
+
+I'll stick with bf16 only for the cleanest, most balanced design across all models.
+
+Since this script needs to handle the complexity of loading data, filtering by precision, and running the gradient analysis per MMLU subject, I should write it as a proper script file rather than a one-liner. I'm structuring it to load the exp-001 raw JSONL data from all four models, filter to bf16 only, apply Henderson Method I per subject, and output the gradient analysis results.
+
+Writing the analysis script... Writing data loading logic...
+
+Now I'm realizing I need to be more careful about which files actually exist—the Qwen directory has multiple variants of shard_3, so I should stick to just the clean shard_0 through shard_3 files. More importantly, for Henderson Method I to work with the existing formula, I need perfectly balanced data across all four models with matching temperatures, prompt templates, seeds, orderings, and items. Let me verify what factor levels each model actually has since they should all align from the exp-001 design.
+
+Writing the script to handle this... I see—the residual component gets included because its key is literally "residual", and when calculating the divisor for it, the product ends up being 1 since residual isn't tracked in n_levels, so the full residual variance contributes directly to sigma_delta without any scaling factor.
+
+Now I'm reconsidering the G-theory framework here: the generalizability coefficient should be the item variance divided by the sum of item variance and the error variance, where error variance includes both the residual and any interactions involving the item facet. I'm realizing the residual variance calculation in the code is incorrect—it's not being divided by the product of all non-item facet levels like it should be. The residual term needs to account for the full denominator across all other facets, not just treat it as having a divisor of 1. code has a bug!
+
+Wait, let me re-read the code more carefully. For the residual case, `other` becomes just `["residual"]`, which gives a divisor of 1 — that's incorrect. The residual variance should actually be divided by the product of all non-item facet levels, which explains why G_item was coming out as zero or nearly zero.
+
+In the Henderson Method, the residual absorbs all higher-order interactions and sampling error. For binary data in a fully-crossed design, it's dominated by the Bernoulli variance. When I compute G_item, I need to divide each interaction term by the product of levels for only the non-item facets involved. Let me fix the script to handle this correctly. I'm realizing the residual term in Henderson's decomposition already captures the per-observation error across all facets, so I need to divide it by the product of all non-item facet sample sizes. This bug in the existing code would explain why G_item keeps coming out as zero. Looking at the abstract_algebra numbers, the item variance estimate is around 0.05 while the residual is 0.08, which suggests the calculation is getting the denominator wrong. I'm finishing the G calculation and getting 0.3163, but the existing result shows G_item as 0. That's strange—let me check the actual within_mmlu analysis code rather than assuming it matches per_benchmark_gstudy.py. Actually, I should just write my own clean implementation based on the Henderson approach with the correct G_item formula. Looking back at the compute_g_item logic, I need to verify how it handles the "model:item_id" component—specifically whether "item_id" appears in the parts list to trigger the condition.
+
+Now I'm tracing through the actual divisor calculations: for "model:item_id" it divides by 4, for "seed:item_id" it divides by 6, but the residual component gets added as-is without being divided by the product of non-item facet levels, which is making sigma_delta much larger than expected.
+
+The fix is to divide the residual by the full product of all non-item facet dimensions (4 × 3 × 6 × 6 × 4 = 1728), which brings the corrected sigma_delta down to about 0.0303 and yields G ≈ 0.6.
+
+Now I'm second-guessing the G-theory formula itself—let me reconsider how variance components should be weighted in the relative error variance. For a fully crossed design, each component involving the object of measurement gets divided by the number of conditions for the other facets in that component, and the residual gets divided by the product of all non-object facet sizes.
+
+I'm realizing there's likely a bug in the existing code's G_item calculation, so I'll need to fix that. But first, I should clarify what the residual actually captures in Henderson Method I—with six facets, it's absorbing all the higher-order interactions beyond the main effects and two-way interactions that are explicitly estimated.
+
+For the G coefficient calculation, the residual term needs to be divided by the product of all non-person facet levels to get the proper per-item relative error contribution, since we can't separate out which higher-order interactions involve the item facet when they're all lumped together.
+
+My approach is sound, so I'll move forward with the script. I need to account for 6 facets since precision is held constant at bf16—the facets are model, temperature, prompt_template, seed, ordering, and item_id. Let me check the existing within_mmlu analysis to see how the gradient summary metrics and G_item values were calculated, since those results showed some unexpected patterns.
+
+Writing the analysis script... Writing the analysis script...
+
+Now I'm categorizing the subjects into STEM and humanities groups for the gradient summary—STEM includes abstract algebra, college chemistry, and machine learning, while humanities covers formal logic, moral scenarios, and world religions. I'll compute separate means for each category to show how item difficulty varies across these domains. I'm settling on the standard MMLU category breakdown for STEM and Humanities, then I need to write a comprehensive analysis script that handles the data carefully—making sure to use only the correct shard files for each model, normalize names properly, verify the experimental design is balanced, and compute the Henderson Method I gradient correctly.
+
+Writing the analysis script... Loading data files from disk...
+
+Now I'm finishing the data loading by concatenating all the frames and filtering to only bfloat16 precision records. After that, I'm normalizing the model names using a mapping function and converting the facet columns to strings so they're consistent for downstream processing. Then I'm moving into a function that will balance the dataset by finding which facet level combinations exist across all models.
+
+For the balancing step, I'm identifying the common levels for each non-model facet by computing the intersection of unique values across all models, then filtering the dataframe to keep only rows that match these common levels. This ensures every model has the same experimental conditions represented. After filtering, I'm verifying the balance by checking the counts per subject.
+
+Now I'm moving into the Henderson Method I implementation, which computes variance components from the sum of squares and expected mean squares. I'm starting by calculating the grand mean and setting up the main effects calculation.
+
+Computing interaction effects... Calculating residual sum of squares and degrees of freedom, then computing variance components for the interaction terms and main effects by comparing mean squares to residual variance. Writing variance component calculation... Writing analysis function... Writing main analysis loop... Writing the output JSON...
+
+Now I'm thinking about how to get this script onto the server—I could write it directly to a file using SSH with a heredoc approach rather than trying to paste the whole thing at once.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "24256ee6-8b5b-4596-96dc-b19edb4a243d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS6LNabBTVJNtHvSqdtq4b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1727,
+      "cache_read_input_tokens": 38853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Data: `correct` field (not `binary_correct`), Llama files named `llama_shard_N.jsonl`. Existing `cross_model_4way_bf16.csv` has ~1.1M records already balanced. Let me check the existing within_mmlu analysis to understand what's already done, then write the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ccbe76fc-e123-4d03-910e-6df2130c0e24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS6LNabBTVJNtHvSqdtq4b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1727,
+      "cache_read_input_tokens": 38853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B6TPoCvasXz1UzRPDut24z`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "3e04e79c-93c8-45ab-95d6-90599c797518",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS6LNabBTVJNtHvSqdtq4b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1727,
+      "cache_read_input_tokens": 38853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T11:34:48.723Z_
+
+<details><summary>↩ Tool result · `toolu_01B6TPoCvasXz1UzRPDut24z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "e30fc58e-cead-45b5-8c1e-e5985fe90f31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 2033, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.7, \\\\\\\"top_p\\\\\\\": 0.9, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 1024, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 24.53, \\\\\\\"answer_logprob\\\\\\\": -0.6409203410148621, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.6409203410148621, \\\\\\\" C\\\\\\\": -1.3560044765472412, \\\\\\\" B\\\\\\\": -1.5347745418548584, \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\": -Infinity, \\\\\\\"!\\\\\\\": -Infinity}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 2033, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.7, \\\"top_p\\\": 0.9, \\\"prompt_template\\\": 1, \\\"seed\\\": 1024, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nThe following are multiple choice questions (with answers) about abstract algebra.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"latency_ms\\\": 24.53, \\\"answer_logprob\\\": -0.6409203410148621, \\\"top_logprobs\\\": {\\\" A\\\": -0.6409203410148621, \\\" C\\\": -1.3560044765472412, \\\" B\\\": -1.5347745418548584, \\\"\\\\\\\"\\\": -Infinity, \\\"!\\\": -Infinity}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ETuRyMTroQ83wYfg9DtGYq`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "4195ad1a-9270-48dc-8c94-2592fd8fcac3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS6LNabBTVJNtHvSqdtq4b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1727,
+      "cache_read_input_tokens": 38853,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T11:34:50.083Z_
+
+<details><summary>↩ Tool result · `toolu_01ETuRyMTroQ83wYfg9DtGYq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n   239200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "6ca85cba-6b25-42b3-9bfc-4576cbee3c26",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\\\n   239200 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_1.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_2.jsonl\\n    59800 /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_3.jsonl\\n   239200 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Llama has 239,200 records with bf16 and fp16 (and maybe fp32). Let me check what precisions each model has.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "fac66101-bbad-4771-86dc-2b16f8da3768",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fmiub2rLrCzW5mo4rkvBhk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12849,
+      "cache_read_input_tokens": 40580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0172ERHj5xrMuEC6aoSnEGxV`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_json('/root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl',lines=True); print('Llama precisions:',df['precision'].unique()); print('temps:',sorted(df['temperature'].unique())); print('prompts:',sorted(df['prompt_template'].unique())); print('seeds:',sorted(df['seed'].unique())); print('orderings:',sorted(df['ordering'].unique())); print('subjects:',sorted(df['subject'].unique()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "7e684cf9-732d-4553-bb59-cf8cce2c061c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fmiub2rLrCzW5mo4rkvBhk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12849,
+      "cache_read_input_tokens": 40580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T11:34:55.463Z_
+
+<details><summary>↩ Tool result · `toolu_0172ERHj5xrMuEC6aoSnEGxV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "8e962f64-63a7-488f-af47-6343c2366c8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y2J7TgvRDdpQVFBsEapU63`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_json('/root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl',lines=True); print('Gemma precisions:',df['precision'].unique()); print('temps:',sorted(df['temperature'].unique())); print('prompts:',sorted(df['prompt_template'].unique())); print('seeds:',sorted(df['seed'].unique())); print('orderings:',sorted(df['ordering'].unique()))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "540e8d4c-03f9-4bbc-a181-f66b778b307b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fmiub2rLrCzW5mo4rkvBhk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12849,
+      "cache_read_input_tokens": 40580,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12849
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T11:34:56.761Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2J7TgvRDdpQVFBsEapU63`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "209078ec-9266-4b7b-9696-f573c106cf79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use semicolons in ssh_read_only. Let me use python3 -c with only one print statement, or grep for the precision values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "9f436624-642f-4b63-9a5c-7d2cd5ecc36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqzFGmPSYQeHGBMXbfmSnA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 53429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BJ7hyYFnfgHMmxHbeHopsz`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_llama/llama_shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "57fa0776-bad3-4063-b60f-94e26bbbf5bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqzFGmPSYQeHGBMXbfmSnA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 53429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T11:35:01.293Z_
+
+<details><summary>↩ Tool result · `toolu_01BJ7hyYFnfgHMmxHbeHopsz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "f6388e9f-e299-4205-a67c-eb508b65f6ed",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SFD1J9FDX5NyRsdJVwfALU`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_gemma/shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "3664b302-59fc-4544-8014-3cbc3dd0e5af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqzFGmPSYQeHGBMXbfmSnA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 53429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T11:35:01.758Z_
+
+<details><summary>↩ Tool result · `toolu_01SFD1J9FDX5NyRsdJVwfALU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "8f30ef94-a865-492a-b2fa-10d7a14d5a54",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CKnTtjjLgjyeyEQutLt7bw`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_mistral/shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "9cc5c71e-43ee-4351-82cd-b3f7045b933c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqzFGmPSYQeHGBMXbfmSnA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 53429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T11:35:02.718Z_
+
+<details><summary>↩ Tool result · `toolu_01CKnTtjjLgjyeyEQutLt7bw`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ba5227ba-65c2-4ae9-bd15-09d1aa657395",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019UmVanhk8V4j6hnLkkUzgv`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -o '\"precision\": \"[^\"]*\"' /root/nlp_variance_gtheory/results/exp001_qwen/shard_0.jsonl | sort -u"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "1ebfbffe-4ca0-4474-bcb3-13e50db6b268",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqzFGmPSYQeHGBMXbfmSnA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 718,
+      "cache_read_input_tokens": 53429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 718
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T11:35:03.276Z_
+
+<details><summary>↩ Tool result · `toolu_019UmVanhk8V4j6hnLkkUzgv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "8c74cea5-a7c8-4e58-970d-392dcce10d3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Can't use pipes either. Let me just check the existing balanced CSV since it's already been preprocessed. The `cross_model_4way_bf16.csv` has 1.1M records, all bf16, 4 models. I have a sample of the header and data from it. Let me just use it directly instead of loading the raw JSONL.
+
+Actually, let me check what facet levels are in the CSV and whether the existing `within_mmlu_subject_gradient.json` already has the 4-model data or if the user truly needs a new analysis.
+
+Looking at the existing json:
+- `data_source: cross_model_4way_bf16.csv`
+
+
+- The analysis already has 4 models, 3 temperature levels, 6 prompt templates, 6 seeds, 4 orderings, and 20 item IDs across 10 subjects
+
+So the existing analysis is already a 4-model version, not Llama-only as the user mentioned. But they're asking for a new analysis in `results/exp001_analysis/`, so I should proceed with creating that.
+
+The main issues with the existing analysis are the G_item values being near zero due to a computation bug, and the output format not matching what the user wants. I'll write a fresh script that uses the raw exp-001 JSONL data and produces the correct JSON format they specified.
+
+I need to decide whether to use the existing balanced CSV or load from raw JSONL files. The user specifically said to use all 4-model data from exp-001, so I should work with the raw JSONL. The tricky part is handling the balanced design intersection properly, but I can work through that.
+
+Actually, the CSV is already cleaned, balanced, and has normalized model names - it's the same exp-001 data the user asked for, just preprocessed. Using it directly would be much more efficient than reprocessing the raw JSONL files. Let me verify what columns are in the CSV first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "d06a32ab-fa0d-4d64-8a07-1b29392e623e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJdiT4WCRybgCY81tYtvL3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 990,
+      "cache_read_input_tokens": 54147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 990
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+I have enough context. The existing `cross_model_4way_bf16.csv` already has the 4-model balanced bf16 data (1.1M records). The existing `within_mmlu_subject_gradient.json` used this data but has a G_item computation bug (residual not divided by non-item facet level product). I'll write and run a clean script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "5cc8dcdb-5693-40ee-96af-6a5654292e83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJdiT4WCRybgCY81tYtvL3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 990,
+      "cache_read_input_tokens": 54147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 990
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WfrwoW6u7ZLPFAn1pupEvy`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -3 /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "83e4be01-2372-4307-942f-1267f1a18e5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJdiT4WCRybgCY81tYtvL3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 990,
+      "cache_read_input_tokens": 54147,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 990
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T11:35:24.462Z_
+
+<details><summary>↩ Tool result · `toolu_01WfrwoW6u7ZLPFAn1pupEvy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\"A\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "3a7f5f16-8b16-474a-ab8d-073237cf6444",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\\\\\"A\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"condition_id,item_id,subject,model,precision,temperature,top_p,prompt_template,seed,ordering,generated_text,predicted_answer,gold_answer,correct,latency_ms,answer_logprob,top_logprobs\\n2033,abstract_algebra_81,abstract_algebra,llama-3.1-8b-instruct,bfloat16,0.7,0.9,1,1024,1,\\\"A\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the CSV has all the fields I need. Model names are already normalized (e.g., "llama-3.1-8b-instruct"). Let me now write the script.
+
+I'll write a Python script that:
+1. Loads the CSV (faster than loading all JSONL files)
+2. Runs Henderson Method I per subject (using 6 facets: model, temperature, prompt_template, seed, ordering, item_id)
+3. Computes correct G_item
+4. Outputs the JSON in the format the user wants
+
+Let me write the script now and deploy it to the server.
+
+I need to map the CSV model names to the display names the user wants:
+
+
+- "llama-3.1-8b-instruct" -> "Llama-3.1-8B"
+- "gemma" variants -> "Gemma-2-9B"
+- "mistral" variants -> "Mistral-7B"
+- "qwen" variants -> "Qwen3-8B"
+
+I'll check what model names are actually in the CSV and handle the mapping in the script, then deploy and run it via SSH.
+
+Writing the Python script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "d033dda2-d550-4ec3-bcd4-43ced2deaa32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SicESAEaVLfTWJ22s1G6RC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 55137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Now I'll write and deploy the analysis script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "fbdd924f-e716-4e8d-9684-31c8e149b8f1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SicESAEaVLfTWJ22s1G6RC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 55137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0149RD1p8gjm6qDqhYpWyAmU`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat << 'SCRIPT_EOF' > /root/nlp_variance_gtheory/scripts/within_mmlu_gradient_4model.py\n\"\"\"Within-MMLU Subject-Level Gradient (4 models, bf16-only, Henderson Method I)\n\nUses pre-balanced cross_model_4way_bf16.csv from exp-001 data.\nOutput: results/exp001_analysis/within_mmlu_subject_gradient_4model.json\n\"\"\"\n\nimport json\nimport time\nfrom itertools import combinations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\nSTEM = {\"abstract_algebra\", \"college_chemistry\", \"machine_learning\"}\nHUMANITIES = {\"formal_logic\", \"moral_scenarios\", \"world_religions\"}\n\nMODEL_DISPLAY = {\n    \"llama-3.1-8b-instruct\": \"Llama-3.1-8B\",\n    \"gemma-2-9b-it\": \"Gemma-2-9B\",\n    \"mistral-7b-instruct-v0.3\": \"Mistral-7B\",\n    \"qwen3-8b\": \"Qwen3-8B\",\n}\n\n\ndef compute_henderson_i(df, response, facets):\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n\n    effects = {}\n\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n        vc[key] = max(0.0, raw)\n\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        interaction_contrib = 0.0\n        for fj in facets:\n            if fj == fi:\n                continue\n            int_key = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\n            interaction_contrib += coeff_ij * vc[int_key]\n        raw = (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\n        vc[fi] = max(0.0, raw)\n\n    vc[\"residual\"] = ms_res\n    return vc, n_levels, effects\n\n\ndef compute_g_item(vc, n_levels):\n    \"\"\"G coefficient for item_id as object of measurement.\n    \n    sigma_delta = sum of all item-involving interactions / their non-item divisors\n                + residual / product of ALL non-item facet levels.\n    \"\"\"\n    sigma_tau = vc.get(\"item_id\", 0)\n\n    non_item_facets = [f for f in FACETS if f != \"item_id\"]\n    n_non_item_product = prod(n_levels[f] for f in non_item_facets)\n\n    sigma_delta = 0.0\n    for key, est in vc.items():\n        if key == \"item_id\":\n            continue\n        parts = key.split(\":\")\n        if \"item_id\" in parts:\n            other = [p for p in parts if p != \"item_id\"]\n            divisor = prod(n_levels[f] for f in other) if other else 1\n            sigma_delta += est / divisor\n        elif key == \"residual\":\n            sigma_delta += est / n_non_item_product\n\n    g = sigma_tau / (sigma_tau + sigma_delta) if (sigma_tau + sigma_delta) > 0 else 0.0\n    return round(g, 4), round(sigma_tau, 10), round(sigma_delta, 10)\n\n\ndef analyze_subject(df_subj):\n    vc, n_levels, effects = compute_henderson_i(df_subj, \"correct\", FACETS)\n    total_var = sum(vc.values())\n\n    item_pct = vc.get(\"item_id\", 0) / total_var * 100 if total_var > 0 else 0\n    mi_key = \"model:item_id\"\n    mi_pct = vc.get(mi_key, 0) / total_var * 100 if total_var > 0 else 0\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\n    accuracy = float(df_subj[\"correct\"].mean())\n\n    return {\n        \"n_records\": len(df_subj),\n        \"n_items\": int(n_levels[\"item_id\"]),\n        \"accuracy\": round(accuracy, 4),\n        \"item_id_pct\": round(item_pct, 2),\n        \"model_item_pct\": round(mi_pct, 2),\n        \"g_item\": g_item,\n        \"total_variance\": round(total_var, 8),\n        \"n_levels\": {k: int(v) for k, v in n_levels.items()},\n        \"variance_components\": {\n            k: {\"estimate\": round(v, 10), \"pct\": round(v / total_var * 100, 2) if total_var > 0 else 0}\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\n        },\n    }\n\n\ndef main():\n    t0 = time.time()\n\n    csv_path = \"/root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv\"\n    print(f\"Loading {csv_path}...\")\n    df = pd.read_csv(csv_path, low_memory=False)\n    print(f\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\")\n\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n\n    models_raw = sorted(df[\"model\"].unique())\n    print(f\"Models: {models_raw}\")\n    subjects = sorted(df[\"subject\"].unique())\n    print(f\"Subjects ({len(subjects)}): {subjects}\")\n\n    results = {}\n    for subj in subjects:\n        df_subj = df[df[\"subject\"] == subj].reset_index(drop=True)\n        print(f\"\\n--- {subj} ({len(df_subj)} obs) ---\", flush=True)\n        r = analyze_subject(df_subj)\n        results[subj] = r\n        print(f\"  item_id%={r['item_id_pct']:.2f}  model:item%={r['model_item_pct']:.2f}  \"\n              f\"G_item={r['g_item']:.4f}  acc={r['accuracy']:.4f}\")\n\n    print(f\"\\n--- ALL SUBJECTS MERGED ({len(df)} obs) ---\", flush=True)\n    all_result = analyze_subject(df)\n    print(f\"  item_id%={all_result['item_id_pct']:.2f}  model:item%={all_result['model_item_pct']:.2f}  \"\n          f\"G_item={all_result['g_item']:.4f}\")\n\n    item_pcts = {s: results[s][\"item_id_pct\"] for s in subjects}\n    sorted_subjects = sorted(subjects, key=lambda s: -item_pcts[s])\n    stem_pcts = [item_pcts[s] for s in subjects if s in STEM]\n    hum_pcts = [item_pcts[s] for s in subjects if s in HUMANITIES]\n\n    models_display = [MODEL_DISPLAY.get(m, m) for m in models_raw]\n\n    output = {\n        \"analysis\": \"within_mmlu_subject_gradient_4model\",\n        \"models\": models_display,\n        \"design\": \"bf16-only balanced subset across 4 models\",\n        \"facets\": FACETS,\n        \"data_source\": \"cross_model_4way_bf16.csv (derived from exp-001 4-model JSONL)\",\n        \"subjects\": {s: results[s] for s in sorted_subjects},\n        \"all_subjects_baseline\": all_result,\n        \"gradient_summary\": {\n            \"max_item_id_pct\": round(max(item_pcts.values()), 2),\n            \"min_item_id_pct\": round(min(item_pcts.values()), 2),\n            \"range\": round(max(item_pcts.values()) - min(item_pcts.values()), 2),\n            \"stem_mean\": round(float(np.mean(stem_pcts)), 2) if stem_pcts else None,\n            \"humanities_mean\": round(float(np.mean(hum_pcts)), 2) if hum_pcts else None,\n            \"stem_subjects\": sorted(STEM),\n            \"humanities_subjects\": sorted(HUMANITIES),\n            \"ranking_by_item_id_pct\": sorted_subjects,\n        },\n    }\n\n    out_path = Path(\"/root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\")\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(str(out_path), \"w\") as f:\n        json.dump(output, f, indent=2, default=str)\n\n    print(f\"\\n{'='*70}\")\n    print(f\"{'Subject':<25} {'item_id%':>9} {'m:item%':>8} {'G_item':>7} {'acc':>6}\")\n    print(\"-\" * 70)\n    for s in sorted_subjects:\n        r = results[s]\n        cat = \"STEM\" if s in STEM else (\"HUM\" if s in HUMANITIES else \"OTHER\")\n        print(f\"{s:<25} {r['item_id_pct']:>8.2f}% {r['model_item_pct']:>7.2f}% {r['g_item']:>7.4f} {r['accuracy']:>6.4f}  [{cat}]\")\n    print(\"-\" * 70)\n    print(f\"{'ALL MERGED':<25} {all_result['item_id_pct']:>8.2f}% {all_result['model_item_pct']:>7.2f}% {all_result['g_item']:>7.4f}\")\n    print(f\"\\nSTEM mean item_id%: {np.mean(stem_pcts):.2f}%\")\n    print(f\"Humanities mean item_id%: {np.mean(hum_pcts):.2f}%\")\n    print(f\"\\nDone in {time.time()-t0:.1f}s -> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written OK\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "1d7ad159-4d95-48d6-8e30-e6fdc37bbdb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SicESAEaVLfTWJ22s1G6RC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 55137,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T11:36:21.497Z_
+
+<details><summary>↩ Tool result · `toolu_0149RD1p8gjm6qDqhYpWyAmU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "bd433500-29b3-455a-9428-e0b899fbc203",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AjDHjGjS5oFMzABQS3EvG9`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python scripts/within_mmlu_gradient_4model.py",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "bee74503-0e23-483c-aa94-d20bd937b76e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ApfLRWymPdmeH4qFL39KHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3939,
+      "cache_read_input_tokens": 56261,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3939
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T11:36:32.426Z_
+
+<details><summary>↩ Tool result · `toolu_01AjDHjGjS5oFMzABQS3EvG9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\nLoaded 345600 records (0.9s)\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (34560 obs) ---\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\n\\n--- clinical_knowledge (34560 obs) ---\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\n\\n--- college_physics (34560 obs) ---\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\n\\n--- computer_security (34560 obs) ---\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\n\\n--- high_school_mathematics (34560 obs) ---\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\n\\n--- international_law (34560 obs) ---\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\n\\n--- philosophy (34560 obs) ---\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\n\\n--- professional_medicine (34560 obs) ---\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\n\\n--- us_foreign_policy (34560 obs) ---\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\n\\n--- world_religions (34560 obs) ---\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\n\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\n\\n======================================================================\\nSubject                    item_id%  m:item%  G_item    acc\\n----------------------------------------------------------------------\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [OTHER]\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [OTHER]\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [OTHER]\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [OTHER]\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [OTHER]\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\n----------------------------------------------------------------------\\nALL MERGED                   42.08%   33.64%  0.8200\\n\\nSTEM mean item_id%: 19.56%\\nHumanities mean item_id%: 46.15%\\n\\nDone in 2.4s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "8ce3cb15-bec0-424e-bc4f-78f9d68953f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\\\nLoaded 345600 records (0.9s)\\\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\\\n\\\\n--- abstract_algebra (34560 obs) ---\\\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\\\n\\\\n--- clinical_knowledge (34560 obs) ---\\\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\\\n\\\\n--- college_physics (34560 obs) ---\\\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\\\n\\\\n--- computer_security (34560 obs) ---\\\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\\\n\\\\n--- high_school_mathematics (34560 obs) ---\\\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\\\n\\\\n--- international_law (34560 obs) ---\\\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\\\n\\\\n--- philosophy (34560 obs) ---\\\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\\\n\\\\n--- professional_medicine (34560 obs) ---\\\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\\\n\\\\n--- us_foreign_policy (34560 obs) ---\\\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\\\n\\\\n--- world_religions (34560 obs) ---\\\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\\\n\\\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\\\n\\\\n======================================================================\\\\nSubject                    item_id%  m:item%  G_item    acc\\\\n----------------------------------------------------------------------\\\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [OTHER]\\\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [OTHER]\\\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [OTHER]\\\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [OTHER]\\\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [OTHER]\\\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\\\n----------------------------------------------------------------------\\\\nALL MERGED                   42.08%   33.64%  0.8200\\\\n\\\\nSTEM mean item_id%: 19.56%\\\\nHumanities mean item_id%: 46.15%\\\\n\\\\nDone in 2.4s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\nLoaded 345600 records (0.9s)\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (34560 obs) ---\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\n\\n--- clinical_knowledge (34560 obs) ---\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\n\\n--- college_physics (34560 obs) ---\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\n\\n--- computer_security (34560 obs) ---\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\n\\n--- high_school_mathematics (34560 obs) ---\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\n\\n--- international_law (34560 obs) ---\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\n\\n--- philosophy (34560 obs) ---\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\n\\n--- professional_medicine (34560 obs) ---\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\n\\n--- us_foreign_policy (34560 obs) ---\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\n\\n--- world_religions (34560 obs) ---\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\n\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\n\\n======================================================================\\nSubject                    item_id%  m:item%  G_item    acc\\n----------------------------------------------------------------------\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [OTHER]\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [OTHER]\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [OTHER]\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [OTHER]\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [OTHER]\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\n----------------------------------------------------------------------\\nALL MERGED                   42.08%   33.64%  0.8200\\n\\nSTEM mean item_id%: 19.56%\\nHumanities mean item_id%: 46.15%\\n\\nDone in 2.4s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The analysis completed successfully. Let me verify the output JSON file.
+
+Key results:
+- 10 subjects analyzed, each with 34,560 observations
+- item_id% ranges from 7.46% (professional_medicine) to 57.71% (international_law) — range of 50.25%
+- G_item values now make sense (0.31 to 0.89) — the bug fix worked
+- STEM mean (abstract_algebra only matched): 19.56%
+- Humanities mean (world_religions only matched): 46.15%
+
+Wait, the STEM and HUMANITIES categories I used don't match the actual subjects in the data! The data has:
+
+
+- abstract_algebra → STEM ✓
+- clinical_knowledge → not in STEM or HUMANITIES
+- college_physics → should be STEM but I didn't include it
+- computer_security → should be STEM but I didn't include it
+- high_school_mathematics → should be STEM but I didn't include it
+- international_law → should be HUMANITIES
+- philosophy → should be HUMANITIES
+- professional_medicine → OTHER
+- us_foreign_policy → should be SOCIAL/HUMANITIES
+- world_religions → HUMANITIES ✓
+
+I need to recategorize these subjects properly since my initial groupings were incomplete and misaligned with what's actually in the dataset.
+
+Looking at MMLU's official categorization, I can now map these correctly: STEM covers abstract algebra, college physics, computer security, and high school mathematics; HUMANITIES includes international law, philosophy, and world religions; and the remaining subjects—clinical knowledge, professional medicine, and us foreign policy—fall into OTHER and Social Sciences.
+
+Now I need to update the script to reflect these proper classifications and run it again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "887f766e-f10d-404d-8ba3-5e6651257427",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016povCYP1uvtFFKotD1a6zm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 60200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+The STEM/humanities categories don't match the actual subjects. The data has `college_physics`, `computer_security`, `high_school_mathematics` (STEM) and `international_law`, `philosophy` (humanities) — not `college_chemistry`, `machine_learning`, `formal_logic`, `moral_scenarios`. Let me fix and re-run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "cf033545-5fad-4ac7-9029-7a669ee4c62b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016povCYP1uvtFFKotD1a6zm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 60200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RuzzaeSLbwtorcbgKvfjou`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && sed -i 's/STEM = {\"abstract_algebra\", \"college_chemistry\", \"machine_learning\"}/STEM = {\"abstract_algebra\", \"college_physics\", \"computer_security\", \"high_school_mathematics\"}/' scripts/within_mmlu_gradient_4model.py && sed -i 's/HUMANITIES = {\"formal_logic\", \"moral_scenarios\", \"world_religions\"}/HUMANITIES = {\"international_law\", \"philosophy\", \"world_religions\"}/' scripts/within_mmlu_gradient_4model.py && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/within_mmlu_gradient_4model.py",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "ba60e017-ba5e-48bc-b5b9-3685eecb26ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016povCYP1uvtFFKotD1a6zm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 60200,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T11:36:53.854Z_
+
+<details><summary>↩ Tool result · `toolu_01RuzzaeSLbwtorcbgKvfjou`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\nLoaded 345600 records (0.9s)\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (34560 obs) ---\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\n\\n--- clinical_knowledge (34560 obs) ---\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\n\\n--- college_physics (34560 obs) ---\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\n\\n--- computer_security (34560 obs) ---\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\n\\n--- high_school_mathematics (34560 obs) ---\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\n\\n--- international_law (34560 obs) ---\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\n\\n--- philosophy (34560 obs) ---\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\n\\n--- professional_medicine (34560 obs) ---\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\n\\n--- us_foreign_policy (34560 obs) ---\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\n\\n--- world_religions (34560 obs) ---\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\n\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\n\\n======================================================================\\nSubject                    item_id%  m:item%  G_item    acc\\n----------------------------------------------------------------------\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [HUM]\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [STEM]\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [HUM]\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [STEM]\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [STEM]\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\n----------------------------------------------------------------------\\nALL MERGED                   42.08%   33.64%  0.8200\\n\\nSTEM mean item_id%: 27.89%\\nHumanities mean item_id%: 48.37%\\n\\nDone in 2.5s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "b63fef71-0a27-46cc-a344-9fa4ea9c8b7a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\\\nLoaded 345600 records (0.9s)\\\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\\\n\\\\n--- abstract_algebra (34560 obs) ---\\\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\\\n\\\\n--- clinical_knowledge (34560 obs) ---\\\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\\\n\\\\n--- college_physics (34560 obs) ---\\\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\\\n\\\\n--- computer_security (34560 obs) ---\\\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\\\n\\\\n--- high_school_mathematics (34560 obs) ---\\\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\\\n\\\\n--- international_law (34560 obs) ---\\\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\\\n\\\\n--- philosophy (34560 obs) ---\\\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\\\n\\\\n--- professional_medicine (34560 obs) ---\\\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\\\n\\\\n--- us_foreign_policy (34560 obs) ---\\\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\\\n\\\\n--- world_religions (34560 obs) ---\\\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\\\n\\\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\\\n\\\\n======================================================================\\\\nSubject                    item_id%  m:item%  G_item    acc\\\\n----------------------------------------------------------------------\\\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [HUM]\\\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [STEM]\\\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [HUM]\\\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [STEM]\\\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [STEM]\\\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\\\n----------------------------------------------------------------------\\\\nALL MERGED                   42.08%   33.64%  0.8200\\\\n\\\\nSTEM mean item_id%: 27.89%\\\\nHumanities mean item_id%: 48.37%\\\\n\\\\nDone in 2.5s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading /root/nlp_variance_gtheory/results/analysis/cross_model_4way_bf16.csv...\\nLoaded 345600 records (0.9s)\\nModels: ['gemma-2-9b-it', 'llama-3.1-8b-instruct', 'mistral-7b-instruct-v0.3', 'qwen3-8b']\\nSubjects (10): ['abstract_algebra', 'clinical_knowledge', 'college_physics', 'computer_security', 'high_school_mathematics', 'international_law', 'philosophy', 'professional_medicine', 'us_foreign_policy', 'world_religions']\\n\\n--- abstract_algebra (34560 obs) ---\\n  item_id%=19.56  model:item%=42.12  G_item=0.6222  acc=0.5102\\n\\n--- clinical_knowledge (34560 obs) ---\\n  item_id%=57.68  model:item%=31.98  G_item=0.8742  acc=0.6204\\n\\n--- college_physics (34560 obs) ---\\n  item_id%=39.53  model:item%=31.35  G_item=0.8206  acc=0.5009\\n\\n--- computer_security (34560 obs) ---\\n  item_id%=41.53  model:item%=27.58  G_item=0.8408  acc=0.7957\\n\\n--- high_school_mathematics (34560 obs) ---\\n  item_id%=10.93  model:item%=46.03  G_item=0.4516  acc=0.4148\\n\\n--- international_law (34560 obs) ---\\n  item_id%=57.71  model:item%=27.01  G_item=0.8905  acc=0.7718\\n\\n--- philosophy (34560 obs) ---\\n  item_id%=41.25  model:item%=28.12  G_item=0.8362  acc=0.8370\\n\\n--- professional_medicine (34560 obs) ---\\n  item_id%=7.46  model:item%=65.71  G_item=0.3057  acc=0.8104\\n\\n--- us_foreign_policy (34560 obs) ---\\n  item_id%=31.91  model:item%=46.34  G_item=0.7242  acc=0.8926\\n\\n--- world_religions (34560 obs) ---\\n  item_id%=46.15  model:item%=22.47  G_item=0.8703  acc=0.8609\\n\\n--- ALL SUBJECTS MERGED (345600 obs) ---\\n  item_id%=42.08  model:item%=33.64  G_item=0.8200\\n\\n======================================================================\\nSubject                    item_id%  m:item%  G_item    acc\\n----------------------------------------------------------------------\\ninternational_law            57.71%   27.01%  0.8905 0.7718  [HUM]\\nclinical_knowledge           57.68%   31.98%  0.8742 0.6204  [OTHER]\\nworld_religions              46.15%   22.47%  0.8703 0.8609  [HUM]\\ncomputer_security            41.53%   27.58%  0.8408 0.7957  [STEM]\\nphilosophy                   41.25%   28.12%  0.8362 0.8370  [HUM]\\ncollege_physics              39.53%   31.35%  0.8206 0.5009  [STEM]\\nus_foreign_policy            31.91%   46.34%  0.7242 0.8926  [OTHER]\\nabstract_algebra             19.56%   42.12%  0.6222 0.5102  [STEM]\\nhigh_school_mathematics      10.93%   46.03%  0.4516 0.4148  [STEM]\\nprofessional_medicine         7.46%   65.71%  0.3057 0.8104  [OTHER]\\n----------------------------------------------------------------------\\nALL MERGED                   42.08%   33.64%  0.8200\\n\\nSTEM mean item_id%: 27.89%\\nHumanities mean item_id%: 48.37%\\n\\nDone in 2.5s -> /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me verify the output JSON file looks correct.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "122b1e51-0183-497a-a389-2706912a6e5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016kKv3ucdvKQWNJ8R6Ffdte",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 61626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+Let me verify the output JSON.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "be7eae0f-265e-43c3-af37-eb20059c1eb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016kKv3ucdvKQWNJ8R6Ffdte",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 61626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WXeeZ2FhJpMnJS92pBiJmP`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp001_analysis/within_mmlu_subject_gradient_4model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "036995f6-412a-4f51-ac2a-c9a11dc39b1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016kKv3ucdvKQWNJ8R6Ffdte",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2199,
+      "cache_read_input_tokens": 61626,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2199
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-21T11:36:58.484Z_
+
+<details><summary>↩ Tool result · `toolu_01WXeeZ2FhJpMnJS92pBiJmP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"within_mmlu_subject_gradient_4model\\\",\\n  \\\"models\\\": [\\n    \\\"Gemma-2-9B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B\\\",\\n    \\\"Qwen3-8B\\\"\\n  ],\\n  \\\"design\\\": \\\"bf16-only balanced subset across 4 models\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"data_source\\\": \\\"cross_model_4way_bf16.csv (derived from exp-001 4-model JSONL)\\\",\\n  \\\"subjects\\\": {\\n    \\\"international_law\\\": {\\n      \\\"n_records\\\": 34560,\\n      \\\"n_items\\\": 20,\\n      \\\"accuracy\\\": 0.7718,\\n      \\\"item_id_pct\\\": 57.71,\\n      \\\"model_item_pct\\\": 27.01,\\n      \\\"g_item\\\": 0.8905,\\n      \\\"total_variance\\\": 0.18293342,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      },\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.1055692981,\\n          \\\"pct\\\": 57.71\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0494181906,\\n          \\\"pct\\\": 27.01\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0231476179,\\n          \\\"pct\\\": 12.65\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0014625316,\\n          \\\"pct\\\": 0.8\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0009948242,\\n          \\\"pct\\\": 0.54\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0007768188,\\n          \\\"pct\\\": 0.42\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0007574649,\\n          \\\"pct\\\": 0.41\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.0003845329,\\n          \\\"pct\\\": 0.21\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 0.0001447655,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0001327897,\\n          \\\"pct\\\": 0.07\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 6.75398e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 4.66582e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.59086e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 1.34606e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 1.0229e-06,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"clinical_knowledge\\\": {\\n      \\\"n_records\\\": 34560,\\n      \\\"n_items\\\": 20,\\n      \\\"accuracy\\\": 0.6204,\\n      \\\"item_id_pct\\\": 57.68,\\n      \\\"model_item_pct\\\": 31.98,\\n      \\\"g_item\\\": 0.8742,\\n      \\\"total_variance\\\": 0.24414242,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      },\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.1408240842,\\n          \\\"pct\\\": 57.68\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0780729155,\\n          \\\"pct\\\": 31.98\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0192399745,\\n          \\\"pct\\\": 7.88\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0018377541,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0017201104,\\n          \\\"pct\\\": 0.7\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0011084231,\\n          \\\"pct\\\": 0.45\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0005777182,\\n          \\\"pct\\\": 0.2\\n\\n... [截断: 输出过长，省略 20626 字符] ...\\n\\n5,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 3.33654e-05,\\n          \\\"pct\\\": 0.02\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 1.65073e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 6.7021e-06,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 5.674e-07,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"all_subjects_baseline\\\": {\\n    \\\"n_records\\\": 345600,\\n    \\\"n_items\\\": 200,\\n    \\\"accuracy\\\": 0.7015,\\n    \\\"item_id_pct\\\": 42.08,\\n    \\\"model_item_pct\\\": 33.64,\\n    \\\"g_item\\\": 0.82,\\n    \\\"total_variance\\\": 0.2103591,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 4,\\n      \\\"temperature\\\": 3,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"variance_components\\\": {\\n      \\\"item_id\\\": {\\n        \\\"estimate\\\": 0.0885143765,\\n        \\\"pct\\\": 42.08\\n      },\\n      \\\"model:item_id\\\": {\\n        \\\"estimate\\\": 0.070770852,\\n        \\\"pct\\\": 33.64\\n      },\\n      \\\"residual\\\": {\\n        \\\"estimate\\\": 0.0411181418,\\n        \\\"pct\\\": 19.55\\n      },\\n      \\\"prompt_template:item_id\\\": {\\n        \\\"estimate\\\": 0.0030141346,\\n        \\\"pct\\\": 1.43\\n      },\\n      \\\"seed:item_id\\\": {\\n        \\\"estimate\\\": 0.0027848637,\\n        \\\"pct\\\": 1.32\\n      },\\n      \\\"model\\\": {\\n        \\\"estimate\\\": 0.0015110695,\\n        \\\"pct\\\": 0.72\\n      },\\n      \\\"temperature:item_id\\\": {\\n        \\\"estimate\\\": 0.0013693514,\\n        \\\"pct\\\": 0.65\\n      },\\n      \\\"ordering:item_id\\\": {\\n        \\\"estimate\\\": 0.0011414417,\\n        \\\"pct\\\": 0.54\\n      },\\n      \\\"model:prompt_template\\\": {\\n        \\\"estimate\\\": 4.1834e-05,\\n        \\\"pct\\\": 0.02\\n      },\\n      \\\"model:temperature\\\": {\\n        \\\"estimate\\\": 3.66509e-05,\\n        \\\"pct\\\": 0.02\\n      },\\n      \\\"model:seed\\\": {\\n        \\\"estimate\\\": 1.91e-05,\\n        \\\"pct\\\": 0.01\\n      },\\n      \\\"prompt_template\\\": {\\n        \\\"estimate\\\": 1.38716e-05,\\n        \\\"pct\\\": 0.01\\n      },\\n      \\\"prompt_template:ordering\\\": {\\n        \\\"estimate\\\": 7.5906e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature\\\": {\\n        \\\"estimate\\\": 6.0935e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"model:ordering\\\": {\\n        \\\"estimate\\\": 4.6786e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:seed\\\": {\\n        \\\"estimate\\\": 2.5552e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:prompt_template\\\": {\\n        \\\"estimate\\\": 2.1738e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"prompt_template:seed\\\": {\\n        \\\"estimate\\\": 2.575e-07,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:ordering\\\": {\\n        \\\"estimate\\\": 5.89e-08,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"seed:ordering\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"seed\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"ordering\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      }\\n    }\\n  },\\n  \\\"gradient_summary\\\": {\\n    \\\"max_item_id_pct\\\": 57.71,\\n    \\\"min_item_id_pct\\\": 7.46,\\n    \\\"range\\\": 50.25,\\n    \\\"stem_mean\\\": 27.89,\\n    \\\"humanities_mean\\\": 48.37,\\n    \\\"stem_subjects\\\": [\\n      \\\"abstract_algebra\\\",\\n      \\\"college_physics\\\",\\n      \\\"computer_security\\\",\\n      \\\"high_school_mathematics\\\"\\n    ],\\n    \\\"humanities_subjects\\\": [\\n      \\\"international_law\\\",\\n      \\\"philosophy\\\",\\n      \\\"world_religions\\\"\\n    ],\\n    \\\"ranking_by_item_id_pct\\\": [\\n      \\\"international_law\\\",\\n      \\\"clinical_knowledge\\\",\\n      \\\"world_religions\\\",\\n      \\\"computer_security\\\",\\n      \\\"philosophy\\\",\\n      \\\"college_physics\\\",\\n      \\\"us_foreign_policy\\\",\\n      \\\"abstract_algebra\\\",\\n      \\\"high_school_mathematics\\\",\\n      \\\"professional_medicine\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "1295b045-076a-4f35-974e-5d86c739c8f8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"within_mmlu_subject_gradient_4model\\\\\\\",\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"Mistral-7B\\\\\\\",\\\\n    \\\\\\\"Qwen3-8B\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"design\\\\\\\": \\\\\\\"bf16-only balanced subset across 4 models\\\\\\\",\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"data_source\\\\\\\": \\\\\\\"cross_model_4way_bf16.csv (derived from exp-001 4-model JSONL)\\\\\\\",\\\\n  \\\\\\\"subjects\\\\\\\": {\\\\n    \\\\\\\"international_law\\\\\\\": {\\\\n      \\\\\\\"n_records\\\\\\\": 34560,\\\\n      \\\\\\\"n_items\\\\\\\": 20,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7718,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 57.71,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 27.01,\\\\n      \\\\\\\"g_item\\\\\\\": 0.8905,\\\\n      \\\\\\\"total_variance\\\\\\\": 0.18293342,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 3,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 20\\\\n      },\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.1055692981,\\\\n          \\\\\\\"pct\\\\\\\": 57.71\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0494181906,\\\\n          \\\\\\\"pct\\\\\\\": 27.01\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0231476179,\\\\n          \\\\\\\"pct\\\\\\\": 12.65\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0014625316,\\\\n          \\\\\\\"pct\\\\\\\": 0.8\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0009948242,\\\\n          \\\\\\\"pct\\\\\\\": 0.54\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0007768188,\\\\n          \\\\\\\"pct\\\\\\\": 0.42\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0007574649,\\\\n          \\\\\\\"pct\\\\\\\": 0.41\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0003845329,\\\\n          \\\\\\\"pct\\\\\\\": 0.21\\\\n        },\\\\n        \\\\\\\"model:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0001447655,\\\\n          \\\\\\\"pct\\\\\\\": 0.08\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0001327897,\\\\n          \\\\\\\"pct\\\\\\\": 0.07\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.75398e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.04\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 4.66582e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.03\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.59086e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.01\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.34606e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.01\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.0229e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"clinical_knowledge\\\\\\\": {\\\\n      \\\\\\\"n_records\\\\\\\": 34560,\\\\n      \\\\\\\"n_items\\\\\\\": 20,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6204,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 57.68,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.98,\\\\n      \\\\\\\"g_item\\\\\\\": 0.8742,\\\\n      \\\\\\\"total_variance\\\\\\\": 0.24414242,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 3,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 20\\\\n      },\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.1408240842,\\\\n          \\\\\\\"pct\\\\\\\": 57.68\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0780729155,\\\\n          \\\\\\\"pct\\\\\\\": 31.98\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0192399745,\\\\n          \\\\\\\"pct\\\\\\\": 7.88\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0018377541,\\\\n          \\\\\\\"pct\\\\\\\": 0.75\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0017201104,\\\\n          \\\\\\\"pct\\\\\\\": 0.7\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0011084231,\\\\n          \\\\\\\"pct\\\\\\\": 0.45\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0005777182,\\\\n          \\\\\\\"pct\\\\\\\": 0.2\\\\n\\\\n... [截断: 输出过长，省略 20626 字符] ...\\\\n\\\\n5,\\\\n          \\\\\\\"pct\\\\\\\": 0.05\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 3.33654e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.02\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.65073e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.01\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.7021e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 5.674e-07,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"all_subjects_baseline\\\\\\\": {\\\\n    \\\\\\\"n_records\\\\\\\": 345600,\\\\n    \\\\\\\"n_items\\\\\\\": 200,\\\\n    \\\\\\\"accuracy\\\\\\\": 0.7015,\\\\n    \\\\\\\"item_id_pct\\\\\\\": 42.08,\\\\n    \\\\\\\"model_item_pct\\\\\\\": 33.64,\\\\n    \\\\\\\"g_item\\\\\\\": 0.82,\\\\n    \\\\\\\"total_variance\\\\\\\": 0.2103591,\\\\n    \\\\\\\"n_levels\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": 4,\\\\n      \\\\\\\"temperature\\\\\\\": 3,\\\\n      \\\\\\\"prompt_template\\\\\\\": 6,\\\\n      \\\\\\\"seed\\\\\\\": 6,\\\\n      \\\\\\\"ordering\\\\\\\": 4,\\\\n      \\\\\\\"item_id\\\\\\\": 200\\\\n    },\\\\n    \\\\\\\"variance_components\\\\\\\": {\\\\n      \\\\\\\"item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0885143765,\\\\n        \\\\\\\"pct\\\\\\\": 42.08\\\\n      },\\\\n      \\\\\\\"model:item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.070770852,\\\\n        \\\\\\\"pct\\\\\\\": 33.64\\\\n      },\\\\n      \\\\\\\"residual\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0411181418,\\\\n        \\\\\\\"pct\\\\\\\": 19.55\\\\n      },\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0030141346,\\\\n        \\\\\\\"pct\\\\\\\": 1.43\\\\n      },\\\\n      \\\\\\\"seed:item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0027848637,\\\\n        \\\\\\\"pct\\\\\\\": 1.32\\\\n      },\\\\n      \\\\\\\"model\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0015110695,\\\\n        \\\\\\\"pct\\\\\\\": 0.72\\\\n      },\\\\n      \\\\\\\"temperature:item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0013693514,\\\\n        \\\\\\\"pct\\\\\\\": 0.65\\\\n      },\\\\n      \\\\\\\"ordering:item_id\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0011414417,\\\\n        \\\\\\\"pct\\\\\\\": 0.54\\\\n      },\\\\n      \\\\\\\"model:prompt_template\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 4.1834e-05,\\\\n        \\\\\\\"pct\\\\\\\": 0.02\\\\n      },\\\\n      \\\\\\\"model:temperature\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 3.66509e-05,\\\\n        \\\\\\\"pct\\\\\\\": 0.02\\\\n      },\\\\n      \\\\\\\"model:seed\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 1.91e-05,\\\\n        \\\\\\\"pct\\\\\\\": 0.01\\\\n      },\\\\n      \\\\\\\"prompt_template\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 1.38716e-05,\\\\n        \\\\\\\"pct\\\\\\\": 0.01\\\\n      },\\\\n      \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 7.5906e-06,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"temperature\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 6.0935e-06,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"model:ordering\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 4.6786e-06,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"temperature:seed\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 2.5552e-06,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 2.1738e-06,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 2.575e-07,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"temperature:ordering\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 5.89e-08,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"seed:ordering\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"seed\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"ordering\\\\\\\": {\\\\n        \\\\\\\"estimate\\\\\\\": 0.0,\\\\n        \\\\\\\"pct\\\\\\\": 0.0\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gradient_summary\\\\\\\": {\\\\n    \\\\\\\"max_item_id_pct\\\\\\\": 57.71,\\\\n    \\\\\\\"min_item_id_pct\\\\\\\": 7.46,\\\\n    \\\\\\\"range\\\\\\\": 50.25,\\\\n    \\\\\\\"stem_mean\\\\\\\": 27.89,\\\\n    \\\\\\\"humanities_mean\\\\\\\": 48.37,\\\\n    \\\\\\\"stem_subjects\\\\\\\": [\\\\n      \\\\\\\"abstract_algebra\\\\\\\",\\\\n      \\\\\\\"college_physics\\\\\\\",\\\\n      \\\\\\\"computer_security\\\\\\\",\\\\n      \\\\\\\"high_school_mathematics\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"humanities_subjects\\\\\\\": [\\\\n      \\\\\\\"international_law\\\\\\\",\\\\n      \\\\\\\"philosophy\\\\\\\",\\\\n      \\\\\\\"world_religions\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"ranking_by_item_id_pct\\\\\\\": [\\\\n      \\\\\\\"international_law\\\\\\\",\\\\n      \\\\\\\"clinical_knowledge\\\\\\\",\\\\n      \\\\\\\"world_religions\\\\\\\",\\\\n      \\\\\\\"computer_security\\\\\\\",\\\\n      \\\\\\\"philosophy\\\\\\\",\\\\n      \\\\\\\"college_physics\\\\\\\",\\\\n      \\\\\\\"us_foreign_policy\\\\\\\",\\\\n      \\\\\\\"abstract_algebra\\\\\\\",\\\\n      \\\\\\\"high_school_mathematics\\\\\\\",\\\\n      \\\\\\\"professional_medicine\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"within_mmlu_subject_gradient_4model\\\",\\n  \\\"models\\\": [\\n    \\\"Gemma-2-9B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B\\\",\\n    \\\"Qwen3-8B\\\"\\n  ],\\n  \\\"design\\\": \\\"bf16-only balanced subset across 4 models\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"data_source\\\": \\\"cross_model_4way_bf16.csv (derived from exp-001 4-model JSONL)\\\",\\n  \\\"subjects\\\": {\\n    \\\"international_law\\\": {\\n      \\\"n_records\\\": 34560,\\n      \\\"n_items\\\": 20,\\n      \\\"accuracy\\\": 0.7718,\\n      \\\"item_id_pct\\\": 57.71,\\n      \\\"model_item_pct\\\": 27.01,\\n      \\\"g_item\\\": 0.8905,\\n      \\\"total_variance\\\": 0.18293342,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      },\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.1055692981,\\n          \\\"pct\\\": 57.71\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0494181906,\\n          \\\"pct\\\": 27.01\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0231476179,\\n          \\\"pct\\\": 12.65\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0014625316,\\n          \\\"pct\\\": 0.8\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0009948242,\\n          \\\"pct\\\": 0.54\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0007768188,\\n          \\\"pct\\\": 0.42\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0007574649,\\n          \\\"pct\\\": 0.41\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 0.0003845329,\\n          \\\"pct\\\": 0.21\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 0.0001447655,\\n          \\\"pct\\\": 0.08\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0001327897,\\n          \\\"pct\\\": 0.07\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 6.75398e-05,\\n          \\\"pct\\\": 0.04\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 4.66582e-05,\\n          \\\"pct\\\": 0.03\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.59086e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 1.34606e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 1.0229e-06,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      }\\n    },\\n    \\\"clinical_knowledge\\\": {\\n      \\\"n_records\\\": 34560,\\n      \\\"n_items\\\": 20,\\n      \\\"accuracy\\\": 0.6204,\\n      \\\"item_id_pct\\\": 57.68,\\n      \\\"model_item_pct\\\": 31.98,\\n      \\\"g_item\\\": 0.8742,\\n      \\\"total_variance\\\": 0.24414242,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 3,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 20\\n      },\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.1408240842,\\n          \\\"pct\\\": 57.68\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0780729155,\\n          \\\"pct\\\": 31.98\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0192399745,\\n          \\\"pct\\\": 7.88\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0018377541,\\n          \\\"pct\\\": 0.75\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0017201104,\\n          \\\"pct\\\": 0.7\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0011084231,\\n          \\\"pct\\\": 0.45\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0005777182,\\n          \\\"pct\\\": 0.2\\n\\n... [截断: 输出过长，省略 20626 字符] ...\\n\\n5,\\n          \\\"pct\\\": 0.05\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 3.33654e-05,\\n          \\\"pct\\\": 0.02\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 1.65073e-05,\\n          \\\"pct\\\": 0.01\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 6.7021e-06,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 5.674e-07,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      }\\n    }\\n  },\\n  \\\"all_subjects_baseline\\\": {\\n    \\\"n_records\\\": 345600,\\n    \\\"n_items\\\": 200,\\n    \\\"accuracy\\\": 0.7015,\\n    \\\"item_id_pct\\\": 42.08,\\n    \\\"model_item_pct\\\": 33.64,\\n    \\\"g_item\\\": 0.82,\\n    \\\"total_variance\\\": 0.2103591,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 4,\\n      \\\"temperature\\\": 3,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"variance_components\\\": {\\n      \\\"item_id\\\": {\\n        \\\"estimate\\\": 0.0885143765,\\n        \\\"pct\\\": 42.08\\n      },\\n      \\\"model:item_id\\\": {\\n        \\\"estimate\\\": 0.070770852,\\n        \\\"pct\\\": 33.64\\n      },\\n      \\\"residual\\\": {\\n        \\\"estimate\\\": 0.0411181418,\\n        \\\"pct\\\": 19.55\\n      },\\n      \\\"prompt_template:item_id\\\": {\\n        \\\"estimate\\\": 0.0030141346,\\n        \\\"pct\\\": 1.43\\n      },\\n      \\\"seed:item_id\\\": {\\n        \\\"estimate\\\": 0.0027848637,\\n        \\\"pct\\\": 1.32\\n      },\\n      \\\"model\\\": {\\n        \\\"estimate\\\": 0.0015110695,\\n        \\\"pct\\\": 0.72\\n      },\\n      \\\"temperature:item_id\\\": {\\n        \\\"estimate\\\": 0.0013693514,\\n        \\\"pct\\\": 0.65\\n      },\\n      \\\"ordering:item_id\\\": {\\n        \\\"estimate\\\": 0.0011414417,\\n        \\\"pct\\\": 0.54\\n      },\\n      \\\"model:prompt_template\\\": {\\n        \\\"estimate\\\": 4.1834e-05,\\n        \\\"pct\\\": 0.02\\n      },\\n      \\\"model:temperature\\\": {\\n        \\\"estimate\\\": 3.66509e-05,\\n        \\\"pct\\\": 0.02\\n      },\\n      \\\"model:seed\\\": {\\n        \\\"estimate\\\": 1.91e-05,\\n        \\\"pct\\\": 0.01\\n      },\\n      \\\"prompt_template\\\": {\\n        \\\"estimate\\\": 1.38716e-05,\\n        \\\"pct\\\": 0.01\\n      },\\n      \\\"prompt_template:ordering\\\": {\\n        \\\"estimate\\\": 7.5906e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature\\\": {\\n        \\\"estimate\\\": 6.0935e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"model:ordering\\\": {\\n        \\\"estimate\\\": 4.6786e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:seed\\\": {\\n        \\\"estimate\\\": 2.5552e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:prompt_template\\\": {\\n        \\\"estimate\\\": 2.1738e-06,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"prompt_template:seed\\\": {\\n        \\\"estimate\\\": 2.575e-07,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"temperature:ordering\\\": {\\n        \\\"estimate\\\": 5.89e-08,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"seed:ordering\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"seed\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      },\\n      \\\"ordering\\\": {\\n        \\\"estimate\\\": 0.0,\\n        \\\"pct\\\": 0.0\\n      }\\n    }\\n  },\\n  \\\"gradient_summary\\\": {\\n    \\\"max_item_id_pct\\\": 57.71,\\n    \\\"min_item_id_pct\\\": 7.46,\\n    \\\"range\\\": 50.25,\\n    \\\"stem_mean\\\": 27.89,\\n    \\\"humanities_mean\\\": 48.37,\\n    \\\"stem_subjects\\\": [\\n      \\\"abstract_algebra\\\",\\n      \\\"college_physics\\\",\\n      \\\"computer_security\\\",\\n      \\\"high_school_mathematics\\\"\\n    ],\\n    \\\"humanities_subjects\\\": [\\n      \\\"international_law\\\",\\n      \\\"philosophy\\\",\\n      \\\"world_religions\\\"\\n    ],\\n    \\\"ranking_by_item_id_pct\\\": [\\n      \\\"international_law\\\",\\n      \\\"clinical_knowledge\\\",\\n      \\\"world_religions\\\",\\n      \\\"computer_security\\\",\\n      \\\"philosophy\\\",\\n      \\\"college_physics\\\",\\n      \\\"us_foreign_policy\\\",\\n      \\\"abstract_algebra\\\",\\n      \\\"high_school_mathematics\\\",\\n      \\\"professional_medicine\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+分析完成。结果写入 `results/exp001_analysis/within_mmlu_subject_gradient_4model.json`。
+
+**关键发现**：
+
+| Subject | item_id% | model:item% | G_item | acc | 类别 |
+|---------|----------|-------------|--------|-----|------|
+| international_law | 57.71% | 27.01% | 0.8905 | 0.77 | HUM |
+| clinical_knowledge | 57.68% | 31.98% | 0.8742 | 0.62 | OTHER |
+| world_religions | 46.15% | 22.47% | 0.8703 | 0.86 | HUM |
+| computer_security | 41.53% | 27.58% | 0.8408 | 0.80 | STEM |
+| philosophy | 41.25% | 28.12% | 0.8362 | 0.84 | HUM |
+| college_physics | 39.53% | 31.35% | 0.8206 | 0.50 | STEM |
+| us_foreign_policy | 31.91% | 46.34% | 0.7242 | 0.89 | OTHER |
+| abstract_algebra | 19.56% | 42.12% | 0.6222 | 0.51 | STEM |
+| high_school_math | 10.93% | 46.03% | 0.4516 | 0.41 | STEM |
+| professional_medicine | 7.46% | 65.71% | 0.3057 | 0.81 | OTHER |
+| **ALL MERGED** | **42.08%** | **33.64%** | **0.8200** | 0.70 | — |
+
+**STEM vs Humanities 梯度**：STEM mean item_id% = 27.89%, Humanities mean = 48.37%。Humanities 科目的 item 方差占比更高（题目本身差异主导），STEM 科目的 model×item 交互更大（模型对不同题的差异表现更不一致）。
+
+注：修正了之前分析中 G_item 的计算 bug（residual 需除以所有非 item facet 的 level 乘积），G_item 从全 0 修正到 0.31–0.89 的合理范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "uuid": "2579ba3e-e994-4059-b04f-1a9a3d47173a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N995nGXeesQ5QLWNhDdTJC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4729,
+      "cache_read_input_tokens": 63825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4729
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 84_
+
+分析完成。结果写入 `results/exp001_analysis/within_mmlu_subject_gradient_4model.json`。
+
+**关键发现**：
+
+| Subject | item_id% | model:item% | G_item | acc | 类别 |
+|---------|----------|-------------|--------|-----|------|
+| international_law | 57.71% | 27.01% | 0.8905 | 0.77 | HUM |
+| clinical_knowledge | 57.68% | 31.98% | 0.8742 | 0.62 | OTHER |
+| world_religions | 46.15% | 22.47% | 0.8703 | 0.86 | HUM |
+| computer_security | 41.53% | 27.58% | 0.8408 | 0.80 | STEM |
+| philosophy | 41.25% | 28.12% | 0.8362 | 0.84 | HUM |
+| college_physics | 39.53% | 31.35% | 0.8206 | 0.50 | STEM |
+| us_foreign_policy | 31.91% | 46.34% | 0.7242 | 0.89 | OTHER |
+| abstract_algebra | 19.56% | 42.12% | 0.6222 | 0.51 | STEM |
+| high_school_math | 10.93% | 46.03% | 0.4516 | 0.41 | STEM |
+| professional_medicine | 7.46% | 65.71% | 0.3057 | 0.81 | OTHER |
+| **ALL MERGED** | **42.08%** | **33.64%** | **0.8200** | 0.70 | — |
+
+**STEM vs Humanities 梯度**：STEM mean item_id% = 27.89%, Humanities mean = 48.37%。Humanities 科目的 item 方差占比更高（题目本身差异主导），STEM 科目的 model×item 交互更大（模型对不同题的差异表现更不一致）。
+
+注：修正了之前分析中 G_item 的计算 bug（residual 需除以所有非 item facet 的 level 乘积），G_item 从全 0 修正到 0.31–0.89 的合理范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 389408,
+  "duration_api_ms": 378590,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "bb5d44af-c2e0-415a-85cc-2c6ff7804d99",
+  "total_cost_usd": 1.23652775,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 56713,
+    "cache_read_input_tokens": 647789,
+    "output_tokens": 22255,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 56713,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 624,
+        "cache_read_input_tokens": 63825,
+        "cache_creation_input_tokens": 4729,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4729
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1592,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017070000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 22255,
+      "cacheReadInputTokens": 647789,
+      "cacheCreationInputTokens": 56713,
+      "webSearchRequests": 0,
+      "costUSD": 1.23482075,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a0aea026-7ef1-499e-af7b-e8470280d23d"
+}
+```
+
+</details>
+
+---

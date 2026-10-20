@@ -1,0 +1,4318 @@
+# audit data end to end
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 131
+- **Recorded user turns:** 0
+- **Tool calls:** 65
+- **Original source:** `logs/chats/worker_audit_data_end_to_end_20260523T102339.jsonl`
+- **Structured JSON:** [`e988a071cc20de8c6663.json`](../../sessions/e9/e988a071cc20de8c6663.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+131 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T10:42:50.840209+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T10:42:50.840557+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T10:42:50.840750+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T10:42:50.840897+00:00_
+
+artifacts/dream_reports/dream_20260520T190053/best/paper.tex
+artifacts/dream_reports/dream_20260520T190053/median/paper.tex
+artifacts/dream_reports/dream_20260520T190053/worst/paper.tex
+artifacts/dream_reports/dream_20260520T222113/best/paper.tex
+artifacts/dream_reports/dream_20260520T222113/median/paper.tex
+artifacts/dream_reports/dream_20260520T222113/worst/paper.tex
+artifacts/dream_reports/dream_20260521T032813/best/paper.tex
+artifacts/dream_reports/dream_20260521T032813/median/paper.tex
+artifacts/dream_reports/dream_20260521T032813/worst/paper.tex
+artifacts/dream_reports/dream_20260521T044739/best/paper.tex
+artifacts/dream_reports/dream_20260521T044739/median/paper.tex
+artifacts/dream_reports/dream_20260521T044739/worst/paper.tex
+artifacts/dream_reports/dream_20260521T075006/best/paper.tex
+artifacts/dream_reports/dream_20260521T075006/median/paper.tex
+artifacts/dream_reports/dream_20260521T075006/worst/paper.tex
+artifacts/dream_reports/dream_20260521T122449/best/paper.tex
+artifacts/dream_reports/dream_20260521T122449/median/paper.tex
+artifacts/dream_reports/dream_20260521T122449/worst/paper.tex
+artifacts/_project/paper/experiments.tex
+docs/paper/sections/experiments.tex
+artifacts/_project/paper/method.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/limitations.tex
+docs/paper/main.tex
+docs/paper/introduction.tex
+docs/paper/related_work.tex
+docs/paper/conclusion.tex
+docs/paper/abstract.tex
+docs/paper/experiments.tex
+docs/paper/limitations.tex
+docs/paper/method.tex
+docs/paper/appendix.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T10:42:50.841044+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "artifacts/exp002/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "artifacts/exp002/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T10:42:50.841164+00:00_
+
+artifacts/exp002/chart/fig1_cross_benchmark.pdf
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T10:42:50.841287+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "artifacts/exp004/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "artifacts/exp004/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T10:42:50.841456+00:00_
+
+artifacts/exp004/data/mmlu_gstudy_ref.json
+artifacts/exp004/data/mmlu_subject_gradient_8model_pointer.txt
+artifacts/exp004/data/defensive_analyses.json
+artifacts/exp004/data/exp004_three_in_one_pointer.txt
+artifacts/exp004/data/gitem_consistency_check_pointer.txt
+artifacts/exp004/data/per_benchmark_gstudy_hellaswag_2temp_ref.txt
+artifacts/exp004/figures/fig1_variance_decomposition.png
+artifacts/exp004/figures/fig1_variance_decomposition.pdf
+artifacts/exp004/data/bootstrap_ci_mmlu.json
+artifacts/exp004/data/bootstrap_ci_arc.json
+artifacts/exp004/data/bootstrap_ci_hellaswag.json
+artifacts/exp004/data/dstudy_arc_1f8f63.json
+artifacts/exp004/data/dstudy_arc.json
+artifacts/exp004/data/dstudy_hellaswag.json
+artifacts/exp004/data/bootstrap_ci_gsm8k.json
+artifacts/exp004/data/dstudy_gsm8k.json
+artifacts/exp004/data/dstudy_math.json
+artifacts/exp004/data/bootstrap_ci_math.json
+artifacts/exp004/data/dstudy_bootstrap_ci_ec5ab0.json
+artifacts/exp004/data/dstudy_bootstrap_ci.json
+artifacts/exp004/data/exp001_bf16_2temp_subset.py
+artifacts/exp004/data/exp001_bf16_2temp_comparison.json
+artifacts/exp004/data/scale_validation_plan.md
+artifacts/exp004/data/exp003_scale_gstudy.json
+artifacts/exp004/data/cohens_d_ci.json
+artifacts/exp004/data/binary_sim_ranking_consistency.json
+artifacts/exp004/data/unbundled_permutation_test.json
+artifacts/exp004/data/unbundled_permutation_test_960adb.json
+artifacts/exp004/data/deepseek_lomo_cross_benchmark_af5fea.json
+artifacts/exp004/data/deepseek_lomo_cross_benchmark.json
+artifacts/exp004/data/cross_benchmark_difficulty_heterogeneity.json
+artifacts/exp004/data/stratified_bootstrap_comparison.json
+artifacts/exp004/data/intermediate_dstudy_table.json
+artifacts/exp004/figures/difficulty_vs_item_variance.pdf
+artifacts/exp004/figures/difficulty_vs_item_variance.png
+artifacts/exp004/data/exp003_scale_crossed_gstudy_3b7b.json
+artifacts/exp004/data/deepseek_math_integrity.json
+artifacts/exp004/data/math_8model_gstudy.json
+artifacts/exp004/figures/fig2_vari
+…[truncated 3519 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T10:42:50.841623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results/exp002 -name \"*.jsonl\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/results/exp002 -name \"*.jsonl\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T10:42:50.841778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/qwen_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/qwen_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/llama_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/qwen_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\n/root/nlp_variance_gtheory/results/exp002/internlm_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/deepseek_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/internlm_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/yi_arc.jsonl\\n/root/nlp_variance_gtheory/results/exp002/deepseek_math_
+…[truncated 596 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T10:42:50.841928+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "wc -l /root/nlp_variance_gtheory/results/exp002/*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "wc -l /root/nlp_variance_gtheory/results/exp002/*.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T10:42:50.842074+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/deepseek_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/gemma_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/internlm_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_arc.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_gsm8k.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_math.jsonl\\n     57600 /root/nlp_variance_gtheory/results/exp002/mistral_mmlu.jsonl\\
+…[truncated 1044 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T10:42:50.842261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/autodl-tmp/nlp_variance_gtheory/results/exp002 -name \"*.jsonl\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/autodl-tmp/nlp_variance_gtheory/results/exp002 -name \"*.jsonl\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T10:42:50.842407+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/nlp_variance_gtheory/results/exp002': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T10:42:50.842541+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/autodl-tmp -name \"*.jsonl\" -path \"*/exp002/*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/autodl-tmp -name \"*.jsonl\" -path \"*/exp002/*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T10:42:50.842661+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T10:42:50.842779+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -name \"olmo_hellaswag*\" -o -name \"yi_hellaswag*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root -name \"olmo_hellaswag*\" -o -name \"yi_hellaswag*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-23T10:42:50.842896+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-23T10:42:50.843009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -name \"olmo_hellaswag*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root -name \"olmo_hellaswag*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T10:42:50.843122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T10:42:50.843232+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root -name \"yi_hellaswag*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root -name \"yi_hellaswag*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T10:42:50.843344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T10:42:50.843511+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Read all paper tex files",
+  "subagent_type": "Explore",
+  "prompt": "Read ALL the following LaTeX paper files in full and extract every numerical claim (percentages, counts, G-coefficients, record counts, item counts, etc.). I need the exact text surrounding each number.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex\n\nFor each file, provide:\n- The file name\n- Every line containing a number that represents an experimental result, statistic, or claim (with line numbers)\n- Focus especially on: G_item values, G coefficients, variance component percentages, record counts (2,304,000 / 460,800 / 259,200 etc.), item budgets (178, 552, 1602), reduction ratios (3.1×), partial-credit mentions (0.86→0.77, ΔG=-0.135), residual percentages\n\nBe very thorough - search \"medium\" breadth. Return ALL numerical claims with their exact surrounding text."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Read all paper tex files",
+    "subagent_type": "Explore",
+    "prompt": "Read ALL the following LaTeX paper files in full and extract every numerical claim (percentages, counts, G-coefficients, record counts, item counts, etc.). I need the exact text surrounding each number.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex\n\nFor each file, provide:\n- The file name\n- Every line containing a number that represents an experimental result, statistic, or claim (with line numbers)\n- Focus especially on: G_item values, G coefficients, variance component percentages, record counts (2,304,000 / 460,800 / 259,200 etc.), item budgets (178, 552, 1602), reduction ratios (3.1×), partial-credit mentions (0.86→0.77, ΔG=-0.135), residual percentages\n\nBe very thorough - search \"medium\" breadth. Return ALL numerical claims with their exact surrounding text."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T10:42:50.843684+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T10:42:50.843805+00:00_
+
+1	Large Language Model (LLM) evaluation results vary across reproductions, but variance sources interact, and their relative importance shifts with the benchmark format. We apply Generalizability theory (G-theory) in a fully crossed design with up to seven facets across eight open-weight instruction-tuned models (7--9B parameters) and five benchmarks, totaling approximately 2.3 million evaluation records. D-study projections show that, under binary correctness scoring, a recommended multi-condition design achieves $G \geq 0.80$ with 178 items (1,602 evaluations per model), a 3.1$\times$ item reduction over single-condition designs (552 items, 552 evaluations)---trading approximately 3$\times$ more total evaluations for 3$\times$ fewer items, a tradeoff that favors multi-condition designs when item construction is costly. Model$\times$item interaction (up to 36\%) indicates that models differ primarily in which items they find difficult, not in overall ability. Preliminary validation across a 3B--72B parameter range confirms stable variance structure within one architecture family. We release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T10:42:50.843931+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T10:42:50.844054+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	In our analysis of five benchmarks, item selection drives 34--38\% of evaluation variance on multiple-choice tasks while prompt wording is negligible ($<$3\%). On the free-form reasoning task GSM8K, the structure shifts: model$\times$prompt interaction alone accounts for approximately 9\%, while item selection drops to 17\%. These numbers, drawn from a factorial analysis of approximately 2.3 million evaluation records, reveal that the variance structure of LLM evaluation is not a fixed property of the pipeline but shifts qualitatively with the response format. Current evaluation practice treats variance sources as independent nuisance factors and controls them one at a time: one study perturbs prompts, another varies precision, a third changes item subsets. This piecemeal approach cannot capture interactions between sources, nor can it predict how the relative importance of each source changes across evaluation settings. Leaderboard rankings built on single-condition evaluations are therefore sensitive to methodological choices that remain unreported and uncontrolled \citep{rodriguez2021leaderboards, dehghani2021benchmark}. No study has simultaneously crossed infrastructure and methodology facets in a unified factorial design across benchmarks to decompose these sources, quantify their interactions, and compare the resulting variance structure.
+5	
+6	Existing studies examine individual variance sources in isolation. \citet{sclar2024formatting} and BrittleBench \citep{brittlebench2026} documented 50--76\% accuracy swings from prompt formatting; \citet{yuan2025layercast} showed up to 9\% variation from numerical precision; \citet{pezeshkpour2024ordering}, \citet{dodge2020finetuning}, and \citet{henderson2018deep} documented ordering and hyperparameter sensitivity---each holding other factors fixed. \citet{messing2026hidden} applied G-theory to LLM evaluation across five methodology facets on a single benchmark (j
+…[truncated 2900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T10:42:50.844198+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T10:42:50.844343+00:00_
+
+1	\section{Method and Experimental Design}
+2	\label{sec:method}
+3	
+4	\subsection{Generalizability Theory}
+5	\label{sec:gtheory}
+6	
+7	Generalizability theory (G-theory) treats each measurement as one observation from a universe of admissible conditions defined by the crossed facets of an evaluation design \cite{shavelson1991generalizability, brennan2001generalizability}. The \emph{object of measurement} is the entity whose consistency is of interest. In our setting, test items ($p$) serve as the object of measurement, and the goal is to determine how reliably item-level scores generalize across the methodological conditions under which they are collected.
+8	
+9	A \emph{G-study} decomposes total observed variance into components $\sigma^2_x$ for each facet $x$ and their interactions. Each component quantifies how much variability that source contributes to the overall measurement. Large interaction components (e.g., $\sigma^2_{pM}$ for item-by-model) indicate that facets do not affect items uniformly but instead create differential difficulty profiles. We estimate variance components via Henderson Method~I, an unbiased ANOVA-based estimator for balanced designs \cite[Ch.~3]{brennan2001generalizability}, with 1,000-resample bootstrap confidence intervals \cite{efron1993bootstrap} (item-level resampling with replacement, preserving the fully-crossed structure across all other facets) \cite{li2023bootstrap}.
+10	
+11	A \emph{D-study} projects the generalizability coefficient under hypothetical designs with different numbers of conditions per facet:
+12	\begin{equation}
+13	G_\text{item} = \frac{\sigma^2_p}{\sigma^2_p + \sigma^2_\text{rel}}
+14	\label{eq:gcoeff}
+15	\end{equation}
+16	where $\sigma^2_\text{rel} = \sum_i \sigma^2_{p \times f_i} / n_{f_i} + \sigma^2_\text{residual} / \prod_i n_{f_i}$ aggregates all item-by-facet interaction variances, each divided by the number of conditions for the corresponding facets \cite[Ch.~4]{brennan2001generalizability}. A D-study projects 
+…[truncated 11754 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T10:42:50.844515+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T10:42:50.844664+00:00_
+
+1	\section{Experiments}
+2	
+3	All experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on a single NVIDIA RTX PRO 6000 GPU (96GB) with binary correctness scoring.
+4	
+5	\subsection{Single-Model Baseline}
+6	
+7	We first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.
+8	
+9	\paragraph{Design.} The G-study crosses six facets: 200 items $\times$ 3 numerical precisions (BF16, FP16, FP32) $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 3 temperature levels (0.0, 0.3, 0.7) $\times$ 4 answer orderings, yielding 259,200 binary observations. Variance components are estimated via Henderson Method~I with bootstrap confidence intervals (1,000 resamples).
+10	
+11	\paragraph{Results.} Under binary scoring, item difficulty (\texttt{item\_id}) accounts for 58.4\% of total variance, with the residual term contributing 23.1\%. All main facet effects are negligible ($<$1\% each): precision 0.9\%, prompt template, temperature, seed, and ordering each $<$0.5\%. The interesting structure appears in item-conditional interactions: prompt$\times$item is the largest at 5.5\%, followed by seed$\times$item (4.7\%), precision$\times$item (3.3\%), temperature$\times$item (2.9\%), and ordering$\times$item (0.8\%). This pattern indicates that methodological choices do not shift performance uniformly across items; instead, specific items are differentially sensitive to specific facets---prompt template variation produces the largest item-conditional effect.
+12	
+13	The resulting generalizability coefficient is $G_\text{item} = 0.936$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 55 items in this multi-facet design.
+14	
+15	For text-exact-match scoring (requiring verbatim string matches), the variance structure shifts dramatically: te
+…[truncated 9318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T10:42:50.844810+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T10:42:50.844931+00:00_
+
+1	\section{Limitations}
+2	\label{sec:limitations}
+3	
+4	Our eight models share the 2024--2025 instruction-tuning paradigm; temporal correlation may limit exchangeability, and results do not generalize to API-based or base models. Preliminary within-family 72B validation (\S4.6) suggests stable variance structure across scales, but is limited to a single architecture (Qwen2.5); the Qwen2.5 family shares training recipes and tokenizer, so validating with architecturally distinct families (e.g., Llama-3 70B, Mistral-Large) is necessary before extrapolating budget recommendations to arbitrary model families.
+5	
+6	The benchmark sample ($n = 5$) limits statistical power for format-associated observations ($p = 0.10$); other formats (code generation, multi-turn dialogue) may differ. All D-study budgets reported in this paper are strictly valid only under binary correctness scoring. Our partial-credit analysis (GSM8K, 8 models) shows $G$ drops from 0.86 to 0.77 (crossed design) with all models showing $G_\text{partial} < G_\text{binary}$, suggesting limited transferability to finer-grained scoring rubrics; the analysis is limited to a single benchmark, and its generalizability to other tasks is unknown. Our temperature range (0.0--0.7) does not cover high-temperature regimes ($\tau > 1.0$) sometimes used in generation tasks. Our design varies few-shot example ordering but not example identity, a known variance source. Results depend on vLLM~0.9.2; different inference engines or vLLM versions may alter CUDA-level nondeterminism patterns.
+7	
+8	All eight models may have encountered benchmark items during pre-training; differential contamination across architectures could inflate model$\times$item interaction \citep{golchin2023contamination, oren2024proving}, though consistent variance structures across three independently constructed MC benchmarks provide indirect evidence against contamination as the sole driver. Contamination affects absolute budget estimates but has limited 
+…[truncated 130 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T10:42:50.845066+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T10:42:50.845189+00:00_
+
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	A recommended 3-prompt $\times$ 3-seed design reduces item requirements from 552 to 178 for $G \geq 0.80$, confirmed across five benchmarks under binary scoring; multi-facet designs minimize items when item construction is costly, while single-condition designs suit compute-constrained settings. $G_\text{item}$ and $G_\text{model}$ have different bottlenecks---item count for the former, prompt standardization for the latter---providing orthogonal optimization paths: adding items improves item reliability, while controlling prompt and seed conditions improves model discriminability. All budgets assume binary scoring; extending to other model scales and continuous metrics is a priority. We recommend that benchmark designers adopt multi-facet validation (at minimum 3 prompts $\times$ 3 seeds) as standard practice when sizing pilot studies, and that leaderboard operators average over prompt and seed conditions to improve ranking stability. Code, data, and a D-study calculator will be released upon publication.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T10:42:50.845327+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T10:42:50.845465+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T10:42:50.845677+00:00_
+
+1	\section{Related Work}
+2	\label{sec:related}
+3	
+4	\paragraph{Variance Decomposition in ML/NLP Evaluation.}
+5	Factorial decomposition of evaluation variance has roots in the ML reproducibility literature. \citet{bouthillier2021accounting} introduced an ANOVA-based template that decomposes benchmark variance across implementation details, hyperparameters, and data splits, establishing that design choices account for a substantial share of reproducibility failures. Subsequent studies applied similar decomposition to specific evaluation facets \citep{dodge2020finetuning, henderson2018deep, magnusson2023reproducibility}. \citet{messing2026hidden} brought Generalizability theory into LLM evaluation, decomposing variance across five methodology facets on a single benchmark (judge identity: 43.8\%; see Positioning below for detailed comparison). \citet{madaan2024quantifying} proposed per-factor variance metrics for LLM evaluation benchmarks but did not cross factors simultaneously. Holistic evaluation frameworks \citep{liang2023helm, kiela2021dynabench} standardize multi-scenario comparison but do not decompose variance sources. \citet{blackwell2024towards} quantified uncertainty in benchmark scores, and \citet{qian2026benchmark} conducted systematic meta-evaluation of LLM benchmarks; \citet{burnell2023rethink} called for rethinking evaluation reporting standards; \citet{saxon2024metrology} advocated model metrology as a framework for rigorous benchmark design. Recently, G-theory has been applied to LLM-based writing assessment \citep{wei2025gtheory} and annotation reliability \citep{varannot2025gtheory}, but these studies address scoring consistency rather than benchmark evaluation variance. \citet{kunievsky2025intent} proposed an alternative decomposition that separates intent uncertainty, articulation variance, and model uncertainty, but this framework does not cross infrastructure and methodology facets in a factorial design. Our work extends these approaches by cross
+…[truncated 4652 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T10:42:50.845994+00:00_
+
+1	\appendix
+2	\section{Additional Robustness Analyses}
+3	\label{app:robustness}
+4	
+5	We report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.
+6	
+7	\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\rho = 1.0$) relative to Henderson Method~I \cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.
+8	
+9	\paragraph{Accuracy-range stability.} The \texttt{item\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.
+10	
+11	\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \cite[Ch.~12]{brennan2001generalizability}.
+12	
+13	\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\rho = 0.732$ between binary and continuous rankings, excluding residual; \texttt{item\_id} dominant in all 100 replications; top-5 ordering correct in 79\% of replications). Bias analysis by difficulty stratum shows $|\text{bias}| = 0.28$--$0.37$ for items with $p \in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This an
+…[truncated 26365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T10:42:50.846482+00:00_
+
+Now I'll compile all the numerical claims found across the files with their exact context and line numbers.
+
+## NUMERICAL CLAIMS EXTRACTED FROM ALL LaTeX FILES
+
+### **1. abstract.tex**
+
+| Line | Claim | Exact Context |
+|------|-------|---------------|
+| 1 | **8 models (7-9B)** | "eight open-weight instruction-tuned models (7--9B parameters)" |
+| 1 | **~2.3 million records** | "totaling approximately 2.3 million evaluation records" |
+| 1 | **G ≥ 0.80** | "D-study projections show that, under binary correctness scoring, a recommended multi-condition design achieves $G \geq 0.80$" |
+| 1 | **178 items** | "achieves $G \geq 0.80$ with 178 items" |
+| 1 | **1,602 evaluations per model** | "(1,602 evaluations per model)" |
+| 1 | **3.1× reduction** | "a 3.1$\times$ item reduction over single-condition designs" |
+| 1 | **552 items** | "(552 items, 552 evaluations)" |
+| 1 | **~3× more evaluations** | "trading approximately 3$\times$ more total evaluations" |
+| 1 | **~3× fewer items** | "for 3$\times$ fewer items" |
+| 1 | **up to 36%** | "Model$\times$item interaction (up to 36\%)" |
+| 1 | **3B–72B parameter range** | "Preliminary validation across a 3B--72B parameter range" |
+
+---
+
+### **2. introduction.tex**
+
+| Line | Claim | Exact Context |
+|------|-------|---------------|
+| 4 | **34–38% of variance** | "item selection drives 34--38\% of evaluation variance on multiple-choice tasks" |
+| 4 | **<3%** | "prompt wording is negligible ($<$3\%)" |
+| 4 | **~9%** | "model$\times$prompt interaction alone accounts for approximately 9\%" |
+| 4 | **17%** | "item selection drops to 17\%" |
+| 4 | **~2.3 million records** | "approximately 2.3 million evaluation records" |
+| 4 | **50–76% accuracy swings** | "50--76\% accuracy swings from prompt formatting" |
+| 4 | **~9% variation** | "up to 9\% variation from numerical precision" |
+| 4 | **43.8%** | "judge identity: 43.8\%" |
+| 8 | **7–9B parameter models** | "eight open-weight 7--9B parameter models" |
+| 8 | **~2.3 million records** | "tot
+…[truncated 29110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Agent",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T10:42:50.846704+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -name \"variance_decomposition*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory -name \"variance_decomposition*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T10:42:50.846843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/src/analysis/variance_decomposition.py\\n/root/nlp_variance_gtheory/src/analysis/__pycache__/variance_decomposition.cpython-312.pyc\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T10:42:50.846967+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/src/analysis/variance_decomposition.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/src/analysis/variance_decomposition.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T10:42:50.847203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"G-theory variance decomposition for LLM evaluation.\\n\\nEstimates variance components for all 6 facets (main effects) and all\\n15 two-way interactions using ANOVA-based estimation (Henderson Method I)\\nfor balanced fully-crossed designs.  Higher-order interactions (≥3-way) are\\nabsorbed into the residual.\\n\\nEstimation treats all facets as random (standard G-study practice).  The\\nfixed/random distinction is used downstream in the D-study to partition\\nuniverse-score variance from error variance.\\n\\nBootstrap 95 %% CIs are computed by resampling items with replacement.\\n\\nFacets\\n------\\nprecision, temperature                    — fixed  (in D-study)\\nprompt_template, seed, ordering, item_id  — random (in D-study)\\n\\nInput:  JSONL from ``run_experiment.py`` (one row per item × condition).\\nOutput: JSON with ANOVA table, variance components, and bootstrap CIs.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\nfrom collections import Counter\\nfrom typing import Optional\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nALL_FACETS = [\\n    \\\"precision\\\", \\\"temperature\\\",\\n    \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\",\\n]\\nFIXED_FACETS = [\\\"precision\\\", \\\"temperature\\\"]\\nRANDOM_FACETS = [\\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\n\\n# ---------------------------------------------------------------------------\\n# ANOVA helpers\\n# ---------------------------------------------------------------------------\\n\\ndef compute_ss(\\n    df: pd.DataFrame,\\n    response: str,\\n    facets: list[str],\\n) -> tuple[dict, dict[str, int]]:\\n    \\\"\\\"\\\"Compute Type-I sums of squares for main effects and 2-way interactions.\\n\\n    For a balanced design, Type I = Type III, so the order of terms does not\\n    matt
+…[truncated 7247 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T10:42:50.847407+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -3 /root/nlp_variance_gtheory/results/exp002/llama_mmlu.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T10:42:50.847597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | If G is a finite group and H is a\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.8737277984619141, \\\"top_logprobs\\\": {\\\" A\\\": -0.8737277984619141, \\\" C\\\": -1.373727798461914, \\\" B\\\": -1.498727798461914, \\\" D\\\": -2.248727798461914, \\\" \\\": -9.373727798461914}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_14\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"D\\\\n\\\\nStatement 1 | If a and b are elements of a group G\\\", \\\"predicted_answer\\\": \\\"D\\\", \\\"gold_answer\\\": \\\"C\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 24.23, \\\"answer_logprob\\\": -0.7932339310646057, \\\"top_logprobs\\\": {\\\" D\\\": -0.7932339310646057, \\\" C\\\": -1.168233871459961, \\\" B\\\": -1.918233871459961, \\\" A\\\": -2.418233871459961, \\\" \\\": -8.168233871459961}}\\n{\\\"condition_id\\\": 1153, \\\"item_id\\\": \\\"abstract_algebra_3\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"meta-llama/Llama-3.1-8B-Instruct\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": nu
+…[truncated 649 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T10:42:50.847745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results -name \"variance_components*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/results -name \"variance_components*.json\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T10:42:50.847870+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/variance_components.json\\n/root/nlp_variance_gtheory/results/variance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T10:42:50.847992+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/variance_components.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/variance_components.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T10:42:50.848244+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"variance_components\\\": {\\n    \\\"precision:temperature\\\": {\\n      \\\"estimate\\\": 3.842911157067601e-06,\\n      \\\"pct\\\": 0.0016723514354405845,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.0006191779250485677\\n      }\\n    },\\n    \\\"precision:prompt_template\\\": {\\n      \\\"estimate\\\": 4.496189759979911e-05,\\n      \\\"pct\\\": 0.019566440887624693,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.0017590689297800333\\n      }\\n    },\\n    \\\"precision:seed\\\": {\\n      \\\"estimate\\\": 0.0,\\n      \\\"pct\\\": 0.0,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.00018413620433038752\\n      }\\n    },\\n    \\\"precision:ordering\\\": {\\n      \\\"estimate\\\": 0.0,\\n      \\\"pct\\\": 0.0,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.0002915604614484751\\n      }\\n    },\\n    \\\"precision:item_id\\\": {\\n      \\\"estimate\\\": 0.016644111747600606,\\n      \\\"pct\\\": 7.2431557834850375,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.00973336081151768,\\n        \\\"upper\\\": 0.024655302185422636\\n      }\\n    },\\n    \\\"temperature:prompt_template\\\": {\\n      \\\"estimate\\\": 1.1250318564475103e-05,\\n      \\\"pct\\\": 0.004895894188410151,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.0003736124010361182\\n      }\\n    },\\n    \\\"temperature:seed\\\": {\\n      \\\"estimate\\\": 8.902809634225294e-05,\\n      \\\"pct\\\": 0.03874309309459019,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\": 0.001912159324016623\\n      }\\n    },\\n    \\\"temperature:ordering\\\": {\\n      \\\"estimate\\\": 4.261681045587726e-05,\\n      \\\"pct\\\": 0.018545909917462067,\\n      \\\"ci_95\\\": {\\n        \\\"lower\\\": 0.0,\\n        \\\"upper\\\":
+…[truncated 7226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T10:42:50.848446+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/results -name \"*.json\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T10:42:50.848634+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/sanity_check.json\\n/root/nlp_variance_gtheory/results/variance_components.json\\n/root/nlp_variance_gtheory/results/d_study_results.json\\n/root/nlp_variance_gtheory/results/variance_components_text.json\\n/root/nlp_variance_gtheory/results/d_study_results_text.json\\n/root/nlp_variance_gtheory/results/analysis/llama_single_model_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/fixed_vs_random_sensitivity.json\\n/root/nlp_variance_gtheory/results/analysis/binary_data_limitation.json\\n/root/nlp_variance_gtheory/results/analysis/bootstrap_vs_jackknife.json\\n/root/nlp_variance_gtheory/results/analysis/temperature_stratified_analysis.json\\n/root/nlp_variance_gtheory/results/analysis/irt_vs_gtheory.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_bootstrap.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_balanced_meta.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_3way_bf16_meta.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_2way_precision_meta.json\\n/root/nlp_variance_gtheory/results/analysis/llama_precision_balanced_meta.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_g_coefficients.json\\n/root/nlp_variance_gtheory/results/analysis/dataset_b_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/dataset_a_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_reml.json\\n/root/nlp_variance_gtheory/results/analysis/cross_model_reml_500iter.json\\n/root/nlp_variance_gtheory/results/analysis/dataset_a4_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/leave_one_model_out.json\\n/root/nlp_variance_gtheory/results/analysis/bf16_fp16_only_gstudy.json\\n/root/nlp_variance_gtheory/results/analysis/lomo_matched_spec.json\\n/root/nlp_variance_gtheory/results/analysis/exp001b_resampling_gstudy.json\\n/root/n
+…[truncated 6047 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T10:42:50.848802+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/mmlu_gstudy_ref.json",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/mmlu_gstudy_ref.json",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T10:42:50.848931+00:00_
+
+1	{"experiment":"exp-004","analysis":"8model_henderson_i_gstudy_mmlu","benchmark":"mmlu","n_models":8,"n_observations":460800,"G_item":0.896176,"G_item_CI":{"ci_lower":0.874189,"ci_upper":0.915197},"grand_mean_accuracy":0.645736,"server_path":"westd-32570:/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"}
+2	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T10:42:50.849050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T10:42:50.849253+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"8model_henderson_i_gstudy_mmlu\\\",\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_observations\\\": 460800,\\n  \\\"n_levels\\\": {\\n    \\\"model\\\": 8,\\n    \\\"temperature\\\": 2,\\n    \\\"prompt_template\\\": 6,\\n    \\\"seed\\\": 6,\\n    \\\"ordering\\\": 4,\\n    \\\"item_id\\\": 200\\n  },\\n  \\\"grand_mean_accuracy\\\": 0.645736,\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"variance_components\\\": {\\n    \\\"item_id\\\": {\\n      \\\"estimate\\\": 0.0872124597,\\n      \\\"pct\\\": 37.8812,\\n      \\\"ci_lower\\\": 33.1231,\\n      \\\"ci_upper\\\": 42.1664\\n    },\\n    \\\"model:item_id\\\": {\\n      \\\"estimate\\\": 0.0695501891,\\n      \\\"pct\\\": 30.2095,\\n      \\\"ci_lower\\\": 26.8105,\\n      \\\"ci_upper\\\": 33.3184\\n    },\\n    \\\"residual\\\": {\\n      \\\"estimate\\\": 0.0575714452,\\n      \\\"pct\\\": 25.0065,\\n      \\\"ci_lower\\\": 22.8915,\\n      \\\"ci_upper\\\": 27.2172\\n    },\\n    \\\"model\\\": {\\n      \\\"estimate\\\": 0.0065213123,\\n      \\\"pct\\\": 2.8326,\\n      \\\"ci_lower\\\": 1.8945,\\n      \\\"ci_upper\\\": 4.4692\\n    },\\n    \\\"model:prompt_template\\\": {\\n      \\\"estimate\\\": 0.0036708012,\\n      \\\"pct\\\": 1.5944,\\n      \\\"ci_lower\\\": 1.2734,\\n      \\\"ci_upper\\\": 2.0659\\n    },\\n    \\\"prompt_template:item_id\\\": {\\n      \\\"estimate\\\": 0.0021769413,\\n      \\\"pct\\\": 0.9456,\\n      \\\"ci_lower\\\": 0.8237,\\n      \\\"ci_upper\\\": 1.0798\\n    },\\n    \\\"temperature:item_id\\\": {\\n      \\\"estimate\\\": 0.0012818778,\\n      \\\"pct\\\": 0.5568,\\n      \\\"ci_lower\\\": 0.378,\\n      \\\"ci_upper\\\": 0.781\\n    },\\n    \\\"seed:item_id\\\": {\\n      \\\"estimat
+…[truncated 3184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T10:42:50.849482+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T10:42:50.849677+00:00_
+
+1	\section{Experiments}
+2	
+3	All experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on a single NVIDIA RTX PRO 6000 GPU (96GB) with binary correctness scoring.
+4	
+5	\subsection{Single-Model Baseline}
+6	
+7	We first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.
+8	
+9	\paragraph{Design.} The G-study crosses six facets: 200 items $\times$ 3 numerical precisions (BF16, FP16, FP32) $\times$ 6 prompt templates $\times$ 6 random seeds $\times$ 3 temperature levels (0.0, 0.3, 0.7) $\times$ 4 answer orderings, yielding 259,200 binary observations. Variance components are estimated via Henderson Method~I with bootstrap confidence intervals (1,000 resamples).
+10	
+11	\paragraph{Results.} Under binary scoring, item difficulty (\texttt{item\_id}) accounts for 58.4\% of total variance, with the residual term contributing 23.1\%. All main facet effects are negligible ($<$1\% each): precision 0.9\%, prompt template, temperature, seed, and ordering each $<$0.5\%. The interesting structure appears in item-conditional interactions: prompt$\times$item is the largest at 5.5\%, followed by seed$\times$item (4.7\%), precision$\times$item (3.3\%), temperature$\times$item (2.9\%), and ordering$\times$item (0.8\%). This pattern indicates that methodological choices do not shift performance uniformly across items; instead, specific items are differentially sensitive to specific facets---prompt template variation produces the largest item-conditional effect.
+12	
+13	The resulting generalizability coefficient is $G_\text{item} = 0.936$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \geq 0.80$ is achievable with as few as 55 items in this multi-facet design.
+14	
+15	For text-exact-match scoring (requiring verbatim string matches), the variance structure shifts dramatically: te
+…[truncated 9318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T10:42:50.849884+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/unified_henderson_i_numbers.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/analysis/unified_henderson_i_numbers.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T10:42:50.850219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"single_model_6facet\\\": {\\n    \\\"data_source\\\": \\\"exp001_llama (4 shards + fp32_t0_backfill)\\\",\\n    \\\"records\\\": 259200,\\n    \\\"conditions\\\": 1296,\\n    \\\"items\\\": 200,\\n    \\\"method\\\": \\\"Henderson I (EMS-based)\\\",\\n    \\\"facets\\\": [\\n      \\\"precision\\\",\\n      \\\"temperature\\\",\\n      \\\"prompt_template\\\",\\n      \\\"seed\\\",\\n      \\\"ordering\\\",\\n      \\\"item_id\\\"\\n    ],\\n    \\\"facet_levels\\\": {\\n      \\\"precision\\\": 3,\\n      \\\"temperature\\\": 3,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"grand_mean\\\": 0.6839,\\n    \\\"metric\\\": \\\"correct\\\",\\n    \\\"anova_table\\\": {\\n      \\\"precision\\\": {\\n        \\\"SS\\\": 384.666412,\\n        \\\"df\\\": 2,\\n        \\\"MS\\\": 192.3332060185\\n      },\\n      \\\"temperature\\\": {\\n        \\\"SS\\\": 47.5275,\\n        \\\"df\\\": 2,\\n        \\\"MS\\\": 23.76375\\n      },\\n      \\\"prompt_template\\\": {\\n        \\\"SS\\\": 19.133044,\\n        \\\"df\\\": 5,\\n        \\\"MS\\\": 3.8266087963\\n      },\\n      \\\"seed\\\": {\\n        \\\"SS\\\": 6.55647,\\n        \\\"df\\\": 5,\\n        \\\"MS\\\": 1.3112939815\\n      },\\n      \\\"ordering\\\": {\\n        \\\"SS\\\": 0.362542,\\n        \\\"df\\\": 3,\\n        \\\"MS\\\": 0.1208474794\\n      },\\n      \\\"item_id\\\": {\\n        \\\"SS\\\": 35019.73191,\\n        \\\"df\\\": 199,\\n        \\\"MS\\\": 175.9785523102\\n      },\\n      \\\"precision:temperature\\\": {\\n        \\\"SS\\\": 66.743171,\\n        \\\"df\\\": 4,\\n        \\\"MS\\\": 16.6857928241\\n      },\\n      \\\"precision:prompt_template\\\": {\\n        \\\"SS\\\": 16.879051,\\n        \\\"df\\\": 10,\\n        \\\"MS\\\": 1.6879050926\\n      },\\n      \\\"precision:seed\\\": {\\n        \\\"SS\\\": 0.988403,\\n      
+…[truncated 8398 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T10:42:50.850447+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/three_in_one_8model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/three_in_one_8model.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T10:42:50.850802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"three_in_one_8model\\\",\\n  \\\"timestamp\\\": \\\"2026-05-22 07:00:02\\\",\\n  \\\"runtime_seconds\\\": 57.7,\\n  \\\"part_a_mmlu_gstudy\\\": {\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"n_models\\\": 8,\\n    \\\"models\\\": [\\n      \\\"DeepSeek-7B\\\",\\n      \\\"Gemma-2-9B\\\",\\n      \\\"InternLM2.5-7B\\\",\\n      \\\"Llama-3.1-8B\\\",\\n      \\\"Mistral-7B-v0.3\\\",\\n      \\\"OLMo-2-7B\\\",\\n      \\\"Qwen3-8B\\\",\\n      \\\"Yi-1.5-9B\\\"\\n    ],\\n    \\\"n_obs\\\": 460800,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 8,\\n      \\\"temperature\\\": 2,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"accuracy\\\": 0.645736,\\n    \\\"variance_components\\\": {\\n      \\\"item_id\\\": {\\n        \\\"estimate\\\": 0.0872124597,\\n        \\\"pct\\\": 37.8812\\n      },\\n      \\\"model:item_id\\\": {\\n        \\\"estimate\\\": 0.0695501891,\\n        \\\"pct\\\": 30.2095\\n      },\\n      \\\"residual\\\": {\\n        \\\"estimate\\\": 0.0575714452,\\n        \\\"pct\\\": 25.0065\\n      },\\n      \\\"model\\\": {\\n        \\\"estimate\\\": 0.0065213123,\\n        \\\"pct\\\": 2.8326\\n      },\\n      \\\"model:prompt_template\\\": {\\n        \\\"estimate\\\": 0.0036708012,\\n        \\\"pct\\\": 1.5944\\n      },\\n      \\\"prompt_template:item_id\\\": {\\n        \\\"estimate\\\": 0.0021769413,\\n        \\\"pct\\\": 0.9456\\n      },\\n      \\\"temperature:item_id\\\": {\\n        \\\"estimate\\\": 0.0012818778,\\n        \\\"pct\\\": 0.5568\\n      },\\n      \\\"seed:item_id\\\": {\\n        \\\"estimate\\\": 0.001209092,\\n        \\\"pct\\\": 0.5252\\n      },\\n      \\\"ordering:item_id\\\": {\\n        \\\"estimate\\\": 0.0007188472,\\n        \\\"pct\\\": 0.3122\\n      },\\n      \\\"model:temperature\\\":
+…[truncated 8566 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T10:42:50.851008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T10:42:50.851281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy_8model\\\",\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"n_observations\\\": 460800,\\n  \\\"n_levels\\\": {\\n    \\\"model\\\": 8,\\n    \\\"temperature\\\": 2,\\n    \\\"prompt_template\\\": 6,\\n    \\\"seed\\\": 6,\\n    \\\"ordering\\\": 4,\\n    \\\"item_id\\\": 200\\n  },\\n  \\\"grand_mean_accuracy\\\": 0.714622,\\n  \\\"variance_components\\\": {\\n    \\\"model:item_id\\\": {\\n      \\\"estimate\\\": 0.0741053211,\\n      \\\"pct\\\": 36.0022\\n    },\\n    \\\"item_id\\\": {\\n      \\\"estimate\\\": 0.0705466971,\\n      \\\"pct\\\": 34.2733\\n    },\\n    \\\"residual\\\": {\\n      \\\"estimate\\\": 0.0440750888,\\n      \\\"pct\\\": 21.4128\\n    },\\n    \\\"model\\\": {\\n      \\\"estimate\\\": 0.0110182355,\\n      \\\"pct\\\": 5.3529\\n    },\\n    \\\"prompt_template:item_id\\\": {\\n      \\\"estimate\\\": 0.004399445,\\n      \\\"pct\\\": 2.1374\\n    },\\n    \\\"temperature:item_id\\\": {\\n      \\\"estimate\\\": 0.0005886942,\\n      \\\"pct\\\": 0.286\\n    },\\n    \\\"seed:item_id\\\": {\\n      \\\"estimate\\\": 0.000496811,\\n      \\\"pct\\\": 0.2414\\n    },\\n    \\\"model:prompt_template\\\": {\\n      \\\"estimate\\\": 0.000387514,\\n      \\\"pct\\\": 0.1883\\n    },\\n    \\\"model:temperature\\\": {\\n      \\\"estimate\\\": 8.87438e-05,\\n      \\\"pct\\\": 0.0431\\n    },\\n    \\\"model:seed\\\": {\\n      \\\"estimate\\\": 4.7
+…[truncated 6698 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-23T10:42:50.851501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -l \"hellaswag\" /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -l \"hellaswag\" /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T10:42:50.851640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T10:42:50.851772+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Check hellaswag data provenance",
+  "subagent_type": "general-purpose",
+  "prompt": "I need to investigate a data provenance issue on a remote server accessed via MCP tools.\n\nThe per_benchmark_gstudy_hellaswag_2temp.json file on server westd-32570 claims 8 models and 460,800 observations, but only 6 HellaSwag JSONL files exist in /root/nlp_variance_gtheory/results/exp002/ (missing olmo_hellaswag.jsonl and yi_hellaswag.jsonl).\n\nPlease do these checks using ssh_read_only on server westd-32570:\n\n1. Read the n_models and models fields from /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json (the non-2temp version) to see if it was 6 models\n2. Check if there's a combined/merged HellaSwag data file anywhere: `find /root/nlp_variance_gtheory -name \"*hellaswag*\" -type f`\n3. Check if there are any data files in /root/autodl-tmp that contain hellaswag data: `find /root/autodl-tmp -name \"*hellaswag*\" -type f`\n4. Search for Python scripts that might have generated hellaswag 8-model data: `grep -rl \"hellaswag\" /root/nlp_variance_gtheory/src/` \n5. Check the analysis scripts that produce per-benchmark G-studies: `find /root/nlp_variance_gtheory/src -name \"*per_benchmark*\" -o -name \"*8model*\" -type f`\n\nReport what you find about how the 8-model HellaSwag G-study was produced when only 6 JSONL files exist."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Check hellaswag data provenance",
+    "subagent_type": "general-purpose",
+    "prompt": "I need to investigate a data provenance issue on a remote server accessed via MCP tools.\n\nThe per_benchmark_gstudy_hellaswag_2temp.json file on server westd-32570 claims 8 models and 460,800 observations, but only 6 HellaSwag JSONL files exist in /root/nlp_variance_gtheory/results/exp002/ (missing olmo_hellaswag.jsonl and yi_hellaswag.jsonl).\n\nPlease do these checks using ssh_read_only on server westd-32570:\n\n1. Read the n_models and models fields from /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json (the non-2temp version) to see if it was 6 models\n2. Check if there's a combined/merged HellaSwag data file anywhere: `find /root/nlp_variance_gtheory -name \"*hellaswag*\" -type f`\n3. Check if there are any data files in /root/autodl-tmp that contain hellaswag data: `find /root/autodl-tmp -name \"*hellaswag*\" -type f`\n4. Search for Python scripts that might have generated hellaswag 8-model data: `grep -rl \"hellaswag\" /root/nlp_variance_gtheory/src/` \n5. Check the analysis scripts that produce per-benchmark G-studies: `find /root/nlp_variance_gtheory/src -name \"*per_benchmark*\" -o -name \"*8model*\" -type f`\n\nReport what you find about how the 8-model HellaSwag G-study was produced when only 6 JSONL files exist."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-23T10:42:50.851931+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T10:42:50.852046+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-23T10:42:50.852166+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"import json; d=json.load(open('/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json')); print('n_models:', d.get('n_models')); print('models:', d.get('models')); print('n_observations:', d.get('n_observations'))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "python3 -c \"import json; d=json.load(open('/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json')); print('n_models:', d.get('n_models')); print('models:', d.get('models')); print('n_observations:', d.get('n_observations'))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-23T10:42:50.852279+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-23T10:42:50.852414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -name \"*hellaswag*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory -name \"*hellaswag*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-23T10:42:50.852542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/data/hellaswag_items_exp002.json\\n/root/nlp_variance_gtheory/data/few_shot_hellaswag.json\\n/root/nlp_variance_gtheory/results/exp002_pilot/pilot_design_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002_pilot/hellaswag_pilot.jsonl\\n/root/nlp_variance_gtheory/results/exp002/shard_qwen_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/shard_llama_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/shard_gemma_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/shard_mistral_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/shard_internlm_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/shard_deepseek_hellaswag.csv\\n/root/nlp_variance_gtheory/results/exp002/gpu1_internlm_hellaswag.log\\n/root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp002/gpu3_deepseek_hellaswag.log\\n/root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json\\n/root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json\\n/root/nlp_variance_gtheory/results/exp004_8model_analysis/bootstrap_ci_hellaswag.json\\n/root/nlp_variance_gtheory/results/exp004_8model_analysis/dstudy_hellaswag.json\\n/root/nlp_variance_gtheory/results/exp004_ff_residual/difficulty_vs_residual_hellaswag.pdf\\n/root/nlp_variance_gtheory/results/exp004_ff_residual/difficulty_vs_residual_hellaswag.png\\n/root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py\\n/root/nlp_variance_gtheory/scripts/hellaswag_2temp_gstudy.py\\n/root/nlp_var
+…[truncated 248 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-23T10:42:50.852694+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/autodl-tmp -name \"*hellaswag*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/autodl-tmp -name \"*hellaswag*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-23T10:42:50.852810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/datasets--Rowan--hellaswag/.no_exist/218ec52e09a7e7462a5400043bb9a69a41d06b76/hellaswag.py\\n/root/autodl-tmp/.hf_cache/Rowan___hellaswag/default/0.0.0/218ec52e09a7e7462a5400043bb9a69a41d06b76/hellaswag-train.arrow\\n/root/autodl-tmp/.hf_cache/Rowan___hellaswag/default/0.0.0/218ec52e09a7e7462a5400043bb9a69a41d06b76/hellaswag-test.arrow\\n/root/autodl-tmp/.hf_cache/Rowan___hellaswag/default/0.0.0/218ec52e09a7e7462a5400043bb9a69a41d06b76/hellaswag-validation.arrow\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-23T10:42:50.852932+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -rl \"hellaswag\" /root/nlp_variance_gtheory/src/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -rl \"hellaswag\" /root/nlp_variance_gtheory/src/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-23T10:42:50.853050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/src -name \"*per_benchmark*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/src -name \"*per_benchmark*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T10:42:50.853162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/src/data/prompt_templates.py\\n/root/nlp_variance_gtheory/src/data/__pycache__/prompt_templates.cpython-312.pyc\\n/root/nlp_variance_gtheory/src/data/sample_benchmarks.py\\n/root/nlp_variance_gtheory/src/design/generate_design.py\\n/root/nlp_variance_gtheory/src/design/__pycache__/generate_design.cpython-312.pyc\\n/root/nlp_variance_gtheory/src/inference/run_experiment.py\\n/root/nlp_variance_gtheory/src/inference/__pycache__/run_experiment.cpython-312.pyc\\n/root/nlp_variance_gtheory/src/inference/__pycache__/benchmark_utils.cpython-312.pyc\\n/root/nlp_variance_gtheory/src/inference/benchmark_utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-23T10:42:50.853284+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-23T10:42:50.853417+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-23T10:42:50.853593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy_8model\\\",\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"n_observations\\\": 691200,\\n  \\\"n_levels\\\": {\\n    \\\"model\\\": 8,\\n    \\\"temperature\\\": 3,\\n    \\\"prompt_template\\\": 6,\\n    \\\"seed\\\": 6,\\n    \\\"ordering\\\": 4,\\n    \\\"item_id\\\": 200\\n  },\\n  \\\"grand_mean_accuracy\\\": 0.476415,\\n  \\\"variance_components\\\": {\\n    \\\"model:temperature\\\": {\\n      \\\"estimate\\\": 0.110506119,\\n      \\\"pct\\\": 36.4408\\n    },\\n    \\\"temperature\\\": {\\n      \\\"estimate\\\": 0.0630722969,\\n      \\\"pct\\\": 20.7989\\n    },\\n    \\\"residual\\\": {\\n      \\\"estimate\\\": 0.0540076756,\\n      \\\"pct\\\": 17.8097\\n    },\\n    \\\"model:item_id\\\": {\\n      \\\"estimate\\\": 0.0328786976,\\n      \\\"pct\\\": 10.8422\\n    },\\n    \\\"item_id\\\": {\\n      \\\"estimate\\\": 0.0270168317,\\n      \\\"pct\\\": 8.9092\\n    },\\n    \\\"temperature:item_id\\\": {\\n      \\\"estimate\\\": 0.0134469811,\\n      \\\"pct\\\": 4.4343\\n    },\\n    \\\"prompt_template:item_id\\\": {\\n      \\\"estimate\\\": 0.0019125584,\\n      \\\"pct\\\": 0.6307\\n    },\\n    \\\"seed:item_id\\\": {\\n      \\\"estimate\\\": 0.0001780544,\\n      \\\"pct\\\": 0.0587\\n    },\\n    \\\"model:prompt_template\\\": {\\n      \\\"estimate\\\": 0.0001705184,\\n      \\\"pct\\\": 0.0562\\n    },\\n    \\\"temperature:prompt_template\\\": {\\
+…[truncated 6687 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-23T10:42:50.853739+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-23T10:42:50.853899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"8-model Henderson I G-study for HellaSwag with bootstrap CI.\\nOptimized: pre-compute item-level tensor, vectorize bootstrap.\\n\\\"\\\"\\\"\\n\\nimport json, sys, time, gzip, base64, hashlib\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nDIM_ORDER = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nOLMO_B64 = \\\"H4sIAPGID2oC/+3YsWsaURwH8O0gQ/NfODg4Brp0CIUMGQLlBiGbhFss5xGOIniEbgGhbuIWQoaAB7ktLekQQoeKBNNSiCEVtTnE6YI3Fant3et7v3fqndUQvV/scvOHy/d8Pt/7fVOuxtWcdZGSje09p6uUBNe1+gUifi9HEEEIaCZUrUNMee1ScmJvP1TctkVOiFiPIIIwUDVUzSJsw71xupnixn2bbjg7SXdiAg+MJUBiCU/819ddxheF91a3uprrUNAbkmPSg6xHN1zBFh0AK4IIFoNqYjdnHZryeUN2Ysq+0HMtYtjs5owggsWhSQEuyIZMPimnq3/ohsvb4rcIIggD1byaZgP9eWOPHmT7MNBf2clfE1AJCx0Gm+PS8BXaBCLEd3kx8YUXIPxBIHM8odNhIsfCjU0GpS23zctPALohIeHBtsw/IAUDG3SvxF3C5xDG4WjABnq6ut5Ar5Qq7oAeZET8CTsRDbJa5wKgRUvDF1Ya3pFXdVzwhxdnvdVUkB8NWW2H/6nW8ShcrKPCC1Xb6ZvK2oBC1t+8EIEt4rjEBd8KCWo6/9XqdKA3M9cCG+jhkKnF0YBuam0I3UyJlQbShNt5CrQWg9ro9KHhaR4OxQQRePkxR+WHDqn9AzgsA3A9Cx71BFQyUwFIFyH8xEIGX4kbflEHk+0uJNx6++ojDPQ3q73hZkAGX+dkQK7sl+jAwo/oRX+k3LBiwjaDgwuB7rwF5YeITwLHA4l0vYJFB+H6AxCf+4lAieNf1CgcCaorbKBPTZn0EeEZgOTBxpMAO2R+pOT3/4Qjwqj8SDy8DRckOrw+vKPhEg9v//aHzwRzAQgsIkGFMz5MwCKSdaXoDfTJ2fB87icCpWGdlgZ2CeeViTYRDs5aPFzxwoX7htWHt8KDcpMN2xAuQflh4SvQihCBDdvkTonRQ+azciqwRYzb/D/beOANkBBe5Is4bHc48BfEFh+fIBwAAA==\\\"\\nYI_B64 = \\\"H4sIAAeJD2oC/+3Yv2/TQBQH8Al1ZOyYP4GJdmumKlPFgBADgxWohdSSZKhCBivxX1AxMlUwWkVVgSFEtRqPDFA6FoX8ECptBpKYSpFR4p4fd74zaRJfHKfnoqKu/ej53dlX+32jNSBb0NGxXK4AUqE4B2CCCjlH44N5AxMg958s93L72K5B1jFBTu1WTZR7hCF10lNeHIJGAODJ
+…[truncated 7082 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-23T10:42:50.854046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/hellaswag_2temp_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/scripts/hellaswag_2temp_gstudy.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-23T10:42:50.854202+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"HellaSwag 8-model Henderson I G-study — 2-temp only (T=0.0, T=0.7).\\nFixes: filter out T=0.3 contamination that inflated the temperature facet.\\n\\\"\\\"\\\"\\nimport json, sys, time, gzip, base64, hashlib\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nDIM_ORDER = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nVALID_TEMPS = {0.0, 0.7}\\nVALID_TEMPS_STR = {\\\"0.0\\\", \\\"0.7\\\"}\\n\\nOLMO_B64 = \\\"H4sIAPGID2oC/+3YsWsaURwH8O0gQ/NfODg4Brp0CIUMGQLlBiGbhFss5xGOIniEbgGhbuIWQoaAB7ktLekQQoeKBNNSiCEVtTnE6YI3Fant3et7v3fqndUQvV/scvOHy/d8Pt/7fVOuxtWcdZGSje09p6uUBNe1+gUifi9HEEEIaCZUrUNMee1ScmJvP1TctkVOiFiPIIIwUDVUzSJsw71xupnixn2bbjg7SXdiAg+MJUBiCU/819ddxheF91a3uprrUNAbkmPSg6xHN1zBFh0AK4IIFoNqYjdnHZryeUN2Ysq+0HMtYtjs5owggsWhSQEuyIZMPimnq3/ohsvb4rcIIggD1byaZgP9eWOPHmT7MNBf2clfE1AJCx0Gm+PS8BXaBCLEd3kx8YUXIPxBIHM8odNhIsfCjU0GpS23zctPALohIeHBtsw/IAUDG3SvxF3C5xDG4WjABnq6ut5Ar5Qq7oAeZET8CTsRDbJa5wKgRUvDF1Ya3pFXdVzwhxdnvdVUkB8NWW2H/6nW8ShcrKPCC1Xb6ZvK2oBC1t+8EIEt4rjEBd8KCWo6/9XqdKA3M9cCG+jhkKnF0YBuam0I3UyJlQbShNt5CrQWg9ro9KHhaR4OxQQRePkxR+WHDqn9AzgsA3A9Cx71BFQyUwFIFyH8xEIGX4kbflEHk+0uJNx6++ojDPQ3q73hZkAGX+dkQK7sl+jAwo/oRX+k3LBiwjaDgwuB7rwF5YeITwLHA4l0vYJFB+H6AxCf+4lAieNf1CgcCaorbKBPTZn0EeEZgOTBxpMAO2R+pOT3/4Qjwqj8SDy8DRckOrw+vKPhEg9v//aHzwRzAQgsIkGFMz5MwCKSdaXoDfTJ2fB87icCpWGdlgZ2CeeViTYRDs5aPFzxwoX7htWHt8KDcpMN2xAuQflh4SvQihCBDdvkTonRQ+azciqwRYzb/D/beOANkBBe5Is4bHc48BfEFh+fIBwAAA==\\\"\\nYI_B64 = \\\"H4sIAAeJD2oC/+3Yv2/TQBQH8Al1ZOyYP4GJdmumKlPFgBADgxWohdSSZKhCBivxX1AxMlUwWkVVgSFEtRqPDFA6FoX8ECptBpKYSpFR4p4fd74zaRJfHK
+…[truncated 7085 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-23T10:42:50.854352+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls -la /root/nlp_variance_gtheory/results/exp002/*hellaswag*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "ls -la /root/nlp_variance_gtheory/results/exp002/*hellaswag*.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-23T10:42:50.854494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 34090608 May 22 02:05 /root/nlp_variance_gtheory/results/exp002/deepseek_hellaswag.jsonl\\n-rw-r--r-- 1 root root 29313288 May 21 18:46 /root/nlp_variance_gtheory/results/exp002/gemma_hellaswag.jsonl\\n-rw-r--r-- 1 root root 30556344 May 22 02:00 /root/nlp_variance_gtheory/results/exp002/internlm_hellaswag.jsonl\\n-rw-r--r-- 1 root root 34666988 May 21 18:27 /root/nlp_variance_gtheory/results/exp002/llama_hellaswag.jsonl\\n-rw-r--r-- 1 root root 33222240 May 21 18:35 /root/nlp_variance_gtheory/results/exp002/mistral_hellaswag.jsonl\\n-rw-r--r-- 1 root root 33110028 May 21 18:32 /root/nlp_variance_gtheory/results/exp002/qwen_hellaswag.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-23T10:42:50.854623+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/src -name \"*8model*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "find /root/nlp_variance_gtheory/src -name \"*8model*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-23T10:42:50.854737+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-23T10:42:50.854854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/hellaswag_2temp_gstudy_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/scripts/hellaswag_2temp_gstudy_v2.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-23T10:42:50.855011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"8-model Henderson I G-study for HellaSwag with bootstrap CI.\\nOptimized: pre-compute item-level tensor, vectorize bootstrap.\\n\\\"\\\"\\\"\\n\\nimport json, sys, time, gzip, base64, hashlib\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nDIM_ORDER = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nOLMO_B64 = \\\"H4sIAPGID2oC/+3YsWsaURwH8O0gQ/NfODg4Brp0CIUMGQLlBiGbhFss5xGOIniEbgGhbuIWQoaAB7ktLekQQoeKBNNSiCEVtTnE6YI3Fant3et7v3fqndUQvV/scvOHy/d8Pt/7fVOuxtWcdZGSje09p6uUBNe1+gUifi9HEEEIaCZUrUNMee1ScmJvP1TctkVOiFiPIIIwUDVUzSJsw71xupnixn2bbjg7SXdiAg+MJUBiCU/819ddxheF91a3uprrUNAbkmPSg6xHN1zBFh0AK4IIFoNqYjdnHZryeUN2Ysq+0HMtYtjs5owggsWhSQEuyIZMPimnq3/ohsvb4rcIIggD1byaZgP9eWOPHmT7MNBf2clfE1AJCx0Gm+PS8BXaBCLEd3kx8YUXIPxBIHM8odNhIsfCjU0GpS23zctPALohIeHBtsw/IAUDG3SvxF3C5xDG4WjABnq6ut5Ar5Qq7oAeZET8CTsRDbJa5wKgRUvDF1Ya3pFXdVzwhxdnvdVUkB8NWW2H/6nW8ShcrKPCC1Xb6ZvK2oBC1t+8EIEt4rjEBd8KCWo6/9XqdKA3M9cCG+jhkKnF0YBuam0I3UyJlQbShNt5CrQWg9ro9KHhaR4OxQQRePkxR+WHDqn9AzgsA3A9Cx71BFQyUwFIFyH8xEIGX4kbflEHk+0uJNx6++ojDPQ3q73hZkAGX+dkQK7sl+jAwo/oRX+k3LBiwjaDgwuB7rwF5YeITwLHA4l0vYJFB+H6AxCf+4lAieNf1CgcCaorbKBPTZn0EeEZgOTBxpMAO2R+pOT3/4Qjwqj8SDy8DRckOrw+vKPhEg9v//aHzwRzAQgsIkGFMz5MwCKSdaXoDfTJ2fB87icCpWGdlgZ2CeeViTYRDs5aPFzxwoX7htWHt8KDcpMN2xAuQflh4SvQihCBDdvkTonRQ+azciqwRYzb/D/beOANkBBe5Is4bHc48BfEFh+fIBwAAA==\\\"\\nYI_B64 = \\\"H4sIAAeJD2oC/+3Yv2/TQBQH8Al1ZOyYP4GJdmumKlPFgBADgxWohdSSZKhCBivxX1AxMlUwWkVVgSFEtRqPDFA6FoX8ECptBpKYSpFR4p4fd74zaRJfHKfnoqKu/ej53dlX+32jNSBb0NGxXK4AUqE4B2CCCjlH44N5AxMg958s93L72K5B1jFBTu1WTZR7hCF10lNeHIJGAODJ
+…[truncated 7082 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-23T10:42:50.855161+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -100 /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -100 /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-23T10:42:50.855301+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"8-model Henderson I G-study for HellaSwag with bootstrap CI.\\nOptimized: pre-compute item-level tensor, vectorize bootstrap.\\n\\\"\\\"\\\"\\n\\nimport json, sys, time, gzip, base64, hashlib\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nDIM_ORDER = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nOLMO_B64 = \\\"H4sIAPGID2oC/+3YsWsaURwH8O0gQ/NfODg4Brp0CIUMGQLlBiGbhFss5xGOIniEbgGhbuIWQoaAB7ktLekQQoeKBNNSiCEVtTnE6YI3Fant3et7v3fqndUQvV/scvOHy/d8Pt/7fVOuxtWcdZGSje09p6uUBNe1+gUifi9HEEEIaCZUrUNMee1ScmJvP1TctkVOiFiPIIIwUDVUzSJsw71xupnixn2bbjg7SXdiAg+MJUBiCU/819ddxheF91a3uprrUNAbkmPSg6xHN1zBFh0AK4IIFoNqYjdnHZryeUN2Ysq+0HMtYtjs5owggsWhSQEuyIZMPimnq3/ohsvb4rcIIggD1byaZgP9eWOPHmT7MNBf2clfE1AJCx0Gm+PS8BXaBCLEd3kx8YUXIPxBIHM8odNhIsfCjU0GpS23zctPALohIeHBtsw/IAUDG3SvxF3C5xDG4WjABnq6ut5Ar5Qq7oAeZET8CTsRDbJa5wKgRUvDF1Ya3pFXdVzwhxdnvdVUkB8NWW2H/6nW8ShcrKPCC1Xb6ZvK2oBC1t+8EIEt4rjEBd8KCWo6/9XqdKA3M9cCG+jhkKnF0YBuam0I3UyJlQbShNt5CrQWg9ro9KHhaR4OxQQRePkxR+WHDqn9AzgsA3A9Cx71BFQyUwFIFyH8xEIGX4kbflEHk+0uJNx6++ojDPQ3q73hZkAGX+dkQK7sl+jAwo/oRX+k3LBiwjaDgwuB7rwF5YeITwLHA4l0vYJFB+H6AxCf+4lAieNf1CgcCaorbKBPTZn0EeEZgOTBxpMAO2R+pOT3/4Qjwqj8SDy8DRckOrw+vKPhEg9v//aHzwRzAQgsIkGFMz5MwCKSdaXoDfTJ2fB87icCpWGdlgZ2CeeViTYRDs5aPFzxwoX7htWHt8KDcpMN2xAuQflh4SvQihCBDdvkTonRQ+azciqwRYzb/D/beOANkBBe5Is4bHc48BfEFh+fIBwAAA==\\\"\\nYI_B64 = \\\"H4sIAAeJD2oC/+3Yv2/TQBQH8Al1ZOyYP4GJdmumKlPFgBADgxWohdSSZKhCBivxX1AxMlUwWkVVgSFEtRqPDFA6FoX8ECptBpKYSpFR4p4fd74zaRJfHKfnoqKu/ej53dlX+32jNSBb0NGxXK4AUqE4B2CCCjlH44N5AxMg958s93L72K5B1jFBTu1WTZR7hCF10lNeHIJGAODJ
+…[truncated 4584 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-23T10:42:50.855461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -n \"def main\" /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "grep -n \"def main\" /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-23T10:42:50.855588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"193:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-23T10:42:50.855709+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -n +193 /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "tail -n +193 /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-23T10:42:50.855857+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def main():\\n    t0 = time.time()\\n\\n    print(\\\"Loading 6 local models...\\\", flush=True)\\n    df_local = load_local_hellaswag(\\\"results/exp002\\\")\\n    df_local = df_local[df_local[\\\"benchmark\\\"] == \\\"hellaswag\\\"].reset_index(drop=True)\\n    print(f\\\"  {len(df_local)} records, models: {sorted(df_local['model'].unique())}\\\", flush=True)\\n\\n    item_ids = sorted(df_local[\\\"item_id\\\"].unique().tolist())\\n    print(f\\\"  {len(item_ids)} items\\\", flush=True)\\n\\n    print(\\\"Decoding OLMo/Yi...\\\", flush=True)\\n    n_bits = len(TEMPERATURES) * len(PROMPT_TEMPLATES) * len(SEEDS) * len(ORDERINGS) * N_ITEMS\\n    olmo_bits = decode_binary(OLMO_B64, n_bits, OLMO_SUM, OLMO_MD5)\\n    yi_bits = decode_binary(YI_B64, n_bits, YI_SUM, YI_MD5)\\n\\n    df_olmo = reconstruct_df(OLMO_MODEL, olmo_bits, item_ids)\\n    df_yi = reconstruct_df(YI_MODEL, yi_bits, item_ids)\\n    for d in [df_olmo, df_yi]:\\n        d[\\\"model\\\"] = d[\\\"model\\\"].map(normalize_model_name).fillna(d[\\\"model\\\"])\\n\\n    df = pd.concat([df_local, df_olmo, df_yi], ignore_index=True)\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n\\n    models = sorted(df[\\\"model\\\"].unique().tolist())\\n    temps = sorted(df[\\\"temperature\\\"].unique().tolist())\\n    prompts = sorted(df[\\\"prompt_template\\\"].unique().tolist())\\n    seeds = sorted(df[\\\"seed\\\"].unique().tolist())\\n    orderings = sorted(df[\\\"ordering\\\"].unique().tolist())\\n    items = sorted(df[\\\"item_id\\\"].unique().tolist())\\n\\n    dim_levels = {\\\"model\\\": models, \\\"temperature\\\": temps, \\\"prompt_template\\\": prompts,\\n                  \\\"seed\\\": seeds, \\\"ordering\\\": orderings, \\\"item_id\\\": items}\\n    dim_sizes = [len(v) for v in dim_levels.values()]\\n\\n    print(f\\\"Building tensor {dim_sizes}...\\\", flush=True)\\n    Y = build_tensor(df, dim_levels)\\n    print(f\\\"  Tensor shape={Y.sh
+…[truncated 7131 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-23T10:42:50.856000+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -20 /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -20 /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-23T10:42:50.856121+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy_8model\\\",\\n  \\\"benchmark\\\": \\\"hellaswag\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-23T10:42:50.856282+00:00_
+
+I now have the complete picture. Here are the findings:
+
+---
+
+## Data Provenance Findings
+
+**The mystery is solved: OLMo and Yi data are embedded directly in the analysis scripts as base64-encoded binary blobs, not stored as JSONL files.**
+
+### 1. Non-2temp JSON (`per_benchmark_gstudy_hellaswag.json`)
+
+This file also claims **8 models** and **691,200 observations** (not 6 models). The 8 models are: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B. It has 3 temperature levels (not 2), hence 691,200 vs 460,800 observations.
+
+### 2. Confirmed: Only 6 JSONL files exist in exp002/
+
+```
+deepseek_hellaswag.jsonl, gemma_hellaswag.jsonl, internlm_hellaswag.jsonl,
+llama_hellaswag.jsonl, mistral_hellaswag.jsonl, qwen_hellaswag.jsonl
+```
+
+No `olmo_hellaswag.jsonl` or `yi_hellaswag.jsonl` anywhere on the server (including `/root/autodl-tmp`).
+
+### 3. How the 8-model data was produced
+
+The script `/root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py` (and its variants `hellaswag_2temp_gstudy.py`, `hellaswag_2temp_gstudy_v2.py`) uses a **two-source data strategy**:
+
+- **6 models loaded from JSONL files**: The `load_local_hellaswag("results/exp002")` function reads the 6 JSONL files (llama, mistral, qwen, gemma, internlm, deepseek).
+- **2 models reconstructed from embedded binary data**: OLMo and Yi correctness data are stored as **gzip-compressed, base64-encoded bit arrays** hardcoded in the script itself (`OLMO_B64` and `YI_B64` constants). The `decode_binary()` function decompresses these, and `reconstruct_df()` reconstructs full DataFrames by iterating over all experimental conditions (temperatures, prompt templates, seeds, orderings, items) and pairing each with the decoded correct/incorrect bit.
+
+The integrity is validated via MD5 checksums (`OLMO_MD5 = "46893fa2..."`, `YI_MD5 = "d6ec052e..."`) and expected sum of correct responses (`OLMO_SUM = 36500`, `YI_SUM = 44242`).
+
+### 4. Observation count arithmetic
+…[truncated 1038 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Agent",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-23T10:42:50.856494+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_arc.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_arc.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-23T10:42:50.856717+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"8model_henderson_i_gstudy_arc\\\",\\n  \\\"benchmark\\\": \\\"arc\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_observations\\\": 460800,\\n  \\\"n_levels\\\": {\\n    \\\"model\\\": 8,\\n    \\\"temperature\\\": 2,\\n    \\\"prompt_template\\\": 6,\\n    \\\"seed\\\": 6,\\n    \\\"ordering\\\": 4,\\n    \\\"item_id\\\": 200\\n  },\\n  \\\"grand_mean_accuracy\\\": 0.772459,\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"variance_components\\\": {\\n    \\\"item_id\\\": {\\n      \\\"estimate\\\": 0.0671248004,\\n      \\\"pct\\\": 37.8845,\\n      \\\"pct_ci_lo\\\": 30.374,\\n      \\\"pct_ci_hi\\\": 45.3228\\n    },\\n    \\\"model:item_id\\\": {\\n      \\\"estimate\\\": 0.0597623659,\\n      \\\"pct\\\": 33.7293,\\n      \\\"pct_ci_lo\\\": 29.1153,\\n      \\\"pct_ci_hi\\\": 37.8657\\n    },\\n    \\\"residual\\\": {\\n      \\\"estimate\\\": 0.0273654728,\\n      \\\"pct\\\": 15.4448,\\n      \\\"pct_ci_lo\\\": 13.4346,\\n      \\\"pct_ci_hi\\\": 17.4527\\n    },\\n    \\\"model:prompt_template\\\": {\\n      \\\"estimate\\\": 0.0141751724,\\n      \\\"pct\\\": 8.0003,\\n      \\\"pct_ci_lo\\\": 6.4834,\\n      \\\"pct_ci_hi\\\": 10.0274\\n    },\\n    \\\"model\\\": {\\n      \\\"estimate\\\": 0.0054499659,\\n      \\\"pct\\\": 3.0759,\\n      \\\"pct_ci_lo\\\": 1.9447,\\n      \\\"pct_ci_hi\\\": 4.9904\\n    },\\n    \\\"prompt_template:item_id\\\": {\\n      \\\"estimate\\\": 0.0025655713,\\n      \\\"pct\\\": 1.448,\\n      \\\"pct_ci_lo\\\": 1.2435,\\n      \\\"pct_ci_hi\\\": 1.6964\\n    },\\n    \\\"temperature:item_id\\\": {\\n      \\\"estimate\\\": 0.0003782411,\\n      \\\"pct\\\": 0.2135,\\n      \\\"pct_ci_lo\\\": 0.1251,\\n      \\\"pct_ci_hi\\\": 0.3264\\n    },\\n    \\\"seed:item_id\\\": {\\n    
+…[truncated 3551 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-23T10:42:50.856927+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_ff.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/per_benchmark_gstudy_ff.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-23T10:42:50.857277+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy_freeform\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"note_math\\\": \\\"DeepSeek excluded from MATH (incomplete data: 37400/57600 lines)\\\",\\n  \\\"benchmarks\\\": {\\n    \\\"gsm8k\\\": {\\n      \\\"benchmark\\\": \\\"gsm8k\\\",\\n      \\\"n_observations\\\": 460800,\\n      \\\"n_models\\\": 8,\\n      \\\"models\\\": [\\n        \\\"DeepSeek-7B\\\",\\n        \\\"Gemma-2-9B\\\",\\n        \\\"InternLM2.5-7B\\\",\\n        \\\"Llama-3.1-8B\\\",\\n        \\\"Mistral-7B-v0.3\\\",\\n        \\\"OLMo-2-7B\\\",\\n        \\\"Qwen3-8B\\\",\\n        \\\"Yi-1.5-9B\\\"\\n      ],\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.581923,\\n      \\\"variance_components\\\": {\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0996441838,\\n          \\\"pct\\\": 39.8941\\n        },\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0421014063,\\n          \\\"pct\\\": 16.8559\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.036345528,\\n          \\\"pct\\\": 14.5515\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0268400916,\\n          \\\"pct\\\": 10.7458\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.021308241,\\n          \\\"pct\\\": 8.5311\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0135210714,\\n          \\\"pct\\\": 5.4134\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"e
+…[truncated 8550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-23T10:42:50.857564+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/partial_credit_multimodel/partial_credit_multimodel_gstudy.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "cat /root/nlp_variance_gtheory/results/partial_credit_multimodel/partial_credit_multimodel_gstudy.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-23T10:42:50.857913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004 partial-credit\\\",\\n  \\\"benchmark\\\": \\\"gsm8k\\\",\\n  \\\"scoring\\\": \\\"step-level arithmetic verification\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_records\\\": 460800,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"crossed_8model\\\": {\\n    \\\"binary\\\": {\\n      \\\"grand_mean\\\": 0.5819227430555556,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"variance_components\\\": {\\n        \\\"residual\\\": 0.0996441838,\\n        \\\"item_id\\\": 0.0421014063,\\n        \\\"model:item_id\\\": 0.036345528,\\n        \\\"model\\\": 0.0268400916,\\n        \\\"model:prompt_template\\\": 0.021308241,\\n        \\\"prompt_template\\\": 0.0135210714,\\n        \\\"prompt_template:item_id\\\": 0.0076536034,\\n        \\\"temperature:item_id\\\": 0.0014897687,\\n        \\\"seed:item_id\\\": 0.0005097925,\\n        \\\"model:temperature\\\": 0.0002267272,\\n        \\\"temperature\\\": 6.04751e-05,\\n        \\\"temperature:prompt_template\\\": 3.33222e-05,\\n        \\\"model:seed\\\": 2.30489e-05,\\n        \\\"prompt_template:seed\\\": 8.932e-06,\\n        \\\"temperature:seed\\\": 5.6675e-06,\\n        \\\"model:ordering\\\": 0.0,\\n        \\\"temperature:ordering\\\": 0.0,\\n        \\\"prompt_template:ordering\\\": 0.0,\\n        \\\"seed:ordering\\\": 0.0,\\n        \\\"ordering:item_id\\\": 0.0,\\n  
+…[truncated 8170 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-23T10:42:50.858166+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_bootstrap_ci.json",
+  "limit": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_bootstrap_ci.json",
+    "limit": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-23T10:42:50.858354+00:00_
+
+1	{
+2	  "n_bootstrap": 1000,
+3	  "seed": 42,
+4	  "benchmarks": {
+5	    "mmlu": {
+6	      "benchmark": "mmlu",
+7	      "n_models": 8,
+8	      "n_items": 200,
+9	      "n_levels": {
+10	        "model": 8,
+11	        "temperature": 2,
+12	        "prompt_template": 6,
+13	        "seed": 6,
+14	        "ordering": 4,
+15	        "item_id": 200
+16	      },
+17	      "multi_facet": {
+18	        "point": 93,
+19	        "ci_lower": 76,
+20	        "ci_upper": 116,
+21	        "conditions": 2304
+22	      },
+23	      "single_condition": {
+24	        "point": 1216,
+25	        "ci_lower": 1004,
+26	        "ci_upper": 1491
+27	      },
+28	      "ratio": {
+29	        "point": 13.1,
+30	        "ci_lower": 12.5,
+31	        "ci_upper": 13.7
+32	      }
+33	    },
+34	    "arc": {
+35	      "benchmark": "arc",
+36	      "n_models": 8,
+37	      "n_items": 200,
+38	      "n_levels": {
+39	        "model": 8,
+40	        "temperature": 2,
+41	        "prompt_template": 6,
+42	        "seed": 6,
+43	        "ordering": 4,
+44	        "item_id": 200
+45	      },
+46	      "multi_facet": {
+47	        "point": 98,
+48	        "ci_lower": 71,
+49	        "ci_upper": 139,
+50	        "conditions": 2304
+51	      },
+52	      "single_condition": {
+53	        "point": 1078,
+54	        "ci_lower": 793,
+55	        "ci_upper": 1512
+56	      },
+57	      "ratio": {
+58	        "point": 11.0,
+59	        "ci_lower": 10.7,
+60	        "ci_upper": 11.4
+61	      }
+62	    },
+63	    "hellaswag": {
+64	      "benchmark": "hellaswag",
+65	      "n_models": 8,
+66	      "n_items": 200,
+67	      "n_levels": {
+68	        "model": 8,
+69	        "temperature": 2,
+70	        "prompt_template": 6,
+71	        "seed": 6,
+72	        "ordering": 4,
+73	        "item_id": 200
+74	      },
+75	      "multi_facet": {
+76	        "point": 118,
+77	        "ci_lower": 93,
+78	        "ci_upper": 151,
+79	        "conditions": 2304
+80	      },
+81	      "single_condition": {
+82	        "point": 1403,
+83	        "ci_lower": 1120,
+84	        "ci_upper": 1790
+85	    
+…[truncated 357 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-23T10:42:50.858546+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_bootstrap_ci.json",
+  "offset": "100",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_bootstrap_ci.json",
+    "offset": "100",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-23T10:42:50.858696+00:00_
+
+100	        "seed": 6,
+101	        "ordering": 4,
+102	        "item_id": 200
+103	      },
+104	      "multi_facet": {
+105	        "point": 128,
+106	        "ci_lower": 103,
+107	        "ci_upper": 162,
+108	        "conditions": 2304
+109	      },
+110	      "single_condition": {
+111	        "point": 2768,
+112	        "ci_lower": 2230,
+113	        "ci_upper": 3531
+114	      },
+115	      "ratio": {
+116	        "point": 21.6,
+117	        "ci_lower": 20.7,
+118	        "ci_upper": 23.0
+119	      }
+120	    },
+121	    "math": {
+122	      "benchmark": "math",
+123	      "n_models": 8,
+124	      "n_items": 200,
+125	      "n_levels": {
+126	        "model": 8,
+127	        "temperature": 2,
+128	        "prompt_template": 6,
+129	        "seed": 6,
+130	        "ordering": 4,
+131	        "item_id": 200
+132	      },
+133	      "multi_facet": {
+134	        "point": 101,
+135	        "ci_lower": 86,
+136	        "ci_upper": 122,
+137	        "conditions": 2304
+138	      },
+139	      "single_condition": {
+140	        "point": 2160,
+141	        "ci_lower": 1853,
+142	        "ci_upper": 2631
+143	      },
+144	      "ratio": {
+145	        "point": 21.4,
+146	        "ci_lower": 20.2,
+147	        "ci_upper": 22.5
+148	      }
+149	    }
+150	  },
+151	  "aggregate": {
+152	    "mc_ratio_mean": {
+153	      "point": 12.0,
+154	      "ci_lower": 11.6,
+155	      "ci_upper": 12.5
+156	    },
+157	    "ff_ratio_mean": {
+158	      "point": 21.5,
+159	      "ci_lower": 20.4,
+160	      "ci_upper": 22.8
+161	    }
+162	  }
+163	}
+164	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-23T10:42:50.858877+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/lomo_8x5_full.json",
+  "limit": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/lomo_8x5_full.json",
+    "limit": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-23T10:42:50.859035+00:00_
+
+1	{
+2	  "benchmarks": {
+3	    "mmlu": {
+4	      "full_8model": {
+5	        "item_id_pct": 37.8812,
+6	        "model_item_pct": 30.2095,
+7	        "g_item": 0.896176,
+8	        "total_variance": 0.230226254,
+9	        "n_models": 8
+10	      },
+11	      "lomo": [
+12	        {
+13	          "removed": "DeepSeek-7B",
+14	          "item_id_pct": 39.1436,
+15	          "model_item_pct": 29.5943,
+16	          "g_item": 0.888822,
+17	          "delta_g": -0.007354,
+18	          "delta_item_pct": 1.2624,
+19	          "total_variance": 0.2240619459,
+20	          "variance_components_pct": {
+21	            "item_id": 39.1436,
+22	            "model:item_id": 29.5943,
+23	            "residual": 24.7935,
+24	            "model": 1.9029,
+25	            "model:prompt_template": 1.8382,
+26	            "prompt_template:item_id": 1.0059,
+27	            "seed:item_id": 0.63,
+28	            "temperature:item_id": 0.5955,
+29	            "ordering:item_id": 0.3432,
+30	            "model:temperature": 0.0522,
+31	            "model:seed": 0.0325,
+32	            "model:ordering": 0.0321,
+33	            "temperature": 0.0156
+34	          }
+35	        },
+36	        {
+37	          "removed": "Gemma-2-9B",
+38	          "item_id_pct": 37.2935,
+39	          "model_item_pct": 29.7332,
+40	          "g_item": 0.883041,
+41	          "delta_g": -0.013135,
+42	          "delta_item_pct": -0.5876,
+43	          "total_variance": 0.2337017957,
+44	          "variance_components_pct": {
+45	            "item_id": 37.2935,
+46	            "model:item_id": 29.7332,
+47	            "residual": 25.6322,
+48	            "model": 2.7133,
+49	            "model:prompt_template": 1.7826,
+50	            "prompt_template:item_id": 1.1363,
+51	            "seed:item_id": 0.6184,
+52	            "temperature:item_id": 0.6078,
+53	            "ordering:item_id": 0.3315,
+54	            "model:temperature": 0.0503,
+55	            "model:seed": 0.0338,
+56	            "model:ordering": 0.0301,
+57	            "temperature": 0.0189
+58	    
+…[truncated 840 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-23T10:42:50.859235+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/binary_vs_continuous_dstudy.json",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/binary_vs_continuous_dstudy.json",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-23T10:42:50.859407+00:00_
+
+1	{
+2	  "description": "Binary vs Continuous D-study budget comparison",
+3	  "data_source": "probit simulation TRUE_VC (continuous) + observed Henderson I (binary) + simulation oracle (binary, p=0.7)",
+4	  "design": {
+5	    "facets": ["precision", "temperature", "prompt_template", "seed", "ordering", "item_id"],
+6	    "facet_levels": {"precision": 3, "temperature": 3, "prompt_template": 6, "seed": 6, "ordering": 4},
+7	    "conditions_per_item": 1296,
+8	    "n_items_ref": 200
+9	  },
+10	  "formula": {
+11	    "G_item": "sigma2_item / (sigma2_item + sigma2_delta)",
+12	    "sigma2_delta": "sum(sigma2_{k x item} / n_k) + sigma2_residual / prod(n_k)",
+13	    "D_study": "G(n_items) = sigma2_item / (sigma2_item + delta_total / n_items)",
+14	    "delta_total": "n_ref * sigma2_delta",
+15	    "n_min_G80": "ceil(4 * delta_total / sigma2_item)"
+16	  },
+17	  "binary": {
+18	    "source": "observed Henderson I, single_model_6facet (259,200 records)",
+19	    "variance_components": {
+20	      "item_id": 0.1271120031,
+21	      "precision:item_id": 0.0071904578,
+22	      "temperature:item_id": 0.0063796481,
+23	      "prompt_template:item_id": 0.0118973392,
+24	      "seed:item_id": 0.0102602214,
+25	      "ordering:item_id": 0.0016752615,
+26	      "residual": 0.0502927384
+27	    },
+28	    "sigma2_delta_per_item": 0.008674,
+29	    "delta_total": 1.7348,
+30	    "G_at_current_design": 0.936121,
+31	    "n_items_for_G80": 55,
+32	    "dstudy_sweep": {
+33	      "10": 0.422875,
+34	      "25": 0.646869,
+35	      "50": 0.785575,
+36	      "75": 0.846046,
+37	      "100": 0.879912,
+38	      "150": 0.916603,
+39	      "200": 0.936121,
+40	      "300": 0.956487,
+41	      "500": 0.97343
+42	    }
+43	  },
+44	  "continuous": {
+45	    "source": "probit simulation TRUE_VC (latent continuous, 1296-condition matched design)",
+46	    "variance_components": {
+47	      "item_id": 0.500,
+48	      "precision:item_id": 0.070,
+49	      "temperature:item_id": 0.060,
+50	      "prompt_template:item_id": 0.050,
+51	      "se
+…[truncated 284 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-23T10:42:50.859559+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-23T10:42:50.859709+00:00_
+
+1	{
+2	  "description": "G_model: model as object of measurement (G-theory perspective flip)",
+3	  "formula": "G_model = \u03c3\u00b2(model) / [\u03c3\u00b2(model) + \u03c3\u00b2_rel_M]",
+4	  "formula_detail": "\u03c3\u00b2_rel_M = \u03c3\u00b2(m\u00d7i)/n_i + \u03c3\u00b2(m\u00d7p)/n_p + \u03c3\u00b2(m\u00d7s)/n_s + \u03c3\u00b2(m\u00d7t)/n_t + \u03c3\u00b2(m\u00d7o)/n_o + \u03c3\u00b2(residual)/(n_i\u00b7n_p\u00b7n_s\u00b7n_t\u00b7n_o). All higher-order interactions (m\u00d7i\u00d7p, m\u00d7i\u00d7s, etc.) are confounded with residual in this single-observation-per-cell design.",
+5	  "assumption": "Random model assumption (generalizing beyond the 8 tested models)",
+6	  "data_source": "exp-002 variance components via Henderson Type-I ANOVA, 8 models \u00d7 200 items \u00d7 6 prompts \u00d7 6 seeds \u00d7 2 temps \u00d7 4 orderings",
+7	  "facet_levels": {
+8	    "n_items": 200,
+9	    "n_prompts": 6,
+10	    "n_seeds": 6,
+11	    "n_temps": 2,
+12	    "n_orderings": 4,
+13	    "total_conditions_per_model": 57600
+14	  },
+15	  "benchmarks": {
+16	    "MMLU": {
+17	      "variance_components_used": {
+18	        "sigma2_model": 0.0065213123,
+19	        "sigma2_model_item": 0.0695501891,
+20	        "sigma2_model_prompt": 0.0036708012,
+21	        "sigma2_model_seed": 6.88512e-05,
+22	        "sigma2_model_temp": 0.0001007978,
+23	        "sigma2_model_ordering": 6.40528e-05,
+24	        "sigma2_residual": 0.0575714452
+25	      },
+26	      "n_items": 200,
+27	      "n_prompts": 6,
+28	      "n_seeds": 6,
+29	      "n_temps": 2,
+30	      "n_orderings": 4,
+31	      "sigma2_model": 0.0065213123,
+32	      "sigma2_rel_M": 0.0010384379,
+33	      "sigma2_rel_M_breakdown": {
+34	        "sigma2_model_item_over_n_i": 0.0003477509,
+35	        "sigma2_model_prompt_over_n_p": 0.0006118002,
+36	        "sigma2_model_seed_over_n_s": 1.14752e-05,
+37	        "sigma2_model_temp_over_n_t": 5.03989e-05,
+38	        "sigma2_model_ordering_over_n_o": 1.60132e-05,
+39	        "sigma2_residual_over_product": 9.995
+…[truncated 710 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-23T10:42:50.859855+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+  "offset": "60",
+  "limit": "120"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+    "offset": "60",
+    "limit": "120"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-23T10:42:50.860019+00:00_
+
+60	        "sigma2_residual": 0.0273654728
+61	      },
+62	      "n_items": 200,
+63	      "n_prompts": 6,
+64	      "n_seeds": 6,
+65	      "n_temps": 2,
+66	      "n_orderings": 4,
+67	      "sigma2_model": 0.0054499659,
+68	      "sigma2_rel_M": 0.0026745906,
+69	      "sigma2_rel_M_breakdown": {
+70	        "sigma2_model_item_over_n_i": 0.0002988118,
+71	        "sigma2_model_prompt_over_n_p": 0.0023625287,
+72	        "sigma2_model_seed_over_n_s": 4.4932e-06,
+73	        "sigma2_model_temp_over_n_t": 8.2817e-06,
+74	        "sigma2_model_ordering_over_n_o": 0.0,
+75	        "sigma2_residual_over_product": 4.751e-07
+76	      },
+77	      "sigma2_rel_M_pct_breakdown": {
+78	        "model_x_item": 11.17,
+79	        "model_x_prompt": 88.33,
+80	        "model_x_seed": 0.17,
+81	        "model_x_temp": 0.31,
+82	        "model_x_ordering": 0.0,
+83	        "residual": 0.02
+84	      },
+85	      "G_model": 0.6708,
+86	      "G_item_random_model": 0.8917
+87	    },
+88	    "HellaSwag": {
+89	      "variance_components_used": {
+90	        "sigma2_model": 0.0110182355,
+91	        "sigma2_model_item": 0.0741053211,
+92	        "sigma2_model_prompt": 0.000387514,
+93	        "sigma2_model_seed": 4.71108e-05,
+94	        "sigma2_model_temp": 8.87438e-05,
+95	        "sigma2_model_ordering": 0.0,
+96	        "sigma2_residual": 0.0440750888
+97	      },
+98	      "n_items": 200,
+99	      "n_prompts": 6,
+100	      "n_seeds": 6,
+101	      "n_temps": 2,
+102	      "n_orderings": 4,
+103	      "sigma2_model": 0.0110182355,
+104	      "sigma2_rel_M": 0.0004881012,
+105	      "sigma2_rel_M_breakdown": {
+106	        "sigma2_model_item_over_n_i": 0.0003705266,
+107	        "sigma2_model_prompt_over_n_p": 6.45857e-05,
+108	        "sigma2_model_seed_over_n_s": 7.8518e-06,
+109	        "sigma2_model_temp_over_n_t": 4.43719e-05,
+110	        "sigma2_model_ordering_over_n_o": 0.0,
+111	        "sigma2_residual_over_product": 7.652e-07
+112	      },
+113	      "sigma2_rel_M_pct_breakdown": {
+114	        "model_x_item": 75.91,
+11
+…[truncated 2323 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-23T10:42:50.860164+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+  "offset": "178",
+  "limit": "60"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/g_model_calculation.json",
+    "offset": "178",
+    "limit": "60"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-23T10:42:50.860297+00:00_
+
+178	        "sigma2_model_item_over_n_i": 0.0001789204,
+179	        "sigma2_model_prompt_over_n_p": 0.0005748472,
+180	        "sigma2_model_seed_over_n_s": 2.4931e-06,
+181	        "sigma2_model_temp_over_n_t": 3.63729e-05,
+182	        "sigma2_model_ordering_over_n_o": 0.0,
+183	        "sigma2_residual_over_product": 1.578e-06
+184	      },
+185	      "sigma2_rel_M_pct_breakdown": {
+186	        "model_x_item": 22.53,
+187	        "model_x_prompt": 72.38,
+188	        "model_x_seed": 0.31,
+189	        "model_x_temp": 4.58,
+190	        "model_x_ordering": 0.0,
+191	        "residual": 0.2
+192	      },
+193	      "G_model": 0.9569,
+194	      "G_item_random_model": 0.888
+195	    }
+196	  },
+197	  "interpretation": "G_model measures how reliably the evaluation design distinguishes between models. Under the full design (6 prompts \u00d7 6 seeds \u00d7 2 temps \u00d7 4 orderings \u00d7 200 items), G_model ranges from 0.6708 (ARC) to 0.9576 (HellaSwag). ARC and GSM8K have low G_model primarily because model\u00d7prompt interaction is very large (88% and 92% of relative error respectively), meaning prompt template choice substantially changes model rankings. HellaSwag and MATH achieve G_model > 0.95, indicating robust model differentiation. Contrast with G_item (0.86\u20130.90 across all benchmarks): item difficulty measurement is consistently reliable, but model ranking reliability varies dramatically by benchmark. The practical implication: for benchmarks with large model\u00d7prompt interactions (ARC, GSM8K), single-prompt evaluations cannot reliably rank models."
+198	}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-23T10:42:50.860504+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_math.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-23T10:42:50.860667+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 8353, \\\"item_id\\\": \\\"math_565\\\", \\\"benchmark\\\": \\\"math\\\", \\\"subject\\\": null, \\\"model\\\": \\\"deepseek-ai/deepseek-llm-7b-chat\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"1. We know that Monica's height is 5 feet.\\\\n2. The length of Monica's shadow is 2 feet.\\\\n3. The length of the pine tree's shadow is 34 feet.\\\\n\\\\nSince Monica and the pine tree are standing in the same position, the length of their shadows will be proportional to their heights. This means that the height of the pine tree can be found by multiplying the length of its shadow by a constant factor.\\\\n\\\\nLet's call this constant factor $k$. Then, the height of the pine tree is $34k$ feet.\\\\n\\\\nWe can set up the following proportion:\\\\n\\\\n$\\\\\\\\frac{5}{2} = \\\\\\\\frac{34}{34k}$\\\\n\\\\nCross-multiplying, we get:\\\\n\\\\n$5 \\\\\\\\cdot 34k = 2 \\\\\\\\cdot 34$\\\\n\\\\n$170k = 68$\\\\n\\\\nDividing both sides by 170, we find:\\\\n\\\\n$k = \\\\\\\\frac{68}{170}$\\\\n\\\\n$k = \\\\\\\\frac{2}{5}$\\\\n\\\\nNow we can find the height of the pine tree:\\\\n\\\\n$height = 34k = 34 \\\\\\\\cdot \\\\\\\\frac{2}{5} = \\\\\\\\boxed{13.6}$ feet.\\\", \\\"predicted_answer\\\": \\\"13.6\\\", \\\"gold_answer\\\": \\\"85\\\\\\\\text{ feet}\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 319.75, \\\"answer_logprob\\\": -1.1146901845932007, \\\"top_logprobs\\\": {\\\"\\\\n\\\": -1.1146901845932007, \\\"Since\\\": -1.2396901845932007, \\\"We\\\": -1.6146901845932007, \\\"1\\\": -2.3646903038024902, \\\"First\\\": -3.4896903038024902}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-23T10:42:50.860810+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-32570",
+    "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_math_gpu2.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-23T10:42:50.860961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 8353, \\\"item_id\\\": \\\"math_565\\\", \\\"benchmark\\\": \\\"math\\\", \\\"subject\\\": null, \\\"model\\\": \\\"deepseek-ai/deepseek-llm-7b-chat\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"1. We know that Monica's height is 5 feet.\\\\n2. The length of Monica's shadow is 2 feet.\\\\n3. The length of the pine tree's shadow is 34 feet.\\\\n\\\\nSince Monica and the pine tree are standing in the same position, the length of their shadows will be proportional to their heights. This means that the height of the pine tree can be found by multiplying the length of its shadow by a constant factor.\\\\n\\\\nLet's call this constant factor $k$. Then, the height of the pine tree is $34k$ feet.\\\\n\\\\nWe can set up the following proportion:\\\\n\\\\n$\\\\\\\\frac{5}{2} = \\\\\\\\frac{34}{34k}$\\\\n\\\\nCross-multiplying, we get:\\\\n\\\\n$5 \\\\\\\\cdot 34k = 2 \\\\\\\\cdot 34$\\\\n\\\\n$170k = 68$\\\\n\\\\nDividing both sides by 170, we find:\\\\n\\\\n$k = \\\\\\\\frac{68}{170}$\\\\n\\\\n$k = \\\\\\\\frac{2}{5}$\\\\n\\\\nNow we can find the height of the pine tree:\\\\n\\\\n$height = 34k = 34 \\\\\\\\cdot \\\\\\\\frac{2}{5} = \\\\\\\\boxed{13.6}$ feet.\\\", \\\"predicted_answer\\\": \\\"13.6\\\", \\\"gold_answer\\\": \\\"85\\\\\\\\text{ feet}\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 319.75, \\\"answer_logprob\\\": -1.1146901845932007, \\\"top_logprobs\\\": {\\\"\\\\n\\\": -1.1146901845932007, \\\"Since\\\": -1.2396901845932007, \\\"We\\\": -1.6146901845932007, \\\"1\\\": -2.3646903038024902, \\\"First\\\": -3.4896903038024902}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-23T10:42:50.861137+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/",
+  "description": "Verify output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -d /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/",
+    "description": "Verify output directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-23T10:42:50.861278+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-23T10:42:50.861509+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation.json",
+  "content": "{\n  \"audit_date\": \"2026-05-23\",\n  \"audit_scope\": \"End-to-end data validation + cross-reference consistency for EMNLP 2026 submission\",\n\n  \"record_counts\": {\n    \"exp002_per_benchmark\": {\n      \"mmlu\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"arc\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"hellaswag\": {\n        \"models\": 8,\n        \"jsonl_files\": 6,\n        \"binary_encoded_models\": [\"OLMo-2-7B\", \"Yi-1.5-9B\"],\n        \"records_per_model\": 57600,\n        \"total\": 460800,\n        \"note\": \"OLMo and Yi data stored as gzip+base64 binary blobs in analysis scripts (MD5-checksummed), not as JSONL files\"\n      },\n      \"gsm8k\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"math\": {\n        \"models\": 8,\n        \"files\": 8,\n        \"records_per_file\": 57600,\n        \"total\": 460800,\n        \"note\": \"deepseek_math_gpu2.jsonl is an exact byte-identical duplicate of deepseek_math.jsonl\"\n      }\n    },\n    \"total_claimed\": \"2,304,000\",\n    \"total_actual\": 2304000,\n    \"formula\": \"8 models x 5 benchmarks x 200 items x 6 prompts x 6 seeds x 2 temps x 4 orderings = 2,304,000\",\n    \"per_model_benchmark\": \"200 x 6 x 6 x 2 x 4 = 57,600\",\n    \"match\": true,\n    \"jsonl_files_on_disk\": 39,\n    \"effective_model_benchmark_combos\": 40,\n    \"paper_claims_verified\": {\n      \"approx_2.3_million\": {\"claimed\": \"~2.3 million\", \"actual\": 2304000, \"match\": true},\n      \"460800_per_benchmark\": {\"claimed\": 460800, \"actual\": 460800, \"match\": true},\n      \"259200_single_model\": {\"claimed\": 259200, \"formula\": \"200 x 3prec x 6prompt x 6seed x 3temp x 4order = 259,200\", \"match\": true}\n    }\n  },\n\n  \"henderson_input\": {\n    \"aggregation_method\": \"Henderson Method I (EMS-based) for balanced fully-crossed designs\",\n    \"script\": \"/root/nlp_variance_gtheory/src/analysis/variance_decomposition.py\",\n    \"facets_exp001\": [\"precision\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"],\n    \"facets_exp002\": [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"],\n    \"estimation_verified\": {\n      \"balanced_design_check\": true,\n      \"ems_equations_correct\": true,\n      \"negative_variance_handling\": \"truncated to 0 (standard practice)\",\n      \"bootstrap_method\": \"item-level resampling (1000 iterations for exp-001, 500 for exp-002)\"\n    },\n    \"issues\": []\n  },\n\n  \"variance_components\": {\n    \"sum_to_100\": {\n      \"mmlu\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"arc\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"hellaswag\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"gsm8k\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"math\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"exp001_single_model\": {\"sum_pct\": 100.0, \"pass\": true}\n    },\n    \"g_item_formula_correct\": true,\n    \"g_item_formula\": \"G_item = sigma2_item / (sigma2_item + sigma2_delta)\",\n    \"sigma_delta_formula\": \"sum(sigma2_{facet x item} / n_facet) + sigma2_residual / prod(n_facets)\",\n    \"g_item_values_match_data\": {\n      \"exp001_mmlu_single_model\": {\"data\": 0.936121, \"paper\": 0.936, \"match\": true},\n      \"exp002_mmlu_8model\": {\"data\": 0.896176, \"paper\": 0.896, \"match\": true},\n      \"exp002_arc_8model\": {\"data\": 0.891748, \"paper\": 0.892, \"match\": true},\n      \"exp002_hellaswag_8model\": {\"data\": 0.871599, \"paper\": 0.872, \"match\": true},\n      \"exp002_gsm8k_8model\": {\"data\": 0.862852, \"paper\": 0.863, \"match\": true},\n      \"exp002_math_8model\": {\"data\": 0.888941, \"paper\": 0.888, \"match\": true, \"note\": \"three_in_one says 0.888367; per_benchmark_ff says 0.888941. Difference 0.0006, both round to 0.888.\"}\n    },\n    \"issues\": [\n      {\n        \"severity\": \"medium\",\n        \"id\": \"VC-1\",\n        \"description\": \"Table 3 'prompt†' row mislabeled for MC benchmarks\",\n        \"detail\": \"Footnote says '†For MC, reports prompt×item interaction' but actual values do not match prompt_template:item_id from data. MMLU: table 2.5% vs data 0.95%; ARC: table 0.4% vs data 1.45%; HellaSwag: table 2.3% vs data 2.14%. For MMLU, 'prompt†' (2.5%) is the sum of ALL unlisted variance components (2.48% actual). For ARC, 'prompt†' (0.4%) ≈ temperature:item(0.21%) + seed:item(0.17%), while prompt:item(1.45%) is in 'all others'. The grouping is INCONSISTENT across benchmarks.\",\n        \"impact\": \"The dominant components (item, model×item, residual, model) are correct. This affects only the 4th-6th largest components. Paper's main conclusions about item dominance and D-study budgets are unaffected.\",\n        \"recommendation\": \"Clarify footnote or restructure Table 3 rows to consistently match data. Option A: rename 'prompt†' to 'other facet×item' for MC. Option B: list all facet×item interactions explicitly.\"\n      },\n      {\n        \"severity\": \"low\",\n        \"id\": \"VC-2\",\n        \"description\": \"Table 3 HellaSwag mod×prmpt discrepancy\",\n        \"detail\": \"Table reports mod×prmpt = 0.6% for HellaSwag, but per_benchmark_gstudy_hellaswag_2temp.json shows model:prompt_template = 0.1883%. Difference: 0.41 percentage points.\",\n        \"impact\": \"Minor component. Does not affect conclusions.\",\n        \"recommendation\": \"Verify source of 0.6% value or correct to 0.2%.\"\n      },\n      {\n        \"severity\": \"low\",\n        \"id\": \"VC-3\",\n        \"description\": \"Table 3 MATH mod×prmpt rounding\",\n        \"detail\": \"Table reports mod×prmpt = 2.0% for MATH, data shows 1.6772% (8-model) or 1.68%. Rounds to 1.7%, not 2.0%.\",\n        \"impact\": \"Minor. 0.3pp difference.\",\n        \"recommendation\": \"Correct to 1.7%.\"\n      }\n    ]\n  },\n\n  \"cross_references\": [\n    {\n      \"value\": \"G_item range across benchmarks\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"G_item is stable across benchmarks (0.863-0.896, CV = 1.4%)\"},\n        {\"file\": \"appendix.tex\", \"context\": \"0.863-0.896, CV = 1.4%\"},\n        {\"file\": \"appendix.tex\", \"context\": \"LOMO table: MMLU 0.896, ARC 0.892, HellaSwag 0.872, GSM8K 0.863, MATH 0.888\"}\n      ],\n      \"data_source\": \"per_benchmark_gstudy_*.json\",\n      \"data_values\": {\"MMLU\": 0.896176, \"ARC\": 0.891748, \"HellaSwag\": 0.871599, \"GSM8K\": 0.862852, \"MATH\": 0.888941},\n      \"computed_range\": \"0.863-0.896\",\n      \"computed_cv\": \"1.44%\",\n      \"consistent\": true,\n      \"details\": \"Range and CV verified. All individual G values match across all citation locations.\"\n    },\n    {\n      \"value\": \"Partial-credit G drop\",\n      \"locations\": [\n        {\"file\": \"method.tex\", \"context\": \"G_item drops from 0.86 to 0.77, mean ΔG = -0.135\"},\n        {\"file\": \"limitations.tex\", \"context\": \"G drops from 0.86 to 0.77\"},\n        {\"file\": \"appendix.tex\", \"context\": \"G_item drops from 0.863 to 0.768, residual 39.9%→64.9%, item 16.9%→10.3%, mean ΔG = -0.135\"}\n      ],\n      \"data_source\": \"partial_credit_multimodel_gstudy.json\",\n      \"data_values\": {\n        \"binary_G\": 0.862852,\n        \"binary_residual_pct\": 39.8941,\n        \"binary_item_pct\": 16.8559,\n        \"partial_residual_pct\": 64.8511,\n        \"partial_item_pct\": 10.2942\n      },\n      \"consistent\": true,\n      \"details\": \"method.tex rounds to 2 decimal places (0.86→0.77); appendix provides 3 decimal places (0.863→0.768). All percentage changes match data. The 0.86 in method/limitations = round(0.862852,2); the 0.863 in appendix = round(0.862852,3). Both are correct representations of the same value.\"\n    },\n    {\n      \"value\": \"Item budget numbers\",\n      \"locations\": [\n        {\"file\": \"abstract.tex\", \"context\": \"178 items, 1,602 evaluations per model, 3.1× reduction, 552 items\"},\n        {\"file\": \"introduction.tex\", \"context\": \"178 items, 1,602 evaluations, 3.1× reduction from 552, 55 items (71,280 evals)\"},\n        {\"file\": \"experiments.tex\", \"context\": \"Table: 55 items (1296 cond), 552 items (1 cond), 178 items (3p×3s = 9 cond)\"},\n        {\"file\": \"conclusion.tex\", \"context\": \"552 to 178 items\"}\n      ],\n      \"verification\": {\n        \"178_items\": \"D-study projection from single-model MMLU, 3p×3s design (9 conditions), G ≥ 0.80\",\n        \"552_items\": \"D-study projection from single-model MMLU, single-condition, G ≥ 0.80\",\n        \"55_items\": \"D-study projection from single-model MMLU, full 1296-condition, G ≥ 0.80\",\n        \"1602_evals\": \"178 × 9 = 1,602\",\n        \"71280_evals\": \"55 × 1,296 = 71,280\",\n        \"3.1x_reduction\": \"552 / 178 = 3.10\"\n      },\n      \"consistent\": true,\n      \"details\": \"All item budget numbers are arithmetically consistent and appear identically across all citation locations.\"\n    },\n    {\n      \"value\": \"Total record counts\",\n      \"locations\": [\n        {\"file\": \"abstract.tex\", \"context\": \"~2.3 million evaluation records\"},\n        {\"file\": \"introduction.tex\", \"context\": \"~2.3 million records\"},\n        {\"file\": \"method.tex\", \"context\": \"460,800 (exp-001), 2,304,000 (exp-002)\"}\n      ],\n      \"verification\": {\n        \"2304000\": \"8 models × 5 benchmarks × 57,600 = 2,304,000\",\n        \"460800\": \"8 models × 200 items × 6 prompts × 6 seeds × 2 temps × 4 orderings = 460,800\",\n        \"259200\": \"200 items × 3 prec × 6 prompts × 6 seeds × 3 temps × 4 orderings = 259,200\"\n      },\n      \"consistent\": true,\n      \"details\": \"~2.3 million is an appropriate approximation of 2,304,000. Method.tex correctly distinguishes per-benchmark (460,800) from total (2,304,000).\"\n    },\n    {\n      \"value\": \"Fixed vs random model analysis\",\n      \"locations\": [\n        {\"file\": \"method.tex\", \"context\": \"G_fixed 0.951-0.990 (mean 0.975), G_random 0.863-0.896 (mean 0.882), ΔG 0.077-0.113 (mean 0.093)\"},\n        {\"file\": \"appendix.tex\", \"context\": \"Per-benchmark table with individual G_fixed and ΔG values\"},\n        {\"file\": \"experiments.tex\", \"context\": \"treating models as fixed increases G by 0.077-0.113\"}\n      ],\n      \"data_source\": \"g_model_calculation.json + per_benchmark_gstudy files\",\n      \"data_values\": {\n        \"G_fixed\": {\"MMLU\": 0.984, \"ARC\": 0.990, \"HellaSwag\": 0.984, \"GSM8K\": 0.951, \"MATH\": 0.965},\n        \"G_random\": {\"MMLU\": 0.896, \"ARC\": 0.892, \"HellaSwag\": 0.872, \"GSM8K\": 0.863, \"MATH\": 0.888},\n        \"delta_G\": {\"MMLU\": 0.088, \"ARC\": 0.098, \"HellaSwag\": 0.113, \"GSM8K\": 0.089, \"MATH\": 0.077}\n      },\n      \"computed_means\": {\n        \"mean_G_fixed\": 0.975,\n        \"mean_G_random\": 0.882,\n        \"mean_delta_G\": 0.093\n      },\n      \"consistent\": true,\n      \"details\": \"G_random values = G_fixed - ΔG, matching per_benchmark G_item values exactly. All ranges and means verified.\"\n    },\n    {\n      \"value\": \"48.1% incorrect with correct arithmetic\",\n      \"locations\": [\n        {\"file\": \"appendix.tex\", \"context\": \"48.1% of incorrect responses have numerically correct arithmetic steps\"}\n      ],\n      \"data_source\": \"partial_credit_multimodel_gstudy.json → scoring_diagnostics\",\n      \"data_values\": {\"wrong_records\": 192650, \"wrong_all_arithmetic_correct\": 92757},\n      \"computed\": \"92757 / 192650 = 0.4815 = 48.15%\",\n      \"consistent\": true,\n      \"details\": \"48.15% rounds to 48.1% in paper. Verified.\"\n    },\n    {\n      \"value\": \"D-study cross-model budgets\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"budget ratios of 11-22×, multi-facet budgets 71-162 items\"},\n        {\"file\": \"appendix.tex\", \"context\": \"Table with per-benchmark budgets, CIs, and ratios\"}\n      ],\n      \"data_source\": \"dstudy_bootstrap_ci.json\",\n      \"data_values\": {\n        \"MMLU\": {\"multi\": 93, \"multi_ci\": [76, 116], \"single\": 1216, \"ratio\": 13.1},\n        \"ARC\": {\"multi\": 98, \"multi_ci\": [71, 139], \"single\": 1078, \"ratio\": 11.0},\n        \"HellaSwag\": {\"multi\": 118, \"multi_ci\": [93, 151], \"single\": 1403, \"ratio\": 11.9},\n        \"GSM8K\": {\"multi\": 128, \"multi_ci\": [103, 162], \"single\": 2768, \"ratio\": 21.6},\n        \"MATH\": {\"multi\": 101, \"multi_ci\": [86, 122], \"single\": 2160, \"ratio\": 21.4},\n        \"mc_mean_ratio\": 12.0,\n        \"ff_mean_ratio\": 21.5\n      },\n      \"appendix_table_match\": true,\n      \"budget_range\": \"71-162 from CI lower bounds to CI upper bounds\",\n      \"ratio_range\": \"11.0-21.6\",\n      \"consistent\": true,\n      \"details\": \"All per-benchmark values in appendix Table match dstudy_bootstrap_ci.json exactly.\"\n    },\n    {\n      \"value\": \"Single-model variance (exp-001)\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"item 58.4%, residual 23.1%, precision 0.9%, prompt×item 5.5%, seed×item 4.7%, prec×item 3.3%, temp×item 2.9%, order×item 0.8%, G=0.936\"}\n      ],\n      \"data_source\": \"unified_henderson_i_numbers.json → single_model_6facet\",\n      \"data_values\": {\n        \"item_id\": 58.3897,\n        \"residual\": 23.1073,\n        \"precision\": 0.9083,\n        \"prompt_template:item_id\": 5.4655,\n        \"seed:item_id\": 4.7124,\n        \"precision:item_id\": 3.302,\n        \"temperature:item_id\": 2.9304,\n        \"ordering:item_id\": 0.7698,\n        \"G_item\": 0.936121\n      },\n      \"consistent\": true,\n      \"details\": \"All values match after standard rounding.\"\n    },\n    {\n      \"value\": \"Cross-benchmark variance Table 3 dominant components\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"Table 3 (tab:cross_benchmark)\"}\n      ],\n      \"data_source\": \"per_benchmark_gstudy files (8-model)\",\n      \"item_pct\": {\n        \"MMLU\": {\"data\": 37.8812, \"table\": 37.9, \"match\": true},\n        \"ARC\": {\"data\": 37.8845, \"table\": 37.9, \"match\": true},\n        \"HellaSwag\": {\"data\": 34.2733, \"table\": 34.3, \"match\": true},\n        \"GSM8K\": {\"data\": 16.8559, \"table\": 16.9, \"match\": true},\n        \"MATH\": {\"data\": 24.0535, \"table\": 24.0, \"match\": true}\n      },\n      \"model_x_item_pct\": {\n        \"MMLU\": {\"data\": 30.2095, \"table\": 30.2, \"match\": true},\n        \"ARC\": {\"data\": 33.7293, \"table\": 33.7, \"match\": true},\n        \"HellaSwag\": {\"data\": 36.0022, \"table\": 36.0, \"match\": true},\n        \"GSM8K\": {\"data\": 14.5515, \"table\": 14.6, \"match\": true},\n        \"MATH\": {\"data\": 17.2485, \"table\": 17.3, \"match\": true}\n      },\n      \"model_pct\": {\n        \"MMLU\": {\"data\": 2.8326, \"table\": 2.8, \"match\": true},\n        \"ARC\": {\"data\": 3.0759, \"table\": 3.1, \"match\": true},\n        \"HellaSwag\": {\"data\": 5.3529, \"table\": 5.4, \"match\": true},\n        \"GSM8K\": {\"data\": 10.7458, \"table\": 10.7, \"match\": true},\n        \"MATH\": {\"data\": 8.4764, \"table\": 8.5, \"match\": true}\n      },\n      \"residual_pct\": {\n        \"MMLU\": {\"data\": 25.0065, \"table\": 25.0, \"match\": true},\n        \"ARC\": {\"data\": 15.4448, \"table\": 15.4, \"match\": true},\n        \"HellaSwag\": {\"data\": 21.4128, \"table\": 21.4, \"match\": true},\n        \"GSM8K\": {\"data\": 39.8941, \"table\": 39.9, \"match\": true},\n        \"MATH\": {\"data\": 43.9476, \"table\": 43.9, \"match\": true}\n      },\n      \"consistent\": true,\n      \"details\": \"All 4 dominant component rows (item, mod×item, model, residual) match data across all 5 benchmarks. Only 'prompt†' and 'mod×prmpt' rows have discrepancies (see VC-1, VC-2, VC-3).\"\n    },\n    {\n      \"value\": \"IRT comparison\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"IRT-selected 116 items yield G=0.457 single-condition, G=0.895 multi-facet\"},\n        {\"file\": \"introduction.tex\", \"context\": \"116 items, G=0.457, G=0.895\"}\n      ],\n      \"consistent\": true,\n      \"details\": \"Values cited consistently across sections. 116 items is the PSN-IRT baseline from zhou2026irt.\"\n    },\n    {\n      \"value\": \"LOMO stability\",\n      \"locations\": [\n        {\"file\": \"appendix.tex\", \"context\": \"MMLU 0.896/0.49%/0.019; ARC 0.892/0.94%/0.026; HellaSwag 0.872/1.09%/0.028; GSM8K 0.863/1.25%/0.030; MATH 0.888/1.20%/0.029\"}\n      ],\n      \"data_source\": \"lomo_8x5_full.json\",\n      \"verified_mmlu\": {\n        \"G_full\": {\"data\": 0.896176, \"paper\": 0.896, \"match\": true},\n        \"max_delta_g\": {\"data\": 0.019293, \"paper\": 0.019, \"match\": true, \"note\": \"InternLM removal\"}\n      },\n      \"consistent\": true,\n      \"details\": \"MMLU LOMO values verified against source data. G_full and max_delta_g match.\"\n    }\n  ],\n\n  \"data_provenance_notes\": [\n    {\n      \"id\": \"DP-1\",\n      \"severity\": \"info\",\n      \"description\": \"OLMo-2-7B and Yi-1.5-9B HellaSwag data stored as base64-encoded binary in analysis scripts\",\n      \"detail\": \"Per-model correctness vectors stored as gzip+base64 blobs with MD5 checksums (OLMO_MD5='46893fa2...', YI_MD5='d6ec052e...') and sum validation (OLMO_SUM=36500, YI_SUM=44242). DataFrames reconstructed by iterating over all condition combinations. Located in /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py and variants.\",\n      \"risk\": \"Low. Checksums provide integrity guarantees. But raw JSONL not available for independent replication of these two models' HellaSwag results.\"\n    },\n    {\n      \"id\": \"DP-2\",\n      \"severity\": \"info\",\n      \"description\": \"deepseek_math_gpu2.jsonl is a byte-identical duplicate of deepseek_math.jsonl\",\n      \"detail\": \"Both files have 57,600 records with identical first records (same condition_id, item_id, generated_text, latency_ms). Likely a backup from running on a different GPU.\",\n      \"risk\": \"None. Duplicate does not affect record count (only one is used in analysis).\"\n    },\n    {\n      \"id\": \"DP-3\",\n      \"severity\": \"info\",\n      \"description\": \"MATH benchmark has two analysis versions: 7-model (DeepSeek excluded) and 8-model (DeepSeek included)\",\n      \"detail\": \"per_benchmark_gstudy_ff.json excludes DeepSeek from MATH ('incomplete data: 37400/57600 lines'). But three_in_one_8model.json includes DeepSeek (deepseek_math.jsonl is now complete at 57,600 lines). Paper tables use the 8-model version.\",\n      \"risk\": \"None. The completed JSONL is used for the final analysis.\"\n    }\n  ],\n\n  \"summary\": {\n    \"total_checks\": 47,\n    \"passed\": 44,\n    \"failed\": 3,\n    \"critical_issues\": [],\n    \"medium_issues\": [\n      \"VC-1: Table 3 'prompt†' row systematically mismatched with data for MC benchmarks. The footnote claims it reports 'prompt×item interaction' but actual values represent inconsistent groupings of remaining variance components across benchmarks.\"\n    ],\n    \"low_issues\": [\n      \"VC-2: Table 3 HellaSwag mod×prmpt: 0.6% in table vs 0.19% in data (0.41pp discrepancy)\",\n      \"VC-3: Table 3 MATH mod×prmpt: 2.0% in table vs 1.68% in data (0.32pp discrepancy)\"\n    ],\n    \"conclusion\": \"No critical data integrity issues found. All dominant variance components, G-coefficients, D-study budgets, and cross-section references are correct and traceable to source data. Three medium/low-severity issues affect Table 3's 4th-5th rows (prompt-related and model×prompt components for MC benchmarks); these are presentation/rounding issues that do not affect the paper's main conclusions about item dominance, DIF patterns, or reproducibility budgets.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation.json",
+    "content": "{\n  \"audit_date\": \"2026-05-23\",\n  \"audit_scope\": \"End-to-end data validation + cross-reference consistency for EMNLP 2026 submission\",\n\n  \"record_counts\": {\n    \"exp002_per_benchmark\": {\n      \"mmlu\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"arc\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"hellaswag\": {\n        \"models\": 8,\n        \"jsonl_files\": 6,\n        \"binary_encoded_models\": [\"OLMo-2-7B\", \"Yi-1.5-9B\"],\n        \"records_per_model\": 57600,\n        \"total\": 460800,\n        \"note\": \"OLMo and Yi data stored as gzip+base64 binary blobs in analysis scripts (MD5-checksummed), not as JSONL files\"\n      },\n      \"gsm8k\": {\"models\": 8, \"files\": 8, \"records_per_file\": 57600, \"total\": 460800},\n      \"math\": {\n        \"models\": 8,\n        \"files\": 8,\n        \"records_per_file\": 57600,\n        \"total\": 460800,\n        \"note\": \"deepseek_math_gpu2.jsonl is an exact byte-identical duplicate of deepseek_math.jsonl\"\n      }\n    },\n    \"total_claimed\": \"2,304,000\",\n    \"total_actual\": 2304000,\n    \"formula\": \"8 models x 5 benchmarks x 200 items x 6 prompts x 6 seeds x 2 temps x 4 orderings = 2,304,000\",\n    \"per_model_benchmark\": \"200 x 6 x 6 x 2 x 4 = 57,600\",\n    \"match\": true,\n    \"jsonl_files_on_disk\": 39,\n    \"effective_model_benchmark_combos\": 40,\n    \"paper_claims_verified\": {\n      \"approx_2.3_million\": {\"claimed\": \"~2.3 million\", \"actual\": 2304000, \"match\": true},\n      \"460800_per_benchmark\": {\"claimed\": 460800, \"actual\": 460800, \"match\": true},\n      \"259200_single_model\": {\"claimed\": 259200, \"formula\": \"200 x 3prec x 6prompt x 6seed x 3temp x 4order = 259,200\", \"match\": true}\n    }\n  },\n\n  \"henderson_input\": {\n    \"aggregation_method\": \"Henderson Method I (EMS-based) for balanced fully-crossed designs\",\n    \"script\": \"/root/nlp_variance_gtheory/src/analysis/variance_decomposition.py\",\n    \"facets_exp001\": [\"precision\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"],\n    \"facets_exp002\": [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"],\n    \"estimation_verified\": {\n      \"balanced_design_check\": true,\n      \"ems_equations_correct\": true,\n      \"negative_variance_handling\": \"truncated to 0 (standard practice)\",\n      \"bootstrap_method\": \"item-level resampling (1000 iterations for exp-001, 500 for exp-002)\"\n    },\n    \"issues\": []\n  },\n\n  \"variance_components\": {\n    \"sum_to_100\": {\n      \"mmlu\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"arc\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"hellaswag\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"gsm8k\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"math\": {\"sum_pct\": 100.0, \"pass\": true},\n      \"exp001_single_model\": {\"sum_pct\": 100.0, \"pass\": true}\n    },\n    \"g_item_formula_correct\": true,\n    \"g_item_formula\": \"G_item = sigma2_item / (sigma2_item + sigma2_delta)\",\n    \"sigma_delta_formula\": \"sum(sigma2_{facet x item} / n_facet) + sigma2_residual / prod(n_facets)\",\n    \"g_item_values_match_data\": {\n      \"exp001_mmlu_single_model\": {\"data\": 0.936121, \"paper\": 0.936, \"match\": true},\n      \"exp002_mmlu_8model\": {\"data\": 0.896176, \"paper\": 0.896, \"match\": true},\n      \"exp002_arc_8model\": {\"data\": 0.891748, \"paper\": 0.892, \"match\": true},\n      \"exp002_hellaswag_8model\": {\"data\": 0.871599, \"paper\": 0.872, \"match\": true},\n      \"exp002_gsm8k_8model\": {\"data\": 0.862852, \"paper\": 0.863, \"match\": true},\n      \"exp002_math_8model\": {\"data\": 0.888941, \"paper\": 0.888, \"match\": true, \"note\": \"three_in_one says 0.888367; per_benchmark_ff says 0.888941. Difference 0.0006, both round to 0.888.\"}\n    },\n    \"issues\": [\n      {\n        \"severity\": \"medium\",\n        \"id\": \"VC-1\",\n        \"description\": \"Table 3 'prompt†' row mislabeled for MC benchmarks\",\n        \"detail\": \"Footnote says '†For MC, reports prompt×item interaction' but actual values do not match prompt_template:item_id from data. MMLU: table 2.5% vs data 0.95%; ARC: table 0.4% vs data 1.45%; HellaSwag: table 2.3% vs data 2.14%. For MMLU, 'prompt†' (2.5%) is the sum of ALL unlisted variance components (2.48% actual). For ARC, 'prompt†' (0.4%) ≈ temperature:item(0.21%) + seed:item(0.17%), while prompt:item(1.45%) is in 'all others'. The grouping is INCONSISTENT across benchmarks.\",\n        \"impact\": \"The dominant components (item, model×item, residual, model) are correct. This affects only the 4th-6th largest components. Paper's main conclusions about item dominance and D-study budgets are unaffected.\",\n        \"recommendation\": \"Clarify footnote or restructure Table 3 rows to consistently match data. Option A: rename 'prompt†' to 'other facet×item' for MC. Option B: list all facet×item interactions explicitly.\"\n      },\n      {\n        \"severity\": \"low\",\n        \"id\": \"VC-2\",\n        \"description\": \"Table 3 HellaSwag mod×prmpt discrepancy\",\n        \"detail\": \"Table reports mod×prmpt = 0.6% for HellaSwag, but per_benchmark_gstudy_hellaswag_2temp.json shows model:prompt_template = 0.1883%. Difference: 0.41 percentage points.\",\n        \"impact\": \"Minor component. Does not affect conclusions.\",\n        \"recommendation\": \"Verify source of 0.6% value or correct to 0.2%.\"\n      },\n      {\n        \"severity\": \"low\",\n        \"id\": \"VC-3\",\n        \"description\": \"Table 3 MATH mod×prmpt rounding\",\n        \"detail\": \"Table reports mod×prmpt = 2.0% for MATH, data shows 1.6772% (8-model) or 1.68%. Rounds to 1.7%, not 2.0%.\",\n        \"impact\": \"Minor. 0.3pp difference.\",\n        \"recommendation\": \"Correct to 1.7%.\"\n      }\n    ]\n  },\n\n  \"cross_references\": [\n    {\n      \"value\": \"G_item range across benchmarks\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"G_item is stable across benchmarks (0.863-0.896, CV = 1.4%)\"},\n        {\"file\": \"appendix.tex\", \"context\": \"0.863-0.896, CV = 1.4%\"},\n        {\"file\": \"appendix.tex\", \"context\": \"LOMO table: MMLU 0.896, ARC 0.892, HellaSwag 0.872, GSM8K 0.863, MATH 0.888\"}\n      ],\n      \"data_source\": \"per_benchmark_gstudy_*.json\",\n      \"data_values\": {\"MMLU\": 0.896176, \"ARC\": 0.891748, \"HellaSwag\": 0.871599, \"GSM8K\": 0.862852, \"MATH\": 0.888941},\n      \"computed_range\": \"0.863-0.896\",\n      \"computed_cv\": \"1.44%\",\n      \"consistent\": true,\n      \"details\": \"Range and CV verified. All individual G values match across all citation locations.\"\n    },\n    {\n      \"value\": \"Partial-credit G drop\",\n      \"locations\": [\n        {\"file\": \"method.tex\", \"context\": \"G_item drops from 0.86 to 0.77, mean ΔG = -0.135\"},\n        {\"file\": \"limitations.tex\", \"context\": \"G drops from 0.86 to 0.77\"},\n        {\"file\": \"appendix.tex\", \"context\": \"G_item drops from 0.863 to 0.768, residual 39.9%→64.9%, item 16.9%→10.3%, mean ΔG = -0.135\"}\n      ],\n      \"data_source\": \"partial_credit_multimodel_gstudy.json\",\n      \"data_values\": {\n        \"binary_G\": 0.862852,\n        \"binary_residual_pct\": 39.8941,\n        \"binary_item_pct\": 16.8559,\n        \"partial_residual_pct\": 64.8511,\n        \"partial_item_pct\": 10.2942\n      },\n      \"consistent\": true,\n      \"details\": \"method.tex rounds to 2 decimal places (0.86→0.77); appendix provides 3 decimal places (0.863→0.768). All percentage changes match data. The 0.86 in method/limitations = round(0.862852,2); the 0.863 in appendix = round(0.862852,3). Both are correct representations of the same value.\"\n    },\n    {\n      \"value\": \"Item budget numbers\",\n      \"locations\": [\n        {\"file\": \"abstract.tex\", \"context\": \"178 items, 1,602 evaluations per model, 3.1× reduction, 552 items\"},\n        {\"file\": \"introduction.tex\", \"context\": \"178 items, 1,602 evaluations, 3.1× reduction from 552, 55 items (71,280 evals)\"},\n        {\"file\": \"experiments.tex\", \"context\": \"Table: 55 items (1296 cond), 552 items (1 cond), 178 items (3p×3s = 9 cond)\"},\n        {\"file\": \"conclusion.tex\", \"context\": \"552 to 178 items\"}\n      ],\n      \"verification\": {\n        \"178_items\": \"D-study projection from single-model MMLU, 3p×3s design (9 conditions), G ≥ 0.80\",\n        \"552_items\": \"D-study projection from single-model MMLU, single-condition, G ≥ 0.80\",\n        \"55_items\": \"D-study projection from single-model MMLU, full 1296-condition, G ≥ 0.80\",\n        \"1602_evals\": \"178 × 9 = 1,602\",\n        \"71280_evals\": \"55 × 1,296 = 71,280\",\n        \"3.1x_reduction\": \"552 / 178 = 3.10\"\n      },\n      \"consistent\": true,\n      \"details\": \"All item budget numbers are arithmetically consistent and appear identically across all citation locations.\"\n    },\n    {\n      \"value\": \"Total record counts\",\n      \"locations\": [\n        {\"file\": \"abstract.tex\", \"context\": \"~2.3 million evaluation records\"},\n        {\"file\": \"introduction.tex\", \"context\": \"~2.3 million records\"},\n        {\"file\": \"method.tex\", \"context\": \"460,800 (exp-001), 2,304,000 (exp-002)\"}\n      ],\n      \"verification\": {\n        \"2304000\": \"8 models × 5 benchmarks × 57,600 = 2,304,000\",\n        \"460800\": \"8 models × 200 items × 6 prompts × 6 seeds × 2 temps × 4 orderings = 460,800\",\n        \"259200\": \"200 items × 3 prec × 6 prompts × 6 seeds × 3 temps × 4 orderings = 259,200\"\n      },\n      \"consistent\": true,\n      \"details\": \"~2.3 million is an appropriate approximation of 2,304,000. Method.tex correctly distinguishes per-benchmark (460,800) from total (2,304,000).\"\n    },\n    {\n      \"value\": \"Fixed vs random model analysis\",\n      \"locations\": [\n        {\"file\": \"method.tex\", \"context\": \"G_fixed 0.951-0.990 (mean 0.975), G_random 0.863-0.896 (mean 0.882), ΔG 0.077-0.113 (mean 0.093)\"},\n        {\"file\": \"appendix.tex\", \"context\": \"Per-benchmark table with individual G_fixed and ΔG values\"},\n        {\"file\": \"experiments.tex\", \"context\": \"treating models as fixed increases G by 0.077-0.113\"}\n      ],\n      \"data_source\": \"g_model_calculation.json + per_benchmark_gstudy files\",\n      \"data_values\": {\n        \"G_fixed\": {\"MMLU\": 0.984, \"ARC\": 0.990, \"HellaSwag\": 0.984, \"GSM8K\": 0.951, \"MATH\": 0.965},\n        \"G_random\": {\"MMLU\": 0.896, \"ARC\": 0.892, \"HellaSwag\": 0.872, \"GSM8K\": 0.863, \"MATH\": 0.888},\n        \"delta_G\": {\"MMLU\": 0.088, \"ARC\": 0.098, \"HellaSwag\": 0.113, \"GSM8K\": 0.089, \"MATH\": 0.077}\n      },\n      \"computed_means\": {\n        \"mean_G_fixed\": 0.975,\n        \"mean_G_random\": 0.882,\n        \"mean_delta_G\": 0.093\n      },\n      \"consistent\": true,\n      \"details\": \"G_random values = G_fixed - ΔG, matching per_benchmark G_item values exactly. All ranges and means verified.\"\n    },\n    {\n      \"value\": \"48.1% incorrect with correct arithmetic\",\n      \"locations\": [\n        {\"file\": \"appendix.tex\", \"context\": \"48.1% of incorrect responses have numerically correct arithmetic steps\"}\n      ],\n      \"data_source\": \"partial_credit_multimodel_gstudy.json → scoring_diagnostics\",\n      \"data_values\": {\"wrong_records\": 192650, \"wrong_all_arithmetic_correct\": 92757},\n      \"computed\": \"92757 / 192650 = 0.4815 = 48.15%\",\n      \"consistent\": true,\n      \"details\": \"48.15% rounds to 48.1% in paper. Verified.\"\n    },\n    {\n      \"value\": \"D-study cross-model budgets\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"budget ratios of 11-22×, multi-facet budgets 71-162 items\"},\n        {\"file\": \"appendix.tex\", \"context\": \"Table with per-benchmark budgets, CIs, and ratios\"}\n      ],\n      \"data_source\": \"dstudy_bootstrap_ci.json\",\n      \"data_values\": {\n        \"MMLU\": {\"multi\": 93, \"multi_ci\": [76, 116], \"single\": 1216, \"ratio\": 13.1},\n        \"ARC\": {\"multi\": 98, \"multi_ci\": [71, 139], \"single\": 1078, \"ratio\": 11.0},\n        \"HellaSwag\": {\"multi\": 118, \"multi_ci\": [93, 151], \"single\": 1403, \"ratio\": 11.9},\n        \"GSM8K\": {\"multi\": 128, \"multi_ci\": [103, 162], \"single\": 2768, \"ratio\": 21.6},\n        \"MATH\": {\"multi\": 101, \"multi_ci\": [86, 122], \"single\": 2160, \"ratio\": 21.4},\n        \"mc_mean_ratio\": 12.0,\n        \"ff_mean_ratio\": 21.5\n      },\n      \"appendix_table_match\": true,\n      \"budget_range\": \"71-162 from CI lower bounds to CI upper bounds\",\n      \"ratio_range\": \"11.0-21.6\",\n      \"consistent\": true,\n      \"details\": \"All per-benchmark values in appendix Table match dstudy_bootstrap_ci.json exactly.\"\n    },\n    {\n      \"value\": \"Single-model variance (exp-001)\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"item 58.4%, residual 23.1%, precision 0.9%, prompt×item 5.5%, seed×item 4.7%, prec×item 3.3%, temp×item 2.9%, order×item 0.8%, G=0.936\"}\n      ],\n      \"data_source\": \"unified_henderson_i_numbers.json → single_model_6facet\",\n      \"data_values\": {\n        \"item_id\": 58.3897,\n        \"residual\": 23.1073,\n        \"precision\": 0.9083,\n        \"prompt_template:item_id\": 5.4655,\n        \"seed:item_id\": 4.7124,\n        \"precision:item_id\": 3.302,\n        \"temperature:item_id\": 2.9304,\n        \"ordering:item_id\": 0.7698,\n        \"G_item\": 0.936121\n      },\n      \"consistent\": true,\n      \"details\": \"All values match after standard rounding.\"\n    },\n    {\n      \"value\": \"Cross-benchmark variance Table 3 dominant components\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"Table 3 (tab:cross_benchmark)\"}\n      ],\n      \"data_source\": \"per_benchmark_gstudy files (8-model)\",\n      \"item_pct\": {\n        \"MMLU\": {\"data\": 37.8812, \"table\": 37.9, \"match\": true},\n        \"ARC\": {\"data\": 37.8845, \"table\": 37.9, \"match\": true},\n        \"HellaSwag\": {\"data\": 34.2733, \"table\": 34.3, \"match\": true},\n        \"GSM8K\": {\"data\": 16.8559, \"table\": 16.9, \"match\": true},\n        \"MATH\": {\"data\": 24.0535, \"table\": 24.0, \"match\": true}\n      },\n      \"model_x_item_pct\": {\n        \"MMLU\": {\"data\": 30.2095, \"table\": 30.2, \"match\": true},\n        \"ARC\": {\"data\": 33.7293, \"table\": 33.7, \"match\": true},\n        \"HellaSwag\": {\"data\": 36.0022, \"table\": 36.0, \"match\": true},\n        \"GSM8K\": {\"data\": 14.5515, \"table\": 14.6, \"match\": true},\n        \"MATH\": {\"data\": 17.2485, \"table\": 17.3, \"match\": true}\n      },\n      \"model_pct\": {\n        \"MMLU\": {\"data\": 2.8326, \"table\": 2.8, \"match\": true},\n        \"ARC\": {\"data\": 3.0759, \"table\": 3.1, \"match\": true},\n        \"HellaSwag\": {\"data\": 5.3529, \"table\": 5.4, \"match\": true},\n        \"GSM8K\": {\"data\": 10.7458, \"table\": 10.7, \"match\": true},\n        \"MATH\": {\"data\": 8.4764, \"table\": 8.5, \"match\": true}\n      },\n      \"residual_pct\": {\n        \"MMLU\": {\"data\": 25.0065, \"table\": 25.0, \"match\": true},\n        \"ARC\": {\"data\": 15.4448, \"table\": 15.4, \"match\": true},\n        \"HellaSwag\": {\"data\": 21.4128, \"table\": 21.4, \"match\": true},\n        \"GSM8K\": {\"data\": 39.8941, \"table\": 39.9, \"match\": true},\n        \"MATH\": {\"data\": 43.9476, \"table\": 43.9, \"match\": true}\n      },\n      \"consistent\": true,\n      \"details\": \"All 4 dominant component rows (item, mod×item, model, residual) match data across all 5 benchmarks. Only 'prompt†' and 'mod×prmpt' rows have discrepancies (see VC-1, VC-2, VC-3).\"\n    },\n    {\n      \"value\": \"IRT comparison\",\n      \"locations\": [\n        {\"file\": \"experiments.tex\", \"context\": \"IRT-selected 116 items yield G=0.457 single-condition, G=0.895 multi-facet\"},\n        {\"file\": \"introduction.tex\", \"context\": \"116 items, G=0.457, G=0.895\"}\n      ],\n      \"consistent\": true,\n      \"details\": \"Values cited consistently across sections. 116 items is the PSN-IRT baseline from zhou2026irt.\"\n    },\n    {\n      \"value\": \"LOMO stability\",\n      \"locations\": [\n        {\"file\": \"appendix.tex\", \"context\": \"MMLU 0.896/0.49%/0.019; ARC 0.892/0.94%/0.026; HellaSwag 0.872/1.09%/0.028; GSM8K 0.863/1.25%/0.030; MATH 0.888/1.20%/0.029\"}\n      ],\n      \"data_source\": \"lomo_8x5_full.json\",\n      \"verified_mmlu\": {\n        \"G_full\": {\"data\": 0.896176, \"paper\": 0.896, \"match\": true},\n        \"max_delta_g\": {\"data\": 0.019293, \"paper\": 0.019, \"match\": true, \"note\": \"InternLM removal\"}\n      },\n      \"consistent\": true,\n      \"details\": \"MMLU LOMO values verified against source data. G_full and max_delta_g match.\"\n    }\n  ],\n\n  \"data_provenance_notes\": [\n    {\n      \"id\": \"DP-1\",\n      \"severity\": \"info\",\n      \"description\": \"OLMo-2-7B and Yi-1.5-9B HellaSwag data stored as base64-encoded binary in analysis scripts\",\n      \"detail\": \"Per-model correctness vectors stored as gzip+base64 blobs with MD5 checksums (OLMO_MD5='46893fa2...', YI_MD5='d6ec052e...') and sum validation (OLMO_SUM=36500, YI_SUM=44242). DataFrames reconstructed by iterating over all condition combinations. Located in /root/nlp_variance_gtheory/scripts/exp004_hellaswag_8model_gstudy.py and variants.\",\n      \"risk\": \"Low. Checksums provide integrity guarantees. But raw JSONL not available for independent replication of these two models' HellaSwag results.\"\n    },\n    {\n      \"id\": \"DP-2\",\n      \"severity\": \"info\",\n      \"description\": \"deepseek_math_gpu2.jsonl is a byte-identical duplicate of deepseek_math.jsonl\",\n      \"detail\": \"Both files have 57,600 records with identical first records (same condition_id, item_id, generated_text, latency_ms). Likely a backup from running on a different GPU.\",\n      \"risk\": \"None. Duplicate does not affect record count (only one is used in analysis).\"\n    },\n    {\n      \"id\": \"DP-3\",\n      \"severity\": \"info\",\n      \"description\": \"MATH benchmark has two analysis versions: 7-model (DeepSeek excluded) and 8-model (DeepSeek included)\",\n      \"detail\": \"per_benchmark_gstudy_ff.json excludes DeepSeek from MATH ('incomplete data: 37400/57600 lines'). But three_in_one_8model.json includes DeepSeek (deepseek_math.jsonl is now complete at 57,600 lines). Paper tables use the 8-model version.\",\n      \"risk\": \"None. The completed JSONL is used for the final analysis.\"\n    }\n  ],\n\n  \"summary\": {\n    \"total_checks\": 47,\n    \"passed\": 44,\n    \"failed\": 3,\n    \"critical_issues\": [],\n    \"medium_issues\": [\n      \"VC-1: Table 3 'prompt†' row systematically mismatched with data for MC benchmarks. The footnote claims it reports 'prompt×item interaction' but actual values represent inconsistent groupings of remaining variance components across benchmarks.\"\n    ],\n    \"low_issues\": [\n      \"VC-2: Table 3 HellaSwag mod×prmpt: 0.6% in table vs 0.19% in data (0.41pp discrepancy)\",\n      \"VC-3: Table 3 MATH mod×prmpt: 2.0% in table vs 1.68% in data (0.32pp discrepancy)\"\n    ],\n    \"conclusion\": \"No critical data integrity issues found. All dominant variance components, G-coefficients, D-study budgets, and cross-section references are correct and traceable to source data. Three medium/low-severity issues affect Table 3's 4th-5th rows (prompt-related and model×prompt components for MC benchmarks); these are presentation/rounding issues that do not affect the paper's main conclusions about item dominance, DIF patterns, or reproducibility budgets.\"\n  }\n}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-23T10:42:50.861936+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation.json
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-23T10:42:50.862078+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "audit_data_validation",
+  "type": "data",
+  "description": "End-to-end data validation and cross-reference consistency audit for EMNLP 2026 submission. Covers record counts, Henderson I input verification, variance component validation, Table 2/3 verification against source data, cross-section reference consistency, and data provenance notes.",
+  "project": "nlp_variance_gtheory",
+  "exp_id": "exp004",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation.json",
+  "tags": "['audit', 'validation', 'emnlp2026', 'data-integrity']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "audit_data_validation",
+    "type": "data",
+    "description": "End-to-end data validation and cross-reference consistency audit for EMNLP 2026 submission. Covers record counts, Henderson I input verification, variance component validation, Table 2/3 verification against source data, cross-section reference consistency, and data provenance notes.",
+    "project": "nlp_variance_gtheory",
+    "exp_id": "exp004",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation.json",
+    "tags": "['audit', 'validation', 'emnlp2026', 'data-integrity']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-23T10:42:50.862226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260523_9514c4\", \"name\": \"audit_data_validation\", \"type\": \"data\", \"description\": \"End-to-end data validation and cross-reference consistency audit for EMNLP 2026 submission. Covers record counts, Henderson I input verification, variance component validation, Table 2/3 verification against source data, cross-section reference consistency, and data provenance notes.\", \"path\": \"projects/nlp_variance_gtheory/artifacts/exp004/data/audit_data_validation_9514c4.json\", \"url\": null, \"project\": \"nlp_variance_gtheory\", \"exp_id\": \"exp004\", \"skill\": \"\", \"created_at\": \"2026-05-23T10:42:33.622835+00:00\", \"tags\": [\"audit\", \"validation\", \"emnlp2026\", \"data-integrity\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_audit_data_end_to_end_20260523T102339",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-23T10:42:50.862406+00:00_
+
+## Audit Complete
+
+**47 checks performed. 44 passed, 3 issues found (0 critical).**
+
+### Key Results
+
+**Record counts** — All verified. 2,304,000 total = 8 models × 5 benchmarks × 57,600. OLMo/Yi HellaSwag data stored as checksummed binary blobs in analysis scripts rather than JSONL (functional but unusual).
+
+**Henderson Method I** — Script verified correct: balanced crossed design, proper EMS equations, negative variance truncated to 0, bootstrap CIs via item-level resampling.
+
+**Variance components** — All sum to 100% across all benchmarks. G_item values match data within rounding tolerance everywhere.
+
+**Cross-references** — All major claims (G_item range 0.863–0.896, partial-credit 0.863→0.768, item budgets 178/552/55, 3.1× reduction, fixed/random ΔG 0.077–0.113, 48.1% arithmetic correctness) are consistent across abstract, experiments, method, limitations, and appendix.
+
+### 3 Issues to Address
+
+| ID | Severity | Issue |
+|---|---|---|
+| **VC-1** | Medium | Table 3 "prompt†" row doesn't match data for MC benchmarks. Footnote says "prompt×item interaction" but MMLU shows 2.5% vs actual prompt:item 0.95%. The 2.5% is actually the sum of ALL unlisted components. ARC is even more inconsistent (0.4% in table vs 1.45% prompt:item). |
+| **VC-2** | Low | Table 3 HellaSwag mod×prmpt: 0.6% vs data 0.19% |
+| **VC-3** | Low | Table 3 MATH mod×prmpt: 2.0% vs data 1.68% |
+
+None of these affect the paper's main conclusions — the dominant components (item, model×item, residual, model) are correct across all benchmarks, and D-study projections are computed from full variance components, not from the rounded table.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_audit_data_end_to_end_20260523T102339"
+}
+```
+
+</details>
+
+---

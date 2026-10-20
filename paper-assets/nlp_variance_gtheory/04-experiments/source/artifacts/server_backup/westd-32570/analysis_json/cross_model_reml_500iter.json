@@ -1,0 +1,147 @@
+{
+  "variance_components": {
+    "model": {
+      "estimate": 0.0010346372041560577,
+      "pct": 0.49021658947014674
+    },
+    "precision": {
+      "estimate": 9.99999469276551e-11,
+      "pct": 4.7380504715232205e-08
+    },
+    "temperature": {
+      "estimate": 1.0015547282553462e-05,
+      "pct": 0.00474541937097189
+    },
+    "prompt_template": {
+      "estimate": 3.949215906714055e-06,
+      "pct": 0.0018711594219635354
+    },
+    "seed": {
+      "estimate": 9.993126948362439e-11,
+      "pct": 4.734796497835534e-08
+    },
+    "ordering": {
+      "estimate": 9.959288760644561e-11,
+      "pct": 4.7187637851993786e-08
+    },
+    "item_id": {
+      "estimate": 0.08109663289705121,
+      "pct": 38.42401436620734
+    },
+    "model:precision": {
+      "estimate": 0.0027674610081243455,
+      "pct": 1.3112376893511575
+    },
+    "model:temperature": {
+      "estimate": 4.5091059268828086e-08,
+      "pct": 2.136438280159417e-05
+    },
+    "model:prompt_template": {
+      "estimate": 3.308202783540991e-05,
+      "pct": 0.01567444007724372
+    },
+    "model:seed": {
+      "estimate": 1.486980020643356e-05,
+      "pct": 0.0070453901271086096
+    },
+    "model:ordering": {
+      "estimate": 1.2875836791535134e-06,
+      "pct": 0.0006100639695891449
+    },
+    "model:item_id": {
+      "estimate": 0.055635853447313595,
+      "pct": 26.360562156132566
+    },
+    "precision:temperature": {
+      "estimate": 1.4564527171330893e-08,
+      "pct": 6.900750145553628e-06
+    },
+    "precision:prompt_template": {
+      "estimate": 5.112546930316623e-06,
+      "pct": 0.0024223518249860423
+    },
+    "precision:seed": {
+      "estimate": 9.989679284002539e-11,
+      "pct": 4.733162976193978e-08
+    },
+    "precision:ordering": {
+      "estimate": 9.664131337022408e-07,
+      "pct": 0.0004578916633962564
+    },
+    "precision:item_id": {
+      "estimate": 0.004183675364512171,
+      "pct": 1.982247555377957
+    },
+    "temperature:prompt_template": {
+      "estimate": 2.339594682255246e-06,
+      "pct": 0.0011085123570567703
+    },
+    "temperature:seed": {
+      "estimate": 1.7241998216684245e-05,
+      "pct": 0.008169350113722001
+    },
+    "temperature:ordering": {
+      "estimate": 9.906801891669496e-11,
+      "pct": 4.693895228571445e-08
+    },
+    "temperature:item_id": {
+      "estimate": 0.0021554030448547724,
+      "pct": 1.0212413832964233
+    },
+    "prompt_template:seed": {
+      "estimate": 2.2655574555841676e-06,
+      "pct": 0.0010734331267654826
+    },
+    "prompt_template:ordering": {
+      "estimate": 7.465787372662758e-07,
+      "pct": 0.0003537329615477463
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.005960066941601984,
+      "pct": 2.823911297012667
+    },
+    "seed:ordering": {
+      "estimate": 9.962571465586984e-11,
+      "pct": 4.720319148194879e-08
+    },
+    "seed:item_id": {
+      "estimate": 0.005282810832436063,
+      "pct": 2.503023763972572
+    },
+    "ordering:item_id": {
+      "estimate": 0.0013319803772497336,
+      "pct": 0.631099360388007
+    },
+    "residual": {
+      "estimate": 0.051516700249583706,
+      "pct": 24.408885545253973
+    }
+  },
+  "total_variance": 0.21105715848465081,
+  "n_observations": 325600,
+  "method": "REML-EM (Henderson MME)",
+  "elapsed_seconds": 1238.8905293941498,
+  "converged": false,
+  "n_iterations": 500,
+  "n_levels": {
+    "model": 2,
+    "precision": 2,
+    "temperature": 3,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "fixed_intercept": 0.6948025536997666,
+  "n_random_effects": 28,
+  "q_total": 5035,
+  "all_facets": [
+    "model",
+    "precision",
+    "temperature",
+    "prompt_template",
+    "seed",
+    "ordering",
+    "item_id"
+  ]
+}

@@ -1,0 +1,5882 @@
+# analysis exp004 cross model and permutation
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 125
+- **Recorded user turns:** 0
+- **Tool calls:** 45
+- **Original source:** `logs/workers/worker_analysis_exp004_cross_model_and_permutation_20260521T213143.log`
+- **Structured JSON:** [`0feb1b041100c7baeec5.json`](../../sessions/0f/0feb1b041100c7baeec5.json)
+
+## Before a recorded user message
+
+125 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "478a4412-b46f-46c7-84f6-bca55ec31943",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779415800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "354aa138-49b9-45e7-b228-f0386d9f83a6",
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to run a comprehensive cross-benchmark analysis on their server. Let me start by understanding the current state of the code and data on the server.
+
+Let me first check the existing code structure and then execute the analyses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6d253070-c080-4868-bd1c-026fb3ae8d8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iUcwyaSPMhUd9WRu5ToX1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12414
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me first explore the existing code and data on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "3abe5fea-5ab5-447c-85aa-4ff6403704da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iUcwyaSPMhUd9WRu5ToX1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12414
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QJRDmwnGaWZ4hTEttdRZ4v`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4f41adf1-ce32-4a37-804c-ac86d791e8a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iUcwyaSPMhUd9WRu5ToX1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12414,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12414
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T21:31:57.084Z_
+
+<details><summary>↩ Tool result · `toolu_01QJRDmwnGaWZ4hTEttdRZ4v`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "dd79cea3-3643-4b89-8b60-1c85337c7eb2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the existing code and data on the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8560752d-93a5-4fc1-93cb-72f0d385cf9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6paWRscvob52DJUtwzJS2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KvqZrFe2yMVFheGcSR6ksC`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/scripts/exp002_analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "2ec4622d-1582-4cb3-86b0-782e80ac461a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6paWRscvob52DJUtwzJS2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6Trg1P9pPLFYnkWUdcPS5`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "bcb30fa3-aa02-4f57-885e-110817e6d56d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6paWRscvob52DJUtwzJS2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KeNqYgbvNS5H7J7CtJ8dmw`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "10417fed-19ed-43bd-ae96-16ffbd8c9c3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H6paWRscvob52DJUtwzJS2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 949,
+      "cache_read_input_tokens": 24255,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 949
+      },
+      "output_tokens": 48,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T21:32:02.042Z_
+
+<details><summary>↩ Tool result · `toolu_01KvqZrFe2yMVFheGcSR6ksC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncross_benchmark_dstudy.py\\ngradient_permutation_test.py\\ngsm8k_answer_reextract.py\\nleave_one_benchmark_out.py\\nper_benchmark_gstudy.py\\nwithin_format_gradient.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "c5e14b8b-c427-41b3-ad49-3cb79ddedc19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\ncross_benchmark_dstudy.py\\\\ngradient_permutation_test.py\\\\ngsm8k_answer_reextract.py\\\\nleave_one_benchmark_out.py\\\\nper_benchmark_gstudy.py\\\\nwithin_format_gradient.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\ncross_benchmark_dstudy.py\\ngradient_permutation_test.py\\ngsm8k_answer_reextract.py\\nleave_one_benchmark_out.py\\nper_benchmark_gstudy.py\\nwithin_format_gradient.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T21:32:02.574Z_
+
+<details><summary>↩ Tool result · `toolu_01E6Trg1P9pPLFYnkWUdcPS5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_analysis\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nfigures\\nfloat32_results.jsonl\\nhenderson_i_unified_numbers.json\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "e3c7eedd-8bd8-47a0-a40d-0ac6f728637b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_results.jsonl\\\\nanalysis\\\\nbf16_eager_results.jsonl\\\\nd_study_results.json\\\\nd_study_results_text.json\\\\ndesign_matrix_exp001_full.csv\\\\ndryrun_exp001.jsonl\\\\nexp001_analysis\\\\nexp001_gemma\\\\nexp001_gemma_fp32\\\\nexp001_llama\\\\nexp001_mistral\\\\nexp001_pilot\\\\nexp001_qwen\\\\nexp001b\\\\nexp002\\\\nexp002_pilot\\\\nfigures\\\\nfloat32_results.jsonl\\\\nhenderson_i_unified_numbers.json\\\\nsanity_check.json\\\\nvariance_components.json\\\\nvariance_components_text.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"all_results.jsonl\\nanalysis\\nbf16_eager_results.jsonl\\nd_study_results.json\\nd_study_results_text.json\\ndesign_matrix_exp001_full.csv\\ndryrun_exp001.jsonl\\nexp001_analysis\\nexp001_gemma\\nexp001_gemma_fp32\\nexp001_llama\\nexp001_mistral\\nexp001_pilot\\nexp001_qwen\\nexp001b\\nexp002\\nexp002_pilot\\nfigures\\nfloat32_results.jsonl\\nhenderson_i_unified_numbers.json\\nsanity_check.json\\nvariance_components.json\\nvariance_components_text.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T21:32:03.110Z_
+
+<details><summary>↩ Tool result · `toolu_01KeNqYgbvNS5H7J7CtJ8dmw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"audit_g_item.py\\nauto_start_new_models.sh\\nauto_start_qwen.sh\\nbalance_cross_model.py\\nbernoulli_adjustment.py\\nbf16_fp16_sensitivity.py\\nbootstrap_vs_jackknife.py\\nchain_single_gpu.sh\\ncompute_g_coefficients.py\\ndataset_a_gstudy.py\\ndry_run_exp002.py\\ndstudy_progressive_validation.py\\ndstudy_single_condition.py\\nexp001_4model_gstudy.py\\nexp001_4model_gstudy_v2.py\\nexp001_llama_bf16only_5facet.py\\nexp001b_gstudy.py\\nexp002_analysis\\nfix_dstudy_formula.py\\nfix_g_item.py\\nfixed_vs_random_sensitivity.py\\ngenerate_exp001b_design.py\\nglmm_logistic_link.py\\ngpu0_internlm_math_accel.sh\\ngsm8k_to_math_monitor.sh\\ngstudy_dataset_b.py\\ngstudy_full.py\\nhenderson_i_gstudy.py\\nleave_one_model_out.py\\nlomo_matched_spec.py\\nm022_henderson_unified.py\\nmath_then_new_models.sh\\nmodel_as_fixed_gstudy.py\\npost_exp002_master.sh\\nprepare_few_shot_exp002.py\\nr1_w4_ordering_dstudy.py\\nrun_exp001b.sh\\nrun_exp002_full.sh\\nrun_exp002_pilot.sh\\nsample_benchmarks.py\\nsample_math.py\\nsample_resampling.py\\nsensitivity_analyses.py\\nsimulation_binary_recovery.py\\nsimulation_binary_recovery_matched.py\\ntask8_subject_gradient.py\\ntemp_stratified_seed.py\\nwithin_mmlu_gradient_4model.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "c57caa65-9e38-42a8-a3d0-a8d2dcc6f281",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"audit_g_item.py\\\\nauto_start_new_models.sh\\\\nauto_start_qwen.sh\\\\nbalance_cross_model.py\\\\nbernoulli_adjustment.py\\\\nbf16_fp16_sensitivity.py\\\\nbootstrap_vs_jackknife.py\\\\nchain_single_gpu.sh\\\\ncompute_g_coefficients.py\\\\ndataset_a_gstudy.py\\\\ndry_run_exp002.py\\\\ndstudy_progressive_validation.py\\\\ndstudy_single_condition.py\\\\nexp001_4model_gstudy.py\\\\nexp001_4model_gstudy_v2.py\\\\nexp001_llama_bf16only_5facet.py\\\\nexp001b_gstudy.py\\\\nexp002_analysis\\\\nfix_dstudy_formula.py\\\\nfix_g_item.py\\\\nfixed_vs_random_sensitivity.py\\\\ngenerate_exp001b_design.py\\\\nglmm_logistic_link.py\\\\ngpu0_internlm_math_accel.sh\\\\ngsm8k_to_math_monitor.sh\\\\ngstudy_dataset_b.py\\\\ngstudy_full.py\\\\nhenderson_i_gstudy.py\\\\nleave_one_model_out.py\\\\nlomo_matched_spec.py\\\\nm022_henderson_unified.py\\\\nmath_then_new_models.sh\\\\nmodel_as_fixed_gstudy.py\\\\npost_exp002_master.sh\\\\nprepare_few_shot_exp002.py\\\\nr1_w4_ordering_dstudy.py\\\\nrun_exp001b.sh\\\\nrun_exp002_full.sh\\\\nrun_exp002_pilot.sh\\\\nsample_benchmarks.py\\\\nsample_math.py\\\\nsample_resampling.py\\\\nsensitivity_analyses.py\\\\nsimulation_binary_recovery.py\\\\nsimulation_binary_recovery_matched.py\\\\ntask8_subject_gradient.py\\\\ntemp_stratified_seed.py\\\\nwithin_mmlu_gradient_4model.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"audit_g_item.py\\nauto_start_new_models.sh\\nauto_start_qwen.sh\\nbalance_cross_model.py\\nbernoulli_adjustment.py\\nbf16_fp16_sensitivity.py\\nbootstrap_vs_jackknife.py\\nchain_single_gpu.sh\\ncompute_g_coefficients.py\\ndataset_a_gstudy.py\\ndry_run_exp002.py\\ndstudy_progressive_validation.py\\ndstudy_single_condition.py\\nexp001_4model_gstudy.py\\nexp001_4model_gstudy_v2.py\\nexp001_llama_bf16only_5facet.py\\nexp001b_gstudy.py\\nexp002_analysis\\nfix_dstudy_formula.py\\nfix_g_item.py\\nfixed_vs_random_sensitivity.py\\ngenerate_exp001b_design.py\\nglmm_logistic_link.py\\ngpu0_internlm_math_accel.sh\\ngsm8k_to_math_monitor.sh\\ngstudy_dataset_b.py\\ngstudy_full.py\\nhenderson_i_gstudy.py\\nleave_one_model_out.py\\nlomo_matched_spec.py\\nm022_henderson_unified.py\\nmath_then_new_models.sh\\nmodel_as_fixed_gstudy.py\\npost_exp002_master.sh\\nprepare_few_shot_exp002.py\\nr1_w4_ordering_dstudy.py\\nrun_exp001b.sh\\nrun_exp002_full.sh\\nrun_exp002_pilot.sh\\nsample_benchmarks.py\\nsample_math.py\\nsample_resampling.py\\nsensitivity_analyses.py\\nsimulation_binary_recovery.py\\nsimulation_binary_recovery_matched.py\\ntask8_subject_gradient.py\\ntemp_stratified_seed.py\\nwithin_mmlu_gradient_4model.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JwaBtiyJnUEEqVUAVypQHB`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "d7a200fe-cb42-4991-8004-d472a0938fc9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arwo5ikMtwcDMKfYQSKvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 25204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1390
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:32:06.441Z_
+
+<details><summary>↩ Tool result · `toolu_01JwaBtiyJnUEEqVUAVypQHB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using Spearman rho\\nas the test statistic with an exact permutation test.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coef\\n\\n... [截断: 输出过长，省略 2957 字符] ...\\n\\nresult[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item = spearman_permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_model_item = spearman_permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n        \\\"n_benchmarks\\\": len(available_benchmarks),\\n        \\\"n_permutations\\\": test_item[\\\"n_permutations\\\"],\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmarks_used\\\": available_benchmarks,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"item_id_gradient\\\": {\\n            \\\"observed_values\\\": test_item[\\\"observed_values\\\"],\\n            \\\"observed_rho\\\": test_item[\\\"observed_rho\\\"],\\n            \\\"p_value\\\": test_item[\\\"p_value\\\"],\\n            \\\"n_extreme\\\": test_item[\\\"n_extreme\\\"],\\n            \\\"significant_at_0.05\\\": test_item[\\\"significant_at_0.05\\\"],\\n            \\\"kendall_tau\\\": test_item[\\\"kendall_tau\\\"],\\n            \\\"kendall_p\\\": test_item[\\\"kendall_p\\\"],\\n            \\\"direction\\\": \\\"decreasing\\\",\\n        },\\n        \\\"model_item_gradient\\\": {\\n            \\\"observed_values\\\": test_model_item[\\\"observed_values\\\"],\\n            \\\"observed_rho\\\": test_model_item[\\\"observed_rho\\\"],\\n            \\\"p_value\\\": test_model_item[\\\"p_value\\\"],\\n            \\\"n_extreme\\\": test_model_item[\\\"n_extreme\\\"],\\n            \\\"significant_at_0.05\\\": test_model_item[\\\"significant_at_0.05\\\"],\\n            \\\"kendall_tau\\\": test_model_item[\\\"kendall_tau\\\"],\\n            \\\"kendall_p\\\": test_model_item[\\\"kendall_p\\\"],\\n            \\\"direction\\\": \\\"increasing\\\",\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Spearman rho measures rank correlation between benchmark position \\\"\\n            \\\"(knowledge-retrieval -> reasoning) and variance component percentage. \\\"\\n            \\\"P-value from exact permutation test over all k! orderings. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {test_item['n_permutations']}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id gradient:     rho={test_item['observed_rho']:.4f}, \\\"\\n          f\\\"p={test_item['p_value']:.4f}, \\\"\\n          f\\\"tau={test_item['kendall_tau']:.4f}\\\", flush=True)\\n    print(f\\\"  model:item gradient:  rho={test_model_item['observed_rho']:.4f}, \\\"\\n          f\\\"p={test_model_item['p_value']:.4f}, \\\"\\n          f\\\"tau={test_model_item['kendall_tau']:.4f}\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "d2716cbe-05d7-4755-85eb-6d5526a4c93f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Gradient permutation test across benchmarks.\\\\n\\\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\\\nincreases) across benchmarks ordered by cognitive complexity, using Spearman rho\\\\nas the test statistic with an exact permutation test.\\\\n\\\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\\\nOutput: results/analysis/gradient_permutation_test.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"math\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coef\\\\n\\\\n... [截断: 输出过长，省略 2957 字符] ...\\\\n\\\\nresult[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": result[\\\\\\\"pct\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"n_obs\\\\\\\": len(df_bm),\\\\n            \\\\\\\"accuracy\\\\\\\": float(df_bm[\\\\\\\"correct\\\\\\\"].mean()),\\\\n        }\\\\n        print(f\\\\\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\\\\\"\\\\n              f\\\\\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\\\n        if exp001 and \\\\\\\"variance_components\\\\\\\" in exp001:\\\\n            vc = exp001[\\\\\\\"variance_components\\\\\\\"]\\\\n            item_pct = vc.get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            mi_pct = vc.get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0.0)\\\\n            benchmark_stats[\\\\\\\"mmlu_exp001\\\\\\\"] = {\\\\n                \\\\\\\"item_id_pct\\\\\\\": item_pct,\\\\n                \\\\\\\"model_item_pct\\\\\\\": mi_pct,\\\\n                \\\\\\\"n_obs\\\\\\\": exp001.get(\\\\\\\"n_observations\\\\\\\", 0),\\\\n                \\\\\\\"source\\\\\\\": \\\\\\\"exp-001\\\\\\\",\\\\n            }\\\\n            print(f\\\\\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\\\n    print(f\\\\\\\"\\\\\\\\nBenchmarks for gradient test: {available_benchmarks}\\\\\\\", flush=True)\\\\n\\\\n    item_pcts = {bm: benchmark_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available_benchmarks}\\\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available_benchmarks}\\\\n\\\\n    test_item = spearman_permutation_test(item_pcts, available_benchmarks, \\\\\\\"decreasing\\\\\\\")\\\\n    test_model_item = spearman_permutation_test(model_item_pcts, available_benchmarks, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n    results = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002 (+ optional exp-001)\\\\\\\",\\\\n        \\\\\\\"test_statistic\\\\\\\": \\\\\\\"spearman_rho\\\\\\\",\\\\n        \\\\\\\"n_benchmarks\\\\\\\": len(available_benchmarks),\\\\n        \\\\\\\"n_permutations\\\\\\\": test_item[\\\\\\\"n_permutations\\\\\\\"],\\\\n        \\\\\\\"benchmark_order_hypothesis\\\\\\\": BENCHMARK_ORDER,\\\\n        \\\\\\\"benchmarks_used\\\\\\\": available_benchmarks,\\\\n        \\\\\\\"benchmark_stats\\\\\\\": benchmark_stats,\\\\n        \\\\\\\"item_id_gradient\\\\\\\": {\\\\n            \\\\\\\"observed_values\\\\\\\": test_item[\\\\\\\"observed_values\\\\\\\"],\\\\n            \\\\\\\"observed_rho\\\\\\\": test_item[\\\\\\\"observed_rho\\\\\\\"],\\\\n            \\\\\\\"p_value\\\\\\\": test_item[\\\\\\\"p_value\\\\\\\"],\\\\n            \\\\\\\"n_extreme\\\\\\\": test_item[\\\\\\\"n_extreme\\\\\\\"],\\\\n            \\\\\\\"significant_at_0.05\\\\\\\": test_item[\\\\\\\"significant_at_0.05\\\\\\\"],\\\\n            \\\\\\\"kendall_tau\\\\\\\": test_item[\\\\\\\"kendall_tau\\\\\\\"],\\\\n            \\\\\\\"kendall_p\\\\\\\": test_item[\\\\\\\"kendall_p\\\\\\\"],\\\\n            \\\\\\\"direction\\\\\\\": \\\\\\\"decreasing\\\\\\\",\\\\n        },\\\\n        \\\\\\\"model_item_gradient\\\\\\\": {\\\\n            \\\\\\\"observed_values\\\\\\\": test_model_item[\\\\\\\"observed_values\\\\\\\"],\\\\n            \\\\\\\"observed_rho\\\\\\\": test_model_item[\\\\\\\"observed_rho\\\\\\\"],\\\\n            \\\\\\\"p_value\\\\\\\": test_model_item[\\\\\\\"p_value\\\\\\\"],\\\\n            \\\\\\\"n_extreme\\\\\\\": test_model_item[\\\\\\\"n_extreme\\\\\\\"],\\\\n            \\\\\\\"significant_at_0.05\\\\\\\": test_model_item[\\\\\\\"significant_at_0.05\\\\\\\"],\\\\n            \\\\\\\"kendall_tau\\\\\\\": test_model_item[\\\\\\\"kendall_tau\\\\\\\"],\\\\n            \\\\\\\"kendall_p\\\\\\\": test_model_item[\\\\\\\"kendall_p\\\\\\\"],\\\\n            \\\\\\\"direction\\\\\\\": \\\\\\\"increasing\\\\\\\",\\\\n        },\\\\n        \\\\\\\"interpretation\\\\\\\": (\\\\n            \\\\\\\"Spearman rho measures rank correlation between benchmark position \\\\\\\"\\\\n            \\\\\\\"(knowledge-retrieval -> reasoning) and variance component percentage. \\\\\\\"\\\\n            \\\\\\\"P-value from exact permutation test over all k! orderings. \\\\\\\"\\\\n            f\\\\\\\"For {len(available_benchmarks)} benchmarks, k! = {test_item['n_permutations']}.\\\\\\\"\\\\n        ),\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRESULTS:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id gradient:     rho={test_item['observed_rho']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"p={test_item['p_value']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"tau={test_item['kendall_tau']:.4f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item gradient:  rho={test_model_item['observed_rho']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"p={test_model_item['p_value']:.4f}, \\\\\\\"\\\\n          f\\\\\\\"tau={test_model_item['kendall_tau']:.4f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Gradient permutation test across benchmarks.\\n\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\nincreases) across benchmarks ordered by cognitive complexity, using Spearman rho\\nas the test statistic with an exact permutation test.\\n\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\nOutput: results/analysis/gradient_permutation_test.json\\n\\nUsage:\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.stats import spearmanr, kendalltau\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\n\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\", \\\"math\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]) -> dict:\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coef\\n\\n... [截断: 输出过长，省略 2957 字符] ...\\n\\nresult[\\\"pct\\\"].get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": result[\\\"pct\\\"].get(\\\"model:item_id\\\", 0.0),\\n            \\\"n_obs\\\": len(df_bm),\\n            \\\"accuracy\\\": float(df_bm[\\\"correct\\\"].mean()),\\n        }\\n        print(f\\\"  {bm}: item_id={benchmark_stats[bm]['item_id_pct']:.2f}%, \\\"\\n              f\\\"model:item={benchmark_stats[bm]['model_item_pct']:.2f}%\\\", flush=True)\\n\\n    if args.exp001_gstudy and args.use_exp001_mmlu:\\n        exp001 = load_exp001_gstudy(args.exp001_gstudy)\\n        if exp001 and \\\"variance_components\\\" in exp001:\\n            vc = exp001[\\\"variance_components\\\"]\\n            item_pct = vc.get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            mi_pct = vc.get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0.0)\\n            benchmark_stats[\\\"mmlu_exp001\\\"] = {\\n                \\\"item_id_pct\\\": item_pct,\\n                \\\"model_item_pct\\\": mi_pct,\\n                \\\"n_obs\\\": exp001.get(\\\"n_observations\\\", 0),\\n                \\\"source\\\": \\\"exp-001\\\",\\n            }\\n            print(f\\\"  mmlu_exp001: item_id={item_pct:.2f}%, model:item={mi_pct:.2f}%\\\", flush=True)\\n\\n    available_benchmarks = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\\n    print(f\\\"\\\\nBenchmarks for gradient test: {available_benchmarks}\\\", flush=True)\\n\\n    item_pcts = {bm: benchmark_stats[bm][\\\"item_id_pct\\\"] for bm in available_benchmarks}\\n    model_item_pcts = {bm: benchmark_stats[bm][\\\"model_item_pct\\\"] for bm in available_benchmarks}\\n\\n    test_item = spearman_permutation_test(item_pcts, available_benchmarks, \\\"decreasing\\\")\\n    test_model_item = spearman_permutation_test(model_item_pcts, available_benchmarks, \\\"increasing\\\")\\n\\n    results = {\\n        \\\"experiment\\\": \\\"exp-002 (+ optional exp-001)\\\",\\n        \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n        \\\"n_benchmarks\\\": len(available_benchmarks),\\n        \\\"n_permutations\\\": test_item[\\\"n_permutations\\\"],\\n        \\\"benchmark_order_hypothesis\\\": BENCHMARK_ORDER,\\n        \\\"benchmarks_used\\\": available_benchmarks,\\n        \\\"benchmark_stats\\\": benchmark_stats,\\n        \\\"item_id_gradient\\\": {\\n            \\\"observed_values\\\": test_item[\\\"observed_values\\\"],\\n            \\\"observed_rho\\\": test_item[\\\"observed_rho\\\"],\\n            \\\"p_value\\\": test_item[\\\"p_value\\\"],\\n            \\\"n_extreme\\\": test_item[\\\"n_extreme\\\"],\\n            \\\"significant_at_0.05\\\": test_item[\\\"significant_at_0.05\\\"],\\n            \\\"kendall_tau\\\": test_item[\\\"kendall_tau\\\"],\\n            \\\"kendall_p\\\": test_item[\\\"kendall_p\\\"],\\n            \\\"direction\\\": \\\"decreasing\\\",\\n        },\\n        \\\"model_item_gradient\\\": {\\n            \\\"observed_values\\\": test_model_item[\\\"observed_values\\\"],\\n            \\\"observed_rho\\\": test_model_item[\\\"observed_rho\\\"],\\n            \\\"p_value\\\": test_model_item[\\\"p_value\\\"],\\n            \\\"n_extreme\\\": test_model_item[\\\"n_extreme\\\"],\\n            \\\"significant_at_0.05\\\": test_model_item[\\\"significant_at_0.05\\\"],\\n            \\\"kendall_tau\\\": test_model_item[\\\"kendall_tau\\\"],\\n            \\\"kendall_p\\\": test_model_item[\\\"kendall_p\\\"],\\n            \\\"direction\\\": \\\"increasing\\\",\\n        },\\n        \\\"interpretation\\\": (\\n            \\\"Spearman rho measures rank correlation between benchmark position \\\"\\n            \\\"(knowledge-retrieval -> reasoning) and variance component percentage. \\\"\\n            \\\"P-value from exact permutation test over all k! orderings. \\\"\\n            f\\\"For {len(available_benchmarks)} benchmarks, k! = {test_item['n_permutations']}.\\\"\\n        ),\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n\\n    print(f\\\"\\\\nRESULTS:\\\", flush=True)\\n    print(f\\\"  item_id gradient:     rho={test_item['observed_rho']:.4f}, \\\"\\n          f\\\"p={test_item['p_value']:.4f}, \\\"\\n          f\\\"tau={test_item['kendall_tau']:.4f}\\\", flush=True)\\n    print(f\\\"  model:item gradient:  rho={test_model_item['observed_rho']:.4f}, \\\"\\n          f\\\"p={test_model_item['p_value']:.4f}, \\\"\\n          f\\\"tau={test_model_item['kendall_tau']:.4f}\\\", flush=True)\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ARriwJNtC7nyR9E5yWVVx9`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/leave_one_benchmark_out.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "59c9b86a-fb70-4fcf-b758-eadfcc4b1888",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arwo5ikMtwcDMKfYQSKvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 25204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1390
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T21:32:07.389Z_
+
+<details><summary>↩ Tool result · `toolu_01ARriwJNtC7nyR9E5yWVVx9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Leave-one-benchmark-out gradient robustness test.\\n\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\npreserved on the remaining benchmarks.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/leave_one_benchmark_out.json\\n\\nUsage:\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute Henderson I variance component percentages.\\\"\\\"\\\"\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n\\n\\ndef is_monotonic_decre\\n\\n... [截断: 输出过长，省略 430 字符] ...\\n\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\n    return n_match / len(all_perms)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Leave-one-benchmark-out gradient robustness\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/leave_one_benchmark_out.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\"benchmark\\\"].unique()]\\n    print(f\\\"Benchmarks: {available}\\\", flush=True)\\n\\n    full_stats = {}\\n    for bm in available:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\n        full_stats[bm] = {\\n            \\\"item_id_pct\\\": pcts.get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": pcts.get(\\\"model:item_id\\\", 0.0),\\n        }\\n\\n    full_item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in available]\\n    full_mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in available]\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\n\\n    print(f\\\"\\\\nFull set gradient:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\", flush=True)\\n\\n    lobo_results = {}\\n    for drop_bm in available:\\n        remaining = [bm for bm in available if bm != drop_bm]\\n        item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in remaining]\\n        mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in remaining]\\n\\n        item_dec = is_monotonic_decreasing(item_vals)\\n        mi_inc = is_monotonic_increasing(mi_vals)\\n\\n        p_item = permutation_p_value(item_vals, \\\"decreasing\\\")\\n        p_mi = permutation_p_value(mi_vals, \\\"increasing\\\")\\n\\n        lobo_results[drop_bm] = {\\n            \\\"dropped\\\": drop_bm,\\n            \\\"remaining\\\": remaining,\\n            \\\"item_id_pct_values\\\": {bm: round(full_stats[bm][\\\"item_id_pct\\\"], 4) for bm in remaining},\\n            \\\"model_item_pct_values\\\": {bm: round(full_stats[bm][\\\"model_item_pct\\\"], 4) for bm in remaining},\\n            \\\"item_id_monotonic_decreasing\\\": item_dec,\\n            \\\"model_item_monotonic_increasing\\\": mi_inc,\\n            \\\"both_preserved\\\": item_dec and mi_inc,\\n            \\\"p_item_decreasing\\\": round(p_item, 6),\\n            \\\"p_model_item_increasing\\\": round(p_mi, 6),\\n        }\\n\\n        status = \\\"PRESERVED\\\" if (item_dec and mi_inc) else \\\"BROKEN\\\"\\n        print(f\\\"\\\\n  Drop {drop_bm}: {status}\\\", flush=True)\\n        print(f\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\", flush=True)\\n\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\"both_preserved\\\"])\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n        \\\"benchmark_order\\\": available,\\n        \\\"full_set\\\": {\\n            \\\"item_id_monotonic_decreasing\\\": full_item_dec,\\n            \\\"model_item_monotonic_increasing\\\": full_mi_inc,\\n            \\\"benchmark_stats\\\": {\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\n                for bm in available\\n            },\\n        },\\n        \\\"lobo_results\\\": lobo_results,\\n        \\\"summary\\\": {\\n            \\\"n_benchmarks\\\": len(available),\\n            \\\"n_drops\\\": len(lobo_results),\\n            \\\"n_gradient_preserved\\\": n_preserved,\\n            \\\"gradient_robust\\\": n_preserved == len(lobo_results),\\n        },\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\", flush=True)\\n    print(f\\\"Runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6825c89b-a50d-433c-b93b-822ac78372ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Leave-one-benchmark-out gradient robustness test.\\\\n\\\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\\\npreserved on the remaining benchmarks.\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/leave_one_benchmark_out.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Henderson I variance component percentages.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    total_var = sum(vc.values())\\\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\\\n\\\\n\\\\ndef is_monotonic_decre\\\\n\\\\n... [截断: 输出过长，省略 430 字符] ...\\\\n\\\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\\\n    return n_match / len(all_perms)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Leave-one-benchmark-out gradient robustness\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/leave_one_benchmark_out.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\\\\\"benchmark\\\\\\\"].unique()]\\\\n    print(f\\\\\\\"Benchmarks: {available}\\\\\\\", flush=True)\\\\n\\\\n    full_stats = {}\\\\n    for bm in available:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\\\n        full_stats[bm] = {\\\\n            \\\\\\\"item_id_pct\\\\\\\": pcts.get(\\\\\\\"item_id\\\\\\\", 0.0),\\\\n            \\\\\\\"model_item_pct\\\\\\\": pcts.get(\\\\\\\"model:item_id\\\\\\\", 0.0),\\\\n        }\\\\n\\\\n    full_item_vals = [full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in available]\\\\n    full_mi_vals = [full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in available]\\\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nFull set gradient:\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\\\\\", flush=True)\\\\n\\\\n    lobo_results = {}\\\\n    for drop_bm in available:\\\\n        remaining = [bm for bm in available if bm != drop_bm]\\\\n        item_vals = [full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"] for bm in remaining]\\\\n        mi_vals = [full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"] for bm in remaining]\\\\n\\\\n        item_dec = is_monotonic_decreasing(item_vals)\\\\n        mi_inc = is_monotonic_increasing(mi_vals)\\\\n\\\\n        p_item = permutation_p_value(item_vals, \\\\\\\"decreasing\\\\\\\")\\\\n        p_mi = permutation_p_value(mi_vals, \\\\\\\"increasing\\\\\\\")\\\\n\\\\n        lobo_results[drop_bm] = {\\\\n            \\\\\\\"dropped\\\\\\\": drop_bm,\\\\n            \\\\\\\"remaining\\\\\\\": remaining,\\\\n            \\\\\\\"item_id_pct_values\\\\\\\": {bm: round(full_stats[bm][\\\\\\\"item_id_pct\\\\\\\"], 4) for bm in remaining},\\\\n            \\\\\\\"model_item_pct_values\\\\\\\": {bm: round(full_stats[bm][\\\\\\\"model_item_pct\\\\\\\"], 4) for bm in remaining},\\\\n            \\\\\\\"item_id_monotonic_decreasing\\\\\\\": item_dec,\\\\n            \\\\\\\"model_item_monotonic_increasing\\\\\\\": mi_inc,\\\\n            \\\\\\\"both_preserved\\\\\\\": item_dec and mi_inc,\\\\n            \\\\\\\"p_item_decreasing\\\\\\\": round(p_item, 6),\\\\n            \\\\\\\"p_model_item_increasing\\\\\\\": round(p_mi, 6),\\\\n        }\\\\n\\\\n        status = \\\\\\\"PRESERVED\\\\\\\" if (item_dec and mi_inc) else \\\\\\\"BROKEN\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n  Drop {drop_bm}: {status}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\\\\\", flush=True)\\\\n\\\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\\\\\"both_preserved\\\\\\\"])\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"leave_one_benchmark_out\\\\\\\",\\\\n        \\\\\\\"benchmark_order\\\\\\\": available,\\\\n        \\\\\\\"full_set\\\\\\\": {\\\\n            \\\\\\\"item_id_monotonic_decreasing\\\\\\\": full_item_dec,\\\\n            \\\\\\\"model_item_monotonic_increasing\\\\\\\": full_mi_inc,\\\\n            \\\\\\\"benchmark_stats\\\\\\\": {\\\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\\\n                for bm in available\\\\n            },\\\\n        },\\\\n        \\\\\\\"lobo_results\\\\\\\": lobo_results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"n_benchmarks\\\\\\\": len(available),\\\\n            \\\\\\\"n_drops\\\\\\\": len(lobo_results),\\\\n            \\\\\\\"n_gradient_preserved\\\\\\\": n_preserved,\\\\n            \\\\\\\"gradient_robust\\\\\\\": n_preserved == len(lobo_results),\\\\n        },\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Runtime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Leave-one-benchmark-out gradient robustness test.\\n\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\npreserved on the remaining benchmarks.\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/leave_one_benchmark_out.json\\n\\nUsage:\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations, permutations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARK_ORDER = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\n    \\\"\\\"\\\"Compute Henderson I variance component percentages.\\\"\\\"\\\"\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    total_var = sum(vc.values())\\n    return {k: v / total_var * 100 if total_var > 0 else 0.0 for k, v in vc.items()}\\n\\n\\ndef is_monotonic_decre\\n\\n... [截断: 输出过长，省略 430 字符] ...\\n\\nmatch = sum(1 for p in all_perms if check([values[i] for i in p]))\\n    return n_match / len(all_perms)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Leave-one-benchmark-out gradient robustness\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/leave_one_benchmark_out.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\\\"benchmark\\\"].unique()]\\n    print(f\\\"Benchmarks: {available}\\\", flush=True)\\n\\n    full_stats = {}\\n    for bm in available:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        pcts = compute_variance_pcts(df_bm, FACETS)\\n        full_stats[bm] = {\\n            \\\"item_id_pct\\\": pcts.get(\\\"item_id\\\", 0.0),\\n            \\\"model_item_pct\\\": pcts.get(\\\"model:item_id\\\", 0.0),\\n        }\\n\\n    full_item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in available]\\n    full_mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in available]\\n    full_item_dec = is_monotonic_decreasing(full_item_vals)\\n    full_mi_inc = is_monotonic_increasing(full_mi_vals)\\n\\n    print(f\\\"\\\\nFull set gradient:\\\", flush=True)\\n    print(f\\\"  item_id decreasing: {full_item_dec} {[f'{v:.2f}' for v in full_item_vals]}\\\", flush=True)\\n    print(f\\\"  model:item increasing: {full_mi_inc} {[f'{v:.2f}' for v in full_mi_vals]}\\\", flush=True)\\n\\n    lobo_results = {}\\n    for drop_bm in available:\\n        remaining = [bm for bm in available if bm != drop_bm]\\n        item_vals = [full_stats[bm][\\\"item_id_pct\\\"] for bm in remaining]\\n        mi_vals = [full_stats[bm][\\\"model_item_pct\\\"] for bm in remaining]\\n\\n        item_dec = is_monotonic_decreasing(item_vals)\\n        mi_inc = is_monotonic_increasing(mi_vals)\\n\\n        p_item = permutation_p_value(item_vals, \\\"decreasing\\\")\\n        p_mi = permutation_p_value(mi_vals, \\\"increasing\\\")\\n\\n        lobo_results[drop_bm] = {\\n            \\\"dropped\\\": drop_bm,\\n            \\\"remaining\\\": remaining,\\n            \\\"item_id_pct_values\\\": {bm: round(full_stats[bm][\\\"item_id_pct\\\"], 4) for bm in remaining},\\n            \\\"model_item_pct_values\\\": {bm: round(full_stats[bm][\\\"model_item_pct\\\"], 4) for bm in remaining},\\n            \\\"item_id_monotonic_decreasing\\\": item_dec,\\n            \\\"model_item_monotonic_increasing\\\": mi_inc,\\n            \\\"both_preserved\\\": item_dec and mi_inc,\\n            \\\"p_item_decreasing\\\": round(p_item, 6),\\n            \\\"p_model_item_increasing\\\": round(p_mi, 6),\\n        }\\n\\n        status = \\\"PRESERVED\\\" if (item_dec and mi_inc) else \\\"BROKEN\\\"\\n        print(f\\\"\\\\n  Drop {drop_bm}: {status}\\\", flush=True)\\n        print(f\\\"    item_id dec: {item_dec} (p={p_item:.4f}), model:item inc: {mi_inc} (p={p_mi:.4f})\\\", flush=True)\\n\\n    n_preserved = sum(1 for r in lobo_results.values() if r[\\\"both_preserved\\\"])\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n        \\\"benchmark_order\\\": available,\\n        \\\"full_set\\\": {\\n            \\\"item_id_monotonic_decreasing\\\": full_item_dec,\\n            \\\"model_item_monotonic_increasing\\\": full_mi_inc,\\n            \\\"benchmark_stats\\\": {\\n                bm: {k: round(v, 4) for k, v in full_stats[bm].items()}\\n                for bm in available\\n            },\\n        },\\n        \\\"lobo_results\\\": lobo_results,\\n        \\\"summary\\\": {\\n            \\\"n_benchmarks\\\": len(available),\\n            \\\"n_drops\\\": len(lobo_results),\\n            \\\"n_gradient_preserved\\\": n_preserved,\\n            \\\"gradient_robust\\\": n_preserved == len(lobo_results),\\n        },\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\nSummary: gradient preserved in {n_preserved}/{len(lobo_results)} drops\\\", flush=True)\\n    print(f\\\"Runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YP2ukMvfogkDmttJAuT1Ms`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/cross_benchmark_dstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "91639aff-6a19-4385-b9f5-afb06c3407ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arwo5ikMtwcDMKfYQSKvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 25204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1390
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014dxZ3PDWpkMFm8Cvt6kDrn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp002/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8d243f29-411f-4653-bfc1-1b5fe08af28b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013arwo5ikMtwcDMKfYQSKvc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1390,
+      "cache_read_input_tokens": 25204,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1390
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T21:32:08.334Z_
+
+<details><summary>↩ Tool result · `toolu_01YP2ukMvfogkDmttJAuT1Ms`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark D-study comparison.\\n\\nFor each benchmark, computes:\\n  - D-study curves (item count vs G coefficient)\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/cross_benchmark_dstudy.json\\n\\nUsage:\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\nG_TARGETS = [0.80, 0.90, 0.95]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\n\\n\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\n    \\\"\\\"\\\"Compute G_item for a given number of items (D-study projection).\\n\\n    Uses the correct formula: scale error by n_actual/n_items.\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta_actual = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\n\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\n    total = sigma_item + sigma_delta_n\\n    return sigma_item / total if total > 0 else 0.0\\n\\n\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\n    for ni in range(1, max_items + 1):\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Cross-benchmark D-study comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/cross_benchmark_dstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for '{bm}', skipping\\\", flush=True)\\n            continue\\n\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\n        total_var = sum(vc.values())\\n\\n        curve = {}\\n        for ni in ITEM_COUNTS:\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\n            curve[ni] = round(g, 6)\\n\\n        min_items = {}\\n        for target in G_TARGETS:\\n            n = find_min_items(vc, n_levels, target)\\n            min_items[str(target)] = n\\n\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\"item_id\\\"])\\n\\n        results[bm] = {\\n            \\\"n_items_actual\\\": n_levels[\\\"item_id\\\"],\\n            \\\"G_current\\\": round(g_current, 6),\\n            \\\"item_id_pct\\\": round(vc.get(\\\"item_id\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\n            \\\"d_study_curve\\\": curve,\\n            \\\"min_items_for_G\\\": min_items,\\n            \\\"accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        }\\n\\n        print(f\\\"\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\", flush=True)\\n        print(f\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"cross_benchmark_dstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"item_counts_evaluated\\\": ITEM_COUNTS,\\n        \\\"g_targets\\\": G_TARGETS,\\n        \\\"benchmarks\\\": results,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\", flush=True)\\n    print(\\\"-\\\" * 58, flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        m80 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.8\\\", \\\">5000\\\"))\\n        m90 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.9\\\", \\\">5000\\\"))\\n        m95 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.95\\\", \\\">5000\\\"))\\n        print(f\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4c5667aa-98eb-43f4-a515-6e7996a1c181",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark D-study comparison.\\\\n\\\\nFor each benchmark, computes:\\\\n  - D-study curves (item count vs G coefficient)\\\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/cross_benchmark_dstudy.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\\\nG_TARGETS = [0.80, 0.90, 0.95]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[\\\\\\\"correct\\\\\\\"].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[\\\\\\\"correct\\\\\\\"] - grand_mean) ** 2).sum())\\\\n    ss_model_sum = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\\\n\\\\n\\\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute G_item for a given number of items (D-study projection).\\\\n\\\\n    Uses the correct formula: scale error by n_actual/n_items.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    sigma_item = vc.get(\\\\\\\"item_id\\\\\\\", 0.0)\\\\n    n_actual = n_levels[\\\\\\\"item_id\\\\\\\"]\\\\n    non_item = [f for f in FACETS if f != \\\\\\\"item_id\\\\\\\"]\\\\n\\\\n    sigma_delta_actual = 0.0\\\\n    for comp, est in vc.items():\\\\n        if est == 0.0 or comp == \\\\\\\"item_id\\\\\\\":\\\\n            continue\\\\n        if comp == \\\\\\\"residual\\\\\\\":\\\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\\\n            continue\\\\n        facets_in = set(comp.split(\\\\\\\":\\\\\\\"))\\\\n        if \\\\\\\"item_id\\\\\\\" not in facets_in:\\\\n            continue\\\\n        other = [f for f in facets_in if f != \\\\\\\"item_id\\\\\\\"]\\\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\\\n\\\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\\\n    total = sigma_item + sigma_delta_n\\\\n    return sigma_item / total if total > 0 else 0.0\\\\n\\\\n\\\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\\\n    for ni in range(1, max_items + 1):\\\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\\\n        if g >= target_g:\\\\n            return ni\\\\n    return None\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Cross-benchmark D-study comparison\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/cross_benchmark_dstudy.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for bm in BENCHMARKS:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        if len(df_bm) == 0:\\\\n            print(f\\\\\\\"WARNING: no data for '{bm}', skipping\\\\\\\", flush=True)\\\\n            continue\\\\n\\\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\\\n        total_var = sum(vc.values())\\\\n\\\\n        curve = {}\\\\n        for ni in ITEM_COUNTS:\\\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\\\n            curve[ni] = round(g, 6)\\\\n\\\\n        min_items = {}\\\\n        for target in G_TARGETS:\\\\n            n = find_min_items(vc, n_levels, target)\\\\n            min_items[str(target)] = n\\\\n\\\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\\\\\"item_id\\\\\\\"])\\\\n\\\\n        results[bm] = {\\\\n            \\\\\\\"n_items_actual\\\\\\\": n_levels[\\\\\\\"item_id\\\\\\\"],\\\\n            \\\\\\\"G_current\\\\\\\": round(g_current, 6),\\\\n            \\\\\\\"item_id_pct\\\\\\\": round(vc.get(\\\\\\\"item_id\\\\\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\\\n            \\\\\\\"d_study_curve\\\\\\\": curve,\\\\n            \\\\\\\"min_items_for_G\\\\\\\": min_items,\\\\n            \\\\\\\"accuracy\\\\\\\": round(float(df_bm[\\\\\\\"correct\\\\\\\"].mean()), 6),\\\\n        }\\\\n\\\\n        print(f\\\\\\\"\\\\\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\\\\\", flush=True)\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_benchmark_dstudy\\\\\\\",\\\\n        \\\\\\\"facets\\\\\\\": FACETS,\\\\n        \\\\\\\"item_counts_evaluated\\\\\\\": ITEM_COUNTS,\\\\n        \\\\\\\"g_targets\\\\\\\": G_TARGETS,\\\\n        \\\\\\\"benchmarks\\\\\\\": results,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*70}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"-\\\\\\\" * 58, flush=True)\\\\n    for bm in results:\\\\n        r = results[bm]\\\\n        m80 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.8\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        m90 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.9\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        m95 = str(r[\\\\\\\"min_items_for_G\\\\\\\"].get(\\\\\\\"0.95\\\\\\\", \\\\\\\">5000\\\\\\\"))\\\\n        print(f\\\\\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nRuntime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Cross-benchmark D-study comparison.\\n\\nFor each benchmark, computes:\\n  - D-study curves (item count vs G coefficient)\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\n\\nInput:  exp-002 JSONL data\\nOutput: results/analysis/cross_benchmark_dstudy.json\\n\\nUsage:\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"arc\\\", \\\"hellaswag\\\", \\\"gsm8k\\\"]\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\nG_TARGETS = [0.80, 0.90, 0.95]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\n    grand_mean = df[\\\"correct\\\"].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[\\\"correct\\\"].mean()\\n        main_fi = df.groupby(fi, observed=True)[\\\"correct\\\"].mean()\\n        main_fj = df.groupby(fj, observed=True)[\\\"correct\\\"].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[\\\"correct\\\"] - grand_mean) ** 2).sum())\\n    ss_model_sum = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model_sum)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, {k: int(v) for k, v in n_levels.items()}\\n\\n\\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int) -> float:\\n    \\\"\\\"\\\"Compute G_item for a given number of items (D-study projection).\\n\\n    Uses the correct formula: scale error by n_actual/n_items.\\n    \\\"\\\"\\\"\\n    sigma_item = vc.get(\\\"item_id\\\", 0.0)\\n    n_actual = n_levels[\\\"item_id\\\"]\\n    non_item = [f for f in FACETS if f != \\\"item_id\\\"]\\n\\n    sigma_delta_actual = 0.0\\n    for comp, est in vc.items():\\n        if est == 0.0 or comp == \\\"item_id\\\":\\n            continue\\n        if comp == \\\"residual\\\":\\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\\n            continue\\n        facets_in = set(comp.split(\\\":\\\"))\\n        if \\\"item_id\\\" not in facets_in:\\n            continue\\n        other = [f for f in facets_in if f != \\\"item_id\\\"]\\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\\n\\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\\n    total = sigma_item + sigma_delta_n\\n    return sigma_item / total if total > 0 else 0.0\\n\\n\\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, max_items: int = 5000) -> int | None:\\n    for ni in range(1, max_items + 1):\\n        g = compute_g_for_n_items(vc, n_levels, ni)\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Cross-benchmark D-study comparison\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/cross_benchmark_dstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for '{bm}', skipping\\\", flush=True)\\n            continue\\n\\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\\n        total_var = sum(vc.values())\\n\\n        curve = {}\\n        for ni in ITEM_COUNTS:\\n            g = compute_g_for_n_items(vc, n_levels, ni)\\n            curve[ni] = round(g, 6)\\n\\n        min_items = {}\\n        for target in G_TARGETS:\\n            n = find_min_items(vc, n_levels, target)\\n            min_items[str(target)] = n\\n\\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\\\"item_id\\\"])\\n\\n        results[bm] = {\\n            \\\"n_items_actual\\\": n_levels[\\\"item_id\\\"],\\n            \\\"G_current\\\": round(g_current, 6),\\n            \\\"item_id_pct\\\": round(vc.get(\\\"item_id\\\", 0) / total_var * 100 if total_var > 0 else 0, 4),\\n            \\\"d_study_curve\\\": curve,\\n            \\\"min_items_for_G\\\": min_items,\\n            \\\"accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        }\\n\\n        print(f\\\"\\\\n{bm}: G_current={g_current:.4f}, acc={df_bm['correct'].mean():.4f}\\\", flush=True)\\n        print(f\\\"  min items: G>=0.80={min_items.get('0.8')}, G>=0.90={min_items.get('0.9')}, G>=0.95={min_items.get('0.95')}\\\", flush=True)\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"cross_benchmark_dstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"item_counts_evaluated\\\": ITEM_COUNTS,\\n        \\\"g_targets\\\": G_TARGETS,\\n        \\\"benchmarks\\\": results,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n\\n    print(f\\\"\\\\n{'='*70}\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'n_items':>8} {'G_curr':>8} {'min(.80)':>9} {'min(.90)':>9} {'min(.95)':>9}\\\", flush=True)\\n    print(\\\"-\\\" * 58, flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        m80 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.8\\\", \\\">5000\\\"))\\n        m90 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.9\\\", \\\">5000\\\"))\\n        m95 = str(r[\\\"min_items_for_G\\\"].get(\\\"0.95\\\", \\\">5000\\\"))\\n        print(f\\\"{bm:<12} {r['n_items_actual']:>8} {r['G_current']:>8.4f} {m80:>9} {m90:>9} {m95:>9}\\\", flush=True)\\n\\n    print(f\\\"\\\\nRuntime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T21:32:08.870Z_
+
+<details><summary>↩ Tool result · `toolu_014dxZ3PDWpkMFm8Cvt6kDrn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chain_deepseek.log\\nchain_internlm.log\\ndeepseek_arc.jsonl\\ndeepseek_gsm8k.jsonl\\ndeepseek_hellaswag.jsonl\\ndeepseek_math.jsonl\\ndeepseek_math_gpu2.jsonl\\ndeepseek_mmlu.jsonl\\ndesign_matrix_exp002_full.csv\\ndesign_matrix_new_models.csv\\nfull_run.log\\ngemma_arc.jsonl\\ngemma_gsm8k.jsonl\\ngemma_hellaswag.jsonl\\ngemma_math.jsonl\\ngemma_mmlu.jsonl\\ngpu0_internlm_math.log\\ngpu0_qwen.log\\ngpu1_internlm_arc.log\\ngpu1_internlm_gsm8k.log\\ngpu1_internlm_hellaswag.log\\ngpu1_internlm_mmlu.log\\ngpu1_llama.log\\ngpu2_deepseek_math.log\\ngpu2_gemma.log\\ngpu3_deepseek_arc.log\\ngpu3_deepseek_gsm8k.log\\ngpu3_deepseek_hellaswag.log\\ngpu3_deepseek_mmlu.log\\ngpu3_mistral.log\\ninternlm_arc.jsonl\\ninternlm_gsm8k.jsonl\\ninternlm_hellaswag.jsonl\\ninternlm_math.jsonl\\ninternlm_mmlu.jsonl\\nllama_arc.jsonl\\nllama_gsm8k.jsonl\\nllama_hellaswag.jsonl\\nllama_math.jsonl\\nllama_mmlu.jsonl\\nmath_then_new_models.log\\nmistral_arc.jsonl\\nmistral_gsm8k.jsonl\\nmistral_hellaswag.jsonl\\nmistral_math.jsonl\\nmistral_mmlu.jsonl\\nqwen_arc.jsonl\\nqwen_gsm8k.jsonl\\nqwen_hellaswag.jsonl\\nqwen_math.jsonl\\nqwen_mmlu.jsonl\\nshard_0_qwen.csv\\nshard_1_llama.csv\\nshard_2_gemma.csv\\nshard_3_mistral.csv\\nshard_deepseek_arc.csv\\nshard_deepseek_gsm8k.csv\\nshard_deepseek_hellaswag.csv\\nshard_deepseek_math.csv\\nshard_deepseek_mmlu.csv\\nshard_gemma_arc.csv\\nshard_gemma_gsm8k.csv\\nshard_gemma_hellaswag.csv\\nshard_gemma_math.csv\\nshard_gemma_mmlu.csv\\nshard_internlm_arc.csv\\nshard_internlm_gsm8k.csv\\nshard_internlm_hellaswag.csv\\nshard_internlm_math.csv\\nshard_internlm_mmlu.csv\\nshard_llama_arc.csv\\nshard_llama_gsm8k.csv\\nshard_llama_hellaswag.csv\\nshard_llama_math.csv\\nshard_llama_mmlu.csv\\nshard_mistral_arc.csv\\nshard_mistral_gsm8k.csv\\nshard_mistral_hellaswag.csv\\nshard_mistral_math.csv\\nshard_mistral_mmlu.csv\\nshard_qwen_arc.csv\\nshard_qwen_gsm8k.csv\\nshard_qwen_hellaswag.csv\\nshard_qwen_math.csv\\nshard_qwen_mmlu.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4d19f0d6-973b-4dda-9037-0f75b7294aa8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chain_deepseek.log\\\\nchain_internlm.log\\\\ndeepseek_arc.jsonl\\\\ndeepseek_gsm8k.jsonl\\\\ndeepseek_hellaswag.jsonl\\\\ndeepseek_math.jsonl\\\\ndeepseek_math_gpu2.jsonl\\\\ndeepseek_mmlu.jsonl\\\\ndesign_matrix_exp002_full.csv\\\\ndesign_matrix_new_models.csv\\\\nfull_run.log\\\\ngemma_arc.jsonl\\\\ngemma_gsm8k.jsonl\\\\ngemma_hellaswag.jsonl\\\\ngemma_math.jsonl\\\\ngemma_mmlu.jsonl\\\\ngpu0_internlm_math.log\\\\ngpu0_qwen.log\\\\ngpu1_internlm_arc.log\\\\ngpu1_internlm_gsm8k.log\\\\ngpu1_internlm_hellaswag.log\\\\ngpu1_internlm_mmlu.log\\\\ngpu1_llama.log\\\\ngpu2_deepseek_math.log\\\\ngpu2_gemma.log\\\\ngpu3_deepseek_arc.log\\\\ngpu3_deepseek_gsm8k.log\\\\ngpu3_deepseek_hellaswag.log\\\\ngpu3_deepseek_mmlu.log\\\\ngpu3_mistral.log\\\\ninternlm_arc.jsonl\\\\ninternlm_gsm8k.jsonl\\\\ninternlm_hellaswag.jsonl\\\\ninternlm_math.jsonl\\\\ninternlm_mmlu.jsonl\\\\nllama_arc.jsonl\\\\nllama_gsm8k.jsonl\\\\nllama_hellaswag.jsonl\\\\nllama_math.jsonl\\\\nllama_mmlu.jsonl\\\\nmath_then_new_models.log\\\\nmistral_arc.jsonl\\\\nmistral_gsm8k.jsonl\\\\nmistral_hellaswag.jsonl\\\\nmistral_math.jsonl\\\\nmistral_mmlu.jsonl\\\\nqwen_arc.jsonl\\\\nqwen_gsm8k.jsonl\\\\nqwen_hellaswag.jsonl\\\\nqwen_math.jsonl\\\\nqwen_mmlu.jsonl\\\\nshard_0_qwen.csv\\\\nshard_1_llama.csv\\\\nshard_2_gemma.csv\\\\nshard_3_mistral.csv\\\\nshard_deepseek_arc.csv\\\\nshard_deepseek_gsm8k.csv\\\\nshard_deepseek_hellaswag.csv\\\\nshard_deepseek_math.csv\\\\nshard_deepseek_mmlu.csv\\\\nshard_gemma_arc.csv\\\\nshard_gemma_gsm8k.csv\\\\nshard_gemma_hellaswag.csv\\\\nshard_gemma_math.csv\\\\nshard_gemma_mmlu.csv\\\\nshard_internlm_arc.csv\\\\nshard_internlm_gsm8k.csv\\\\nshard_internlm_hellaswag.csv\\\\nshard_internlm_math.csv\\\\nshard_internlm_mmlu.csv\\\\nshard_llama_arc.csv\\\\nshard_llama_gsm8k.csv\\\\nshard_llama_hellaswag.csv\\\\nshard_llama_math.csv\\\\nshard_llama_mmlu.csv\\\\nshard_mistral_arc.csv\\\\nshard_mistral_gsm8k.csv\\\\nshard_mistral_hellaswag.csv\\\\nshard_mistral_math.csv\\\\nshard_mistral_mmlu.csv\\\\nshard_qwen_arc.csv\\\\nshard_qwen_gsm8k.csv\\\\nshard_qwen_hellaswag.csv\\\\nshard_qwen_math.csv\\\\nshard_qwen_mmlu.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"chain_deepseek.log\\nchain_internlm.log\\ndeepseek_arc.jsonl\\ndeepseek_gsm8k.jsonl\\ndeepseek_hellaswag.jsonl\\ndeepseek_math.jsonl\\ndeepseek_math_gpu2.jsonl\\ndeepseek_mmlu.jsonl\\ndesign_matrix_exp002_full.csv\\ndesign_matrix_new_models.csv\\nfull_run.log\\ngemma_arc.jsonl\\ngemma_gsm8k.jsonl\\ngemma_hellaswag.jsonl\\ngemma_math.jsonl\\ngemma_mmlu.jsonl\\ngpu0_internlm_math.log\\ngpu0_qwen.log\\ngpu1_internlm_arc.log\\ngpu1_internlm_gsm8k.log\\ngpu1_internlm_hellaswag.log\\ngpu1_internlm_mmlu.log\\ngpu1_llama.log\\ngpu2_deepseek_math.log\\ngpu2_gemma.log\\ngpu3_deepseek_arc.log\\ngpu3_deepseek_gsm8k.log\\ngpu3_deepseek_hellaswag.log\\ngpu3_deepseek_mmlu.log\\ngpu3_mistral.log\\ninternlm_arc.jsonl\\ninternlm_gsm8k.jsonl\\ninternlm_hellaswag.jsonl\\ninternlm_math.jsonl\\ninternlm_mmlu.jsonl\\nllama_arc.jsonl\\nllama_gsm8k.jsonl\\nllama_hellaswag.jsonl\\nllama_math.jsonl\\nllama_mmlu.jsonl\\nmath_then_new_models.log\\nmistral_arc.jsonl\\nmistral_gsm8k.jsonl\\nmistral_hellaswag.jsonl\\nmistral_math.jsonl\\nmistral_mmlu.jsonl\\nqwen_arc.jsonl\\nqwen_gsm8k.jsonl\\nqwen_hellaswag.jsonl\\nqwen_math.jsonl\\nqwen_mmlu.jsonl\\nshard_0_qwen.csv\\nshard_1_llama.csv\\nshard_2_gemma.csv\\nshard_3_mistral.csv\\nshard_deepseek_arc.csv\\nshard_deepseek_gsm8k.csv\\nshard_deepseek_hellaswag.csv\\nshard_deepseek_math.csv\\nshard_deepseek_mmlu.csv\\nshard_gemma_arc.csv\\nshard_gemma_gsm8k.csv\\nshard_gemma_hellaswag.csv\\nshard_gemma_math.csv\\nshard_gemma_mmlu.csv\\nshard_internlm_arc.csv\\nshard_internlm_gsm8k.csv\\nshard_internlm_hellaswag.csv\\nshard_internlm_math.csv\\nshard_internlm_mmlu.csv\\nshard_llama_arc.csv\\nshard_llama_gsm8k.csv\\nshard_llama_hellaswag.csv\\nshard_llama_math.csv\\nshard_llama_mmlu.csv\\nshard_mistral_arc.csv\\nshard_mistral_gsm8k.csv\\nshard_mistral_hellaswag.csv\\nshard_mistral_math.csv\\nshard_mistral_mmlu.csv\\nshard_qwen_arc.csv\\nshard_qwen_gsm8k.csv\\nshard_qwen_hellaswag.csv\\nshard_qwen_math.csv\\nshard_qwen_mmlu.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see all 8 models (qwen, llama, gemma, mistral, deepseek, internlm + 2 more from exp001) × 5 benchmarks data in results/exp002/. Let me check what models are available and also look at the existing analysis results and the per_benchmark_gstudy.py and cross-model gstudy scripts.
+
+The existing scripts have BENCHMARK_ORDER hardcoded to 4 benchmarks in LOBO script. The permutation test already has 5 benchmarks. The D-study has 4 benchmarks. I need to check what models are actually in the data.
+
+
+Now I'm also looking at the exp001 data to see what the cross-model G-study results show and what other analysis scripts might be available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "1365f4f5-8f2e-418f-8935-e55ca942ba99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Now let me check the models available and existing analysis results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "317c47fe-46d4-43c0-bd3c-997044884f62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NLYFVZZTDUaAaooPHfdSiR`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "c187178a-81f5-43ac-a2ef-665d6e5f7056",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T21:32:18.627Z_
+
+<details><summary>↩ Tool result · `toolu_01NLYFVZZTDUaAaooPHfdSiR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"Qwen/Qwen3-8B\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | The set of all real numbers is a field.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 25.67, \\\"answer_logprob\\\": -0.02428486943244934, \\\"top_logprobs\\\": {\\\" A\\\": -0.02428486943244934, \\\" D\\\": -4.524284839630127, \\\" C\\\": -4.649284839630127, \\\" B\\\": -5.649284839630127, \\\" E\\\": -10.774285316467285}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "1e7f7a0e-31ca-456b-aefa-adbcdc1e8324",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 1, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-8B\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nStatement 1 | The set of all real numbers is a field.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 25.67, \\\\\\\"answer_logprob\\\\\\\": -0.02428486943244934, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.02428486943244934, \\\\\\\" D\\\\\\\": -4.524284839630127, \\\\\\\" C\\\\\\\": -4.649284839630127, \\\\\\\" B\\\\\\\": -5.649284839630127, \\\\\\\" E\\\\\\\": -10.774285316467285}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 1, \\\"item_id\\\": \\\"abstract_algebra_81\\\", \\\"benchmark\\\": \\\"mmlu\\\", \\\"subject\\\": \\\"abstract_algebra\\\", \\\"model\\\": \\\"Qwen/Qwen3-8B\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"A\\\\n\\\\nStatement 1 | The set of all real numbers is a field.\\\", \\\"predicted_answer\\\": \\\"A\\\", \\\"gold_answer\\\": \\\"D\\\", \\\"correct\\\": 0, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 25.67, \\\"answer_logprob\\\": -0.02428486943244934, \\\"top_logprobs\\\": {\\\" A\\\": -0.02428486943244934, \\\" D\\\": -4.524284839630127, \\\" C\\\": -4.649284839630127, \\\" B\\\": -5.649284839630127, \\\" E\\\": -10.774285316467285}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Te51oPZdJzL5fuZfSrAiyN`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "eb289371-9f68-4db1-8410-a323b02abd80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T21:32:19.243Z_
+
+<details><summary>↩ Tool result · `toolu_01Te51oPZdJzL5fuZfSrAiyN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bernoulli_adjustment.json\\nbf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbinary_simulation_recovery_matched.json\\nbootstrap_vs_jackknife.json\\ncross_benchmark_dstudy.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\ndstudy_progressive_validation.json\\nexp001_llama_bf16only_5facet.json\\nexp001b_resampling_gstudy.json\\nexp002_per_benchmark_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nglmm_logistic_link.json\\ngradient_permutation_test.json\\ngsm8k_answer_reextract.json\\nirt_vs_gtheory.json\\nleave_one_benchmark_out.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_full_259200.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\nmodel_as_fixed_gstudy.json\\nsimulation_binary_recovery.json\\ntemp_stratified_seed.json\\ntemperature_stratified_analysis.json\\nunified_henderson_i_numbers.json\\nwithin_format_gradient.json\\nwithin_mmlu_subject_gradient_BUGGY_DO_NOT_USE.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6a518518-588d-4013-9593-47937b622f70",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bernoulli_adjustment.json\\\\nbf16_fp16_only_gstudy.json\\\\nbinary_data_limitation.json\\\\nbinary_simulation_recovery_matched.json\\\\nbootstrap_vs_jackknife.json\\\\ncross_benchmark_dstudy.json\\\\ncross_model_2way_precision.csv\\\\ncross_model_2way_precision_meta.json\\\\ncross_model_3way_bf16.csv\\\\ncross_model_3way_bf16_meta.json\\\\ncross_model_4way_bf16.csv\\\\ncross_model_balanced.csv\\\\ncross_model_balanced.jsonl\\\\ncross_model_balanced_meta.json\\\\ncross_model_bootstrap.json\\\\ncross_model_g_coefficients.json\\\\ncross_model_gstudy.json\\\\ncross_model_llama_gemma.csv\\\\ncross_model_llama_gemma.jsonl\\\\ncross_model_reml.json\\\\ncross_model_reml_500iter.json\\\\ndataset_a4_gstudy.json\\\\ndataset_a_gstudy.json\\\\ndataset_b_gstudy.json\\\\ndstudy_progressive_validation.json\\\\nexp001_llama_bf16only_5facet.json\\\\nexp001b_resampling_gstudy.json\\\\nexp002_per_benchmark_gstudy.json\\\\nexp002_prep_report.md\\\\nfixed_vs_random_sensitivity.json\\\\nglmm_logistic_link.json\\\\ngradient_permutation_test.json\\\\ngsm8k_answer_reextract.json\\\\nirt_vs_gtheory.json\\\\nleave_one_benchmark_out.json\\\\nleave_one_model_out.json\\\\nllama_full.csv\\\\nllama_full_259200.csv\\\\nllama_precision_balanced.csv\\\\nllama_precision_balanced_meta.json\\\\nllama_single_model_gstudy.json\\\\nlomo_matched_spec.json\\\\nmodel_as_fixed_gstudy.json\\\\nsimulation_binary_recovery.json\\\\ntemp_stratified_seed.json\\\\ntemperature_stratified_analysis.json\\\\nunified_henderson_i_numbers.json\\\\nwithin_format_gradient.json\\\\nwithin_mmlu_subject_gradient_BUGGY_DO_NOT_USE.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bernoulli_adjustment.json\\nbf16_fp16_only_gstudy.json\\nbinary_data_limitation.json\\nbinary_simulation_recovery_matched.json\\nbootstrap_vs_jackknife.json\\ncross_benchmark_dstudy.json\\ncross_model_2way_precision.csv\\ncross_model_2way_precision_meta.json\\ncross_model_3way_bf16.csv\\ncross_model_3way_bf16_meta.json\\ncross_model_4way_bf16.csv\\ncross_model_balanced.csv\\ncross_model_balanced.jsonl\\ncross_model_balanced_meta.json\\ncross_model_bootstrap.json\\ncross_model_g_coefficients.json\\ncross_model_gstudy.json\\ncross_model_llama_gemma.csv\\ncross_model_llama_gemma.jsonl\\ncross_model_reml.json\\ncross_model_reml_500iter.json\\ndataset_a4_gstudy.json\\ndataset_a_gstudy.json\\ndataset_b_gstudy.json\\ndstudy_progressive_validation.json\\nexp001_llama_bf16only_5facet.json\\nexp001b_resampling_gstudy.json\\nexp002_per_benchmark_gstudy.json\\nexp002_prep_report.md\\nfixed_vs_random_sensitivity.json\\nglmm_logistic_link.json\\ngradient_permutation_test.json\\ngsm8k_answer_reextract.json\\nirt_vs_gtheory.json\\nleave_one_benchmark_out.json\\nleave_one_model_out.json\\nllama_full.csv\\nllama_full_259200.csv\\nllama_precision_balanced.csv\\nllama_precision_balanced_meta.json\\nllama_single_model_gstudy.json\\nlomo_matched_spec.json\\nmodel_as_fixed_gstudy.json\\nsimulation_binary_recovery.json\\ntemp_stratified_seed.json\\ntemperature_stratified_analysis.json\\nunified_henderson_i_numbers.json\\nwithin_format_gradient.json\\nwithin_mmlu_subject_gradient_BUGGY_DO_NOT_USE.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LeV8moFE6aawshR7Z69tee`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "f49104e0-fa12-4ec4-a0c1-22e0b227b804",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T21:32:20.061Z_
+
+<details><summary>↩ Tool result · `toolu_01LeV8moFE6aawshR7Z69tee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "14b96392-f3dc-4dc8-8d1b-0fa8fa01a0e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\\\n\\\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\\\n        — per-benchmark variance components, G_item, D-study projections.\\\\n\\\\nFacets (7, within each benchmark):\\\\n  model, temperature, prompt_template, seed, ordering, item_id\\\\n  + all 2-way interactions. Residual absorbs >=3-way.\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Henderson Method I: SS -> EMS -> variance components.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[response].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n\\\\n    for f in facets:\\\\n        group_means = df.groupby(f, observed=True)[response].mean()\\\\n        n_per = N // n_levels[f]\\\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\\\n        df_eff = n_levels[f] - 1\\\\n        effects[f] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    for fi, fj in combinations(facets, 2):\\\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\\\n        ss = 0.0\\\\n        for (li, lj), cm in cell_means.items():\\\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\\\n            ss += n_per * interaction ** 2\\\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\\\n        effects[f\\\\\\\"{fi}:{fj}\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss, \\\\\\\"df\\\\\\\": df_eff, \\\\\\\"ms\\\\\\\": ss / df_eff if df_eff > 0 else 0.0}\\\\n\\\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\\\n    ss_model = sum(e[\\\\\\\"ss\\\\\\\"] for e in effects.values())\\\\n    ss_res = max(0.0, ss_total - ss_model)\\\\n    df_res = N - 1 - sum(e[\\\\\\\"df\\\\\\\"] for e in effects.values())\\\\n    effects[\\\\\\\"residual\\\\\\\"] = {\\\\\\\"ss\\\\\\\": ss_res, \\\\\\\"df\\\\\\\": df_res, \\\\\\\"ms\\\\\\\": ss_res / df_res if df_res > 0 else 0.0}\\\\n\\\\n    ms_res = effects[\\\\\\\"residual\\\\\\\"][\\\\\\\"ms\\\\\\\"]\\\\n    vc = {}\\\\n    for fi, fj in combinations(facets, 2):\\\\n        key = f\\\\\\\"{fi}:{fj}\\\\\\\"\\\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n        raw = (effects[key][\\\\\\\"ms\\\\\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\\\n        vc[key] = max(0.0, raw)\\\\n\\\\n    for fi in facets:\\\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\\\n        interaction_contrib = 0.0\\\\n        for fj in facets:\\\\n            if fj == fi:\\\\n                continue\\\\n            int_key = f\\\\\\\"{fi}:{fj}\\\\\\\" if f\\\\\\\"{fi}:{fj}\\\\\\\" in vc else f\\\\\\\"{fj}:{fi}\\\\\\\"\\\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\\\n            interaction_contrib += coeff_ij * vc[int_key]\\\\n        raw = (effects[fi][\\\\\\\"ms\\\\\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\\\n        vc[fi] = max(0.0, raw)\\\\n\\\\n    vc[\\\\\\\"residual\\\\\\\"] = ms_res\\\\n    return vc, n_levels, effects\\\\n\\\\n\\\\n\\\\n\\\\n... [截断: 输出过长，省略 2863 字符] ...\\\\n\\\\n other) if other else 1\\\\n        non_item_error += est / divisor\\\\n\\\\n    for ni in range(1, max_items + 1):\\\\n        ratio = n_actual / ni\\\\n        sigma_delta_ni = non_item_error * ratio\\\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\\\n        if g >= target_g:\\\\n            return ni\\\\n    return None\\\\n\\\\n\\\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\\\\\", flush=True)\\\\n\\\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\\\\\"correct\\\\\\\", FACETS)\\\\n    total_var = sum(vc.values())\\\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\\\n\\\\n    print(f\\\\\\\"  G_item = {g_item:.6f}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\\\\\", flush=True)\\\\n\\\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\\\n\\\\n    return {\\\\n        \\\\\\\"benchmark\\\\\\\": benchmark,\\\\n        \\\\\\\"n_observations\\\\\\\": len(df_bm),\\\\n        \\\\\\\"n_levels\\\\\\\": {k: int(v) for k, v in n_levels.items()},\\\\n        \\\\\\\"grand_mean_accuracy\\\\\\\": round(float(df_bm[\\\\\\\"correct\\\\\\\"].mean()), 6),\\\\n        \\\\\\\"variance_components\\\\\\\": {\\\\n            k: {\\\\\\\"estimate\\\\\\\": round(v, 10), \\\\\\\"pct\\\\\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\\\n        },\\\\n        \\\\\\\"total_variance\\\\\\\": round(total_var, 10),\\\\n        \\\\\\\"G_item\\\\\\\": round(g_item, 6),\\\\n        \\\\\\\"sigma_tau\\\\\\\": round(sigma_tau, 10),\\\\n        \\\\\\\"sigma_delta\\\\\\\": round(sigma_delta, 10),\\\\n        \\\\\\\"d_study_curve\\\\\\\": d_curve,\\\\n        \\\\\\\"min_items_G_0.80\\\\\\\": min_80,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Per-benchmark Henderson I G-study for exp-002\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", default=\\\\\\\"results/exp002\\\\\\\", help=\\\\\\\"Directory containing exp-002 JSONL files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    t0 = time.time()\\\\n    df = load_exp002_data(args.data_dir)\\\\n    print(f\\\\\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"Models: {sorted(df['model'].unique())}\\\\\\\", flush=True)\\\\n\\\\n    results = {}\\\\n    for bm in BENCHMARKS:\\\\n        df_bm = df[df[\\\\\\\"benchmark\\\\\\\"] == bm].reset_index(drop=True)\\\\n        if len(df_bm) == 0:\\\\n            print(f\\\\\\\"WARNING: no data for benchmark '{bm}', skipping\\\\\\\", flush=True)\\\\n            continue\\\\n        results[bm] = analyze_benchmark(df_bm, bm)\\\\n\\\\n    summary = {\\\\n        \\\\\\\"gradient_check\\\\\\\": {\\\\n            bm: results[bm][\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n            for bm in results\\\\n        },\\\\n        \\\\\\\"g_item_by_benchmark\\\\\\\": {bm: results[bm][\\\\\\\"G_item\\\\\\\"] for bm in results},\\\\n    }\\\\n\\\\n    output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n        \\\\\\\"analysis\\\\\\\": \\\\\\\"per_benchmark_henderson_i_gstudy\\\\\\\",\\\\n        \\\\\\\"facets\\\\\\\": FACETS,\\\\n        \\\\\\\"benchmarks\\\\\\\": results,\\\\n        \\\\\\\"summary\\\\\\\": summary,\\\\n    }\\\\n\\\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2, default=str)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"SUMMARY\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\\\\\", flush=True)\\\\n    for bm in results:\\\\n        r = results[bm]\\\\n        item_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        mi_pct = r[\\\\\\\"variance_components\\\\\\\"].get(\\\\\\\"model:item_id\\\\\\\", {}).get(\\\\\\\"pct\\\\\\\", 0)\\\\n        min_n = r[\\\\\\\"min_items_G_0.80\\\\\\\"]\\\\n        print(f\\\\\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal runtime: {time.time()-t0:.1f}s\\\\\\\", flush=True)\\\\n    print(f\\\\\\\"-> {args.output}\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\n\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\n        — per-benchmark variance components, G_item, D-study projections.\\n\\nFacets (7, within each benchmark):\\n  model, temperature, prompt_template, seed, ordering, item_id\\n  + all 2-way interactions. Residual absorbs >=3-way.\\n\\nUsage:\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\nimport time\\nfrom itertools import combinations\\nfrom math import prod\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\nfrom src.config.model_paths import normalize_model_name\\n\\nFACETS = [\\\"model\\\", \\\"temperature\\\", \\\"prompt_template\\\", \\\"seed\\\", \\\"ordering\\\", \\\"item_id\\\"]\\nBENCHMARKS = [\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc\\\", \\\"hellaswag\\\"]\\n\\n\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\n    data_path = Path(data_dir)\\n    jsonl_files = sorted(data_path.glob(\\\"*.jsonl\\\"))\\n    if not jsonl_files:\\n        raise FileNotFoundError(f\\\"No JSONL files in {data_dir}\\\")\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\n    df = pd.concat(frames, ignore_index=True)\\n    if \\\"top_logprobs\\\" in df.columns:\\n        df.drop(columns=[\\\"top_logprobs\\\"], inplace=True)\\n    df[\\\"model\\\"] = df[\\\"model\\\"].map(normalize_model_name).fillna(df[\\\"model\\\"])\\n    for f in FACETS:\\n        df[f] = df[f].astype(str)\\n    return df\\n\\n\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\n    \\\"\\\"\\\"Henderson Method I: SS -> EMS -> variance components.\\\"\\\"\\\"\\n    grand_mean = df[response].mean()\\n    N = len(df)\\n    n_levels = {f: df[f].nunique() for f in facets}\\n\\n    effects = {}\\n\\n    for f in facets:\\n        group_means = df.groupby(f, observed=True)[response].mean()\\n        n_per = N // n_levels[f]\\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\\n        df_eff = n_levels[f] - 1\\n        effects[f] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    for fi, fj in combinations(facets, 2):\\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\\n        main_fi = df.groupby(fi, observed=True)[response].mean()\\n        main_fj = df.groupby(fj, observed=True)[response].mean()\\n        n_per = N // (n_levels[fi] * n_levels[fj])\\n        ss = 0.0\\n        for (li, lj), cm in cell_means.items():\\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\\n            ss += n_per * interaction ** 2\\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\\n        effects[f\\\"{fi}:{fj}\\\"] = {\\\"ss\\\": ss, \\\"df\\\": df_eff, \\\"ms\\\": ss / df_eff if df_eff > 0 else 0.0}\\n\\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\\n    ss_model = sum(e[\\\"ss\\\"] for e in effects.values())\\n    ss_res = max(0.0, ss_total - ss_model)\\n    df_res = N - 1 - sum(e[\\\"df\\\"] for e in effects.values())\\n    effects[\\\"residual\\\"] = {\\\"ss\\\": ss_res, \\\"df\\\": df_res, \\\"ms\\\": ss_res / df_res if df_res > 0 else 0.0}\\n\\n    ms_res = effects[\\\"residual\\\"][\\\"ms\\\"]\\n    vc = {}\\n    for fi, fj in combinations(facets, 2):\\n        key = f\\\"{fi}:{fj}\\\"\\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n        raw = (effects[key][\\\"ms\\\"] - ms_res) / coeff if coeff > 0 else 0.0\\n        vc[key] = max(0.0, raw)\\n\\n    for fi in facets:\\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\\n        interaction_contrib = 0.0\\n        for fj in facets:\\n            if fj == fi:\\n                continue\\n            int_key = f\\\"{fi}:{fj}\\\" if f\\\"{fi}:{fj}\\\" in vc else f\\\"{fj}:{fi}\\\"\\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\\n            interaction_contrib += coeff_ij * vc[int_key]\\n        raw = (effects[fi][\\\"ms\\\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\\n        vc[fi] = max(0.0, raw)\\n\\n    vc[\\\"residual\\\"] = ms_res\\n    return vc, n_levels, effects\\n\\n\\n\\n\\n... [截断: 输出过长，省略 2863 字符] ...\\n\\n other) if other else 1\\n        non_item_error += est / divisor\\n\\n    for ni in range(1, max_items + 1):\\n        ratio = n_actual / ni\\n        sigma_delta_ni = non_item_error * ratio\\n        g = sigma_item / (sigma_item + sigma_delta_ni) if (sigma_item + sigma_delta_ni) > 0 else 0.0\\n        if g >= target_g:\\n            return ni\\n    return None\\n\\n\\ndef analyze_benchmark(df_bm: pd.DataFrame, benchmark: str) -> dict:\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(f\\\"Benchmark: {benchmark} ({len(df_bm)} obs)\\\", flush=True)\\n\\n    vc, n_levels, effects = compute_henderson_i(df_bm, \\\"correct\\\", FACETS)\\n    total_var = sum(vc.values())\\n    g_item, sigma_tau, sigma_delta = compute_g_item(vc, n_levels)\\n\\n    print(f\\\"  G_item = {g_item:.6f}\\\", flush=True)\\n    print(f\\\"  item_id% = {vc.get('item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n    print(f\\\"  model:item_id% = {vc.get('model:item_id', 0) / total_var * 100:.2f}%\\\", flush=True)\\n\\n    item_counts = [25, 50, 75, 100, 150, 200, 300, 500, 1000]\\n    d_curve = d_study_curve(vc, n_levels, item_counts)\\n    min_80 = find_min_items_for_g(vc, n_levels, 0.80)\\n\\n    return {\\n        \\\"benchmark\\\": benchmark,\\n        \\\"n_observations\\\": len(df_bm),\\n        \\\"n_levels\\\": {k: int(v) for k, v in n_levels.items()},\\n        \\\"grand_mean_accuracy\\\": round(float(df_bm[\\\"correct\\\"].mean()), 6),\\n        \\\"variance_components\\\": {\\n            k: {\\\"estimate\\\": round(v, 10), \\\"pct\\\": round(v / total_var * 100, 4) if total_var > 0 else 0.0}\\n            for k, v in sorted(vc.items(), key=lambda x: -x[1])\\n        },\\n        \\\"total_variance\\\": round(total_var, 10),\\n        \\\"G_item\\\": round(g_item, 6),\\n        \\\"sigma_tau\\\": round(sigma_tau, 10),\\n        \\\"sigma_delta\\\": round(sigma_delta, 10),\\n        \\\"d_study_curve\\\": d_curve,\\n        \\\"min_items_G_0.80\\\": min_80,\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Per-benchmark Henderson I G-study for exp-002\\\")\\n    parser.add_argument(\\\"--data-dir\\\", default=\\\"results/exp002\\\", help=\\\"Directory containing exp-002 JSONL files\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/analysis/exp002_per_benchmark_gstudy.json\\\")\\n    args = parser.parse_args()\\n\\n    t0 = time.time()\\n    df = load_exp002_data(args.data_dir)\\n    print(f\\\"Loaded {len(df)} records ({time.time()-t0:.1f}s)\\\", flush=True)\\n    print(f\\\"Benchmarks: {sorted(df['benchmark'].unique())}\\\", flush=True)\\n    print(f\\\"Models: {sorted(df['model'].unique())}\\\", flush=True)\\n\\n    results = {}\\n    for bm in BENCHMARKS:\\n        df_bm = df[df[\\\"benchmark\\\"] == bm].reset_index(drop=True)\\n        if len(df_bm) == 0:\\n            print(f\\\"WARNING: no data for benchmark '{bm}', skipping\\\", flush=True)\\n            continue\\n        results[bm] = analyze_benchmark(df_bm, bm)\\n\\n    summary = {\\n        \\\"gradient_check\\\": {\\n            bm: results[bm][\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n            for bm in results\\n        },\\n        \\\"g_item_by_benchmark\\\": {bm: results[bm][\\\"G_item\\\"] for bm in results},\\n    }\\n\\n    output = {\\n        \\\"experiment\\\": \\\"exp-002\\\",\\n        \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n        \\\"facets\\\": FACETS,\\n        \\\"benchmarks\\\": results,\\n        \\\"summary\\\": summary,\\n    }\\n\\n    Path(args.output).parent.mkdir(parents=True, exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2, default=str)\\n\\n    print(f\\\"\\\\n{'='*60}\\\", flush=True)\\n    print(\\\"SUMMARY\\\", flush=True)\\n    print(f\\\"{'Benchmark':<12} {'item_id%':>10} {'model:item%':>12} {'G_item':>8} {'min_n(G>=.80)':>14}\\\", flush=True)\\n    for bm in results:\\n        r = results[bm]\\n        item_pct = r[\\\"variance_components\\\"].get(\\\"item_id\\\", {}).get(\\\"pct\\\", 0)\\n        mi_pct = r[\\\"variance_components\\\"].get(\\\"model:item_id\\\", {}).get(\\\"pct\\\", 0)\\n        min_n = r[\\\"min_items_G_0.80\\\"]\\n        print(f\\\"{bm:<12} {item_pct:>9.2f}% {mi_pct:>11.2f}% {r['G_item']:>8.4f} {str(min_n):>14}\\\", flush=True)\\n\\n    print(f\\\"\\\\nTotal runtime: {time.time()-t0:.1f}s\\\", flush=True)\\n    print(f\\\"-> {args.output}\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012QAuPnNaMZ9hat9H8J483Q`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/scripts/exp001_4model_gstudy_v2.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "e0613f38-b607-4846-8723-c9e6daa31ecd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKsNRTDuAuuGPt4BsixbGX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12493,
+      "cache_read_input_tokens": 26594,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12493
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T21:32:20.782Z_
+
+<details><summary>↩ Tool result · `toolu_012QAuPnNaMZ9hat9H8J483Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import pandas as pd\\nimport numpy as np\\nimport json\\nfrom numpy.random import default_rng\\n\\ndf = pd.read_csv('results/analysis/cross_model_4way_bf16.csv')\\nN = len(df)\\ngrand_mean = df['correct'].mean()\\ntotal_var = df['correct'].var()\\nss_total = total_var * (N - 1)\\n\\nn_m, n_t, n_p, n_s, n_o, n_i = 4, 3, 6, 6, 4, 200\\n\\nprint(f\\\"N={N}, grand_mean={grand_mean:.6f}, total_var={total_var:.6f}\\\")\\n\\nmodel_acc = df.groupby('model')['correct'].mean().to_dict()\\nprint(\\\"\\\\nModel accuracies:\\\")\\nfor m, a in sorted(model_acc.items()):\\n    print(f\\\"  {m}: {a:.6f}\\\")\\n\\n# Build 6D array\\nmodels_sorted = sorted(df['model'].unique())\\ntemps_sorted = sorted(df['temperature'].unique())\\nprompts_sorted = sorted(df['prompt_template'].unique())\\nseeds_sorted = sorted(df['seed'].unique())\\norders_sorted = sorted(df['ordering'].unique())\\nitems_sorted = sorted(df['item_id'].unique())\\n\\nmodel_map = {v: i for i, v in enumerate(models_sorted)}\\ntemp_map = {v: i for i, v in enumerate(temps_sorted)}\\nprompt_map = {v: i for i, v in enumerate(prompts_sorted)}\\nseed_map = {v: i for i, v in enumerate(seeds_sorted)}\\norder_map = {v: i for i, v in enumerate(orders_sorted)}\\nitem_map = {v: i for i, v in enumerate(items_sorted)}\\n\\nY = np.full((n_m, n_t, n_p, n_s, n_o, n_i), np.nan)\\nfor _, row in df.iterrows():\\n    Y[model_map[row['model']], temp_map[row['temperature']], prompt_map[row['prompt_template']],\\n      seed_map[row['seed']], order_map[row['ordering']], item_map[row['item_id']]] = row['correct']\\n\\nprint(f\\\"Array shape: {Y.shape}, NaN: {np.isnan(Y).sum()}\\\")\\n\\ndef compute_gstudy(Y_arr):\\n    nm, nt, np_, ns, no, ni = Y_arr.shape\\n    N_arr = nm * nt * np_ * ns * no * ni\\n    gm = np.nanmean(Y_arr)\\n    \\n    mean_m = np.nanmean(Y_arr, axis=(1,2,3,4,5))\\n    mean_t = np.nanmean(Y_arr, axis=(0,2,3,4,5))\\n    mean_p = np.nanmean(Y_arr, axis=(0,1,3,4,5))\\n    mean_s = np.nanmean(Y_arr, axis=(0,1,2,4,5))\\n    mean_o = np.nanmean(Y_arr, axis=(0,1,2,3,5))\\n    mean_i = np.nanmean(Y_arr, axis=(0,1,2,3,4))\\n    \\n    ss = {}\\n    ss['model'] = (nt*np_*ns*no*ni) * np.sum((mean_m - gm)**2)\\n    ss['temperature'] = (nm*np_*ns*no*ni) * np.sum((mean_t - gm)**2)\\n    ss['prompt_template'] = (nm*nt*ns*no*ni) * np.sum((mean_p - gm)**2)\\n    ss['seed'] = (nm*nt*np_*no*ni) * np.sum((mean_s - gm)**2)\\n    ss['ordering'] = (nm*nt*np_*ns*ni) * np.sum((mean_o - gm)**2)\\n    ss['item_id'] = (nm*nt*np_*ns*no) * np.sum((mean_i - gm)**2)\\n    \\n    def ss_interaction(mean_ab, mean_a, mean_b, scale, shape_a, shape_b):\\n        total = 0.0\\n        for a in range(shape_a):\\n            for b in range(shape_b):\\n                exp = gm + (mean_a[a] - gm) + (mean_b[b] - gm)\\n                total += (mean_ab[a, b] - exp)**2\\n        return total * scale\\n    \\n    mean_mi = np.nanmean(Y_arr, axis=(1,2,3,4))\\n    ss['model:item_id'] = ss_interaction(mean_mi, mean_m, mean_i, nt*np_*ns*no, nm, ni)\\n    \\n    mean_mt = np.nanmean(Y_arr, axis=(2,3,4,5))\\n    ss['model:temperature'] = ss_interaction(mean_mt, mean_m, mean_t, np_*ns*no*ni, nm, nt)\\n    \\n    mean_mp = np.nanmean(Y_arr, axis=(1,3,4,5))\\n    ss['model:prompt_template'] = ss_interaction(mean_mp, mean_m, mean_p, nt*ns*no*ni, nm, np_)\\n    \\n    mean_ms = np.nanmean(Y_arr, axis=(1,2,4,5))\\n    ss['model:seed'] = ss_interaction(mean_ms, mean_m, mean_s, nt*np_*no*ni, nm, ns)\\n    \\n    mean_mo = np.nanmean(Y_arr, axis=(1,2,3,5))\\n    ss['model:ordering'] = ss_interaction(mean_mo, mean_m, mean_o, nt*np_*ns*ni, nm, no)\\n    \\n    mean_ti = np.nanmean(Y_arr, axis=(0,2,3,4))\\n    ss['temperature:item_id'] = ss_interaction(mean_ti, mean_t, mean_i, nm*np_*ns*no, nt, ni)\\n    \\n    mean_pi = np.nanmean(Y_arr, axis=(0,1,3,4))\\n    ss['prompt_template:item_id'] = ss_interaction(mean_pi, mean_p, mean_i, nm*nt*ns*no, np_, ni)\\n    \\n    mean_si = np.nanmean(Y_arr, axis=(0,1,2,4))\\n    ss['seed:item_id'] = ss_interaction(mean_si, mean_s, mean_i, nm*nt*np_*no, ns, ni)\\n    \\n    mean_oi = np.nanmean(Y_arr, axis=(0,1,2,3))\\n    ss['ordering:item_id'] = ss_interaction(mean_oi, mean_o, mean_i, nm*nt*np_*ns, no, ni)\\n    \\n    ss_total_b \\n\\n... [截断: 输出过长，省略 3176 字符] ...\\n\\n\\n        print(f\\\"  {k}: {v:.4f}%\\\")\\n\\nprint(f\\\"\\\\nG_item = {res['g_item']:.6f}\\\")\\nprint(f\\\"  sigma2_item = {res['s2']['item_id']:.8f}\\\")\\nprint(f\\\"  sigma2_delta = {res['delta']:.8f}\\\")\\n\\n# D-study\\nprint(\\\"\\\\n=== D-study ===\\\")\\nd_study = []\\nfor n_m_d in [1, 2, 3, 4, 5, 6, 8, 10]:\\n    delta = (\\n        res['s2']['model:item_id'] / n_m_d +\\n        res['s2']['temperature:item_id'] / n_t +\\n        res['s2']['prompt_template:item_id'] / n_p +\\n        res['s2']['seed:item_id'] / n_s +\\n        res['s2']['ordering:item_id'] / n_o +\\n        res['s2']['residual'] / (n_m_d * n_t * n_p * n_s * n_o)\\n    )\\n    g = res['s2']['item_id'] / (res['s2']['item_id'] + delta)\\n    d_study.append({'n_models': n_m_d, 'g_item': round(g, 6), 'sigma_delta': round(delta, 8)})\\n    print(f\\\"  n_models={n_m_d:2d}: G_item={g:.6f}\\\")\\n\\n# Bootstrap\\nprint(\\\"\\\\n=== Bootstrap (200 resamples) ===\\\")\\nrng = default_rng(42)\\nn_boot = 200\\nboot_results = []\\nfor b in range(n_boot):\\n    if b % 50 == 0: print(f\\\"  {b}/{n_boot}...\\\")\\n    idx = rng.choice(n_i, size=n_i, replace=True)\\n    Y_b = Y[:, :, :, :, :, idx]\\n    boot_results.append(compute_gstudy(Y_b))\\n\\nboot_vpcts = [r['vpct'] for r in boot_results]\\nboot_g_items = [r['g_item'] for r in boot_results]\\n\\nci = {}\\nfor comp in ['item_id', 'model:item_id', 'model', 'temperature', 'prompt_template', \\n             'seed', 'ordering', 'temperature:item_id', 'prompt_template:item_id',\\n             'seed:item_id', 'ordering:item_id', 'residual']:\\n    vals = [b.get(comp, 0) for b in boot_vpcts]\\n    lo, hi = np.percentile(vals, 2.5), np.percentile(vals, 97.5)\\n    ci[comp] = (lo, hi)\\n    if res['vpct'].get(comp, 0) > 0.01:\\n        print(f\\\"  {comp}: {res['vpct'][comp]:.4f}% [{lo:.4f}, {hi:.4f}]\\\")\\n\\ng_arr = np.array(boot_g_items)\\ng_ci = (float(np.percentile(g_arr, 2.5)), float(np.percentile(g_arr, 97.5)))\\nprint(f\\\"\\\\n  G_item: {res['g_item']:.6f} [{g_ci[0]:.6f}, {g_ci[1]:.6f}]\\\")\\n\\n# Per-model contribution to model×item\\nprint(\\\"\\\\n=== Per-model contribution to model×item ===\\\")\\nmean_m_full = np.nanmean(Y, axis=(1,2,3,4,5))\\nmean_i_full = np.nanmean(Y, axis=(0,1,2,3,4))\\nmean_mi_full = np.nanmean(Y, axis=(1,2,3,4))\\n\\nmodel_contribs = {}\\ntotal_sq = 0.0\\nfor mi in range(n_m):\\n    c = 0.0\\n    for ii in range(n_i):\\n        exp = grand_mean + (mean_m_full[mi] - grand_mean) + (mean_i_full[ii] - grand_mean)\\n        c += (mean_mi_full[mi, ii] - exp)**2\\n    model_contribs[models_sorted[mi]] = c\\n    total_sq += c\\n\\nfor m in models_sorted:\\n    pct = model_contribs[m] / total_sq * 100\\n    print(f\\\"  {m}: {pct:.2f}%\\\")\\n\\n# Save\\noutput = {\\n    'dataset': 'A-4',\\n    'description': '4 models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B) x bf16 only, fully crossed',\\n    'n_observations': int(N),\\n    'n_levels': {'model': n_m, 'temperature': n_t, 'prompt_template': n_p, 'seed': n_s, 'ordering': n_o, 'item_id': n_i},\\n    'grand_mean': float(grand_mean),\\n    'total_variance': float(total_var),\\n    'model_accuracies': {k: float(v) for k, v in model_acc.items()},\\n    'variance_components_ems': {\\n        k: {\\n            'estimate': float(res['s2'][k]),\\n            'pct': float(res['vpct'][k]),\\n            'ci_95_lower_pct': float(ci[k][0]) if k in ci else None,\\n            'ci_95_upper_pct': float(ci[k][1]) if k in ci else None,\\n        }\\n        for k in res['s2']\\n    },\\n    'g_item': {\\n        'g': float(res['g_item']),\\n        'ci_95': list(g_ci),\\n        'sigma_tau': float(res['s2']['item_id']),\\n        'sigma_delta': float(res['delta']),\\n    },\\n    'd_study_model_sweep': d_study,\\n    'per_model_interaction_contribution': {m: round(model_contribs[m]/total_sq*100, 2) for m in models_sorted},\\n    'bootstrap': {'n_resamples': n_boot, 'seed': 42, 'method': 'item cluster resampling (numpy 6D array)'},\\n    'anova_table': {k: {'ss': float(res['ss'][k]), 'df': int(res['df'][k]), 'ms': float(res['ms'][k])} for k in res['ss']},\\n}\\n\\nwith open('results/analysis/dataset_a4_gstudy.json', 'w') as f:\\n    json.dump(output, f, indent=2, default=str)\\nprint(\\\"\\\\nSaved to results/analysis/dataset_a4_gstudy.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "a27bc7b8-a42e-49dd-8af1-ab5634e129bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import pandas as pd\\\\nimport numpy as np\\\\nimport json\\\\nfrom numpy.random import default_rng\\\\n\\\\ndf = pd.read_csv('results/analysis/cross_model_4way_bf16.csv')\\\\nN = len(df)\\\\ngrand_mean = df['correct'].mean()\\\\ntotal_var = df['correct'].var()\\\\nss_total = total_var * (N - 1)\\\\n\\\\nn_m, n_t, n_p, n_s, n_o, n_i = 4, 3, 6, 6, 4, 200\\\\n\\\\nprint(f\\\\\\\"N={N}, grand_mean={grand_mean:.6f}, total_var={total_var:.6f}\\\\\\\")\\\\n\\\\nmodel_acc = df.groupby('model')['correct'].mean().to_dict()\\\\nprint(\\\\\\\"\\\\\\\\nModel accuracies:\\\\\\\")\\\\nfor m, a in sorted(model_acc.items()):\\\\n    print(f\\\\\\\"  {m}: {a:.6f}\\\\\\\")\\\\n\\\\n# Build 6D array\\\\nmodels_sorted = sorted(df['model'].unique())\\\\ntemps_sorted = sorted(df['temperature'].unique())\\\\nprompts_sorted = sorted(df['prompt_template'].unique())\\\\nseeds_sorted = sorted(df['seed'].unique())\\\\norders_sorted = sorted(df['ordering'].unique())\\\\nitems_sorted = sorted(df['item_id'].unique())\\\\n\\\\nmodel_map = {v: i for i, v in enumerate(models_sorted)}\\\\ntemp_map = {v: i for i, v in enumerate(temps_sorted)}\\\\nprompt_map = {v: i for i, v in enumerate(prompts_sorted)}\\\\nseed_map = {v: i for i, v in enumerate(seeds_sorted)}\\\\norder_map = {v: i for i, v in enumerate(orders_sorted)}\\\\nitem_map = {v: i for i, v in enumerate(items_sorted)}\\\\n\\\\nY = np.full((n_m, n_t, n_p, n_s, n_o, n_i), np.nan)\\\\nfor _, row in df.iterrows():\\\\n    Y[model_map[row['model']], temp_map[row['temperature']], prompt_map[row['prompt_template']],\\\\n      seed_map[row['seed']], order_map[row['ordering']], item_map[row['item_id']]] = row['correct']\\\\n\\\\nprint(f\\\\\\\"Array shape: {Y.shape}, NaN: {np.isnan(Y).sum()}\\\\\\\")\\\\n\\\\ndef compute_gstudy(Y_arr):\\\\n    nm, nt, np_, ns, no, ni = Y_arr.shape\\\\n    N_arr = nm * nt * np_ * ns * no * ni\\\\n    gm = np.nanmean(Y_arr)\\\\n    \\\\n    mean_m = np.nanmean(Y_arr, axis=(1,2,3,4,5))\\\\n    mean_t = np.nanmean(Y_arr, axis=(0,2,3,4,5))\\\\n    mean_p = np.nanmean(Y_arr, axis=(0,1,3,4,5))\\\\n    mean_s = np.nanmean(Y_arr, axis=(0,1,2,4,5))\\\\n    mean_o = np.nanmean(Y_arr, axis=(0,1,2,3,5))\\\\n    mean_i = np.nanmean(Y_arr, axis=(0,1,2,3,4))\\\\n    \\\\n    ss = {}\\\\n    ss['model'] = (nt*np_*ns*no*ni) * np.sum((mean_m - gm)**2)\\\\n    ss['temperature'] = (nm*np_*ns*no*ni) * np.sum((mean_t - gm)**2)\\\\n    ss['prompt_template'] = (nm*nt*ns*no*ni) * np.sum((mean_p - gm)**2)\\\\n    ss['seed'] = (nm*nt*np_*no*ni) * np.sum((mean_s - gm)**2)\\\\n    ss['ordering'] = (nm*nt*np_*ns*ni) * np.sum((mean_o - gm)**2)\\\\n    ss['item_id'] = (nm*nt*np_*ns*no) * np.sum((mean_i - gm)**2)\\\\n    \\\\n    def ss_interaction(mean_ab, mean_a, mean_b, scale, shape_a, shape_b):\\\\n        total = 0.0\\\\n        for a in range(shape_a):\\\\n            for b in range(shape_b):\\\\n                exp = gm + (mean_a[a] - gm) + (mean_b[b] - gm)\\\\n                total += (mean_ab[a, b] - exp)**2\\\\n        return total * scale\\\\n    \\\\n    mean_mi = np.nanmean(Y_arr, axis=(1,2,3,4))\\\\n    ss['model:item_id'] = ss_interaction(mean_mi, mean_m, mean_i, nt*np_*ns*no, nm, ni)\\\\n    \\\\n    mean_mt = np.nanmean(Y_arr, axis=(2,3,4,5))\\\\n    ss['model:temperature'] = ss_interaction(mean_mt, mean_m, mean_t, np_*ns*no*ni, nm, nt)\\\\n    \\\\n    mean_mp = np.nanmean(Y_arr, axis=(1,3,4,5))\\\\n    ss['model:prompt_template'] = ss_interaction(mean_mp, mean_m, mean_p, nt*ns*no*ni, nm, np_)\\\\n    \\\\n    mean_ms = np.nanmean(Y_arr, axis=(1,2,4,5))\\\\n    ss['model:seed'] = ss_interaction(mean_ms, mean_m, mean_s, nt*np_*no*ni, nm, ns)\\\\n    \\\\n    mean_mo = np.nanmean(Y_arr, axis=(1,2,3,5))\\\\n    ss['model:ordering'] = ss_interaction(mean_mo, mean_m, mean_o, nt*np_*ns*ni, nm, no)\\\\n    \\\\n    mean_ti = np.nanmean(Y_arr, axis=(0,2,3,4))\\\\n    ss['temperature:item_id'] = ss_interaction(mean_ti, mean_t, mean_i, nm*np_*ns*no, nt, ni)\\\\n    \\\\n    mean_pi = np.nanmean(Y_arr, axis=(0,1,3,4))\\\\n    ss['prompt_template:item_id'] = ss_interaction(mean_pi, mean_p, mean_i, nm*nt*ns*no, np_, ni)\\\\n    \\\\n    mean_si = np.nanmean(Y_arr, axis=(0,1,2,4))\\\\n    ss['seed:item_id'] = ss_interaction(mean_si, mean_s, mean_i, nm*nt*np_*no, ns, ni)\\\\n    \\\\n    mean_oi = np.nanmean(Y_arr, axis=(0,1,2,3))\\\\n    ss['ordering:item_id'] = ss_interaction(mean_oi, mean_o, mean_i, nm*nt*np_*ns, no, ni)\\\\n    \\\\n    ss_total_b \\\\n\\\\n... [截断: 输出过长，省略 3176 字符] ...\\\\n\\\\n\\\\n        print(f\\\\\\\"  {k}: {v:.4f}%\\\\\\\")\\\\n\\\\nprint(f\\\\\\\"\\\\\\\\nG_item = {res['g_item']:.6f}\\\\\\\")\\\\nprint(f\\\\\\\"  sigma2_item = {res['s2']['item_id']:.8f}\\\\\\\")\\\\nprint(f\\\\\\\"  sigma2_delta = {res['delta']:.8f}\\\\\\\")\\\\n\\\\n# D-study\\\\nprint(\\\\\\\"\\\\\\\\n=== D-study ===\\\\\\\")\\\\nd_study = []\\\\nfor n_m_d in [1, 2, 3, 4, 5, 6, 8, 10]:\\\\n    delta = (\\\\n        res['s2']['model:item_id'] / n_m_d +\\\\n        res['s2']['temperature:item_id'] / n_t +\\\\n        res['s2']['prompt_template:item_id'] / n_p +\\\\n        res['s2']['seed:item_id'] / n_s +\\\\n        res['s2']['ordering:item_id'] / n_o +\\\\n        res['s2']['residual'] / (n_m_d * n_t * n_p * n_s * n_o)\\\\n    )\\\\n    g = res['s2']['item_id'] / (res['s2']['item_id'] + delta)\\\\n    d_study.append({'n_models': n_m_d, 'g_item': round(g, 6), 'sigma_delta': round(delta, 8)})\\\\n    print(f\\\\\\\"  n_models={n_m_d:2d}: G_item={g:.6f}\\\\\\\")\\\\n\\\\n# Bootstrap\\\\nprint(\\\\\\\"\\\\\\\\n=== Bootstrap (200 resamples) ===\\\\\\\")\\\\nrng = default_rng(42)\\\\nn_boot = 200\\\\nboot_results = []\\\\nfor b in range(n_boot):\\\\n    if b % 50 == 0: print(f\\\\\\\"  {b}/{n_boot}...\\\\\\\")\\\\n    idx = rng.choice(n_i, size=n_i, replace=True)\\\\n    Y_b = Y[:, :, :, :, :, idx]\\\\n    boot_results.append(compute_gstudy(Y_b))\\\\n\\\\nboot_vpcts = [r['vpct'] for r in boot_results]\\\\nboot_g_items = [r['g_item'] for r in boot_results]\\\\n\\\\nci = {}\\\\nfor comp in ['item_id', 'model:item_id', 'model', 'temperature', 'prompt_template', \\\\n             'seed', 'ordering', 'temperature:item_id', 'prompt_template:item_id',\\\\n             'seed:item_id', 'ordering:item_id', 'residual']:\\\\n    vals = [b.get(comp, 0) for b in boot_vpcts]\\\\n    lo, hi = np.percentile(vals, 2.5), np.percentile(vals, 97.5)\\\\n    ci[comp] = (lo, hi)\\\\n    if res['vpct'].get(comp, 0) > 0.01:\\\\n        print(f\\\\\\\"  {comp}: {res['vpct'][comp]:.4f}% [{lo:.4f}, {hi:.4f}]\\\\\\\")\\\\n\\\\ng_arr = np.array(boot_g_items)\\\\ng_ci = (float(np.percentile(g_arr, 2.5)), float(np.percentile(g_arr, 97.5)))\\\\nprint(f\\\\\\\"\\\\\\\\n  G_item: {res['g_item']:.6f} [{g_ci[0]:.6f}, {g_ci[1]:.6f}]\\\\\\\")\\\\n\\\\n# Per-model contribution to model×item\\\\nprint(\\\\\\\"\\\\\\\\n=== Per-model contribution to model×item ===\\\\\\\")\\\\nmean_m_full = np.nanmean(Y, axis=(1,2,3,4,5))\\\\nmean_i_full = np.nanmean(Y, axis=(0,1,2,3,4))\\\\nmean_mi_full = np.nanmean(Y, axis=(1,2,3,4))\\\\n\\\\nmodel_contribs = {}\\\\ntotal_sq = 0.0\\\\nfor mi in range(n_m):\\\\n    c = 0.0\\\\n    for ii in range(n_i):\\\\n        exp = grand_mean + (mean_m_full[mi] - grand_mean) + (mean_i_full[ii] - grand_mean)\\\\n        c += (mean_mi_full[mi, ii] - exp)**2\\\\n    model_contribs[models_sorted[mi]] = c\\\\n    total_sq += c\\\\n\\\\nfor m in models_sorted:\\\\n    pct = model_contribs[m] / total_sq * 100\\\\n    print(f\\\\\\\"  {m}: {pct:.2f}%\\\\\\\")\\\\n\\\\n# Save\\\\noutput = {\\\\n    'dataset': 'A-4',\\\\n    'description': '4 models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B) x bf16 only, fully crossed',\\\\n    'n_observations': int(N),\\\\n    'n_levels': {'model': n_m, 'temperature': n_t, 'prompt_template': n_p, 'seed': n_s, 'ordering': n_o, 'item_id': n_i},\\\\n    'grand_mean': float(grand_mean),\\\\n    'total_variance': float(total_var),\\\\n    'model_accuracies': {k: float(v) for k, v in model_acc.items()},\\\\n    'variance_components_ems': {\\\\n        k: {\\\\n            'estimate': float(res['s2'][k]),\\\\n            'pct': float(res['vpct'][k]),\\\\n            'ci_95_lower_pct': float(ci[k][0]) if k in ci else None,\\\\n            'ci_95_upper_pct': float(ci[k][1]) if k in ci else None,\\\\n        }\\\\n        for k in res['s2']\\\\n    },\\\\n    'g_item': {\\\\n        'g': float(res['g_item']),\\\\n        'ci_95': list(g_ci),\\\\n        'sigma_tau': float(res['s2']['item_id']),\\\\n        'sigma_delta': float(res['delta']),\\\\n    },\\\\n    'd_study_model_sweep': d_study,\\\\n    'per_model_interaction_contribution': {m: round(model_contribs[m]/total_sq*100, 2) for m in models_sorted},\\\\n    'bootstrap': {'n_resamples': n_boot, 'seed': 42, 'method': 'item cluster resampling (numpy 6D array)'},\\\\n    'anova_table': {k: {'ss': float(res['ss'][k]), 'df': int(res['df'][k]), 'ms': float(res['ms'][k])} for k in res['ss']},\\\\n}\\\\n\\\\nwith open('results/analysis/dataset_a4_gstudy.json', 'w') as f:\\\\n    json.dump(output, f, indent=2, default=str)\\\\nprint(\\\\\\\"\\\\\\\\nSaved to results/analysis/dataset_a4_gstudy.json\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import pandas as pd\\nimport numpy as np\\nimport json\\nfrom numpy.random import default_rng\\n\\ndf = pd.read_csv('results/analysis/cross_model_4way_bf16.csv')\\nN = len(df)\\ngrand_mean = df['correct'].mean()\\ntotal_var = df['correct'].var()\\nss_total = total_var * (N - 1)\\n\\nn_m, n_t, n_p, n_s, n_o, n_i = 4, 3, 6, 6, 4, 200\\n\\nprint(f\\\"N={N}, grand_mean={grand_mean:.6f}, total_var={total_var:.6f}\\\")\\n\\nmodel_acc = df.groupby('model')['correct'].mean().to_dict()\\nprint(\\\"\\\\nModel accuracies:\\\")\\nfor m, a in sorted(model_acc.items()):\\n    print(f\\\"  {m}: {a:.6f}\\\")\\n\\n# Build 6D array\\nmodels_sorted = sorted(df['model'].unique())\\ntemps_sorted = sorted(df['temperature'].unique())\\nprompts_sorted = sorted(df['prompt_template'].unique())\\nseeds_sorted = sorted(df['seed'].unique())\\norders_sorted = sorted(df['ordering'].unique())\\nitems_sorted = sorted(df['item_id'].unique())\\n\\nmodel_map = {v: i for i, v in enumerate(models_sorted)}\\ntemp_map = {v: i for i, v in enumerate(temps_sorted)}\\nprompt_map = {v: i for i, v in enumerate(prompts_sorted)}\\nseed_map = {v: i for i, v in enumerate(seeds_sorted)}\\norder_map = {v: i for i, v in enumerate(orders_sorted)}\\nitem_map = {v: i for i, v in enumerate(items_sorted)}\\n\\nY = np.full((n_m, n_t, n_p, n_s, n_o, n_i), np.nan)\\nfor _, row in df.iterrows():\\n    Y[model_map[row['model']], temp_map[row['temperature']], prompt_map[row['prompt_template']],\\n      seed_map[row['seed']], order_map[row['ordering']], item_map[row['item_id']]] = row['correct']\\n\\nprint(f\\\"Array shape: {Y.shape}, NaN: {np.isnan(Y).sum()}\\\")\\n\\ndef compute_gstudy(Y_arr):\\n    nm, nt, np_, ns, no, ni = Y_arr.shape\\n    N_arr = nm * nt * np_ * ns * no * ni\\n    gm = np.nanmean(Y_arr)\\n    \\n    mean_m = np.nanmean(Y_arr, axis=(1,2,3,4,5))\\n    mean_t = np.nanmean(Y_arr, axis=(0,2,3,4,5))\\n    mean_p = np.nanmean(Y_arr, axis=(0,1,3,4,5))\\n    mean_s = np.nanmean(Y_arr, axis=(0,1,2,4,5))\\n    mean_o = np.nanmean(Y_arr, axis=(0,1,2,3,5))\\n    mean_i = np.nanmean(Y_arr, axis=(0,1,2,3,4))\\n    \\n    ss = {}\\n    ss['model'] = (nt*np_*ns*no*ni) * np.sum((mean_m - gm)**2)\\n    ss['temperature'] = (nm*np_*ns*no*ni) * np.sum((mean_t - gm)**2)\\n    ss['prompt_template'] = (nm*nt*ns*no*ni) * np.sum((mean_p - gm)**2)\\n    ss['seed'] = (nm*nt*np_*no*ni) * np.sum((mean_s - gm)**2)\\n    ss['ordering'] = (nm*nt*np_*ns*ni) * np.sum((mean_o - gm)**2)\\n    ss['item_id'] = (nm*nt*np_*ns*no) * np.sum((mean_i - gm)**2)\\n    \\n    def ss_interaction(mean_ab, mean_a, mean_b, scale, shape_a, shape_b):\\n        total = 0.0\\n        for a in range(shape_a):\\n            for b in range(shape_b):\\n                exp = gm + (mean_a[a] - gm) + (mean_b[b] - gm)\\n                total += (mean_ab[a, b] - exp)**2\\n        return total * scale\\n    \\n    mean_mi = np.nanmean(Y_arr, axis=(1,2,3,4))\\n    ss['model:item_id'] = ss_interaction(mean_mi, mean_m, mean_i, nt*np_*ns*no, nm, ni)\\n    \\n    mean_mt = np.nanmean(Y_arr, axis=(2,3,4,5))\\n    ss['model:temperature'] = ss_interaction(mean_mt, mean_m, mean_t, np_*ns*no*ni, nm, nt)\\n    \\n    mean_mp = np.nanmean(Y_arr, axis=(1,3,4,5))\\n    ss['model:prompt_template'] = ss_interaction(mean_mp, mean_m, mean_p, nt*ns*no*ni, nm, np_)\\n    \\n    mean_ms = np.nanmean(Y_arr, axis=(1,2,4,5))\\n    ss['model:seed'] = ss_interaction(mean_ms, mean_m, mean_s, nt*np_*no*ni, nm, ns)\\n    \\n    mean_mo = np.nanmean(Y_arr, axis=(1,2,3,5))\\n    ss['model:ordering'] = ss_interaction(mean_mo, mean_m, mean_o, nt*np_*ns*ni, nm, no)\\n    \\n    mean_ti = np.nanmean(Y_arr, axis=(0,2,3,4))\\n    ss['temperature:item_id'] = ss_interaction(mean_ti, mean_t, mean_i, nm*np_*ns*no, nt, ni)\\n    \\n    mean_pi = np.nanmean(Y_arr, axis=(0,1,3,4))\\n    ss['prompt_template:item_id'] = ss_interaction(mean_pi, mean_p, mean_i, nm*nt*ns*no, np_, ni)\\n    \\n    mean_si = np.nanmean(Y_arr, axis=(0,1,2,4))\\n    ss['seed:item_id'] = ss_interaction(mean_si, mean_s, mean_i, nm*nt*np_*no, ns, ni)\\n    \\n    mean_oi = np.nanmean(Y_arr, axis=(0,1,2,3))\\n    ss['ordering:item_id'] = ss_interaction(mean_oi, mean_o, mean_i, nm*nt*np_*ns, no, ni)\\n    \\n    ss_total_b \\n\\n... [截断: 输出过长，省略 3176 字符] ...\\n\\n\\n        print(f\\\"  {k}: {v:.4f}%\\\")\\n\\nprint(f\\\"\\\\nG_item = {res['g_item']:.6f}\\\")\\nprint(f\\\"  sigma2_item = {res['s2']['item_id']:.8f}\\\")\\nprint(f\\\"  sigma2_delta = {res['delta']:.8f}\\\")\\n\\n# D-study\\nprint(\\\"\\\\n=== D-study ===\\\")\\nd_study = []\\nfor n_m_d in [1, 2, 3, 4, 5, 6, 8, 10]:\\n    delta = (\\n        res['s2']['model:item_id'] / n_m_d +\\n        res['s2']['temperature:item_id'] / n_t +\\n        res['s2']['prompt_template:item_id'] / n_p +\\n        res['s2']['seed:item_id'] / n_s +\\n        res['s2']['ordering:item_id'] / n_o +\\n        res['s2']['residual'] / (n_m_d * n_t * n_p * n_s * n_o)\\n    )\\n    g = res['s2']['item_id'] / (res['s2']['item_id'] + delta)\\n    d_study.append({'n_models': n_m_d, 'g_item': round(g, 6), 'sigma_delta': round(delta, 8)})\\n    print(f\\\"  n_models={n_m_d:2d}: G_item={g:.6f}\\\")\\n\\n# Bootstrap\\nprint(\\\"\\\\n=== Bootstrap (200 resamples) ===\\\")\\nrng = default_rng(42)\\nn_boot = 200\\nboot_results = []\\nfor b in range(n_boot):\\n    if b % 50 == 0: print(f\\\"  {b}/{n_boot}...\\\")\\n    idx = rng.choice(n_i, size=n_i, replace=True)\\n    Y_b = Y[:, :, :, :, :, idx]\\n    boot_results.append(compute_gstudy(Y_b))\\n\\nboot_vpcts = [r['vpct'] for r in boot_results]\\nboot_g_items = [r['g_item'] for r in boot_results]\\n\\nci = {}\\nfor comp in ['item_id', 'model:item_id', 'model', 'temperature', 'prompt_template', \\n             'seed', 'ordering', 'temperature:item_id', 'prompt_template:item_id',\\n             'seed:item_id', 'ordering:item_id', 'residual']:\\n    vals = [b.get(comp, 0) for b in boot_vpcts]\\n    lo, hi = np.percentile(vals, 2.5), np.percentile(vals, 97.5)\\n    ci[comp] = (lo, hi)\\n    if res['vpct'].get(comp, 0) > 0.01:\\n        print(f\\\"  {comp}: {res['vpct'][comp]:.4f}% [{lo:.4f}, {hi:.4f}]\\\")\\n\\ng_arr = np.array(boot_g_items)\\ng_ci = (float(np.percentile(g_arr, 2.5)), float(np.percentile(g_arr, 97.5)))\\nprint(f\\\"\\\\n  G_item: {res['g_item']:.6f} [{g_ci[0]:.6f}, {g_ci[1]:.6f}]\\\")\\n\\n# Per-model contribution to model×item\\nprint(\\\"\\\\n=== Per-model contribution to model×item ===\\\")\\nmean_m_full = np.nanmean(Y, axis=(1,2,3,4,5))\\nmean_i_full = np.nanmean(Y, axis=(0,1,2,3,4))\\nmean_mi_full = np.nanmean(Y, axis=(1,2,3,4))\\n\\nmodel_contribs = {}\\ntotal_sq = 0.0\\nfor mi in range(n_m):\\n    c = 0.0\\n    for ii in range(n_i):\\n        exp = grand_mean + (mean_m_full[mi] - grand_mean) + (mean_i_full[ii] - grand_mean)\\n        c += (mean_mi_full[mi, ii] - exp)**2\\n    model_contribs[models_sorted[mi]] = c\\n    total_sq += c\\n\\nfor m in models_sorted:\\n    pct = model_contribs[m] / total_sq * 100\\n    print(f\\\"  {m}: {pct:.2f}%\\\")\\n\\n# Save\\noutput = {\\n    'dataset': 'A-4',\\n    'description': '4 models (Llama-3.1-8B, Gemma-2-9B, Mistral-7B, Qwen3-8B) x bf16 only, fully crossed',\\n    'n_observations': int(N),\\n    'n_levels': {'model': n_m, 'temperature': n_t, 'prompt_template': n_p, 'seed': n_s, 'ordering': n_o, 'item_id': n_i},\\n    'grand_mean': float(grand_mean),\\n    'total_variance': float(total_var),\\n    'model_accuracies': {k: float(v) for k, v in model_acc.items()},\\n    'variance_components_ems': {\\n        k: {\\n            'estimate': float(res['s2'][k]),\\n            'pct': float(res['vpct'][k]),\\n            'ci_95_lower_pct': float(ci[k][0]) if k in ci else None,\\n            'ci_95_upper_pct': float(ci[k][1]) if k in ci else None,\\n        }\\n        for k in res['s2']\\n    },\\n    'g_item': {\\n        'g': float(res['g_item']),\\n        'ci_95': list(g_ci),\\n        'sigma_tau': float(res['s2']['item_id']),\\n        'sigma_delta': float(res['delta']),\\n    },\\n    'd_study_model_sweep': d_study,\\n    'per_model_interaction_contribution': {m: round(model_contribs[m]/total_sq*100, 2) for m in models_sorted},\\n    'bootstrap': {'n_resamples': n_boot, 'seed': 42, 'method': 'item cluster resampling (numpy 6D array)'},\\n    'anova_table': {k: {'ss': float(res['ss'][k]), 'df': int(res['df'][k]), 'ms': float(res['ms'][k])} for k in res['ss']},\\n}\\n\\nwith open('results/analysis/dataset_a4_gstudy.json', 'w') as f:\\n    json.dump(output, f, indent=2, default=str)\\nprint(\\\"\\\\nSaved to results/analysis/dataset_a4_gstudy.json\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the codebase. Let me check what models are available in the data and what the existing analysis results look like.
+
+Key observations:
+1. The existing scripts use 4 benchmarks (mmlu, arc, hellaswag, gsm8k) - need to add MATH
+2. The LOBO script uses `BENCHMARK_ORDER = ["mmlu", "arc", "hellaswag", "gsm8k"]` - needs 5
+3. The D-study script uses `BENCHMARKS = ["mmlu", "arc", "hellaswag", "gsm8k"]` - needs 5
+
+
+4. The permutation test already has all 5 benchmarks including math, so that's good
+5. The cross_model_4way script only handles 4 models but I need to support 8
+
+Looking at the JSONL files, I can see 6 models available: qwen, llama, gemma, mistral, deepseek, and internlm. Let me verify if there are additional models in the dataset.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "b18746b8-ec54-49ae-bcfe-e7742a8153fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ZXd6YoFpZoYPi2G8mVRLw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9559,
+      "cache_read_input_tokens": 39087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9559
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Let me check the actual models in the data and understand the exp001 data structure.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "b3fda99c-0b96-44dd-9294-3a078c3e934c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ZXd6YoFpZoYPi2G8mVRLw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9559,
+      "cache_read_input_tokens": 39087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9559
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T9wCnJ5YqXWXmrhWxXpkZq`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "python3 -c \"import pandas as pd, glob; frames=[pd.read_json(f,lines=True) for f in sorted(glob.glob('/root/nlp_variance_gtheory/results/exp002/*.jsonl'))]; df=pd.concat(frames); print('Models:',sorted(df['model'].unique())); print('Benchmarks:',sorted(df['benchmark'].unique())); print('Total:',len(df))\" 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4444039a-f698-4c9e-bbc1-d4f9eee1fc68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ZXd6YoFpZoYPi2G8mVRLw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9559,
+      "cache_read_input_tokens": 39087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9559
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T21:32:34.746Z_
+
+<details><summary>↩ Tool result · `toolu_01T9wCnJ5YqXWXmrhWxXpkZq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "28e7b56e-e240-41dc-a1ad-82233c91864f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WgSGDmAEBmt5Cdw1sSGZXJ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001_gemma/ /root/nlp_variance_gtheory/results/exp001_llama/ /root/nlp_variance_gtheory/results/exp001_mistral/ /root/nlp_variance_gtheory/results/exp001_qwen/ 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "5bf208ef-0f9c-4849-b2d4-4f4731c03f14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ZXd6YoFpZoYPi2G8mVRLw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9559,
+      "cache_read_input_tokens": 39087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9559
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T21:32:36.169Z_
+
+<details><summary>↩ Tool result · `toolu_01WgSGDmAEBmt5Cdw1sSGZXJ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "a5dd57a5-aaa3-4248-9b22-6bfc2b5f06de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NvXxXPPtJdkoBK5M7j1pja`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "f34a65b3-83d9-4747-9ad8-a6978025d048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ZXd6YoFpZoYPi2G8mVRLw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9559,
+      "cache_read_input_tokens": 39087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9559
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T21:32:37.117Z_
+
+<details><summary>↩ Tool result · `toolu_01NvXxXPPtJdkoBK5M7j1pja`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"master.log\\nsample1\\nsample2\\nsample3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "475b3d4c-c682-48fa-adca-c34f217ac541",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"master.log\\\\nsample1\\\\nsample2\\\\nsample3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"master.log\\nsample1\\nsample2\\nsample3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01N2ZrhFUKaqYigSjnK2SELn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pandas as pd, glob\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\nprint('Models:', sorted(df['model'].unique()))\nprint('Benchmarks:', sorted(df['benchmark'].unique()))\nprint('N_models:', df['model'].nunique())\nprint('Total obs:', len(df))\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, {sub[\\\"model\\\"].nunique()} models')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "a570927c-2a95-4d46-a67c-34ac02806948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H4giecFHvBAMrRzR4fs6iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1228,
+      "cache_read_input_tokens": 48646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1228
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T21:33:07.916Z_
+
+<details><summary>↩ Tool result · `toolu_01N2ZrhFUKaqYigSjnK2SELn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\nprint(\\\\'Models:\\\\', sorted(df[\\\\'model\\\\'].unique()))\\\\nprint(\\\\'Benchmarks:\\\\', sorted(df[\\\\'benchmark\\\\'].unique()))\\\\nprint(\\\\'N_models:\\\\', df[\\\\'model\\\\'].nunique())\\\\nprint(\\\\'Total obs:\\\\', len(df))\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'  {bm}: {len(sub)} obs, {sub[\\\\\\\\\\\"model\\\\\\\\\\\"].nunique()} models\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 5, in &lt;module>\\nTypeError: '<' not supported between instances of 'float' and 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 25.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "985815f9-085b-4987-a970-fd80693cedae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\nprint(\\\\\\\\'Models:\\\\\\\\', sorted(df[\\\\\\\\'model\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'Benchmarks:\\\\\\\\', sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'N_models:\\\\\\\\', df[\\\\\\\\'model\\\\\\\\'].nunique())\\\\\\\\nprint(\\\\\\\\'Total obs:\\\\\\\\', len(df))\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'  {bm}: {len(sub)} obs, {sub[\\\\\\\\\\\\\\\\\\\\\\\"model\\\\\\\\\\\\\\\\\\\\\\\"].nunique()} models\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 5, in &lt;module>\\\\nTypeError: '<' not supported between instances of 'float' and 'str'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\nprint(\\\\'Models:\\\\', sorted(df[\\\\'model\\\\'].unique()))\\\\nprint(\\\\'Benchmarks:\\\\', sorted(df[\\\\'benchmark\\\\'].unique()))\\\\nprint(\\\\'N_models:\\\\', df[\\\\'model\\\\'].nunique())\\\\nprint(\\\\'Total obs:\\\\', len(df))\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'  {bm}: {len(sub)} obs, {sub[\\\\\\\\\\\"model\\\\\\\\\\\"].nunique()} models\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 5, in &lt;module>\\nTypeError: '<' not supported between instances of 'float' and 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 25.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's an issue with sorting models - likely some model names are NaN. Let me fix the command.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "ce812c2c-dfa5-4994-8ac7-99b053e31a5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiPRppXaQ7PXNzXxYXgtnf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 49874,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 759
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U1Dmnya5prMjzhmSmuY3Yt`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nprint('Models:', sorted(df['model'].dropna().unique()))\nprint('Benchmarks:', sorted(df['benchmark'].unique()))\nprint('N_models:', df['model'].nunique())\nprint('Total obs:', len(df))\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "92873c6a-b7cf-4858-b94a-46936ae7a466",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FiPRppXaQ7PXNzXxYXgtnf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 49874,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 759
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T21:33:40.976Z_
+
+<details><summary>↩ Tool result · `toolu_01U1Dmnya5prMjzhmSmuY3Yt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nfrom src.config.model_paths import normalize_model_name\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\ndf[\\\\'model\\\\'] = df[\\\\'model\\\\'].map(normalize_model_name).fillna(df[\\\\'model\\\\'])\\\\nprint(\\\\'Models:\\\\', sorted(df[\\\\'model\\\\'].dropna().unique()))\\\\nprint(\\\\'Benchmarks:\\\\', sorted(df[\\\\'benchmark\\\\'].unique()))\\\\nprint(\\\\'N_models:\\\\', df[\\\\'model\\\\'].nunique())\\\\nprint(\\\\'Total obs:\\\\', len(df))\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 8, in &lt;module>\\nTypeError: '<' not supported between instances of 'float' and 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 26.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "153b33b0-7899-451a-afda-3f5fda3c2a07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nfrom src.config.model_paths import normalize_model_name\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\ndf[\\\\\\\\'model\\\\\\\\'] = df[\\\\\\\\'model\\\\\\\\'].map(normalize_model_name).fillna(df[\\\\\\\\'model\\\\\\\\'])\\\\\\\\nprint(\\\\\\\\'Models:\\\\\\\\', sorted(df[\\\\\\\\'model\\\\\\\\'].dropna().unique()))\\\\\\\\nprint(\\\\\\\\'Benchmarks:\\\\\\\\', sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'N_models:\\\\\\\\', df[\\\\\\\\'model\\\\\\\\'].nunique())\\\\\\\\nprint(\\\\\\\\'Total obs:\\\\\\\\', len(df))\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"&lt;string>\\\\\\\", line 8, in &lt;module>\\\\nTypeError: '<' not supported between instances of 'float' and 'str'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 26.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nfrom src.config.model_paths import normalize_model_name\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\ndf[\\\\'model\\\\'] = df[\\\\'model\\\\'].map(normalize_model_name).fillna(df[\\\\'model\\\\'])\\\\nprint(\\\\'Models:\\\\', sorted(df[\\\\'model\\\\'].dropna().unique()))\\\\nprint(\\\\'Benchmarks:\\\\', sorted(df[\\\\'benchmark\\\\'].unique()))\\\\nprint(\\\\'N_models:\\\\', df[\\\\'model\\\\'].nunique())\\\\nprint(\\\\'Total obs:\\\\', len(df))\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 8, in &lt;module>\\nTypeError: '<' not supported between instances of 'float' and 'str'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 26.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I can see the models: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, Qwen3-8B — that's 6 models in exp002. But the user said 8 models. There might be data from exp001 as well. Let me check the benchmark issue first — the error happened when trying to print benchmarks. Probably a NaN in benchmark column.
+
+Actually the error was at line 8 which is `print('Benchmarks:', sorted(df['benchmark'].unique()))` — so there's a NaN in benchmark too. Let me look more carefully.
+
+
+The first error was at line 5 trying to sort model names which had NaN, then I fixed that with dropna(). But the second error is at line 8 when sorting benchmarks, so that column also has NaN or mixed types. I should simplify the exploration approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "da43ced2-71d6-45f8-a7dd-1eccb8cf07af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q97PuUDqa7JpDW7HYJ2qwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 50633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1032
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+6 models found so far. Let me check benchmarks and see if there are 2 more models elsewhere.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8793c772-827b-4aa0-97d5-9ca621aff09d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q97PuUDqa7JpDW7HYJ2qwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 50633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1032
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015pgLUftB4Jmd2ch7wVcTC4`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nprint('Benchmarks:', sorted(df['benchmark'].dropna().unique()))\nprint('Total obs:', len(df))\nprint('NaN benchmark:', df['benchmark'].isna().sum())\nfor bm in sorted(df['benchmark'].dropna().unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, models={sorted(sub.model.dropna().unique())}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "5d3befae-62b0-4c78-a083-afcae4b8faf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q97PuUDqa7JpDW7HYJ2qwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 50633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1032
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XDjbmtQ6DeKkusomXBcgi1`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/results/exp001_llama/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "2224ae3f-88b8-4386-ac25-b959bb039892",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q97PuUDqa7JpDW7HYJ2qwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 50633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1032
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J2QqA9xVeqZCF3h8jsw6Gh`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/analysis/exp002_per_benchmark_gstudy.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8fc3285c-81f3-4cc7-b5c2-6a5ba39dcf14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q97PuUDqa7JpDW7HYJ2qwt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 50633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1032
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T21:34:19.772Z_
+
+<details><summary>↩ Tool result · `toolu_015pgLUftB4Jmd2ch7wVcTC4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Benchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\nTotal obs: 1765600\\nNaN benchmark: 57600\\n  arc: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  gsm8k: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  hellaswag: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  math: 325600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  mmlu: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.24}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "5f65be08-e219-4edf-a43f-d8b100b30b07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Benchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\nTotal obs: 1765600\\\\nNaN benchmark: 57600\\\\n  arc: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  gsm8k: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  hellaswag: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  math: 325600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  mmlu: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.24}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Benchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\nTotal obs: 1765600\\nNaN benchmark: 57600\\n  arc: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  gsm8k: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  hellaswag: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  math: 325600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  mmlu: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.24}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T21:34:20.300Z_
+
+<details><summary>↩ Tool result · `toolu_01XDjbmtQ6DeKkusomXBcgi1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"llama_fp32_t0_backfill.jsonl\\nllama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "374baaca-4998-49b0-8246-893e308e3f1e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_fp32_t0_backfill.jsonl\\\\nllama_shard_0.jsonl\\\\nllama_shard_1.jsonl\\\\nllama_shard_2.jsonl\\\\nllama_shard_3.jsonl\\\\nshards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"llama_fp32_t0_backfill.jsonl\\nllama_shard_0.jsonl\\nllama_shard_1.jsonl\\nllama_shard_2.jsonl\\nllama_shard_3.jsonl\\nshards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T21:34:20.891Z_
+
+<details><summary>↩ Tool result · `toolu_01J2QqA9xVeqZCF3h8jsw6Gh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-002\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.700247,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0876133124,\\n          \\\"pct\\\": 41.5471\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0691895248,\\n          \\\"pct\\\": 32.8103\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.043262815,\\n          \\\"pct\\\": 20.5156\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0029608526,\\n          \\\"pct\\\": 1.4041\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0025039227,\\n          \\\"pct\\\": 1.1874\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00249588,\\n          \\\"pct\\\": 1.1836\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0015897059,\\n          \\\"pct\\\": 0.7539\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0010917321,\\n          \\\"pct\\\": 0.5177\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 6.01697e-05,\\n          \\\"pct\\\": 0.0285\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 3.90555e-05,\\n          \\\"pct\\\": 0.0185\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 2.79487e-05,\\n          \\\"pct\\\": 0.0133\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 9.1618e-06,\\n          \\\"pct\\\": 0.0043\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 7.8161e-06,\\n          \\\"pct\\\": 0.0037\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 7.5672e-06,\\n          \\\"pct\\\": 0.0036\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 6.4663e-06,\\n          \\\"pct\\\": 0.0031\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 5.7918e-06,\\n          \\\"pct\\\": 0.0027\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 5.5314e-06,\\n          \\\"pct\\\": 0.0026\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.2108772542,\\n      \\\"G_item\\\": 0.815919,\\n      \\\"sigma_tau\\\": 0.0876133124,\\n      \\\"sigma_delta\\\": 0.0197666046,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.35652,\\n        \\\"50\\\": 0.525639,\\n        \\\"75\\\": 0.624363,\\n        \\\"100\\\": 0.689074,\\n        \\\"150\\\": 0.768748,\\n        \\\"200\\\": 0.815919,\\n        \\\"300\\\": 0.869257,\\n        \\\"500\\\": 0.917225,\\n        \\\"1000\\\": 0.956826\\n      },\\n      \\\"min_items_G_0.80\\\": 181\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"benchmark\\\": \\\"gsm8k\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.555764,\\n      \\\"variance_components\\\": {\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0851779363,\\n          \\\"pct\\\": 32.2887\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0399546804,\\n          \\\"pct\\\": 15.1458\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0323736331,\\n          \\\"pct\\\": 12.272\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0319025451,\\n          \\\"pct\\\": 12.0934\\n        },\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.031630295,\\n          \\\"pct\\\": 11.9902\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0248572384,\\n          \\\"pct\\\": 9.4227\\n        },\\n        \\\"prompt_template:it\\n\\n... [截断: 输出过长，省略 3862 字符] ...\\n\\n      },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.1505083246,\\n      \\\"G_item\\\": 0.830683,\\n      \\\"sigma_tau\\\": 0.073598366,\\n      \\\"sigma_delta\\\": 0.015001447,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.380137,\\n        \\\"50\\\": 0.550869,\\n        \\\"75\\\": 0.64786,\\n        \\\"100\\\": 0.7104,\\n        \\\"150\\\": 0.786305,\\n        \\\"200\\\": 0.830683,\\n        \\\"300\\\": 0.88037,\\n        \\\"500\\\": 0.924615,\\n        \\\"1000\\\": 0.960831\\n      },\\n      \\\"min_items_G_0.80\\\": 164\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"benchmark\\\": \\\"hellaswag\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.707951,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0925973765,\\n          \\\"pct\\\": 44.4653\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.067275291,\\n          \\\"pct\\\": 32.3056\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0355150977,\\n          \\\"pct\\\": 17.0544\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0072872914,\\n          \\\"pct\\\": 3.4994\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0030982444,\\n          \\\"pct\\\": 1.4878\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0011455453,\\n          \\\"pct\\\": 0.5501\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0007745323,\\n          \\\"pct\\\": 0.3719\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0003722689,\\n          \\\"pct\\\": 0.1788\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 6.35711e-05,\\n          \\\"pct\\\": 0.0305\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 3.50048e-05,\\n          \\\"pct\\\": 0.0168\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 2.71821e-05,\\n          \\\"pct\\\": 0.0131\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 2.02654e-05,\\n          \\\"pct\\\": 0.0097\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.92324e-05,\\n          \\\"pct\\\": 0.0092\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 1.41571e-05,\\n          \\\"pct\\\": 0.0068\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 1.3431e-06,\\n          \\\"pct\\\": 0.0006\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.2082464035,\\n      \\\"G_item\\\": 0.832413,\\n      \\\"sigma_tau\\\": 0.0925973765,\\n      \\\"sigma_delta\\\": 0.0186423908,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.383051,\\n        \\\"50\\\": 0.553922,\\n        \\\"75\\\": 0.650672,\\n        \\\"100\\\": 0.712934,\\n        \\\"150\\\": 0.788372,\\n        \\\"200\\\": 0.832413,\\n        \\\"300\\\": 0.881665,\\n        \\\"500\\\": 0.925471,\\n        \\\"1000\\\": 0.961293\\n      },\\n      \\\"min_items_G_0.80\\\": 162\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"gradient_check\\\": {\\n      \\\"mmlu\\\": 41.5471,\\n      \\\"gsm8k\\\": 11.9902,\\n      \\\"arc\\\": 48.8999,\\n      \\\"hellaswag\\\": 44.4653\\n    },\\n    \\\"g_item_by_benchmark\\\": {\\n      \\\"mmlu\\\": 0.815919,\\n      \\\"gsm8k\\\": 0.728948,\\n      \\\"arc\\\": 0.830683,\\n      \\\"hellaswag\\\": 0.832413\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "0f4d3993-6100-418b-a206-87bc3fd08420",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"per_benchmark_henderson_i_gstudy\\\\\\\",\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"n_observations\\\\\\\": 230400,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"grand_mean_accuracy\\\\\\\": 0.700247,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0876133124,\\\\n          \\\\\\\"pct\\\\\\\": 41.5471\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0691895248,\\\\n          \\\\\\\"pct\\\\\\\": 32.8103\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.043262815,\\\\n          \\\\\\\"pct\\\\\\\": 20.5156\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0029608526,\\\\n          \\\\\\\"pct\\\\\\\": 1.4041\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0025039227,\\\\n          \\\\\\\"pct\\\\\\\": 1.1874\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00249588,\\\\n          \\\\\\\"pct\\\\\\\": 1.1836\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0015897059,\\\\n          \\\\\\\"pct\\\\\\\": 0.7539\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0010917321,\\\\n          \\\\\\\"pct\\\\\\\": 0.5177\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.01697e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0285\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 3.90555e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0185\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 2.79487e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0133\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 9.1618e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0043\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 7.8161e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0037\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 7.5672e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0036\\\\n        },\\\\n        \\\\\\\"model:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.4663e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0031\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 5.7918e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0027\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 5.5314e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0026\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"total_variance\\\\\\\": 0.2108772542,\\\\n      \\\\\\\"G_item\\\\\\\": 0.815919,\\\\n      \\\\\\\"sigma_tau\\\\\\\": 0.0876133124,\\\\n      \\\\\\\"sigma_delta\\\\\\\": 0.0197666046,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"25\\\\\\\": 0.35652,\\\\n        \\\\\\\"50\\\\\\\": 0.525639,\\\\n        \\\\\\\"75\\\\\\\": 0.624363,\\\\n        \\\\\\\"100\\\\\\\": 0.689074,\\\\n        \\\\\\\"150\\\\\\\": 0.768748,\\\\n        \\\\\\\"200\\\\\\\": 0.815919,\\\\n        \\\\\\\"300\\\\\\\": 0.869257,\\\\n        \\\\\\\"500\\\\\\\": 0.917225,\\\\n        \\\\\\\"1000\\\\\\\": 0.956826\\\\n      },\\\\n      \\\\\\\"min_items_G_0.80\\\\\\\": 181\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n      \\\\\\\"n_observations\\\\\\\": 230400,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"grand_mean_accuracy\\\\\\\": 0.555764,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0851779363,\\\\n          \\\\\\\"pct\\\\\\\": 32.2887\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0399546804,\\\\n          \\\\\\\"pct\\\\\\\": 15.1458\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0323736331,\\\\n          \\\\\\\"pct\\\\\\\": 12.272\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0319025451,\\\\n          \\\\\\\"pct\\\\\\\": 12.0934\\\\n        },\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.031630295,\\\\n          \\\\\\\"pct\\\\\\\": 11.9902\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0248572384,\\\\n          \\\\\\\"pct\\\\\\\": 9.4227\\\\n        },\\\\n        \\\\\\\"prompt_template:it\\\\n\\\\n... [截断: 输出过长，省略 3862 字符] ...\\\\n\\\\n      },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"total_variance\\\\\\\": 0.1505083246,\\\\n      \\\\\\\"G_item\\\\\\\": 0.830683,\\\\n      \\\\\\\"sigma_tau\\\\\\\": 0.073598366,\\\\n      \\\\\\\"sigma_delta\\\\\\\": 0.015001447,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"25\\\\\\\": 0.380137,\\\\n        \\\\\\\"50\\\\\\\": 0.550869,\\\\n        \\\\\\\"75\\\\\\\": 0.64786,\\\\n        \\\\\\\"100\\\\\\\": 0.7104,\\\\n        \\\\\\\"150\\\\\\\": 0.786305,\\\\n        \\\\\\\"200\\\\\\\": 0.830683,\\\\n        \\\\\\\"300\\\\\\\": 0.88037,\\\\n        \\\\\\\"500\\\\\\\": 0.924615,\\\\n        \\\\\\\"1000\\\\\\\": 0.960831\\\\n      },\\\\n      \\\\\\\"min_items_G_0.80\\\\\\\": 164\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"n_observations\\\\\\\": 230400,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"grand_mean_accuracy\\\\\\\": 0.707951,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0925973765,\\\\n          \\\\\\\"pct\\\\\\\": 44.4653\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.067275291,\\\\n          \\\\\\\"pct\\\\\\\": 32.3056\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0355150977,\\\\n          \\\\\\\"pct\\\\\\\": 17.0544\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0072872914,\\\\n          \\\\\\\"pct\\\\\\\": 3.4994\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0030982444,\\\\n          \\\\\\\"pct\\\\\\\": 1.4878\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0011455453,\\\\n          \\\\\\\"pct\\\\\\\": 0.5501\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0007745323,\\\\n          \\\\\\\"pct\\\\\\\": 0.3719\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0003722689,\\\\n          \\\\\\\"pct\\\\\\\": 0.1788\\\\n        },\\\\n        \\\\\\\"prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.35711e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0305\\\\n        },\\\\n        \\\\\\\"temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 3.50048e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0168\\\\n        },\\\\n        \\\\\\\"model:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 2.71821e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0131\\\\n        },\\\\n        \\\\\\\"temperature:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 2.02654e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0097\\\\n        },\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.92324e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0092\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.41571e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0068\\\\n        },\\\\n        \\\\\\\"prompt_template:seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 1.3431e-06,\\\\n          \\\\\\\"pct\\\\\\\": 0.0006\\\\n        },\\\\n        \\\\\\\"model:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"temperature:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"prompt_template:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed:ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"seed\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        },\\\\n        \\\\\\\"ordering\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0,\\\\n          \\\\\\\"pct\\\\\\\": 0.0\\\\n        }\\\\n      },\\\\n      \\\\\\\"total_variance\\\\\\\": 0.2082464035,\\\\n      \\\\\\\"G_item\\\\\\\": 0.832413,\\\\n      \\\\\\\"sigma_tau\\\\\\\": 0.0925973765,\\\\n      \\\\\\\"sigma_delta\\\\\\\": 0.0186423908,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"25\\\\\\\": 0.383051,\\\\n        \\\\\\\"50\\\\\\\": 0.553922,\\\\n        \\\\\\\"75\\\\\\\": 0.650672,\\\\n        \\\\\\\"100\\\\\\\": 0.712934,\\\\n        \\\\\\\"150\\\\\\\": 0.788372,\\\\n        \\\\\\\"200\\\\\\\": 0.832413,\\\\n        \\\\\\\"300\\\\\\\": 0.881665,\\\\n        \\\\\\\"500\\\\\\\": 0.925471,\\\\n        \\\\\\\"1000\\\\\\\": 0.961293\\\\n      },\\\\n      \\\\\\\"min_items_G_0.80\\\\\\\": 162\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"gradient_check\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 41.5471,\\\\n      \\\\\\\"gsm8k\\\\\\\": 11.9902,\\\\n      \\\\\\\"arc\\\\\\\": 48.8999,\\\\n      \\\\\\\"hellaswag\\\\\\\": 44.4653\\\\n    },\\\\n    \\\\\\\"g_item_by_benchmark\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 0.815919,\\\\n      \\\\\\\"gsm8k\\\\\\\": 0.728948,\\\\n      \\\\\\\"arc\\\\\\\": 0.830683,\\\\n      \\\\\\\"hellaswag\\\\\\\": 0.832413\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-002\\\",\\n  \\\"analysis\\\": \\\"per_benchmark_henderson_i_gstudy\\\",\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"benchmark\\\": \\\"mmlu\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.700247,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0876133124,\\n          \\\"pct\\\": 41.5471\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0691895248,\\n          \\\"pct\\\": 32.8103\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.043262815,\\n          \\\"pct\\\": 20.5156\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0029608526,\\n          \\\"pct\\\": 1.4041\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0025039227,\\n          \\\"pct\\\": 1.1874\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.00249588,\\n          \\\"pct\\\": 1.1836\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0015897059,\\n          \\\"pct\\\": 0.7539\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0010917321,\\n          \\\"pct\\\": 0.5177\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 6.01697e-05,\\n          \\\"pct\\\": 0.0285\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 3.90555e-05,\\n          \\\"pct\\\": 0.0185\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 2.79487e-05,\\n          \\\"pct\\\": 0.0133\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 9.1618e-06,\\n          \\\"pct\\\": 0.0043\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 7.8161e-06,\\n          \\\"pct\\\": 0.0037\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 7.5672e-06,\\n          \\\"pct\\\": 0.0036\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 6.4663e-06,\\n          \\\"pct\\\": 0.0031\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 5.7918e-06,\\n          \\\"pct\\\": 0.0027\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 5.5314e-06,\\n          \\\"pct\\\": 0.0026\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.2108772542,\\n      \\\"G_item\\\": 0.815919,\\n      \\\"sigma_tau\\\": 0.0876133124,\\n      \\\"sigma_delta\\\": 0.0197666046,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.35652,\\n        \\\"50\\\": 0.525639,\\n        \\\"75\\\": 0.624363,\\n        \\\"100\\\": 0.689074,\\n        \\\"150\\\": 0.768748,\\n        \\\"200\\\": 0.815919,\\n        \\\"300\\\": 0.869257,\\n        \\\"500\\\": 0.917225,\\n        \\\"1000\\\": 0.956826\\n      },\\n      \\\"min_items_G_0.80\\\": 181\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"benchmark\\\": \\\"gsm8k\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.555764,\\n      \\\"variance_components\\\": {\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0851779363,\\n          \\\"pct\\\": 32.2887\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0399546804,\\n          \\\"pct\\\": 15.1458\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0323736331,\\n          \\\"pct\\\": 12.272\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.0319025451,\\n          \\\"pct\\\": 12.0934\\n        },\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.031630295,\\n          \\\"pct\\\": 11.9902\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0248572384,\\n          \\\"pct\\\": 9.4227\\n        },\\n        \\\"prompt_template:it\\n\\n... [截断: 输出过长，省略 3862 字符] ...\\n\\n      },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.1505083246,\\n      \\\"G_item\\\": 0.830683,\\n      \\\"sigma_tau\\\": 0.073598366,\\n      \\\"sigma_delta\\\": 0.015001447,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.380137,\\n        \\\"50\\\": 0.550869,\\n        \\\"75\\\": 0.64786,\\n        \\\"100\\\": 0.7104,\\n        \\\"150\\\": 0.786305,\\n        \\\"200\\\": 0.830683,\\n        \\\"300\\\": 0.88037,\\n        \\\"500\\\": 0.924615,\\n        \\\"1000\\\": 0.960831\\n      },\\n      \\\"min_items_G_0.80\\\": 164\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"benchmark\\\": \\\"hellaswag\\\",\\n      \\\"n_observations\\\": 230400,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 4,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"grand_mean_accuracy\\\": 0.707951,\\n      \\\"variance_components\\\": {\\n        \\\"item_id\\\": {\\n          \\\"estimate\\\": 0.0925973765,\\n          \\\"pct\\\": 44.4653\\n        },\\n        \\\"model:item_id\\\": {\\n          \\\"estimate\\\": 0.067275291,\\n          \\\"pct\\\": 32.3056\\n        },\\n        \\\"residual\\\": {\\n          \\\"estimate\\\": 0.0355150977,\\n          \\\"pct\\\": 17.0544\\n        },\\n        \\\"prompt_template:item_id\\\": {\\n          \\\"estimate\\\": 0.0072872914,\\n          \\\"pct\\\": 3.4994\\n        },\\n        \\\"model\\\": {\\n          \\\"estimate\\\": 0.0030982444,\\n          \\\"pct\\\": 1.4878\\n        },\\n        \\\"seed:item_id\\\": {\\n          \\\"estimate\\\": 0.0011455453,\\n          \\\"pct\\\": 0.5501\\n        },\\n        \\\"temperature:item_id\\\": {\\n          \\\"estimate\\\": 0.0007745323,\\n          \\\"pct\\\": 0.3719\\n        },\\n        \\\"model:prompt_template\\\": {\\n          \\\"estimate\\\": 0.0003722689,\\n          \\\"pct\\\": 0.1788\\n        },\\n        \\\"prompt_template\\\": {\\n          \\\"estimate\\\": 6.35711e-05,\\n          \\\"pct\\\": 0.0305\\n        },\\n        \\\"temperature\\\": {\\n          \\\"estimate\\\": 3.50048e-05,\\n          \\\"pct\\\": 0.0168\\n        },\\n        \\\"model:seed\\\": {\\n          \\\"estimate\\\": 2.71821e-05,\\n          \\\"pct\\\": 0.0131\\n        },\\n        \\\"temperature:seed\\\": {\\n          \\\"estimate\\\": 2.02654e-05,\\n          \\\"pct\\\": 0.0097\\n        },\\n        \\\"temperature:prompt_template\\\": {\\n          \\\"estimate\\\": 1.92324e-05,\\n          \\\"pct\\\": 0.0092\\n        },\\n        \\\"model:temperature\\\": {\\n          \\\"estimate\\\": 1.41571e-05,\\n          \\\"pct\\\": 0.0068\\n        },\\n        \\\"prompt_template:seed\\\": {\\n          \\\"estimate\\\": 1.3431e-06,\\n          \\\"pct\\\": 0.0006\\n        },\\n        \\\"model:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"temperature:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"prompt_template:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed:ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering:item_id\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"seed\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        },\\n        \\\"ordering\\\": {\\n          \\\"estimate\\\": 0.0,\\n          \\\"pct\\\": 0.0\\n        }\\n      },\\n      \\\"total_variance\\\": 0.2082464035,\\n      \\\"G_item\\\": 0.832413,\\n      \\\"sigma_tau\\\": 0.0925973765,\\n      \\\"sigma_delta\\\": 0.0186423908,\\n      \\\"d_study_curve\\\": {\\n        \\\"25\\\": 0.383051,\\n        \\\"50\\\": 0.553922,\\n        \\\"75\\\": 0.650672,\\n        \\\"100\\\": 0.712934,\\n        \\\"150\\\": 0.788372,\\n        \\\"200\\\": 0.832413,\\n        \\\"300\\\": 0.881665,\\n        \\\"500\\\": 0.925471,\\n        \\\"1000\\\": 0.961293\\n      },\\n      \\\"min_items_G_0.80\\\": 162\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"gradient_check\\\": {\\n      \\\"mmlu\\\": 41.5471,\\n      \\\"gsm8k\\\": 11.9902,\\n      \\\"arc\\\": 48.8999,\\n      \\\"hellaswag\\\": 44.4653\\n    },\\n    \\\"g_item_by_benchmark\\\": {\\n      \\\"mmlu\\\": 0.815919,\\n      \\\"gsm8k\\\": 0.728948,\\n      \\\"arc\\\": 0.830683,\\n      \\\"hellaswag\\\": 0.832413\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see the data:
+- 6 models in exp002: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, Qwen3-8B
+- 5 benchmarks: arc, gsm8k, hellaswag, math, mmlu
+- 57,600 observations with NaN benchmark (likely from some other data)
+- Previous analysis was on 4 models (Llama, Gemma, Mistral, Qwen) × 4 benchmarks (no MATH)
+
+
+- The user mentioned 8 models, but I'm only seeing 6 in exp002, so there might be additional models from exp001 or another experiment that I need to account for. I'm seeing 6 models total in the exp002 directory, not 8 as the user mentioned—maybe they're counting configurations differently or including the 4 models from exp001. I'll proceed with the 6 models I've identified and note the discrepancy.
+
+Now I need to update the analysis scripts to handle 5 benchmarks across all analyses: the permutation test should work as-is, but I'll need to modify the LOBO script to use all 5 benchmarks instead of the hardcoded 4, and update the D-study and cross-model G-study scripts to work with the current dataset.
+
+I'm noticing the math benchmark has a different observation count (325,600) compared to the others (345,600), which suggests it has fewer items or a different experimental structure than the other benchmarks.
+
+Let me just work with whatever data exists for each benchmark rather than trying to force consistency. I'm also seeing that the NaN benchmark data might be incomplete or unlabeled observations, so I'll handle that flexibly too.
+
+For the analysis script, I need to focus on what each method actually requires — the permutation test and LOBO just need variance component percentages per benchmark, while the D-study needs the full Henderson equations for each one.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "44dcb277-7691-4dcc-a6d7-fd981f409d60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U52BKZ7xwCT1pA9YqtsZao",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6280,
+      "cache_read_input_tokens": 51665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+Data has 6 models × 5 benchmarks (1.77M obs). Previous analysis was 4 models × 4 benchmarks. Let me write a comprehensive analysis script for all 4 analyses.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "9be7757b-2416-4722-ad88-09df784e53b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U52BKZ7xwCT1pA9YqtsZao",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6280,
+      "cache_read_input_tokens": 51665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0119q8L1Fb9GTCUhHjzgjytK`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat > /root/nlp_variance_gtheory/scripts/exp004_cross_benchmark_analysis.py << 'PYEOF'\n\"\"\"exp-004: Cross-benchmark comprehensive analysis (6 models × 5 benchmarks).\n\nB1: Permutation test (Spearman rho, exact, 5! = 120)\nB2: Leave-one-benchmark-out stability\nB3: D-study projections (per-benchmark, all 6 models)\nB4: Cross-model G-study (6 models, model-as-facet)\n\nOutput: results/exp004_8model_analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport time\nfrom itertools import combinations, permutations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\nfrom src.config.model_paths import normalize_model_name\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\nBENCHMARK_ORDER = [\"mmlu\", \"arc\", \"hellaswag\", \"gsm8k\", \"math\"]\nG_TARGETS = [0.80, 0.90, 0.95]\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\n\n\ndef load_data(data_dir: str) -> pd.DataFrame:\n    data_path = Path(data_dir)\n    jsonl_files = sorted(data_path.glob(\"*.jsonl\"))\n    if not jsonl_files:\n        raise FileNotFoundError(f\"No JSONL files in {data_dir}\")\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\n    df = pd.concat(frames, ignore_index=True)\n    if \"top_logprobs\" in df.columns:\n        df.drop(columns=[\"top_logprobs\"], inplace=True)\n    df = df.dropna(subset=[\"benchmark\"])\n    df[\"model\"] = df[\"model\"].map(normalize_model_name).fillna(df[\"model\"])\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n    return df\n\n\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\n    \"\"\"Henderson Method I -> variance components.\"\"\"\n    grand_mean = df[\"correct\"].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n\n    effects = {}\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[\"correct\"].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[\"correct\"].mean()\n        main_fi = df.groupby(fi, observed=True)[\"correct\"].mean()\n        main_fj = df.groupby(fj, observed=True)[\"correct\"].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[\"correct\"] - grand_mean) ** 2).sum())\n    ss_model_sum = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model_sum)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n        vc[key] = max(0.0, raw)\n\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        interaction_contrib = 0.0\n        for fj in facets:\n            if fj == fi:\n                continue\n            int_key = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\n            interaction_contrib += coeff_ij * vc[int_key]\n        raw = (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\n        vc[fi] = max(0.0, raw)\n\n    vc[\"residual\"] = ms_res\n    return vc, {k: int(v) for k, v in n_levels.items()}\n\n\ndef compute_pcts(vc: dict) -> dict[str, float]:\n    total = sum(vc.values())\n    return {k: v / total * 100 if total > 0 else 0.0 for k, v in vc.items()}\n\n\n# ============================================================\n# B1: Permutation test\n# ============================================================\ndef spearman_permutation_test(values: dict, order: list, direction: str):\n    \"\"\"Exact permutation test using Spearman rho.\"\"\"\n    observed = [values[bm] for bm in order]\n    n = len(order)\n    if direction == \"decreasing\":\n        expected = list(range(n, 0, -1))\n    else:\n        expected = list(range(1, n + 1))\n\n    obs_rho, _ = spearmanr(expected, observed)\n    obs_tau, tau_p = kendalltau(expected, observed)\n\n    all_perms = list(permutations(range(n)))\n    n_extreme = 0\n    for perm in all_perms:\n        perm_vals = [observed[i] for i in perm]\n        rho, _ = spearmanr(expected, perm_vals)\n        if direction == \"decreasing\":\n            if rho >= obs_rho:\n                n_extreme += 1\n        else:\n            if rho >= obs_rho:\n                n_extreme += 1\n\n    p_value = n_extreme / len(all_perms)\n    return {\n        \"observed_values\": {bm: round(values[bm], 4) for bm in order},\n        \"observed_rho\": round(float(obs_rho), 6),\n        \"p_value\": round(p_value, 6),\n        \"n_extreme\": n_extreme,\n        \"n_permutations\": len(all_perms),\n        \"significant_at_0.05\": p_value < 0.05,\n        \"kendall_tau\": round(float(obs_tau), 6),\n        \"kendall_p\": round(float(tau_p), 6),\n    }\n\n\ndef run_b1_permutation_test(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B1: Permutation test (5 benchmarks)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    benchmark_stats = {}\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\"benchmark\"].unique()]\n\n    for bm in available:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, _ = compute_henderson_i(df_bm, FACETS)\n        pcts = compute_pcts(vc)\n        benchmark_stats[bm] = {\n            \"item_id_pct\": pcts.get(\"item_id\", 0.0),\n            \"model_item_pct\": pcts.get(\"model:item_id\", 0.0),\n            \"n_obs\": len(df_bm),\n            \"accuracy\": float(df_bm[\"correct\"].mean()),\n        }\n        print(f\"  {bm}: item_id={pcts.get('item_id', 0):.2f}%, \"\n              f\"model:item={pcts.get('model:item_id', 0):.2f}%\", flush=True)\n\n    item_pcts = {bm: benchmark_stats[bm][\"item_id_pct\"] for bm in available}\n    model_item_pcts = {bm: benchmark_stats[bm][\"model_item_pct\"] for bm in available}\n\n    test_item = spearman_permutation_test(item_pcts, available, \"decreasing\")\n    test_model_item = spearman_permutation_test(model_item_pcts, available, \"increasing\")\n\n    result = {\n        \"experiment\": \"exp-004 (6 models × 5 benchmarks)\",\n        \"test_statistic\": \"spearman_rho\",\n        \"n_benchmarks\": len(available),\n        \"n_permutations\": test_item[\"n_permutations\"],\n        \"benchmark_order_hypothesis\": BENCHMARK_ORDER,\n        \"benchmarks_used\": available,\n        \"benchmark_stats\": benchmark_stats,\n        \"item_id_gradient\": {\n            \"hypothesis\": \"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\",\n            \"direction\": \"decreasing (knowledge-retrieval → reasoning)\",\n            **test_item,\n        },\n        \"model_item_gradient\": {\n            \"hypothesis\": \"model×item increases from MC to FF\",\n            \"direction\": \"increasing\",\n            **test_model_item,\n        },\n    }\n\n    out_path = output_dir / \"permutation_test_5bm.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    print(f\"\\n  item_id gradient:    rho={test_item['observed_rho']:.4f}, \"\n          f\"p={test_item['p_value']:.4f}\", flush=True)\n    print(f\"  model:item gradient: rho={test_model_item['observed_rho']:.4f}, \"\n          f\"p={test_model_item['p_value']:.4f}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B2: Leave-one-benchmark-out\n# ============================================================\ndef run_b2_lobo(df: pd.DataFrame, benchmark_stats: dict, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B2: Leave-one-benchmark-out stability\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    available = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\n\n    full_item_vals = [benchmark_stats[bm][\"item_id_pct\"] for bm in available]\n    full_mi_vals = [benchmark_stats[bm][\"model_item_pct\"] for bm in available]\n\n    print(f\"  Full set item_id%:    {[f'{v:.2f}' for v in full_item_vals]}\", flush=True)\n    print(f\"  Full set model:item%: {[f'{v:.2f}' for v in full_mi_vals]}\", flush=True)\n\n    lobo_results = {}\n    for drop_bm in available:\n        remaining = [bm for bm in available if bm != drop_bm]\n        item_vals = {bm: benchmark_stats[bm][\"item_id_pct\"] for bm in remaining}\n        mi_vals = {bm: benchmark_stats[bm][\"model_item_pct\"] for bm in remaining}\n\n        test_item = spearman_permutation_test(item_vals, remaining, \"decreasing\")\n        test_mi = spearman_permutation_test(mi_vals, remaining, \"increasing\")\n\n        item_list = [item_vals[bm] for bm in remaining]\n        mi_list = [mi_vals[bm] for bm in remaining]\n        item_monotonic = all(item_list[i] >= item_list[i + 1] for i in range(len(item_list) - 1))\n        mi_monotonic = all(mi_list[i] <= mi_list[i + 1] for i in range(len(mi_list) - 1))\n\n        lobo_results[drop_bm] = {\n            \"dropped\": drop_bm,\n            \"remaining\": remaining,\n            \"item_id_values\": {bm: round(benchmark_stats[bm][\"item_id_pct\"], 4) for bm in remaining},\n            \"model_item_values\": {bm: round(benchmark_stats[bm][\"model_item_pct\"], 4) for bm in remaining},\n            \"item_id_monotonic_decreasing\": item_monotonic,\n            \"model_item_monotonic_increasing\": mi_monotonic,\n            \"both_monotonic\": item_monotonic and mi_monotonic,\n            \"item_id_spearman_rho\": test_item[\"observed_rho\"],\n            \"item_id_p_value\": test_item[\"p_value\"],\n            \"model_item_spearman_rho\": test_mi[\"observed_rho\"],\n            \"model_item_p_value\": test_mi[\"p_value\"],\n        }\n\n        status = \"PRESERVED\" if (item_monotonic and mi_monotonic) else \"BROKEN\"\n        print(f\"  Drop {drop_bm}: {status} | item rho={test_item['observed_rho']:.3f} \"\n              f\"p={test_item['p_value']:.3f}, mi rho={test_mi['observed_rho']:.3f} \"\n              f\"p={test_mi['p_value']:.3f}\", flush=True)\n\n    n_preserved = sum(1 for r in lobo_results.values() if r[\"both_monotonic\"])\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"leave_one_benchmark_out\",\n        \"benchmark_order\": available,\n        \"full_set\": {\n            \"item_id_values\": {bm: round(benchmark_stats[bm][\"item_id_pct\"], 4) for bm in available},\n            \"model_item_values\": {bm: round(benchmark_stats[bm][\"model_item_pct\"], 4) for bm in available},\n        },\n        \"lobo_results\": lobo_results,\n        \"summary\": {\n            \"n_benchmarks\": len(available),\n            \"n_drops\": len(lobo_results),\n            \"n_gradient_preserved\": n_preserved,\n            \"gradient_robust\": n_preserved == len(lobo_results),\n        },\n    }\n\n    out_path = output_dir / \"lobo_stability.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  Gradient preserved: {n_preserved}/{len(lobo_results)}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B3: D-study projections\n# ============================================================\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int, facets: list[str]) -> float:\n    sigma_item = vc.get(\"item_id\", 0.0)\n    n_actual = n_levels[\"item_id\"]\n    non_item = [f for f in facets if f != \"item_id\"]\n\n    sigma_delta_actual = 0.0\n    for comp, est in vc.items():\n        if est == 0.0 or comp == \"item_id\":\n            continue\n        if comp == \"residual\":\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\n            continue\n        facets_in = set(comp.split(\":\"))\n        if \"item_id\" not in facets_in:\n            continue\n        other = [f for f in facets_in if f != \"item_id\"]\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\n\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\n    total = sigma_item + sigma_delta_n\n    return sigma_item / total if total > 0 else 0.0\n\n\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, facets: list[str], max_items: int = 5000):\n    for ni in range(1, max_items + 1):\n        g = compute_g_for_n_items(vc, n_levels, ni, facets)\n        if g >= target_g:\n            return ni\n    return None\n\n\ndef run_b3_dstudy(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B3: D-study projections (per-benchmark, all models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\"benchmark\"].unique()]\n    n_models = df[\"model\"].nunique()\n    print(f\"  Models: {n_models}, Benchmarks: {available}\", flush=True)\n\n    results = {}\n    for bm in available:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\n        total_var = sum(vc.values())\n        pcts = compute_pcts(vc)\n\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\"item_id\"], FACETS)\n\n        curve = {}\n        for ni in ITEM_COUNTS:\n            g = compute_g_for_n_items(vc, n_levels, ni, FACETS)\n            curve[str(ni)] = round(g, 6)\n\n        min_items = {}\n        for target in G_TARGETS:\n            n = find_min_items(vc, n_levels, target, FACETS)\n            min_items[str(target)] = n\n\n        # Multi-facet vs single-condition ratio\n        sigma_item = vc.get(\"item_id\", 0.0)\n        sigma_delta_multi = sum(v for k, v in vc.items() if k != \"item_id\")\n        sigma_single = total_var - sigma_item  # all non-item variance\n        ratio = sigma_single / sigma_delta_multi if sigma_delta_multi > 0 else float(\"inf\")\n\n        results[bm] = {\n            \"n_observations\": len(df_bm),\n            \"n_levels\": n_levels,\n            \"accuracy\": round(float(df_bm[\"correct\"].mean()), 6),\n            \"G_current\": round(g_current, 6),\n            \"item_id_pct\": round(pcts.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts.get(\"model:item_id\", 0), 4),\n            \"d_study_curve\": curve,\n            \"min_items_for_G\": min_items,\n            \"variance_components_pct\": {k: round(v, 4) for k, v in sorted(pcts.items(), key=lambda x: -x[1]) if v > 0.01},\n        }\n\n        m80 = min_items.get(\"0.8\", \">5000\")\n        m90 = min_items.get(\"0.9\", \">5000\")\n        m95 = min_items.get(\"0.95\", \">5000\")\n        print(f\"  {bm:<10} G={g_current:.4f} | min items: G>=.80={m80}, G>=.90={m90}, G>=.95={m95}\", flush=True)\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"dstudy_projections\",\n        \"n_models\": n_models,\n        \"models\": sorted(df[\"model\"].unique()),\n        \"facets\": FACETS,\n        \"g_targets\": G_TARGETS,\n        \"benchmarks\": results,\n    }\n\n    out_path = output_dir / \"dstudy_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B4: Cross-model G-study (model-as-facet)\n# ============================================================\ndef run_b4_cross_model_gstudy(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B4: Cross-model G-study (model-as-facet, MMLU)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    df_mmlu = df[df[\"benchmark\"] == \"mmlu\"].reset_index(drop=True)\n    n_models = df_mmlu[\"model\"].nunique()\n    print(f\"  MMLU: {len(df_mmlu)} obs, {n_models} models\", flush=True)\n    print(f\"  Models: {sorted(df_mmlu['model'].unique())}\", flush=True)\n\n    vc_mmlu, nl_mmlu = compute_henderson_i(df_mmlu, FACETS)\n    pcts_mmlu = compute_pcts(vc_mmlu)\n    g_item_mmlu = compute_g_for_n_items(vc_mmlu, nl_mmlu, nl_mmlu[\"item_id\"], FACETS)\n\n    print(f\"  item_id%:       {pcts_mmlu.get('item_id', 0):.2f}%\", flush=True)\n    print(f\"  model:item_id%: {pcts_mmlu.get('model:item_id', 0):.2f}%\", flush=True)\n    print(f\"  model%:         {pcts_mmlu.get('model', 0):.2f}%\", flush=True)\n    print(f\"  G_item:         {g_item_mmlu:.6f}\", flush=True)\n\n    # Compare with 4-model results\n    prev_4model = {\n        \"item_id_pct\": 41.55,\n        \"model_item_pct\": 32.81,\n        \"model_pct\": 0.75,\n        \"G_item\": 0.8159,\n        \"n_models\": 4,\n    }\n\n    # Per-benchmark cross-model analysis\n    per_bm = {}\n    for bm in BENCHMARK_ORDER:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        if len(df_bm) == 0:\n            continue\n        vc, nl = compute_henderson_i(df_bm, FACETS)\n        pcts = compute_pcts(vc)\n        g_item = compute_g_for_n_items(vc, nl, nl[\"item_id\"], FACETS)\n\n        per_bm[bm] = {\n            \"n_obs\": len(df_bm),\n            \"n_levels\": nl,\n            \"accuracy\": round(float(df_bm[\"correct\"].mean()), 6),\n            \"item_id_pct\": round(pcts.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts.get(\"model:item_id\", 0), 4),\n            \"model_pct\": round(pcts.get(\"model\", 0), 4),\n            \"G_item\": round(g_item, 6),\n            \"top_components\": {k: round(v, 4) for k, v in sorted(pcts.items(), key=lambda x: -x[1])[:6]},\n        }\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"cross_model_gstudy\",\n        \"n_models\": n_models,\n        \"models\": sorted(df[\"model\"].unique()),\n        \"facets\": FACETS,\n        \"mmlu_focus\": {\n            \"n_observations\": len(df_mmlu),\n            \"n_levels\": nl_mmlu,\n            \"item_id_pct\": round(pcts_mmlu.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts_mmlu.get(\"model:item_id\", 0), 4),\n            \"model_pct\": round(pcts_mmlu.get(\"model\", 0), 4),\n            \"G_item\": round(g_item_mmlu, 6),\n            \"variance_components_pct\": {k: round(v, 4) for k, v in sorted(pcts_mmlu.items(), key=lambda x: -x[1]) if v > 0.01},\n        },\n        \"comparison_4model\": prev_4model,\n        \"delta_vs_4model\": {\n            \"item_id_pct_change\": round(pcts_mmlu.get(\"item_id\", 0) - prev_4model[\"item_id_pct\"], 4),\n            \"model_item_pct_change\": round(pcts_mmlu.get(\"model:item_id\", 0) - prev_4model[\"model_item_pct\"], 4),\n            \"G_item_change\": round(g_item_mmlu - prev_4model[\"G_item\"], 6),\n        },\n        \"per_benchmark\": per_bm,\n    }\n\n    out_path = output_dir / \"cross_model_gstudy_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    print(f\"\\n  Per-benchmark summary:\", flush=True)\n    print(f\"  {'Benchmark':<12} {'item_id%':>9} {'m:item%':>9} {'model%':>8} {'G_item':>8}\", flush=True)\n    print(f\"  {'-'*48}\", flush=True)\n    for bm in per_bm:\n        r = per_bm[bm]\n        print(f\"  {bm:<12} {r['item_id_pct']:>8.2f}% {r['model_item_pct']:>8.2f}% \"\n              f\"{r['model_pct']:>7.2f}% {r['G_item']:>8.4f}\", flush=True)\n\n    print(f\"\\n  vs 4-model: item_id% {pcts_mmlu.get('item_id',0):.2f} vs {prev_4model['item_id_pct']:.2f}, \"\n          f\"model:item% {pcts_mmlu.get('model:item_id',0):.2f} vs {prev_4model['model_item_pct']:.2f}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-004 cross-benchmark analysis\")\n    parser.add_argument(\"--data-dir\", default=\"results/exp002\")\n    parser.add_argument(\"--output-dir\", default=\"results/exp004_8model_analysis\")\n    args = parser.parse_args()\n\n    t0 = time.time()\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading data...\", flush=True)\n    df = load_data(args.data_dir)\n    print(f\"Loaded {len(df)} records, {df['model'].nunique()} models, \"\n          f\"{df['benchmark'].nunique()} benchmarks ({time.time()-t0:.1f}s)\", flush=True)\n    print(f\"Models: {sorted(df['model'].unique())}\", flush=True)\n    print(f\"Benchmarks: {sorted(df['benchmark'].unique())}\", flush=True)\n\n    # B1\n    b1 = run_b1_permutation_test(df, output_dir)\n\n    # B2 (reuse B1's benchmark_stats)\n    run_b2_lobo(df, b1[\"benchmark_stats\"], output_dir)\n\n    # B3\n    run_b3_dstudy(df, output_dir)\n\n    # B4\n    run_b4_cross_model_gstudy(df, output_dir)\n\n    print(f\"\\n{'=' * 70}\", flush=True)\n    print(f\"All analyses complete. Runtime: {time.time()-t0:.1f}s\", flush=True)\n    print(f\"Output: {output_dir}/\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "46b92187-52d7-4c08-9d6f-5b6d413743ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U52BKZ7xwCT1pA9YqtsZao",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6280,
+      "cache_read_input_tokens": 51665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6280
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T21:36:28.031Z_
+
+<details><summary>↩ Tool result · `toolu_0119q8L1Fb9GTCUhHjzgjytK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "d109f9c9-645b-42f7-9cd2-6cc2e443c9ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+Script written. Running the analysis now — this will process ~1.7M records across 4 analyses.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "e19d1a96-e95d-4f90-a0a8-2d37addb9ca8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNr9SZ7ZKYgu3xX5esbYUH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9414,
+      "cache_read_input_tokens": 57945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9414
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01FjkZ7LdrrHE5QmjC6dC7TF`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "3719dc04-7de9-449f-b8a5-f5a9da3f3038",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TNr9SZ7ZKYgu3xX5esbYUH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9414,
+      "cache_read_input_tokens": 57945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9414
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T21:37:03.646Z_
+
+<details><summary>↩ Tool result · `toolu_01FjkZ7LdrrHE5QmjC6dC7TF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1'\\n\\nStdout:\\n\\nLoading data...\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "c94a4d47-bf71-4984-9cfa-d48204c93820",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\nLoading data...\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1'\\n\\nStdout:\\n\\nLoading data...\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The loading itself takes long. Let me run it with nohup in the background.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "54feffa2-08d6-4a29-b151-1a6b7d48e027",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT4Dwdo9jbravL6aEHRLto",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 411,
+      "cache_read_input_tokens": 67359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 411
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+Data loading is slow with 1.7M records. Running in background with nohup.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "25714437-cc06-41f7-ae65-4981645b0546",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT4Dwdo9jbravL6aEHRLto",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 411,
+      "cache_read_input_tokens": 67359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 411
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C3CGRBgdUiyUAxHu4KCVT1`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "7b47f15a-99b6-40d4-a414-ae64fa929049",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HT4Dwdo9jbravL6aEHRLto",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 411,
+      "cache_read_input_tokens": 67359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 411
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T21:37:39.548Z_
+
+<details><summary>↩ Tool result · `toolu_01C3CGRBgdUiyUAxHu4KCVT1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=201424\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.05}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8545266f-e24f-4f17-8d54-b124af5070a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=201424\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.05}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=201424\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.05}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Got the PID 201424. The shell timed out because of the `source` and `conda activate` commands taking time, but the nohup process should be running. Let me check in a moment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4d24cad5-1f31-42a6-a7df-53b0df70c8e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AktYNiMfEnBsgZ49rBDxdg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 67770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+PID 201424 launched. Let me check progress.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6027fc4f-fbab-498b-9d2d-840d9160e651",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AktYNiMfEnBsgZ49rBDxdg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 67770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018bcgneBPun1ETpKwFe7KPq`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -30 /tmp/exp004_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "37c39bb7-b445-4bcd-8b48-a205de7dcd60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AktYNiMfEnBsgZ49rBDxdg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 471,
+      "cache_read_input_tokens": 67770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 471
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T21:37:45.057Z_
+
+<details><summary>↩ Tool result · `toolu_018bcgneBPun1ETpKwFe7KPq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "33297315-b99b-4b84-b882-c22712c71d47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+Still loading. Let me wait a bit more.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "bef8494c-e6b3-4354-93ed-227e5e2c5c4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dv7sCKqpbNW6fZSXrBbToo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 68241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01A1unTKdXboZ8Acnc67A7Fg`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -50 /tmp/exp004_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "afeda510-e8f5-4393-af8b-07dc60aa35f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dv7sCKqpbNW6fZSXrBbToo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 249,
+      "cache_read_input_tokens": 68241,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 249
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T21:37:48.852Z_
+
+<details><summary>↩ Tool result · `toolu_01A1unTKdXboZ8Acnc67A7Fg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%\\n  arc: item_id=42.46%, model:item=38.05%\\n  hellaswag: item_id=32.20%, model:item=37.14%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "eac4e904-fa00-4a16-bd52-cdf37825522b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%\\\\n  arc: item_id=42.46%, model:item=38.05%\\\\n  hellaswag: item_id=32.20%, model:item=37.14%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%\\n  arc: item_id=42.46%, model:item=38.05%\\n  hellaswag: item_id=32.20%, model:item=37.14%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It's loading and processing. I can see 8 models after all: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B. There must be additional JSONL files that I didn't notice, or the normalize_model_name function maps some raw model names to these. Good.
+
+1.94M records, 8 models, 5 benchmarks. 
+
+Now I'm running the first benchmark and waiting for it to finish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "a22b56d9-5d44-476d-a258-74faf50ae5c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXvw2RzoSSjV1yNWxb5dN3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 68490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+8 models confirmed (including OLMo-2-7B and Yi-1.5-9B). B1 is running. Let me wait for completion.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "9bec8644-e4b9-4f86-909c-113870087c07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXvw2RzoSSjV1yNWxb5dN3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 68490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014VUTueLB8GoJTFxaHn3JLS`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -60 /tmp/exp004_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "7688d19d-db08-48a8-aec5-d326117ac027",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXvw2RzoSSjV1yNWxb5dN3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 538,
+      "cache_read_input_tokens": 68490,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 538
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-21T21:37:55.807Z_
+
+<details><summary>↩ Tool result · `toolu_014VUTueLB8GoJTFxaHn3JLS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%\\n  arc: item_id=42.46%, model:item=38.05%\\n  hellaswag: item_id=32.20%, model:item=37.14%\\n  gsm8k: item_id=16.86%, model:item=14.55%\\n  math: item_id=24.42%, model:item=17.02%\\n\\n  item_id gradient:    rho=0.8000, p=0.0667\\n  model:item gradient: rho=-0.6000, p=0.8833\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability\\n======================================================================\\n  Full set item_id%:    ['40.48', '42.46', '32.20', '16.86', '24.42']\\n  Full set model:item%: ['31.60', '38.05', '37.14', '14.55', '17.02']\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections (per-benchmark, all models)\\n======================================================================\\n  Models: 8, Benchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\n  mmlu       G=0.8705 | min items: G>=.80=119, G>=.90=268, G>=.95=566\\n  arc        G=0.8623 | min items: G>=.80=128, G>=.90=288, G>=.95=607\\n  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study (model-as-facet, MMLU)\\n======================================================================\\n  MMLU: 345600 obs, 6 models\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  item_id%:       40.48%\\n  model:item_id%: 31.60%\\n  model%:         3.05%\\n  G_item:         0.870521\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "47cc41e0-d268-4156-9367-794e6d2b661a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%\\\\n  arc: item_id=42.46%, model:item=38.05%\\\\n  hellaswag: item_id=32.20%, model:item=37.14%\\\\n  gsm8k: item_id=16.86%, model:item=14.55%\\\\n  math: item_id=24.42%, model:item=17.02%\\\\n\\\\n  item_id gradient:    rho=0.8000, p=0.0667\\\\n  model:item gradient: rho=-0.6000, p=0.8833\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability\\\\n======================================================================\\\\n  Full set item_id%:    ['40.48', '42.46', '32.20', '16.86', '24.42']\\\\n  Full set model:item%: ['31.60', '38.05', '37.14', '14.55', '17.02']\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections (per-benchmark, all models)\\\\n======================================================================\\\\n  Models: 8, Benchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\\\n  mmlu       G=0.8705 | min items: G>=.80=119, G>=.90=268, G>=.95=566\\\\n  arc        G=0.8623 | min items: G>=.80=128, G>=.90=288, G>=.95=607\\\\n  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study (model-as-facet, MMLU)\\\\n======================================================================\\\\n  MMLU: 345600 obs, 6 models\\\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  item_id%:       40.48%\\\\n  model:item_id%: 31.60%\\\\n  model%:         3.05%\\\\n  G_item:         0.870521\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%\\n  arc: item_id=42.46%, model:item=38.05%\\n  hellaswag: item_id=32.20%, model:item=37.14%\\n  gsm8k: item_id=16.86%, model:item=14.55%\\n  math: item_id=24.42%, model:item=17.02%\\n\\n  item_id gradient:    rho=0.8000, p=0.0667\\n  model:item gradient: rho=-0.6000, p=0.8833\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability\\n======================================================================\\n  Full set item_id%:    ['40.48', '42.46', '32.20', '16.86', '24.42']\\n  Full set model:item%: ['31.60', '38.05', '37.14', '14.55', '17.02']\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections (per-benchmark, all models)\\n======================================================================\\n  Models: 8, Benchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\n  mmlu       G=0.8705 | min items: G>=.80=119, G>=.90=268, G>=.95=566\\n  arc        G=0.8623 | min items: G>=.80=128, G>=.90=288, G>=.95=607\\n  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study (model-as-facet, MMLU)\\n======================================================================\\n  MMLU: 345600 obs, 6 models\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  item_id%:       40.48%\\n  model:item_id%: 31.60%\\n  model%:         3.05%\\n  G_item:         0.870521\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CsCQoE4dp6LVzWWfS7tVjB`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -30 /tmp/exp004_run.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "86974649-30ee-43cf-914a-ef6e3471bd94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGu2pfeCX118AnDSairzpp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1514,
+      "cache_read_input_tokens": 69028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1514
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T21:37:59.071Z_
+
+<details><summary>↩ Tool result · `toolu_01CsCQoE4dp6LVzWWfS7tVjB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study (model-as-facet, MMLU)\\n======================================================================\\n  MMLU: 345600 obs, 6 models\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  item_id%:       40.48%\\n  model:item_id%: 31.60%\\n  model%:         3.05%\\n  G_item:         0.870521\\n\\n  Per-benchmark summary:\\n  Benchmark     item_id%   m:item%   model%   G_item\\n  ------------------------------------------------\\n  mmlu            40.48%    31.60%    3.05%   0.8705\\n  arc             42.46%    38.05%    5.23%   0.8623\\n  hellaswag       32.20%    37.14%    6.69%   0.8240\\n  gsm8k           16.86%    14.55%   10.75%   0.8629\\n  math            24.42%    17.02%    8.08%   0.8913\\n\\n  vs 4-model: item_id% 40.48 vs 41.55, model:item% 31.60 vs 32.81\\n  -> results/exp004_8model_analysis/cross_model_gstudy_8model.json\\n\\n======================================================================\\nAll analyses complete. Runtime: 47.8s\\nOutput: results/exp004_8model_analysis/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "37609273-2a63-442d-ae7d-7dcddec68230",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study (model-as-facet, MMLU)\\\\n======================================================================\\\\n  MMLU: 345600 obs, 6 models\\\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  item_id%:       40.48%\\\\n  model:item_id%: 31.60%\\\\n  model%:         3.05%\\\\n  G_item:         0.870521\\\\n\\\\n  Per-benchmark summary:\\\\n  Benchmark     item_id%   m:item%   model%   G_item\\\\n  ------------------------------------------------\\\\n  mmlu            40.48%    31.60%    3.05%   0.8705\\\\n  arc             42.46%    38.05%    5.23%   0.8623\\\\n  hellaswag       32.20%    37.14%    6.69%   0.8240\\\\n  gsm8k           16.86%    14.55%   10.75%   0.8629\\\\n  math            24.42%    17.02%    8.08%   0.8913\\\\n\\\\n  vs 4-model: item_id% 40.48 vs 41.55, model:item% 31.60 vs 32.81\\\\n  -> results/exp004_8model_analysis/cross_model_gstudy_8model.json\\\\n\\\\n======================================================================\\\\nAll analyses complete. Runtime: 47.8s\\\\nOutput: results/exp004_8model_analysis/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study (model-as-facet, MMLU)\\n======================================================================\\n  MMLU: 345600 obs, 6 models\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\n  item_id%:       40.48%\\n  model:item_id%: 31.60%\\n  model%:         3.05%\\n  G_item:         0.870521\\n\\n  Per-benchmark summary:\\n  Benchmark     item_id%   m:item%   model%   G_item\\n  ------------------------------------------------\\n  mmlu            40.48%    31.60%    3.05%   0.8705\\n  arc             42.46%    38.05%    5.23%   0.8623\\n  hellaswag       32.20%    37.14%    6.69%   0.8240\\n  gsm8k           16.86%    14.55%   10.75%   0.8629\\n  math            24.42%    17.02%    8.08%   0.8913\\n\\n  vs 4-model: item_id% 40.48 vs 41.55, model:item% 31.60 vs 32.81\\n  -> results/exp004_8model_analysis/cross_model_gstudy_8model.json\\n\\n======================================================================\\nAll analyses complete. Runtime: 47.8s\\nOutput: results/exp004_8model_analysis/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All analyses completed. Let me note an issue: B4 shows MMLU has only 6 models, not 8. This is because the OLMo-2-7B and Yi-1.5-9B data might not have MMLU data, or the MMLU filtering happened differently. Actually looking more carefully, the script filters by `df["benchmark"] == "mmlu"` so it should include all models that have MMLU data. The issue is that in B1-B3, the analysis uses ALL data (which includes 8 models), but in B4 the MMLU-specific subset only has 6 models.
+
+
+The full dataset has 1,939,200 records across 8 models, but MMLU only shows 345,600 records with 6 models—suggesting OLMo-2-7B and Yi-1.5-9B either lack MMLU data or use different benchmark labels. I should verify whether B1-B3 compute Henderson I across all available data per benchmark, which could explain the different model counts.
+
+There's a critical issue: the model:item gradient test shows rho=-0.6 with p=0.88, meaning the gradient is actually decreasing from MC to FF rather than increasing—this directly contradicts the hypothesis. The item_id gradient itself is marginally significant (rho=0.8, p=0.067) but fails to reach p<0.05, and the ordering across benchmarks (mmlu=40.48, arc=42.46, hellaswag=32.20, gsm8k=16.86, math=24.42) breaks the expected monotonic pattern since arc exceeds mmlu and math exceeds gsm8k.
+
+For LOBO, all five drops are marked BROKEN, indicating the gradient isn't robust. The model:item gradient data itself (mmlu=31.60, arc=38.05, hellaswag=37.14, gsm8k=14.55, math=17.02) shows MC benchmarks clustering higher than FF ones, which is the opposite direction from what was predicted. The pattern is becoming clearer: MC benchmarks consistently show higher item_id percentages than FF benchmarks, with only a few exceptions breaking the trend. The data actually shows the opposite pattern—model:item% is higher for multiple-choice benchmarks than free-form ones, which contradicts the hypothesis that it should increase with cognitive complexity. I should verify this against the earlier 4-benchmark result and check whether there's a data filtering issue with the models included in each benchmark analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "ae97e8a2-f245-4592-87ab-8e475520ace8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NLjEjiarHjm2tQtNnKLv6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 70542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+All 4 analyses completed in 48s. Let me read the output files and check a data consistency issue (MMLU shows only 6 models).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "3ed3b23a-fd09-47bc-8ee4-67d4bbf1f114",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NLjEjiarHjm2tQtNnKLv6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 70542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EPVFEZwUYBxF31rWEjHega`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf = df.dropna(subset=['benchmark'])\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "e7b798f6-8870-4a04-a651-e1f736e83498",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NLjEjiarHjm2tQtNnKLv6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 744,
+      "cache_read_input_tokens": 70542,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T21:39:02.708Z_
+
+<details><summary>↩ Tool result · `toolu_01EPVFEZwUYBxF31rWEjHega`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nfrom src.config.model_paths import normalize_model_name\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\ndf = df.dropna(subset=[\\\\'benchmark\\\\'])\\\\ndf[\\\\'model\\\\'] = df[\\\\'model\\\\'].map(normalize_model_name).fillna(df[\\\\'model\\\\'])\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}\\\\')\\\\n\\\"\\\\n'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "96b983ae-03af-43a1-bd83-24f80920cd6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nfrom src.config.model_paths import normalize_model_name\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\ndf = df.dropna(subset=[\\\\\\\\'benchmark\\\\\\\\'])\\\\\\\\ndf[\\\\\\\\'model\\\\\\\\'] = df[\\\\\\\\'model\\\\\\\\'].map(normalize_model_name).fillna(df[\\\\\\\\'model\\\\\\\\'])\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\"\\\\nimport pandas as pd, glob\\\\nfrom src.config.model_paths import normalize_model_name\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\'results/exp002/*.jsonl\\\\'))]\\\\ndf=pd.concat(frames)\\\\ndf = df.dropna(subset=[\\\\'benchmark\\\\'])\\\\ndf[\\\\'model\\\\'] = df[\\\\'model\\\\'].map(normalize_model_name).fillna(df[\\\\'model\\\\'])\\\\nfor bm in sorted(df[\\\\'benchmark\\\\'].unique()):\\\\n    sub = df[df[\\\\'benchmark\\\\']==bm]\\\\n    print(f\\\\'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}\\\\')\\\\n\\\"\\\\n'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VJFtWfQEY4hS2F9rPGrbVH`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "grep -l \"OLMo\\|Yi-1.5\\|olmo\\|yi\" /root/nlp_variance_gtheory/results/exp002/*.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4430fb36-a6f6-4e56-bb19-48c46795f416",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SGEgG1b1CRFbg3fNvF1PME",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2095,
+      "cache_read_input_tokens": 71286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2095
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T21:39:08.355Z_
+
+<details><summary>↩ Tool result · `toolu_01VJFtWfQEY4hS2F9rPGrbVH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "10fb5146-6ff9-4a5f-b173-eab01c1f4a38",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019WEenByZkqq3eQkbRzusiy`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/permutation_test_5bm.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "7ce7744a-a85b-46a9-8ff6-75528dcaa185",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SGEgG1b1CRFbg3fNvF1PME",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2095,
+      "cache_read_input_tokens": 71286,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2095
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-21T21:39:09.935Z_
+
+<details><summary>↩ Tool result · `toolu_019WEenByZkqq3eQkbRzusiy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004 (6 models \\\\u00d7 5 benchmarks)\\\",\\n  \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n  \\\"n_benchmarks\\\": 5,\\n  \\\"n_permutations\\\": 120,\\n  \\\"benchmark_order_hypothesis\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmarks_used\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmark_stats\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"item_id_pct\\\": 40.48276678578829,\\n      \\\"model_item_pct\\\": 31.603590700649608,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.6694762731481482\\n    },\\n    \\\"arc\\\": {\\n      \\\"item_id_pct\\\": 42.45972536691959,\\n      \\\"model_item_pct\\\": 38.04902782203434,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.7903935185185185\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"item_id_pct\\\": 32.20167896386697,\\n      \\\"model_item_pct\\\": 37.1442293164112,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.7192013888888888\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"item_id_pct\\\": 16.855944611612735,\\n      \\\"model_item_pct\\\": 14.551490334109179,\\n      \\\"n_obs\\\": 460800,\\n      \\\"accuracy\\\": 0.5819227430555556\\n    },\\n    \\\"math\\\": {\\n      \\\"item_id_pct\\\": 24.422687467416722,\\n      \\\"model_item_pct\\\": 17.018510947463135,\\n      \\\"n_obs\\\": 441600,\\n      \\\"accuracy\\\": 0.2936911231884058\\n    }\\n  },\\n  \\\"item_id_gradient\\\": {\\n    \\\"hypothesis\\\": \\\"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\\\",\\n    \\\"direction\\\": \\\"decreasing (knowledge-retrieval \\\\u2192 reasoning)\\\",\\n    \\\"observed_values\\\": {\\n      \\\"mmlu\\\": 40.4828,\\n      \\\"arc\\\": 42.4597,\\n      \\\"hellaswag\\\": 32.2017,\\n      \\\"gsm8k\\\": 16.8559,\\n      \\\"math\\\": 24.4227\\n    },\\n    \\\"observed_rho\\\": 0.8,\\n    \\\"p_value\\\": 0.066667,\\n    \\\"n_extreme\\\": 8,\\n    \\\"n_permutations\\\": 120,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": 0.6,\\n    \\\"kendall_p\\\": 0.233333\\n  },\\n  \\\"model_item_gradient\\\": {\\n    \\\"hypothesis\\\": \\\"model\\\\u00d7item increases from MC to FF\\\",\\n    \\\"direction\\\": \\\"increasing\\\",\\n    \\\"observed_values\\\": {\\n      \\\"mmlu\\\": 31.6036,\\n      \\\"arc\\\": 38.049,\\n      \\\"hellaswag\\\": 37.1442,\\n      \\\"gsm8k\\\": 14.5515,\\n      \\\"math\\\": 17.0185\\n    },\\n    \\\"observed_rho\\\": -0.6,\\n    \\\"p_value\\\": 0.883333,\\n    \\\"n_extreme\\\": 106,\\n    \\\"n_permutations\\\": 120,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.4,\\n    \\\"kendall_p\\\": 0.483333\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "39821f7b-1ad0-4c01-9b7c-3052e73bdf1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004 (6 models \\\\\\\\u00d7 5 benchmarks)\\\\\\\",\\\\n  \\\\\\\"test_statistic\\\\\\\": \\\\\\\"spearman_rho\\\\\\\",\\\\n  \\\\\\\"n_benchmarks\\\\\\\": 5,\\\\n  \\\\\\\"n_permutations\\\\\\\": 120,\\\\n  \\\\\\\"benchmark_order_hypothesis\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks_used\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmark_stats\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 40.48276678578829,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.603590700649608,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6694762731481482\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 42.45972536691959,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 38.04902782203434,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7903935185185185\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 32.20167896386697,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 37.1442293164112,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7192013888888888\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 16.855944611612735,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 14.551490334109179,\\\\n      \\\\\\\"n_obs\\\\\\\": 460800,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5819227430555556\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 24.422687467416722,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 17.018510947463135,\\\\n      \\\\\\\"n_obs\\\\\\\": 441600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.2936911231884058\\\\n    }\\\\n  },\\\\n  \\\\\\\"item_id_gradient\\\\\\\": {\\\\n    \\\\\\\"hypothesis\\\\\\\": \\\\\\\"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\\\\\\\",\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"decreasing (knowledge-retrieval \\\\\\\\u2192 reasoning)\\\\\\\",\\\\n    \\\\\\\"observed_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n      \\\\\\\"arc\\\\\\\": 42.4597,\\\\n      \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n      \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n      \\\\\\\"math\\\\\\\": 24.4227\\\\n    },\\\\n    \\\\\\\"observed_rho\\\\\\\": 0.8,\\\\n    \\\\\\\"p_value\\\\\\\": 0.066667,\\\\n    \\\\\\\"n_extreme\\\\\\\": 8,\\\\n    \\\\\\\"n_permutations\\\\\\\": 120,\\\\n    \\\\\\\"significant_at_0.05\\\\\\\": false,\\\\n    \\\\\\\"kendall_tau\\\\\\\": 0.6,\\\\n    \\\\\\\"kendall_p\\\\\\\": 0.233333\\\\n  },\\\\n  \\\\\\\"model_item_gradient\\\\\\\": {\\\\n    \\\\\\\"hypothesis\\\\\\\": \\\\\\\"model\\\\\\\\u00d7item increases from MC to FF\\\\\\\",\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"increasing\\\\\\\",\\\\n    \\\\\\\"observed_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n      \\\\\\\"arc\\\\\\\": 38.049,\\\\n      \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n      \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n      \\\\\\\"math\\\\\\\": 17.0185\\\\n    },\\\\n    \\\\\\\"observed_rho\\\\\\\": -0.6,\\\\n    \\\\\\\"p_value\\\\\\\": 0.883333,\\\\n    \\\\\\\"n_extreme\\\\\\\": 106,\\\\n    \\\\\\\"n_permutations\\\\\\\": 120,\\\\n    \\\\\\\"significant_at_0.05\\\\\\\": false,\\\\n    \\\\\\\"kendall_tau\\\\\\\": -0.4,\\\\n    \\\\\\\"kendall_p\\\\\\\": 0.483333\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004 (6 models \\\\u00d7 5 benchmarks)\\\",\\n  \\\"test_statistic\\\": \\\"spearman_rho\\\",\\n  \\\"n_benchmarks\\\": 5,\\n  \\\"n_permutations\\\": 120,\\n  \\\"benchmark_order_hypothesis\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmarks_used\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"benchmark_stats\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"item_id_pct\\\": 40.48276678578829,\\n      \\\"model_item_pct\\\": 31.603590700649608,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.6694762731481482\\n    },\\n    \\\"arc\\\": {\\n      \\\"item_id_pct\\\": 42.45972536691959,\\n      \\\"model_item_pct\\\": 38.04902782203434,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.7903935185185185\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"item_id_pct\\\": 32.20167896386697,\\n      \\\"model_item_pct\\\": 37.1442293164112,\\n      \\\"n_obs\\\": 345600,\\n      \\\"accuracy\\\": 0.7192013888888888\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"item_id_pct\\\": 16.855944611612735,\\n      \\\"model_item_pct\\\": 14.551490334109179,\\n      \\\"n_obs\\\": 460800,\\n      \\\"accuracy\\\": 0.5819227430555556\\n    },\\n    \\\"math\\\": {\\n      \\\"item_id_pct\\\": 24.422687467416722,\\n      \\\"model_item_pct\\\": 17.018510947463135,\\n      \\\"n_obs\\\": 441600,\\n      \\\"accuracy\\\": 0.2936911231884058\\n    }\\n  },\\n  \\\"item_id_gradient\\\": {\\n    \\\"hypothesis\\\": \\\"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\\\",\\n    \\\"direction\\\": \\\"decreasing (knowledge-retrieval \\\\u2192 reasoning)\\\",\\n    \\\"observed_values\\\": {\\n      \\\"mmlu\\\": 40.4828,\\n      \\\"arc\\\": 42.4597,\\n      \\\"hellaswag\\\": 32.2017,\\n      \\\"gsm8k\\\": 16.8559,\\n      \\\"math\\\": 24.4227\\n    },\\n    \\\"observed_rho\\\": 0.8,\\n    \\\"p_value\\\": 0.066667,\\n    \\\"n_extreme\\\": 8,\\n    \\\"n_permutations\\\": 120,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": 0.6,\\n    \\\"kendall_p\\\": 0.233333\\n  },\\n  \\\"model_item_gradient\\\": {\\n    \\\"hypothesis\\\": \\\"model\\\\u00d7item increases from MC to FF\\\",\\n    \\\"direction\\\": \\\"increasing\\\",\\n    \\\"observed_values\\\": {\\n      \\\"mmlu\\\": 31.6036,\\n      \\\"arc\\\": 38.049,\\n      \\\"hellaswag\\\": 37.1442,\\n      \\\"gsm8k\\\": 14.5515,\\n      \\\"math\\\": 17.0185\\n    },\\n    \\\"observed_rho\\\": -0.6,\\n    \\\"p_value\\\": 0.883333,\\n    \\\"n_extreme\\\": 106,\\n    \\\"n_permutations\\\": 120,\\n    \\\"significant_at_0.05\\\": false,\\n    \\\"kendall_tau\\\": -0.4,\\n    \\\"kendall_p\\\": 0.483333\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting. Let me note some things:
+
+1. The benchmark_stats show different n_obs per benchmark: mmlu=345,600, arc=345,600, hellaswag=345,600, gsm8k=460,800, math=441,600. This is strange - gsm8k and math have MORE observations than the MC benchmarks, suggesting they have more models (8 vs 6). Let me check: 345,600 / 6 = 57,600 per model. 460,800 / 8 = 57,600 per model. So it seems gsm8k has 8 models while mmlu/arc/hellaswag have 6 models!
+
+
+2. Verifying the math: 460,800 breaks down to 8 models × 57,600 observations each, and 345,600 is 6 models × 57,600. But math has 441,600 observations, which doesn't divide evenly by 57,600 - it's about 7.67 models worth, which is odd.
+
+This reveals a deeper issue: if different benchmarks have different numbers of models, the Henderson I variance estimates might not be directly comparable across benchmarks, potentially compromising the permutation test. Though the per-benchmark G-study should handle varying model counts within each benchmark, I need to verify the actual model counts in the data files to see if this is really a problem or if there's something else going on with the math benchmark. I'm not finding OLMo or Yi model files in the directory listing, so either the normalize_model_name function is creating aliases or there's model metadata embedded within the existing files. The more pressing issue is that the model-item gradient test shows a strong negative correlation (rho=-0.6, p=0.88), which suggests the gradient isn't behaving as expected.
+
+The item_id gradient is marginally non-significant (rho=0.8, p=0.067), and LOBO preservation is zero across all five folds. These results are concerning, but the unbalanced design with different model and item counts across benchmarks could be confounding the findings. I should check the D-study output to see how many levels each benchmark actually has before drawing conclusions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "1998c785-dc99-4b74-a193-86ee1d219a25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJw2YF1d4Spy3v7PB2pjzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1822,
+      "cache_read_input_tokens": 73381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1822
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dmxibb8dvKkoH3FxLHcanw`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/dstudy_8model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8a6a5d81-9805-4ebb-8f88-e1854f05fb15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJw2YF1d4Spy3v7PB2pjzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1822,
+      "cache_read_input_tokens": 73381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1822
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KEqJhZkGFD2TruHFXxDtFo`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/cross_model_gstudy_8model.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "bd8ef132-b2e6-4b14-89b2-6ab9f5f3bd1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJw2YF1d4Spy3v7PB2pjzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1822,
+      "cache_read_input_tokens": 73381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1822
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0118YMrnvT9Nuj388jWDewGC`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/lobo_stability.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "2497f122-1f21-45e1-a202-e021860a7795",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HJw2YF1d4Spy3v7PB2pjzH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1822,
+      "cache_read_input_tokens": 73381,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1822
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T21:39:33.658Z_
+
+<details><summary>↩ Tool result · `toolu_01Dmxibb8dvKkoH3FxLHcanw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"dstudy_projections\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"g_targets\\\": [\\n    0.8,\\n    0.9,\\n    0.95\\n  ],\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.669476,\\n      \\\"G_current\\\": 0.870521,\\n      \\\"item_id_pct\\\": 40.4828,\\n      \\\"model_item_pct\\\": 31.6036,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.251588,\\n        \\\"25\\\": 0.456642,\\n        \\\"50\\\": 0.626979,\\n        \\\"75\\\": 0.716008,\\n        \\\"100\\\": 0.770728,\\n        \\\"150\\\": 0.834504,\\n        \\\"200\\\": 0.870521,\\n        \\\"300\\\": 0.909787,\\n        \\\"500\\\": 0.943846,\\n        \\\"750\\\": 0.96185,\\n        \\\"1000\\\": 0.971112\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 119,\\n        \\\"0.9\\\": 268,\\n        \\\"0.95\\\": 566\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"item_id\\\": 40.4828,\\n        \\\"model:item_id\\\": 31.6036,\\n        \\\"residual\\\": 21.9449,\\n        \\\"model\\\": 3.051,\\n        \\\"prompt_template:item_id\\\": 1.015,\\n        \\\"temperature:item_id\\\": 0.7282,\\n        \\\"seed:item_id\\\": 0.7076,\\n        \\\"ordering:item_id\\\": 0.3607,\\n        \\\"model:prompt_template\\\": 0.0513,\\n        \\\"model:temperature\\\": 0.0183,\\n        \\\"model:seed\\\": 0.0119,\\n        \\\"temperature\\\": 0.0112\\n      }\\n    },\\n    \\\"arc\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.790394,\\n      \\\"G_current\\\": 0.862284,\\n      \\\"item_id_pct\\\": 42.4597,\\n      \\\"model_item_pct\\\": 38.049,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.238423,\\n        \\\"25\\\": 0.439041,\\n        \\\"50\\\": 0.610186,\\n        \\\"75\\\": 0.701313,\\n        \\\"100\\\": 0.757907,\\n        \\\"150\\\": 0.824437,\\n        \\\"200\\\": 0.862284,\\n        \\\"300\\\": 0.903772,\\n        \\\"500\\\": 0.939952,\\n        \\\"750\\\": 0.95915,\\n        \\\"1000\\\": 0.969046\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 128,\\n        \\\"0.9\\\": 288,\\n        \\\"0.95\\\": 607\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"item_id\\\": 42.4597,\\n        \\\"model:item_id\\\": 38.049,\\n        \\\"residual\\\": 12.2217,\\n        \\\"model\\\": 5.2294,\\n        \\\"prompt_template:item_id\\\": 1.4069,\\n        \\\"temperature:item_id\\\": 0.3102,\\n        \\\"seed:item_id\\\": 0.2588,\\n        \\\"model:prompt_template\\\": 0.0391,\\n        \\\"model:temperature\\\": 0.0138\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.719201,\\n      \\\"G_current\\\": 0.824029,\\n      \\\"item_id_pct\\\": 32.2017,\\n      \\\"model_item_pct\\\": 37.1442,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.189717,\\n        \\\"25\\\": 0.369222,\\n        \\\"50\\\": 0.539316,\\n        \\\"75\\\": 0.637159,\\n        \\\"100\\\": 0.700722,\\n        \\\"150\\\": 0.778372,\\n        \\\"200\\\": 0.824029,\\n        \\\"300\\\": 0.875376,\\n        \\\"500\\\": 0.921302,\\n        \\\"750\\\": 0.946122,\\n        \\\"1000\\\": 0.959039\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 171,\\n        \\\"0.9\\\": 385,\\n        \\\"0.95\\\": 812\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"model:item_id\\\": 37.1442,\\n        \\\"item_id\\\": 32.2017,\\n        \\\"residual\\\": 20.462,\\n        \\\"model\\\": 6.6888,\\n        \\\"prompt_template:item_id\\\": 2.3952,\\n        \\\"temperature:item_id\\\": 0.4243,\\n        \\\"seed:item_id\\\": 0.3766,\\n        \\\"model:prompt_template\\\": 0.1777,\\n        \\\"model:temperature\\\": 0.0545,\\n        \\\"temperature\\\": 0.0238,\\n        \\\"model:seed\\\": 0.0216,\\n        \\\"temperature:seed\\\": 0.0183\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"n_observations\\\": 460800,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.581923,\\n      \\\"G_current\\\": 0.862852,\\n      \\\"item_id_pct\\\": 16.8559,\\n      \\\"model_item_pct\\\": 14.5515,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.239295,\\n        \\\"25\\\": 0.440223,\\n        \\\"50\\\": 0.611326,\\n        \\\"75\\\": 0.702317,\\n        \\\"100\\\": 0.758786,\\n        \\\"150\\\": 0.825131,\\n        \\\"200\\\": 0.862852,\\n        \\\"300\\\": 0.904188,\\n        \\\"500\\\": 0.940222,\\n        \\\"750\\\": 0.959338,\\n        \\\"1000\\\": 0.96919\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 128,\\n        \\\"0.9\\\": 287,\\n        \\\"0.95\\\": 604\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"residual\\\": 39.8941,\\n        \\\"item_id\\\": 16.8559,\\n        \\\"model:item_id\\\": 14.5515,\\n        \\\"model\\\": 10.7458,\\n        \\\"model:prompt_template\\\": 8.5311,\\n        \\\"prompt_template\\\": 5.4134,\\n        \\\"prompt_template:item_id\\\": 3.0642,\\n        \\\"temperature:item_id\\\": 0.5965,\\n        \\\"seed:item_id\\\": 0.2041,\\n        \\\"model:temperature\\\": 0.0908,\\n        \\\"temperature\\\": 0.0242,\\n        \\\"temperature:prompt_template\\\": 0.0133\\n      }\\n    },\\n    \\\"math\\\": {\\n      \\\"n_observations\\\": 441600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.293691,\\n      \\\"G_current\\\": 0.891333,\\n      \\\"item_id_pct\\\": 24.4227,\\n      \\\"model_item_pct\\\": 17.0185,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.290841,\\n        \\\"25\\\": 0.506247,\\n        \\\"50\\\": 0.672196,\\n        \\\"75\\\": 0.754656,\\n        \\\"100\\\": 0.803968,\\n        \\\"150\\\": 0.860175,\\n        \\\"200\\\": 0.891333,\\n        \\\"300\\\": 0.924833,\\n        \\\"500\\\": 0.953501,\\n        \\\"750\\\": 0.968513,\\n        \\\"1000\\\": 0.976197\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 98,\\n        \\\"0.9\\\": 220,\\n        \\\"0.95\\\": 464\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"residual\\\": 44.0459,\\n        \\\"item_id\\\": 24.4227,\\n        \\\"model:item_id\\\": 17.0185,\\n        \\\"model\\\": 8.0784,\\n        \\\"prompt_template:item_id\\\": 2.9228,\\n        \\\"model:prompt_template\\\": 1.7837,\\n        \\\"prompt_template\\\": 0.7641,\\n        \\\"temperature:item_id\\\": 0.6385,\\n        \\\"seed:item_id\\\": 0.1481,\\n        \\\"model:temperature\\\": 0.0957,\\n        \\\"temperature:prompt_template\\\": 0.07\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "a06c8f29-1ffa-451c-8af0-454213b45759",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"dstudy_projections\\\\\\\",\\\\n  \\\\\\\"n_models\\\\\\\": 8,\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n    \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n    \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n    \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"g_targets\\\\\\\": [\\\\n    0.8,\\\\n    0.9,\\\\n    0.95\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.669476,\\\\n      \\\\\\\"G_current\\\\\\\": 0.870521,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 40.4828,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.6036,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.251588,\\\\n        \\\\\\\"25\\\\\\\": 0.456642,\\\\n        \\\\\\\"50\\\\\\\": 0.626979,\\\\n        \\\\\\\"75\\\\\\\": 0.716008,\\\\n        \\\\\\\"100\\\\\\\": 0.770728,\\\\n        \\\\\\\"150\\\\\\\": 0.834504,\\\\n        \\\\\\\"200\\\\\\\": 0.870521,\\\\n        \\\\\\\"300\\\\\\\": 0.909787,\\\\n        \\\\\\\"500\\\\\\\": 0.943846,\\\\n        \\\\\\\"750\\\\\\\": 0.96185,\\\\n        \\\\\\\"1000\\\\\\\": 0.971112\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 119,\\\\n        \\\\\\\"0.9\\\\\\\": 268,\\\\n        \\\\\\\"0.95\\\\\\\": 566\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": 40.4828,\\\\n        \\\\\\\"model:item_id\\\\\\\": 31.6036,\\\\n        \\\\\\\"residual\\\\\\\": 21.9449,\\\\n        \\\\\\\"model\\\\\\\": 3.051,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 1.015,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.7282,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.7076,\\\\n        \\\\\\\"ordering:item_id\\\\\\\": 0.3607,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 0.0513,\\\\n        \\\\\\\"model:temperature\\\\\\\": 0.0183,\\\\n        \\\\\\\"model:seed\\\\\\\": 0.0119,\\\\n        \\\\\\\"temperature\\\\\\\": 0.0112\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.790394,\\\\n      \\\\\\\"G_current\\\\\\\": 0.862284,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 42.4597,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 38.049,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.238423,\\\\n        \\\\\\\"25\\\\\\\": 0.439041,\\\\n        \\\\\\\"50\\\\\\\": 0.610186,\\\\n        \\\\\\\"75\\\\\\\": 0.701313,\\\\n        \\\\\\\"100\\\\\\\": 0.757907,\\\\n        \\\\\\\"150\\\\\\\": 0.824437,\\\\n        \\\\\\\"200\\\\\\\": 0.862284,\\\\n        \\\\\\\"300\\\\\\\": 0.903772,\\\\n        \\\\\\\"500\\\\\\\": 0.939952,\\\\n        \\\\\\\"750\\\\\\\": 0.95915,\\\\n        \\\\\\\"1000\\\\\\\": 0.969046\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 128,\\\\n        \\\\\\\"0.9\\\\\\\": 288,\\\\n        \\\\\\\"0.95\\\\\\\": 607\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": 42.4597,\\\\n        \\\\\\\"model:item_id\\\\\\\": 38.049,\\\\n        \\\\\\\"residual\\\\\\\": 12.2217,\\\\n        \\\\\\\"model\\\\\\\": 5.2294,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 1.4069,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.3102,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.2588,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 0.0391,\\\\n        \\\\\\\"model:temperature\\\\\\\": 0.0138\\\\n      }\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.719201,\\\\n      \\\\\\\"G_current\\\\\\\": 0.824029,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 32.2017,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 37.1442,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.189717,\\\\n        \\\\\\\"25\\\\\\\": 0.369222,\\\\n        \\\\\\\"50\\\\\\\": 0.539316,\\\\n        \\\\\\\"75\\\\\\\": 0.637159,\\\\n        \\\\\\\"100\\\\\\\": 0.700722,\\\\n        \\\\\\\"150\\\\\\\": 0.778372,\\\\n        \\\\\\\"200\\\\\\\": 0.824029,\\\\n        \\\\\\\"300\\\\\\\": 0.875376,\\\\n        \\\\\\\"500\\\\\\\": 0.921302,\\\\n        \\\\\\\"750\\\\\\\": 0.946122,\\\\n        \\\\\\\"1000\\\\\\\": 0.959039\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 171,\\\\n        \\\\\\\"0.9\\\\\\\": 385,\\\\n        \\\\\\\"0.95\\\\\\\": 812\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"model:item_id\\\\\\\": 37.1442,\\\\n        \\\\\\\"item_id\\\\\\\": 32.2017,\\\\n        \\\\\\\"residual\\\\\\\": 20.462,\\\\n        \\\\\\\"model\\\\\\\": 6.6888,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 2.3952,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.4243,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.3766,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 0.1777,\\\\n        \\\\\\\"model:temperature\\\\\\\": 0.0545,\\\\n        \\\\\\\"temperature\\\\\\\": 0.0238,\\\\n        \\\\\\\"model:seed\\\\\\\": 0.0216,\\\\n        \\\\\\\"temperature:seed\\\\\\\": 0.0183\\\\n      }\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 460800,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 8,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.581923,\\\\n      \\\\\\\"G_current\\\\\\\": 0.862852,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 16.8559,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 14.5515,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.239295,\\\\n        \\\\\\\"25\\\\\\\": 0.440223,\\\\n        \\\\\\\"50\\\\\\\": 0.611326,\\\\n        \\\\\\\"75\\\\\\\": 0.702317,\\\\n        \\\\\\\"100\\\\\\\": 0.758786,\\\\n        \\\\\\\"150\\\\\\\": 0.825131,\\\\n        \\\\\\\"200\\\\\\\": 0.862852,\\\\n        \\\\\\\"300\\\\\\\": 0.904188,\\\\n        \\\\\\\"500\\\\\\\": 0.940222,\\\\n        \\\\\\\"750\\\\\\\": 0.959338,\\\\n        \\\\\\\"1000\\\\\\\": 0.96919\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 128,\\\\n        \\\\\\\"0.9\\\\\\\": 287,\\\\n        \\\\\\\"0.95\\\\\\\": 604\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"residual\\\\\\\": 39.8941,\\\\n        \\\\\\\"item_id\\\\\\\": 16.8559,\\\\n        \\\\\\\"model:item_id\\\\\\\": 14.5515,\\\\n        \\\\\\\"model\\\\\\\": 10.7458,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 8.5311,\\\\n        \\\\\\\"prompt_template\\\\\\\": 5.4134,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 3.0642,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.5965,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.2041,\\\\n        \\\\\\\"model:temperature\\\\\\\": 0.0908,\\\\n        \\\\\\\"temperature\\\\\\\": 0.0242,\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": 0.0133\\\\n      }\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 441600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 8,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.293691,\\\\n      \\\\\\\"G_current\\\\\\\": 0.891333,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 24.4227,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 17.0185,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.290841,\\\\n        \\\\\\\"25\\\\\\\": 0.506247,\\\\n        \\\\\\\"50\\\\\\\": 0.672196,\\\\n        \\\\\\\"75\\\\\\\": 0.754656,\\\\n        \\\\\\\"100\\\\\\\": 0.803968,\\\\n        \\\\\\\"150\\\\\\\": 0.860175,\\\\n        \\\\\\\"200\\\\\\\": 0.891333,\\\\n        \\\\\\\"300\\\\\\\": 0.924833,\\\\n        \\\\\\\"500\\\\\\\": 0.953501,\\\\n        \\\\\\\"750\\\\\\\": 0.968513,\\\\n        \\\\\\\"1000\\\\\\\": 0.976197\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 98,\\\\n        \\\\\\\"0.9\\\\\\\": 220,\\\\n        \\\\\\\"0.95\\\\\\\": 464\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"residual\\\\\\\": 44.0459,\\\\n        \\\\\\\"item_id\\\\\\\": 24.4227,\\\\n        \\\\\\\"model:item_id\\\\\\\": 17.0185,\\\\n        \\\\\\\"model\\\\\\\": 8.0784,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 2.9228,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 1.7837,\\\\n        \\\\\\\"prompt_template\\\\\\\": 0.7641,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.6385,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.1481,\\\\n        \\\\\\\"model:temperature\\\\\\\": 0.0957,\\\\n        \\\\\\\"temperature:prompt_template\\\\\\\": 0.07\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"dstudy_projections\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"g_targets\\\": [\\n    0.8,\\n    0.9,\\n    0.95\\n  ],\\n  \\\"benchmarks\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.669476,\\n      \\\"G_current\\\": 0.870521,\\n      \\\"item_id_pct\\\": 40.4828,\\n      \\\"model_item_pct\\\": 31.6036,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.251588,\\n        \\\"25\\\": 0.456642,\\n        \\\"50\\\": 0.626979,\\n        \\\"75\\\": 0.716008,\\n        \\\"100\\\": 0.770728,\\n        \\\"150\\\": 0.834504,\\n        \\\"200\\\": 0.870521,\\n        \\\"300\\\": 0.909787,\\n        \\\"500\\\": 0.943846,\\n        \\\"750\\\": 0.96185,\\n        \\\"1000\\\": 0.971112\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 119,\\n        \\\"0.9\\\": 268,\\n        \\\"0.95\\\": 566\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"item_id\\\": 40.4828,\\n        \\\"model:item_id\\\": 31.6036,\\n        \\\"residual\\\": 21.9449,\\n        \\\"model\\\": 3.051,\\n        \\\"prompt_template:item_id\\\": 1.015,\\n        \\\"temperature:item_id\\\": 0.7282,\\n        \\\"seed:item_id\\\": 0.7076,\\n        \\\"ordering:item_id\\\": 0.3607,\\n        \\\"model:prompt_template\\\": 0.0513,\\n        \\\"model:temperature\\\": 0.0183,\\n        \\\"model:seed\\\": 0.0119,\\n        \\\"temperature\\\": 0.0112\\n      }\\n    },\\n    \\\"arc\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.790394,\\n      \\\"G_current\\\": 0.862284,\\n      \\\"item_id_pct\\\": 42.4597,\\n      \\\"model_item_pct\\\": 38.049,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.238423,\\n        \\\"25\\\": 0.439041,\\n        \\\"50\\\": 0.610186,\\n        \\\"75\\\": 0.701313,\\n        \\\"100\\\": 0.757907,\\n        \\\"150\\\": 0.824437,\\n        \\\"200\\\": 0.862284,\\n        \\\"300\\\": 0.903772,\\n        \\\"500\\\": 0.939952,\\n        \\\"750\\\": 0.95915,\\n        \\\"1000\\\": 0.969046\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 128,\\n        \\\"0.9\\\": 288,\\n        \\\"0.95\\\": 607\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"item_id\\\": 42.4597,\\n        \\\"model:item_id\\\": 38.049,\\n        \\\"residual\\\": 12.2217,\\n        \\\"model\\\": 5.2294,\\n        \\\"prompt_template:item_id\\\": 1.4069,\\n        \\\"temperature:item_id\\\": 0.3102,\\n        \\\"seed:item_id\\\": 0.2588,\\n        \\\"model:prompt_template\\\": 0.0391,\\n        \\\"model:temperature\\\": 0.0138\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"n_observations\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.719201,\\n      \\\"G_current\\\": 0.824029,\\n      \\\"item_id_pct\\\": 32.2017,\\n      \\\"model_item_pct\\\": 37.1442,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.189717,\\n        \\\"25\\\": 0.369222,\\n        \\\"50\\\": 0.539316,\\n        \\\"75\\\": 0.637159,\\n        \\\"100\\\": 0.700722,\\n        \\\"150\\\": 0.778372,\\n        \\\"200\\\": 0.824029,\\n        \\\"300\\\": 0.875376,\\n        \\\"500\\\": 0.921302,\\n        \\\"750\\\": 0.946122,\\n        \\\"1000\\\": 0.959039\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 171,\\n        \\\"0.9\\\": 385,\\n        \\\"0.95\\\": 812\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"model:item_id\\\": 37.1442,\\n        \\\"item_id\\\": 32.2017,\\n        \\\"residual\\\": 20.462,\\n        \\\"model\\\": 6.6888,\\n        \\\"prompt_template:item_id\\\": 2.3952,\\n        \\\"temperature:item_id\\\": 0.4243,\\n        \\\"seed:item_id\\\": 0.3766,\\n        \\\"model:prompt_template\\\": 0.1777,\\n        \\\"model:temperature\\\": 0.0545,\\n        \\\"temperature\\\": 0.0238,\\n        \\\"model:seed\\\": 0.0216,\\n        \\\"temperature:seed\\\": 0.0183\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"n_observations\\\": 460800,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.581923,\\n      \\\"G_current\\\": 0.862852,\\n      \\\"item_id_pct\\\": 16.8559,\\n      \\\"model_item_pct\\\": 14.5515,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.239295,\\n        \\\"25\\\": 0.440223,\\n        \\\"50\\\": 0.611326,\\n        \\\"75\\\": 0.702317,\\n        \\\"100\\\": 0.758786,\\n        \\\"150\\\": 0.825131,\\n        \\\"200\\\": 0.862852,\\n        \\\"300\\\": 0.904188,\\n        \\\"500\\\": 0.940222,\\n        \\\"750\\\": 0.959338,\\n        \\\"1000\\\": 0.96919\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 128,\\n        \\\"0.9\\\": 287,\\n        \\\"0.95\\\": 604\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"residual\\\": 39.8941,\\n        \\\"item_id\\\": 16.8559,\\n        \\\"model:item_id\\\": 14.5515,\\n        \\\"model\\\": 10.7458,\\n        \\\"model:prompt_template\\\": 8.5311,\\n        \\\"prompt_template\\\": 5.4134,\\n        \\\"prompt_template:item_id\\\": 3.0642,\\n        \\\"temperature:item_id\\\": 0.5965,\\n        \\\"seed:item_id\\\": 0.2041,\\n        \\\"model:temperature\\\": 0.0908,\\n        \\\"temperature\\\": 0.0242,\\n        \\\"temperature:prompt_template\\\": 0.0133\\n      }\\n    },\\n    \\\"math\\\": {\\n      \\\"n_observations\\\": 441600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.293691,\\n      \\\"G_current\\\": 0.891333,\\n      \\\"item_id_pct\\\": 24.4227,\\n      \\\"model_item_pct\\\": 17.0185,\\n      \\\"d_study_curve\\\": {\\n        \\\"10\\\": 0.290841,\\n        \\\"25\\\": 0.506247,\\n        \\\"50\\\": 0.672196,\\n        \\\"75\\\": 0.754656,\\n        \\\"100\\\": 0.803968,\\n        \\\"150\\\": 0.860175,\\n        \\\"200\\\": 0.891333,\\n        \\\"300\\\": 0.924833,\\n        \\\"500\\\": 0.953501,\\n        \\\"750\\\": 0.968513,\\n        \\\"1000\\\": 0.976197\\n      },\\n      \\\"min_items_for_G\\\": {\\n        \\\"0.8\\\": 98,\\n        \\\"0.9\\\": 220,\\n        \\\"0.95\\\": 464\\n      },\\n      \\\"variance_components_pct\\\": {\\n        \\\"residual\\\": 44.0459,\\n        \\\"item_id\\\": 24.4227,\\n        \\\"model:item_id\\\": 17.0185,\\n        \\\"model\\\": 8.0784,\\n        \\\"prompt_template:item_id\\\": 2.9228,\\n        \\\"model:prompt_template\\\": 1.7837,\\n        \\\"prompt_template\\\": 0.7641,\\n        \\\"temperature:item_id\\\": 0.6385,\\n        \\\"seed:item_id\\\": 0.1481,\\n        \\\"model:temperature\\\": 0.0957,\\n        \\\"temperature:prompt_template\\\": 0.07\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-21T21:39:34.177Z_
+
+<details><summary>↩ Tool result · `toolu_01KEqJhZkGFD2TruHFXxDtFo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"cross_model_gstudy\\\",\\n  \\\"n_models\\\": 6,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"mmlu_focus\\\": {\\n    \\\"n_observations\\\": 345600,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 6,\\n      \\\"temperature\\\": 2,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"item_id_pct\\\": 40.4828,\\n    \\\"model_item_pct\\\": 31.6036,\\n    \\\"model_pct\\\": 3.051,\\n    \\\"G_item\\\": 0.870521,\\n    \\\"variance_components_pct\\\": {\\n      \\\"item_id\\\": 40.4828,\\n      \\\"model:item_id\\\": 31.6036,\\n      \\\"residual\\\": 21.9449,\\n      \\\"model\\\": 3.051,\\n      \\\"prompt_template:item_id\\\": 1.015,\\n      \\\"temperature:item_id\\\": 0.7282,\\n      \\\"seed:item_id\\\": 0.7076,\\n      \\\"ordering:item_id\\\": 0.3607,\\n      \\\"model:prompt_template\\\": 0.0513,\\n      \\\"model:temperature\\\": 0.0183,\\n      \\\"model:seed\\\": 0.0119,\\n      \\\"temperature\\\": 0.0112\\n    }\\n  },\\n  \\\"comparison_4model\\\": {\\n    \\\"item_id_pct\\\": 41.55,\\n    \\\"model_item_pct\\\": 32.81,\\n    \\\"model_pct\\\": 0.75,\\n    \\\"G_item\\\": 0.8159,\\n    \\\"n_models\\\": 4\\n  },\\n  \\\"delta_vs_4model\\\": {\\n    \\\"item_id_pct_change\\\": -1.0672,\\n    \\\"model_item_pct_change\\\": -1.2064,\\n    \\\"G_item_change\\\": 0.054621\\n  },\\n  \\\"per_benchmark\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.669476,\\n      \\\"item_id_pct\\\": 40.4828,\\n      \\\"model_item_pct\\\": 31.6036,\\n      \\\"model_pct\\\": 3.051,\\n      \\\"G_item\\\": 0.870521,\\n      \\\"top_components\\\": {\\n        \\\"item_id\\\": 40.4828,\\n        \\\"model:item_id\\\": 31.6036,\\n        \\\"residual\\\": 21.9449,\\n        \\\"model\\\": 3.051,\\n        \\\"prompt_template:item_id\\\": 1.015,\\n        \\\"temperature:item_id\\\": 0.7282\\n      }\\n    },\\n    \\\"arc\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.790394,\\n      \\\"item_id_pct\\\": 42.4597,\\n      \\\"model_item_pct\\\": 38.049,\\n      \\\"model_pct\\\": 5.2294,\\n      \\\"G_item\\\": 0.862284,\\n      \\\"top_components\\\": {\\n        \\\"item_id\\\": 42.4597,\\n        \\\"model:item_id\\\": 38.049,\\n        \\\"residual\\\": 12.2217,\\n        \\\"model\\\": 5.2294,\\n        \\\"prompt_template:item_id\\\": 1.4069,\\n        \\\"temperature:item_id\\\": 0.3102\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.719201,\\n      \\\"item_id_pct\\\": 32.2017,\\n      \\\"model_item_pct\\\": 37.1442,\\n      \\\"model_pct\\\": 6.6888,\\n      \\\"G_item\\\": 0.824029,\\n      \\\"top_components\\\": {\\n        \\\"model:item_id\\\": 37.1442,\\n        \\\"item_id\\\": 32.2017,\\n        \\\"residual\\\": 20.462,\\n        \\\"model\\\": 6.6888,\\n        \\\"prompt_template:item_id\\\": 2.3952,\\n        \\\"temperature:item_id\\\": 0.4243\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"n_obs\\\": 460800,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.581923,\\n      \\\"item_id_pct\\\": 16.8559,\\n      \\\"model_item_pct\\\": 14.5515,\\n      \\\"model_pct\\\": 10.7458,\\n      \\\"G_item\\\": 0.862852,\\n      \\\"top_components\\\": {\\n        \\\"residual\\\": 39.8941,\\n        \\\"item_id\\\": 16.8559,\\n        \\\"model:item_id\\\": 14.5515,\\n        \\\"model\\\": 10.7458,\\n        \\\"model:prompt_template\\\": 8.5311,\\n        \\\"prompt_template\\\": 5.4134\\n      }\\n    },\\n    \\\"math\\\": {\\n      \\\"n_obs\\\": 441600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.293691,\\n      \\\"item_id_pct\\\": 24.4227,\\n      \\\"model_item_pct\\\": 17.0185,\\n      \\\"model_pct\\\": 8.0784,\\n      \\\"G_item\\\": 0.891333,\\n      \\\"top_components\\\": {\\n        \\\"residual\\\": 44.0459,\\n        \\\"item_id\\\": 24.4227,\\n        \\\"model:item_id\\\": 17.0185,\\n        \\\"model\\\": 8.0784,\\n        \\\"prompt_template:item_id\\\": 2.9228,\\n        \\\"model:prompt_template\\\": 1.7837\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "07ff678a-58f1-4941-9d94-d185ca29a85c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_model_gstudy\\\\\\\",\\\\n  \\\\\\\"n_models\\\\\\\": 6,\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n    \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n    \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n    \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"mmlu_focus\\\\\\\": {\\\\n    \\\\\\\"n_observations\\\\\\\": 345600,\\\\n    \\\\\\\"n_levels\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": 6,\\\\n      \\\\\\\"temperature\\\\\\\": 2,\\\\n      \\\\\\\"prompt_template\\\\\\\": 6,\\\\n      \\\\\\\"seed\\\\\\\": 6,\\\\n      \\\\\\\"ordering\\\\\\\": 4,\\\\n      \\\\\\\"item_id\\\\\\\": 200\\\\n    },\\\\n    \\\\\\\"item_id_pct\\\\\\\": 40.4828,\\\\n    \\\\\\\"model_item_pct\\\\\\\": 31.6036,\\\\n    \\\\\\\"model_pct\\\\\\\": 3.051,\\\\n    \\\\\\\"G_item\\\\\\\": 0.870521,\\\\n    \\\\\\\"variance_components_pct\\\\\\\": {\\\\n      \\\\\\\"item_id\\\\\\\": 40.4828,\\\\n      \\\\\\\"model:item_id\\\\\\\": 31.6036,\\\\n      \\\\\\\"residual\\\\\\\": 21.9449,\\\\n      \\\\\\\"model\\\\\\\": 3.051,\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": 1.015,\\\\n      \\\\\\\"temperature:item_id\\\\\\\": 0.7282,\\\\n      \\\\\\\"seed:item_id\\\\\\\": 0.7076,\\\\n      \\\\\\\"ordering:item_id\\\\\\\": 0.3607,\\\\n      \\\\\\\"model:prompt_template\\\\\\\": 0.0513,\\\\n      \\\\\\\"model:temperature\\\\\\\": 0.0183,\\\\n      \\\\\\\"model:seed\\\\\\\": 0.0119,\\\\n      \\\\\\\"temperature\\\\\\\": 0.0112\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison_4model\\\\\\\": {\\\\n    \\\\\\\"item_id_pct\\\\\\\": 41.55,\\\\n    \\\\\\\"model_item_pct\\\\\\\": 32.81,\\\\n    \\\\\\\"model_pct\\\\\\\": 0.75,\\\\n    \\\\\\\"G_item\\\\\\\": 0.8159,\\\\n    \\\\\\\"n_models\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"delta_vs_4model\\\\\\\": {\\\\n    \\\\\\\"item_id_pct_change\\\\\\\": -1.0672,\\\\n    \\\\\\\"model_item_pct_change\\\\\\\": -1.2064,\\\\n    \\\\\\\"G_item_change\\\\\\\": 0.054621\\\\n  },\\\\n  \\\\\\\"per_benchmark\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.669476,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 40.4828,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.6036,\\\\n      \\\\\\\"model_pct\\\\\\\": 3.051,\\\\n      \\\\\\\"G_item\\\\\\\": 0.870521,\\\\n      \\\\\\\"top_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": 40.4828,\\\\n        \\\\\\\"model:item_id\\\\\\\": 31.6036,\\\\n        \\\\\\\"residual\\\\\\\": 21.9449,\\\\n        \\\\\\\"model\\\\\\\": 3.051,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 1.015,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.7282\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.790394,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 42.4597,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 38.049,\\\\n      \\\\\\\"model_pct\\\\\\\": 5.2294,\\\\n      \\\\\\\"G_item\\\\\\\": 0.862284,\\\\n      \\\\\\\"top_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": 42.4597,\\\\n        \\\\\\\"model:item_id\\\\\\\": 38.049,\\\\n        \\\\\\\"residual\\\\\\\": 12.2217,\\\\n        \\\\\\\"model\\\\\\\": 5.2294,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 1.4069,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.3102\\\\n      }\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.719201,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 32.2017,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 37.1442,\\\\n      \\\\\\\"model_pct\\\\\\\": 6.6888,\\\\n      \\\\\\\"G_item\\\\\\\": 0.824029,\\\\n      \\\\\\\"top_components\\\\\\\": {\\\\n        \\\\\\\"model:item_id\\\\\\\": 37.1442,\\\\n        \\\\\\\"item_id\\\\\\\": 32.2017,\\\\n        \\\\\\\"residual\\\\\\\": 20.462,\\\\n        \\\\\\\"model\\\\\\\": 6.6888,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 2.3952,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.4243\\\\n      }\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 460800,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 8,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.581923,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 16.8559,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 14.5515,\\\\n      \\\\\\\"model_pct\\\\\\\": 10.7458,\\\\n      \\\\\\\"G_item\\\\\\\": 0.862852,\\\\n      \\\\\\\"top_components\\\\\\\": {\\\\n        \\\\\\\"residual\\\\\\\": 39.8941,\\\\n        \\\\\\\"item_id\\\\\\\": 16.8559,\\\\n        \\\\\\\"model:item_id\\\\\\\": 14.5515,\\\\n        \\\\\\\"model\\\\\\\": 10.7458,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 8.5311,\\\\n        \\\\\\\"prompt_template\\\\\\\": 5.4134\\\\n      }\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 441600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 8,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.293691,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 24.4227,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 17.0185,\\\\n      \\\\\\\"model_pct\\\\\\\": 8.0784,\\\\n      \\\\\\\"G_item\\\\\\\": 0.891333,\\\\n      \\\\\\\"top_components\\\\\\\": {\\\\n        \\\\\\\"residual\\\\\\\": 44.0459,\\\\n        \\\\\\\"item_id\\\\\\\": 24.4227,\\\\n        \\\\\\\"model:item_id\\\\\\\": 17.0185,\\\\n        \\\\\\\"model\\\\\\\": 8.0784,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 2.9228,\\\\n        \\\\\\\"model:prompt_template\\\\\\\": 1.7837\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"cross_model_gstudy\\\",\\n  \\\"n_models\\\": 6,\\n  \\\"models\\\": [\\n    \\\"DeepSeek-7B\\\",\\n    \\\"Gemma-2-9B\\\",\\n    \\\"InternLM2.5-7B\\\",\\n    \\\"Llama-3.1-8B\\\",\\n    \\\"Mistral-7B-v0.3\\\",\\n    \\\"OLMo-2-7B\\\",\\n    \\\"Qwen3-8B\\\",\\n    \\\"Yi-1.5-9B\\\"\\n  ],\\n  \\\"facets\\\": [\\n    \\\"model\\\",\\n    \\\"temperature\\\",\\n    \\\"prompt_template\\\",\\n    \\\"seed\\\",\\n    \\\"ordering\\\",\\n    \\\"item_id\\\"\\n  ],\\n  \\\"mmlu_focus\\\": {\\n    \\\"n_observations\\\": 345600,\\n    \\\"n_levels\\\": {\\n      \\\"model\\\": 6,\\n      \\\"temperature\\\": 2,\\n      \\\"prompt_template\\\": 6,\\n      \\\"seed\\\": 6,\\n      \\\"ordering\\\": 4,\\n      \\\"item_id\\\": 200\\n    },\\n    \\\"item_id_pct\\\": 40.4828,\\n    \\\"model_item_pct\\\": 31.6036,\\n    \\\"model_pct\\\": 3.051,\\n    \\\"G_item\\\": 0.870521,\\n    \\\"variance_components_pct\\\": {\\n      \\\"item_id\\\": 40.4828,\\n      \\\"model:item_id\\\": 31.6036,\\n      \\\"residual\\\": 21.9449,\\n      \\\"model\\\": 3.051,\\n      \\\"prompt_template:item_id\\\": 1.015,\\n      \\\"temperature:item_id\\\": 0.7282,\\n      \\\"seed:item_id\\\": 0.7076,\\n      \\\"ordering:item_id\\\": 0.3607,\\n      \\\"model:prompt_template\\\": 0.0513,\\n      \\\"model:temperature\\\": 0.0183,\\n      \\\"model:seed\\\": 0.0119,\\n      \\\"temperature\\\": 0.0112\\n    }\\n  },\\n  \\\"comparison_4model\\\": {\\n    \\\"item_id_pct\\\": 41.55,\\n    \\\"model_item_pct\\\": 32.81,\\n    \\\"model_pct\\\": 0.75,\\n    \\\"G_item\\\": 0.8159,\\n    \\\"n_models\\\": 4\\n  },\\n  \\\"delta_vs_4model\\\": {\\n    \\\"item_id_pct_change\\\": -1.0672,\\n    \\\"model_item_pct_change\\\": -1.2064,\\n    \\\"G_item_change\\\": 0.054621\\n  },\\n  \\\"per_benchmark\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.669476,\\n      \\\"item_id_pct\\\": 40.4828,\\n      \\\"model_item_pct\\\": 31.6036,\\n      \\\"model_pct\\\": 3.051,\\n      \\\"G_item\\\": 0.870521,\\n      \\\"top_components\\\": {\\n        \\\"item_id\\\": 40.4828,\\n        \\\"model:item_id\\\": 31.6036,\\n        \\\"residual\\\": 21.9449,\\n        \\\"model\\\": 3.051,\\n        \\\"prompt_template:item_id\\\": 1.015,\\n        \\\"temperature:item_id\\\": 0.7282\\n      }\\n    },\\n    \\\"arc\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.790394,\\n      \\\"item_id_pct\\\": 42.4597,\\n      \\\"model_item_pct\\\": 38.049,\\n      \\\"model_pct\\\": 5.2294,\\n      \\\"G_item\\\": 0.862284,\\n      \\\"top_components\\\": {\\n        \\\"item_id\\\": 42.4597,\\n        \\\"model:item_id\\\": 38.049,\\n        \\\"residual\\\": 12.2217,\\n        \\\"model\\\": 5.2294,\\n        \\\"prompt_template:item_id\\\": 1.4069,\\n        \\\"temperature:item_id\\\": 0.3102\\n      }\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"n_obs\\\": 345600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 6,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.719201,\\n      \\\"item_id_pct\\\": 32.2017,\\n      \\\"model_item_pct\\\": 37.1442,\\n      \\\"model_pct\\\": 6.6888,\\n      \\\"G_item\\\": 0.824029,\\n      \\\"top_components\\\": {\\n        \\\"model:item_id\\\": 37.1442,\\n        \\\"item_id\\\": 32.2017,\\n        \\\"residual\\\": 20.462,\\n        \\\"model\\\": 6.6888,\\n        \\\"prompt_template:item_id\\\": 2.3952,\\n        \\\"temperature:item_id\\\": 0.4243\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"n_obs\\\": 460800,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.581923,\\n      \\\"item_id_pct\\\": 16.8559,\\n      \\\"model_item_pct\\\": 14.5515,\\n      \\\"model_pct\\\": 10.7458,\\n      \\\"G_item\\\": 0.862852,\\n      \\\"top_components\\\": {\\n        \\\"residual\\\": 39.8941,\\n        \\\"item_id\\\": 16.8559,\\n        \\\"model:item_id\\\": 14.5515,\\n        \\\"model\\\": 10.7458,\\n        \\\"model:prompt_template\\\": 8.5311,\\n        \\\"prompt_template\\\": 5.4134\\n      }\\n    },\\n    \\\"math\\\": {\\n      \\\"n_obs\\\": 441600,\\n      \\\"n_levels\\\": {\\n        \\\"model\\\": 8,\\n        \\\"temperature\\\": 2,\\n        \\\"prompt_template\\\": 6,\\n        \\\"seed\\\": 6,\\n        \\\"ordering\\\": 4,\\n        \\\"item_id\\\": 200\\n      },\\n      \\\"accuracy\\\": 0.293691,\\n      \\\"item_id_pct\\\": 24.4227,\\n      \\\"model_item_pct\\\": 17.0185,\\n      \\\"model_pct\\\": 8.0784,\\n      \\\"G_item\\\": 0.891333,\\n      \\\"top_components\\\": {\\n        \\\"residual\\\": 44.0459,\\n        \\\"item_id\\\": 24.4227,\\n        \\\"model:item_id\\\": 17.0185,\\n        \\\"model\\\": 8.0784,\\n        \\\"prompt_template:item_id\\\": 2.9228,\\n        \\\"model:prompt_template\\\": 1.7837\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T21:39:34.697Z_
+
+<details><summary>↩ Tool result · `toolu_0118YMrnvT9Nuj388jWDewGC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n  \\\"benchmark_order\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"full_set\\\": {\\n    \\\"item_id_values\\\": {\\n      \\\"mmlu\\\": 40.4828,\\n      \\\"arc\\\": 42.4597,\\n      \\\"hellaswag\\\": 32.2017,\\n      \\\"gsm8k\\\": 16.8559,\\n      \\\"math\\\": 24.4227\\n    },\\n    \\\"model_item_values\\\": {\\n      \\\"mmlu\\\": 31.6036,\\n      \\\"arc\\\": 38.049,\\n      \\\"hellaswag\\\": 37.1442,\\n      \\\"gsm8k\\\": 14.5515,\\n      \\\"math\\\": 17.0185\\n    }\\n  },\\n  \\\"lobo_results\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"dropped\\\": \\\"mmlu\\\",\\n      \\\"remaining\\\": [\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.8,\\n      \\\"model_item_p_value\\\": 0.958333\\n    },\\n    \\\"arc\\\": {\\n      \\\"dropped\\\": \\\"arc\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.6,\\n      \\\"model_item_p_value\\\": 0.833333\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"dropped\\\": \\\"hellaswag\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.6,\\n      \\\"item_id_p_value\\\": 0.208333,\\n      \\\"model_item_spearman_rho\\\": -0.6,\\n      \\\"model_item_p_value\\\": 0.833333\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"dropped\\\": \\\"gsm8k\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.4,\\n      \\\"model_item_p_value\\\": 0.791667\\n    },\\n    \\\"math\\\": {\\n      \\\"dropped\\\": \\\"math\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.4,\\n      \\\"model_item_p_value\\\": 0.791667\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_benchmarks\\\": 5,\\n    \\\"n_drops\\\": 5,\\n    \\\"n_gradient_preserved\\\": 0,\\n    \\\"gradient_robust\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "f960c033-ea1b-475e-be93-f789fab72e8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"leave_one_benchmark_out\\\\\\\",\\\\n  \\\\\\\"benchmark_order\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"item_id_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n      \\\\\\\"arc\\\\\\\": 42.4597,\\\\n      \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n      \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n      \\\\\\\"math\\\\\\\": 24.4227\\\\n    },\\\\n    \\\\\\\"model_item_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n      \\\\\\\"arc\\\\\\\": 38.049,\\\\n      \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n      \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n      \\\\\\\"math\\\\\\\": 17.0185\\\\n    }\\\\n  },\\\\n  \\\\\\\"lobo_results\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"arc\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"arc\\\\\\\": 42.4597,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n        \\\\\\\"math\\\\\\\": 24.4227\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"arc\\\\\\\": 38.049,\\\\n        \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n        \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n        \\\\\\\"math\\\\\\\": 17.0185\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.166667,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.8,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.958333\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"arc\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n        \\\\\\\"math\\\\\\\": 24.4227\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n        \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n        \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n        \\\\\\\"math\\\\\\\": 17.0185\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.166667,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.6,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.833333\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"arc\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n        \\\\\\\"arc\\\\\\\": 42.4597,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n        \\\\\\\"math\\\\\\\": 24.4227\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n        \\\\\\\"arc\\\\\\\": 38.049,\\\\n        \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n        \\\\\\\"math\\\\\\\": 17.0185\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.6,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.208333,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.6,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.833333\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"gsm8k\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"arc\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n        \\\\\\\"arc\\\\\\\": 42.4597,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"math\\\\\\\": 24.4227\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n        \\\\\\\"arc\\\\\\\": 38.049,\\\\n        \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n        \\\\\\\"math\\\\\\\": 17.0185\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.166667,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.4,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.791667\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"math\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"arc\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n        \\\\\\\"arc\\\\\\\": 42.4597,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n        \\\\\\\"arc\\\\\\\": 38.049,\\\\n        \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n        \\\\\\\"gsm8k\\\\\\\": 14.5515\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.166667,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.4,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.791667\\\\n    }\\\\n  },\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_benchmarks\\\\\\\": 5,\\\\n    \\\\\\\"n_drops\\\\\\\": 5,\\\\n    \\\\\\\"n_gradient_preserved\\\\\\\": 0,\\\\n    \\\\\\\"gradient_robust\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-004\\\",\\n  \\\"analysis\\\": \\\"leave_one_benchmark_out\\\",\\n  \\\"benchmark_order\\\": [\\n    \\\"mmlu\\\",\\n    \\\"arc\\\",\\n    \\\"hellaswag\\\",\\n    \\\"gsm8k\\\",\\n    \\\"math\\\"\\n  ],\\n  \\\"full_set\\\": {\\n    \\\"item_id_values\\\": {\\n      \\\"mmlu\\\": 40.4828,\\n      \\\"arc\\\": 42.4597,\\n      \\\"hellaswag\\\": 32.2017,\\n      \\\"gsm8k\\\": 16.8559,\\n      \\\"math\\\": 24.4227\\n    },\\n    \\\"model_item_values\\\": {\\n      \\\"mmlu\\\": 31.6036,\\n      \\\"arc\\\": 38.049,\\n      \\\"hellaswag\\\": 37.1442,\\n      \\\"gsm8k\\\": 14.5515,\\n      \\\"math\\\": 17.0185\\n    }\\n  },\\n  \\\"lobo_results\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"dropped\\\": \\\"mmlu\\\",\\n      \\\"remaining\\\": [\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.8,\\n      \\\"model_item_p_value\\\": 0.958333\\n    },\\n    \\\"arc\\\": {\\n      \\\"dropped\\\": \\\"arc\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.6,\\n      \\\"model_item_p_value\\\": 0.833333\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"dropped\\\": \\\"hellaswag\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"gsm8k\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"gsm8k\\\": 16.8559,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"gsm8k\\\": 14.5515,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.6,\\n      \\\"item_id_p_value\\\": 0.208333,\\n      \\\"model_item_spearman_rho\\\": -0.6,\\n      \\\"model_item_p_value\\\": 0.833333\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"dropped\\\": \\\"gsm8k\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"math\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"math\\\": 24.4227\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"math\\\": 17.0185\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.4,\\n      \\\"model_item_p_value\\\": 0.791667\\n    },\\n    \\\"math\\\": {\\n      \\\"dropped\\\": \\\"math\\\",\\n      \\\"remaining\\\": [\\n        \\\"mmlu\\\",\\n        \\\"arc\\\",\\n        \\\"hellaswag\\\",\\n        \\\"gsm8k\\\"\\n      ],\\n      \\\"item_id_values\\\": {\\n        \\\"mmlu\\\": 40.4828,\\n        \\\"arc\\\": 42.4597,\\n        \\\"hellaswag\\\": 32.2017,\\n        \\\"gsm8k\\\": 16.8559\\n      },\\n      \\\"model_item_values\\\": {\\n        \\\"mmlu\\\": 31.6036,\\n        \\\"arc\\\": 38.049,\\n        \\\"hellaswag\\\": 37.1442,\\n        \\\"gsm8k\\\": 14.5515\\n      },\\n      \\\"item_id_monotonic_decreasing\\\": false,\\n      \\\"model_item_monotonic_increasing\\\": false,\\n      \\\"both_monotonic\\\": false,\\n      \\\"item_id_spearman_rho\\\": 0.8,\\n      \\\"item_id_p_value\\\": 0.166667,\\n      \\\"model_item_spearman_rho\\\": -0.4,\\n      \\\"model_item_p_value\\\": 0.791667\\n    }\\n  },\\n  \\\"summary\\\": {\\n    \\\"n_benchmarks\\\": 5,\\n    \\\"n_drops\\\": 5,\\n    \\\"n_gradient_preserved\\\": 0,\\n    \\\"gradient_robust\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have all the data now. Let me note an important issue: the benchmarks have different model counts:
+- MMLU, ARC, HellaSwag: 6 models each
+- GSM8K: 8 models 
+- MATH: 8 models (441,600 obs, which is 200 items × 8 models × 2 temps × 6 prompts × 6 seeds × 4 orderings = 460,800... but we have 441,600. Hmm, 441,600/8 = 55,200. 55,200/200 = 276. 
+
+Let me work through the math on MATH's observation count more carefully. If I divide out the known factors, I'm getting 7.666 models worth of data rather than exactly 8, which suggests either some models have incomplete data, certain conditions weren't run for all models, or there are missing observations scattered throughout.
+
+Now I'm compiling the permutation test results across the five benchmarks. The item_id gradient shows a strong correlation of 0.80 but falls just short of statistical significance at p=0.067, with performance generally declining from arc down to gsm8k, though arc surprisingly outperforms mmlu. The model:item gradient, on the other hand, shows a weak negative correlation of -0.60 that's nowhere near significant at p=0.883, suggesting no meaningful interaction pattern between models and items.
+
+Looking at the LOBO analysis, dropping individual benchmarks doesn't change the robustness of the item_id gradient direction, which consistently shows positive correlations across all five drops. However, the model:item gradient persistently reverses direction in every drop, indicating that multiple-choice benchmarks actually show higher model:item variance rather than lower.
+
+For the D-study generalizability coefficients, I'm examining how many models and benchmarks would be needed to achieve different reliability thresholds. The current setup with 6-8 models and 5 benchmarks gives us coefficients ranging from 0.82 to 0.87, but reaching 0.90 or 0.95 would require substantially more observations—anywhere from 268 to 607 models depending on the benchmark.
+
+When I expand the cross-model analysis to include six models instead of four on MMLU, the item_id and model:item variance components shift slightly, but the key finding is that adding more models actually improves the generalizability coefficient from 0.8159 to 0.8705, suggesting the four-model sample was somewhat unrepresentative.
+
+However, there's a critical data integrity problem I'm noticing: MMLU, ARC, and HellaSwag only have 6 models in the dataset, while GSM8K and MATH have 8 models. This design imbalance means the variance component percentages aren't directly comparable across benchmarks—the differences could reflect the unequal model counts rather than true benchmark properties. Since the task specified 8 models, I need to flag that not all benchmarks actually have complete coverage, which undermines the cross-benchmark comparisons in B1 and B2.
+
+The nuance here is that having more models should theoretically inflate both the model% and model:item% components, yet GSM8K and MATH show higher model% but actually lower model:item% compared to the multiple-choice benchmarks. This suggests the lower model:item% finding for free-form benchmarks is genuine—if anything, the extra models would work against that pattern. But the item_id% comparisons are still compromised since additional models introduce more model-related variance that could suppress the item_id percentages even if the underlying item effects are similar. I should alert the user to this limitation while noting that the core pattern around model:item% appears robust despite the design issue.
+
+There's also a discrepancy in the B4 output where n_models is set to 6 based on the MMLU subset, but the models list contains all 8 models from the full dataset—a minor bug in how the script reports the count versus the actual models used in the analysis.
+
+Now I'm ready to share the results with the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "988928a8-00d1-49f8-bbd7-0e1d0536c2fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHuZK3y8JQ4du266BZHLUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10824,
+      "cache_read_input_tokens": 75203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10824
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+All 4 analyses completed. Key finding: **unbalanced design** — MMLU/ARC/HellaSwag have 6 models, GSM8K/MATH have 8 models. This affects cross-benchmark variance comparisons. Let me verify this.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "1d9485cf-cd73-47e2-adc1-04d574161f69",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHuZK3y8JQ4du266BZHLUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10824,
+      "cache_read_input_tokens": 75203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10824
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FsFmdPCXAuZ4jkgrAWVp3q`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/results/exp002/ -name \"olmo*\" -o -name \"yi*\" -o -name \"OLMo*\" -o -name \"Yi*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "7a39c3bc-1636-4ae3-b22e-75df29dd3d12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHuZK3y8JQ4du266BZHLUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10824,
+      "cache_read_input_tokens": 75203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10824
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T21:40:16.284Z_
+
+<details><summary>↩ Tool result · `toolu_01FsFmdPCXAuZ4jkgrAWVp3q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "90bf9a6b-443e-48f7-9dd2-4c0df13d182e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\n/root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\n/root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01USj6zs1jX1DstdJ7pDuxJx`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "bf16207d-da20-4d85-97dd-6fba5d7df64b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHuZK3y8JQ4du266BZHLUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10824,
+      "cache_read_input_tokens": 75203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10824
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-21T21:40:17.331Z_
+
+<details><summary>↩ Tool result · `toolu_01USj6zs1jX1DstdJ7pDuxJx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 7489, \\\"item_id\\\": \\\"gsm8k_91\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"deepseek-ai/deepseek-llm-7b-chat\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Cindy has four pets.\\\\nMarcia has two more pets than Cindy, so Marcia has 4+2=<<4+2=6>>6 pets.\\\\nJan has three times the number of pets as Marcia, so Jan has 6*3=<<6*3=18>>18 pets.\\\\nTogether, they have 4+6+18=<<4+6+18=28>>28 pets.\\\\n#### 28\\\", \\\"predicted_answer\\\": \\\"28\\\", \\\"gold_answer\\\": \\\"28\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 172.42, \\\"answer_logprob\\\": -1.0769131183624268, \\\"top_logprobs\\\": {\\\"C\\\": -1.0769131183624268, \\\"If\\\": -1.5769131183624268, \\\"First\\\": -1.8269131183624268, \\\"Marc\\\": -2.3269131183624268, \\\"1\\\": -2.9519131183624268}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6ac69b2a-5a02-4821-8f7c-6e5b1afa5970",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 7489, \\\\\\\"item_id\\\\\\\": \\\\\\\"gsm8k_91\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"subject\\\\\\\": null, \\\\\\\"model\\\\\\\": \\\\\\\"deepseek-ai/deepseek-llm-7b-chat\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"Cindy has four pets.\\\\\\\\nMarcia has two more pets than Cindy, so Marcia has 4+2=<<4+2=6>>6 pets.\\\\\\\\nJan has three times the number of pets as Marcia, so Jan has 6*3=<<6*3=18>>18 pets.\\\\\\\\nTogether, they have 4+6+18=<<4+6+18=28>>28 pets.\\\\\\\\n#### 28\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"correct\\\\\\\": 1, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 172.42, \\\\\\\"answer_logprob\\\\\\\": -1.0769131183624268, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\"C\\\\\\\": -1.0769131183624268, \\\\\\\"If\\\\\\\": -1.5769131183624268, \\\\\\\"First\\\\\\\": -1.8269131183624268, \\\\\\\"Marc\\\\\\\": -2.3269131183624268, \\\\\\\"1\\\\\\\": -2.9519131183624268}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition_id\\\": 7489, \\\"item_id\\\": \\\"gsm8k_91\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"subject\\\": null, \\\"model\\\": \\\"deepseek-ai/deepseek-llm-7b-chat\\\", \\\"precision\\\": \\\"bfloat16\\\", \\\"temperature\\\": 0.0, \\\"top_p\\\": null, \\\"prompt_template\\\": 1, \\\"seed\\\": 42, \\\"ordering\\\": 1, \\\"generated_text\\\": \\\"Cindy has four pets.\\\\nMarcia has two more pets than Cindy, so Marcia has 4+2=<<4+2=6>>6 pets.\\\\nJan has three times the number of pets as Marcia, so Jan has 6*3=<<6*3=18>>18 pets.\\\\nTogether, they have 4+6+18=<<4+6+18=28>>28 pets.\\\\n#### 28\\\", \\\"predicted_answer\\\": \\\"28\\\", \\\"gold_answer\\\": \\\"28\\\", \\\"correct\\\": 1, \\\"text_exact_match\\\": 0, \\\"latency_ms\\\": 172.42, \\\"answer_logprob\\\": -1.0769131183624268, \\\"top_logprobs\\\": {\\\"C\\\": -1.0769131183624268, \\\"If\\\": -1.5769131183624268, \\\"First\\\": -1.8269131183624268, \\\"Marc\\\": -2.3269131183624268, \\\"1\\\": -2.9519131183624268}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. OLMo and Yi only have GSM8K and MATH data, not the MC benchmarks. This means:
+- MMLU, ARC, HellaSwag: 6 models (DeepSeek, Gemma, InternLM, Llama, Mistral, Qwen)
+- GSM8K, MATH: 8 models (above 6 + OLMo, Yi)
+
+This is a significant confound for the permutation test. The MC benchmarks have 6 models while FF benchmarks have 8. Having more models means:
+
+
+- More variance gets captured in model-related components (model%, model:item%)
+- item_id% could be diluted since the same absolute item variance is spread across a larger total variance
+- model:item% increases or decreases depending on how the additional models interact with items
+
+I can't directly compare variance percentages across benchmarks with different model counts—the permutation test and LOBO are confounded. I need to re-run the analysis using only the 6 common models across all 5 benchmarks to balance the design and make the comparisons valid.
+
+Updating the script to filter...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "0425e895-beee-4a7e-afb4-092fc097010f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDNjobXcLPwwMNtBJruTgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2731,
+      "cache_read_input_tokens": 86027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+Confirmed: OLMo-2 and Yi-1.5 only have GSM8K/MATH data. This unbalanced model count (6 vs 8) confounds the cross-benchmark variance comparisons. I need to re-run B1/B2 with the **6 common models** only for a fair comparison.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "cfb6217c-1882-4326-a048-9d77dcbcc7ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDNjobXcLPwwMNtBJruTgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2731,
+      "cache_read_input_tokens": 86027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DLoAkniVCRYiueyKK2pfPk`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat > /root/nlp_variance_gtheory/scripts/exp004_cross_benchmark_analysis_v2.py << 'PYEOF'\n\"\"\"exp-004 v2: Cross-benchmark analysis with balanced 6-model design.\n\nFixes: filters to 6 common models for B1/B2 to ensure fair comparison.\nAlso runs B3/B4 with both 6-model (balanced) and 8-model (full) variants.\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport time\nfrom itertools import combinations, permutations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\nfrom src.config.model_paths import normalize_model_name\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\nBENCHMARK_ORDER = [\"mmlu\", \"arc\", \"hellaswag\", \"gsm8k\", \"math\"]\nG_TARGETS = [0.80, 0.90, 0.95]\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\n\n\ndef load_data(data_dir):\n    data_path = Path(data_dir)\n    frames = [pd.read_json(f, lines=True) for f in sorted(data_path.glob(\"*.jsonl\"))]\n    df = pd.concat(frames, ignore_index=True)\n    if \"top_logprobs\" in df.columns:\n        df.drop(columns=[\"top_logprobs\"], inplace=True)\n    df = df.dropna(subset=[\"benchmark\"])\n    df[\"model\"] = df[\"model\"].map(normalize_model_name).fillna(df[\"model\"])\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n    return df\n\n\ndef get_common_models(df):\n    benchmarks = df[\"benchmark\"].unique()\n    models_per_bm = [set(df[df[\"benchmark\"] == bm][\"model\"].unique()) for bm in benchmarks]\n    return sorted(set.intersection(*models_per_bm))\n\n\ndef compute_henderson_i(df, facets):\n    grand_mean = df[\"correct\"].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[\"correct\"].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[\"correct\"].mean()\n        main_fi = df.groupby(fi, observed=True)[\"correct\"].mean()\n        main_fj = df.groupby(fj, observed=True)[\"correct\"].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            ss += n_per * (cm - main_fi[li] - main_fj[lj] + grand_mean) ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n    ss_total = float(((df[\"correct\"] - grand_mean) ** 2).sum())\n    ss_model_sum = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model_sum)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        vc[key] = max(0.0, (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0)\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        ic = 0.0\n        for fj in facets:\n            if fj == fi: continue\n            ik = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            ic += prod(n_levels[f] for f in facets if f not in (fi, fj)) * vc[ik]\n        vc[fi] = max(0.0, (effects[fi][\"ms\"] - ic - ms_res) / coeff_main if coeff_main > 0 else 0.0)\n    vc[\"residual\"] = ms_res\n    return vc, {k: int(v) for k, v in n_levels.items()}\n\n\ndef pcts(vc):\n    t = sum(vc.values())\n    return {k: v / t * 100 if t > 0 else 0 for k, v in vc.items()}\n\n\ndef g_for_n(vc, nl, ni, facets):\n    si = vc.get(\"item_id\", 0.0)\n    na = nl[\"item_id\"]\n    non_item = [f for f in facets if f != \"item_id\"]\n    sd = 0.0\n    for c, e in vc.items():\n        if e == 0 or c == \"item_id\": continue\n        if c == \"residual\":\n            sd += e / prod(nl[f] for f in non_item)\n            continue\n        fs = set(c.split(\":\"))\n        if \"item_id\" not in fs: continue\n        other = [f for f in fs if f != \"item_id\"]\n        sd += e / (prod(nl[f] for f in other) if other else 1)\n    sd_n = sd * (na / ni)\n    return si / (si + sd_n) if (si + sd_n) > 0 else 0.0\n\n\ndef find_min(vc, nl, tgt, facets, mx=5000):\n    for n in range(1, mx + 1):\n        if g_for_n(vc, nl, n, facets) >= tgt:\n            return n\n    return None\n\n\ndef spearman_perm(values, order, direction):\n    obs = [values[bm] for bm in order]\n    n = len(order)\n    exp = list(range(n, 0, -1)) if direction == \"decreasing\" else list(range(1, n + 1))\n    obs_rho, _ = spearmanr(exp, obs)\n    obs_tau, tau_p = kendalltau(exp, obs)\n    ne = sum(1 for p in permutations(range(n))\n             if spearmanr(exp, [obs[i] for i in p])[0] >= obs_rho)\n    pv = ne / len(list(permutations(range(n))))\n    return {\n        \"observed_values\": {bm: round(values[bm], 4) for bm in order},\n        \"observed_rho\": round(float(obs_rho), 6),\n        \"p_value\": round(pv, 6),\n        \"n_extreme\": ne,\n        \"n_permutations\": len(list(permutations(range(n)))),\n        \"significant_at_0.05\": pv < 0.05,\n        \"kendall_tau\": round(float(obs_tau), 6),\n        \"kendall_p\": round(float(tau_p), 6),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--data-dir\", default=\"results/exp002\")\n    parser.add_argument(\"--output-dir\", default=\"results/exp004_8model_analysis\")\n    args = parser.parse_args()\n\n    t0 = time.time()\n    out = Path(args.output_dir)\n    out.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading data...\", flush=True)\n    df = load_data(args.data_dir)\n    common_models = get_common_models(df)\n    all_models = sorted(df[\"model\"].unique())\n    print(f\"Total: {len(df)} obs, {len(all_models)} models, {df['benchmark'].nunique()} benchmarks\", flush=True)\n    print(f\"All models: {all_models}\", flush=True)\n    print(f\"Common models (in all 5 benchmarks): {common_models} ({len(common_models)})\", flush=True)\n\n    df_balanced = df[df[\"model\"].isin(common_models)].reset_index(drop=True)\n    print(f\"Balanced subset: {len(df_balanced)} obs\", flush=True)\n\n    # =============== B1: Permutation test (balanced 6-model) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B1: Permutation test (5 benchmarks, 6 common models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    bm_stats = {}\n    avail = [bm for bm in BENCHMARK_ORDER if bm in df_balanced[\"benchmark\"].unique()]\n    for bm in avail:\n        d = df_balanced[df_balanced[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, nl = compute_henderson_i(d, FACETS)\n        p = pcts(vc)\n        bm_stats[bm] = {\n            \"item_id_pct\": p.get(\"item_id\", 0),\n            \"model_item_pct\": p.get(\"model:item_id\", 0),\n            \"n_obs\": len(d),\n            \"n_models\": nl[\"model\"],\n            \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n        }\n        print(f\"  {bm}: item_id={p.get('item_id', 0):.2f}%, model:item={p.get('model:item_id', 0):.2f}%, \"\n              f\"n={len(d)}, models={nl['model']}\", flush=True)\n\n    ip = {bm: bm_stats[bm][\"item_id_pct\"] for bm in avail}\n    mip = {bm: bm_stats[bm][\"model_item_pct\"] for bm in avail}\n    t_item = spearman_perm(ip, avail, \"decreasing\")\n    t_mi = spearman_perm(mip, avail, \"increasing\")\n\n    b1 = {\n        \"experiment\": f\"exp-004 ({len(common_models)} common models × 5 benchmarks)\",\n        \"design_note\": \"Filtered to 6 models present in ALL benchmarks for fair comparison\",\n        \"common_models\": common_models,\n        \"test_statistic\": \"spearman_rho\",\n        \"n_benchmarks\": len(avail),\n        \"n_permutations\": 120,\n        \"benchmark_order_hypothesis\": BENCHMARK_ORDER,\n        \"benchmarks_used\": avail,\n        \"benchmark_stats\": bm_stats,\n        \"item_id_gradient\": {\n            \"hypothesis\": \"item_id% decreasing: MC (MMLU/ARC/HellaSwag) > FF (GSM8K/MATH)\",\n            \"direction\": \"decreasing\",\n            **t_item,\n        },\n        \"model_item_gradient\": {\n            \"hypothesis\": \"model:item% increasing from MC to FF\",\n            \"direction\": \"increasing\",\n            **t_mi,\n        },\n    }\n    with open(out / \"permutation_test_5bm.json\", \"w\") as f:\n        json.dump(b1, f, indent=2)\n    print(f\"\\n  item_id:    rho={t_item['observed_rho']:.4f}, p={t_item['p_value']:.4f} \"\n          f\"{'*' if t_item['significant_at_0.05'] else 'n.s.'}\", flush=True)\n    print(f\"  model:item: rho={t_mi['observed_rho']:.4f}, p={t_mi['p_value']:.4f} \"\n          f\"{'*' if t_mi['significant_at_0.05'] else 'n.s.'}\", flush=True)\n    print(f\"  -> {out / 'permutation_test_5bm.json'}\", flush=True)\n\n    # =============== B2: LOBO (balanced 6-model) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B2: Leave-one-benchmark-out stability (6 common models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    lobo = {}\n    for drop in avail:\n        rem = [bm for bm in avail if bm != drop]\n        iv = {bm: bm_stats[bm][\"item_id_pct\"] for bm in rem}\n        mv = {bm: bm_stats[bm][\"model_item_pct\"] for bm in rem}\n        ti = spearman_perm(iv, rem, \"decreasing\")\n        tm = spearman_perm(mv, rem, \"increasing\")\n        il = [iv[bm] for bm in rem]\n        ml = [mv[bm] for bm in rem]\n        i_mono = all(il[i] >= il[i + 1] for i in range(len(il) - 1))\n        m_mono = all(ml[i] <= ml[i + 1] for i in range(len(ml) - 1))\n        lobo[drop] = {\n            \"dropped\": drop,\n            \"remaining\": rem,\n            \"item_id_values\": {bm: round(iv[bm], 4) for bm in rem},\n            \"model_item_values\": {bm: round(mv[bm], 4) for bm in rem},\n            \"item_id_monotonic\": i_mono,\n            \"model_item_monotonic\": m_mono,\n            \"both_monotonic\": i_mono and m_mono,\n            \"item_id_rho\": ti[\"observed_rho\"],\n            \"item_id_p\": ti[\"p_value\"],\n            \"model_item_rho\": tm[\"observed_rho\"],\n            \"model_item_p\": tm[\"p_value\"],\n        }\n        s = \"OK\" if (i_mono and m_mono) else \"BROKEN\"\n        print(f\"  Drop {drop}: {s} | item rho={ti['observed_rho']:.3f} p={ti['p_value']:.3f}, \"\n              f\"mi rho={tm['observed_rho']:.3f} p={tm['p_value']:.3f}\", flush=True)\n\n    np_ = sum(1 for r in lobo.values() if r[\"both_monotonic\"])\n    b2 = {\n        \"experiment\": \"exp-004\",\n        \"design_note\": \"6 common models, balanced\",\n        \"benchmark_order\": avail,\n        \"full_set\": {\n            \"item_id_values\": {bm: round(bm_stats[bm][\"item_id_pct\"], 4) for bm in avail},\n            \"model_item_values\": {bm: round(bm_stats[bm][\"model_item_pct\"], 4) for bm in avail},\n        },\n        \"lobo_results\": lobo,\n        \"summary\": {\"n_benchmarks\": len(avail), \"n_drops\": len(lobo),\n                     \"n_gradient_preserved\": np_, \"gradient_robust\": np_ == len(lobo)},\n    }\n    with open(out / \"lobo_stability.json\", \"w\") as f:\n        json.dump(b2, f, indent=2)\n    print(f\"  Gradient preserved: {np_}/{len(lobo)}\", flush=True)\n    print(f\"  -> {out / 'lobo_stability.json'}\", flush=True)\n\n    # =============== B3: D-study (both balanced and full) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B3: D-study projections\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    ds_results = {}\n    for label, dfx in [(\"6model_balanced\", df_balanced), (\"full\", df)]:\n        ds_results[label] = {}\n        print(f\"\\n  --- {label} ({dfx['model'].nunique()} models) ---\", flush=True)\n        for bm in avail:\n            d = dfx[dfx[\"benchmark\"] == bm].reset_index(drop=True)\n            if len(d) == 0: continue\n            vc, nl = compute_henderson_i(d, FACETS)\n            p = pcts(vc)\n            gc = g_for_n(vc, nl, nl[\"item_id\"], FACETS)\n            curve = {str(ni): round(g_for_n(vc, nl, ni, FACETS), 6) for ni in ITEM_COUNTS}\n            mi = {str(t): find_min(vc, nl, t, FACETS) for t in G_TARGETS}\n            ds_results[label][bm] = {\n                \"n_obs\": len(d), \"n_levels\": nl,\n                \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n                \"G_current\": round(gc, 6),\n                \"item_id_pct\": round(p.get(\"item_id\", 0), 4),\n                \"model_item_pct\": round(p.get(\"model:item_id\", 0), 4),\n                \"d_study_curve\": curve,\n                \"min_items_for_G\": mi,\n                \"top_variance_pct\": {k: round(v, 4) for k, v in sorted(p.items(), key=lambda x: -x[1])[:8] if v > 0.01},\n            }\n            print(f\"    {bm:<10} G={gc:.4f} n_m={nl['model']} | \"\n                  f\"G>=.80={mi.get('0.8', '>5k')}, G>=.90={mi.get('0.9', '>5k')}, G>=.95={mi.get('0.95', '>5k')}\", flush=True)\n\n    b3 = {\n        \"experiment\": \"exp-004\",\n        \"facets\": FACETS,\n        \"g_targets\": G_TARGETS,\n        \"common_models\": common_models,\n        \"all_models\": all_models,\n        \"balanced_6model\": ds_results[\"6model_balanced\"],\n        \"full_data\": ds_results[\"full\"],\n    }\n    with open(out / \"dstudy_8model.json\", \"w\") as f:\n        json.dump(b3, f, indent=2)\n    print(f\"  -> {out / 'dstudy_8model.json'}\", flush=True)\n\n    # =============== B4: Cross-model G-study ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B4: Cross-model G-study\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    prev_4model = {\"item_id_pct\": 41.55, \"model_item_pct\": 32.81, \"model_pct\": 0.75, \"G_item\": 0.8159, \"n_models\": 4}\n\n    per_bm_6 = {}\n    per_bm_full = {}\n    for label, dfx, target in [(\"6model\", df_balanced, per_bm_6), (\"full\", df, per_bm_full)]:\n        print(f\"\\n  --- {label} ---\", flush=True)\n        for bm in avail:\n            d = dfx[dfx[\"benchmark\"] == bm].reset_index(drop=True)\n            if len(d) == 0: continue\n            vc, nl = compute_henderson_i(d, FACETS)\n            p = pcts(vc)\n            gi = g_for_n(vc, nl, nl[\"item_id\"], FACETS)\n            target[bm] = {\n                \"n_obs\": len(d), \"n_levels\": nl,\n                \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n                \"item_id_pct\": round(p.get(\"item_id\", 0), 4),\n                \"model_item_pct\": round(p.get(\"model:item_id\", 0), 4),\n                \"model_pct\": round(p.get(\"model\", 0), 4),\n                \"G_item\": round(gi, 6),\n                \"top_components\": {k: round(v, 4) for k, v in sorted(p.items(), key=lambda x: -x[1])[:6]},\n            }\n            print(f\"    {bm:<10} item_id={p.get('item_id',0):.2f}% m:item={p.get('model:item_id',0):.2f}% \"\n                  f\"model={p.get('model',0):.2f}% G={gi:.4f} (n_m={nl['model']})\", flush=True)\n\n    mmlu_6 = per_bm_6.get(\"mmlu\", {})\n    b4 = {\n        \"experiment\": \"exp-004\",\n        \"common_models\": common_models,\n        \"all_models\": all_models,\n        \"facets\": FACETS,\n        \"mmlu_6model\": mmlu_6,\n        \"comparison_4model\": prev_4model,\n        \"delta_vs_4model\": {\n            \"item_id_pct_change\": round(mmlu_6.get(\"item_id_pct\", 0) - prev_4model[\"item_id_pct\"], 4),\n            \"model_item_pct_change\": round(mmlu_6.get(\"model_item_pct\", 0) - prev_4model[\"model_item_pct\"], 4),\n            \"G_item_change\": round(mmlu_6.get(\"G_item\", 0) - prev_4model[\"G_item\"], 6),\n        },\n        \"per_benchmark_6model\": per_bm_6,\n        \"per_benchmark_full\": per_bm_full,\n    }\n    with open(out / \"cross_model_gstudy_8model.json\", \"w\") as f:\n        json.dump(b4, f, indent=2)\n    print(f\"  -> {out / 'cross_model_gstudy_8model.json'}\", flush=True)\n\n    print(f\"\\n{'=' * 70}\", flush=True)\n    print(f\"All done. Runtime: {time.time()-t0:.1f}s\", flush=True)\n    print(f\"Files: {out}/\", flush=True)\n    for f in sorted(out.glob(\"*.json\")):\n        print(f\"  {f.name}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"v2 script written.\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "8f1b133a-7e90-48f3-9a40-0fd12e92f468",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KDNjobXcLPwwMNtBJruTgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2731,
+      "cache_read_input_tokens": 86027,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2731
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-21T21:41:46.195Z_
+
+<details><summary>↩ Tool result · `toolu_01DLoAkniVCRYiueyKK2pfPk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"v2 script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "973d1e7b-9517-4831-a5ee-9d48cafde142",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"v2 script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"v2 script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011F76md9Xz1m38qFSRChoAQ`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "3b5f76bd-d624-4419-9827-5ae1a5177b73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011NHLhy84BP9D2wzmzCX2CU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6695,
+      "cache_read_input_tokens": 88758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6695
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-21T21:42:22.875Z_
+
+<details><summary>↩ Tool result · `toolu_011F76md9Xz1m38qFSRChoAQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=202230\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4d84c7b7-3224-408e-821c-ec659b2e8bd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=202230\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=202230\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105_
+
+Running as PID 202230. Let me poll the log.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "d05e6ad7-d48f-4988-992d-9c6abacb6a77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KehicezUAkLErnTKJSakSU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 425,
+      "cache_read_input_tokens": 95453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 425
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FEwNKRoRcszXJ8DKUJQaiE`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -50 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "11c4b6f8-a945-4055-9c53-3fa237fc9e48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KehicezUAkLErnTKJSakSU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 425,
+      "cache_read_input_tokens": 95453,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 425
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-21T21:42:27.405Z_
+
+<details><summary>↩ Tool result · `toolu_01FEwNKRoRcszXJ8DKUJQaiE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "59bcbd9c-2489-41fe-b792-12bed38ed20c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G7ZojqMEUuMcT2C6it5fhC`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -60 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "9dc73b0f-4404-4135-b3b4-b93997d3776d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JjBCw2eeGZJurJrMBmPNt4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 95878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 191
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-21T21:42:31.871Z_
+
+<details><summary>↩ Tool result · `toolu_01G7ZojqMEUuMcT2C6it5fhC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "4d433f1c-7026-420d-9bad-7b9724b42d07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZC8MfhxeEipZPSjprwN7f`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -80 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "f5437513-34a6-47d7-9fa3-6feccc5d27e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EqMFGwa8axgfJ1WqHG4ozp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 455,
+      "cache_read_input_tokens": 96069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 455
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-21T21:42:35.139Z_
+
+<details><summary>↩ Tool result · `toolu_01HZC8MfhxeEipZPSjprwN7f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\n\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "409606ca-9795-42a3-bb84-52bbfaa07d5b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\\\n\\\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\n\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MLTraYsnAymqM9eAJ2dNR5`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -100 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "1a07090f-a12b-4ae8-a892-81b67fdfbda2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfPipCaFnRdUZi9nC9ppVX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1083,
+      "cache_read_input_tokens": 96524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1083
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-21T21:42:39.106Z_
+
+<details><summary>↩ Tool result · `toolu_01MLTraYsnAymqM9eAJ2dNR5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\n\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\n\\n  --- full (8 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "46e25e73-b728-424e-badf-a9144fd61556",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\\\n\\\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\\\n\\\\n  --- full (8 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data...\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\nBalanced subset: 1710000 obs\\n\\n======================================================================\\nB1: Permutation test (5 benchmarks, 6 common models)\\n======================================================================\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\n\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\n\\n  --- full (8 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vo3rP4uEaLYp9HvFwihiBu`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -40 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "f717254d-ab49-4c49-85df-978228292839",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ws4yUXBzeCjyetk63w1v6G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1276,
+      "cache_read_input_tokens": 97607,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1276
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-21T21:42:42.590Z_
+
+<details><summary>↩ Tool result · `toolu_01Vo3rP4uEaLYp9HvFwihiBu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\n\\n  --- full (8 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study\\n======================================================================\\n\\n  --- 6model ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6f37309e-1ec0-4a58-9b10-22216ff9ec99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\\\n\\\\n  --- full (8 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study\\\\n======================================================================\\\\n\\\\n  --- 6model ---\\\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  -> results/exp004_8model_analysis/permutation_test_5bm.json\\n\\n======================================================================\\nB2: Leave-one-benchmark-out stability (6 common models)\\n======================================================================\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\n  Gradient preserved: 0/5\\n  -> results/exp004_8model_analysis/lobo_stability.json\\n\\n======================================================================\\nB3: D-study projections\\n======================================================================\\n\\n  --- 6model_balanced (6 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\n\\n  --- full (8 models) ---\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\n    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study\\n======================================================================\\n\\n  --- 6model ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ShN5Zr7enFgvVnC4Ggg1Fn`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -20 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "ea86fa3c-d598-492c-83ac-4861a30bd381",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013zgRzdeaZEpXYX9WZRSjLY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 98883,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1076
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-21T21:42:46.619Z_
+
+<details><summary>↩ Tool result · `toolu_01ShN5Zr7enFgvVnC4Ggg1Fn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study\\n======================================================================\\n\\n  --- 6model ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n    gsm8k      item_id=14.58% m:item=13.48% model=12.55% G=0.8111 (n_m=6)\\n    math       item_id=20.49% m:item=17.69% model=11.10% G=0.8324 (n_m=6)\\n\\n  --- full ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n    gsm8k      item_id=16.86% m:item=14.55% model=10.75% G=0.8629 (n_m=8)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "988230c4-c289-4a21-9bc4-ef784dc1d270",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study\\\\n======================================================================\\\\n\\\\n  --- 6model ---\\\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\\\n    gsm8k      item_id=14.58% m:item=13.48% model=12.55% G=0.8111 (n_m=6)\\\\n    math       item_id=20.49% m:item=17.69% model=11.10% G=0.8324 (n_m=6)\\\\n\\\\n  --- full ---\\\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\\\n    gsm8k      item_id=16.86% m:item=14.55% model=10.75% G=0.8629 (n_m=8)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\n\\n======================================================================\\nB4: Cross-model G-study\\n======================================================================\\n\\n  --- 6model ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n    gsm8k      item_id=14.58% m:item=13.48% model=12.55% G=0.8111 (n_m=6)\\n    math       item_id=20.49% m:item=17.69% model=11.10% G=0.8324 (n_m=6)\\n\\n  --- full ---\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\n    gsm8k      item_id=16.86% m:item=14.55% model=10.75% G=0.8629 (n_m=8)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011tjsH3tD7kcVaqmkD1dG13`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "tail -5 /tmp/exp004_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "ac3902e5-e4fa-4237-b033-00be20ed153b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L9UG4YCsGHm88Azc8dx6Pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 99959,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 696
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-21T21:42:50.323Z_
+
+<details><summary>↩ Tool result · `toolu_011tjsH3tD7kcVaqmkD1dG13`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Files: results/exp004_8model_analysis/\\n  cross_model_gstudy_8model.json\\n  dstudy_8model.json\\n  lobo_stability.json\\n  permutation_test_5bm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "7835d222-0b2c-43c5-8161-e34c4991ede9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Files: results/exp004_8model_analysis/\\\\n  cross_model_gstudy_8model.json\\\\n  dstudy_8model.json\\\\n  lobo_stability.json\\\\n  permutation_test_5bm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Files: results/exp004_8model_analysis/\\n  cross_model_gstudy_8model.json\\n  dstudy_8model.json\\n  lobo_stability.json\\n  permutation_test_5bm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 120_
+
+All 4 analyses complete. Let me verify the output files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "274cae90-2f6a-4358-a6f7-373ca0865f71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01352AM6a7AzHn3nmjNCU2Bp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 100655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HfNEkJCbFZd9P9oRN6tfHv`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls -la /root/nlp_variance_gtheory/results/exp004_8model_analysis/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6c16903f-54d8-4ba8-b881-928a1c56e5b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01352AM6a7AzHn3nmjNCU2Bp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 100655,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 233
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-21T21:42:54.646Z_
+
+<details><summary>↩ Tool result · `toolu_01HfNEkJCbFZd9P9oRN6tfHv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  2 root root   150 May 22 05:37 .\\ndrwxr-xr-x 15 root root  4096 May 22 05:35 ..\\n-rw-r--r--  1 root root  7234 May 22 05:42 cross_model_gstudy_8model.json\\n-rw-r--r--  1 root root 10959 May 22 05:42 dstudy_8model.json\\n-rw-r--r--  1 root root  3840 May 22 05:42 lobo_stability.json\\n-rw-r--r--  1 root root  2415 May 22 05:42 permutation_test_5bm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "5d41a362-50a0-4137-bd58-03b40ddfd306",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  2 root root   150 May 22 05:37 .\\\\ndrwxr-xr-x 15 root root  4096 May 22 05:35 ..\\\\n-rw-r--r--  1 root root  7234 May 22 05:42 cross_model_gstudy_8model.json\\\\n-rw-r--r--  1 root root 10959 May 22 05:42 dstudy_8model.json\\\\n-rw-r--r--  1 root root  3840 May 22 05:42 lobo_stability.json\\\\n-rw-r--r--  1 root root  2415 May 22 05:42 permutation_test_5bm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  2 root root   150 May 22 05:37 .\\ndrwxr-xr-x 15 root root  4096 May 22 05:35 ..\\n-rw-r--r--  1 root root  7234 May 22 05:42 cross_model_gstudy_8model.json\\n-rw-r--r--  1 root root 10959 May 22 05:42 dstudy_8model.json\\n-rw-r--r--  1 root root  3840 May 22 05:42 lobo_stability.json\\n-rw-r--r--  1 root root  2415 May 22 05:42 permutation_test_5bm.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All files are there and recent (May 22 05:42). Let me now summarize the results for the user.
+
+Key findings:
+
+**Data**: 8 models total, but only 6 common to all benchmarks (OLMo-2-7B and Yi-1.5-9B only in GSM8K/MATH). Balanced analysis uses 6 common models.
+
+**B1: Permutation test (6 common models × 5 benchmarks)**
+- item_id% gradient (decreasing): ρ = 0.80, p = 0.067 (not significant at 0.05)
+  - Arc shows the strongest performance at 42.46, followed by MMLU at 40.48, with GSM8K trailing at 14.58
+- model:item% gradient (increasing): ρ = −0.60, p = 0.883 (not significant, wrong direction)
+  - Similar ranking across benchmarks with Arc leading at 38.05 and GSM8K lowest at 13.48
+
+**B2: LOBO (6 common models)**
+- None of the 5 model drops preserve both metrics
+
+For the monotonic gradients, item_id shows consistent positive correlations across all drops but they're never statistically significant, while model:item consistently reverses direction. Now I'm looking at the D-study results to see how many items each benchmark needs to reach different reliability thresholds—MMLU requires 119 items for 0.80 reliability but jumps to 566 for 0.95, while MATH needs the most items overall at 885 for the highest threshold.
+
+When I expand to 8 models where available, gsm8k and math both show notable improvements in generalizability. Looking at the cross-model G-study for MMLU with 6 models, item variability still dominates at 40.48%, though it's slightly lower than the 4-model setup, and the model:item interaction accounts for 31.60%—interestingly, adding those extra 2 models increases the main model effect from 0.75% to 3.05%, suggesting the additional models contribute more distinct variance than the original set.
+
+Examining the performance across benchmarks with the balanced 6-model setup, I notice a clear format pattern emerging: multiple-choice benchmarks like MMLU, ARC, and HellaSwag cluster together with item variability between 32-42%, while the free-response formats like GSM8K and MATH show much lower item percentages around 14-20% but substantially higher model effects at 11-12%.
+
+The ordering within each group isn't perfectly consistent—ARC outperforms MMLU which outperforms HellaSwag, and MATH edges out GSM8K—but the fundamental dichotomy between format types holds up well, which actually strengthens the paper's core argument despite the internal inconsistencies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "6306634b-ed0d-4020-98da-9bfb8ea912e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcuPePmMC17CZhgoFZSQrZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 403,
+      "cache_read_input_tokens": 100888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 403
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+## 结果汇总
+
+### 数据概况
+- 8 models 总计，但仅 **6 个模型** 覆盖全部 5 benchmarks（OLMo-2-7B / Yi-1.5-9B 仅在 GSM8K/MATH）
+- B1/B2 用 6 common models 做 balanced comparison，B3/B4 同时报告 6-model balanced 和 full 两版
+
+---
+
+### B1: Permutation Test (6 common models × 5 benchmarks)
+
+| Benchmark | item_id% | model:item% |
+|-----------|----------|-------------|
+| mmlu | 40.48 | 31.60 |
+| arc | 42.46 | 38.05 |
+| hellaswag | 32.20 | 37.14 |
+| gsm8k | 14.58 | 13.48 |
+| math | 20.49 | 17.69 |
+
+- **item_id% decreasing**: ρ = 0.80, **p = 0.067** (n.s. at 0.05, marginal)
+- **model:item% increasing**: ρ = −0.60, **p = 0.883** (n.s., **wrong direction**)
+
+MC vs FF 二分明显（MC 组 32-42% vs FF 组 15-20%），但组内排序非单调（arc > mmlu; math > gsm8k），导致不显著。
+
+---
+
+### B2: LOBO Stability
+- **0/5** drops preserve both monotonic gradients
+- item_id 方向一致（所有 drops rho > 0），但都不显著（p ≥ 0.167）
+- model:item 方向**一致反转**（rho < 0 in all drops）
+
+---
+
+### B3: D-study (6 models balanced)
+
+| Benchmark | G_current | min(≥.80) | min(≥.90) | min(≥.95) |
+|-----------|-----------|-----------|-----------|-----------|
+| mmlu | 0.8705 | 119 | 268 | 566 |
+| arc | 0.8623 | 128 | 288 | 607 |
+| hellaswag | 0.8240 | 171 | 385 | 812 |
+| gsm8k | 0.8111 | 187 | 420 | 885 |
+| math | 0.8324 | 162 | 363 | 765 |
+
+With full data (8 models for GSM8K/MATH): gsm8k G→0.863, math G→0.892（更多 model 增加 model:item 从而提高 G）
+
+---
+
+### B4: Cross-model G-study
+
+**MMLU 6-model vs 4-model**:
+| Metric | 6-model | 4-model | Δ |
+|--------|---------|---------|---|
+| item_id% | 40.48 | 41.55 | −1.07 |
+| model:item% | 31.60 | 32.81 | −1.21 |
+| model% | 3.05 | 0.75 | +2.30 |
+| G_item | 0.8705 | 0.8159 | +0.055 |
+
+添加 2 个 model 后 model 主效应大幅增加（0.75%→3.05%），item_id%/model:item% 略降，G_item 提升 0.055。
+
+---
+
+### 输出文件
+```
+results/exp004_8model_analysis/
+  permutation_test_5bm.json
+  lobo_stability.json
+  dstudy_8model.json
+  cross_model_gstudy_8model.json
+```
+
+**核心发现**：MC vs FF 的 format dichotomy 在 item_id% 上清晰（40% vs 17%），但 model:item% 不是假设的递增方向——MC 组反而更高。这意味着 model:item 交互更多受 format/item-type 复杂度驱动，而非简单的 "reasoning 越多 interaction 越大" 叙事。论文可以改 framing 为 "format-conditional variance structure" 而非 "monotonic gradient"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "uuid": "9f970c02-cfc9-4efa-8979-6579b7816d5b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PcuPePmMC17CZhgoFZSQrZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 403,
+      "cache_read_input_tokens": 100888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 403
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 125_
+
+## 结果汇总
+
+### 数据概况
+- 8 models 总计，但仅 **6 个模型** 覆盖全部 5 benchmarks（OLMo-2-7B / Yi-1.5-9B 仅在 GSM8K/MATH）
+- B1/B2 用 6 common models 做 balanced comparison，B3/B4 同时报告 6-model balanced 和 full 两版
+
+---
+
+### B1: Permutation Test (6 common models × 5 benchmarks)
+
+| Benchmark | item_id% | model:item% |
+|-----------|----------|-------------|
+| mmlu | 40.48 | 31.60 |
+| arc | 42.46 | 38.05 |
+| hellaswag | 32.20 | 37.14 |
+| gsm8k | 14.58 | 13.48 |
+| math | 20.49 | 17.69 |
+
+- **item_id% decreasing**: ρ = 0.80, **p = 0.067** (n.s. at 0.05, marginal)
+- **model:item% increasing**: ρ = −0.60, **p = 0.883** (n.s., **wrong direction**)
+
+MC vs FF 二分明显（MC 组 32-42% vs FF 组 15-20%），但组内排序非单调（arc > mmlu; math > gsm8k），导致不显著。
+
+---
+
+### B2: LOBO Stability
+- **0/5** drops preserve both monotonic gradients
+- item_id 方向一致（所有 drops rho > 0），但都不显著（p ≥ 0.167）
+- model:item 方向**一致反转**（rho < 0 in all drops）
+
+---
+
+### B3: D-study (6 models balanced)
+
+| Benchmark | G_current | min(≥.80) | min(≥.90) | min(≥.95) |
+|-----------|-----------|-----------|-----------|-----------|
+| mmlu | 0.8705 | 119 | 268 | 566 |
+| arc | 0.8623 | 128 | 288 | 607 |
+| hellaswag | 0.8240 | 171 | 385 | 812 |
+| gsm8k | 0.8111 | 187 | 420 | 885 |
+| math | 0.8324 | 162 | 363 | 765 |
+
+With full data (8 models for GSM8K/MATH): gsm8k G→0.863, math G→0.892（更多 model 增加 model:item 从而提高 G）
+
+---
+
+### B4: Cross-model G-study
+
+**MMLU 6-model vs 4-model**:
+| Metric | 6-model | 4-model | Δ |
+|--------|---------|---------|---|
+| item_id% | 40.48 | 41.55 | −1.07 |
+| model:item% | 31.60 | 32.81 | −1.21 |
+| model% | 3.05 | 0.75 | +2.30 |
+| G_item | 0.8705 | 0.8159 | +0.055 |
+
+添加 2 个 model 后 model 主效应大幅增加（0.75%→3.05%），item_id%/model:item% 略降，G_item 提升 0.055。
+
+---
+
+### 输出文件
+```
+results/exp004_8model_analysis/
+  permutation_test_5bm.json
+  lobo_stability.json
+  dstudy_8model.json
+  cross_model_gstudy_8model.json
+```
+
+**核心发现**：MC vs FF 的 format dichotomy 在 item_id% 上清晰（40% vs 17%），但 model:item% 不是假设的递增方向——MC 组反而更高。这意味着 model:item 交互更多受 format/item-type 复杂度驱动，而非简单的 "reasoning 越多 interaction 越大" 叙事。论文可以改 framing 为 "format-conditional variance structure" 而非 "monotonic gradient"。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 702659,
+  "duration_api_ms": 488787,
+  "num_turns": 46,
+  "stop_reason": "end_turn",
+  "session_id": "311aaa4c-b12e-4f59-bba0-91f7a6a870b9",
+  "total_cost_usd": 2.3323780000000003,
+  "usage": {
+    "input_tokens": 34,
+    "cache_creation_input_tokens": 89450,
+    "cache_read_input_tokens": 2073745,
+    "output_tokens": 29386,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 89450,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2242,
+        "cache_read_input_tokens": 100888,
+        "cache_creation_input_tokens": 403,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 403
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1523,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001623,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 34,
+      "outputTokens": 29386,
+      "cacheReadInputTokens": 2073745,
+      "cacheCreationInputTokens": 89450,
+      "webSearchRequests": 0,
+      "costUSD": 2.3307550000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8db31775-6476-4b07-a8c7-37d952409317"
+}
+```
+
+</details>
+
+---

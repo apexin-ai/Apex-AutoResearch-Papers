@@ -1,0 +1,96 @@
+Full-width single-panel horizontal pipeline figure for an academic NLP paper (figsize 14x4.5 inches, 300 DPI). Shows 4 stages connected by arrows, left to right. Clean, minimal, publication-quality.
+
+CRITICAL: Every piece of text below must appear EXACTLY as written. Do NOT substitute with generic content. Do NOT hallucinate content. Use ONLY the text specified below.
+
+=== STAGE 1 (leftmost, ~22% width) ===
+Box: rounded rectangle, light blue background (#EBF5FB), thin dark border (#2C3E50, 1pt), rounded corners 10px.
+Title inside box top: "Factorial Design" in bold serif 12pt, color #2C3E50.
+
+Content inside box (8-9pt, left-aligned):
+Line 1: "7 Facets fully crossed:"
+Line 2: "Item (p) · Model (M) · Precision (π)"
+Line 3: "Prompt (δ) · Seed (s) · Temp (τ) · Ordering (o)"
+Line 4: [blank line]
+Line 5: "8 models × 5 benchmarks"
+Line 6: "MC: MMLU, ARC, HellaSwag"
+Line 7: "FF: GSM8K, MATH"
+Line 8: [blank line]
+Bottom line in bold 9pt: "→ 2.3M binary records"
+
+=== ARROW 1 ===
+Thin elegant arrow pointing right, color #7F8C8D, 1.2pt line, small refined arrowhead.
+
+=== STAGE 2 (center-left, ~22% width) ===
+Box: rounded rectangle, light amber background (#FEF9E7), thin dark border (#2C3E50, 1pt), rounded corners 10px.
+Title: "G-Study" in bold serif 12pt, color #2C3E50.
+Subtitle: "Variance Decomposition" in 9pt italic, color #666666.
+
+Content (8-9pt):
+Line 1: "Henderson Method I (ANOVA)"
+Line 2: "σ²_item, σ²_model×item, σ²_prompt×item, ..."
+Line 3: [blank]
+A small highlighted sub-box with very light red background (#FADBD8), no border, containing:
+Line 4 bold: "Key: model×item up to 36%"
+Line 5 italic gray: "Models differ in which items"
+Line 6 italic gray: "are hard, not overall ability"
+
+=== ARROW 2 ===
+Same style arrow as Arrow 1.
+
+=== STAGE 3 (center-right, ~22% width) ===
+Box: rounded rectangle, light green background (#EAFAF1), thin dark border (#2C3E50, 1pt), rounded corners 10px.
+Title: "D-Study" in bold serif 12pt, color #2C3E50.
+Subtitle: "Budget Projections" in 9pt italic, color #666666.
+
+Content (8-9pt):
+Line 1: "G(n) = n·σ²_p / (n·σ²_p + σ²_rel)"
+Line 2: [blank]
+Line 3 bold: "Target: G ≥ 0.80"
+Line 4: "Single-condition: 552 items"
+Line 5: "3-prompt × 3-seed: 178 items"
+Line 6: "Full multi-facet: 55 items"
+Line 7: [blank]
+Line 8 bold: "3.1× item reduction"
+
+=== ARROW 3 (splits into two) ===
+Arrow from Stage 3 splits into two branches going to two vertically stacked boxes on the right.
+
+=== STAGE 4a (right-top, ~28% width) ===
+Box: rounded rectangle, light purple background (#F4ECF7), thin border (#8E44AD, 1pt), rounded corners 10px.
+Small filled circle badge top-left: background #8E44AD, white text "C1", 8pt bold.
+Title: "Reproducibility Budgets" in bold serif 10pt.
+
+Content (8pt):
+Line 1: "Design-dependent item requirements"
+Line 2: "IRT + G-theory compose:"
+Line 3: "116 IRT items → G = 0.457 (single)"
+Line 4: "116 IRT items → G = 0.895 (multi-facet)"
+
+=== STAGE 4b (right-bottom, ~28% width) ===
+Box: rounded rectangle, light teal background (#E8F6F3), thin border (#1ABC9C, 1pt), rounded corners 10px.
+Small filled circle badge top-left: background #1ABC9C, white text "C2", 8pt bold.
+Title: "Format-Associated Patterns" in bold serif 10pt.
+After title: "(exploratory)" in 7pt italic gray.
+
+Content (8pt):
+Line 1: "MC benchmarks: 68–72% item-related"
+Line 2: "FF benchmarks: 31–41% item-related"
+Line 3: "Bootstrap CIs non-overlapping (21pp gap)"
+
+OVERALL STYLE:
+- Publication quality for EMNLP 2026 (top NLP venue)
+- Elegant, premium, sophisticated — NOT cheap or homework-like
+- Subtle drop shadows (2px offset, 8% opacity) on all stage boxes
+- Rounded corners (10px) on all rectangles
+- Thin, elegant arrow heads — not bulky matplotlib defaults
+- Serif font (Times New Roman or DejaVu Serif) for titles
+- Sans-serif for body text inside boxes
+- Muted, harmonious color palette — pastel backgrounds with dark text (#2C3E50)
+- Generous white space between stages
+- Consistent visual weight across all stages
+- NO matplotlib default styling: no gray background, no thick gridlines, no tab10 colors
+- NO icons or clip art — text and boxes only
+- White overall background
+- All text must be readable when figure is scaled to column width (~7 inches)
+- Do NOT add any text or content not specified above
+- Do NOT replace specified text with generic alternatives

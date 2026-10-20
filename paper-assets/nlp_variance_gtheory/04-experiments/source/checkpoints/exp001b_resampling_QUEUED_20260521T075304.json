@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp001b_resampling",
+  "project": "nlp_variance_gtheory",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:52:15.585Z",
+    "updated_at": "2026-05-21T07:53:04.180Z",
+    "hypothesis": "Item_id dominance (~42%) in G-theory decomposition is robust to item sampling — 3 independent 200-item stratified MMLU samples will show consistent item_id%, interaction percentages, and G_item (CV < 10%), ruling out that exp-001's findings are artifacts of the specific 200-item sample",
+    "parent": "exp001_llama"
+  },
+  "timestamp": "2026-05-21T07:53:04.219455+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,592 @@
+{
+  "method": "Henderson Method I",
+  "generated_at": "2026-05-21T21:24:02.488861+00:00",
+  "note": "All percentages = sigma2_component / sum(sigma2_all_components). This is the single source of truth for all paper numbers.",
+  "analyses": {
+    "exp001_single_model_6facet": {
+      "data_source": "results/analysis/llama_full.csv",
+      "n_records": 239200,
+      "n_conditions": 1196,
+      "facets": [
+        "precision",
+        "temperature",
+        "prompt_template",
+        "seed",
+        "ordering",
+        "item_id"
+      ],
+      "n_levels": {
+        "precision": 3,
+        "temperature": 3,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "grand_mean": 0.681401,
+      "total_variance_sigma2": 0.2059220824,
+      "variance_components_pct": {
+        "item_id": 54.8479,
+        "residual": 23.1158,
+        "precision:item_id": 6.0542,
+        "seed:item_id": 5.437,
+        "prompt_template:item_id": 5.2724,
+        "temperature:item_id": 2.6376,
+        "precision": 1.6653,
+        "ordering:item_id": 0.704,
+        "precision:temperature": 0.1139,
+        "temperature:prompt_template": 0.0514,
+        "temperature:seed": 0.033,
+        "temperature": 0.0322,
+        "precision:prompt_template": 0.0214,
+        "prompt_template:ordering": 0.0048,
+        "precision:ordering": 0.0039,
+        "prompt_template:seed": 0.0037,
+        "precision:seed": 0.0016,
+        "temperature:ordering": 0.0,
+        "seed:ordering": 0.0,
+        "prompt_template": 0.0,
+        "seed": 0.0,
+        "ordering": 0.0
+      },
+      "variance_components_sigma2": {
+        "item_id": 0.1129439271,
+        "residual": 0.0476005442,
+        "precision:item_id": 0.0124668461,
+        "seed:item_id": 0.0111960592,
+        "prompt_template:item_id": 0.0108570215,
+        "temperature:item_id": 0.0054313995,
+        "precision": 0.003429158,
+        "ordering:item_id": 0.0014497727,
+        "precision:temperature": 0.0002345776,
+        "temperature:prompt_template": 0.000105798,
+        "temperature:seed": 6.791e-05,
+        "temperature": 6.62411e-05,
+        "precision:prompt_template": 4.39818e-05,
+        "prompt_template:ordering": 9.8025e-06,
+        "precision:ordering": 7.9998e-06,
+        "prompt_template:seed": 7.6645e-06,
+        "precision:seed": 3.3787e-06,
+        "temperature:ordering": 0.0,
+        "seed:ordering": 0.0,
+        "prompt_template": 0.0,
+        "seed": 0.0,
+        "ordering": 0.0
+      },
+      "G_item": 0.918358,
+      "sigma_tau": 0.1129439271,
+      "sigma_delta": 0.0100407673,
+      "d_study": {
+        "25": 0.584384,
+        "50": 0.73768,
+        "75": 0.808363,
+        "100": 0.84904,
+        "150": 0.894027,
+        "200": 0.918358,
+        "300": 0.944049,
+        "500": 0.965661
+      },
+      "min_items_G_0.80": 72
+    },
+    "exp001_cross_model_4model": {
+      "data_source": "results/analysis/cross_model_4way_bf16.csv",
+      "already_henderson_i": true,
+      "n_records": 345600,
+      "n_levels": {
+        "model": 4,
+        "temperature": 3,
+        "prompt_template": 6,
+        "seed": 6,
+        "ordering": 4,
+        "item_id": 200
+      },
+      "facets": [
+        "model",
+        "temperature",
+        "prompt_template",
+        "seed",
+        "ordering",
+        "item_id"
+      ],
+      "grand_mean": 0.7014670138888889,
+      "total_variance_sigma2": 0.2094116482511765,
+      "variance_components_pct": {
+        "item_id": 42.0696,
+        "model:item_id": 33.6363,
+        "residual": 19.5461,
+        "prompt_template:item_id": 1.4326,
+        "seed:item_id": 1.3236,
+        "model": 0.7294,
+        "temperature:item_id": 0.6508,
+        "ordering:item_id": 0.5425,
+        "model:prompt_template": 0.0199,
+        "model:temperature": 0.0174,
+        "prompt_template": 0.0128,
+        "model:seed": 0.0091,
+        "temperature": 0.0076,
+        "model:ordering": 0.0022,
+        "seed": 0.0,
+        "ordering": 0.0
+      },
+      "variance_components_sigma2": {
+        "item_id": 0.0885143925,
+        "model:item_id": 0.070770836,
+        "residual": 0.0411250496,
+        "prompt_template:item_id": 0.0030141106,
+        "seed:item_id": 0.0027848397,
+        "model": 0.0015346118,
+        "temperature:item_id": 0.0013693394,
+        "ordering:item_id": 0.0011414258,
+        "model:prompt_template": 4.18336e-05,
+        "model:temperature": 3.66507e-05,
+        "prompt_template": 2.69953e-05,
+        "model:seed": 1.90995e-05,
+        "temperature": 1.60591e-05,
+        "model:ordering": 4.6783e-06,
+        "seed": 0.0,
+        "ordering": 0.0
+      },
+      "G_item": 0.820039,
+      "sigma_tau": 0.0885143925028329,
+      "sigma_delta": 0.019424802860113846
+    },
+    "exp001b_resampling": {
+      "facets": [
+        "temperature",
+        "prompt_template",
+        "seed",
+        "ordering",
+        "item_id"
+      ],
+      "samples": {
+        "sample_0": {
+          "data_source": "results/exp001b/sample1/all_results.jsonl",
+          "n_records": 86400,
+          "n_levels": {
+            "temperature": 3,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.72066,
+          "variance_components_pct": {
+            "item_id": 73.1821,
+            "residual": 12.6248,
+            "seed:item_id": 6.3228,
+            "prompt_template:item_id": 5.1323,
+            "temperature:item_id": 2.0558,
+            "ordering:item_id": 0.5418,
+            "temperature": 0.0446,
+            "prompt_template": 0.041,
+            "temperature:seed": 0.0356,
+            "prompt_template:seed": 0.0094,
+            "prompt_template:ordering": 0.0052,
+            "temperature:prompt_template": 0.0039,
+            "temperature:ordering": 0.0007,
+            "seed:ordering": 0.0,
+            "seed": 0.0,
+            "ordering": 0.0
+          },
+          "item_id_pct": 73.1821,
+          "G_item": 0.963668,
+          "sigma_tau": 0.1479369118,
+          "sigma_delta": 0.005577517,
+          "d_study": {
+            "25": 0.768276,
+            "50": 0.868955,
+            "75": 0.908646,
+            "100": 0.929883,
+            "150": 0.952137,
+            "200": 0.963668,
+            "300": 0.975482,
+            "500": 0.985143
+          },
+          "min_items_G_0.80": 31
+        },
+        "sample_7": {
+          "data_source": "results/exp001b/sample2/all_results.jsonl",
+          "n_records": 86400,
+          "n_levels": {
+            "temperature": 3,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.621123,
+          "variance_components_pct": {
+            "item_id": 72.5747,
+            "residual": 13.092,
+            "seed:item_id": 5.6707,
+            "prompt_template:item_id": 5.0363,
+            "temperature:item_id": 2.0735,
+            "ordering:item_id": 1.4549,
+            "temperature": 0.0381,
+            "temperature:seed": 0.0338,
+            "ordering": 0.0106,
+            "temperature:ordering": 0.0057,
+            "temperature:prompt_template": 0.0044,
+            "prompt_template:ordering": 0.0038,
+            "prompt_template:seed": 0.0014,
+            "seed:ordering": 0.0,
+            "prompt_template": 0.0,
+            "seed": 0.0
+          },
+          "item_id_pct": 72.5747,
+          "G_item": 0.961963,
+          "sigma_tau": 0.1715116544,
+          "sigma_delta": 0.006781805,
+          "d_study": {
+            "25": 0.759687,
+            "50": 0.863434,
+            "75": 0.904614,
+            "100": 0.926713,
+            "150": 0.949919,
+            "200": 0.961963,
+            "300": 0.974316,
+            "500": 0.98443
+          },
+          "min_items_G_0.80": 32
+        },
+        "sample_99": {
+          "data_source": "results/exp001b/sample3/all_results.jsonl",
+          "n_records": 86400,
+          "n_levels": {
+            "temperature": 3,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.685833,
+          "variance_components_pct": {
+            "item_id": 69.0042,
+            "residual": 14.6077,
+            "prompt_template:item_id": 6.2603,
+            "seed:item_id": 6.1871,
+            "temperature:item_id": 2.394,
+            "ordering:item_id": 1.4269,
+            "temperature:seed": 0.0617,
+            "prompt_template": 0.0334,
+            "prompt_template:seed": 0.0098,
+            "temperature:prompt_template": 0.0053,
+            "prompt_template:ordering": 0.0051,
+            "seed": 0.0035,
+            "ordering": 0.0009,
+            "temperature:ordering": 0.0,
+            "seed:ordering": 0.0,
+            "temperature": 0.0
+          },
+          "item_id_pct": 69.0042,
+          "G_item": 0.954847,
+          "sigma_tau": 0.1492489116,
+          "sigma_delta": 0.0070577503,
+          "d_study": {
+            "25": 0.725527,
+            "50": 0.840934,
+            "75": 0.888019,
+            "100": 0.913595,
+            "150": 0.940688,
+            "200": 0.954847,
+            "300": 0.969438,
+            "500": 0.981436
+          },
+          "min_items_G_0.80": 38
+        }
+      },
+      "mean_item_id_pct": 71.587,
+      "std_item_id_pct": 2.2573,
+      "cv_item_id_pct": 3.15,
+      "mean_G_item": 0.960159,
+      "std_G_item": 0.004679,
+      "cv_G_item": 0.49
+    },
+    "exp002_per_benchmark": {
+      "already_henderson_i": true,
+      "facets": [
+        "model",
+        "temperature",
+        "prompt_template",
+        "seed",
+        "ordering",
+        "item_id"
+      ],
+      "benchmarks": {
+        "mmlu": {
+          "n_observations": 230400,
+          "n_levels": {
+            "model": 4,
+            "temperature": 2,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.700247,
+          "item_id_pct": 41.5471,
+          "model_pct": 0.7539,
+          "model_item_pct": 32.8103,
+          "prompt_pct": 0.0043,
+          "G_item": 0.815919,
+          "min_items_G_0.80": 181,
+          "variance_components_pct": {
+            "item_id": 41.5471,
+            "model:item_id": 32.8103,
+            "residual": 20.5156,
+            "prompt_template:item_id": 1.4041,
+            "seed:item_id": 1.1874,
+            "temperature:item_id": 1.1836,
+            "model": 0.7539,
+            "ordering:item_id": 0.5177,
+            "model:temperature": 0.0285,
+            "model:prompt_template": 0.0185,
+            "model:seed": 0.0133,
+            "prompt_template": 0.0043,
+            "temperature": 0.0037,
+            "prompt_template:ordering": 0.0036,
+            "model:ordering": 0.0031,
+            "temperature:prompt_template": 0.0027,
+            "temperature:seed": 0.0026,
+            "temperature:ordering": 0.0,
+            "prompt_template:seed": 0.0,
+            "seed:ordering": 0.0,
+            "seed": 0.0,
+            "ordering": 0.0
+          }
+        },
+        "gsm8k": {
+          "n_observations": 230400,
+          "n_levels": {
+            "model": 4,
+            "temperature": 2,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.555764,
+          "item_id_pct": 11.9902,
+          "model_pct": 15.1458,
+          "model_item_pct": 12.0934,
+          "prompt_pct": 12.272,
+          "G_item": 0.728948,
+          "min_items_G_0.80": 298,
+          "variance_components_pct": {
+            "residual": 32.2887,
+            "model": 15.1458,
+            "prompt_template": 12.272,
+            "model:item_id": 12.0934,
+            "item_id": 11.9902,
+            "model:prompt_template": 9.4227,
+            "prompt_template:item_id": 5.4991,
+            "temperature:item_id": 0.8518,
+            "seed:item_id": 0.3877,
+            "model:temperature": 0.0171,
+            "temperature:prompt_template": 0.0167,
+            "model:seed": 0.0063,
+            "temperature:seed": 0.0047,
+            "prompt_template:seed": 0.0038,
+            "model:ordering": 0.0,
+            "temperature:ordering": 0.0,
+            "prompt_template:ordering": 0.0,
+            "seed:ordering": 0.0,
+            "ordering:item_id": 0.0,
+            "temperature": 0.0,
+            "seed": 0.0,
+            "ordering": 0.0
+          }
+        },
+        "arc": {
+          "n_observations": 230400,
+          "n_levels": {
+            "model": 4,
+            "temperature": 2,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.81783,
+          "item_id_pct": 48.8999,
+          "model_pct": 2.7422,
+          "model_item_pct": 38.1972,
+          "prompt_pct": 0.0,
+          "G_item": 0.830683,
+          "min_items_G_0.80": 164,
+          "variance_components_pct": {
+            "item_id": 48.8999,
+            "model:item_id": 38.1972,
+            "residual": 8.2419,
+            "model": 2.7422,
+            "prompt_template:item_id": 1.2721,
+            "seed:item_id": 0.3394,
+            "temperature:item_id": 0.2843,
+            "model:prompt_template": 0.0171,
+            "model:seed": 0.0031,
+            "model:temperature": 0.0018,
+            "temperature:prompt_template": 0.0004,
+            "temperature:seed": 0.0004,
+            "prompt_template:seed": 0.0003,
+            "model:ordering": 0.0,
+            "temperature:ordering": 0.0,
+            "prompt_template:ordering": 0.0,
+            "seed:ordering": 0.0,
+            "ordering:item_id": 0.0,
+            "temperature": 0.0,
+            "prompt_template": 0.0,
+            "seed": 0.0,
+            "ordering": 0.0
+          }
+        },
+        "hellaswag": {
+          "n_observations": 230400,
+          "n_levels": {
+            "model": 4,
+            "temperature": 2,
+            "prompt_template": 6,
+            "seed": 6,
+            "ordering": 4,
+            "item_id": 200
+          },
+          "grand_mean": 0.707951,
+          "item_id_pct": 44.4653,
+          "model_pct": 1.4878,
+          "model_item_pct": 32.3056,
+          "prompt_pct": 0.0305,
+          "G_item": 0.832413,
+          "min_items_G_0.80": 162,
+          "variance_components_pct": {
+            "item_id": 44.4653,
+            "model:item_id": 32.3056,
+            "residual": 17.0544,
+            "prompt_template:item_id": 3.4994,
+            "model": 1.4878,
+            "seed:item_id": 0.5501,
+            "temperature:item_id": 0.3719,
+            "model:prompt_template": 0.1788,
+            "prompt_template": 0.0305,
+            "temperature": 0.0168,
+            "model:seed": 0.0131,
+            "temperature:seed": 0.0097,
+            "temperature:prompt_template": 0.0092,
+            "model:temperature": 0.0068,
+            "prompt_template:seed": 0.0006,
+            "model:ordering": 0.0,
+            "temperature:ordering": 0.0,
+            "prompt_template:ordering": 0.0,
+            "seed:ordering": 0.0,
+            "ordering:item_id": 0.0,
+            "seed": 0.0,
+            "ordering": 0.0
+          }
+        }
+      }
+    }
+  },
+  "eta2_vs_henderson_i_comparison": {
+    "note": "eta2 = SS(effect)/SS_total; Henderson I = sigma2(effect)/sum(sigma2). Scripts gstudy_full.py and exp001b_gstudy.py use eta2 code but their JSON outputs were already overwritten with Henderson I numbers by corrected scripts.",
+    "exp001_single_model_6facet": {
+      "comment": "eta2 numbers below are what gstudy_full.py WOULD produce if re-run. The existing JSON already has Henderson I.",
+      "item_id": {
+        "eta2_pct": 61.08,
+        "henderson_pct": 54.85,
+        "diff": -6.23
+      },
+      "residual": {
+        "eta2_pct": 21.59,
+        "henderson_pct": 23.12,
+        "diff": 1.53
+      },
+      "precision_item_id": {
+        "eta2_pct": 4.16,
+        "henderson_pct": 6.05,
+        "diff": 1.89
+      },
+      "seed_item_id": {
+        "eta2_pct": 4.73,
+        "henderson_pct": 5.44,
+        "diff": 0.71
+      },
+      "prompt_template_item_id": {
+        "eta2_pct": 4.58,
+        "henderson_pct": 5.27,
+        "diff": 0.69
+      },
+      "temperature_item_id": {
+        "eta2_pct": 1.43,
+        "henderson_pct": 2.64,
+        "diff": 0.8
+      },
+      "precision": {
+        "eta2_pct": 1.19,
+        "henderson_pct": 1.67,
+        "diff": 0.47
+      },
+      "ordering_item_id": {
+        "eta2_pct": 0.59,
+        "henderson_pct": 0.7,
+        "diff": 0.11
+      }
+    },
+    "exp001b_resampling_sample1": {
+      "comment": "Sample1 comparison. Other samples show similar delta.",
+      "item_id": {
+        "eta2_pct": 75.88,
+        "henderson_pct": 73.18,
+        "diff": -2.69
+      },
+      "residual": {
+        "eta2_pct": 12.2,
+        "henderson_pct": 12.62,
+        "diff": 0.43
+      },
+      "seed_item_id": {
+        "eta2_pct": 5.41,
+        "henderson_pct": 6.32,
+        "diff": 0.91
+      },
+      "prompt_template_item_id": {
+        "eta2_pct": 4.42,
+        "henderson_pct": 5.13,
+        "diff": 0.71
+      },
+      "temperature_item_id": {
+        "eta2_pct": 1.43,
+        "henderson_pct": 2.06,
+        "diff": 0.63
+      }
+    },
+    "exp001_cross_model_4model": "Already Henderson I (script uses EMS). No change needed.",
+    "exp002_per_benchmark": "Already Henderson I (per_benchmark_gstudy.py). No change needed."
+  },
+  "paper_numbers_to_verify": {
+    "note": "If the paper cited these JSON files directly, numbers should already be Henderson I. Verify these specific numbers in the paper text:",
+    "exp001_single_model": {
+      "item_id_pct": "54.85% (NOT 61.08% which would be eta2)",
+      "G_item_200_items": 0.9184,
+      "G_item_formula": "sigma2(item) / [sigma2(item) + sigma2(delta)]",
+      "min_items_G_0.80": 72
+    },
+    "exp001_cross_model": {
+      "item_id_pct": "42.07%",
+      "model_item_pct": "33.64%",
+      "G_item": 0.82
+    },
+    "exp001b_resampling": {
+      "mean_item_id_pct": "71.59% (3-sample mean, Henderson I)",
+      "cv_item_id_pct": "3.15%",
+      "mean_G_item": 0.9602
+    },
+    "exp002_per_benchmark": {
+      "mmlu_item_pct": 41.55,
+      "gsm8k_item_pct": 11.99,
+      "arc_item_pct": 48.9,
+      "hellaswag_item_pct": 44.47,
+      "mmlu_G_item": 0.8159,
+      "gsm8k_G_item": 0.7289,
+      "arc_G_item": 0.8307,
+      "hellaswag_G_item": 0.8324
+    }
+  }
+}

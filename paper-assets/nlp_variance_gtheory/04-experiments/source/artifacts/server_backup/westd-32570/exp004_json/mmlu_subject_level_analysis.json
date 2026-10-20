@@ -1,0 +1,84 @@
+{
+  "n_subjects": 10,
+  "n_subjects_excluded": 0,
+  "n_items_total": 200,
+  "subjects": [
+    {
+      "name": "abstract_algebra",
+      "n_items": 20,
+      "mean_accuracy": 0.4565,
+      "sd_pi": 0.2724,
+      "item_id_pct": 24.12
+    },
+    {
+      "name": "clinical_knowledge",
+      "n_items": 20,
+      "mean_accuracy": 0.5809,
+      "sd_pi": 0.3598,
+      "item_id_pct": 47.45
+    },
+    {
+      "name": "college_physics",
+      "n_items": 20,
+      "mean_accuracy": 0.4358,
+      "sd_pi": 0.3018,
+      "item_id_pct": 31.64
+    },
+    {
+      "name": "computer_security",
+      "n_items": 20,
+      "mean_accuracy": 0.7397,
+      "sd_pi": 0.2842,
+      "item_id_pct": 37.03
+    },
+    {
+      "name": "high_school_mathematics",
+      "n_items": 20,
+      "mean_accuracy": 0.3846,
+      "sd_pi": 0.2012,
+      "item_id_pct": 10.37
+    },
+    {
+      "name": "international_law",
+      "n_items": 20,
+      "mean_accuracy": 0.7173,
+      "sd_pi": 0.3164,
+      "item_id_pct": 44.35
+    },
+    {
+      "name": "philosophy",
+      "n_items": 20,
+      "mean_accuracy": 0.7817,
+      "sd_pi": 0.258,
+      "item_id_pct": 33.0
+    },
+    {
+      "name": "professional_medicine",
+      "n_items": 20,
+      "mean_accuracy": 0.6714,
+      "sd_pi": 0.2416,
+      "item_id_pct": 19.93
+    },
+    {
+      "name": "us_foreign_policy",
+      "n_items": 20,
+      "mean_accuracy": 0.8637,
+      "sd_pi": 0.1747,
+      "item_id_pct": 20.43
+    },
+    {
+      "name": "world_religions",
+      "n_items": 20,
+      "mean_accuracy": 0.8257,
+      "sd_pi": 0.2617,
+      "item_id_pct": 42.16
+    }
+  ],
+  "spearman_rho": 0.8061,
+  "spearman_p": 0.004862,
+  "regression": {
+    "slope": 183.7225,
+    "intercept": -18.039,
+    "r_squared": 0.6691
+  }
+}

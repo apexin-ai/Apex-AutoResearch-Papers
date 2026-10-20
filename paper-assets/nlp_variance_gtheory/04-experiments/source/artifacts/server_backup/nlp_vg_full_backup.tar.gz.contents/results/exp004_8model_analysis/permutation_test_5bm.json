@@ -1,0 +1,102 @@
+{
+  "experiment": "exp-004 (6 common models \u00d7 5 benchmarks)",
+  "design_note": "Filtered to 6 models present in ALL benchmarks for fair comparison",
+  "common_models": [
+    "DeepSeek-7B",
+    "Gemma-2-9B",
+    "InternLM2.5-7B",
+    "Llama-3.1-8B",
+    "Mistral-7B-v0.3",
+    "Qwen3-8B"
+  ],
+  "test_statistic": "spearman_rho",
+  "n_benchmarks": 5,
+  "n_permutations": 120,
+  "benchmark_order_hypothesis": [
+    "mmlu",
+    "arc",
+    "hellaswag",
+    "gsm8k",
+    "math"
+  ],
+  "benchmarks_used": [
+    "mmlu",
+    "arc",
+    "hellaswag",
+    "gsm8k",
+    "math"
+  ],
+  "benchmark_stats": {
+    "mmlu": {
+      "item_id_pct": 40.48276678578829,
+      "model_item_pct": 31.603590700649608,
+      "n_obs": 345600,
+      "n_models": 6,
+      "accuracy": 0.669476
+    },
+    "arc": {
+      "item_id_pct": 42.45972536691959,
+      "model_item_pct": 38.04902782203434,
+      "n_obs": 345600,
+      "n_models": 6,
+      "accuracy": 0.790394
+    },
+    "hellaswag": {
+      "item_id_pct": 32.20167896386697,
+      "model_item_pct": 37.1442293164112,
+      "n_obs": 345600,
+      "n_models": 6,
+      "accuracy": 0.719201
+    },
+    "gsm8k": {
+      "item_id_pct": 14.581745750936184,
+      "model_item_pct": 13.484599571455059,
+      "n_obs": 345600,
+      "n_models": 6,
+      "accuracy": 0.545023
+    },
+    "math": {
+      "item_id_pct": 20.492217827368382,
+      "model_item_pct": 17.6884247654381,
+      "n_obs": 327600,
+      "n_models": 6,
+      "accuracy": 0.284756
+    }
+  },
+  "item_id_gradient": {
+    "hypothesis": "item_id% decreasing: MC (MMLU/ARC/HellaSwag) > FF (GSM8K/MATH)",
+    "direction": "decreasing",
+    "observed_values": {
+      "mmlu": 40.4828,
+      "arc": 42.4597,
+      "hellaswag": 32.2017,
+      "gsm8k": 14.5817,
+      "math": 20.4922
+    },
+    "observed_rho": 0.8,
+    "p_value": 0.066667,
+    "n_extreme": 8,
+    "n_permutations": 120,
+    "significant_at_0.05": false,
+    "kendall_tau": 0.6,
+    "kendall_p": 0.233333
+  },
+  "model_item_gradient": {
+    "hypothesis": "model:item% increasing from MC to FF",
+    "direction": "increasing",
+    "observed_values": {
+      "mmlu": 31.6036,
+      "arc": 38.049,
+      "hellaswag": 37.1442,
+      "gsm8k": 13.4846,
+      "math": 17.6884
+    },
+    "observed_rho": -0.6,
+    "p_value": 0.883333,
+    "n_extreme": 106,
+    "n_permutations": 120,
+    "significant_at_0.05": false,
+    "kendall_tau": -0.4,
+    "kendall_p": 0.483333
+  }
+}

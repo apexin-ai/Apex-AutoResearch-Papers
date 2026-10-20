@@ -1,0 +1,121 @@
+{
+  "design": "2-model TEST (Qwen2.5-3B/7B)",
+  "n_records": 115200,
+  "n_levels": {
+    "model": 2,
+    "temperature": 2,
+    "prompt_template": 6,
+    "seed": 6,
+    "ordering": 4,
+    "item_id": 200
+  },
+  "grand_mean": 0.71191,
+  "total_variance": 0.2064955241,
+  "components": {
+    "item_id": {
+      "estimate": 0.0898849413,
+      "pct": 43.5288
+    },
+    "model:item_id": {
+      "estimate": 0.0655491545,
+      "pct": 31.7436
+    },
+    "residual": {
+      "estimate": 0.0328924935,
+      "pct": 15.9289
+    },
+    "prompt_template:item_id": {
+      "estimate": 0.0108343441,
+      "pct": 5.2468
+    },
+    "ordering:item_id": {
+      "estimate": 0.0025465732,
+      "pct": 1.2332
+    },
+    "seed:item_id": {
+      "estimate": 0.0017247794,
+      "pct": 0.8353
+    },
+    "temperature:item_id": {
+      "estimate": 0.0014309725,
+      "pct": 0.693
+    },
+    "model": {
+      "estimate": 0.0014168548,
+      "pct": 0.6861
+    },
+    "model:prompt_template": {
+      "estimate": 9.62843e-05,
+      "pct": 0.0466
+    },
+    "prompt_template": {
+      "estimate": 6.47135e-05,
+      "pct": 0.0313
+    },
+    "model:ordering": {
+      "estimate": 3.58893e-05,
+      "pct": 0.0174
+    },
+    "prompt_template:ordering": {
+      "estimate": 1.14624e-05,
+      "pct": 0.0056
+    },
+    "model:seed": {
+      "estimate": 7.0613e-06,
+      "pct": 0.0034
+    },
+    "model:temperature": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "temperature:prompt_template": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "temperature:seed": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "temperature:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "prompt_template:seed": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "seed:ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "temperature": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "seed": {
+      "estimate": 0.0,
+      "pct": 0.0
+    },
+    "ordering": {
+      "estimate": 0.0,
+      "pct": 0.0
+    }
+  },
+  "item_related_pct": 83.2807,
+  "G_item": 0.712457,
+  "sigma_tau": 0.0898849413,
+  "sigma_delta": 0.0362769991,
+  "comparison_8model": {
+    "ref_item_id_pct": 37.88,
+    "ref_model_item_pct": 30.21,
+    "ref_item_related_pct": 68.09,
+    "ref_G_item": 0.896
+  },
+  "d_study_curve": {
+    "25": 0.236477,
+    "50": 0.382501,
+    "100": 0.553346,
+    "200": 0.712457,
+    "500": 0.861002
+  }
+}

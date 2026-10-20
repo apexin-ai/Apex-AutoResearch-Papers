@@ -1,0 +1,11 @@
+condition_id,model,benchmark,items_file,precision,temperature,top_p,prompt_template,seed,ordering
+1153,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,42,1
+1154,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,42,2
+1155,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,42,3
+1156,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,42,4
+1157,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,123,1
+1158,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,123,2
+1159,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,123,3
+1160,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,123,4
+1161,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,456,1
+1162,meta-llama/Llama-3.1-8B-Instruct,mmlu,data/mmlu_items_exp001.json,bfloat16,0.0,,1,456,2

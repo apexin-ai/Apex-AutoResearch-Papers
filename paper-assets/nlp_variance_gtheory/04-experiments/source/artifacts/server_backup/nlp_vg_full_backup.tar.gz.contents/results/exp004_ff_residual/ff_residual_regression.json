@@ -1,0 +1,224 @@
+{
+  "benchmarks": {
+    "gsm8k": {
+      "n_items": 200,
+      "features_used": [
+        "difficulty",
+        "difficulty_sq",
+        "n_steps",
+        "answer_length",
+        "question_length"
+      ],
+      "R2": 0.4679204171931334,
+      "adj_R2": 0.4542070258836781,
+      "coefficients": {
+        "const": 0.02391896355245483,
+        "difficulty": 0.38846400219968436,
+        "difficulty_sq": -0.4066943082169181,
+        "n_steps": -0.0007873471933332614,
+        "answer_length": 0.00027530067388320794,
+        "question_length": 4.297464921702111e-05
+      },
+      "p_values": {
+        "const": 0.030233321916517144,
+        "difficulty": 7.440238010440783e-25,
+        "difficulty_sq": 1.184322944706385e-25,
+        "n_steps": 0.3814732038834445,
+        "answer_length": 0.8524739734670675,
+        "question_length": 0.010785968639609312
+      },
+      "F_statistic": 34.12142238444725,
+      "F_p_value": 6.27166694076824e-25,
+      "difficulty_only_R2": 0.44920708950269006,
+      "difficulty_only_adj_R2": 0.44361528330474786,
+      "residual_var_mean": 0.10105576122421199,
+      "residual_var_std": 0.03112276546000292,
+      "overall_residual_pct": 51.87031186436256,
+      "interpretation": "Item features explain 46.8% of residual variance (substantial systematic structure). FF benchmark, overall residual = 51.9%.",
+      "benchmark_type": "free-form"
+    },
+    "math": {
+      "n_items": 200,
+      "features_used": [
+        "difficulty",
+        "difficulty_sq",
+        "problem_level",
+        "answer_length",
+        "solution_length",
+        "subject_Counting & Probability",
+        "subject_Geometry",
+        "subject_Intermediate Algebra",
+        "subject_Number Theory",
+        "subject_Prealgebra",
+        "subject_Precalculus"
+      ],
+      "R2": 0.8559256745450414,
+      "adj_R2": 0.8474957938003365,
+      "coefficients": {
+        "const": 0.025534340427051924,
+        "difficulty": 0.4997390519872595,
+        "difficulty_sq": -0.5053445342693078,
+        "problem_level": -0.001612119897648273,
+        "answer_length": -0.0004228042931780322,
+        "solution_length": 2.3779848281256365e-07,
+        "subject_Counting & Probability": -0.011390458106463686,
+        "subject_Geometry": -0.006123950309096392,
+        "subject_Intermediate Algebra": -0.012479319643840584,
+        "subject_Number Theory": -0.004402875819136911,
+        "subject_Prealgebra": -0.01137185937932728,
+        "subject_Precalculus": -0.013193252968071162
+      },
+      "p_values": {
+        "const": 0.002245703282959571,
+        "difficulty": 3.021833634415372e-49,
+        "difficulty_sq": 9.29196082197421e-35,
+        "problem_level": 0.24365697845025264,
+        "answer_length": 0.16552021316670423,
+        "solution_length": 0.964569243367801,
+        "subject_Counting & Probability": 0.038881335399443696,
+        "subject_Geometry": 0.27092544622738335,
+        "subject_Intermediate Algebra": 0.02594538530232204,
+        "subject_Number Theory": 0.4321109166475882,
+        "subject_Prealgebra": 0.038850258871531027,
+        "subject_Precalculus": 0.025411178744042633
+      },
+      "F_statistic": 101.53473109126311,
+      "F_p_value": 6.652387016358957e-73,
+      "difficulty_only_R2": 0.8448269328899899,
+      "difficulty_only_adj_R2": 0.8432515718025786,
+      "residual_var_mean": 0.08358009016671264,
+      "residual_var_std": 0.05196331578641896,
+      "overall_residual_pct": 56.30939099748168,
+      "interpretation": "Item features explain 85.6% of residual variance (substantial systematic structure). FF benchmark, overall residual = 56.3%.",
+      "benchmark_type": "free-form"
+    },
+    "mmlu": {
+      "n_items": 200,
+      "features_used": [
+        "difficulty",
+        "difficulty_sq",
+        "n_choices",
+        "question_length",
+        "subject_college_physics",
+        "subject_professional_medicine",
+        "subject_unknown",
+        "subject_us_foreign_policy",
+        "subject_world_religions"
+      ],
+      "R2": 0.3768894511237869,
+      "adj_R2": 0.35079057996666796,
+      "coefficients": {
+        "const": 0.014426700436713753,
+        "difficulty": 0.21332328842575207,
+        "difficulty_sq": -0.22635306366853652,
+        "n_choices": 0.013498829432649812,
+        "question_length": -0.00014773000214735626,
+        "subject_college_physics": -0.0041217365949433,
+        "subject_professional_medicine": 0.08325229837697394,
+        "subject_unknown": 0.011051993078550322,
+        "subject_us_foreign_policy": -0.018601169973331777,
+        "subject_world_religions": -0.018558421681620994
+      },
+      "p_values": {
+        "const": 0.0014220131305253208,
+        "difficulty": 4.674756995005081e-09,
+        "difficulty_sq": 1.103754844769585e-12,
+        "n_choices": 0.010009117146155056,
+        "question_length": 0.3191159947568614,
+        "subject_college_physics": 0.8113751577561815,
+        "subject_professional_medicine": 0.44989311970311174,
+        "subject_unknown": 0.007994375699613988,
+        "subject_us_foreign_policy": 0.40072066762345654,
+        "subject_world_religions": 0.5734555692232672
+      },
+      "F_statistic": 14.440833431256834,
+      "F_p_value": 2.0937499953523289e-16,
+      "difficulty_only_R2": 0.3471117926824112,
+      "difficulty_only_adj_R2": 0.34048348600913614,
+      "residual_var_mean": 0.048872446687783774,
+      "residual_var_std": 0.03743654742574165,
+      "overall_residual_pct": 37.02773105836595,
+      "interpretation": "Item features explain 37.7% of residual variance (substantial systematic structure). MC benchmark, overall residual = 37.0%.",
+      "benchmark_type": "multiple-choice"
+    },
+    "arc": {
+      "n_items": 200,
+      "features_used": [
+        "difficulty",
+        "difficulty_sq",
+        "n_choices",
+        "question_length"
+      ],
+      "R2": 0.22115435547722206,
+      "adj_R2": 0.20517803456393435,
+      "coefficients": {
+        "const": 0.02417348038668437,
+        "difficulty": 0.1342149053442432,
+        "difficulty_sq": -0.12431057026263417,
+        "n_choices": -0.003002582772663292,
+        "question_length": -3.182668575440449e-05
+      },
+      "p_values": {
+        "const": 0.3784837748548178,
+        "difficulty": 1.7744871693167635e-10,
+        "difficulty_sq": 1.1575043522610422e-11,
+        "n_choices": 0.6617503057858215,
+        "question_length": 0.0463067938466583
+      },
+      "F_statistic": 13.842633524798854,
+      "F_p_value": 5.887070594125734e-10,
+      "difficulty_only_R2": 0.20373075134746754,
+      "difficulty_only_adj_R2": 0.1956467995844976,
+      "residual_var_mean": 0.02831865988411318,
+      "residual_var_std": 0.020114756026703106,
+      "overall_residual_pct": 28.062430602499138,
+      "interpretation": "Item features explain 22.1% of residual variance (moderate systematic structure). MC benchmark, overall residual = 28.1%.",
+      "benchmark_type": "multiple-choice"
+    },
+    "hellaswag": {
+      "n_items": 200,
+      "features_used": [
+        "difficulty",
+        "difficulty_sq",
+        "question_length"
+      ],
+      "R2": 0.15634552427530446,
+      "adj_R2": 0.1434324455652325,
+      "coefficients": {
+        "const": 0.012862950134417454,
+        "difficulty": 0.13285868541950843,
+        "difficulty_sq": -0.1250326032088295,
+        "question_length": -4.954024175554556e-05
+      },
+      "p_values": {
+        "const": 0.1349665300832601,
+        "difficulty": 1.830830836694794e-05,
+        "difficulty_sq": 9.800765093398082e-07,
+        "question_length": 0.05360072676343849
+      },
+      "F_statistic": 12.10753281890545,
+      "F_p_value": 2.6441607271261636e-07,
+      "difficulty_only_R2": 0.14011638137792048,
+      "difficulty_only_adj_R2": 0.13138659844774703,
+      "residual_var_mean": 0.027307504090106852,
+      "residual_var_std": 0.02690601730557524,
+      "overall_residual_pct": 22.31003613895734,
+      "interpretation": "Item features explain 15.6% of residual variance (moderate systematic structure). MC benchmark, overall residual = 22.3%.",
+      "benchmark_type": "multiple-choice"
+    }
+  },
+  "comparison": {
+    "ff_mean_R2": 0.6619230458690875,
+    "mc_mean_R2": 0.2514631102921045,
+    "ff_benchmarks": [
+      "gsm8k",
+      "math"
+    ],
+    "mc_benchmarks": [
+      "mmlu",
+      "arc",
+      "hellaswag"
+    ],
+    "finding": "FF mean R2=0.6619 vs MC mean R2=0.2515. FF more systematic."
+  }
+}

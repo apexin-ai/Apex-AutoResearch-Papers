@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp001_pilot",
+  "project": "nlp_variance_gtheory",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T00:06:01.765Z",
+    "updated_at": "2026-05-21T00:06:32.472Z",
+    "hypothesis": "exp-001 pipeline (4-GPU sharding, model_path mapping, offset-based splitting, 200 items) produces correct and complete JSONL output with all 15 fields, suitable for downstream G-theory analysis code development",
+    "spec": {
+      "command": "python -m src.inference.run_experiment --design design_matrix_exp001_llama_local.csv --max-conditions 25 --offset {0,25,50,75} --gpu-id 0",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items_exp001.json",
+      "data_count": 200,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "multiple (42,123,456,789,1024,2048)",
+      "gpu": "cuda:0-3",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/pilot_gpu{0-3}.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T00:06:32.472Z"
+  },
+  "timestamp": "2026-05-21T00:06:32.481678+00:00",
+  "trigger": "update_registry"
+}

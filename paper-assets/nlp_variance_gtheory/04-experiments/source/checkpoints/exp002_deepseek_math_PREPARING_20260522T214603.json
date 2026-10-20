@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp002_deepseek_math",
+  "project": "nlp_variance_gtheory",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T18:19:21.944Z",
+    "updated_at": "2026-05-22T21:46:03.401Z",
+    "hypothesis": "D009 8-model expansion: DeepSeek-LLM-7B-Chat MATH inference — free-form benchmark expected methodology-dominated variance pattern per D010",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T21:46:03.434557+00:00",
+  "trigger": "update_registry"
+}

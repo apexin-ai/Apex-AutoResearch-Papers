@@ -1,0 +1,86 @@
+{
+  "analysis": "BF16 vs FP16 sensitivity \u2014 FP32 confound check",
+  "date": "2026-05-21",
+  "motivation": "Reviewer concern: FP32 dominates precision facet. Check if precision variance ~0 when FP32 excluded.",
+  "bf16_fp16_only": {
+    "n_records": 525400,
+    "n_models": 3,
+    "models": [
+      "Llama-3.1-8B",
+      "Mistral-7B-v0.3",
+      "Qwen3-8B"
+    ],
+    "precisions": [
+      "bfloat16",
+      "float16"
+    ],
+    "grand_mean": 0.6921031594975257,
+    "variance_components_pct": {
+      "model": 0.6951,
+      "precision": 0.0006,
+      "temperature": 0.0064,
+      "prompt_template": 0.0109,
+      "seed": 0.0014,
+      "ordering": 0.0009,
+      "item_id": 52.8718,
+      "model:item_id": 22.5072,
+      "model:precision": 0.0009,
+      "model:temperature": 0.0115,
+      "precision:item_id": 0.0412,
+      "precision:temperature": 0.0001,
+      "temperature:item_id": 0.5583,
+      "prompt_template:item_id": 1.7544,
+      "seed:item_id": 1.5591,
+      "ordering:item_id": 0.5551,
+      "residual": 19.4251
+    },
+    "precision_pct": 0.0006,
+    "precision_item_pct": 0.0412,
+    "accuracy_by_precision": {
+      "bfloat16": 0.6932307692307692,
+      "float16": 0.6908835182250396
+    }
+  },
+  "all_3_precisions": {
+    "n_records": 757600,
+    "n_models": 3,
+    "models": [
+      "Llama-3.1-8B",
+      "Mistral-7B-v0.3",
+      "Qwen3-8B"
+    ],
+    "precisions": [
+      "bfloat16",
+      "float16",
+      "float32"
+    ],
+    "grand_mean": 0.6727573917634636,
+    "variance_components_pct": {
+      "model": 0.9794,
+      "precision": 0.4033,
+      "temperature": 0.0144,
+      "prompt_template": 0.0072,
+      "seed": 0.0013,
+      "ordering": 0.0014,
+      "item_id": 46.4064,
+      "model:item_id": 18.2025,
+      "model:precision": 0.1995,
+      "model:temperature": 0.0165,
+      "precision:item_id": 1.3036,
+      "precision:temperature": 0.0025,
+      "temperature:item_id": 0.4526,
+      "prompt_template:item_id": 1.6403,
+      "seed:item_id": 1.321,
+      "ordering:item_id": 0.3915,
+      "residual": 28.6567
+    },
+    "precision_pct": 0.4033,
+    "precision_item_pct": 1.3036,
+    "accuracy_by_precision": {
+      "bfloat16": 0.6932307692307692,
+      "float16": 0.6908835182250396,
+      "float32": 0.6289836347975882
+    }
+  },
+  "conclusion": "With FP32 excluded: precision=0.0006%, precision\u00d7item=0.0412%. With FP32 included: precision=0.4033%, precision\u00d7item=1.3036%. FP32 removal confirms that precision variance is driven by FP32, not BF16-vs-FP16 differences."
+}

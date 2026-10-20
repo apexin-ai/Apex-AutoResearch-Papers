@@ -1,0 +1,50 @@
+{
+  "exp_id": "mvp_phase_a",
+  "project": "nlp_variance_gtheory",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:55:08.941Z",
+    "updated_at": "2026-05-20T18:55:34.082Z",
+    "hypothesis": "G-theory can successfully decompose infrastructure (precision) × methodology (prompt, seed, ordering, temperature) crossed variance components in LLM evaluation, with at least 2 components exceeding 5% of total variance and at least 1 significant precision×methodology interaction.",
+    "spec": {
+      "command": "bash run_full_mvp.sh (nohup)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items.json + data/few_shot_examples.json",
+      "data_count": 5400,
+      "model_name": "meta-llama/Llama-3.1-8B-Instruct",
+      "seed": "42,123,456",
+      "gpu": "cuda:0",
+      "design": "108 conditions = 3 precision x 2 temperature x 3 prompts x 3 seeds x 2 orderings x 50 items",
+      "checkpoint_path": "westd-32570:/root/nlp_variance_gtheory/results/",
+      "log_path": "westd-32570:/tmp/mvp_phase_a.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_records": 5400,
+      "conditions": 108,
+      "overall_accuracy": 0.6557,
+      "accuracy_bfloat16": 0.6844,
+      "accuracy_float16": 0.6833,
+      "accuracy_float32": 0.5994,
+      "g_coefficient": 0.357,
+      "top_variance_components": {
+        "item_id": 0.5844,
+        "residual": 0.1759,
+        "precision:item_id": 0.0724,
+        "temperature:item_id": 0.0685,
+        "prompt_template:item_id": 0.0573,
+        "seed:item_id": 0.027,
+        "precision": 0.0087
+      },
+      "pass_criteria_a_pipeline": true,
+      "pass_criteria_b_components": true,
+      "pass_criteria_c_interaction": "partial"
+    },
+    "completed_at": "2026-05-20T18:55:34.082Z"
+  },
+  "timestamp": "2026-05-20T18:55:34.090356+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,241 @@
+Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')
+=== exp-002 pilot start: Thu May 21 16:52:15 CST 2026 ===
+
+=== MMLU pilot: Thu May 21 16:52:15 CST 2026 ===
+INFO 05-21 16:52:19 [__init__.py:244] Automatically detected platform cuda.
+Loading meta-llama/Llama-3.1-8B-Instruct (bfloat16) → /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct
+INFO 05-21 16:52:26 [config.py:841] This model supports multiple tasks: {'embed', 'reward', 'generate', 'classify'}. Defaulting to 'generate'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 05-21 16:52:26 [config.py:1472] Using max model len 4096
+WARNING 05-21 16:52:27 [cuda.py:102] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+INFO 05-21 16:52:27 [llm_engine.py:230] Initializing a V0 LLM engine (v0.9.2) with config: model='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='xgrammar', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=42, served_model_name=/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":[],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":false,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":0,"local_cache_dir":null}, use_cached_outputs=False, 
+INFO 05-21 16:52:27 [cuda.py:363] Using Flash Attention backend.
+INFO 05-21 16:52:28 [parallel_state.py:1076] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+INFO 05-21 16:52:28 [model_runner.py:1171] Starting to load model /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:00,  3.38it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.15it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:01,  1.08s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.06s/it]
+
+INFO 05-21 16:52:32 [default_loader.py:272] Loading weights took 4.35 seconds
+INFO 05-21 16:52:33 [model_runner.py:1203] Model loading took 14.9889 GiB and 4.529804 seconds
+INFO 05-21 16:52:33 [worker.py:294] Memory profiling takes 0.62 seconds
+INFO 05-21 16:52:33 [worker.py:294] the current vLLM instance can use total_gpu_memory (94.97GiB) x gpu_memory_utilization (0.90) = 85.47GiB
+INFO 05-21 16:52:33 [worker.py:294] model weights take 14.99GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 1.20GiB; the rest of the memory reserved for KV Cache is 69.18GiB.
+INFO 05-21 16:52:34 [executor_base.py:113] # cuda blocks: 35421, # CPU blocks: 2048
+INFO 05-21 16:52:34 [executor_base.py:118] Maximum concurrency for 4096 tokens per request: 138.36x
+INFO 05-21 16:52:35 [llm_engine.py:428] init engine (profile, create kv cache, warmup model) took 2.27 seconds
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  70%|███████   | 140/200 [00:00<00:00, 1393.90it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1478.29it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:21,  4.63s/it, est. speed input: 77.11 toks/s, output: 3.46 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.63s/it, est. speed input: 20439.42 toks/s, output: 690.86 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.18it/s, est. speed input: 20439.42 toks/s, output: 690.86 toks/s]
+  Condition 1153: 142/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  86%|████████▌ | 171/200 [00:00<00:00, 1703.51it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1652.28it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:03,  4.54s/it, est. speed input: 78.62 toks/s, output: 3.52 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.54s/it, est. speed input: 20841.94 toks/s, output: 704.47 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 44.03it/s, est. speed input: 20841.94 toks/s, output: 704.47 toks/s]
+  Condition 1154: 140/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  82%|████████▎ | 165/200 [00:00<00:00, 1646.75it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1621.17it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:06,  4.55s/it, est. speed input: 78.39 toks/s, output: 3.51 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.55s/it, est. speed input: 20780.98 toks/s, output: 702.41 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.90it/s, est. speed input: 20780.98 toks/s, output: 702.41 toks/s]
+  Condition 1155: 141/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  83%|████████▎ | 166/200 [00:00<00:00, 1656.02it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1626.55it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:51,  4.78s/it, est. speed input: 74.70 toks/s, output: 3.35 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.78s/it, est. speed input: 19801.85 toks/s, output: 669.31 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 41.83it/s, est. speed input: 19801.85 toks/s, output: 669.31 toks/s]
+  Condition 1156: 142/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  83%|████████▎ | 166/200 [00:00<00:00, 1657.26it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1625.19it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:10,  4.58s/it, est. speed input: 77.99 toks/s, output: 3.50 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.58s/it, est. speed input: 20673.26 toks/s, output: 698.77 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.67it/s, est. speed input: 20673.26 toks/s, output: 698.77 toks/s]
+  Condition 1157: 142/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  84%|████████▍ | 168/200 [00:00<00:00, 1673.37it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1635.44it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:12,  4.59s/it, est. speed input: 77.86 toks/s, output: 3.49 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.59s/it, est. speed input: 20638.63 toks/s, output: 697.60 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.60it/s, est. speed input: 20638.63 toks/s, output: 697.60 toks/s]
+  Condition 1158: 140/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  82%|████████▏ | 164/200 [00:00<00:00, 1639.33it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1616.60it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:15,  4.60s/it, est. speed input: 77.59 toks/s, output: 3.48 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.60s/it, est. speed input: 20568.08 toks/s, output: 695.21 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.45it/s, est. speed input: 20568.08 toks/s, output: 695.21 toks/s]
+  Condition 1159: 141/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  80%|████████  | 161/200 [00:00<00:00, 1609.35it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1577.12it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:16,  4.61s/it, est. speed input: 77.50 toks/s, output: 3.47 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.61s/it, est. speed input: 20543.19 toks/s, output: 694.37 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.40it/s, est. speed input: 20543.19 toks/s, output: 694.37 toks/s]
+  Condition 1160: 142/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  82%|████████▎ | 165/200 [00:00<00:00, 1649.28it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1620.55it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:17,  4.61s/it, est. speed input: 77.47 toks/s, output: 3.47 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.61s/it, est. speed input: 20536.76 toks/s, output: 694.15 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.38it/s, est. speed input: 20536.76 toks/s, output: 694.15 toks/s]
+  Condition 1161: 142/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  85%|████████▌ | 170/200 [00:00<00:00, 1695.77it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1651.66it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<15:18,  4.62s/it, est. speed input: 77.32 toks/s, output: 3.47 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.62s/it, est. speed input: 20496.13 toks/s, output: 692.78 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 43.30it/s, est. speed input: 20496.13 toks/s, output: 692.78 toks/s]
+  Condition 1162: 140/200 correct
+Experiment complete → results/exp002_pilot/mmlu_pilot.jsonl
+[rank0]:[W521 16:53:23.793266113 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+=== GSM8K pilot: Thu May 21 16:53:24 CST 2026 ===
+INFO 05-21 16:53:27 [__init__.py:244] Automatically detected platform cuda.
+Loading meta-llama/Llama-3.1-8B-Instruct (bfloat16) → /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct
+INFO 05-21 16:53:35 [config.py:841] This model supports multiple tasks: {'classify', 'embed', 'reward', 'generate'}. Defaulting to 'generate'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 05-21 16:53:35 [config.py:1472] Using max model len 4096
+WARNING 05-21 16:53:35 [cuda.py:102] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+INFO 05-21 16:53:35 [llm_engine.py:230] Initializing a V0 LLM engine (v0.9.2) with config: model='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='xgrammar', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=42, served_model_name=/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":[],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":false,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":0,"local_cache_dir":null}, use_cached_outputs=False, 
+INFO 05-21 16:53:36 [cuda.py:363] Using Flash Attention backend.
+INFO 05-21 16:53:37 [parallel_state.py:1076] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+INFO 05-21 16:53:37 [model_runner.py:1171] Starting to load model /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:00,  3.39it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.15it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:01,  1.07s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.18s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.06s/it]
+
+INFO 05-21 16:53:41 [default_loader.py:272] Loading weights took 4.33 seconds
+INFO 05-21 16:53:42 [model_runner.py:1203] Model loading took 14.9889 GiB and 4.505451 seconds
+INFO 05-21 16:53:42 [worker.py:294] Memory profiling takes 0.62 seconds
+INFO 05-21 16:53:42 [worker.py:294] the current vLLM instance can use total_gpu_memory (94.97GiB) x gpu_memory_utilization (0.90) = 85.47GiB
+INFO 05-21 16:53:42 [worker.py:294] model weights take 14.99GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 1.20GiB; the rest of the memory reserved for KV Cache is 69.18GiB.
+INFO 05-21 16:53:42 [executor_base.py:113] # cuda blocks: 35421, # CPU blocks: 2048
+INFO 05-21 16:53:42 [executor_base.py:118] Maximum concurrency for 4096 tokens per request: 138.36x
+INFO 05-21 16:53:44 [llm_engine.py:428] init engine (profile, create kv cache, warmup model) took 2.32 seconds
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  41%|████      | 82/200 [00:00<00:00, 817.06it/s]Adding requests:  86%|████████▌ | 172/200 [00:00<00:00, 864.97it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 862.88it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:01:05, 36.51s/it, est. speed input: 25.47 toks/s, output: 14.02 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.51s/it, est. speed input: 5253.42 toks/s, output: 2804.64 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.48it/s, est. speed input: 5253.42 toks/s, output: 2804.64 toks/s]
+  Condition 1441: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  45%|████▌     | 90/200 [00:00<00:00, 894.99it/s]Adding requests:  90%|█████████ | 181/200 [00:00<00:00, 900.28it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 898.37it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:01:04, 36.51s/it, est. speed input: 25.47 toks/s, output: 14.02 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.51s/it, est. speed input: 5253.64 toks/s, output: 2804.76 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.48it/s, est. speed input: 5253.64 toks/s, output: 2804.76 toks/s]
+  Condition 1442: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  44%|████▎     | 87/200 [00:00<00:00, 862.33it/s]Adding requests:  88%|████████▊ | 177/200 [00:00<00:00, 880.49it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 878.57it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:01, 36.79s/it, est. speed input: 25.28 toks/s, output: 13.92 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.79s/it, est. speed input: 5213.15 toks/s, output: 2783.14 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.44it/s, est. speed input: 5213.15 toks/s, output: 2783.14 toks/s]
+  Condition 1443: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  43%|████▎     | 86/200 [00:00<00:00, 858.20it/s]Adding requests:  88%|████████▊ | 176/200 [00:00<00:00, 880.99it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 879.31it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:16, 36.87s/it, est. speed input: 25.23 toks/s, output: 13.89 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.87s/it, est. speed input: 5202.54 toks/s, output: 2777.48 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.42it/s, est. speed input: 5202.54 toks/s, output: 2777.48 toks/s]
+  Condition 1444: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  42%|████▏     | 84/200 [00:00<00:00, 838.58it/s]Adding requests:  86%|████████▌ | 172/200 [00:00<00:00, 861.98it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 861.60it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:01:11, 36.54s/it, est. speed input: 25.45 toks/s, output: 14.01 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.54s/it, est. speed input: 5248.60 toks/s, output: 2802.07 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.47it/s, est. speed input: 5248.60 toks/s, output: 2802.07 toks/s]
+  Condition 1445: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  43%|████▎     | 86/200 [00:00<00:00, 859.24it/s]Adding requests:  88%|████████▊ | 175/200 [00:00<00:00, 874.20it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 874.92it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:05, 36.81s/it, est. speed input: 25.27 toks/s, output: 13.91 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.81s/it, est. speed input: 5210.59 toks/s, output: 2781.78 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.43it/s, est. speed input: 5210.59 toks/s, output: 2781.78 toks/s]
+  Condition 1446: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  42%|████▏     | 84/200 [00:00<00:00, 837.12it/s]Adding requests:  84%|████████▍ | 169/200 [00:00<00:00, 840.03it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 845.39it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:05, 36.81s/it, est. speed input: 25.26 toks/s, output: 13.91 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.81s/it, est. speed input: 5210.21 toks/s, output: 2781.57 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.43it/s, est. speed input: 5210.21 toks/s, output: 2781.57 toks/s]
+  Condition 1447: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  44%|████▍     | 88/200 [00:00<00:00, 873.42it/s]Adding requests:  90%|████████▉ | 179/200 [00:00<00:00, 892.92it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 890.84it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:22, 36.89s/it, est. speed input: 25.21 toks/s, output: 13.88 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.89s/it, est. speed input: 5198.47 toks/s, output: 2775.31 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.42it/s, est. speed input: 5198.47 toks/s, output: 2775.31 toks/s]
+  Condition 1448: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  44%|████▎     | 87/200 [00:00<00:00, 861.28it/s]Adding requests:  88%|████████▊ | 176/200 [00:00<00:00, 875.15it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 875.65it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:01:28, 36.63s/it, est. speed input: 25.39 toks/s, output: 13.98 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.63s/it, est. speed input: 5236.48 toks/s, output: 2795.60 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.46it/s, est. speed input: 5236.48 toks/s, output: 2795.60 toks/s]
+  Condition 1449: 60/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  43%|████▎     | 86/200 [00:00<00:00, 853.96it/s]Adding requests:  88%|████████▊ | 176/200 [00:00<00:00, 877.88it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 876.90it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:36<2:02:24, 36.91s/it, est. speed input: 25.20 toks/s, output: 13.87 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00, 36.91s/it, est. speed input: 5196.67 toks/s, output: 2774.35 toks/s]Processed prompts: 100%|██████████| 200/200 [00:36<00:00,  5.42it/s, est. speed input: 5196.67 toks/s, output: 2774.35 toks/s]
+  Condition 1450: 60/200 correct
+Experiment complete → results/exp002_pilot/gsm8k_pilot.jsonl
+[rank0]:[W521 16:59:54.903019323 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+=== ARC pilot: Thu May 21 16:59:55 CST 2026 ===
+INFO 05-21 16:59:59 [__init__.py:244] Automatically detected platform cuda.
+Loading meta-llama/Llama-3.1-8B-Instruct (bfloat16) → /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct
+INFO 05-21 17:00:07 [config.py:841] This model supports multiple tasks: {'generate', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 05-21 17:00:07 [config.py:1472] Using max model len 4096
+WARNING 05-21 17:00:07 [cuda.py:102] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+INFO 05-21 17:00:07 [llm_engine.py:230] Initializing a V0 LLM engine (v0.9.2) with config: model='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='xgrammar', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=42, served_model_name=/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":[],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":false,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":0,"local_cache_dir":null}, use_cached_outputs=False, 
+INFO 05-21 17:00:08 [cuda.py:363] Using Flash Attention backend.
+INFO 05-21 17:00:08 [parallel_state.py:1076] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+INFO 05-21 17:00:08 [model_runner.py:1171] Starting to load model /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:00,  3.38it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.14it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:01,  1.09s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.20s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.07s/it]
+
+INFO 05-21 17:00:13 [default_loader.py:272] Loading weights took 4.38 seconds
+INFO 05-21 17:00:14 [model_runner.py:1203] Model loading took 14.9889 GiB and 4.573162 seconds
+INFO 05-21 17:00:14 [worker.py:294] Memory profiling takes 0.64 seconds
+INFO 05-21 17:00:14 [worker.py:294] the current vLLM instance can use total_gpu_memory (94.97GiB) x gpu_memory_utilization (0.90) = 85.47GiB
+INFO 05-21 17:00:14 [worker.py:294] model weights take 14.99GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 1.20GiB; the rest of the memory reserved for KV Cache is 69.18GiB.
+INFO 05-21 17:00:15 [executor_base.py:113] # cuda blocks: 35421, # CPU blocks: 2048
+INFO 05-21 17:00:15 [executor_base.py:118] Maximum concurrency for 4096 tokens per request: 138.36x
+INFO 05-21 17:00:16 [llm_engine.py:428] init engine (profile, create kv cache, warmup model) took 2.41 seconds
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  80%|████████  | 160/200 [00:00<00:00, 1597.92it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1629.51it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<13:20,  4.02s/it, est. speed input: 102.48 toks/s, output: 3.98 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.02s/it, est. speed input: 19992.76 toks/s, output: 795.55 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 49.72it/s, est. speed input: 19992.76 toks/s, output: 795.55 toks/s]
+  Condition 1729: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  88%|████████▊ | 176/200 [00:00<00:00, 1758.40it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1756.63it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:04,  3.94s/it, est. speed input: 104.57 toks/s, output: 4.06 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.94s/it, est. speed input: 20401.56 toks/s, output: 811.82 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.74it/s, est. speed input: 20401.56 toks/s, output: 811.82 toks/s]
+  Condition 1730: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  88%|████████▊ | 175/200 [00:00<00:00, 1748.91it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1744.03it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:05,  3.95s/it, est. speed input: 104.43 toks/s, output: 4.06 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.95s/it, est. speed input: 20373.78 toks/s, output: 810.71 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.67it/s, est. speed input: 20373.78 toks/s, output: 810.71 toks/s]
+  Condition 1731: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  87%|████████▋ | 174/200 [00:00<00:00, 1731.51it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1722.96it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:04<13:55,  4.20s/it, est. speed input: 98.12 toks/s, output: 3.81 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00,  4.20s/it, est. speed input: 19144.19 toks/s, output: 761.79 toks/s]Processed prompts: 100%|██████████| 200/200 [00:04<00:00, 47.61it/s, est. speed input: 19144.19 toks/s, output: 761.79 toks/s]
+  Condition 1732: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  84%|████████▍ | 168/200 [00:00<00:00, 1679.60it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1665.14it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:09,  3.97s/it, est. speed input: 103.80 toks/s, output: 4.03 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.97s/it, est. speed input: 20250.49 toks/s, output: 805.81 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.36it/s, est. speed input: 20250.49 toks/s, output: 805.81 toks/s]
+  Condition 1733: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  86%|████████▌ | 171/200 [00:00<00:00, 1709.35it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1694.94it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:12,  3.98s/it, est. speed input: 103.46 toks/s, output: 4.02 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.98s/it, est. speed input: 20185.62 toks/s, output: 803.23 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.20it/s, est. speed input: 20185.62 toks/s, output: 803.23 toks/s]
+  Condition 1734: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  85%|████████▌ | 170/200 [00:00<00:00, 1695.53it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1677.33it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:13,  3.99s/it, est. speed input: 103.37 toks/s, output: 4.01 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.99s/it, est. speed input: 20166.13 toks/s, output: 802.45 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.15it/s, est. speed input: 20166.13 toks/s, output: 802.45 toks/s]
+  Condition 1735: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  82%|████████▎ | 165/200 [00:00<00:00, 1638.53it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1633.14it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:13,  3.99s/it, est. speed input: 103.31 toks/s, output: 4.01 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.99s/it, est. speed input: 20154.95 toks/s, output: 802.01 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.12it/s, est. speed input: 20154.95 toks/s, output: 802.01 toks/s]
+  Condition 1736: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  88%|████████▊ | 175/200 [00:00<00:00, 1743.43it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1748.22it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:12,  3.98s/it, est. speed input: 103.40 toks/s, output: 4.02 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.98s/it, est. speed input: 20173.77 toks/s, output: 802.76 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.17it/s, est. speed input: 20173.77 toks/s, output: 802.76 toks/s]
+  Condition 1737: 163/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  85%|████████▌ | 170/200 [00:00<00:00, 1690.24it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1694.12it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:03<13:14,  3.99s/it, est. speed input: 103.17 toks/s, output: 4.01 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00,  3.99s/it, est. speed input: 20127.90 toks/s, output: 800.93 toks/s]Processed prompts: 100%|██████████| 200/200 [00:03<00:00, 50.06it/s, est. speed input: 20127.90 toks/s, output: 800.93 toks/s]
+  Condition 1738: 163/200 correct
+Experiment complete → results/exp002_pilot/arc_pilot.jsonl
+[rank0]:[W521 17:00:58.653704422 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+=== HellaSwag pilot: Thu May 21 17:00:59 CST 2026 ===
+INFO 05-21 17:01:02 [__init__.py:244] Automatically detected platform cuda.
+Loading meta-llama/Llama-3.1-8B-Instruct (bfloat16) → /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct
+INFO 05-21 17:01:10 [config.py:841] This model supports multiple tasks: {'classify', 'generate', 'embed', 'reward'}. Defaulting to 'generate'.
+`torch_dtype` is deprecated! Use `dtype` instead!
+INFO 05-21 17:01:10 [config.py:1472] Using max model len 4096
+WARNING 05-21 17:01:10 [cuda.py:102] To see benefits of async output processing, enable CUDA graph. Since, enforce-eager is enabled, async output processor cannot be used
+INFO 05-21 17:01:10 [llm_engine.py:230] Initializing a V0 LLM engine (v0.9.2) with config: model='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', speculative_config=None, tokenizer='/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config={}, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(backend='xgrammar', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_backend=''), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None), seed=42, served_model_name=/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=None, chunked_prefill_enabled=False, use_async_output_proc=False, pooler_config=None, compilation_config={"level":0,"debug_dump_path":"","cache_dir":"","backend":"","custom_ops":[],"splitting_ops":[],"use_inductor":true,"compile_sizes":[],"inductor_compile_config":{"enable_auto_functionalized_v2":false},"inductor_passes":{},"use_cudagraph":false,"cudagraph_num_of_warmups":0,"cudagraph_capture_sizes":[],"cudagraph_copy_inputs":false,"full_cuda_graph":false,"max_capture_size":0,"local_cache_dir":null}, use_cached_outputs=False, 
+INFO 05-21 17:01:11 [cuda.py:363] Using Flash Attention backend.
+INFO 05-21 17:01:12 [parallel_state.py:1076] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0, EP rank 0
+INFO 05-21 17:01:12 [model_runner.py:1171] Starting to load model /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:00,  3.42it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.16it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:01,  1.08s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.18s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.06s/it]
+
+INFO 05-21 17:01:16 [default_loader.py:272] Loading weights took 4.32 seconds
+INFO 05-21 17:01:17 [model_runner.py:1203] Model loading took 14.9889 GiB and 4.496643 seconds
+INFO 05-21 17:01:17 [worker.py:294] Memory profiling takes 0.62 seconds
+INFO 05-21 17:01:17 [worker.py:294] the current vLLM instance can use total_gpu_memory (94.97GiB) x gpu_memory_utilization (0.90) = 85.47GiB
+INFO 05-21 17:01:17 [worker.py:294] model weights take 14.99GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 1.20GiB; the rest of the memory reserved for KV Cache is 69.18GiB.
+INFO 05-21 17:01:18 [executor_base.py:113] # cuda blocks: 35421, # CPU blocks: 2048
+INFO 05-21 17:01:18 [executor_base.py:118] Maximum concurrency for 4096 tokens per request: 138.36x
+INFO 05-21 17:01:19 [llm_engine.py:428] init engine (profile, create kv cache, warmup model) took 2.34 seconds
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  51%|█████     | 102/200 [00:00<00:00, 1013.97it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1065.84it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:49,  6.28s/it, est. speed input: 103.24 toks/s, output: 2.55 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.28s/it, est. speed input: 20876.21 toks/s, output: 509.64 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.85it/s, est. speed input: 20876.21 toks/s, output: 509.64 toks/s]
+  Condition 2017: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  58%|█████▊    | 116/200 [00:00<00:00, 1159.01it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1155.50it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:41,  6.24s/it, est. speed input: 103.86 toks/s, output: 2.56 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.24s/it, est. speed input: 21002.39 toks/s, output: 512.72 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 32.04it/s, est. speed input: 21002.39 toks/s, output: 512.72 toks/s]
+  Condition 2018: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  54%|█████▎    | 107/200 [00:00<00:00, 1066.32it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1086.47it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:43,  6.25s/it, est. speed input: 103.66 toks/s, output: 2.56 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.25s/it, est. speed input: 20962.95 toks/s, output: 511.76 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.98it/s, est. speed input: 20962.95 toks/s, output: 511.76 toks/s]
+  Condition 2019: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  54%|█████▍    | 108/200 [00:00<00:00, 1073.70it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1079.00it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<21:30,  6.49s/it, est. speed input: 99.91 toks/s, output: 2.47 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.49s/it, est. speed input: 20204.83 toks/s, output: 493.25 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 30.83it/s, est. speed input: 20204.83 toks/s, output: 493.25 toks/s]
+  Condition 2020: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  54%|█████▎    | 107/200 [00:00<00:00, 1063.33it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1076.79it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:46,  6.26s/it, est. speed input: 103.49 toks/s, output: 2.56 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.26s/it, est. speed input: 20928.80 toks/s, output: 510.92 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.93it/s, est. speed input: 20928.80 toks/s, output: 510.92 toks/s]
+  Condition 2021: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  53%|█████▎    | 106/200 [00:00<00:00, 1056.30it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1068.74it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:45,  6.26s/it, est. speed input: 103.52 toks/s, output: 2.56 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.26s/it, est. speed input: 20935.08 toks/s, output: 511.07 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.94it/s, est. speed input: 20935.08 toks/s, output: 511.07 toks/s]
+  Condition 2022: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  55%|█████▍    | 109/200 [00:00<00:00, 1083.29it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1089.75it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:53,  6.30s/it, est. speed input: 102.87 toks/s, output: 2.54 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.30s/it, est. speed input: 20801.87 toks/s, output: 507.82 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.74it/s, est. speed input: 20801.87 toks/s, output: 507.82 toks/s]
+  Condition 2023: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  52%|█████▏    | 104/200 [00:00<00:00, 1039.52it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1046.05it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:54,  6.30s/it, est. speed input: 102.78 toks/s, output: 2.54 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.30s/it, est. speed input: 20785.39 toks/s, output: 507.42 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.71it/s, est. speed input: 20785.39 toks/s, output: 507.42 toks/s]
+  Condition 2024: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  55%|█████▍    | 109/200 [00:00<00:00, 1089.54it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1088.00it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:51,  6.29s/it, est. speed input: 103.06 toks/s, output: 2.54 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.29s/it, est. speed input: 20842.03 toks/s, output: 508.80 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.80it/s, est. speed input: 20842.03 toks/s, output: 508.80 toks/s]
+  Condition 2025: 137/200 correct
+Adding requests:   0%|          | 0/200 [00:00<?, ?it/s]Adding requests:  55%|█████▍    | 109/200 [00:00<00:00, 1089.67it/s]Adding requests: 100%|██████████| 200/200 [00:00<00:00, 1091.35it/s]
+Processed prompts:   0%|          | 0/200 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/200 [00:06<20:57,  6.32s/it, est. speed input: 102.56 toks/s, output: 2.53 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00,  6.32s/it, est. speed input: 20740.08 toks/s, output: 506.31 toks/s]Processed prompts: 100%|██████████| 200/200 [00:06<00:00, 31.64it/s, est. speed input: 20740.08 toks/s, output: 506.31 toks/s]
+  Condition 2026: 137/200 correct
+Experiment complete → results/exp002_pilot/hellaswag_pilot.jsonl
+[rank0]:[W521 17:02:25.343886839 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+=== exp-002 pilot complete: Thu May 21 17:02:26 CST 2026 ===
+PILOT_DONE

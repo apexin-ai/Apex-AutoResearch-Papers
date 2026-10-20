@@ -1,0 +1,11 @@
+condition_id,model,benchmark,items_file,precision,temperature,top_p,prompt_template,seed,ordering
+1441,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,42,1
+1442,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,42,2
+1443,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,42,3
+1444,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,42,4
+1445,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,123,1
+1446,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,123,2
+1447,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,123,3
+1448,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,123,4
+1449,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,456,1
+1450,meta-llama/Llama-3.1-8B-Instruct,gsm8k,data/gsm8k_items_exp002.json,bfloat16,0.0,,1,456,2

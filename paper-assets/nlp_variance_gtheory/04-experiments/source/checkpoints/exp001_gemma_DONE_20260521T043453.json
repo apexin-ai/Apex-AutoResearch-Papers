@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp001_gemma",
+  "project": "nlp_variance_gtheory",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:00:51.314Z",
+    "updated_at": "2026-05-21T04:34:53.581Z",
+    "hypothesis": "Gemma-2-9b-it variance decomposition at full scale (1,296 conditions × 200 items) will show model-specific variance structure differences compared to Llama — enabling model-as-facet analysis (Claim 1 make-or-break)",
+    "parent": "exp001_llama",
+    "spec": {
+      "command": "python -m src.inference.run_experiment --design results/exp001_gemma/shards/shard_{0-3}.csv --gpu-id {0-3} (4 GPUs parallel, nohup)",
+      "server": "westd-32570",
+      "data_path": "data/mmlu_items_exp001.json (200 items x 10 subjects)",
+      "data_count": 200,
+      "model_name": "google/gemma-2-9b-it",
+      "seed": "42,123,456,789,1024,2048",
+      "gpu": "cuda:0-3 (4x RTX PRO 6000 96GB)",
+      "checkpoint_source": "HuggingFace (pre-trained, no fine-tuning)",
+      "eval_data": "MMLU 200 items (10 subjects x 20 items)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T02:40:22.023Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-21T02:40:22.097Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:40:23.502187+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: Gemma-2 不支持 float16 精度 (vLLM ValidationError: \"The model type 'gemma2' does not support float16. Reason: Numerical instability\"). 设计矩阵含 fp16 条件导致进程在切换到 fp16 shard 时崩溃。已有成果: bfloat16 条件部分已完成 (conditions 到 ~3399). 建议: 重新生成排除 fp16 的设计矩阵 (仅 bfloat16+float32), 检查已产出的 JSONL 数据量, 增量补跑缺失条件。"
+  },
+  "timestamp": "2026-05-21T04:34:53.620227+00:00",
+  "trigger": "update_registry"
+}
