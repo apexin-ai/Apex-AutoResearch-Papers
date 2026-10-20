@@ -394,6 +394,22 @@
       }
     },
     {
+      "project": "gen-depth-contamination",
+      "title": "Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary",
+      "catalog": "../paper-assets/gen-depth-contamination/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2243,
+        "messages": 205665,
+        "user_turns": 6827,
+        "tool_calls": 83758,
+        "unparsed_lines": 900,
+        "result": 871,
+        "worker": 900,
+        "conversation": 399,
+        "history": 73
+      }
+    },
+    {
       "project": "importance_margin_vla_compress",
       "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
       "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",

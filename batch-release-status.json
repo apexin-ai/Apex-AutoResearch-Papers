@@ -570,6 +570,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39361305910"
+    },
+    "gen-depth-contamination/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 363761331,
+        "etag": "\"fee4f9a7317514567ec0d9801d5d3b58-44\"",
+        "modified": "2026-05-31T17:31:50+00:00"
+      },
+      "archive_sha256": "66b7299c68f26d6d96034e5a3096619ba0f33d7968f2454d59d4078ddc28f6b0",
+      "projects": [
+        "gen-depth-contamination"
+      ],
+      "counts": [
+        {
+          "project": "gen-depth-contamination",
+          "title": "Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary",
+          "paper_pdf": "paper.pdf",
+          "code_count": 487,
+          "data_count": 1332,
+          "trace_count": 2243
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39369059488"
     }
   }
 }
