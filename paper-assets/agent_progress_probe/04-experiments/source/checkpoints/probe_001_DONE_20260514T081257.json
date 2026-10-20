@@ -1,0 +1,83 @@
+{
+  "exp_id": "probe_001",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T06:11:55.517Z",
+    "updated_at": "2026-05-14T08:12:57.778Z",
+    "server": "gpu-5090-2x-2",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "gpu-5090-2x-2",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-14T08:03:18.929Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints --min_confidence 2 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\"",
+      "finished_at": "2026-05-14T08:10:39.745Z",
+      "training_hours": 0.12
+    },
+    "failure_reason": "wandb.errors.UsageError: No API key configured — 服务器 gpu-5090-2x-2 未设置 WANDB_API_KEY，wandb.init() 认证失败 (train_probe.py:158)",
+    "completed_at": "2026-05-14T08:06:37.279Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T08:06:38.107010+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:10:40.577950+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints --min_confidence 2 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\"",
+      "server": "gpu-5090-2x-2",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "12735",
+      "log_path": "~/runs/agent_progress_probe/probe_001.log",
+      "submitted_at": "2026-05-14T08:08:25.563Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints/best_model.pt",
+      "wall_clock_seconds": 272.2,
+      "gpu_hours": 0.08
+    },
+    "pid": "12735",
+    "log_path": "~/runs/agent_progress_probe/probe_001.log",
+    "conclusion": "success",
+    "metrics": {
+      "test_macro_f1": 0.9055,
+      "test_accuracy": 0.9282,
+      "test_precision_macro": 0.9176,
+      "test_recall_macro": 0.8952,
+      "test_f1_stagnation": 0.8593,
+      "test_f1_progress": 0.9518,
+      "val_macro_f1_best": 0.9511,
+      "best_epoch": 3,
+      "total_epochs": 8,
+      "baseline_random": 0.4955,
+      "baseline_majority": 0.4233,
+      "baseline_cosine_sim": 0.3129,
+      "baseline_repeat3": 0.8432,
+      "best_baseline": 0.8432,
+      "best_baseline_name": "Repeat-3",
+      "gap_vs_best_baseline_pp": 6.24,
+      "mvp_condition1_f1_ge_070": true,
+      "mvp_condition2_gap_ge_5pp": true
+    }
+  },
+  "timestamp": "2026-05-14T08:12:57.787728+00:00",
+  "trigger": "update_registry"
+}

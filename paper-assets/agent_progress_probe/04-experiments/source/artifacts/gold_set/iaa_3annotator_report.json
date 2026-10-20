@@ -1,0 +1,41 @@
+{
+  "total_unique_windows": 650,
+  "coverage": {
+    "3_annotator": 52,
+    "2_annotator": 591,
+    "1_annotator": 7
+  },
+  "three_annotator": {
+    "n": 52,
+    "unanimous": 33,
+    "majority_21": 19,
+    "fleiss_kappa": 0.39,
+    "pairwise_kappa": {
+      "b1_b2": 0.4851,
+      "b1_b3": 0.4062,
+      "b2_b3": 0.3297
+    },
+    "pairwise_agreement": {
+      "b1_b2": 0.8077,
+      "b1_b3": 0.7308,
+      "b2_b3": 0.7308
+    }
+  },
+  "gold_sets": {
+    "A_3annotator_mv": {
+      "n": 52,
+      "prog": 40,
+      "stag": 12
+    },
+    "B_2plus_agreed": {
+      "n": 505,
+      "prog": 372,
+      "stag": 133
+    },
+    "C_all_available": {
+      "n": 512,
+      "prog": 376,
+      "stag": 136
+    }
+  }
+}

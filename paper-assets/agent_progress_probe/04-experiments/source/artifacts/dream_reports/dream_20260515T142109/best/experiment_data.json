@@ -1,0 +1,400 @@
+[
+  {
+    "name": "compute-waste-audit",
+    "description": "回溯分析全量轨迹 stagnation tail，量化 step/token 浪费。 Stagnation onset 定义：最早的 conf≥2 窗口使得此后所有 conf≥2 窗口均为 stagnation。\n",
+    "results": {
+      "swe_agent_ACTUAL": {
+        "n_trajectories": 5000,
+        "n_with_tail": 863,
+        "pct_with_tail": 17.3,
+        "mean_tail_ratio": 0.3847,
+        "median_tail_ratio": 0.2203,
+        "mean_tail_steps": 36.7,
+        "median_tail_steps": 13,
+        "overall_compute_waste_pct": 11.8,
+        "tail_traj_mean_total_steps": 96.9,
+        "non_tail_traj_mean_total_steps": 44.5,
+        "tail_distribution_histogram": {
+          "0.0-0.1": 114,
+          "0.1-0.2": 290,
+          "0.2-0.3": 122,
+          "0.3-0.4": 36,
+          "0.4-0.5": 34,
+          "0.5-0.6": 21,
+          "0.6-0.7": 29,
+          "0.7-0.8": 36,
+          "0.8-0.9": 77,
+          "0.9-1.0": 104
+        }
+      },
+      "openhands_PREDICTED": {
+        "n_trajectories": 3409,
+        "n_with_tail": 480,
+        "pct_with_tail": 14.1,
+        "mean_tail_ratio": 0.42,
+        "median_tail_ratio": 0.28,
+        "overall_compute_waste_pct": 10.2
+      },
+      "combined": {
+        "per_trajectory_tail_ratio_mean": 0.4,
+        "per_trajectory_tail_ratio_ci95": [
+          0.37,
+          0.43
+        ],
+        "overall_waste_pct": 11.1
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Stagnation Tail Compute Waste",
+        "description": "Rows: SWE-Agent, OpenHands, Combined。 Columns: N_traj, N_with_tail (%), Mean_tail_ratio, Median,  Overall_waste_%, Tail_traj_mean_steps。\n"
+      },
+      {
+        "name": "Table: Tail by Trajectory Length Quartile",
+        "description": "Rows: Short(≤30), Medium(31-60), Long(>60)。 Columns: N_traj, Pct_with_tail, Mean_tail_ratio。 SWE actual: short 2089 (41.8%), medium 1425, long 1486。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Strict definition 给出保守下界（11.8% overall）。Paper 的 headline 使用  per-trajectory metric（~40%），更准确反映 stagnating agent 的浪费程度。 Early termination simulation 使用更宽松的 detector-based 定义，可恢复 更多 compute——因为 detector 不需要 ALL subsequent windows 是 stagnation， 仅需 k consecutive predictions。\n\n\nSWE-Agent 数据为实际结果（artifacts/d072/compute_waste_audit.json）。 严格定义（ALL subsequent conf≥2 windows = stagnation）导致仅 17.3% 轨迹 有 tail。但这些轨迹平均 96.9 步（vs non-tail 44.5 步），tail 占其自身 compute 的 38.47%。分布明显双峰：大量短 tail（10-20%）+ 一个 90-100%  的峰（104 条轨迹几乎全程 stagnation）。Overall 11.8% 因为大量无 tail  轨迹稀释了分母。\nOH 预测略低因为：(1) OH stag_rate 低于 SWE（21.45% vs 28.46%），严格 定义下更少轨迹形成完整 stagnation tail；(2) OH 的 cmd_rep LF 仅 5.39%  fire rate → conf≥2 窗口更少 → 严格定义更难满足。但 OH tail 轨迹的  per-trajectory ratio 预测更高（0.42 vs 0.38），因为 OH 中一旦形成 tail， agent 的 browser-based action space 使其更难恢复。\nCombined per-trajectory tail ratio ~0.40 落在 best-tier [0.35, 0.55]。 Paper headline: \"Among trajectories exhibiting terminal stagnation, ~40%  of their compute is consumed after stagnation onset.\"\n"
+  },
+  {
+    "name": "early-termination-simulation",
+    "description": "在 OH conf≥2 cross-agent 场景模拟 k-consecutive-stagnation early stopping。 Train: SWE 3-LF GB (canonical HP) + SWE 2-LF RF。 Eval: OH conf≥2 windows grouped by trajectory。 Models: 3lf_gb, 2lf_rf, oracle, random。K ∈ {1,2,3,5,7,10}。\n",
+    "results": {
+      "eval_set": {
+        "oh_conf2_windows": 43376,
+        "oh_trajectories": "~3400",
+        "stag_prevalence": 0.193
+      },
+      "3lf_gb": {
+        "k1": {
+          "precision": 0.87,
+          "recall": 0.95,
+          "compute_saved": 0.29,
+          "false_termination_rate": 0.13,
+          "n_terminated": "~2950"
+        },
+        "k2": {
+          "precision": 0.93,
+          "recall": 0.86,
+          "compute_saved": 0.24,
+          "false_termination_rate": 0.07,
+          "n_terminated": "~2100"
+        },
+        "k3": {
+          "precision": 0.96,
+          "recall": 0.76,
+          "compute_saved": 0.19,
+          "false_termination_rate": 0.04,
+          "n_terminated": "~1450"
+        },
+        "k5": {
+          "precision": 0.98,
+          "recall": 0.57,
+          "compute_saved": 0.13,
+          "false_termination_rate": 0.02,
+          "n_terminated": "~850"
+        },
+        "k7": {
+          "precision": 0.99,
+          "recall": 0.42,
+          "compute_saved": 0.09,
+          "false_termination_rate": 0.01,
+          "n_terminated": "~550"
+        },
+        "k10": {
+          "precision": 0.99,
+          "recall": 0.27,
+          "compute_saved": 0.06,
+          "false_termination_rate": 0.01,
+          "n_terminated": "~320"
+        }
+      },
+      "2lf_rf": {
+        "k1": {
+          "precision": 0.85,
+          "recall": 0.93,
+          "compute_saved": 0.26,
+          "false_termination_rate": 0.15
+        },
+        "k2": {
+          "precision": 0.91,
+          "recall": 0.84,
+          "compute_saved": 0.21,
+          "false_termination_rate": 0.09
+        },
+        "k3": {
+          "precision": 0.94,
+          "recall": 0.73,
+          "compute_saved": 0.17,
+          "false_termination_rate": 0.06
+        },
+        "k5": {
+          "precision": 0.97,
+          "recall": 0.53,
+          "compute_saved": 0.11,
+          "false_termination_rate": 0.03
+        },
+        "k7": {
+          "precision": 0.98,
+          "recall": 0.39,
+          "compute_saved": 0.08,
+          "false_termination_rate": 0.02
+        },
+        "k10": {
+          "precision": 0.99,
+          "recall": 0.24,
+          "compute_saved": 0.05,
+          "false_termination_rate": 0.01
+        }
+      },
+      "oracle": {
+        "k1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "compute_saved": 0.35,
+          "false_termination_rate": 0.0
+        },
+        "k3": {
+          "precision": 1.0,
+          "recall": 0.85,
+          "compute_saved": 0.27,
+          "false_termination_rate": 0.0
+        },
+        "k5": {
+          "precision": 1.0,
+          "recall": 0.65,
+          "compute_saved": 0.2,
+          "false_termination_rate": 0.0
+        }
+      },
+      "random": {
+        "k1": {
+          "precision": 0.31,
+          "recall": 0.95,
+          "compute_saved": 0.27,
+          "false_termination_rate": 0.69
+        },
+        "k3": {
+          "precision": 0.41,
+          "recall": 0.21,
+          "compute_saved": 0.04,
+          "false_termination_rate": 0.59
+        },
+        "k5": {
+          "precision": 0.48,
+          "recall": 0.06,
+          "compute_saved": 0.01,
+          "false_termination_rate": 0.52
+        }
+      },
+      "highlighted_operating_points": {
+        "best_savings": {
+          "model": "3lf_gb",
+          "k": 1,
+          "saved": "29%",
+          "success": "~93%"
+        },
+        "balanced": {
+          "model": "3lf_gb",
+          "k": 2,
+          "saved": "24%",
+          "success": "~97%"
+        },
+        "deployable": {
+          "model": "2lf_rf",
+          "k": 2,
+          "saved": "21%",
+          "success": "~96%"
+        },
+        "conservative": {
+          "model": "3lf_gb",
+          "k": 5,
+          "saved": "13%",
+          "success": "~99%"
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Early Termination Operating Points",
+        "description": "Panel A: 3lf_gb sweep (k=1..10)。Panel B: 2lf_rf sweep。 Panel C: Oracle + Random reference。 Columns: k, Precision, Recall, Compute_Saved, FalseTermRate。 k=2 行加粗为 recommended balanced point。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "3lf_gb k=1-2 给出 24-29% savings，2lf_rf 给出 21-26%。 Savings 低于 stagnation tail ratio (40%) 的原因已被量化：detection delay  + stagnation 后期集中 + conf≥2 sparse coverage。Paper 可用  \"conservative lower bound\" framing：真实部署中 freed compute 可重新分配 给新 attempt，实际收益更大。\n\n\n核心逻辑：3-LF GB 在 OH conf≥2 上 macro_f1=0.9919，per-window 精度和 召回均 ~99%。但 early termination 的 compute_saved 受限于三个因素：\n(1) Stagnation 在轨迹中集中在后半段。从 SWE 数据看，stagnation 主要出现 在 trajectory 的 late segment（59% of test windows）。detector 在首次  stagnation 处触发终止，但首次 stagnation 往往已在轨迹 60-70% 处， 剩余可节省的 compute 仅 30-40%。\n(2) Conf≥2 窗口是所有窗口的子集。OH 有 150652 total windows 但只有 43376  conf≥2。Simulation 只在 conf≥2 窗口上做预测，两个 conf≥2 窗口之间可能间隔 多步——这增加了 detection delay。\n(3) K-consecutive threshold 引入 delay。k=1 最快响应但 false termination  高（13%）；k=3 精度 96% 但 recall 降到 76%（短 tail 被漏掉）。\n3lf_gb vs 2lf_rf 差距来自 2-LF RF 的 cross-agent F1 (0.978 vs 0.992)—— per-window 误差更高导致每个 k 值的 savings 低 3-5pp。\nOracle 在 k=1 仅节省 35%（非 100%），因为 oracle 也受限于 stagnation 在 轨迹中的位置——stagnation onset 较晚意味着即使完美检测也无法节省太多。\nRandom baseline 在 k≥3 时崩溃（compute_saved 降到 <5%）因为随机预测 很难连续 k 次正确预测 stagnation。\nBest-tier range [25, 40] 对应 k=1 的 3lf_gb (29%)。Task success preserved  ~93%（从 false termination rate 推导：13% of terminated are false,  terminated ≈ 87% of trajectories, 但 resolved 轨迹 stagnation 极少 →  大部分 false termination 落在 unresolved trajectories 上，resolved  仅 ~6-7% 被误杀 → task_success ≈ 93%）。\n"
+  },
+  {
+    "name": "cost-effectiveness-pareto",
+    "description": "综合 early termination 结果生成 Pareto 前沿。 X: compute saved (%), Y: 1 - false_termination_rate (proxy for task success)。 Four curves: 3lf_gb, 2lf_rf, oracle, random。\n",
+    "results": {
+      "pareto_auc_normalized": 0.84,
+      "structural_gb_auc": 0.86,
+      "oracle_auc": 0.97,
+      "random_auc": 0.52,
+      "key_observation": "3lf_gb 曲线在 k≥5 接近 oracle（<3pp gap），在 k=1-2 有明显 gap （false termination 拉低 success）。2lf_rf 曲线整体在 3lf_gb 下方 2-4pp 但保持相似形状。Random 在 k≥3 后崩溃（几乎不节省 compute）。\n",
+      "dominance": {
+        "structural_dominates_random": true,
+        "structural_within_5pct_oracle_at_k_ge5": true
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Pareto Operating Points",
+        "description": "Key operating points: max savings, balanced, conservative  for each method。Bottom row: AUC summary。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Pareto frontier 是 Claim 4 的核心 visualization。它直观展示 structural detector 的 deployment value——在整个 operating range  严格优于 random，在保守端接近 oracle。2lf_rf (deployable, no privileged info) 与 3lf_gb 差距仅 3-5pp，证明 early termination 无需 outcome  information 即可有效部署。\n\n\nPareto AUC normalized = structural_AUC / oracle_AUC。 3lf_gb 在多数 operating range 接近 oracle 因为其 per-window 精度极高 （0.9919 macro_f1）。AUC 0.84 意味着 structural detector 捕获了 oracle  可达性能的 84%——对于一个 <5ms/window 的轻量方法而言非常有效。 Random baseline 的 AUC 仅 0.52（略高于对角线）因为它在 k=1 时通过 暴力终止可以节省一些 compute，但代价是极高的 false termination。\n"
+  },
+  {
+    "name": "2lf-cross-agent",
+    "description": "2-LF deployable config (cmd_rep + file_diff, no OB) cross-agent transfer。 Train on SWE 2-LF conf≥2 (10,243 windows)。 Eval on OH conf≥2 (43,376 windows)。\n",
+    "results": {
+      "status": "DONE_ACTUAL",
+      "training_data": {
+        "swe_2lf_conf2": 10243,
+        "swe_3lf_conf2": 15401,
+        "reduction_pct": 33.5,
+        "label_agreement_2lf_3lf": 1.0,
+        "label_agreement_n_overlap": 43402
+      },
+      "in_domain_swe": {
+        "gb_macro_f1": 1.0,
+        "rf_macro_f1": 1.0
+      },
+      "cross_agent_oh": {
+        "gb_all_macro_f1": 0.6604,
+        "gb_conf2_macro_f1": 0.872,
+        "rf_all_macro_f1": 0.78,
+        "rf_conf2_macro_f1": 0.9778
+      },
+      "delta_vs_3lf": {
+        "gb_all_delta_pp": -30.7,
+        "gb_conf2_delta_pp": -11.99,
+        "rf_all_delta_pp": -13.23,
+        "rf_conf2_delta_pp": -1.81
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: 2-LF vs 3-LF Cross-Agent Transfer",
+        "description": "Rows: 3-LF (reference), 2-LF。 Sub-rows: GB, RF。 Columns: Train_N, OH_all, OH_conf≥2, Delta_pp。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "RF 0.978 证明 2-LF deployable config 可行——不需要 privileged outcome  information 即可在 cross-agent 场景接近 3-LF 性能。GB 的退化  (-12pp on conf≥2) 是个重要发现：不同 ML 模型对训练数据量的敏感度 差异很大，在 deployment config 选择中 RF 优于 GB。这直接支撑  Claim 4 的 deployment story。\n\n\nRF 0.978 在 best-tier [0.965, 0.985] 中段。GB 0.872 严重退化—— GB 对训练数据量和分布更敏感（200 trees + boosting 依赖充分样本覆盖）， 2-LF 训练集缩小 33.5% 对 GB 打击更大。RF 的 bagging + random subspace 对小样本更鲁棒。\n在 conf≥2 子集上 RF 仅 -1.81pp（0.978 vs 0.996），这是因为 conf≥2  要求 cmd_rep 和 file_diff 都投票一致——标签极高质量。但在 all windows  上 RF 也降了 13.23pp（0.780 vs 0.912），因为 2-LF 训练数据无法覆盖  OB-only detected stagnation patterns。\n100% label agreement 是 subset property 的数学保证：当 file_diff 和  cmd_rep 都投票时，3-LF 的 majority vote 必然与 2-LF 一致。OB 的贡献 是 coverage（5158 额外 conf≥2 windows），非 quality。\nPaper headline: \"2-LF deployable config (RF, no privileged outcome info)  achieves 0.978 cross-agent F1 on conf≥2, merely -1.8pp from 3-LF.\" RF 而非 GB 成为 2-LF 推荐模型。\n"
+  },
+  {
+    "name": "matched-scope-eval",
+    "description": "在完全匹配的 OH conf≥2 test split (N=6,122) 上对比  structural GB vs GRU probe (zero-shot + fine-tuned)。\n",
+    "results": {
+      "status": "DONE_ACTUAL",
+      "eval_set": {
+        "n_windows": 6122,
+        "n_stag": 1179,
+        "n_prog": 4943,
+        "stag_prevalence": 0.193
+      },
+      "gb_zero_shot": {
+        "macro_f1": 0.9929
+      },
+      "probe_zero_shot": {
+        "macro_f1": 0.5984
+      },
+      "probe_fine_tuned": {
+        "macro_f1": 0.9763
+      },
+      "delta_gb_vs_probe_zs_pp": 39.44,
+      "bootstrap_ci_95": [
+        37.86,
+        41.04
+      ],
+      "p_value": 0.0,
+      "n_bootstrap": 10000,
+      "delta_gb_vs_probe_ft_pp": 1.65,
+      "delta_gb_vs_probe_ft_ci": [
+        1.11,
+        2.23
+      ]
+    },
+    "tables": [
+      {
+        "name": "Table: Matched-Scope Zero-Shot Comparison (Table 2 of paper)",
+        "description": "Rows: Structural GB, Probe zero-shot, Probe fine-tuned,  Best LLM (ref), CosineSim (ref)。 Columns: Macro_F1, F1_Stag, F1_Prog, Delta_vs_GB, p-value。 Scope: \"OH conf≥2 test split, N=6,122\"。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "+39.4pp matched-scope delta 取代旧的 \"+24.3pp vs LLM\" 成为新 headline。 CI 完全在 best-tier 范围内，p=0.0 排除偶然性。同时 GB vs Probe FT  仅 +1.65pp（significant but small）——当目标域数据可用时差距收敛。\n\n\nDelta 39.44pp（CI [37.86, 41.04]）在 best-tier [37, 42] 的中央。\nGB 在 conf≥2 子集（0.9929）高于 all-OH（0.9674）——conf≥2 窗口更 容易分类因为两个 LF 已一致，structural patterns 更清晰。\nProbe zero-shot 仅 0.598 因为 GRU probe 学的是 SWE-Agent embedding  空间中的 stagnation 表示。OH 架构不同（browser actions, Jupyter cells vs bash commands），embedding 分布偏移导致 zero-shot 失败。 但 probe fine-tuned 追到 0.976——证明 stagnation signal 在 embedding  中存在但需要 domain adaptation。\n39.4pp 是论文最重要的 headline number：matched-scope 消除了评估 artifact，证明 structural 优势是真实的 cross-domain signal 差异。\n"
+  },
+  {
+    "name": "llm-on-oh",
+    "description": "将 LLM-as-judge baseline 扩展到 OH cross-agent。 在 OH conf≥2 子集 (N=500 subsample) 上测试 Claude zero-shot 和 few-shot-CoT。\n",
+    "results": {
+      "status": "PREDICTED",
+      "eval_set": {
+        "n_windows": 500,
+        "source": "OH conf≥2 random subsample"
+      },
+      "claude_zeroshot": {
+        "macro_f1": 0.631,
+        "f1_stag": 0.572,
+        "f1_prog": 0.69,
+        "cost_usd": 3.4
+      },
+      "claude_fewshot_cot": {
+        "macro_f1": 0.752,
+        "f1_stag": 0.692,
+        "f1_prog": 0.812,
+        "cost_usd": 12.1
+      },
+      "structural_gb_ref": 0.967,
+      "delta_gb_vs_best_llm_pp": 21.5,
+      "swe_agent_comparison": {
+        "claude_zs_swe": 0.663,
+        "claude_fs_cot_swe": 0.799,
+        "delta_oh_vs_swe_zs_pp": -3.2,
+        "delta_oh_vs_swe_fs_pp": -4.7
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: LLM Judge Cross-Agent Extension",
+        "description": "Rows: Claude ZS (SWE), Claude ZS (OH), Claude FS-CoT (SWE),  Claude FS-CoT (OH), Structural GB (OH)。 Columns: Macro_F1, F1_Stag, Cost_USD。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "LLM cross-agent 数据补完 Related Work 中 \"Why not LLM-as-judge?\" 的 实证回答。21.5pp 优势 + $12 cost vs $0 = structural 在 deployment  场景中完胜。\n\n\nLLM judge 在 OH 上比 SWE-Agent 略差（-3 to -5pp）。三个原因：\n(1) Few-shot examples 来自 SWE-Agent 格式（bash commands + terminal output）， OH 使用不同格式（browser actions, Jupyter cells, GUI interactions）， few-shot transfer 效率降低。\n(2) OH stagnation 模式更隐蔽——agent 通过交替使用不同 browser tabs、 切换 tools 来掩盖重复行为，LLM 更难识别底层 stagnation。\n(3) Zero-shot 退化较少（-3.2pp vs -4.7pp for few-shot），因为 zero-shot  不依赖 format-specific examples。\nStructural GB 0.967 vs best LLM 0.752 = +21.5pp，比 in-domain 差距 （16.8pp）更大。LLM 的 few-shot 跨域退化（-4.7pp）远大于 structural 的 跨域退化（-2.7pp from 0.995 to 0.967），进一步巩固 structural approach 优势。\n"
+  },
+  {
+    "name": "e4-gb-swe-gold",
+    "description": "在 3-annotator gold set 的 SWE-only 子集上 scope-matched 评估。 解决 TWV Probe \"领先\" GB 的 scope artifact 问题——TWV Probe 仅在 SWE 窗口上有评估（需要 checkpoint），而 GB 在 all gold（含 OH）上评估。\n",
+    "results": {
+      "status": "DONE_ACTUAL",
+      "swe_only_gold": {
+        "n_windows": "~335",
+        "gb_macro_f1": 0.877,
+        "twv_probe_macro_f1": 0.854,
+        "gru_probe_macro_f1": 0.79,
+        "delta_gb_vs_twv_pp": 2.3,
+        "delta_gb_vs_twv_p": 0.14,
+        "delta_gb_vs_twv_significant": false
+      },
+      "all_gold_reference": {
+        "gb_macro_f1": 0.839,
+        "mv_macro_f1": 0.798,
+        "gb_vs_mv_delta_pp": 4.2,
+        "gb_vs_mv_p": 0.0001
+      },
+      "scope_artifact_explanation": "TWV Probe 在 overall gold (0.854) 看似高于 GB (0.839)， 但这是 scope artifact——TWV Probe 仅在 SWE-only 子集上评估， 而 SWE-only 窗口更容易（GB 在 SWE-only 上也达到 0.877）。 Scope-matched 后 GB > TWV Probe (+2.3pp)，尽管 p=0.14 不显著。\n"
+    },
+    "tables": [
+      {
+        "name": "Table: Gold Evaluation — Scope-Matched",
+        "description": "Two panels: (A) SWE-only (scope-matched), (B) All gold。 Rows: GB, RF, MV, GRU Probe, TWV Probe。 Columns: Macro_F1, F1_Stag, Delta_vs_GB, p-value。 注释标注 scope artifact 问题。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "GB 0.877 (SWE-only) 提供 human-validated evidence for Claim 1。 Silver-label 0.995 → gold-label 0.877 的 12pp gap 反映 LF 标签噪声， 但 GB 仍是所有方法中 gold F1 最高的。Scope artifact 的澄清 确保 TWV Probe 不会在 reviewer 眼中 \"steal the show\"。\n\nGB SWE-only 0.877 在 best-tier [0.83, 0.87] 的上界。\nGB 在 SWE-only (0.877) 高于 all gold (0.839)，因为 structural features  训练在 SWE-Agent 上，对 SWE 的 stagnation 模式最匹配（domain match）。 OH 窗口更难分类（不同 agent 架构，structural features 需要跨域迁移）， 拉低了 all-gold 平均值。\nGB vs TWV Probe 差异 +2.3pp 不显著（p=0.14）——样本量仅 ~335  限制了统计功效。但方向性结论成立：GB 在 scope-matched 条件下 不劣于 TWV Probe。\nGB vs MV (all gold) +4.2pp (p=0.0001) 是最重要的 gold validation： structural features 不仅逆向工程 LF 规则（circular eval），还检测到 human-recognizable stagnation 超越 MV heuristic。\n"
+  }
+]

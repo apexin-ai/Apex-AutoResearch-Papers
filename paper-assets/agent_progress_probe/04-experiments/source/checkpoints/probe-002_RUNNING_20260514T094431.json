@@ -1,0 +1,38 @@
+{
+  "exp_id": "probe-002",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:20:02.485Z",
+    "updated_at": "2026-05-14T09:44:31.075Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\"",
+      "server": "gpu-5090-2x-2",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "20074",
+      "log_path": "~/runs/agent_progress_probe/probe-002.log",
+      "submitted_at": "2026-05-14T09:44:31.028Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "gpu-5090-2x-2",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "gpu-5090-2x-2",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T09:44:09.223Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data --output_dir checkpoints_full --min_confidence 0 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\""
+    },
+    "pid": "20074",
+    "log_path": "~/runs/agent_progress_probe/probe-002.log"
+  },
+  "timestamp": "2026-05-14T09:44:31.480189+00:00",
+  "trigger": "update_registry"
+}

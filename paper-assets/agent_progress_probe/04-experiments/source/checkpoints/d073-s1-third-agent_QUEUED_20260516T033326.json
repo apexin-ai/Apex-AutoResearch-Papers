@@ -1,0 +1,14 @@
+{
+  "exp_id": "d073-s1-third-agent",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:33:26.085Z",
+    "updated_at": "2026-05-16T03:33:26.085Z"
+  },
+  "timestamp": "2026-05-16T03:33:26.252755+00:00",
+  "trigger": "update_registry"
+}

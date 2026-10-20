@@ -1,0 +1,14 @@
+{
+  "exp_id": "d073-early-termination-sim",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:26:46.984Z",
+    "updated_at": "2026-05-16T02:35:03.806Z"
+  },
+  "timestamp": "2026-05-16T02:35:03.965305+00:00",
+  "trigger": "update_registry"
+}

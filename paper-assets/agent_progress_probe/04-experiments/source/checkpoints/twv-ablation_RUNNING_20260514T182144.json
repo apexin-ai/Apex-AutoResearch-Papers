@@ -1,0 +1,32 @@
+{
+  "exp_id": "twv-ablation",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:21:34.796Z",
+    "updated_at": "2026-05-14T18:21:44.801Z",
+    "spec": {
+      "command": "python3 -u run_twv_ablation.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+      "data_count": 54809,
+      "model_name": "GRU-probe-2L-256h",
+      "seed": 42,
+      "variants": [
+        "twv_full(s=3.0)",
+        "twv_no_temporal(s=3.0)",
+        "twv_no_smooth(hard)",
+        "twv_s1.0",
+        "twv_s2.0",
+        "twv_s5.0",
+        "twv_s7.0"
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T18:21:44.884387+00:00",
+  "trigger": "update_registry"
+}

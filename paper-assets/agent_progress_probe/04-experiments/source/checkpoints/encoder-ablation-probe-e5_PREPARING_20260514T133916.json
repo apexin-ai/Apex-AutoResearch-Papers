@@ -1,0 +1,22 @@
+{
+  "exp_id": "encoder-ablation-probe-e5",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:39:15.970Z",
+    "updated_at": "2026-05-14T13:39:15.970Z",
+    "spec": {
+      "hypothesis": "Train ProgressProbe on e5-large embeddings (GRU 2-layer, hidden=256, lr=1e-3, conf≥2), compare macro_f1 against SFR baseline (0.905)",
+      "parent": "encoder-ablation-e5-large",
+      "plan_id": "encoder-ablation",
+      "model_name": "GRU ProgressProbe on e5-large embeddings",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-14T13:39:16.017443+00:00",
+  "trigger": "update_registry"
+}

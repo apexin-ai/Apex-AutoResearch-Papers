@@ -1,0 +1,62 @@
+{
+  "exp_id": "ablation-architecture",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:23:39.501Z",
+    "updated_at": "2026-05-14T16:27:29.362Z",
+    "spec": {
+      "command": "python train_architecture_ablation.py --arch all --gpu 0 --seed 42",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "88610",
+      "log_path": "~/runs/agent_progress_probe/ablation-architecture.log",
+      "submitted_at": "2026-05-14T16:23:39.211Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/embeddings.pt",
+      "data_count": 15401,
+      "model_name": "gru_attn/gru_meanpool/transformer/mlp",
+      "seed": 42
+    },
+    "metrics": {
+      "gru_attn": {
+        "macro_f1": 0.9325,
+        "accuracy": 0.9474,
+        "f1_stag": 0.9008,
+        "f1_prog": 0.9642,
+        "params": 1379842
+      },
+      "gru_meanpool": {
+        "macro_f1": 0.929,
+        "accuracy": 0.9457,
+        "f1_stag": 0.8946,
+        "f1_prog": 0.9635,
+        "params": 1379585
+      },
+      "transformer": {
+        "macro_f1": 0.9343,
+        "accuracy": 0.9501,
+        "f1_stag": 0.902,
+        "f1_prog": 0.9665,
+        "params": 1842177
+      },
+      "mlp": {
+        "macro_f1": 0.876,
+        "accuracy": 0.9084,
+        "f1_stag": 0.8126,
+        "f1_prog": 0.9394,
+        "params": 262657
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T16:27:29.434110+00:00",
+  "trigger": "update_registry"
+}

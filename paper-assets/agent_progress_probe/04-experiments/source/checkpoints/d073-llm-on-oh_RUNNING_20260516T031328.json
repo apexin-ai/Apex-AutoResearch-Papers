@@ -1,0 +1,24 @@
+{
+  "exp_id": "d073-llm-on-oh",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:26:45.357Z",
+    "updated_at": "2026-05-16T03:13:28.242Z",
+    "spec": {
+      "command": "python llm_judge_oh.py --modes zero-shot few-shot-cot --n_sample 500",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/openhands_data/windows_labeled.jsonl",
+      "data_count": 500,
+      "model_name": "anthropic/claude-sonnet-4.6",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/results/d073_llm_on_oh/",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/logs/llm_judge_oh.log"
+    }
+  },
+  "timestamp": "2026-05-16T03:13:28.384313+00:00",
+  "trigger": "update_registry"
+}

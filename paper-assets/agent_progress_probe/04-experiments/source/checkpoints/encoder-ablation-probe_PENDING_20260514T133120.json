@@ -1,0 +1,16 @@
+{
+  "exp_id": "encoder-ablation-probe",
+  "project": "agent_progress_probe",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:30:39.755Z",
+    "updated_at": "2026-05-14T13:31:20.653Z",
+    "hypothesis": "Encoder ablation probe: train ProgressProbe on e5-large-v2 and bge-m3 embeddings, compare against SFR baseline (macro_f1=0.847). Tests whether probe performance is encoder-dependent.",
+    "parent": "encoder-ablation"
+  },
+  "timestamp": "2026-05-14T13:31:20.691537+00:00",
+  "trigger": "update_registry"
+}

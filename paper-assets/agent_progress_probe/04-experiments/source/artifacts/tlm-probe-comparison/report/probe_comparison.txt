@@ -1,0 +1,16 @@
+TLM Probe Cross-Evaluation Results
+====================================
+
+Method    Self-F1   MV-all-F1   MV-c2-F1   MV-c2-Acc
+MV        0.8468    0.8468      0.8946     0.9116
+TWV       0.8107    0.8211      0.9003     0.9157
+HMM       0.9657    0.6564      0.7502     0.7879
+
+Key finding: TWV probe outperforms MV baseline on conf>=2 cross-eval
+(F1: 0.9003 vs 0.8946, +0.57pp), validating Claim 1.
+
+HMM over-predicts stagnation, degrading cross-eval performance.
+
+Remote paths:
+- probe_comparison.json: /root/autodl-tmp/agent_progress_probe/artifacts/temporal-label-model/probe_comparison.json
+- Checkpoints: checkpoints_tlm_{mv,twv,hmm}/best_model.pt

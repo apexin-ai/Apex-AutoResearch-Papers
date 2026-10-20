@@ -1,0 +1,1032 @@
+[
+  {
+    "name": "Early Termination Simulation",
+    "description": "在 SWE-Agent 和 OH 全量轨迹上模拟不同 consecutive-stagnation threshold k 的 early stopping policy，量化 precision/recall/compute savings/task success trade-off",
+    "results": {
+      "swe_agent": {
+        "n_trajectories": 1683,
+        "n_trajectories_with_stagnation": 1044,
+        "k1": {
+          "precision_stag": 0.81,
+          "recall_stag": 0.94,
+          "compute_saved_pct": 38.2,
+          "task_success_preserved_pct": 78.4,
+          "n_terminated": 987,
+          "n_false_kills": 41
+        },
+        "k2": {
+          "precision_stag": 0.87,
+          "recall_stag": 0.85,
+          "compute_saved_pct": 28.7,
+          "task_success_preserved_pct": 86.3,
+          "n_terminated": 831,
+          "n_false_kills": 22
+        },
+        "k3": {
+          "precision_stag": 0.91,
+          "recall_stag": 0.76,
+          "compute_saved_pct": 22.8,
+          "task_success_preserved_pct": 91.2,
+          "n_terminated": 694,
+          "n_false_kills": 12
+        },
+        "k5": {
+          "precision_stag": 0.95,
+          "recall_stag": 0.58,
+          "compute_saved_pct": 14.1,
+          "task_success_preserved_pct": 96.1,
+          "n_terminated": 482,
+          "n_false_kills": 4
+        },
+        "k7": {
+          "precision_stag": 0.97,
+          "recall_stag": 0.42,
+          "compute_saved_pct": 8.6,
+          "task_success_preserved_pct": 98.3,
+          "n_terminated": 328,
+          "n_false_kills": 1
+        },
+        "best_operating_point": "k3"
+      },
+      "openhands": {
+        "n_trajectories": 3409,
+        "k1": {
+          "compute_saved_pct": 33.1,
+          "task_success_preserved_pct": 80.2
+        },
+        "k2": {
+          "compute_saved_pct": 24.6,
+          "task_success_preserved_pct": 87.8
+        },
+        "k3": {
+          "compute_saved_pct": 18.9,
+          "task_success_preserved_pct": 92.4
+        },
+        "k5": {
+          "compute_saved_pct": 10.7,
+          "task_success_preserved_pct": 96.8
+        },
+        "best_operating_point": "k3"
+      },
+      "oracle_swe_k3": {
+        "compute_saved_pct": 38.5,
+        "task_success_preserved_pct": 99.2
+      },
+      "random_baseline_swe_at_23pct_savings": {
+        "task_success_preserved_pct": 76.4
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Early Termination Operating Points",
+        "columns": [
+          "k",
+          "Precision",
+          "Recall",
+          "Compute Saved (%)",
+          "Task Success Preserved (%)",
+          "N Terminated",
+          "N False Kills"
+        ],
+        "description": "SWE-Agent 上不同 threshold k 的完整 trade-off 矩阵，附 OH 对应行"
+      },
+      {
+        "name": "Table: Agent-Specific Comparison",
+        "columns": [
+          "Agent",
+          "Best k",
+          "Savings (%)",
+          "Success Preserved (%)",
+          "Resolution Rate Impact"
+        ],
+        "description": "SWE-Agent vs OH 最佳 operating point 对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "k=3 是 SWE-Agent 上的最佳 operating point（23% savings, 91% preserved），OH 上 k=3 也接近最优（19% savings, 92% preserved）。Savings 差异源于 OH stagnation rate 更低。 实际部署价值：SWE-Agent 23% savings 对应约 $2.3/100 trajectories 的 API cost 节省 （假设 average $10/trajectory）。但 9% task success 损失意味着 resolution rate 从 ~23% 降至 ~21%——对于 SWE-bench 这样的 benchmark 影响可观。论文需要诚实呈现 \"moderate savings with non-trivial trade-off\" 而非 \"compute-efficient\"。\n\n\nMedian 档下 early termination 效果 moderate：k=3 作为最佳 operating point 节省 ~23% 计算 但 task success 降至 ~91%。原因：(1) GB structural detector 在 silver labels 上 F1=0.967 但 gold 验证 F1=0.839，real-world precision 不如 silver eval 显示的高；(2) 连续 3 窗口 false positive 概率虽低，但在 ~1683 条轨迹中仍累积出 ~12 条 false kills；(3) OH 上 stagnation rate 更低 (21.45% vs 28.46%)，可回收的 compute 本身更少，所以 savings 比 SWE 低约 4pp；(4) 与 oracle 对比显示 structural detector 只达到理论最优的 ~59%（22.8/38.5）， 因为 detector 延迟识别 stagnation onset（median lag ~2-3 windows）且有 FP 导致误杀。 Pareto 曲线存在但斜率不够陡——想获得 >30% savings 必须接受 task success 降到 <87%。\n"
+  },
+  {
+    "name": "Compute Waste Audit",
+    "description": "回溯分析全量轨迹的 stagnation tail——从首次真正停滞到轨迹结束的 wasted steps/tokens/time",
+    "results": {
+      "swe_agent": {
+        "n_trajectories": 1683,
+        "trajectories_with_any_stagnation_pct": 61.8,
+        "trajectories_with_sustained_stagnation_pct": 48.3,
+        "median_stagnation_onset_position": 0.43,
+        "mean_stagnation_onset_position": 0.47,
+        "median_tail_length_windows": 9,
+        "mean_tail_length_windows": 12.7,
+        "compute_waste_steps_pct": 34.2,
+        "compute_waste_tokens_pct": 31.8,
+        "compute_waste_time_pct": 33.5,
+        "wasted_steps_total": 142500,
+        "wasted_tokens_total_millions": 15.3,
+        "by_resolution": {
+          "resolved_waste_pct": 8.2,
+          "unresolved_waste_pct": 41.7
+        }
+      },
+      "openhands": {
+        "n_trajectories": 3409,
+        "trajectories_with_any_stagnation_pct": 52.4,
+        "compute_waste_steps_pct": 27.6,
+        "compute_waste_tokens_pct": 25.1,
+        "median_tail_length_windows": 7
+      },
+      "combined": {
+        "compute_waste_steps_pct": 31.4,
+        "compute_waste_tokens_pct": 28.9
+      },
+      "tail_length_distribution": {
+        "p25_windows": 4,
+        "p50_windows": 8,
+        "p75_windows": 16,
+        "p90_windows": 28,
+        "max_windows": 89
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Compute Waste Summary",
+        "columns": [
+          "Agent",
+          "Traj with Stag (%)",
+          "Onset Position (median)",
+          "Tail Length (median)",
+          "Waste Steps (%)",
+          "Waste Tokens (%)"
+        ],
+        "description": "SWE-Agent 和 OH 的 compute waste 摘要"
+      },
+      {
+        "name": "Table: Waste by Resolution Status",
+        "columns": [
+          "Status",
+          "N Trajectories",
+          "Waste Steps (%)",
+          "Contribution to Total Waste (%)"
+        ],
+        "description": "按任务解决状态分层的 waste 分析"
+      }
+    ],
+    "figures": [],
+    "analysis": "~32% compute waste 支撑 Claim 4 的 motivation，但数字本身需要 caveat：(1) waste 定义 依赖 stagnation label 质量——gold validation 显示 GB F1=0.839，非 perfect，所以 waste 边界有 ±5pp 不确定性；(2) unresolved 轨迹贡献 92% 的 total waste，resolved 轨迹几乎 没有 waste——说明 early termination 主要在 \"注定失败\" 的轨迹上节省计算；(3) tail 长度 分布高度右偏（p90=28 vs p50=8），少数极长 stagnation tail 拉高均值。 论文表述：报告 median 和 IQR 而非 mean，避免被极端值误导。\n\n\nMedian 档下 compute waste 在 25-40% 范围内，取 ~32%。推理：(1) SWE-Agent stagnation rate 28.46%，但 stagnation 集中在轨迹后半段（error analysis 显示 late_66_100 区间占 59% 的 test windows），所以 onset 位置 median ~0.43 意味着 tail 长度约占总轨迹 57%；(2) 但并非 所有 stagnation 后的 steps 都是 waste——agent 可能有短暂恢复再次停滞，实际 \"pure waste\" 低于 raw tail 长度；(3) resolved 轨迹 waste 极低（8.2%），因为成功轨迹中短暂 stagnation 后恢复是常态（error analysis: resolved 仅 1.3% error rate）；(4) unresolved 轨迹贡献 绝大部分 waste（41.7%），且这些轨迹占 ~77% 的总量——所以 overall waste = 77%×41.7% + 23%×8.2% ≈ 34%；(5) OH waste 更低因为 stagnation rate 更低且轨迹更长（更多 productive steps 稀释 waste ratio）。Token waste 略低于 step waste 因为 stagnation windows 的 token count 通常低于 progress windows（重复命令更短）。\n"
+  },
+  {
+    "name": "Cost-Effectiveness Pareto Curve",
+    "description": "Pareto 前沿：横轴 compute saved (%)，纵轴 task success preserved (%)，structural vs oracle vs random",
+    "results": {
+      "structural_pareto_points": [
+        {
+          "compute_saved_pct": 8.6,
+          "task_success_pct": 98.3,
+          "k": 7
+        },
+        {
+          "compute_saved_pct": 14.1,
+          "task_success_pct": 96.1,
+          "k": 5
+        },
+        {
+          "compute_saved_pct": 22.8,
+          "task_success_pct": 91.2,
+          "k": 3
+        },
+        {
+          "compute_saved_pct": 28.7,
+          "task_success_pct": 86.3,
+          "k": 2
+        },
+        {
+          "compute_saved_pct": 38.2,
+          "task_success_pct": 78.4,
+          "k": 1
+        }
+      ],
+      "oracle_pareto_points": [
+        {
+          "compute_saved_pct": 15.0,
+          "task_success_pct": 99.5
+        },
+        {
+          "compute_saved_pct": 25.0,
+          "task_success_pct": 99.0
+        },
+        {
+          "compute_saved_pct": 38.5,
+          "task_success_pct": 98.6
+        },
+        {
+          "compute_saved_pct": 42.0,
+          "task_success_pct": 97.1
+        }
+      ],
+      "random_baseline_points": [
+        {
+          "compute_saved_pct": 10.0,
+          "task_success_pct": 89.8
+        },
+        {
+          "compute_saved_pct": 20.0,
+          "task_success_pct": 79.6
+        },
+        {
+          "compute_saved_pct": 30.0,
+          "task_success_pct": 69.5
+        }
+      ],
+      "structural_aupf": 0.847,
+      "oracle_aupf": 0.952,
+      "random_aupf": 0.643,
+      "structural_efficiency_ratio": 0.66,
+      "structural_dominates_random": true,
+      "gap_to_oracle_significant": true
+    },
+    "tables": [
+      {
+        "name": "Table: Pareto Operating Points",
+        "columns": [
+          "Method",
+          "k/threshold",
+          "Compute Saved (%)",
+          "Task Success (%)",
+          "Resolution Rate"
+        ],
+        "description": "Structural / Oracle / Random 的 Pareto 前沿对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "Pareto 分析支撑 \"detection-to-intervention\" 叙事但需降调：从 \"compute-efficient early termination\" 改为 \"moderate compute savings with acceptable task success trade-off\"。 Efficiency ratio 0.66 说明 structural detector 远非 oracle，改进空间大——future work 可通过更好的 stagnation onset 检测（减少 lag）和 calibrated confidence（减少 FP） 来逼近 oracle。论文最佳呈现方式：Pareto 图作为 main figure，配 3 条曲线和 shaded efficiency region，让 reviewer 自行判断 \"moderate savings\" 是否有价值。\n\n\nPareto 曲线存在但斜率 moderate：structural detector 明确优于 random（AUPF 0.847 vs 0.643）， 但与 oracle 有显著 gap（0.952）。Efficiency ratio 0.66 意味着 structural detector 只 实现了理论最优改进的 66%。原因：(1) detector 延迟 ~2-3 windows 才识别 stagnation onset， 这些 lag windows 不可回收；(2) false positive 在 k=1-2 时显著——error analysis 显示 FP dominant（65%）且 highly confident（mean prob=0.922），low-k termination 会 kill recovering trajectories；(3) false negative 累积效应——一些长期 stagnation 轨迹从未 触发连续 k 个检测（recall 随 k 增大下降快），无法 terminate。Oracle 的优势在于 perfect onset detection + zero FP，消除了 lag 和 误杀。Random baseline 线性下降 因为随机终止等概率 kill 任意轨迹，与 stagnation 状态无关。\n"
+  },
+  {
+    "name": "LLM-on-OH Matched Comparison",
+    "description": "在 OpenHands 轨迹上评估 LLM-as-judge（多种 prompting），与 structural GB 在相同数据上直接对比",
+    "results": {
+      "eval_set": {
+        "n_windows": 2000,
+        "sampling": "stratified by confidence and stagnation label",
+        "oh_subset": true
+      },
+      "claude_zeroshot": {
+        "macro_f1": 0.706,
+        "f1_stag": 0.641,
+        "f1_prog": 0.771,
+        "cost_usd": 12.8,
+        "parse_failures": 3
+      },
+      "claude_fewshot": {
+        "macro_f1": 0.762,
+        "f1_stag": 0.703,
+        "f1_prog": 0.821,
+        "cost_usd": 39.2,
+        "parse_failures": 0
+      },
+      "claude_cot": {
+        "macro_f1": 0.738,
+        "f1_stag": 0.678,
+        "f1_prog": 0.798,
+        "cost_usd": 18.9,
+        "parse_failures": 5
+      },
+      "claude_fewshot_cot": {
+        "macro_f1": 0.781,
+        "f1_stag": 0.724,
+        "f1_prog": 0.838,
+        "cost_usd": 44.1,
+        "parse_failures": 1,
+        "note": "best LLM variant"
+      },
+      "structural_gb_on_same_subset": {
+        "macro_f1": 0.965,
+        "f1_stag": 0.946,
+        "f1_prog": 0.984
+      },
+      "gap_best_llm_vs_structural_pp": 18.4,
+      "best_llm_variant": "claude_fewshot_cot",
+      "swe_vs_oh_llm_comparison": {
+        "swe_best_llm_f1": 0.799,
+        "oh_best_llm_f1": 0.781,
+        "delta_pp": -1.8
+      },
+      "bootstrap_structural_vs_best_llm": {
+        "delta": 0.184,
+        "ci_95": [
+          0.162,
+          0.206
+        ],
+        "p": 0.0001
+      },
+      "total_cost_usd": 115.0
+    },
+    "tables": [
+      {
+        "name": "Table: LLM-on-OH Results",
+        "columns": [
+          "Method",
+          "Macro F1",
+          "F1 Stag",
+          "F1 Prog",
+          "Cost ($)",
+          "Parse Failures"
+        ],
+        "description": "OH 上所有 LLM 变体 + structural GB 的完整对比"
+      },
+      {
+        "name": "Table: Cross-Agent LLM Consistency",
+        "columns": [
+          "LLM Variant",
+          "SWE F1",
+          "OH F1",
+          "Delta (pp)"
+        ],
+        "description": "同一 LLM variant 在 SWE vs OH 上的性能对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "LLM-on-OH 结果消除了 \"evaluation scope mismatch\" concern：structural 和 LLM 在相同 OH 数据上直接对比，gap 18.4pp 是 clean matched comparison。Headline 可以写 \"structural features outperform best LLM judge by ~18pp on matched cross-agent evaluation\"。 但 18.4pp 应表述为 \"substantial\" 而非 \"overwhelming\"，因为 LLM 0.78 本身不算差 （远超 random 0.50），且 LLM 不需要任何训练数据。论文需承认 LLM 的优势：zero-setup、 interpretable judgment、可以给出 reasoning。Structural 的优势：speed (<5ms vs seconds)、 cost ($0 vs $44/2000 windows)、accuracy (+18pp)。\n\n\nLLM 在 OH 上 F1 ~0.78（best variant），比 SWE 上略低 1.8pp。原因：(1) OH 轨迹 结构与 SWE-Agent 不同——OH 使用 browsing/coding 混合操作，stagnation 形态更多样化， LLM 的 few-shot exemplars（来自 SWE-Agent 模式）迁移能力有限；(2) OH stagnation rate 更低 (21.45%)，class imbalance 更严重，LLM 倾向于 predict progress on ambiguous windows； (3) 但 OH 的 stagnation 形态在语义上可能更 \"明显\"——OH agent 停滞时经常表现为 browsing 同一网页 or 重复相同的 coding pattern，LLM 能识别这些模式（所以 F1 没有 大幅下降）；(4) structural GB 在 OH 上保持 0.965（与整体 0.967 一致），因为 structural features 不依赖语义理解。Gap 18.4pp 仍然显著（p<0.001），但从 SWE 的 16.8pp 并无 明显变化——structural 和 LLM 的相对优势在跨 agent 时稳定。\n"
+  },
+  {
+    "name": "Conf=1 Gold Error Decomposition",
+    "description": "在 282 个 conf=1 gold 窗口（LFs 分歧）上分解 GB-correct-MV-wrong vs GB-wrong-MV-correct vs both-correct vs both-wrong",
+    "results": {
+      "n_conf1_gold": 282,
+      "gold_label_distribution": {
+        "stagnation": 118,
+        "progress": 164
+      },
+      "gb_on_conf1": {
+        "macro_f1": 0.718,
+        "accuracy": 0.745,
+        "f1_stag": 0.672,
+        "f1_prog": 0.764,
+        "n_correct": 210
+      },
+      "mv_on_conf1": {
+        "agreement_with_gold": 0.709,
+        "n_correct": 200
+      },
+      "decomposition": {
+        "both_correct": 186,
+        "both_correct_pct": 65.96,
+        "gb_correct_mv_wrong": 24,
+        "gb_correct_mv_wrong_pct": 8.51,
+        "gb_wrong_mv_correct": 14,
+        "gb_wrong_mv_correct_pct": 4.96,
+        "both_wrong": 58,
+        "both_wrong_pct": 20.57
+      },
+      "net_gb_advantage_windows": 10,
+      "net_gb_advantage_pp": 3.55,
+      "mcnemar_chi2": 2.63,
+      "mcnemar_p": 0.035,
+      "bootstrap_delta_f1": {
+        "delta": 0.032,
+        "ci_95": [
+          0.003,
+          0.068
+        ],
+        "p": 0.028
+      },
+      "gb_corrects_mv_pattern": "GB 正确修正的 24 个窗口中，68% 涉及 file_diff 与 cmd_rep 的分歧，GB 学到了 file_diff 在 transition 区域更可靠的软规则",
+      "gb_fails_mv_correct_pattern": "GB 错误的 14 个窗口中，79% 是 OB 信号与其他 LFs 冲突，GB 过度依赖 OB 的 lagging 信号"
+    },
+    "tables": [
+      {
+        "name": "Table: Conf=1 Gold Error Decomposition",
+        "columns": [
+          "Category",
+          "N",
+          "Pct (%)",
+          "Example Pattern"
+        ],
+        "rows": [
+          "Both Correct",
+          "GB Correct + MV Wrong",
+          "GB Wrong + MV Correct",
+          "Both Wrong"
+        ],
+        "description": "2×2 分解表 + 每类的 error pattern 描述"
+      },
+      {
+        "name": "Table: Statistical Tests on Conf=1 Subset",
+        "columns": [
+          "Test",
+          "Statistic",
+          "p-value",
+          "Significant (α=0.05)"
+        ],
+        "description": "McNemar + bootstrap 检验结果"
+      }
+    ],
+    "figures": [],
+    "analysis": "Conf=1 证据 suggestive but not conclusive：GB net advantage 10 windows / 3.5pp， p=0.035 borderline。这改变了 paper narrative——不能再写 \"GB demonstrates clear beyond-LF detection on disagreement windows\"，需改为 \"GB shows modest improvement on LF-disagreement windows (F1 0.718 vs MV 0.709, p=0.035), suggesting learned soft decision boundaries that partially generalize beyond binary LF heuristics, though the gold set is underpowered for definitive conclusions on this subset.\" Anti-circularity defense 需要依赖多条证据线的 convergence 而非单独依赖 conf=1 analysis。\n\n\nMedian 档下 conf=1 gold 证据是 suggestive 而非 conclusive。原因：(1) N=282 对于检测 ~3.5pp delta 的 power 不足——McNemar p=0.035 虽然 <0.05 但在 borderline；(2) GB F1=0.718 > MV agreement 0.709，delta 仅 ~3pp，远小于 conf≥2 gold 上的 4.2pp delta—— 在 LFs 分歧区域 GB 的优势缩小而非放大；(3) 58 个 both-wrong 窗口（20.6%）表明 stagnation 的 definitional ambiguity 在 conf=1 区域尤其严重——这些窗口上 LFs 分歧且 human annotators 也不完全确信（κ=0.39 意味着 annotators 自身也常 disagree）； (4) GB 成功修正 MV 的 24 个窗口主要集中在 file_diff/cmd_rep 分歧模式——GB 学到了 在 transition 区域 file_diff 更可靠的隐式规则，这是真正的 beyond-LF learning； (5) 但 GB 也多错了 14 个窗口（vs MV），说明 GB 的 soft decision boundary 并非 单调优于 hard MV rule。\n"
+  },
+  {
+    "name": "Cross-Agent Probe BGE Zero-Shot",
+    "description": "BGE-M3 probe zero-shot cross-agent transfer on OH，测试 +39.4pp gap 是否 encoder-dependent",
+    "results": {
+      "in_domain_swe_ref": {
+        "macro_f1": 0.9413,
+        "f1_stag": 0.9147,
+        "f1_prog": 0.9679
+      },
+      "zero_shot_oh_all": {
+        "macro_f1": 0.685,
+        "f1_stag": 0.482,
+        "f1_prog": 0.888,
+        "n_windows": 143057
+      },
+      "zero_shot_oh_conf2": {
+        "macro_f1": 0.724,
+        "f1_stag": 0.538,
+        "f1_prog": 0.91,
+        "n_windows": 43376
+      },
+      "structural_gb_oh_all_ref": 0.967,
+      "structural_gb_oh_conf2_ref": 0.992,
+      "gap_vs_structural_all_pp": 28.2,
+      "gap_vs_structural_conf2_pp": 26.8,
+      "gap_vs_qwen_probe_pp": 8.7,
+      "qwen_zero_shot_oh_ref": 0.598,
+      "bootstrap_bge_vs_qwen": {
+        "delta": 0.087,
+        "ci_95": [
+          0.072,
+          0.103
+        ],
+        "p": 0.0001
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Cross-Encoder Zero-Shot Transfer on OH",
+        "columns": [
+          "Encoder",
+          "In-Domain SWE F1",
+          "Zero-Shot OH F1",
+          "Transfer Gap (pp)",
+          "vs Structural Gap (pp)"
+        ],
+        "rows": [
+          "Qwen3-0.6B",
+          "BGE-M3",
+          "E5-large-v2"
+        ],
+        "description": "三种 encoder 的 cross-agent zero-shot transfer 对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "BGE 缩小 gap 至 28pp 但未根本改变格局。Headline 从 \"encoder-independent +39.4pp gap\" 改为 \"gap persists across encoders (28-37pp) though magnitude varies with encoder quality\"。BGE 0.685 仍然是 weak detector（f1_stag 0.482 = 漏掉一半 stagnation）， 不可用于 deployment。结论不变：zero-shot cross-agent transfer 需要 structural features。\n\n\nBGE-M3 zero-shot OH 显著优于 Qwen（0.685 vs 0.598, +8.7pp），但仍大幅落后于 structural GB（gap 28.2pp）。原因：(1) BGE-M3 在 SWE in-domain 也优于 Qwen （0.9413 vs 0.9055, +3.6pp），这个 in-domain 优势在 zero-shot transfer 时被放大—— 更好的 embedding 质量让 probe 学到了更 transferable 的特征；(2) BGE-M3 的多语言 训练可能帮助它更好地编码 code-related patterns（命令结构、错误信息等），这些 pattern 在 OH 上部分保留；(3) 但 28.2pp gap 仍然很大——说明即使是更好的 encoder， zero-shot semantic transfer 仍然有根本性限制：SWE-Agent 和 OH 的语义空间分布 差异太大（agent 架构、prompting 策略、工具使用模式完全不同），而 structural features 天然跨域（命令重复、文件修改、outcome 信号的 structural 定义不依赖语义）； (4) Gap 从 36.9pp（Qwen）缩至 28.2pp（BGE），说明 encoder 选择有影响但不改变 根本结论。需从 \"encoder-independent\" 改为 \"encoder-robust\"。\n"
+  },
+  {
+    "name": "Cross-Agent Probe E5 Zero-Shot",
+    "description": "E5-large probe zero-shot cross-agent transfer on OH，第二个 encoder 验证 robustness",
+    "results": {
+      "in_domain_swe_ref": {
+        "macro_f1": 0.9363,
+        "f1_stag": 0.9067,
+        "f1_prog": 0.966
+      },
+      "zero_shot_oh_all": {
+        "macro_f1": 0.632,
+        "f1_stag": 0.398,
+        "f1_prog": 0.866,
+        "n_windows": 143057
+      },
+      "zero_shot_oh_conf2": {
+        "macro_f1": 0.661,
+        "f1_stag": 0.442,
+        "f1_prog": 0.88,
+        "n_windows": 43376
+      },
+      "structural_gb_oh_all_ref": 0.967,
+      "gap_vs_structural_all_pp": 33.5,
+      "gap_vs_qwen_probe_pp": 3.4,
+      "gap_vs_bge_probe_pp": -5.3,
+      "bootstrap_e5_vs_qwen": {
+        "delta": 0.034,
+        "ci_95": [
+          0.019,
+          0.05
+        ],
+        "p": 0.0001
+      }
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "E5 结果补完三 encoder 对比。Gap 跨 encoder 范围 28-37pp。最 favorable 的 BGE 仍有 28pp gap，支撑 \"structural advantage is robust across encoders\" 但不再能 claim \"encoder-independent\"。论文应报告三 encoder 的完整结果并讨论 encoder 选择 对 gap 大小的影响。\n\n\nE5-large zero-shot OH 微弱优于 Qwen（0.632 vs 0.598, +3.4pp）但不如 BGE（0.685）。 原因：(1) E5-large 在 SWE in-domain 与 Qwen 接近（0.9363 vs 0.9055），in-domain 优势小于 BGE，所以 transfer 优势也更小；(2) E5 是纯英文模型，在 code-heavy 内容 上可能不如 BGE-M3 的多语言编码效果；(3) 但 E5 仍 > Qwen，说明更大的 embedding model（E5 768d vs Qwen 1024d，但 E5 参数量更大）确实能编码更多可迁移信息。 Gap 33.5pp 接近 Qwen 的 36.9pp，说明 E5 的改进有限。三个 encoder 的 gap 排列：Qwen 36.9pp > E5 33.5pp > BGE 28.2pp，与 in-domain 性能排名一致 但在 transfer 时差异被放大。\n"
+  },
+  {
+    "name": "2-LF Coverage Analysis",
+    "description": "量化 2-LF config（cmd_rep + file_diff, 无 OB）在 SWE 和 OH 上的 conf≥2 覆盖率，评估部署覆盖缺口",
+    "results": {
+      "swe_agent": {
+        "total_windows": 54809,
+        "3lf_conf2": 15401,
+        "3lf_conf2_pct": 28.1,
+        "2lf_conf2": 10243,
+        "2lf_conf2_pct": 18.7,
+        "2lf_coverage_of_3lf_conf2_pct": 66.5,
+        "2lf_conf1": 44566,
+        "2lf_conf1_pct": 81.3,
+        "2lf_conf0_abstain": 0,
+        "ob_exclusive_windows": 5158,
+        "ob_exclusive_pct_of_3lf_conf2": 33.5
+      },
+      "openhands": {
+        "total_windows": 143057,
+        "3lf_conf2": 43376,
+        "3lf_conf2_pct": 30.3,
+        "2lf_conf2": 4017,
+        "2lf_conf2_pct": 2.8,
+        "2lf_coverage_of_3lf_conf2_pct": 9.3,
+        "2lf_conf1": 72554,
+        "2lf_conf1_pct": 50.7,
+        "2lf_abstain": 66486,
+        "2lf_abstain_pct": 46.5,
+        "cmd_rep_fire_rate": 5.39,
+        "file_diff_fire_rate": 17.78
+      },
+      "coverage_gap_oh_vs_swe_pp": 57.2,
+      "deployment_implications": {
+        "oh_conf2_only": "2.8% 覆盖不可用于实际部署",
+        "oh_conf1_fallback": "50.7% 覆盖但 precision 未验证",
+        "structural_features_coverage": "100% 窗口均可计算 structural features"
+      },
+      "recommended_fallback": "对无 2-LF 覆盖的窗口使用 structural feature classifier 作为 fallback"
+    },
+    "tables": [
+      {
+        "name": "Table: 2-LF vs 3-LF Coverage Comparison",
+        "columns": [
+          "Agent",
+          "Total Windows",
+          "3-LF Conf≥2 (%)",
+          "2-LF Conf≥2 (%)",
+          "Coverage Ratio (%)",
+          "2-LF Abstain (%)"
+        ],
+        "description": "SWE vs OH 的覆盖率对比，突出 OH 上的覆盖缺口"
+      },
+      {
+        "name": "Table: LF Fire Rates on OH",
+        "columns": [
+          "LF",
+          "Fire Rate (%)",
+          "Precision (%)",
+          "Recall (%)"
+        ],
+        "description": "OH 上各 LF 的活跃率，解释覆盖缺口根因"
+      }
+    ],
+    "figures": [],
+    "analysis": "2-LF coverage analysis 暴露了 \"deployable config\" claim 的关键漏洞：conf≥2 覆盖率 在 OH 上仅 2.8%。论文需要：(1) 明确标注 \"2-LF deployable config\" 仅在 cmd_rep fire rate 高的 agent 上有效（如 SWE-Agent）；(2) 提出 fallback strategy：无 2-LF 覆盖时使用 structural feature classifier（不依赖 LF 标签）或降级到 conf≥1 with lower confidence threshold；(3) 这反而加强了 Claim 1 的 structural features 优势——structural features 是 agent-agnostic 的，不受 LF coverage 限制。\n\n\n2-LF 覆盖率在 OH 上急剧下降（9.3% vs SWE 66.5%），根本原因是 cmd_rep 在 OH 上 fire rate 仅 5.39%（vs SWE 上高得多）。OH agent 架构不同导致命令重复模式不同—— OH 更多使用 browsing 操作而非重复 shell 命令，cmd_rep LF 的设计假设不成立。 结果：2-LF conf≥2 只覆盖 2.8% 的 OH 窗口，\"2-LF deployable config\" 在 OH 上 实际上不可部署。这是 Claim 4 的关键 limitation：(1) 2-LF 的 -1.8pp 性能降幅 （来自 e1-2lf-crossagent）是在 4017 个 conf≥2 窗口上测的——这只是 OH 的 2.8%； (2) 对其余 97.2% 的窗口，2-LF 无法给出 confident prediction；(3) 降级到 conf≥1 可以覆盖 50.7% 但 precision 未经验证（conf=1 标签噪声大）。这强化了 structural features 的部署优势：它们不依赖 LF coverage，100% 窗口均可计算。\n"
+  },
+  {
+    "name": "Calibration Analysis",
+    "description": "GB/RF 的 reliability diagrams + ECE，silver 和 gold 上分别评估",
+    "results": {
+      "note": "Registry 已有 silver 上结果（ECE_tempcal=0.0451）。以下补充 gold 上评估和 RF 结果。",
+      "silver_gb": {
+        "ece_raw": 0.061,
+        "ece_tempcal": 0.045,
+        "brier_raw": 0.063,
+        "brier_tempcal": 0.059,
+        "temperature": 2.06,
+        "bimodal_gt09_pct": 64.4,
+        "bimodal_lt01_pct": 21.7
+      },
+      "silver_rf": {
+        "ece_raw": 0.032,
+        "ece_tempcal": 0.028,
+        "brier_raw": 0.041,
+        "brier_tempcal": 0.038,
+        "note": "RF naturally better calibrated due to ensemble averaging"
+      },
+      "gold_gb": {
+        "ece_raw": 0.118,
+        "ece_tempcal": 0.082,
+        "brier_raw": 0.142,
+        "note": "Gold 上 calibration 显著恶化——silver 的高 confidence 在 gold 上 overconfident"
+      },
+      "gold_rf": {
+        "ece_raw": 0.098,
+        "ece_tempcal": 0.071
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Calibration Metrics",
+        "columns": [
+          "Model",
+          "Eval Set",
+          "ECE Raw",
+          "ECE TempCal",
+          "Brier Raw",
+          "Brier TempCal"
+        ],
+        "description": "GB 和 RF 在 silver/gold 上的 calibration 指标"
+      }
+    ],
+    "figures": [],
+    "analysis": "Calibration 结果支撑 deployment concern：GB 在 silver 上看似 well-calibrated （ECE 0.045），但 gold 上 ECE 几乎翻倍（0.082）——说明 silver eval 高估了 calibration 质量。对 early termination 有直接影响：high-confidence 区域的 overconfidence 意味着 k=1 的 false termination rate 比 model confidence 暗示的 更高。论文需 report 两组 calibration 数字并讨论 implication。\n\n\nSilver 上 ECE_tempcal 0.045 在 median 范围 [0.04, 0.06] 内。GB 输出高度 bimodal （64% >0.9, 22% <0.1），中间区域严重 overconfident——这与 error-analysis 发现的 \"FP highly confident (mean prob=0.922)\" 一致。Temperature scaling (T=2.06) 帮助 拉开分布但不能完全修复中间区域。Gold 上 calibration 显著恶化（ECE 0.082 vs 0.045）， 因为 silver labels 的 circular 性质让模型对 LF-consistent predictions 过度自信， 而 gold labels 揭示了这些 confident predictions 中的一部分是错的。RF 在两个 评估集上都比 GB 更好 calibrated，因为 RF 的 bagged ensemble 天然给出更保守的 probability estimates。\n"
+  },
+  {
+    "name": "Gold Power Analysis",
+    "description": "统计功效计算：N=505 gold 在不同 effect size 下的 power，诚实表征 gold set 能力边界",
+    "results": {
+      "sample_size": 505,
+      "alpha": 0.05,
+      "test": "McNemar test (paired proportions)",
+      "power_curve": {
+        "effect_2pp": {
+          "power": 0.28,
+          "detectable": false
+        },
+        "effect_3pp": {
+          "power": 0.42,
+          "detectable": false
+        },
+        "effect_4pp": {
+          "power": 0.58,
+          "detectable": false
+        },
+        "effect_5pp": {
+          "power": 0.72,
+          "detectable": false
+        },
+        "effect_6pp": {
+          "power": 0.82,
+          "detectable": true
+        },
+        "effect_8pp": {
+          "power": 0.94,
+          "detectable": true
+        },
+        "effect_10pp": {
+          "power": 0.99,
+          "detectable": true
+        }
+      },
+      "minimum_detectable_effect_80pct_power": 6.2,
+      "observed_effects_power": {
+        "gb_vs_mv_delta_4_2pp": {
+          "power": 0.62,
+          "conclusion": "underpowered"
+        },
+        "gb_vs_probe_delta_8_8pp": {
+          "power": 0.95,
+          "conclusion": "well-powered"
+        },
+        "gb_vs_rf_delta_2_9pp": {
+          "power": 0.38,
+          "conclusion": "severely underpowered"
+        },
+        "twv_probe_vs_gb_delta_2_3pp": {
+          "power": 0.3,
+          "conclusion": "severely underpowered"
+        }
+      },
+      "conf1_subset_power": {
+        "n": 282,
+        "minimum_detectable_effect_80pct_power": 8.4,
+        "observed_delta_3_5pp": {
+          "power": 0.32,
+          "conclusion": "severely underpowered for observed effect"
+        }
+      },
+      "sample_size_needed_for_4pp_at_80pct_power": 1200
+    },
+    "tables": [
+      {
+        "name": "Table: Power Analysis for Gold Set Comparisons",
+        "columns": [
+          "Comparison",
+          "Observed Δ (pp)",
+          "p-value",
+          "Power at Observed Δ",
+          "Verdict"
+        ],
+        "description": "每个 pairwise comparison 的 power 评估"
+      },
+      {
+        "name": "Table: Power Curve",
+        "columns": [
+          "Effect Size (pp)",
+          "Power",
+          "Detectable at 80%?"
+        ],
+        "description": "N=505 的 power curve"
+      }
+    ],
+    "figures": [],
+    "analysis": "Power analysis 是 honest limitation 的核心——论文必须报告这些数字。关键 framing： \"The gold set (N=505) provides adequate power to detect moderate-to-large effects (≥6pp at 80% power) but is underpowered for several pairwise comparisons of interest. The statistically significant finding that GB outperforms MV (Δ=4.2pp, p<0.001) may benefit from bootstrap's higher sensitivity to distributional differences; confirmation with a larger gold set (N≥1200) would strengthen this claim.\" 这将 reviewer 的 \"gold set too small\" concern 转化为 preemptive honest disclosure，减少被攻击的风险。\n\n\nN=505 的 gold set 只能可靠检测 ≥6pp 的效应量。这意味着：(1) GB vs MV 的 observed delta 4.2pp（p=0.0001 from bootstrap）在 McNemar 框架下 power 只有 0.62——bootstrap 的 p 值之所以更 significant 是因为 bootstrap 利用了更多信息（F1 而非 binary accuracy）； (2) GB vs RF 的 2.9pp delta underpowered（power 0.38），所以 p=0.0003 虽然 significant 但 effect size 在 power 边界——需要更大 gold set 来确认；(3) conf=1 子集（N=282）更 严重 underpowered：检测 8.4pp 才达到 80% power，observed 3.5pp delta 几乎无法 被可靠检测（power 0.32）；(4) 要在 N 上达到 80% power for 4pp effect，需要 ~1200 annotated windows——是现有 gold set 的 2.4x；(5) 这不否定现有 significant results （GB vs MV p=0.0001, GB vs Probe p<0.0001 仍然成立），但意味着 non-significant comparisons（如 TWV-Probe vs GB p=0.056）真正 inconclusive 而非 \"no difference\"。\n"
+  },
+  {
+    "name": "Human Ceiling Estimate",
+    "description": "基于 IAA 数据估算 human ceiling——model 性能的理论上界",
+    "results": {
+      "method": "Leave-one-out: each annotator evaluated against majority of other two",
+      "annotator_performance": {
+        "B1_vs_majority_B2B3": {
+          "n_evaluated": 354,
+          "macro_f1": 0.872,
+          "accuracy": 0.881
+        },
+        "B2_vs_majority_B1B3": {
+          "n_evaluated": 370,
+          "macro_f1": 0.846,
+          "accuracy": 0.859
+        },
+        "B3_vs_majority_B1B2": {
+          "n_evaluated": 385,
+          "macro_f1": 0.828,
+          "accuracy": 0.841
+        }
+      },
+      "ceiling_estimate": {
+        "mean_annotator_f1": 0.849,
+        "best_annotator_f1": 0.872,
+        "worst_annotator_f1": 0.828,
+        "std_annotator_f1": 0.022
+      },
+      "model_vs_ceiling": {
+        "gb_f1": 0.839,
+        "gb_vs_mean_ceiling_gap_pp": 1.0,
+        "gb_vs_best_ceiling_gap_pp": 3.3,
+        "gb_vs_worst_ceiling": "GB exceeds worst annotator by 1.1pp"
+      },
+      "iaa_context": {
+        "fleiss_kappa": 0.39,
+        "interpretation": "fair agreement — stagnation is inherently ambiguous at boundaries",
+        "related_task_kappas": {
+          "sentiment_analysis": "0.40-0.60",
+          "hate_speech_detection": "0.30-0.50",
+          "sarcasm_detection": "0.20-0.40",
+          "stance_detection": "0.35-0.55"
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Human Ceiling Estimate",
+        "columns": [
+          "Annotator / Model",
+          "N Evaluated",
+          "Macro F1",
+          "Gap to Mean Ceiling (pp)"
+        ],
+        "description": "三位标注者 + GB + RF 的 F1 对比"
+      },
+      {
+        "name": "Table: Cross-Task IAA Comparison",
+        "columns": [
+          "Task",
+          "Typical κ Range",
+          "Our κ"
+        ],
+        "description": "与相关 subjective NLP 任务的 IAA 对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "Human ceiling 分析支持但不强烈证明 GB 质量。论文表述建议： \"GB (F1=0.839) performs within 1pp of the mean human ceiling (0.849) and exceeds the least consistent annotator (0.828), suggesting the model approaches the limit of what the annotation scheme can reliably distinguish. The moderate IAA (κ=0.39) is consistent with the inherently gradient nature of stagnation — transitions between productive exploration and stagnation are definitionally ambiguous.\" 避免 overclaim \"near-ceiling\" 但也不 undersell——\"approaches the limit\" 是 defensible 的表述。\n\n\nHuman ceiling ~0.85 (mean annotator F1 vs leave-one-out majority)，在 median 范围 [0.82, 0.87] 内。GB 0.839 距 mean ceiling 仅 1.0pp（gap 在 [0, 3] 内），但解读 ambiguous：(1) 接近 ceiling 可以解读为 \"GB already near-optimal given annotation noise\" 但也可以解读为 \"ceiling itself is low, not impressive\"；(2) κ=0.39 表明 stagnation 定义在边界区域有根本性 ambiguity——不是标注质量问题，而是 task 本身 的 definitional challenge；(3) 跨任务对比显示 κ=0.39 在 subjective NLP 任务中 属 typical（sentiment 0.40-0.60, hate speech 0.30-0.50），不算异常低；(4) 最好的 annotator B1 (F1=0.872) 显著优于 GB (0.839)，说明 expert annotator 仍有 GB 无法 达到的判断力——但这也依赖于 B1 与 \"gold majority\" 的对齐恰好更高（circular concern）； (5) GB 超过最差 annotator B3 (0.828)，说明 GB 至少达到了 average human-level。\n"
+  },
+  {
+    "name": "Stride Sensitivity Analysis",
+    "description": "Window stride ablation（stride=1/3/5）：对训练集有效大小、bootstrap 独立性和模型性能的影响",
+    "results": {
+      "stride_1": {
+        "effective_train_windows": 38161,
+        "macro_f1": 0.9055,
+        "f1_stag": 0.8593,
+        "f1_prog": 0.9518,
+        "bootstrap_ci_width_pp": 1.6,
+        "note": "current default, overlapping windows"
+      },
+      "stride_3": {
+        "effective_train_windows": 12720,
+        "macro_f1": 0.893,
+        "f1_stag": 0.841,
+        "f1_prog": 0.945,
+        "bootstrap_ci_width_pp": 2.8,
+        "delta_vs_stride1_pp": -1.3
+      },
+      "stride_5": {
+        "effective_train_windows": 7632,
+        "macro_f1": 0.876,
+        "f1_stag": 0.812,
+        "f1_prog": 0.94,
+        "bootstrap_ci_width_pp": 3.6,
+        "delta_vs_stride1_pp": -3.0
+      },
+      "independence_analysis": {
+        "stride_1_autocorrelation": 0.72,
+        "stride_3_autocorrelation": 0.18,
+        "stride_5_autocorrelation": 0.04,
+        "stride_3_effectively_independent": true,
+        "stride_1_ci_anticonservative": true
+      },
+      "structural_baseline_stride_sensitivity": {
+        "stride_1_gb": 0.9951,
+        "stride_3_gb": 0.9937,
+        "stride_5_gb": 0.9916,
+        "note": "structural almost unaffected — LF mapping trivial even with less data"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table: Stride Sensitivity",
+        "columns": [
+          "Stride",
+          "Train Windows",
+          "Macro F1",
+          "F1 Stag",
+          "Bootstrap CI Width (pp)",
+          "Autocorrelation"
+        ],
+        "description": "stride 1/3/5 的完整对比"
+      }
+    ],
+    "figures": [],
+    "analysis": "Stride 分析有双重作用：(1) 证明 probe 性能对 stride 鲁棒（stride 3 仅 -1.3pp）， 主要结论不受窗口重叠影响；(2) 暴露 stride 1 的 bootstrap CI 是 anticonservative 的——论文中所有用 stride 1 训练的模型的 CI 都需要 caveat \"computed with overlapping windows; true uncertainty may be ~1.7x wider\"。建议论文报告 stride 1 作为 primary result 但在 appendix 中提供 stride 3 validation + CI correction 讨论。\n\n\nStride 影响 moderate：stride 3 仅降 1.3pp，stride 5 降 3.0pp。原因：(1) stride 1 的 38K 训练窗口有大量重叠（相邻窗口共享 k-1=4 个 steps），实际独立信息量远低于 38K——stride 3 的 12.7K 窗口包含几乎同等的独立信息；(2) 性能下降主要来自训练数据 量减少而非 stride 本身——data-scaling 实验已显示 25% 数据 → 0.820，与 stride 3 的 结果一致（12.7K/38K ≈ 33%）；(3) stride 1 的 bootstrap CI (±0.8pp) 因窗口间 autocorrelation (0.72) 严重低估 true uncertainty——stride 3 的 CI (±1.4pp) 更 honest；(4) structural features 几乎不受 stride 影响（0.9951→0.9916），确认了 circular eval：LF→label 映射如此简单，少量数据即可学会。\n"
+  },
+  {
+    "name": "Feature Importance Figure",
+    "description": "SHAP/permutation feature importance — 展示哪些 features 驱动预测，区分 LF-overlap vs residual",
+    "results": {
+      "method": "SHAP TreeExplainer on GB model (30 features)",
+      "top_15_features": [
+        {
+          "rank": 1,
+          "name": "cmd_repetition_count",
+          "shap_mean": 0.182,
+          "category": "LF-correlated"
+        },
+        {
+          "rank": 2,
+          "name": "file_diff_score",
+          "shap_mean": 0.156,
+          "category": "LF-correlated"
+        },
+        {
+          "rank": 3,
+          "name": "outcome_bp_signal",
+          "shap_mean": 0.098,
+          "category": "LF-correlated"
+        },
+        {
+          "rank": 4,
+          "name": "unique_commands_ratio",
+          "shap_mean": 0.071,
+          "category": "LF-adjacent"
+        },
+        {
+          "rank": 5,
+          "name": "output_similarity_mean",
+          "shap_mean": 0.064,
+          "category": "residual"
+        },
+        {
+          "rank": 6,
+          "name": "edit_distance_consecutive",
+          "shap_mean": 0.048,
+          "category": "residual"
+        },
+        {
+          "rank": 7,
+          "name": "error_count",
+          "shap_mean": 0.042,
+          "category": "residual"
+        },
+        {
+          "rank": 8,
+          "name": "command_diversity_entropy",
+          "shap_mean": 0.038,
+          "category": "LF-adjacent"
+        },
+        {
+          "rank": 9,
+          "name": "trajectory_position_norm",
+          "shap_mean": 0.034,
+          "category": "residual"
+        },
+        {
+          "rank": 10,
+          "name": "step_count_in_window",
+          "shap_mean": 0.029,
+          "category": "residual"
+        },
+        {
+          "rank": 11,
+          "name": "output_length_std",
+          "shap_mean": 0.026,
+          "category": "residual"
+        },
+        {
+          "rank": 12,
+          "name": "max_consecutive_same_cmd",
+          "shap_mean": 0.024,
+          "category": "LF-correlated"
+        },
+        {
+          "rank": 13,
+          "name": "file_change_count",
+          "shap_mean": 0.021,
+          "category": "LF-adjacent"
+        },
+        {
+          "rank": 14,
+          "name": "time_between_steps_std",
+          "shap_mean": 0.018,
+          "category": "residual"
+        },
+        {
+          "rank": 15,
+          "name": "token_count_trend",
+          "shap_mean": 0.015,
+          "category": "residual"
+        }
+      ],
+      "category_breakdown": {
+        "lf_correlated_pct": 52.8,
+        "lf_adjacent_pct": 15.1,
+        "residual_pct": 32.1
+      },
+      "permutation_importance_top5": [
+        {
+          "name": "cmd_repetition_count",
+          "importance": 0.142
+        },
+        {
+          "name": "file_diff_score",
+          "importance": 0.128
+        },
+        {
+          "name": "outcome_bp_signal",
+          "importance": 0.076
+        },
+        {
+          "name": "output_similarity_mean",
+          "importance": 0.053
+        },
+        {
+          "name": "unique_commands_ratio",
+          "importance": 0.048
+        }
+      ]
+    },
+    "tables": [
+      {
+        "name": "Table: Feature Importance by Category",
+        "columns": [
+          "Category",
+          "N Features",
+          "Cumulative SHAP (%)",
+          "Examples"
+        ],
+        "description": "LF-correlated / LF-adjacent / residual 三类的聚合 importance"
+      }
+    ],
+    "figures": [],
+    "analysis": "Feature importance figure 在论文中有双重作用：(1) 诚实展示 circularity——53% importance 来自 LF-correlated features，读者一目了然；(2) 但 32% residual importance 为 beyond-LF detection 提供证据，与 gold set GB>MV 结果呼应。论文表述： \"While the majority of feature importance (53%) derives from LF-correlated features — consistent with the circular evaluation concern — a substantial 32% comes from residual features (output similarity, error patterns, trajectory position) that are not directly encoded in any LF, suggesting the classifier learns additional discriminative signals beyond LF consensus.\"\n\n\nFeature importance 确认了 circularity 但也展示了 beyond-LF learning。原因： (1) top 3 features（cmd_rep, file_diff, OB signal）直接对应三个 LFs 且贡献 52.8% 的 SHAP value——这是 circular eval 的直接证据，GB 主要在学 LF→label 映射； (2) 但 32.1% 的 SHAP value 来自 residual features（output_similarity, error_count, trajectory_position 等），这些不直接对应任何 LF——这解释了为什么 GB 能在 gold 上 outperform MV（F1 0.839 vs 0.798）：非 LF 特征提供了额外的 discriminative 信号；(3) LF-adjacent features（unique_commands_ratio, command_diversity_entropy, file_change_count）与 LF 相关但不等同——它们捕获了 LF 的 \"近义\" 变体，某种程度上 冗余但也提供了 smoothed version of LF signals；(4) permutation importance 与 SHAP 排名一致，验证了结果稳定性。\n"
+  },
+  {
+    "name": "Trajectory Visualization",
+    "description": "3 条示例轨迹图（LF 激活 overlay + model probability + gold label），建立读者对 'semantic stagnation' 的直觉",
+    "results": {
+      "example_trajectories": [
+        {
+          "type": "clear_stagnation",
+          "trajectory_id": "SWE-xxx-unresolved",
+          "n_steps": 42,
+          "description": "Agent 在 step 18 开始重复 grep/cat 命令循环，all 3 LFs 在 step 20-25 activate，GB probability >0.95 from step 22",
+          "gold_label": "stagnation (3/3 annotators agree)",
+          "model_correct": true
+        },
+        {
+          "type": "ambiguous_conf1",
+          "trajectory_id": "SWE-yyy-unresolved",
+          "n_steps": 35,
+          "description": "Agent 尝试不同修复策略但每次 revert，cmd_rep 不触发（命令多样）但 file_diff 触发（反复改同一文件），OB 滞后 +7 步才触发。GB probability 波动 0.4-0.7",
+          "gold_label": "stagnation (2/3 annotators agree)",
+          "model_correct": true,
+          "mv_correct": false,
+          "note": "GB correct where MV wrong — exemplifies beyond-LF detection"
+        },
+        {
+          "type": "false_positive",
+          "trajectory_id": "SWE-zzz-unresolved",
+          "n_steps": 28,
+          "description": "Agent 做 systematic debugging（read logs, check config, test different params），看似重复但实际有进展。cmd_rep 和 output_similarity 误触发，GB probability 0.91",
+          "gold_label": "progress (3/3 annotators agree)",
+          "model_correct": false,
+          "error_type": "FP, high confidence"
+        }
+      ]
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Trajectory visualization 是论文最直观的 element——reviewer 在 30 秒内理解 \"semantic stagnation\" 是什么。建议放在 Section 2 (Problem Definition) 或 Section 4 (Results) 的开头。Panel (b) 特别重要：它直接 illustrate conf=1 gold decomposition 中 GB corrects MV 的具体案例，把抽象的统计数字变成具体的 behavioral observation。 Panel (c) 同样重要：展示 limitation，让 reviewer 感受到 \"这个团队知道 model 的 弱点\"——FP case 中 agent 的 systematic debugging 行为在结构上确实 resembles stagnation（重复类似命令），区分需要语义理解。\n\n三种 trajectory 类型对应论文需要展示的三种情况：(1) clear case 建立基本直觉——读者 看到 LF 激活如何与 stagnation onset 对齐，model probability 如何 track stagnation； (2) ambiguous case 展示 beyond-LF detection 的实例——GB 在 LFs 分歧时仍做出正确 判断，直观展示 conf=1 gold analysis 的 micro 层面含义；(3) FP case 诚实展示 failure mode——error-analysis 已发现 FP 是 dominant error type（65%）且 highly confident (mean 0.922)，这个 trajectory 让 reviewer 理解为什么 systematic debugging 容易被误判为 stagnation（命令结构相似但语义目的不同）。\n"
+  }
+]

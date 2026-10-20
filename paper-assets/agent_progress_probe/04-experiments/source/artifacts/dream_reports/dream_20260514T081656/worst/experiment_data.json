@@ -1,0 +1,1033 @@
+[
+  {
+    "name": "全量数据训练（conf≥1）",
+    "description": "全量54,809窗口训练GRU probe，对比conf≥2子集的0.9055基线",
+    "results": {
+      "fulldata_macro_f1": 0.74,
+      "fulldata_accuracy": 0.78,
+      "fulldata_f1_stagnation": 0.67,
+      "fulldata_f1_progress": 0.81,
+      "conf2_macro_f1_reference": 0.9055,
+      "f1_drop_pp": 16.55,
+      "fulldata_gap_vs_repeat3_pp": 1.2,
+      "fulldata_val_macro_f1_best": 0.77,
+      "best_epoch": 5
+    },
+    "tables": [
+      {
+        "name": "Table: conf≥2 vs 全量数据性能对比",
+        "columns": [
+          "Setting",
+          "Train Size",
+          "Macro-F1",
+          "Stag-F1",
+          "Prog-F1",
+          "Gap vs Repeat-3 (pp)"
+        ],
+        "rows": [
+          [
+            "conf≥2 (probe-001)",
+            "15,401",
+            "0.9055",
+            "0.8593",
+            "0.9518",
+            "+6.24"
+          ],
+          [
+            "conf≥1 (full)",
+            "54,809",
+            "0.74",
+            "0.67",
+            "0.81",
+            "+1.2"
+          ],
+          [
+            "Δ",
+            "—",
+            "-0.1655",
+            "-0.1893",
+            "-0.1418",
+            "-5.04"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "F1下降16.55pp证实conf≥2是选择偏差。stagnation-F1下降最严重（-18.93pp）， 因为低conf窗口中stagnation的歧义性最高。与Repeat-3的差距从6.24pp缩小到1.2pp， 在bootstrap CI下不显著。这是核心negative result：probe的\"优势\"高度依赖数据筛选， 不具备泛化性。但这本身是data programming在sequential data上的重要failure mode发现。\n\n\nconf≥1包含39,408个conf=1窗口（占总量72%），这些窗口只有单个LF投票，标签本质上 等于单个启发式规则的输出，噪声率极高。在worst档下，这些低置信度标签中相当比例 是错误的——尤其是stagnation类，因为command_repetition和file_diff_delta在边界 情况下容易误判（例如agent在探索不同文件但diff很小，或重复了一次命令但不构成停滞）。 conf≥2的0.9055实际上是选择偏差的产物：高置信度窗口是多个LF一致同意的\"容易\"样本， 这些窗口的stagnation模式更明显（反复执行相同命令、diff为零等），分类器在这些 pattern-obvious的样本上自然表现好。引入全量数据后，模型需要处理大量歧义样本， GRU无法从嘈杂标签中学到一致的时序信号，F1跌至0.74，与Repeat-3的差距收窄到 仅1.2pp，统计上可能不显著（p>0.05），直接动摇Claim 2的核心论据。\n"
+  },
+  {
+    "name": "LF Ensemble Oracle Baseline",
+    "description": "直接用LF实时输出做窗口级判定，不经过任何学习",
+    "results": {
+      "lf_oracle_conf2_macro_f1": 0.92,
+      "lf_oracle_fulldata_macro_f1": 0.73,
+      "lf_oracle_fulldata_stag_f1": 0.66,
+      "probe_fulldata_macro_f1": 0.74,
+      "gap_probe_vs_oracle_fulldata_pp": 1.0,
+      "lf_oracle_coverage": 1.0,
+      "lf_oracle_conf2_accuracy": 0.94
+    },
+    "tables": [
+      {
+        "name": "Table: Probe vs LF Oracle 对比",
+        "columns": [
+          "Method",
+          "conf≥2 F1",
+          "Full-data F1",
+          "Training Cost",
+          "Interpretability"
+        ],
+        "rows": [
+          [
+            "LF Oracle (majority vote)",
+            "0.92",
+            "0.73",
+            "None",
+            "Full"
+          ],
+          [
+            "GRU Probe",
+            "0.9055",
+            "0.74",
+            "0.5 GPU-hr",
+            "Low"
+          ],
+          [
+            "Repeat-3",
+            "0.8432",
+            "0.728",
+            "None",
+            "Full"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Probe在全量数据上仅比LF oracle高1pp，与conf≥2上反而低于oracle，证明probe没有 超越LF的增量价值。Claim 2（时序建模优于启发式）在全量数据上不成立。但正面发现： LF oracle本身在全量数据上也只有0.73，说明当前LF设计在低conf区域存在系统性盲区， 这成为LF taxonomy分析的motivation。\n\n\nLF oracle在conf≥2子集上F1达0.92，实际上高于probe的0.9055——因为conf≥2的标签 本身就是LF majority vote的输出，oracle直接复现了标签生成过程，probe反而因为 学习过程中的泛化损失略低于oracle。这直接证明probe在高conf子集上没有学到超越 LF规则的信号，只是在拟合LF的输出。在全量数据上，oracle和probe几乎打平 （0.73 vs 0.74，差距1pp），说明probe的时序建模在noisy label下没有提供实质增量。 Oracle的优势在于零训练成本、完全可解释、无需embedding——probe的存在变得难以justify。\n"
+  },
+  {
+    "name": "LLM-as-Judge Baseline",
+    "description": "Claude/GPT-4o零样本+少样本判定窗口级progress/stagnation",
+    "results": {
+      "llm_judge_zeroshot_macro_f1": 0.82,
+      "llm_judge_fewshot_macro_f1": 0.86,
+      "llm_judge_f1_stagnation": 0.8,
+      "llm_judge_f1_progress": 0.92,
+      "llm_judge_latency_ms": 3200,
+      "probe_latency_ms": 4.5,
+      "latency_ratio": 711,
+      "llm_cost_per_1k_windows_usd": 14.5,
+      "probe_cost_per_1k_windows_usd": 0.08,
+      "cost_multiplier": 181,
+      "llm_judge_vs_probe_fulldata_gap_pp": 12.0,
+      "llm_judge_vs_human_gold_f1": 0.84
+    },
+    "tables": [
+      {
+        "name": "Table: LLM-as-Judge vs Probe 全量对比",
+        "columns": [
+          "Method",
+          "Macro-F1",
+          "Stag-F1",
+          "Latency (ms)",
+          "Cost/1k ($)",
+          "Training Required"
+        ],
+        "rows": [
+          [
+            "GPT-4o zero-shot",
+            "0.82",
+            "0.76",
+            "3200",
+            "14.50",
+            "No"
+          ],
+          [
+            "GPT-4o few-shot (5)",
+            "0.86",
+            "0.80",
+            "4100",
+            "18.20",
+            "No"
+          ],
+          [
+            "Claude few-shot (5)",
+            "0.84",
+            "0.78",
+            "2800",
+            "12.80",
+            "No"
+          ],
+          [
+            "GRU Probe (full)",
+            "0.74",
+            "0.67",
+            "4.5",
+            "0.08",
+            "Yes"
+          ],
+          [
+            "GRU Probe (conf≥2)",
+            "0.9055",
+            "0.8593",
+            "4.5",
+            "0.08",
+            "Yes"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Cost-Accuracy Pareto",
+        "columns": [
+          "Method",
+          "Macro-F1",
+          "Annual Cost (50k windows)",
+          "Feasible for Real-time"
+        ],
+        "rows": [
+          [
+            "GRU Probe",
+            "0.74",
+            "$4",
+            "Yes"
+          ],
+          [
+            "LF Oracle",
+            "0.73",
+            "$0",
+            "Yes"
+          ],
+          [
+            "Repeat-3",
+            "0.728",
+            "$0",
+            "Yes"
+          ],
+          [
+            "LLM Judge",
+            "0.86",
+            "$910",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LLM-as-judge在accuracy上显著优于probe（+12pp），削弱了probe的核心价值。 Cost argument仍成立（181倍成本差），但在worst档叙事中需要承认：如果用户关心 准确率，LLM是更好选择；probe的唯一优势是成本。Reframe中这变成\"当前轻量probe 不足以替代LLM判断，但弱监督框架可以为未来更强的probe提供训练数据\"。\n\n\nLLM-as-judge在worst档下表现相对strong（0.86 few-shot），因为LLM本身具备理解 agent行为语义的能力，不受弱监督标签噪声的限制。Few-shot F1 0.86显著高于 probe全量数据的0.74（+12pp），这进一步削弱probe的价值主张。但LLM的成本和延迟 仍然是硬伤：每1k窗口$14.50 vs probe的$0.08，延迟711倍。在worst档的reframe下， 这个对比的叙事从\"probe更好\"变成\"probe在cost-constrained场景下是reasonable的 trade-off，但如果追求准确率，LLM-as-judge是更优选择\"。cost argument仍然成立 但说服力减弱，因为accuracy gap太大（12pp）。\n"
+  },
+  {
+    "name": "Mean-Pooling + Logistic Regression Baseline",
+    "description": "窗口内embedding均值池化后接LR，作为非时序对照",
+    "results": {
+      "meanpool_lr_conf2_macro_f1": 0.87,
+      "meanpool_lr_fulldata_macro_f1": 0.72,
+      "meanpool_lr_fulldata_stag_f1": 0.64,
+      "meanpool_lr_fulldata_prog_f1": 0.8,
+      "gru_vs_meanpool_conf2_gap_pp": 3.55,
+      "gru_vs_meanpool_fulldata_gap_pp": 2.0,
+      "meanpool_lr_training_time_sec": 12,
+      "gru_training_time_min": 28
+    },
+    "tables": [
+      {
+        "name": "Table: 时序 vs 静态聚合对比",
+        "columns": [
+          "Method",
+          "conf≥2 F1",
+          "Full F1",
+          "Params",
+          "Train Time"
+        ],
+        "rows": [
+          [
+            "GRU Probe",
+            "0.9055",
+            "0.74",
+            "~530K",
+            "28 min"
+          ],
+          [
+            "Mean-pool + LR",
+            "0.87",
+            "0.72",
+            "~1K",
+            "12 sec"
+          ],
+          [
+            "Gap",
+            "+3.55pp",
+            "+2.0pp",
+            "530x",
+            "140x"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "2pp的全量数据差距在bootstrap test下大概率不显著（p~0.08-0.15），直接证伪 时序建模的必要性。Mean-pool+LR以1/530的参数量和1/140的训练时间达到几乎相同 的性能。在reframe中，这变成\"当前embedding质量下，简单聚合已经接近天花板， 暗示瓶颈在标签质量而非模型能力\"。\n\n\nMean-pooling+LR在conf≥2上达0.87，与probe的0.9055差距仅3.55pp；在全量数据上 达0.72，与probe的0.74差距仅2pp。这说明GRU的时序建模提供的增量价值很小—— 大部分分类信号来自embedding本身的语义内容（mean-pool已经捕获了窗口的\"平均语义\"）， 而非step间的时序动态。在worst档下，这直接证伪了Claim 2的核心前提：stagnation 检测不需要时序建模，静态聚合已经足够。LR只需12秒训练（vs GRU 28分钟）， 参数量级差100倍，性能差距不显著。这支持reframe中\"当前架构不足以超越规则\"的论点。\n"
+  },
+  {
+    "name": "Probe 错误分析",
+    "description": "FP/FN按action type、LF source、trajectory outcome分类",
+    "results": {
+      "total_errors_conf2": 221,
+      "fp_count": 98,
+      "fn_count": 123,
+      "fn_semantic_stagnation_pct": 58,
+      "fn_late_onset_pct": 24,
+      "fp_exploration_mislabel_pct": 42,
+      "fp_conf1_label_noise_pct": 35,
+      "errors_on_conf1_windows_pct": 71,
+      "error_rate_conf1": 0.31,
+      "error_rate_conf2": 0.09
+    },
+    "tables": [
+      {
+        "name": "Table: 错误分布按confidence分层",
+        "columns": [
+          "Confidence",
+          "Windows",
+          "Errors",
+          "Error Rate",
+          "% of Total Errors"
+        ],
+        "rows": [
+          [
+            "conf=1",
+            "39,408",
+            "12,216",
+            "0.31",
+            "71%"
+          ],
+          [
+            "conf=2",
+            "14,609",
+            "1,315",
+            "0.09",
+            "26%"
+          ],
+          [
+            "conf=3",
+            "792",
+            "24",
+            "0.03",
+            "3%"
+          ]
+        ]
+      },
+      {
+        "name": "Table: FN类型分解",
+        "columns": [
+          "FN Type",
+          "Count",
+          "Pct",
+          "Example Pattern"
+        ],
+        "rows": [
+          [
+            "Semantic stagnation",
+            "71",
+            "58%",
+            "Different commands, same ineffective strategy"
+          ],
+          [
+            "Late-onset stagnation",
+            "30",
+            "24%",
+            "Progress in first 2 steps, stall in last 3"
+          ],
+          [
+            "Ambiguous boundary",
+            "22",
+            "18%",
+            "Partial progress, debatable label"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "错误分析的核心发现是conf-stratified error rate的巨大差异（0.31 vs 0.09）， 这直接量化了选择偏差。语义停滞作为FN主因说明当前embedding+GRU不足以捕获 高阶语义等价性。在reframe中，这些发现成为\"failure mode taxonomy\"的实证基础， 是贡献(2)的关键数据。\n\n\n在worst档下，错误分析揭示probe的核心弱点：71%的错误集中在conf=1窗口， error rate在conf=1上高达0.31（vs conf=2的0.09），直接量化了选择偏差的程度。 FN中58%是\"语义停滞\"——agent执行不同命令但无实质进展，LF无法捕获这种模式 （因为command不重复、diff非零），probe也未能从embedding中学到这一信号。 FP中42%是\"探索性行为被误判为停滞\"——agent在尝试不同方案，短期内看似无进展 但实际上在收集信息。这些发现本身有价值：它们定义了当前弱监督框架的盲区， 为LF taxonomy贡献了\"哪些stagnation模式可以被规则捕获、哪些不能\"的实证证据。\n"
+  },
+  {
+    "name": "跨Agent迁移评估",
+    "description": "SWE-agent训练的probe在OpenHands轨迹上的zero-shot迁移",
+    "results": {
+      "openhands_total_trajectories": 1847,
+      "openhands_total_windows": 28340,
+      "openhands_lf_adapted_count": 3,
+      "cross_agent_macro_f1": 0.62,
+      "cross_agent_stag_f1": 0.53,
+      "cross_agent_prog_f1": 0.71,
+      "cross_agent_accuracy": 0.67,
+      "within_agent_macro_f1_ref": 0.74,
+      "transfer_drop_pp": 12.0,
+      "openhands_repeat3_f1": 0.61,
+      "cross_agent_gap_vs_repeat3_pp": 1.0,
+      "openhands_lf_coverage": 0.78,
+      "openhands_conf2_ratio": 0.22
+    },
+    "tables": [
+      {
+        "name": "Table: 跨Agent迁移性能",
+        "columns": [
+          "Setting",
+          "Macro-F1",
+          "Stag-F1",
+          "Prog-F1",
+          "vs Repeat-3"
+        ],
+        "rows": [
+          [
+            "SWE-agent (conf≥2, in-domain)",
+            "0.9055",
+            "0.8593",
+            "0.9518",
+            "+6.24pp"
+          ],
+          [
+            "SWE-agent (full, in-domain)",
+            "0.74",
+            "0.67",
+            "0.81",
+            "+1.2pp"
+          ],
+          [
+            "OpenHands (zero-shot transfer)",
+            "0.62",
+            "0.53",
+            "0.71",
+            "+1.0pp"
+          ],
+          [
+            "OpenHands Repeat-3",
+            "0.61",
+            "0.52",
+            "0.70",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table: LF适配覆盖率（OpenHands）",
+        "columns": [
+          "LF",
+          "Adapted",
+          "Coverage",
+          "Accuracy Est."
+        ],
+        "rows": [
+          [
+            "command_repetition",
+            "Yes (regex adapted)",
+            "0.82",
+            "~0.65"
+          ],
+          [
+            "file_diff_delta",
+            "Yes (API adapted)",
+            "0.71",
+            "~0.60"
+          ],
+          [
+            "outcome_backprop",
+            "Yes (direct)",
+            "0.81",
+            "~0.70"
+          ],
+          [
+            "Overall LF coverage",
+            "—",
+            "0.78",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "12pp的迁移下降和probe仅比Repeat-3高1pp直接否定Claim 3。但reframe中这成为 有价值的negative result：量化了当前弱监督框架的domain-specificity，说明LF 适配是跨agent迁移的瓶颈而非embedding/model，指向未来需要agent-agnostic LF 设计或meta-learning适配策略。\n\n\n跨agent迁移在worst档下基本失败，F1从0.74（within-agent全量）跌至0.62（-12pp）。 根本原因是SWE-agent和OpenHands的行为模式差异大：(1)命令结构不同——OpenHands 更多使用Python API调用而非bash命令，command_repetition LF的适配不完全； (2)轨迹长度分布不同——OpenHands轨迹更短，stagnation的表现形式不同（更多是 快速失败而非长期停滞）；(3)embedding空间的分布偏移——不同agent产生的step 文本风格差异导致embedding不对齐。stagnation-F1仅0.53，说明probe完全无法 识别OpenHands特有的停滞模式。更关键的是，probe在OpenHands上仅比Repeat-3 高1pp（0.62 vs 0.61），时序建模的迁移性基本为零。Claim 3完全不成立。\n"
+  },
+  {
+    "name": "Window Size 消融",
+    "description": "k=3,5,7窗口大小对检测性能的影响",
+    "results": {
+      "k3_conf2_macro_f1": 0.88,
+      "k5_conf2_macro_f1": 0.9055,
+      "k7_conf2_macro_f1": 0.9,
+      "k3_fulldata_macro_f1": 0.71,
+      "k5_fulldata_macro_f1": 0.74,
+      "k7_fulldata_macro_f1": 0.73,
+      "k5_optimal": true,
+      "sensitivity_range_pp": 3.0
+    },
+    "tables": [
+      {
+        "name": "Table: Window Size 消融",
+        "columns": [
+          "Window k",
+          "conf≥2 F1",
+          "Full F1",
+          "vs Repeat-3 (full)"
+        ],
+        "rows": [
+          [
+            "k=3",
+            "0.88",
+            "0.71",
+            "-0.18pp"
+          ],
+          [
+            "k=5 (default)",
+            "0.9055",
+            "0.74",
+            "+1.2pp"
+          ],
+          [
+            "k=7",
+            "0.90",
+            "0.73",
+            "+1.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "窗口大小敏感性低，k=5的选择合理但非关键。在reframe中这成为方法论细节， 不作为主要发现。\n\n\n窗口大小影响有限（全量数据上3pp范围），k=5略优但优势不显著。k=3信号太短， 难以积累足够的stagnation证据；k=7引入更多噪声且stagnation边界更模糊。 在worst档下，这个消融的意义降低——无论哪个窗口大小，probe都没有显著超越 baseline，窗口大小是一个次要超参数而非关键设计决策。\n"
+  },
+  {
+    "name": "架构消融",
+    "description": "GRU+attention vs GRU+mean-pool vs Transformer vs MLP 对比",
+    "results": {
+      "gru_attn_conf2_f1": 0.9055,
+      "gru_meanpool_conf2_f1": 0.895,
+      "transformer_conf2_f1": 0.898,
+      "mlp_pooled_conf2_f1": 0.882,
+      "gru_attn_fulldata_f1": 0.74,
+      "gru_meanpool_fulldata_f1": 0.73,
+      "transformer_fulldata_f1": 0.74,
+      "mlp_pooled_fulldata_f1": 0.72,
+      "architecture_sensitivity_pp": 2.0
+    },
+    "tables": [
+      {
+        "name": "Table: 架构消融",
+        "columns": [
+          "Architecture",
+          "Params",
+          "conf≥2 F1",
+          "Full F1",
+          "Train Time"
+        ],
+        "rows": [
+          [
+            "GRU + Attention",
+            "~530K",
+            "0.9055",
+            "0.74",
+            "28 min"
+          ],
+          [
+            "GRU + Mean-pool",
+            "~520K",
+            "0.8950",
+            "0.73",
+            "25 min"
+          ],
+          [
+            "Transformer (2L)",
+            "~610K",
+            "0.8980",
+            "0.74",
+            "35 min"
+          ],
+          [
+            "MLP on pooled",
+            "~260K",
+            "0.8820",
+            "0.72",
+            "8 min"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "架构选择影响微乎其微（≤2pp），确认标签质量是瓶颈。在reframe中这成为 负面结果的一部分：\"更强的模型不能弥补弱监督标签的不足\"。\n\n\n架构间差异极小（全量数据上2pp范围），在worst档下所有架构都受限于标签质量 而非模型容量。GRU+attention名义上最优但优势不显著，Transformer持平， 甚至MLP也只差2pp。这证实瓶颈不在模型端——更复杂的架构无法从嘈杂标签中 提取更多信号，标签质量是性能天花板。这支持reframe中\"当前embedding+简单架构 不足以超越规则\"的论点，同时也说明架构设计不是问题的关键。\n"
+  },
+  {
+    "name": "LF Hold-One-Out 消融",
+    "description": "每次移除一个LF重新训练，量化各LF边际贡献",
+    "results": {
+      "without_cmd_rep_conf2_f1": 0.875,
+      "without_file_diff_conf2_f1": 0.883,
+      "without_outcome_bp_conf2_f1": 0.892,
+      "all_lfs_conf2_f1": 0.9055,
+      "cmd_rep_marginal_pp": 3.05,
+      "file_diff_marginal_pp": 2.25,
+      "outcome_bp_marginal_pp": 1.35,
+      "without_cmd_rep_fulldata_f1": 0.7,
+      "without_file_diff_fulldata_f1": 0.71,
+      "without_outcome_bp_fulldata_f1": 0.73,
+      "all_lfs_fulldata_f1": 0.74
+    },
+    "tables": [
+      {
+        "name": "Table: LF Hold-One-Out",
+        "columns": [
+          "Held-out LF",
+          "conf≥2 F1",
+          "Δ (pp)",
+          "Full F1",
+          "Δ (pp)"
+        ],
+        "rows": [
+          [
+            "None (all LFs)",
+            "0.9055",
+            "—",
+            "0.74",
+            "—"
+          ],
+          [
+            "– command_repetition",
+            "0.8750",
+            "-3.05",
+            "0.70",
+            "-4.0"
+          ],
+          [
+            "– file_diff_delta",
+            "0.8830",
+            "-2.25",
+            "0.71",
+            "-3.0"
+          ],
+          [
+            "– outcome_backprop",
+            "0.8920",
+            "-1.35",
+            "0.73",
+            "-1.0"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LF贡献排序（cmd_rep > file_diff > outcome_bp）与直觉一致：leading indicator 贡献大于lagging indicator。这成为reframe中LF temporal dynamics分析的基础数据， 是贡献(1)的核心实证。\n\n\ncommand_repetition是最关键的LF（移除后conf≥2下降3.05pp，全量下降4pp）， 因为它直接捕获最明显的stagnation信号。但在worst档下，即使最强的LF也只贡献 3-4pp，说明LFs之间高度冗余——它们捕获的是同一类\"容易\"的stagnation模式。 outcome_backpropagation贡献最小（1.35pp），因为它是lagging indicator， 在窗口级别的信号密度低。在全量数据上，移除任何单个LF的影响都不超过4pp， 说明LF集合的信息量有限。但正面发现是各LF的边际贡献排序本身揭示了信号层次： command_repetition > file_diff_delta > outcome_backpropagation。\n"
+  },
+  {
+    "name": "SupCon 辅助损失消融",
+    "description": "Supervised contrastive loss对F1和embedding分离度的影响",
+    "results": {
+      "with_supcon_conf2_f1": 0.9055,
+      "without_supcon_conf2_f1": 0.898,
+      "supcon_delta_conf2_pp": 0.75,
+      "with_supcon_fulldata_f1": 0.74,
+      "without_supcon_fulldata_f1": 0.73,
+      "supcon_delta_fulldata_pp": 1.0,
+      "embedding_separation_with": 0.42,
+      "embedding_separation_without": 0.38
+    },
+    "tables": [
+      {
+        "name": "Table: SupCon 消融",
+        "columns": [
+          "Setting",
+          "conf≥2 F1",
+          "Full F1",
+          "Embed Separation"
+        ],
+        "rows": [
+          [
+            "With SupCon",
+            "0.9055",
+            "0.74",
+            "0.42"
+          ],
+          [
+            "Without SupCon",
+            "0.8980",
+            "0.73",
+            "0.38"
+          ],
+          [
+            "Δ",
+            "+0.75pp",
+            "+1.0pp",
+            "+0.04"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "SupCon增量不显著，确认标签噪声限制了contrastive learning的有效性。 在worst档下这是预期结果，不作为主要发现。\n\n\nSupCon在conf≥2上仅贡献0.75pp，在全量数据上1pp，在worst档下统计不显著。 原因是当标签本身噪声大时，contrastive loss试图拉近同标签样本、推远异标签 样本，但标签错误导致它在推错误的方向上也施加了力——净效果接近零。 Embedding分离度从0.38提升到0.42，改善有限。这确认在低标签质量下， 辅助损失的价值有限。\n"
+  },
+  {
+    "name": "Non-NLP Baseline",
+    "description": "纯结构特征（行数改动、AST diff、test counts）分类",
+    "results": {
+      "non_nlp_conf2_macro_f1": 0.83,
+      "non_nlp_fulldata_macro_f1": 0.7,
+      "non_nlp_stag_f1": 0.63,
+      "nlp_probe_fulldata_f1": 0.74,
+      "gap_nlp_vs_non_nlp_pp": 4.0,
+      "non_nlp_feature_count": 12,
+      "non_nlp_training_time_sec": 5
+    },
+    "tables": [
+      {
+        "name": "Table: NLP vs Non-NLP Features",
+        "columns": [
+          "Method",
+          "Features",
+          "conf≥2 F1",
+          "Full F1"
+        ],
+        "rows": [
+          [
+            "GRU Probe (NLP)",
+            "1024-d embeddings",
+            "0.9055",
+            "0.74"
+          ],
+          [
+            "GBM (Non-NLP)",
+            "12 structural features",
+            "0.83",
+            "0.70"
+          ],
+          [
+            "Gap",
+            "—",
+            "+7.55pp",
+            "+4.0pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Non-NLP baseline竞争力较强，NL embedding增量有限。在reframe中需要弱化 \"NL embedding必要性\"的claim，转向\"embedding提供互补信号但非压倒性优势\"。\n\n\n非NLP baseline在conf≥2上达0.83，全量数据0.70，与probe的差距仅4pp。 在worst档下，这个差距虽然存在但不够convincing——纯结构特征已经捕获了 stagnation的大部分信号（file改动数=0、命令失败率高、test pass率不变等）。 NL embedding的增量价值仅4pp，且这4pp可能来自embedding中隐含的结构信息 而非真正的语义理解。这削弱了venue fit argument（\"NL embedding是必要的\"）， 但不完全否定——4pp在某些边界情况下可能是有意义的差异。\n"
+  },
+  {
+    "name": "Data Scaling 曲线",
+    "description": "10%/25%/50%/100%训练数据 → probe F1",
+    "results": {
+      "scale_10pct_f1": 0.69,
+      "scale_25pct_f1": 0.72,
+      "scale_50pct_f1": 0.73,
+      "scale_100pct_f1": 0.74,
+      "curve_shape": "log-saturating",
+      "saturation_point_pct": 30,
+      "marginal_gain_50_to_100_pp": 1.0
+    },
+    "tables": [
+      {
+        "name": "Table: Data Scaling",
+        "columns": [
+          "Train %",
+          "Windows",
+          "Macro-F1",
+          "Δ vs previous"
+        ],
+        "rows": [
+          [
+            "10%",
+            "~4,380",
+            "0.69",
+            "—"
+          ],
+          [
+            "25%",
+            "~10,960",
+            "0.72",
+            "+3pp"
+          ],
+          [
+            "50%",
+            "~21,920",
+            "0.73",
+            "+1pp"
+          ],
+          [
+            "100%",
+            "43,847",
+            "0.74",
+            "+1pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "早期饱和确认标签质量（而非数据量）是瓶颈。在reframe中这成为\"data programming 在sequential data上的scaling limitation\"的实证。\n\n\nScaling曲线在~30%数据量后即饱和，50%→100%仅增1pp。在worst档下这说明两件事： (1)模型容量不是瓶颈——更多数据不能显著提升性能，因为新增数据主要是低conf噪声样本； (2)当前架构+标签质量的性能天花板约在0.74-0.75。这是一个清醒的发现： 简单地收集更多弱监督数据不是解决方案，需要根本性地改善标签质量或模型能力。\n"
+  },
+  {
+    "name": "Simulated Early Termination",
+    "description": "在held-out轨迹上模拟基于probe的early stopping，计算token节省vs成功率",
+    "results": {
+      "tokens_saved_pct_probe": 18,
+      "tokens_saved_pct_repeat3": 16,
+      "tokens_saved_pct_oracle": 22,
+      "success_rate_drop_probe_pp": 4.5,
+      "success_rate_drop_repeat3_pp": 3.8,
+      "success_rate_drop_oracle_pp": 2.1,
+      "intervention_paradox_rate": 0.35,
+      "net_value_probe_vs_repeat3": "marginal"
+    },
+    "tables": [
+      {
+        "name": "Table: Early Termination Simulation",
+        "columns": [
+          "Detector",
+          "Tokens Saved (%)",
+          "Success Rate Drop (pp)",
+          "Efficiency Ratio"
+        ],
+        "rows": [
+          [
+            "GRU Probe (full)",
+            "18%",
+            "-4.5",
+            "4.0"
+          ],
+          [
+            "Repeat-3",
+            "16%",
+            "-3.8",
+            "4.2"
+          ],
+          [
+            "LF Oracle",
+            "22%",
+            "-2.1",
+            "10.5"
+          ],
+          [
+            "LLM Judge",
+            "25%",
+            "-1.5",
+            "16.7"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Probe的early termination价值marginally优于Repeat-3（多省2%token但多损1pp成功率）， 净效果不具说服力。LLM judge反而是最优的早停检测器。在reframe中early termination 不再作为核心应用场景，仅在discussion中简短提及。\n\n\n在worst档下，probe全量数据F1仅0.74，导致early termination的precision不足： probe触发的停止中约26%是false positive（实际有进展但被判为停滞），导致 成功率下降4.5pp换取仅18%的token节省。更关键的是，Repeat-3作为简单规则也能 节省16%的token（仅少2pp），成功率下降还更小（3.8pp），说明probe的early termination价值相对于简单规则几乎为零。Intervention paradox率0.35意味着 35%的被中止轨迹\"如果继续可能会成功\"，这进一步削弱了实用价值的论证。\n"
+  },
+  {
+    "name": "Interpretability 可视化",
+    "description": "GRU hidden states的t-SNE/UMAP + attention weight分析",
+    "results": {
+      "cluster_separation_silhouette": 0.28,
+      "progress_stuck_overlap_pct": 35,
+      "attention_onset_concentration": 0.45,
+      "attention_pattern_interpretable": "partial"
+    },
+    "tables": [
+      {
+        "name": "Table: 表示空间质量指标",
+        "columns": [
+          "Metric",
+          "Value",
+          "Ideal"
+        ],
+        "rows": [
+          [
+            "Silhouette score",
+            "0.28",
+            ">0.5"
+          ],
+          [
+            "Class overlap %",
+            "35%",
+            "<15%"
+          ],
+          [
+            "Attention onset concentration",
+            "0.45",
+            ">0.7"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "可视化结果不够compelling支撑独立发现。在reframe中降级为appendix材料， 不在正文中作为主要贡献。高overlap区域（conf=1样本主导）反而可以可视化 选择偏差——作为failure mode分析的补充。\n\n\n在worst档下，GRU hidden states的progress/stagnation聚类分离度较低 （silhouette=0.28，理想值>0.5），35%的样本在t-SNE空间上重叠。这反映了 两个问题：(1)标签噪声导致同一语义区域内混杂了两种标签；(2)GRU未能学到 清晰区分两类的表示。Attention weights在stagnation onset位置有一定集中 （concentration=0.45），但不够sharp来讲一个清晰的\"模型关注stagnation起始点\" 的故事。整体可解释性分析结果是\"partial\"——有一些可视化上看起来合理的pattern， 但不够compelling来支撑一个独立的发现。\n"
+  },
+  {
+    "name": "人工标注 Gold Set",
+    "description": "400窗口3标注者人工标注，Fleiss κ，在gold标签上重新评估所有方法",
+    "results": {
+      "total_annotated": 400,
+      "fleiss_kappa": 0.52,
+      "human_majority_accuracy_vs_lf": 0.67,
+      "human_gold_probe_conf2_f1": 0.78,
+      "human_gold_probe_fulldata_f1": 0.68,
+      "human_gold_repeat3_f1": 0.72,
+      "human_gold_lf_oracle_f1": 0.65,
+      "human_gold_llm_judge_f1": 0.84,
+      "human_gold_meanpool_lr_f1": 0.66,
+      "disagreement_rate_3way": 0.28,
+      "semantic_stagnation_kappa": 0.38
+    },
+    "tables": [
+      {
+        "name": "Table: Human Gold Set 评估",
+        "columns": [
+          "Method",
+          "Gold-F1",
+          "LF-label F1",
+          "Δ"
+        ],
+        "rows": [
+          [
+            "GRU Probe (conf≥2)",
+            "0.78",
+            "0.9055",
+            "-12.55pp"
+          ],
+          [
+            "GRU Probe (full)",
+            "0.68",
+            "0.74",
+            "-6.0pp"
+          ],
+          [
+            "Repeat-3",
+            "0.72",
+            "0.8432",
+            "-12.32pp"
+          ],
+          [
+            "LF Oracle",
+            "0.65",
+            "0.92",
+            "-27.0pp"
+          ],
+          [
+            "Mean-pool + LR",
+            "0.66",
+            "0.72",
+            "-6.0pp"
+          ],
+          [
+            "LLM Judge (few-shot)",
+            "0.84",
+            "—",
+            "—"
+          ]
+        ]
+      },
+      {
+        "name": "Table: 标注者一致性",
+        "columns": [
+          "Category",
+          "Fleiss κ",
+          "Agreement %"
+        ],
+        "rows": [
+          [
+            "Overall",
+            "0.52",
+            "72%"
+          ],
+          [
+            "Clear progress",
+            "0.68",
+            "84%"
+          ],
+          [
+            "Clear stagnation",
+            "0.61",
+            "78%"
+          ],
+          [
+            "Semantic stagnation",
+            "0.38",
+            "58%"
+          ],
+          [
+            "Ambiguous",
+            "0.29",
+            "45%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "人工标注是worst档的决定性证据。LF标签准确率67%（远低于声称的81.5%）直接 否定Claim 1。Probe在gold标签上落后Repeat-3（0.68 vs 0.72）否定Claim 2。 但κ=0.52也揭示了任务本身的固有困难——stagnation不是二元的，未来需要更细粒度 的标注schema（如进展程度的连续评分）。这在reframe中成为方法论贡献： \"首次量化了agent stagnation标注的人类一致性上界\"。\n\n\nFleiss κ=0.52（moderate agreement）揭示stagnation本身是一个高主观性的概念—— 标注者对\"语义停滞\"的判断分歧大（子类κ仅0.38）。LF majority vote与人工标签 的一致率仅67%，低于Phase 1 paper_framing.md声称的81.5%（那个数字仅在conf≥2 子集上测量）。在人工gold标签上重新评估：probe conf≥2的F1从0.9055跌至0.78， probe全量从0.74跌至0.68——大幅下降是因为probe优化的目标（LF标签）与真实标签 存在系统性偏差。更关键的是，probe全量的0.68与Repeat-3的0.72相比反而落后4pp， 意味着在真实标签上probe不如简单启发式。LLM judge在gold标签上达0.84，是所有方法 中最好的——但成本高。这组结果是worst档的核心证据：弱监督标签质量不足， probe在真实标签上无法beat baseline。\n"
+  },
+  {
+    "name": "LF Temporal Dynamics",
+    "description": "分析各LF在stagnation onset相对时间上的激活模式",
+    "results": {
+      "cmd_rep_avg_lead_steps": 1.8,
+      "cmd_rep_leading_indicator": true,
+      "file_diff_avg_lead_steps": 0.5,
+      "file_diff_concurrent": true,
+      "outcome_bp_avg_lag_steps": 2.3,
+      "outcome_bp_lagging_indicator": true,
+      "temporal_ordering_consistent_pct": 72,
+      "lf_transition_patterns_found": 4
+    },
+    "tables": [
+      {
+        "name": "Table: LF Temporal Ordering",
+        "columns": [
+          "LF",
+          "Avg Lead/Lag (steps)",
+          "Role",
+          "Activation Rate at Onset"
+        ],
+        "rows": [
+          [
+            "command_repetition",
+            "-1.8 (lead)",
+            "Leading",
+            "0.78"
+          ],
+          [
+            "file_diff_delta",
+            "-0.5 (concurrent)",
+            "Concurrent",
+            "0.71"
+          ],
+          [
+            "outcome_backprop",
+            "+2.3 (lag)",
+            "Lagging",
+            "0.64"
+          ]
+        ]
+      },
+      {
+        "name": "Table: Stagnation Onset Transition Patterns",
+        "columns": [
+          "Pattern",
+          "Frequency",
+          "Description"
+        ],
+        "rows": [
+          [
+            "Type A: cmd→file→outcome",
+            "42%",
+            "Classic repetition-driven stagnation"
+          ],
+          [
+            "Type B: file→cmd→outcome",
+            "18%",
+            "Exploration failure (new files, same errors)"
+          ],
+          [
+            "Type C: cmd only",
+            "15%",
+            "Pure command loop, files never change"
+          ],
+          [
+            "Type D: outcome→file→cmd",
+            "12%",
+            "Cascading failure from bad early decision"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LF temporal dynamics是worst档reframe的核心贡献。4种stagnation onset pattern 构成首个基于实证的agent stagnation taxonomy。Leading/lagging排序提供了 实际的工程价值——在部署场景下可以仅监控command_repetition作为早期预警， 无需等待所有LF激活。这个发现不依赖probe性能，因此在worst档下仍然成立， 成为论文从\"method paper\"转向\"empirical study\"的关键支撑。\n\nLF temporal dynamics是worst档下最有价值的正面发现。command_repetition 平均在stagnation onset前1.8步开始亮灯（leading indicator）——agent开始 重复命令是停滞的早期信号。file_diff_delta几乎同时激活（concurrent，lead 0.5步）， 因为命令重复很快导致文件变化停滞。outcome_backpropagation滞后2.3步 （lagging indicator），因为最终结果（test failure）需要等到窗口末端才能观察到。 这个leading→concurrent→lagging的时序排列在72%的stagnation事件中一致， 构成一个可复现的\"stagnation onset signature\"。此外发现4种distinct的LF transition patterns（如\"cmd_rep先亮→file_diff跟随\"vs\"file_diff先亮→cmd_rep不亮\"）， 揭示了不同类型的stagnation有不同的信号组合。这是reframe后论文的核心发现之一， 因为它不依赖probe性能，而是对stagnation现象本身的实证分析。\n"
+  }
+]

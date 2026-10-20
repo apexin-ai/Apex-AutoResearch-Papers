@@ -1,0 +1,25 @@
+{
+  "exp_id": "baseline-meanpool-lr",
+  "project": "agent_progress_probe",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:40:02.603Z",
+    "updated_at": "2026-05-14T08:40:02.603Z",
+    "spec": {
+      "command": "python3 baseline_meanpool_lr.py --data_dir data --split_info checkpoints/split_info.json",
+      "server": "gpu-5090-2x-2",
+      "gpu": "cuda:1",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/embeddings.pt",
+      "data_count": 15401,
+      "model_name": "MeanPool + LogisticRegression (sklearn)",
+      "seed": 42,
+      "parent": "emb_001",
+      "hypothesis": "Mean-pooling embeddings + LR establishes a learned-feature baseline; probe should outperform this to validate temporal modeling value"
+    }
+  },
+  "timestamp": "2026-05-14T08:40:02.636824+00:00",
+  "trigger": "update_registry"
+}

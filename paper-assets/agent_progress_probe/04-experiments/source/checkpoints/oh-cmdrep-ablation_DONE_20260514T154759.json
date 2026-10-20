@@ -1,0 +1,93 @@
+{
+  "exp_id": "oh-cmdrep-ablation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:06:06.354Z",
+    "updated_at": "2026-05-14T15:47:59.840Z",
+    "hypothesis": "Removing cmd_rep LF (71% false positive on OH) from OH labels should significantly improve cross-agent probe performance from baseline 0.528 macro_f1",
+    "parent": "cross-agent-eval",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python3 /root/autodl-tmp/agent_progress_probe/oh_cmdrep_ablation.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "65239",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/logs/oh-cmdrep-ablation.log",
+      "submitted_at": "2026-05-14T15:12:26.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings.pt",
+      "data_count": 143057,
+      "model_name": "ProgressProbe-GRU",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/agent_progress_probe/checkpoints/best_model.pt",
+      "eval_data": "/root/autodl-tmp/openhands_data/windows_labeled.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints_oh_nocmdrep/best_model.pt",
+      "hypothesis": "Removing cmd_rep LF (71% false positive on OH) will improve cross-domain performance by eliminating noisy stagnation labels",
+      "parent": "cross-agent-eval",
+      "plan_id": "oh-cmdrep-ablation",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "wall_clock_seconds": 1297.6,
+      "gpu_hours": 0.36
+    },
+    "metrics": {
+      "label_stats": {
+        "original_total": 143057,
+        "lf_coverage_total": 77763,
+        "lf_coverage_note": "windows where file_diff OR outcome_bp fired (union). Includes 5209 disagreement windows not used in training.",
+        "usable_total": 72554,
+        "usable_stag_pct": 58.63,
+        "usable_stag_count": 42536,
+        "usable_prog_count": 30018,
+        "dropped_no_signal": 65294,
+        "dropped_disagreement": 5209,
+        "label_flips": 36416,
+        "conf2_count": 4017,
+        "conf1_count": 68537,
+        "note": "72554 = actual training data (conf>=1 after 2-LF relabel). 77763-72554=5209 windows where file_diff and outcome_bp disagreed (discarded as label=-1)."
+      },
+      "cross_agent_original": {
+        "macro_f1": 0.5298,
+        "f1_stagnation": 0.1513,
+        "f1_progress": 0.9082,
+        "accuracy": 0.8344
+      },
+      "cross_agent_clean": {
+        "macro_f1": 0.6216,
+        "f1_stagnation": 0.5401,
+        "f1_progress": 0.703,
+        "accuracy": 0.6391,
+        "delta_macro_f1": 0.0918
+      },
+      "in_domain_oh_clean": {
+        "macro_f1": 0.9398,
+        "f1_stagnation": 0.9457,
+        "f1_progress": 0.9339,
+        "accuracy": 0.9404,
+        "best_epoch": 5,
+        "best_val_f1": 0.9387,
+        "conf_threshold": 1,
+        "note": "conf>=1 due to domain shift causing extreme class imbalance at conf>=2. NOT directly comparable to SWE-agent in-domain (conf>=2, 0.9055). Cross-domain comparison should use cross_agent_clean vs cross_agent_original only."
+      },
+      "swe_agent_in_domain_ref": {
+        "macro_f1": 0.9055,
+        "conf_threshold": 2
+      },
+      "paper_usage_note": "Cross-domain improvement: 0.530→0.622 macro_f1 (+9.2pp). Do NOT compare OH in-domain (0.940, conf>=1) vs SWE-agent in-domain (0.906, conf>=2) due to different conf thresholds."
+    },
+    "checkpoint_path": "/root/autodl-tmp/openhands_data/ablation_no_cmdrep/best_model.pt",
+    "log_path": "~/runs/agent_progress_probe/oh-cmdrep-ablation.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T15:34:04.483Z"
+  },
+  "timestamp": "2026-05-14T15:47:59.900902+00:00",
+  "trigger": "update_registry"
+}

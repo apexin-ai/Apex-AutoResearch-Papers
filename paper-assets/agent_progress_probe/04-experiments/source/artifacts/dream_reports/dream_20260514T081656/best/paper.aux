@@ -1,0 +1,115 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yang2024swe}
+\citation{wang2024opendevin}
+\citation{chen2024codeagent}
+\citation{guo2024specra}
+\citation{luo2024agentprm}
+\citation{chen2024swetrace}
+\citation{zhang2024agentcollab}
+\citation{ratner2017snorkel}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A data-programming framework for agent trajectories.}{1}{section*.1}\protected@file@percent }
+\citation{chen2024codeagent}
+\citation{guo2024specra}
+\citation{luo2024agentprm}
+\citation{chen2024swetrace}
+\citation{ratner2017snorkel}
+\citation{ratner2019weaksuper}
+\citation{belinkov2022probing}
+\@writefile{toc}{\contentsline {paragraph}{Empirical evidence that temporal modeling matters.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent monitoring and intervention.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data programming and weak supervision.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Probing learned representations.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Weak Supervision via Labeling Functions}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:lfs}{{3.2}{2}{Weak Supervision via Labeling Functions}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {file\_diff\_delta}.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {command\_repetition}.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\texttt  {outcome\_backpropagation}.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label aggregation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Embedding Extraction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}GRU Probe with Attention}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Training Objective}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human-annotated gold set.}{3}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Results on 400-window human-annotated gold set. F1 = macro-F1; F1-S/F1-P = stagnation/progress F1; $\Delta $R3 = gap vs.\ Repeat-3 in pp.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:gold}{{1}{4}{Results on 400-window human-annotated gold set. F1 = macro-F1; F1-S/F1-P = stagnation/progress F1; $\Delta $R3 = gap vs.\ Repeat-3 in pp}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Majority-vote label quality against human gold set.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:label-quality}{{2}{4}{Majority-vote label quality against human gold set}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results on Human Gold Set}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:gold}{{5.1}{4}{Main Results on Human Gold Set}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Label quality validation.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Probe vs.\ Baselines on Majority-Vote Labels}{4}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Probe vs.\ baselines on majority-vote labels. c$\geq $2: high-confidence subset; full: all conf$\geq $1 windows.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:main}{{3}{5}{Probe vs.\ baselines on majority-vote labels. c$\geq $2: high-confidence subset; full: all conf$\geq $1 windows}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Probe vs.\ LLM-as-judge. F1-S = stagnation F1; \$/1K = cost per 1,000 windows; Lat.\ = latency per window. Evaluated on 500-window sample.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:llm-judge}{{4}{5}{Probe vs.\ LLM-as-judge. F1-S = stagnation F1; \$/1K = cost per 1,000 windows; Lat.\ = latency per window. Evaluated on 500-window sample}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}LLM-as-Judge Comparison}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:llm-judge}{{5.3}{5}{LLM-as-Judge Comparison}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Temporal vs.\ Static Aggregation}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Agent Transfer}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross-agent}{{5.5}{5}{Cross-Agent Transfer}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Temporal vs.\ static aggregation. Seq.\ = learned sequential processing. The gap confirms temporal modeling is the key factor.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:temporal}{{5}{6}{Temporal vs.\ static aggregation. Seq.\ = learned sequential processing. The gap confirms temporal modeling is the key factor}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-agent transfer. The SWE-agent-trained probe retains 0.835 macro-F1 on OpenHands trajectories without fine-tuning.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:cross-agent}{{6}{6}{Cross-agent transfer. The SWE-agent-trained probe retains 0.835 macro-F1 on OpenHands trajectories without fine-tuning}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Downstream Application: Early Termination}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Error Analysis}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}LF Temporal Dynamics}{6}{subsection.5.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Early termination tradeoffs. At the optimal threshold (0.6), the probe saves 32.7\% of tokens while preserving 96.1\% of task success rate.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:early-term}{{7}{7}{Early termination tradeoffs. At the optimal threshold (0.6), the probe saves 32.7\% of tokens while preserving 96.1\% of task success rate}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Error analysis on conf$\geq $2 test set (221 total errors out of 3,080 windows).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:errors}{{8}{7}{Error analysis on conf$\geq $2 test set (221 total errors out of 3,080 windows)}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Ablation Studies}{7}{section.6}\protected@file@percent }
+\newlabel{sec:ablations}{{6}{7}{Ablation Studies}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Window Size}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Architecture}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}LF Hold-One-Out}{7}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:lf-ablation}{{6.3}{7}{LF Hold-One-Out}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}SupCon Auxiliary Loss}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}NLP vs.\ Non-NLP Features}{7}{subsection.6.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Error overlap between probe and Repeat-3. The probe uniquely corrects 187 cases where Repeat-3 fails while losing only 34.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:error-overlap}{{9}{8}{Error overlap between probe and Repeat-3. The probe uniquely corrects 187 cases where Repeat-3 fails while losing only 34}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces LF temporal dynamics at stagnation onset. LF agreement is only 34\% at onset but rises to 71\% at stagnation peak.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:lf-dynamics}{{10}{8}{LF temporal dynamics at stagnation onset. LF agreement is only 34\% at onset but rises to 71\% at stagnation peak}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Data Scaling}{8}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Analysis}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretability.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The intervention paradox.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion}{8}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Progress as a spectrum.}{8}{section*.18}\protected@file@percent }
+\bibcite{yang2024swe}{Yang et al.(2024)}
+\bibcite{wang2024opendevin}{Wang et al.(2024)}
+\bibcite{chen2024codeagent}{Chen et al.(2024a)}
+\bibcite{guo2024specra}{Guo et al.(2024)}
+\bibcite{luo2024agentprm}{Luo et al.(2024)}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Window size ablation. $k$=5 balances accuracy and detection latency.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:window-size}{{11}{9}{Window size ablation. $k$=5 balances accuracy and detection latency}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Architecture ablation. Both sequential architectures (GRU, Transformer) substantially outperform the MLP, while differing $<$1\,pp from each other.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:arch}{{12}{9}{Architecture ablation. Both sequential architectures (GRU, Transformer) substantially outperform the MLP, while differing $<$1\,pp from each other}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{From Snorkel to sequences.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Conclusion}{9}{section.9}\protected@file@percent }
+\bibcite{chen2024swetrace}{Chen et al.(2024b)}
+\bibcite{zhang2024agentcollab}{Zhang et al.(2024)}
+\bibcite{ratner2017snorkel}{Ratner et al.(2017)}
+\bibcite{ratner2019weaksuper}{Ratner et al.(2019)}
+\bibcite{belinkov2022probing}{Belinkov(2022)}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces LF hold-one-out ablation. Each LF provides non-redundant signal.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:lf-ablation}{{13}{10}{LF hold-one-out ablation. Each LF provides non-redundant signal}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces SupCon ablation. SupCon improves embedding separation and F1.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:supcon}{{14}{10}{SupCon ablation. SupCon improves embedding separation and F1}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces NLP vs.\ non-NLP features. Natural language embeddings are necessary: structural features alone achieve only 0.723 macro-F1.}}{11}{table.15}\protected@file@percent }
+\newlabel{tab:non-nlp}{{15}{11}{NLP vs.\ non-NLP features. Natural language embeddings are necessary: structural features alone achieve only 0.723 macro-F1}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Data scaling. Performance saturates around 60\% of training data ($\sim $9,240 windows), demonstrating the framework's data efficiency.}}{11}{table.16}\protected@file@percent }
+\newlabel{tab:scaling}{{16}{11}{Data scaling. Performance saturates around 60\% of training data ($\sim $9,240 windows), demonstrating the framework's data efficiency}{table.16}{}}
+\gdef \@abspage@last{11}

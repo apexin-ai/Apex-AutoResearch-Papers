@@ -1,0 +1,24 @@
+{
+  "exp_id": "cosinesim-check",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:52:28.224Z",
+    "updated_at": "2026-05-14T15:52:33.315Z",
+    "spec": {
+      "command": "python cosinesim_analysis.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/embeddings.pt",
+      "data_count": 1824,
+      "model_name": "CosineSim baseline (adjacent step similarity)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    }
+  },
+  "timestamp": "2026-05-14T15:52:33.377435+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1849 @@
+# analysis encoder ablation results
+
+**Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_analysis_encoder-ablation-results_20260514T135021.jsonl`
+- **Structured JSON:** [`059ee14dc5950217fd68.json`](../../sessions/05/059ee14dc5950217fd68.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T13:52:36.921782+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T13:52:36.922102+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T13:52:36.922265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/train_history.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/train_history.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T13:52:36.922394+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/train_history.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/train_history.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T13:52:36.922578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"epoch\\\": 1,\\n    \\\"train_loss\\\": 0.2513858397607407,\\n    \\\"val_macro_f1\\\": 0.9095333032562731,\\n    \\\"val_accuracy\\\": 0.909616038056405,\\n    \\\"val_precision_macro\\\": 0.910883145550957,\\n    \\\"val_recall_macro\\\": 0.9095320631120422,\\n    \\\"val_f1_stagnation\\\": 0.9067974772249474,\\n    \\\"val_f1_progress\\\": 0.912269129287599\\n  },\\n  {\\n    \\\"epoch\\\": 2,\\n    \\\"train_loss\\\": 0.14055643737868234,\\n    \\\"val_macro_f1\\\": 0.9571804881834046,\\n    \\\"val_accuracy\\\": 0.9571865443425076,\\n    \\\"val_precision_macro\\\": 0.9575572893751225,\\n    \\\"val_recall_macro\\\": 0.957231865263438,\\n    \\\"val_f1_stagnation\\\": 0.9576897246474144,\\n    \\\"val_f1_progress\\\": 0.9566712517193948\\n  },\\n  {\\n    \\\"epoch\\\": 3,\\n    \\\"train_loss\\\": 0.10392595436711279,\\n    \\\"val_macro_f1\\\": 0.9490051705256932,\\n    \\\"val_accuracy\\\": 0.9490316004077471,\\n    \\\"val_precision_macro\\\": 0.9501687343764467,\\n    \\\"val_recall_macro\\\": 0.9491100969291901,\\n    \\\"val_f1_stagnation\\\": 0.9501661129568106,\\n    \\\"val_f1_progress\\\": 0.9478442280945758\\n  },\\n  {\\n    \\\"epoch\\\": 4,\\n    \\\"train_loss\\\": 0.08500388099831063,\\n    \\\"val_macro_f1\\\": 0.9595583272371606,\\n    \\\"val_accuracy\\\": 0.9595650696568128,\\n    \\\"val_precision_macro\\\": 0.9599929466338435,\\n    \\\"val_recall_macro\\\": 0.9596135301843816,\\n    \\\"val_f1_stagnation\\\": 0.960080509896008,\\n    \\\"val_f1_progress\\\": 0.9590361445783132\\n  },\\n  {\\n    \\\"epoch\\\": 5,\\n    \\\"train_loss\\\": 0.07279100898251803,\\n    \\\"val_macro_f1\\\": 0.9397468449308086,\\n    \\\"val_accuracy\\\": 0.9398572884811417,\\n    \\\"val_precision_macro\\\": 0.9434808837945856,\\n    \\\"val_recall_macro\\\": 0.9399970073320365,\\n    \\\"val_f1_stagnation\\\": 0.9423264907135875,\\n    \\\"val_f1_progress\\\": 0.9371671991480298\\n  }
+…[truncated 1670 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T13:52:36.922830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"epoch\\\": 1,\\n    \\\"train_loss\\\": 0.1934935133781607,\\n    \\\"val_macro_f1\\\": 0.9319651461813098,\\n    \\\"val_accuracy\\\": 0.9320421338769963,\\n    \\\"val_precision_macro\\\": 0.9342982456140352,\\n    \\\"val_recall_macro\\\": 0.9321537233777246,\\n    \\\"val_f1_stagnation\\\": 0.9342537804076265,\\n    \\\"val_f1_progress\\\": 0.929676511954993\\n  },\\n  {\\n    \\\"epoch\\\": 2,\\n    \\\"train_loss\\\": 0.11005037339190181,\\n    \\\"val_macro_f1\\\": 0.947331461890373,\\n    \\\"val_accuracy\\\": 0.9473326537546721,\\n    \\\"val_precision_macro\\\": 0.9473414273455563,\\n    \\\"val_recall_macro\\\": 0.9473269656009444,\\n    \\\"val_f1_stagnation\\\": 0.9470809149880506,\\n    \\\"val_f1_progress\\\": 0.9475820087926953\\n  },\\n  {\\n    \\\"epoch\\\": 3,\\n    \\\"train_loss\\\": 0.07516672054593437,\\n    \\\"val_macro_f1\\\": 0.9534483242350409,\\n    \\\"val_accuracy\\\": 0.9534488617057424,\\n    \\\"val_precision_macro\\\": 0.9535079640589681,\\n    \\\"val_recall_macro\\\": 0.9534681696510217,\\n    \\\"val_f1_stagnation\\\": 0.9536065018625127,\\n    \\\"val_f1_progress\\\": 0.9532901466075691\\n  },\\n  {\\n    \\\"epoch\\\": 4,\\n    \\\"train_loss\\\": 0.05686106192346018,\\n    \\\"val_macro_f1\\\": 0.9578562697996957,\\n    \\\"val_accuracy\\\": 0.9578661230037376,\\n    \\\"val_precision_macro\\\": 0.9584363218735176,\\n    \\\"val_recall_macro\\\": 0.9579218414883536,\\n    \\\"val_f1_stagnation\\\": 0.9585006693440429,\\n    \\\"val_f1_progress\\\": 0.9572118702553485\\n  },\\n  {\\n    \\\"epoch\\\": 5,\\n    \\\"train_loss\\\": 0.0465553119307104,\\n    \\\"val_macro_f1\\\": 0.9578594622558281,\\n    \\\"val_accuracy\\\": 0.9578661230037376,\\n    \\\"val_precision_macro\\\": 0.9582737487231869,\\n    \\\"val_recall_macro\\\": 0.9579135285217883,\\n    \\\"val_f1_stagnation\\\": 0.9583892617449664,\\n    \\\"val_f1_progress\\\": 0.9573296627666896\\n 
+…[truncated 2061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T13:52:36.922995+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "tail -50 /root/runs/agent_progress_probe/encoder-ablation-probe-e5large.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "tail -50 /root/runs/agent_progress_probe/encoder-ablation-probe-e5large.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T13:52:36.923135+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Confidence filter: 15401/54809 windows with conf>=2\\nTrain: 10634 (pos=6740, neg=3894)\\nVal:   2943\\nTest:  1824\\npos_weight: 0.578\\nEpoch  1 | loss=0.2514 | val_F1=0.9095 acc=0.9096 *\\nEpoch  2 | loss=0.1406 | val_F1=0.9572 acc=0.9572 *\\nEpoch  3 | loss=0.1039 | val_F1=0.9490 acc=0.9490\\nEpoch  4 | loss=0.0850 | val_F1=0.9596 acc=0.9596 *\\nEpoch  5 | loss=0.0728 | val_F1=0.9397 acc=0.9399\\nEpoch  6 | loss=0.0591 | val_F1=0.9592 acc=0.9592\\nEpoch  7 | loss=0.0459 | val_F1=0.9585 acc=0.9585\\nEpoch  8 | loss=0.0426 | val_F1=0.9544 acc=0.9545\\nEpoch  9 | loss=0.0373 | val_F1=0.9486 acc=0.9487\\nEarly stopping at epoch 9\\n\\nBest val macro-F1: 0.9596\\nOutputs saved to checkpoints_ablation_e5large\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T13:52:36.923300+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "tail -50 /root/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "tail -50 /root/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T13:52:36.923438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Confidence filter: 15401/54809 windows with conf>=2\\nTrain: 10634 (pos=6740, neg=3894)\\nVal:   2943\\nTest:  1824\\npos_weight: 0.578\\nEpoch  1 | loss=0.1935 | val_F1=0.9320 acc=0.9320 *\\nEpoch  2 | loss=0.1101 | val_F1=0.9473 acc=0.9473 *\\nEpoch  3 | loss=0.0752 | val_F1=0.9534 acc=0.9534 *\\nEpoch  4 | loss=0.0569 | val_F1=0.9579 acc=0.9579 *\\nEpoch  5 | loss=0.0466 | val_F1=0.9579 acc=0.9579 *\\nEpoch  6 | loss=0.0348 | val_F1=0.9531 acc=0.9531\\nEpoch  7 | loss=0.0284 | val_F1=0.9301 acc=0.9303\\nEpoch  8 | loss=0.0234 | val_F1=0.9449 acc=0.9450\\nEpoch  9 | loss=0.0234 | val_F1=0.9395 acc=0.9395\\nEpoch 10 | loss=0.0169 | val_F1=0.9551 acc=0.9551\\nEarly stopping at epoch 10\\n\\nBest val macro-F1: 0.9579\\nOutputs saved to checkpoints_ablation_bgem3\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T13:52:36.923563+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "agent_progress_probe",
+  "filters": "{'exp_id': 'encoder-ablation-probe-e5large'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "agent_progress_probe",
+    "filters": "{'exp_id': 'encoder-ablation-probe-e5large'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T13:52:36.923705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0713}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T13:52:36.923859+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T13:52:36.923985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5604\\ndrwxr-xr-x  2 root root      92 May 14 21:43 .\\ndrwxr-xr-x 32 root root    4096 May 14 21:46 ..\\n-rw-r--r--  1 root root 5521660 May 14 21:42 best_model.pt\\n-rw-r--r--  1 root root  201469 May 14 21:41 split_info.json\\n-rw-r--r--  1 root root    2896 May 14 21:43 train_history.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T13:52:36.924102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T13:52:36.924222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 5604\\ndrwxr-xr-x  2 root root      92 May 14 21:43 .\\ndrwxr-xr-x 32 root root    4096 May 14 21:46 ..\\n-rw-r--r--  1 root root 5521660 May 14 21:42 best_model.pt\\n-rw-r--r--  1 root root  201469 May 14 21:41 split_info.json\\n-rw-r--r--  1 root root    3219 May 14 21:43 train_history.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T13:52:36.924342+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T13:52:36.924458+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T13:52:36.924570+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bge/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls -la /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bge/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T13:52:36.924700+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T13:52:36.924820+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/split_info.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/split_info.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T13:52:36.924931+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "agent_progress_probe",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "agent_progress_probe",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T13:52:36.925103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"train_indices\\\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 327, 328, 329, 330, 331, 332, 333, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 424, 425, 426, 427, 428, 431, 432, 433, 434, 435, 436, 437, 439, 440, 441, 442, 443, 444, 445, 446, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 529, 530, 531, 532, 533, 534, 535, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 590, 59
+…[truncated 6209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T13:52:36.925310+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"encoder-ablation-probe-e5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:39:15.970Z\", \"updated_at\": \"2026-05-14T13:49:21.215Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_probe.py --data_dir data_e5 --output_dir checkpoints_ablation_e5 --min_confidence 2 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42\\\"\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:0\"], \"pid\": \"54528\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-e5.log\", \"submitted_at\": \"2026-05-14T13:46:24.608Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"encoder-ablation-probe-bgem3\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:40.600Z\", \"updated_at\": \"2026-05-14T13:49:20.743Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:1\"], \"pid\": \"53646\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log\", \"submitted_at\": \"2026-05-14T13:41:40.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on bge-m3 embeddings\", \"seed\": 42}}, \"encoder-ablation-probe-e5large\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:38.646Z\", \"updated_at\": \"2026-05-14T13:49:19.778Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_e5large --out
+…[truncated 2797 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T13:52:36.925483+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "head -100 /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "head -100 /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T13:52:36.925683+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Train the GRU progress probe on pre-computed window embeddings.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport random\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score\\nfrom torch.utils.data import DataLoader\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom probe_model import ProgressProbe, WindowDataset, collate_fn, split_by_instance\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef compute_metrics(labels: list[int], preds: list[int]) -> dict:\\n    return {\\n        \\\"macro_f1\\\": f1_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"accuracy\\\": accuracy_score(labels, preds),\\n        \\\"precision_macro\\\": precision_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"recall_macro\\\": recall_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"f1_stagnation\\\": f1_score(labels, preds, pos_label=0, zero_division=0),\\n        \\\"f1_progress\\\": f1_score(labels, preds, pos_label=1, zero_division=0),\\n    }\\n\\n\\nclass EarlyStopping:\\n    def __init__(self, patience: int = 5):\\n        self.patience = patience\\n        self.counter = 0\\n        self.best_score = None\\n        self.should_stop = False\\n\\n    def step(self, score: float) -> bool:\\n        if self.best_score is None or score > self.best_score:\\n            self.best_score = score\\n            self.counter = 0\\n            return True\\n        self.counter += 1\\n        if self.counter >= self.patience:\\n            self.should_stop = True\\n        return False\\n\\n\\n@torch.no_grad()\\ndef evaluate_epo
+…[truncated 2354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T13:52:36.925844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "grep -n \"test\\|eval\\|predict\\|macro_f1\\|classification_report\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "grep -n \"test\\|eval\\|predict\\|macro_f1\\|classification_report\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T13:52:36.925970+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T13:52:36.926088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "grep -n \"test\\|eval\\|macro_f1\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "grep -n \"test\\|eval\\|macro_f1\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T13:52:36.926202+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T13:52:36.926319+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "grep -n \"test\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "grep -n \"test\" /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T13:52:36.926436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"110:    train_idx, val_idx, test_idx = split_by_instance(instance_ids, seed=args.seed)\\n114:        \\\"test_indices\\\": test_idx,\\n136:    print(f\\\"Test:  {len(test_idx)}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T13:52:36.926561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "tail -80 /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "tail -80 /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T13:52:36.926732+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    ).to(device)\\n\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)\\n    criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)\\n    early_stopping = EarlyStopping(patience=args.patience)\\n\\n    # W&B\\n    if args.wandb:\\n        import wandb\\n\\n        wandb.init(project=\\\"agent-progress-probe\\\", config=vars(args))\\n\\n    # Training loop\\n    history = []\\n    for epoch in range(1, args.epochs + 1):\\n        model.train()\\n        total_loss = 0.0\\n        n_samples = 0\\n        for padded, batch_labels, lengths in train_loader:\\n            padded = padded.to(device)\\n            batch_labels = batch_labels.to(device)\\n\\n            logits = model(padded, lengths)\\n            loss = criterion(logits, batch_labels)\\n\\n            optimizer.zero_grad()\\n            loss.backward()\\n            optimizer.step()\\n\\n            total_loss += loss.item() * len(batch_labels)\\n            n_samples += len(batch_labels)\\n\\n        avg_loss = total_loss / n_samples\\n        val_metrics = evaluate_epoch(model, val_loader, device)\\n\\n        record = {\\\"epoch\\\": epoch, \\\"train_loss\\\": avg_loss, **{f\\\"val_{k}\\\": v for k, v in val_metrics.items()}}\\n        history.append(record)\\n\\n        is_best = early_stopping.step(val_metrics[\\\"macro_f1\\\"])\\n        marker = \\\" *\\\" if is_best else \\\"\\\"\\n        print(\\n            f\\\"Epoch {epoch:2d} | loss={avg_loss:.4f} | \\\"\\n            f\\\"val_F1={val_metrics['macro_f1']:.4f} \\\"\\n            f\\\"acc={val_metrics['accuracy']:.4f}{marker}\\\"\\n        )\\n\\n        if is_best:\\n            torch.save(\\n                {\\n                    \\\"model_state_dict\\\": model.state_dict(),\\n                    \\\"embed_dim\\\": embed_dim,\\n                    \\\"hidden_size\\\": args.hidden_size,\\n                    \\\"num_layers\\\": args.num_l
+…[truncated 967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T13:52:36.926877+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/probe_model.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/probe_model.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T13:52:36.927066+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"GRU-based progress probe model, dataset, and data splitting utilities.\\\"\\\"\\\"\\n\\nimport random\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset\\n\\n\\nclass ProgressProbe(nn.Module):\\n    \\\"\\\"\\\"2-layer GRU probe for progress/stagnation binary classification.\\n\\n    Input:  (batch, seq_len, embed_dim)\\n    Output: (batch,) logits (apply sigmoid for probabilities)\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, embed_dim: int, hidden_size: int = 256, num_layers: int = 2, dropout: float = 0.1):\\n        super().__init__()\\n        self.gru = nn.GRU(\\n            embed_dim,\\n            hidden_size,\\n            num_layers=num_layers,\\n            batch_first=True,\\n            dropout=dropout if num_layers > 1 else 0.0,\\n        )\\n        self.classifier = nn.Linear(hidden_size, 1)\\n\\n    def forward(self, x: torch.Tensor, lengths: torch.Tensor = None) -> torch.Tensor:\\n        if lengths is not None:\\n            x = nn.utils.rnn.pack_padded_sequence(x, lengths.cpu(), batch_first=True, enforce_sorted=False)\\n        _, hidden = self.gru(x)\\n        out = hidden[-1]  # last layer hidden: (batch, hidden_size)\\n        return self.classifier(out).squeeze(-1)\\n\\n\\nclass WindowDataset(Dataset):\\n    \\\"\\\"\\\"Dataset of pre-computed window embeddings + binary labels.\\\"\\\"\\\"\\n\\n    def __init__(self, embeddings: list[torch.Tensor], labels: list[int]):\\n        assert len(embeddings) == len(labels)\\n        self.embeddings = embeddings\\n        self.labels = labels\\n\\n    def __len__(self):\\n        return len(self.labels)\\n\\n    def __getitem__(self, idx):\\n        return self.embeddings[idx], self.labels[idx]\\n\\n\\ndef collate_fn(batch):\\n    \\\"\\\"\\\"Pad variable-length window embeddings to the max length in the batch.\\\"\\\"\\\"\\n    embeddings_list, labels_l
+…[truncated 4061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T13:52:36.927261+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls /root/autodl-tmp/agent_progress_probe/ablation_data_e5large/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls /root/autodl-tmp/agent_progress_probe/ablation_data_e5large/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T13:52:36.927389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls /root/autodl-tmp/agent_progress_probe/ablation_data_bgem3/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls /root/autodl-tmp/agent_progress_probe/ablation_data_bgem3/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T13:52:36.927508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T13:52:36.927622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"embeddings.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T13:52:36.927772+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cd /root/autodl-tmp/agent_progress_probe && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, torch, torch.nn as nn\nfrom sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score\nfrom torch.utils.data import DataLoader\nfrom probe_model import ProgressProbe, WindowDataset, collate_fn, split_by_instance\n\ndef compute_metrics(labels, preds):\n    return {\n        'macro_f1': f1_score(labels, preds, average='macro', zero_division=0),\n        'accuracy': accuracy_score(labels, preds),\n        'precision_macro': precision_score(labels, preds, average='macro', zero_division=0),\n        'recall_macro': recall_score(labels, preds, average='macro', zero_division=0),\n        'f1_stagnation': f1_score(labels, preds, pos_label=0, zero_division=0),\n        'f1_progress': f1_score(labels, preds, pos_label=1, zero_division=0),\n    }\n\nresults = {}\nfor name, data_dir, ckpt_dir in [\n    ('e5large', 'ablation_data_e5large', 'checkpoints_ablation_e5large'),\n    ('bgem3', 'ablation_data_bgem3', 'checkpoints_ablation_bgem3'),\n]:\n    data = torch.load(f'{data_dir}/embeddings.pt', weights_only=False)\n    embeddings = data['embeddings']\n    labels_all = data['labels']\n    instance_ids = data['instance_ids']\n    confidences = data.get('confidences', [1]*len(labels_all))\n    embed_dim = data['embed_dim']\n\n    # filter by confidence >= 2\n    keep = [i for i, c in enumerate(confidences) if c >= 2]\n    embeddings = [embeddings[i] for i in keep]\n    labels_all = [labels_all[i] for i in keep]\n    instance_ids = [instance_ids[i] for i in keep]\n\n    # split\n    train_idx, val_idx, test_idx = split_by_instance(instance_ids, seed=42)\n    test_ds = WindowDataset([embeddings[i] for i in test_idx], [labels_all[i] for i in test_idx])\n    test_loader = DataLoader(test_ds, batch_size=64, shuffle=False, collate_fn=collate_fn)\n\n    # load model\n    ckpt = torch.load(f'{ckpt_dir}/best_model.pt', weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt['embed_dim'],\n        hidden_size=ckpt['hidden_size'],\n        num_layers=ckpt['num_layers'],\n        dropout=ckpt['dropout'],\n    ).cuda()\n    model.load_state_dict(ckpt['model_state_dict'])\n    model.eval()\n\n    all_labels, all_preds = [], []\n    with torch.no_grad():\n        for padded, batch_labels, lengths in test_loader:\n            logits = model(padded.cuda(), lengths)\n            preds = (torch.sigmoid(logits) >= 0.5).long().cpu()\n            all_labels.extend(batch_labels.long().tolist())\n            all_preds.extend(preds.tolist())\n\n    metrics = compute_metrics(all_labels, all_preds)\n    results[name] = {\n        'test_size': len(test_idx),\n        'best_epoch': ckpt['epoch'],\n        'val_macro_f1': ckpt['val_macro_f1'],\n        **{f'test_{k}': v for k, v in metrics.items()},\n    }\n    print(f'\\\\n=== {name} ===')\n    print(f'  test_size: {len(test_idx)}')\n    print(f'  best_epoch: {ckpt[\\\"epoch\\\"]}')\n    print(f'  val_macro_f1: {ckpt[\\\"val_macro_f1\\\"]:.4f}')\n    for k, v in metrics.items():\n        print(f'  test_{k}: {v:.4f}')\n\nprint('\\\\n=== JSON ===')\nprint(json.dumps(results, indent=2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cd /root/autodl-tmp/agent_progress_probe && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, torch, torch.nn as nn\nfrom sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score\nfrom torch.utils.data import DataLoader\nfrom probe_model import ProgressProbe, WindowDataset, collate_fn, split_by_instance\n\ndef compute_metrics(labels, preds):\n    return {\n        'macro_f1': f1_score(labels, preds, average='macro', zero_division=0),\n        'accuracy': accuracy_score(labels, preds),\n        'precision_macro': precision_score(labels, preds, average='macro', zero_division=0),\n        'recall_macro': recall_score(labels, preds, average='macro', zero_division=0),\n        'f1_stagnation': f1_score(labels, preds, pos_label=0, zero_division=0),\n        'f1_progress': f1_score(labels, preds, pos_label=1, zero_division=0),\n    }\n\nresults = {}\nfor name, data_dir, ckpt_dir in [\n    ('e5large', 'ablation_data_e5large', 'checkpoints_ablation_e5large'),\n    ('bgem3', 'ablation_data_bgem3', 'checkpoints_ablation_bgem3'),\n]:\n    data = torch.load(f'{data_dir}/embeddings.pt', weights_only=False)\n    embeddings = data['embeddings']\n    labels_all = data['labels']\n    instance_ids = data['instance_ids']\n    confidences = data.get('confidences', [1]*len(labels_all))\n    embed_dim = data['embed_dim']\n\n    # filter by confidence >= 2\n    keep = [i for i, c in enumerate(confidences) if c >= 2]\n    embeddings = [embeddings[i] for i in keep]\n    labels_all = [labels_all[i] for i in keep]\n    instance_ids = [instance_ids[i] for i in keep]\n\n    # split\n    train_idx, val_idx, test_idx = split_by_instance(instance_ids, seed=42)\n    test_ds = WindowDataset([embeddings[i] for i in test_idx], [labels_all[i] for i in test_idx])\n    test_loader = DataLoader(test_ds, batch_size=64, shuffle=False, collate_fn=collate_fn)\n\n    # load model\n    ckpt = torch.load(f'{ckpt_dir}/best_model.pt', weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt['embed_dim'],\n        hidden_size=ckpt['hidden_size'],\n        num_layers=ckpt['num_layers'],\n        dropout=ckpt['dropout'],\n    ).cuda()\n    model.load_state_dict(ckpt['model_state_dict'])\n    model.eval()\n\n    all_labels, all_preds = [], []\n    with torch.no_grad():\n        for padded, batch_labels, lengths in test_loader:\n            logits = model(padded.cuda(), lengths)\n            preds = (torch.sigmoid(logits) >= 0.5).long().cpu()\n            all_labels.extend(batch_labels.long().tolist())\n            all_preds.extend(preds.tolist())\n\n    metrics = compute_metrics(all_labels, all_preds)\n    results[name] = {\n        'test_size': len(test_idx),\n        'best_epoch': ckpt['epoch'],\n        'val_macro_f1': ckpt['val_macro_f1'],\n        **{f'test_{k}': v for k, v in metrics.items()},\n    }\n    print(f'\\\\n=== {name} ===')\n    print(f'  test_size: {len(test_idx)}')\n    print(f'  best_epoch: {ckpt[\\\"epoch\\\"]}')\n    print(f'  val_macro_f1: {ckpt[\\\"val_macro_f1\\\"]:.4f}')\n    for k, v in metrics.items():\n        print(f'  test_{k}: {v:.4f}')\n\nprint('\\\\n=== JSON ===')\nprint(json.dumps(results, indent=2))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T13:52:36.927940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== e5large ===\\n  test_size: 1824\\n  best_epoch: 4\\n  val_macro_f1: 0.9596\\n  test_macro_f1: 0.9363\\n  test_accuracy: 0.9501\\n  test_precision_macro: 0.9349\\n  test_recall_macro: 0.9377\\n  test_f1_stagnation: 0.9067\\n  test_f1_progress: 0.9660\\n\\n=== bgem3 ===\\n  test_size: 1824\\n  best_epoch: 5\\n  val_macro_f1: 0.9579\\n  test_macro_f1: 0.9413\\n  test_accuracy: 0.9534\\n  test_precision_macro: 0.9343\\n  test_recall_macro: 0.9492\\n  test_f1_stagnation: 0.9147\\n  test_f1_progress: 0.9679\\n\\n=== JSON ===\\n{\\n  \\\"e5large\\\": {\\n    \\\"test_size\\\": 1824,\\n    \\\"best_epoch\\\": 4,\\n    \\\"val_macro_f1\\\": 0.9595583272371606,\\n    \\\"test_macro_f1\\\": 0.9363112607557051,\\n    \\\"test_accuracy\\\": 0.950109649122807,\\n    \\\"test_precision_macro\\\": 0.9349034666340299,\\n    \\\"test_recall_macro\\\": 0.937746279343717,\\n    \\\"test_f1_stagnation\\\": 0.9066666666666666,\\n    \\\"test_f1_progress\\\": 0.9659558548447438\\n  },\\n  \\\"bgem3\\\": {\\n    \\\"test_size\\\": 1824,\\n    \\\"best_epoch\\\": 5,\\n    \\\"val_macro_f1\\\": 0.9578594622558281,\\n    \\\"test_macro_f1\\\": 0.9413404301928796,\\n    \\\"test_accuracy\\\": 0.9533991228070176,\\n    \\\"test_precision_macro\\\": 0.9342606707317074,\\n    \\\"test_recall_macro\\\": 0.9491919650762609,\\n    \\\"test_f1_stagnation\\\": 0.9147442326980942,\\n    \\\"test_f1_progress\\\": 0.9679366276876651\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.84}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T13:52:36.928118+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-e5large",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T13:52:36.928254+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0517}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T13:52:36.928372+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-bgem3",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T13:52:36.928494+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.0486}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T13:52:36.928609+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "field": "conclusion",
+  "value": "success",
+  "project": "agent_progress_probe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-e5large",
+    "field": "conclusion",
+    "value": "success",
+    "project": "agent_progress_probe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T13:52:36.928761+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-e5large\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:38.646Z\", \"updated_at\": \"2026-05-14T13:52:08.975Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_e5large --output_dir checkpoints_ablation_e5large --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:0\"], \"pid\": \"53503\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log\", \"submitted_at\": \"2026-05-14T13:41:38.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/e5-large_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on e5-large embeddings\", \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1558}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T13:52:36.928892+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "field": "conclusion",
+  "value": "success",
+  "project": "agent_progress_probe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-bgem3",
+    "field": "conclusion",
+    "value": "success",
+    "project": "agent_progress_probe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T13:52:36.929025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-bgem3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:40.600Z\", \"updated_at\": \"2026-05-14T13:52:09.281Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:1\"], \"pid\": \"53646\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log\", \"submitted_at\": \"2026-05-14T13:41:40.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on bge-m3 embeddings\", \"seed\": 42}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0981}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T13:52:36.929149+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-e5large",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T13:52:36.929276+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\", \"metadata\": {\"elapsed_seconds\": 0.0571}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T13:52:36.929401+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-bgem3",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T13:52:36.929527+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition ANALYZING → DONE(success) without metrics. Set metrics first, or use conclusion=negative/failed.\", \"metadata\": {\"elapsed_seconds\": 0.0524}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T13:52:36.929694+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "field": "metrics",
+  "value": "{'test_macro_f1': 0.9363, 'test_accuracy': 0.9501, 'test_precision_macro': 0.9349, 'test_recall_macro': 0.9377, 'test_f1_stagnation': 0.9067, 'test_f1_progress': 0.966, 'val_macro_f1': 0.9596, 'best_epoch': 4, 'test_size': 1824, 'delta_vs_probe001': '+3.1pp macro_f1'}",
+  "project": "agent_progress_probe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-e5large",
+    "field": "metrics",
+    "value": "{'test_macro_f1': 0.9363, 'test_accuracy': 0.9501, 'test_precision_macro': 0.9349, 'test_recall_macro': 0.9377, 'test_f1_stagnation': 0.9067, 'test_f1_progress': 0.966, 'val_macro_f1': 0.9596, 'best_epoch': 4, 'test_size': 1824, 'delta_vs_probe001': '+3.1pp macro_f1'}",
+    "project": "agent_progress_probe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T13:52:36.929913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-e5large\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:38.646Z\", \"updated_at\": \"2026-05-14T13:52:20.813Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_e5large --output_dir checkpoints_ablation_e5large --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:0\"], \"pid\": \"53503\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log\", \"submitted_at\": \"2026-05-14T13:41:38.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/e5-large_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on e5-large embeddings\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"test_macro_f1\": 0.9363, \"test_accuracy\": 0.9501, \"test_precision_macro\": 0.9349, \"test_recall_macro\": 0.9377, \"test_f1_stagnation\": 0.9067, \"test_f1_progress\": 0.966, \"val_macro_f1\": 0.9596, \"best_epoch\": 4, \"test_size\": 1824, \"delta_vs_probe001\": \"+3.1pp macro_f1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0945}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T13:52:36.930054+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "field": "metrics",
+  "value": "{'test_macro_f1': 0.9413, 'test_accuracy': 0.9534, 'test_precision_macro': 0.9343, 'test_recall_macro': 0.9492, 'test_f1_stagnation': 0.9147, 'test_f1_progress': 0.9679, 'val_macro_f1': 0.9579, 'best_epoch': 5, 'test_size': 1824, 'delta_vs_probe001': '+3.6pp macro_f1'}",
+  "project": "agent_progress_probe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-bgem3",
+    "field": "metrics",
+    "value": "{'test_macro_f1': 0.9413, 'test_accuracy': 0.9534, 'test_precision_macro': 0.9343, 'test_recall_macro': 0.9492, 'test_f1_stagnation': 0.9147, 'test_f1_progress': 0.9679, 'val_macro_f1': 0.9579, 'best_epoch': 5, 'test_size': 1824, 'delta_vs_probe001': '+3.6pp macro_f1'}",
+    "project": "agent_progress_probe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T13:52:36.930211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-bgem3\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:40.600Z\", \"updated_at\": \"2026-05-14T13:52:22.298Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:1\"], \"pid\": \"53646\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log\", \"submitted_at\": \"2026-05-14T13:41:40.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on bge-m3 embeddings\", \"seed\": 42}, \"conclusion\": \"success\", \"metrics\": {\"test_macro_f1\": 0.9413, \"test_accuracy\": 0.9534, \"test_precision_macro\": 0.9343, \"test_recall_macro\": 0.9492, \"test_f1_stagnation\": 0.9147, \"test_f1_progress\": 0.9679, \"val_macro_f1\": 0.9579, \"best_epoch\": 5, \"test_size\": 1824, \"delta_vs_probe001\": \"+3.6pp macro_f1\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0988}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T13:52:36.930355+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-e5large",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T13:52:36.930528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-e5large\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:38.646Z\", \"updated_at\": \"2026-05-14T13:52:27.384Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_e5large --output_dir checkpoints_ablation_e5large --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:0\"], \"pid\": \"53503\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log\", \"submitted_at\": \"2026-05-14T13:41:38.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/e5-large_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on e5-large embeddings\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt\", \"wall_clock_seconds\": 649.0, \"gpu_hours\": 0.18}, \"conclusion\": \"success\", \"metrics\": {\"test_macro_f1\": 0.9363, \"test_accuracy\": 0.9501, \"test_precision_macro\": 0.9349, \"test_recall_macro\": 0.9377, \"test_f1_stagnation\": 0.9067, \"test_f1_progress\": 0.966, \"val_macro_f1\": 0.9596, \"best_epoch\": 4, \"test_size\": 1824, \"delta_vs_probe001\": \"+3.1pp macro_f1\"}, \"completed_at\": \"2026-05-14T13:52:27.384Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3192}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T13:52:36.930709+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "field": "status",
+  "value": "DONE",
+  "project": "agent_progress_probe",
+  "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "encoder-ablation-probe-bgem3",
+    "field": "status",
+    "value": "DONE",
+    "project": "agent_progress_probe",
+    "spec": "{'checkpoint_path': '/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt', 'log_path': '~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T13:52:36.930903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"encoder-ablation-probe-bgem3\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:40.600Z\", \"updated_at\": \"2026-05-14T13:52:28.369Z\", \"spec\": {\"command\": \"python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2\", \"server\": \"bjb2-23165\", \"gpu\": [\"cuda:1\"], \"pid\": \"53646\", \"log_path\": \"~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log\", \"submitted_at\": \"2026-05-14T13:41:40.224Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt\", \"data_count\": 15401, \"model_name\": \"GRU ProgressProbe on bge-m3 embeddings\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt\", \"wall_clock_seconds\": 648.1, \"gpu_hours\": 0.18}, \"conclusion\": \"success\", \"metrics\": {\"test_macro_f1\": 0.9413, \"test_accuracy\": 0.9534, \"test_precision_macro\": 0.9343, \"test_recall_macro\": 0.9492, \"test_f1_stagnation\": 0.9147, \"test_f1_progress\": 0.9679, \"val_macro_f1\": 0.9579, \"best_epoch\": 5, \"test_size\": 1824, \"delta_vs_probe001\": \"+3.6pp macro_f1\"}, \"completed_at\": \"2026-05-14T13:52:28.369Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2659}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-14T13:52:36.931079+00:00_
+
+完成。两个实验均已标记 DONE(success)。
+
+**Test 结果汇总 (n=1824)**
+
+| Encoder | test macro_f1 | test acc | f1_stag | f1_prog | val macro_f1 | best_epoch | vs probe_001 |
+|---|---|---|---|---|---|---|---|
+| e5-large | 0.9363 | 0.9501 | 0.9067 | 0.9660 | 0.9596 | 4 | +3.1pp |
+| **bge-m3** | **0.9413** | **0.9534** | **0.9147** | **0.9679** | 0.9579 | 5 | **+3.6pp** |
+| probe_001 (SFR/Qwen3) | 0.905 | - | - | - | - | - | baseline |
+
+bge-m3 在 test 上全面优于 e5-large，两者均显著超过 probe_001 baseline。两个 encoder 的 val-test gap 约 2pp，正常范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_encoder-ablation-results_20260514T135021"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,34 @@
+{
+  "exp_id": "openhands-fewshot-probe",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:21:29.626Z",
+    "updated_at": "2026-05-14T14:29:36.525Z",
+    "spec": {
+      "checkpoint_path": "N/A (eval-only, no checkpoint)",
+      "log_path": "~/runs/agent_progress_probe/openhands-fewshot-probe.log"
+    },
+    "metrics": {
+      "zero_shot_macro_f1": 0.532,
+      "zero_shot_f1_stag": 0.2,
+      "fewshot_5pct_macro_f1": 0.5695,
+      "fewshot_10pct_macro_f1": 0.5744,
+      "fewshot_20pct_macro_f1": 0.6106,
+      "fewshot_50pct_macro_f1": 0.688,
+      "fewshot_50pct_f1_stag": 0.441,
+      "swe_agent_indomain_macro_f1": 0.906,
+      "swe_agent_indomain_f1_stag": 0.859,
+      "gap_50pct_vs_indomain_pp": -21.8,
+      "bottleneck": "LF agent-specificity (command_repetition 71% false positive on OH stagnation windows), not data quantity. Supports D017 reframing.",
+      "finding": "Few-shot improves monotonically (0.53→0.69) but plateaus far below in-domain (0.91). LF reliability is the ceiling, not probe adaptation."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T14:29:36.525Z"
+  },
+  "timestamp": "2026-05-14T14:29:36.599269+00:00",
+  "trigger": "update_registry"
+}

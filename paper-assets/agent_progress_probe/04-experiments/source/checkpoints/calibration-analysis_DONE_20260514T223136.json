@@ -1,0 +1,27 @@
+{
+  "exp_id": "calibration-analysis",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:31:05.997Z",
+    "updated_at": "2026-05-14T22:31:36.295Z",
+    "hypothesis": "Probe calibration analysis: ECE, reliability diagram, confidence histogram, temperature scaling on SWE test set.",
+    "spec": {
+      "command": "python dual_gpu_analysis.py (task B)",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/",
+      "data_count": 1824,
+      "model_name": "probe_001 calibration",
+      "seed": 42,
+      "checkpoint_path": "results/calibration_analysis.json",
+      "log_path": "results/calibration_analysis.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T22:31:36.295Z"
+  },
+  "timestamp": "2026-05-14T22:31:36.407244+00:00",
+  "trigger": "update_registry"
+}

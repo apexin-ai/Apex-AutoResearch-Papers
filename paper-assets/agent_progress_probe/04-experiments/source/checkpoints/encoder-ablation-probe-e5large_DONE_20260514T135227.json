@@ -1,0 +1,48 @@
+{
+  "exp_id": "encoder-ablation-probe-e5large",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:41:38.646Z",
+    "updated_at": "2026-05-14T13:52:27.384Z",
+    "spec": {
+      "command": "python train_probe.py --data_dir ablation_data_e5large --output_dir checkpoints_ablation_e5large --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "53503",
+      "log_path": "~/runs/agent_progress_probe/encoder-ablation-probe-e5large.log",
+      "submitted_at": "2026-05-14T13:41:38.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/ablation_embeddings/e5-large_embeddings.pt",
+      "data_count": 15401,
+      "model_name": "GRU ProgressProbe on e5-large embeddings",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_e5large/best_model.pt",
+      "wall_clock_seconds": 649.0,
+      "gpu_hours": 0.18
+    },
+    "conclusion": "success",
+    "metrics": {
+      "test_macro_f1": 0.9363,
+      "test_accuracy": 0.9501,
+      "test_precision_macro": 0.9349,
+      "test_recall_macro": 0.9377,
+      "test_f1_stagnation": 0.9067,
+      "test_f1_progress": 0.966,
+      "val_macro_f1": 0.9596,
+      "best_epoch": 4,
+      "test_size": 1824,
+      "delta_vs_probe001": "+3.1pp macro_f1"
+    },
+    "completed_at": "2026-05-14T13:52:27.384Z"
+  },
+  "timestamp": "2026-05-14T13:52:27.443437+00:00",
+  "trigger": "update_registry"
+}

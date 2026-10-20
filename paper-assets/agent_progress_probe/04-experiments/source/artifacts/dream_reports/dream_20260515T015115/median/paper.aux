@@ -1,0 +1,57 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Monitoring and Stagnation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process Reward Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak Supervision and Data Programming.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM Self-Reflection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Weak Supervision Pipeline}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Method comparison under LF-derived vs.\ gold evaluation on 650 annotated windows. $^\ddagger $Tautological. $^\dagger $Dry-run proxy. The probe shows the smallest LF-to-gold drop (6.5pp), indicating robustness to label noise. Structural methods drop 10.5--11.5pp, quantifying circular inflation.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:lf-vs-gold}{{1}{3}{Method comparison under LF-derived vs.\ gold evaluation on 650 annotated windows. $^\ddagger $Tautological. $^\dagger $Dry-run proxy. The probe shows the smallest LF-to-gold drop (6.5pp), indicating robustness to label noise. Structural methods drop 10.5--11.5pp, quantifying circular inflation}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Detection Approaches}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural Features.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GRU Neural Probe.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Gold Annotation}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Gold-Validated Method Comparison}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:gold-eval}{{4.1}{3}{Gold-Validated Method Comparison}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gold-MV disagreement window analysis. Columns Str./Probe/LLM show the percentage of disagreement windows each method classifies correctly (matching gold). Semantically diverse stagnation (MV=Prog, Gold=Stag) dominates at 79\%.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:disagree}{{2}{4}{Gold-MV disagreement window analysis. Columns Str./Probe/LLM show the percentage of disagreement windows each method classifies correctly (matching gold). Semantically diverse stagnation (MV=Prog, Gold=Stag) dominates at 79\%}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LLM-as-judge variants evaluated on 650 gold windows. Few-shot + CoT improves by 8pp over zero-shot but remains 13pp behind structural methods at $>$500$\times $ the latency and non-trivial monetary cost.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:llm-judge}{{3}{4}{LLM-as-judge variants evaluated on 650 gold windows. Few-shot + CoT improves by 8pp over zero-shot but remains 13pp behind structural methods at $>$500$\times $ the latency and non-trivial monetary cost}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Gold-MV Disagreement Analysis}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:gold-disagree}{{4.2}{4}{Gold-MV Disagreement Analysis}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}LLM-as-Judge Variants}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:llm-judge}{{4.3}{4}{LLM-as-Judge Variants}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Feature overlap ablation. Removing 12 LF-aligned features reduces gold F1 by 9pp. The non-circular residual (0.80) falls below the probe (0.84), indicating that structural methods' gold-eval advantage partially depends on LF-aligned features.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:ablation}{{4}{5}{Feature overlap ablation. Removing 12 LF-aligned features reduces gold F1 by 9pp. The non-circular residual (0.80) falls below the probe (0.84), indicating that structural methods' gold-eval advantage partially depends on LF-aligned features}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-agent structural GB with instance isolation. Removing 47 shared SWE-bench instances between train (SWE-Agent) and test (OpenHands) reduces GB F1 by 3.7pp---a real but small leakage effect that does not invalidate the cross-agent transfer advantage.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:instance-isolation}{{5}{5}{Cross-agent structural GB with instance isolation. Removing 47 shared SWE-bench instances between train (SWE-Agent) and test (OpenHands) reduces GB F1 by 3.7pp---a real but small leakage effect that does not invalidate the cross-agent transfer advantage}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Structural Feature Overlap Ablation}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ablation}{{4.4}{5}{Structural Feature Overlap Ablation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Agent Instance Isolation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:cross-agent}{{4.5}{5}{Cross-Agent Instance Isolation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Circular Evaluation as a Finding}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:circular}{{4.6}{6}{Circular Evaluation as a Finding}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When to Use Which Method.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Semantic Diverse Stagnation.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Gold-MV Agreement Matrix}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:confusion}{{A}{7}{Gold-MV Agreement Matrix}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Gold-MV agreement confusion matrix ($N$=650). Agreement rate 86\%, Cohen's $\kappa $=0.68. The dominant disagreement mode is MV=Prog/Gold=Stag (72 windows): semantically diverse stagnation that all LFs miss.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:confusion}{{6}{7}{Gold-MV agreement confusion matrix ($N$=650). Agreement rate 86\%, Cohen's $\kappa $=0.68. The dominant disagreement mode is MV=Prog/Gold=Stag (72 windows): semantically diverse stagnation that all LFs miss}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Gold-Validated Claim Revision}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:revision}{{B}{7}{Gold-Validated Claim Revision}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Summary of claim revisions after gold validation. All headline numbers become more conservative, but the qualitative findings and method ranking are preserved.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:revision}{{7}{7}{Summary of claim revisions after gold validation. All headline numbers become more conservative, but the qualitative findings and method ranking are preserved}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Top Non-Circular Features}{7}{appendix.C}\protected@file@percent }
+\newlabel{app:features}{{C}{7}{Top Non-Circular Features}{appendix.C}{}}
+\gdef \@abspage@last{7}

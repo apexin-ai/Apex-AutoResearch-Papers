@@ -1,0 +1,14 @@
+{
+  "exp_id": "d073-llm-on-oh",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:26:45.357Z",
+    "updated_at": "2026-05-16T03:13:22.578Z"
+  },
+  "timestamp": "2026-05-16T03:13:22.743337+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "temporal-label-model",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:35:57.276Z",
+    "updated_at": "2026-05-14T17:36:22.712Z",
+    "spec": {
+      "command": "python run_tlm.py && python train_eval_tlm.py",
+      "server": "bjb2-23165",
+      "data_path": "data/windows_labeled.jsonl + data/embeddings.pt",
+      "data_count": 54809,
+      "model_name": "TWV (Gaussian σ=3.0) + HMM-TLM (2-state, 3-LF emission, EM)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints_tlm_{mv,twv,hmm}/best_model.pt",
+      "log_path": "/tmp/run_tlm.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "twv": {
+        "mv_agreement": 0.8849,
+        "conf2_f1": 0.9003,
+        "smoothness_reduction_pct": 64,
+        "conf1_flip_rate": 0.141
+      },
+      "hmm": {
+        "mv_agreement": 0.6852,
+        "conf2_f1": 0.7502,
+        "stag_overpredict": true
+      },
+      "mv_baseline_conf2_f1": 0.8946,
+      "twv_improvement_pp": 0.57,
+      "finding": "TWV Gaussian temporal smoothing improves probe quality on conf>=2 cross-eval (+0.57pp F1). HMM over-predicts stagnation. TWV recommended for Claim 1."
+    },
+    "completed_at": "2026-05-14T17:36:22.712Z"
+  },
+  "timestamp": "2026-05-14T17:36:22.790428+00:00",
+  "trigger": "update_registry"
+}

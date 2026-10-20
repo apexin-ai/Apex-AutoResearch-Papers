@@ -1,0 +1,69 @@
+{
+  "exp_id": "oh-cmdrep-ablation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:06:06.354Z",
+    "updated_at": "2026-05-14T23:04:52.481Z",
+    "hypothesis": "Removing cmd_rep LF (71% false positive on OH) from OH labels should significantly improve cross-agent probe performance from baseline 0.528 macro_f1",
+    "parent": "cross-agent-eval",
+    "spec": {
+      "command": "python3 oh_cmdrep_ablation_fixed.py --device cuda:1 && python3 cmdrep_conf1.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "65239",
+      "log_path": "/tmp/cmdrep_ablation_fixed.log",
+      "submitted_at": "2026-05-14T15:12:26.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings_fixed.pt",
+      "data_count": 143057,
+      "model_name": "ProgressProbe (GRU, 256h, 2L)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/agent_progress_probe/checkpoints/best_model.pt",
+      "eval_data": "/root/autodl-tmp/openhands_data/windows_labeled.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints_oh_nocmdrep_fixed/best_model.pt",
+      "hypothesis": "Removing cmd_rep LF (71% false positive on OH) will improve cross-domain performance by eliminating noisy stagnation labels",
+      "parent": "cross-agent-eval",
+      "plan_id": "oh-cmdrep-ablation",
+      "gpu_ids": [
+        "cuda:1"
+      ],
+      "wall_clock_seconds": 1297.6,
+      "gpu_hours": 0.36
+    },
+    "metrics": {
+      "data_source": "embeddings_fixed.pt (stag=21.45%)",
+      "new_stag_ratio_3lf": 0.2145,
+      "new_stag_ratio_2lf_conf2": 0.9629,
+      "new_stag_ratio_2lf_conf1": 0.5863,
+      "zeroshot_3lf_macro_f1": 0.5186,
+      "zeroshot_2lf_conf2_macro_f1": 0.2381,
+      "zeroshot_2lf_conf1_macro_f1": 0.4389,
+      "finetune_3lf_macro_f1": 0.9763,
+      "finetune_2lf_conf2_macro_f1": 0.9113,
+      "finetune_2lf_conf1_macro_f1": 0.9238,
+      "delta_ft_conf2": -0.065,
+      "delta_ft_conf1": -0.0525,
+      "old_3lf_ft": 0.7512,
+      "old_2lf_ft": 0.9272,
+      "old_delta": 0.176,
+      "finding": "With fixed labels, removing cmd_rep HURTS by 5-6.5pp (was +17.6pp with buggy data). Old claim was artifact of label bug.",
+      "2lf_conf2_n_windows": 4017,
+      "2lf_conf1_n_windows": 72554,
+      "3lf_n_windows": 143057
+    },
+    "checkpoint_path": "/root/autodl-tmp/openhands_data/ablation_no_cmdrep/best_model.pt",
+    "log_path": "~/runs/agent_progress_probe/oh-cmdrep-ablation.log",
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T15:34:04.483Z"
+  },
+  "timestamp": "2026-05-14T23:04:52.578777+00:00",
+  "trigger": "update_registry"
+}

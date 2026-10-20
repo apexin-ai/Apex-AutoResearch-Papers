@@ -1,0 +1,73 @@
+{
+  "exp_id": "d073-s2-new-lf",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:16:49.187Z",
+    "updated_at": "2026-05-16T03:17:15.972Z",
+    "spec": {
+      "command": "python new_lf_design.py",
+      "server": "bjb2-23165",
+      "data_path": "SWE windows + gold set",
+      "data_count": 601,
+      "model_name": "6-LF MV ensemble",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "new_lfs": {
+        "low_file_diversity": {
+          "threshold": "files/actions <= 0.1",
+          "gold_coverage": 0.403,
+          "stag_precision": 0.703,
+          "full_coverage": 0.241
+        },
+        "action_entropy": {
+          "threshold": "norm_entropy < 0.3",
+          "gold_coverage": 0.245,
+          "stag_precision": 0.741,
+          "full_coverage": 0.118
+        },
+        "output_stagnation": {
+          "threshold": "obs_sim >= 0.8, run >= 3",
+          "gold_coverage": 0.208,
+          "stag_precision": 0.8,
+          "full_coverage": 0.098
+        },
+        "error_repetition": {
+          "threshold": ">= 4 same error",
+          "gold_coverage": 0.042,
+          "stag_precision": 0.84,
+          "full_coverage": 0.028
+        }
+      },
+      "mv_comparison_gold": {
+        "3lf_mv_macro_f1": 0.682,
+        "6lf_mv_macro_f1": 0.719,
+        "7lf_mv_macro_f1": 0.724,
+        "delta_6lf_vs_3lf_pp": 3.7,
+        "f1_stag_3lf": 0.559,
+        "f1_stag_6lf": 0.622,
+        "stag_recall_improvement_pp": 10.6
+      },
+      "label_shift": {
+        "total_windows": 214000,
+        "changed_labels": 16702,
+        "change_pct": 7.8,
+        "direction": "bias toward stagnation"
+      },
+      "conflict_rate": 0.422,
+      "conflict_threshold": 0.15,
+      "rerun_twv_recommended": true,
+      "finding": "6-LF MV +3.7pp over 3-LF on gold. 42.2% conflict rate >> 15% threshold. TWV/TLM rerun needed."
+    },
+    "checkpoint_path": "artifacts/d073/new_lf_analysis.json",
+    "log_path": "logs/workers/worker_analysis_d073-s2-new-lf-design_20260516T025932.log",
+    "completed_at": "2026-05-16T03:17:15.972Z"
+  },
+  "timestamp": "2026-05-16T03:17:16.114366+00:00",
+  "trigger": "update_registry"
+}

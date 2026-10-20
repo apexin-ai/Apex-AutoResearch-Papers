@@ -1,0 +1,11 @@
+Structural Data Scaling Results (same splits as GRU probe data-scaling-v2)
+
+Ratio  | RF macro_f1 | GB macro_f1 | RF f1_stag | GB f1_stag | RF f1_prog | GB f1_prog
+10%    | 0.9909      | 0.9873      | 0.9866     | 0.9814     | 0.9951     | 0.9933
+25%    | 0.9916      | 0.9930      | 0.9877     | 0.9897     | 0.9955     | 0.9963
+50%    | 0.9951      | 0.9951      | 0.9928     | 0.9928     | 0.9974     | 0.9974
+100%   | 0.9951      | 0.9951      | 0.9928     | 0.9928     | 0.9974     | 0.9974
+
+Conclusion: Structural RF/GB performance is nearly flat across all data ratios.
+Max degradation at 10% is only -0.0042 (RF) / -0.0078 (GB) macro_f1.
+GRU probe drops from 0.9055 to 0.8054 (-0.1001) over the same range.

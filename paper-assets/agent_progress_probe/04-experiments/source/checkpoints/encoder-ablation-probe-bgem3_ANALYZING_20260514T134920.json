@@ -1,0 +1,31 @@
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "project": "agent_progress_probe",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:41:40.600Z",
+    "updated_at": "2026-05-14T13:49:20.743Z",
+    "spec": {
+      "command": "python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "53646",
+      "log_path": "~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log",
+      "submitted_at": "2026-05-14T13:41:40.224Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt",
+      "data_count": 15401,
+      "model_name": "GRU ProgressProbe on bge-m3 embeddings",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T13:49:20.783389+00:00",
+  "trigger": "update_registry"
+}

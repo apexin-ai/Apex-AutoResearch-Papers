@@ -1,0 +1,26 @@
+{
+  "exp_id": "structural-data-scaling",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:51:06.636Z",
+    "updated_at": "2026-05-14T19:51:26.587Z",
+    "spec": {
+      "command": "python structural_data_scaling.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 15401,
+      "model_name": "RF+GB structural baseline",
+      "seed": 42,
+      "checkpoint_source": "n/a",
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/results_structural_data_scaling.json",
+      "log_path": "/tmp/struct_scaling.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T19:51:26.680922+00:00",
+  "trigger": "update_registry"
+}

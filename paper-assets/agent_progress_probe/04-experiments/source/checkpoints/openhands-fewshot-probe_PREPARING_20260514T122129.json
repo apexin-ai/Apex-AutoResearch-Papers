@@ -1,0 +1,23 @@
+{
+  "exp_id": "openhands-fewshot-probe",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:21:29.626Z",
+    "updated_at": "2026-05-14T12:21:29.626Z",
+    "spec": {
+      "hypothesis": "With minimal agent-specific fine-tuning data (10/20/50% of OpenHands labeled windows), the SWE-agent-trained probe recovers high macro-F1 on OpenHands, validating that probe architecture generalizes but requires agent-specific calibration (D017 Framing A)",
+      "plan_id": "cross-agent",
+      "parent": "cross-agent-eval",
+      "model_name": "GRU ProgressProbe (fine-tuned on OpenHands)",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings.pt + /root/autodl-tmp/agent_progress_probe/openhands_data/windows_labeled.jsonl",
+      "data_count": 154743,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T12:21:29.656984+00:00",
+  "trigger": "update_registry"
+}

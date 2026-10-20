@@ -1,0 +1,21 @@
+{
+  "exp_id": "outcome-bp-sensitivity",
+  "project": "agent_progress_probe",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:48:43.236Z",
+    "updated_at": "2026-05-14T12:12:20.062Z",
+    "spec": {
+      "hypothesis": "Probe is robust to removal of outcome_backpropagation LF, confirming it does not depend on post-hoc labels",
+      "plan_id": "outcome-bp-sensitivity",
+      "model_name": "GRU ProgressProbe",
+      "data_count": 54809,
+      "parent": "probe-002"
+    }
+  },
+  "timestamp": "2026-05-14T12:12:20.079473+00:00",
+  "trigger": "update_registry"
+}

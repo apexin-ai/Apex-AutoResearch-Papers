@@ -1,0 +1,27 @@
+{
+  "exp_id": "cross-encoder-consistency",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:27:06.811Z",
+    "updated_at": "2026-05-14T22:31:27.266Z",
+    "hypothesis": "Cross-encoder prediction consistency: 3 probes (STE/E5/BGE-M3) inference on SWE test set, measuring agreement rate and correlation.",
+    "spec": {
+      "command": "python dual_gpu_analysis.py (task A)",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/",
+      "data_count": 269,
+      "model_name": "STE+E5+BGE-M3 probes",
+      "seed": 42,
+      "checkpoint_path": "results/cross_encoder_consistency.json",
+      "log_path": "results/cross_encoder_consistency.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T22:31:27.266Z"
+  },
+  "timestamp": "2026-05-14T22:31:27.365552+00:00",
+  "trigger": "update_registry"
+}

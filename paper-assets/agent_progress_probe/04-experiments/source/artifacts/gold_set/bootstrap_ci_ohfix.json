@@ -1,0 +1,71 @@
+{
+  "n_bootstrap": 10000,
+  "seed": 42,
+  "tests": {
+    "gb_vs_mv": {
+      "model_a": "Structural GB",
+      "model_b": "MV Labels",
+      "n_samples": 195,
+      "n_bootstrap": 10000,
+      "f1_a_on_shared": 0.764361,
+      "f1_b_on_shared": 0.718383,
+      "observed_delta": 0.045978,
+      "ci_95_lo": 0.006214,
+      "ci_95_hi": 0.088402,
+      "p_value": 0.0121,
+      "significant_005": true
+    },
+    "gb_vs_gru_probe": {
+      "model_a": "Structural GB",
+      "model_b": "GRU Probe",
+      "n_samples": 132,
+      "n_bootstrap": 10000,
+      "f1_a_on_shared": 0.784716,
+      "f1_b_on_shared": 0.734833,
+      "observed_delta": 0.049882,
+      "ci_95_lo": -0.015686,
+      "ci_95_hi": 0.120116,
+      "p_value": 0.0698,
+      "significant_005": false
+    },
+    "rf_vs_gb": {
+      "model_a": "Structural RF",
+      "model_b": "Structural GB",
+      "n_samples": 195,
+      "n_bootstrap": 10000,
+      "f1_a_on_shared": 0.751621,
+      "f1_b_on_shared": 0.764361,
+      "observed_delta": -0.01274,
+      "ci_95_lo": -0.037209,
+      "ci_95_hi": 0.00933,
+      "p_value": 0.136,
+      "significant_005": false
+    },
+    "twv_probe_vs_gb": {
+      "model_a": "TWV Probe",
+      "model_b": "Structural GB",
+      "n_samples": 132,
+      "n_bootstrap": 10000,
+      "f1_a_on_shared": 0.768421,
+      "f1_b_on_shared": 0.784716,
+      "observed_delta": -0.016295,
+      "ci_95_lo": -0.066553,
+      "ci_95_hi": 0.030622,
+      "p_value": 0.2536,
+      "significant_005": false
+    },
+    "twv_probe_vs_gru_probe": {
+      "model_a": "TWV Probe",
+      "model_b": "GRU Probe",
+      "n_samples": 132,
+      "n_bootstrap": 10000,
+      "f1_a_on_shared": 0.768421,
+      "f1_b_on_shared": 0.734833,
+      "observed_delta": 0.033588,
+      "ci_95_lo": -0.029252,
+      "ci_95_hi": 0.099071,
+      "p_value": 0.1499,
+      "significant_005": false
+    }
+  }
+}

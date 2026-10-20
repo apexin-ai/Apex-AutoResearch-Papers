@@ -1,0 +1,71 @@
+{
+  "exp_id": "tlm-comprehensive-comparison",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:18:28.660Z",
+    "updated_at": "2026-05-15T02:19:37.947Z",
+    "spec": {
+      "command": "run_tlm_comprehensive.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 54809,
+      "model_name": "FlyingSquid+Snorkel+probe",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints_tlm_fs/",
+      "log_path": "/tmp/tlm_probe_train.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mv_baseline": {
+        "self_f1": 0.8468,
+        "mv_agreement": 1,
+        "conf2_f1": 0.8946,
+        "mv_all_f1": 0.8468
+      },
+      "twv_sigma2": {
+        "self_f1": 0.8107,
+        "mv_agreement": 0.885,
+        "conf2_f1": 0.9003,
+        "mv_all_f1": 0.8211,
+        "delta_conf2_pp": 0.6
+      },
+      "hmm": {
+        "self_f1": 0.9657,
+        "mv_agreement": 0.685,
+        "conf2_f1": 0.7502,
+        "mv_all_f1": 0.6564,
+        "stag_overpredict": true
+      },
+      "lag_hmm": {
+        "self_f1": 0.7882,
+        "mv_agreement": 0.82,
+        "conf2_f1": 0.8936,
+        "mv_all_f1": 0.7496
+      },
+      "flyingsquid": {
+        "self_f1": 0.8186,
+        "mv_agreement": 0.82,
+        "conf2_f1": 0.7816,
+        "mv_all_f1": 0.7343,
+        "delta_conf2_pp": -11.3,
+        "divergent_pattern": "all progress->stagnation",
+        "n_divergent": 9841
+      },
+      "snorkel": {
+        "self_f1": 0.9068,
+        "mv_agreement": 0.423,
+        "conf2_f1": 0.2582,
+        "mv_all_f1": 0.3768,
+        "note": "catastrophic failure with 3 LFs"
+      },
+      "finding": "Both generative label models (FlyingSquid, Snorkel) assume i.i.d. and perform worse than MV. Snorkel catastrophic (0.258). Supports paper claim that 3-LF regime has too little conflict for any aggregation to beat MV."
+    },
+    "completed_at": "2026-05-15T02:19:37.947Z"
+  },
+  "timestamp": "2026-05-15T02:19:38.099047+00:00",
+  "trigger": "update_registry"
+}

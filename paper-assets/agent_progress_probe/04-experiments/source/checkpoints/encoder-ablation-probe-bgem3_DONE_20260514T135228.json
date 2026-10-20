@@ -1,0 +1,48 @@
+{
+  "exp_id": "encoder-ablation-probe-bgem3",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:41:40.600Z",
+    "updated_at": "2026-05-14T13:52:28.369Z",
+    "spec": {
+      "command": "python train_probe.py --data_dir ablation_data_bgem3 --output_dir checkpoints_ablation_bgem3 --lr 1e-3 --batch_size 32 --epochs 20 --hidden_size 256 --num_layers 2 --seed 42 --min_confidence 2",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "53646",
+      "log_path": "~/runs/agent_progress_probe/encoder-ablation-probe-bgem3.log",
+      "submitted_at": "2026-05-14T13:41:40.224Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/ablation_embeddings/bge-m3_embeddings.pt",
+      "data_count": 15401,
+      "model_name": "GRU ProgressProbe on bge-m3 embeddings",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/checkpoints_ablation_bgem3/best_model.pt",
+      "wall_clock_seconds": 648.1,
+      "gpu_hours": 0.18
+    },
+    "conclusion": "success",
+    "metrics": {
+      "test_macro_f1": 0.9413,
+      "test_accuracy": 0.9534,
+      "test_precision_macro": 0.9343,
+      "test_recall_macro": 0.9492,
+      "test_f1_stagnation": 0.9147,
+      "test_f1_progress": 0.9679,
+      "val_macro_f1": 0.9579,
+      "best_epoch": 5,
+      "test_size": 1824,
+      "delta_vs_probe001": "+3.6pp macro_f1"
+    },
+    "completed_at": "2026-05-14T13:52:28.369Z"
+  },
+  "timestamp": "2026-05-14T13:52:28.413360+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,71 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jimenez2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Monitoring and Stagnation Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak Supervision and Data Programming.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Methodology.}{2}{section*.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LF--Gold agreement by confidence level. Overall $\kappa {=}0.38$ (``fair'' on Landis--Koch scale) with a dominant false-negative pattern: 48\% of true stagnation is missed by LFs.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:lf-gold}{{1}{3}{LF--Gold agreement by confidence level. Overall $\kappa {=}0.38$ (``fair'' on Landis--Koch scale) with a dominant false-negative pattern: 48\% of true stagnation is missed by LFs}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Setup}{3}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{3}{Problem Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Task.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agents and Data.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Labeling Functions.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gold Annotation.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}LF--Gold Agreement Analysis}{3}{section.4}\protected@file@percent }
+\newlabel{sec:agreement}{{4}{3}{LF--Gold Agreement Analysis}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-LF Analysis.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-LF agreement with gold labels.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:per-lf}{{2}{4}{Per-LF agreement with gold labels}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Label reliability by confidence. Even conf$\geq $2 labels carry 37\% error rate against gold, invalidating their use as pseudo-ground-truth.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:conf-reliability}{{3}{4}{Label reliability by confidence. Even conf$\geq $2 labels carry 37\% error rate against gold, invalidating their use as pseudo-ground-truth}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for Conf$\geq $2 Evaluation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}The Collapse: Models on Gold Labels}{4}{section.5}\protected@file@percent }
+\newlabel{sec:collapse}{{5}{4}{The Collapse: Models on Gold Labels}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Structural Features}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Structural model performance collapse: LF-label vs.\ gold-label evaluation. Near-perfect LF-label F1 drops by 38--44 pp on gold.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:structural-collapse}{{4}{5}{Structural model performance collapse: LF-label vs.\ gold-label evaluation. Near-perfect LF-label F1 drops by 38--44 pp on gold}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces GRU probe performance on LF vs.\ gold labels. Probes collapse less than structural models ($-$34 vs.\ $-$42 pp) but converge to the same gold-label range.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:probe-collapse}{{5}{5}{GRU probe performance on LF vs.\ gold labels. Probes collapse less than structural models ($-$34 vs.\ $-$42 pp) but converge to the same gold-label range}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Embedding Probes}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}The Convergence}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Agent Transfer on Gold}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces All models on gold labels. The 33-point gap between structural features and LLM judge under LF evaluation collapses to 2 points under gold evaluation.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:convergence}{{6}{6}{All models on gold labels. The 33-point gap between structural features and LLM judge under LF evaluation collapses to 2 points under gold evaluation}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-agent structural performance. The ``strong transfer'' narrative (0.967) collapses to near-random on gold (0.52).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:cross-agent}{{7}{6}{Cross-agent structural performance. The ``strong transfer'' narrative (0.967) collapses to near-random on gold (0.52)}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Failure Taxonomy}{6}{section.6}\protected@file@percent }
+\newlabel{sec:taxonomy}{{6}{6}{Failure Taxonomy}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Semantically diverse stagnation}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Edit-revert loops}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic exploration}{6}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-subtype model performance.}{6}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Stagnation failure taxonomy. LFs achieve high recall only on the trivial category (structural loops, $\sim $20\% of gold stagnation). The dominant category---semantically diverse stagnation---is missed 73\% of the time.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:taxonomy}{{8}{7}{Stagnation failure taxonomy. LFs achieve high recall only on the trivial category (structural loops, $\sim $20\% of gold stagnation). The dominant category---semantically diverse stagnation---is missed 73\% of the time}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Stagnation F1 by subtype on gold labels. All methods fail on semantically complex stagnation. LLM-judge shows a slight advantage on semantic-diverse stagnation (0.38 vs.\ 0.25) but the absolute performance remains poor.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:per-subtype}{{9}{7}{Stagnation F1 by subtype on gold labels. All methods fail on semantically complex stagnation. LLM-judge shows a slight advantage on semantic-diverse stagnation (0.38 vs.\ 0.25) but the absolute performance remains poor}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Temporal Dynamics as LF Diagnostics}{7}{section.7}\protected@file@percent }
+\newlabel{sec:temporal}{{7}{7}{Temporal Dynamics as LF Diagnostics}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Onset Alignment}{7}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Reinterpretation}{7}{subsection.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Temporal onset alignment between LF-detected and gold-annotated stagnation. Only 28\% of LF onsets align with human judgments. Mean offset of 3.8 steps approaches the full window width ($k{=}5$).}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:onset}{{10}{8}{Temporal onset alignment between LF-detected and gold-annotated stagnation. Only 28\% of LF onsets align with human judgments. Mean offset of 3.8 steps approaches the full window width ($k{=}5$)}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Temporal label model quality on gold. All TLM variants perform equal to or worse than simple majority vote. HMM's learned transition matrix encodes LF bias, degrading gold accuracy to 0.45.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:tlm}{{11}{8}{Temporal label model quality on gold. All TLM variants perform equal to or worse than simple majority vote. HMM's learned transition matrix encodes LF bias, degrading gold accuracy to 0.45}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Temporal Label Models: A Negative Finding}{8}{section.8}\protected@file@percent }
+\newlabel{sec:tlm}{{8}{8}{Temporal Label Models: A Negative Finding}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Time-Weighted Voting (TWV)}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{HMM Label Model}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lag-Aware HMM}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Discussion}{9}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Agent Monitoring.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Weak Supervision.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What Would Work?}{9}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Limitations}{9}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{9}{section.11}\protected@file@percent }
+\gdef \@abspage@last{10}

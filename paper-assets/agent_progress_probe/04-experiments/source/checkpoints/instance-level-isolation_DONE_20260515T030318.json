@@ -1,0 +1,26 @@
+{
+  "exp_id": "instance-level-isolation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:01:15.515Z",
+    "updated_at": "2026-05-15T03:03:18.052Z",
+    "conclusion": "success",
+    "spec": {
+      "command": "python src/analysis/instance_level_isolation.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/ + /root/autodl-tmp/openhands_data/",
+      "data_count": "SWE 1683 instances, OH 3409 instances, overlap 356",
+      "model_name": "GB/RF structural (instance-isolated)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/artifacts/instance-isolation/results.json"
+    },
+    "completed_at": "2026-05-15T03:01:50.682Z"
+  },
+  "timestamp": "2026-05-15T03:03:18.188807+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,9 @@
+Results JSON at server bjb2-23165:/root/autodl-tmp/agent_progress_probe/checkpoints_oh_full/results.json
+
+Summary:
+- OH test macro_f1=0.7512, accuracy=0.9241, f1_stag=0.5439, f1_prog=0.9586
+- Zero-shot macro_f1=0.5318
+- SWE backward transfer macro_f1=0.6000 (delta=-0.1892 from original 0.7892)
+- Best epoch: 20/20, train=101713 windows, 3409 instances
+- Scaling curve: 0%=0.532, 5%=0.570, 10%=0.574, 20%=0.611, 50%=0.688, 100%=0.751
+- Checkpoint: checkpoints_oh_full/best_model.pt

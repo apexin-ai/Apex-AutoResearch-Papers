@@ -1,0 +1,10 @@
+See cross_label_eval_results.json on server at /root/autodl-tmp/agent_progress_probe/cross_label_eval_results.json
+
+Key numbers:
+- Label agreement: 100% (43402/43402 where both have labels, 0 disagreements)
+- 2-LF abstain: 11407/54809 (20.8%)
+- Coverage: 3-LF conf>=2 = 15401 (28.1%), 2-LF conf>=2 = 10243 (18.7%)
+- OB contribution: 5158 additional confident labels (33.5% of 3-LF set)
+- probe_001 on own test (3-LF GT, N=1824): macro_f1=0.9055
+- without-ob on own test (2-LF GT conf>=2, N=1519): macro_f1=0.9510
+- Split leakage detected: 206/297 and 203/344 instances overlap → cross-model eval invalid

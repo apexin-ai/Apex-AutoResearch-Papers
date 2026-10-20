@@ -1,0 +1,97 @@
+{
+  "experiment": "E7: Probe on OH gold windows (Set B conf≥2)",
+  "date": "2026-05-15",
+  "oh_gold_coverage": {
+    "total_oh_gold": 169,
+    "has_embeddings": 158,
+    "coverage_pct": 93.5,
+    "embedding_source": "/root/autodl-tmp/openhands_data/embeddings_fixed.pt",
+    "embedding_dim": 1024,
+    "total_embeddings_in_file": 143057
+  },
+  "oh_gold_label_dist": {
+    "stagnation": 5,
+    "progress": 164,
+    "progress_pct": 97.0
+  },
+  "gru_probe": {
+    "oh_only": {
+      "n_eval": 158,
+      "macro_f1": 0.4751,
+      "f1_stag": 0.0930,
+      "f1_prog": 0.8571,
+      "accuracy": 0.7532
+    },
+    "swe_only": {
+      "n_eval": 323,
+      "macro_f1": 0.7871,
+      "f1_stag": 0.7528,
+      "f1_prog": 0.8213,
+      "accuracy": 0.7926
+    },
+    "all": {
+      "n_eval": 481,
+      "macro_f1": 0.7494,
+      "f1_stag": 0.6624,
+      "f1_prog": 0.8364,
+      "accuracy": 0.7796
+    }
+  },
+  "twv_probe": {
+    "oh_only": {
+      "n_eval": 158,
+      "macro_f1": 0.4768,
+      "f1_stag": 0.0000,
+      "f1_prog": 0.9536,
+      "accuracy": 0.9114
+    },
+    "swe_only": {
+      "n_eval": 323,
+      "macro_f1": 0.8541,
+      "f1_stag": 0.8167,
+      "f1_prog": 0.8916,
+      "accuracy": 0.8638
+    },
+    "all": {
+      "n_eval": 481,
+      "macro_f1": 0.8449,
+      "f1_stag": 0.7717,
+      "f1_prog": 0.9181,
+      "accuracy": 0.8794
+    }
+  },
+  "mv_labels": {
+    "oh_only": {
+      "n_eval": 169,
+      "macro_f1": 0.5747,
+      "f1_stag": 0.2500,
+      "f1_prog": 0.8993,
+      "accuracy": 0.8225
+    },
+    "swe_only": {
+      "n_eval": 323,
+      "macro_f1": 0.8325,
+      "f1_stag": 0.7863,
+      "f1_prog": 0.8786,
+      "accuracy": 0.8452
+    },
+    "all": {
+      "n_eval": 492,
+      "macro_f1": 0.7977,
+      "f1_stag": 0.7080,
+      "f1_prog": 0.8873,
+      "accuracy": 0.8374
+    }
+  },
+  "twv_labels": {
+    "swe_only": {
+      "n_eval": 336,
+      "macro_f1": 0.8480,
+      "f1_stag": 0.8050,
+      "f1_prog": 0.8910,
+      "accuracy": 0.8601
+    },
+    "oh_only": "SKIPPED - TWV labels only generated for SWE windows"
+  },
+  "finding": "Both probes fail on OH gold (macro-F1 ≈ 0.48). GRU Probe f1_stag=0.093, TWV Probe f1_stag=0.000 on OH — they predict almost everything as progress. Root cause: (a) probes trained only on SWE data, (b) OH has fundamentally different stagnation patterns, (c) only 5 OH stagnation windows in gold set (too few for reliable evaluation). On SWE-only gold, probes perform well: TWV Probe macro-F1=0.854, GRU Probe macro-F1=0.787. For paper, probe results should be reported on SWE-only gold or clearly caveated when including OH."
+}

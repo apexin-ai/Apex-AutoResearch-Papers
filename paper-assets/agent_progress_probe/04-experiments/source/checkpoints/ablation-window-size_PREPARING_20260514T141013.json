@@ -1,0 +1,23 @@
+{
+  "exp_id": "ablation-window-size",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:10:13.749Z",
+    "updated_at": "2026-05-14T14:10:13.749Z",
+    "spec": {
+      "hypothesis": "Window size ablation: k=3,5,7 evaluate detection granularity vs signal accumulation tradeoff. k=5 is current default.",
+      "plan_id": "ablation-window-size",
+      "parent": "probe_001",
+      "model_name": "GRU ProgressProbe (window size ablation)",
+      "server": "bjb2-23165",
+      "gpu": "cuda:0",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T14:10:13.794025+00:00",
+  "trigger": "update_registry"
+}

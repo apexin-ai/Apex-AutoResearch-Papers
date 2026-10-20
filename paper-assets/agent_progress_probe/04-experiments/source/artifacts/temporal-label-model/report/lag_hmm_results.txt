@@ -1,0 +1,42 @@
+Lag-Aware HMM Results (v2 conf-anchored)
+==========================================
+
+Method: lag_aware_hmm_v2_conf_anchored
+Threshold: 0.3 (empirically optimal)
+Server: bjb2-23165
+
+Lag Offsets:
+  command_repetition: -2
+  file_diff_delta: -1
+  outcome_backpropagation: +7
+
+Learned Parameters:
+  Pi: [0.285, 0.715] (fixed)
+  A: [[0.933, 0.067], [0.025, 0.975]]
+  A prior strength: 5000 (MAP)
+  EM converged: 4 iterations
+
+Analysis:
+  Overall MV agreement: 82.04%
+  Conf=1 agreement: 75.03% (8402 flipped to stag, 1440 to prog)
+  Conf>=2 agreement: 100% (anchored)
+  Smoothness: 0.962 -> 0.417 (56.7% reduction)
+  Label dist: stag=22562 (41.2%), prog=32247 (58.8%)
+
+Probe Cross-Evaluation (MV conf>=2):
+  macro_f1: 0.8936
+  accuracy: 0.9093
+  f1_stagnation: 0.8527
+  f1_progress: 0.9345
+  precision_macro: 0.9123
+  recall_macro: 0.8804
+
+Comparison Table:
+  Method         Self F1  MV-all  MV-c2 F1  MV-c2 Acc
+  MV              0.8468  0.8468    0.8946     0.9116
+  TWV             0.8107  0.8211    0.9003     0.9157
+  Old HMM         0.9657  0.6564    0.7502     0.7879
+  Lag-HMM         0.7882  0.7496    0.8936     0.9093
+
+  Delta vs old HMM: +0.1434
+  Delta vs MV:      -0.0010

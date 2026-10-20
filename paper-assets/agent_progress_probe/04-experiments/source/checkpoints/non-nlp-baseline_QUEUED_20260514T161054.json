@@ -1,0 +1,14 @@
+{
+  "exp_id": "non-nlp-baseline",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:10:54.050Z",
+    "updated_at": "2026-05-14T16:10:54.050Z"
+  },
+  "timestamp": "2026-05-14T16:10:54.138382+00:00",
+  "trigger": "update_registry"
+}

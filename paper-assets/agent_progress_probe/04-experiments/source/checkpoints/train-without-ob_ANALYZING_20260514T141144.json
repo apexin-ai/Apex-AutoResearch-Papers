@@ -1,0 +1,32 @@
+{
+  "exp_id": "train-without-ob",
+  "project": "agent_progress_probe",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:39:16.792Z",
+    "updated_at": "2026-05-14T14:11:44.765Z",
+    "spec": {
+      "command": "python3 train_without_ob.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "55740",
+      "log_path": "~/runs/agent_progress_probe/train-without-ob.log",
+      "submitted_at": "2026-05-14T13:53:54.253Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/embeddings.pt + windows_labeled.jsonl",
+      "data_count": "TBD (conf>=2 with 2 LFs)",
+      "model_name": "GRU ProgressProbe (no OB, 2-LF vote)",
+      "seed": 42,
+      "note": "Only 2 non-OB LFs in data (command_repetition + file_diff_delta). diversity_drop not present as separate LF. conf>=2 = both must agree."
+    }
+  },
+  "timestamp": "2026-05-14T14:11:44.844856+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,19 @@
+TLM Analysis Results
+====================
+
+TWV (Temporal Weighted Voting):
+- Overall agreement with MV: 88.49%
+- N windows: 54,809
+- MV dist: stag=15600, prog=39209
+- TLM dist: stag=14497, prog=40312
+- Conf=1: agreement=85.9%, flip_rate=14.1% (2513 to stag, 3044 to prog)
+- Conf=2: agreement=94.85%, flip_rate=5.15%
+- Conf=3: agreement=99.87%, flip_rate=0.13%
+- Smoothness: mean flips reduced from 0.962 to 0.346 (64.0% reduction)
+
+HMM (Hidden Markov Model):
+- Overall agreement with MV: 68.52%
+- TLM dist: stag=29176, prog=25633 (over-predicts stagnation)
+- Conf=1: agreement=62.9%, flip_rate=37.1% (14349 to stag)
+- Smoothness reduction: only 3.7%
+- file_diff_delta dominates emission: P(prog_vote|state1)=0.932

@@ -1,0 +1,39 @@
+{
+  "exp_id": "lf-temporal-dynamics",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:04:35.511Z",
+    "updated_at": "2026-05-14T15:07:07.904Z",
+    "hypothesis": "Different LFs have distinct temporal roles (leading/concurrent/lagging) relative to stagnation onset, providing empirical basis for temporal-aware label aggregation",
+    "metrics": {
+      "command_repetition_mean_lag": -1.87,
+      "file_diff_delta_mean_lag": -1.2,
+      "outcome_backpropagation_mean_lag": 6.7,
+      "kruskal_wallis_H": 274.3,
+      "kruskal_wallis_p": 2.74e-60,
+      "cmd_rep_vs_file_diff_p": 1.44e-26,
+      "cmd_rep_vs_outcome_bp_p": 6.67e-39,
+      "file_diff_vs_outcome_bp_p": 3.47e-47,
+      "all_pairwise_significant_bonferroni": true,
+      "cmd_rep_pct_leading": 36.1,
+      "file_diff_pct_leading": 17.1,
+      "outcome_bp_pct_lagging": 48.4
+    },
+    "spec": {
+      "command": "python analyze_temporal_v2.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 59496,
+      "model_name": "N/A",
+      "seed": 0,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/artifacts/lf-temporal-dynamics/lf_temporal_summary.json"
+    }
+  },
+  "timestamp": "2026-05-14T15:07:07.959260+00:00",
+  "trigger": "update_registry"
+}

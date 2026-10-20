@@ -1,0 +1,58 @@
+{
+  "exp_id": "ablation-lf-holdout-v2",
+  "project": "agent_progress_probe",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:37:39.937Z",
+    "updated_at": "2026-05-14T14:59:01.092Z",
+    "spec": {
+      "command": "python3 ablation_lf_holdout.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "61243",
+      "log_path": "~/runs/agent_progress_probe/ablation-lf-holdout-v2.log",
+      "submitted_at": "2026-05-14T14:37:39.881Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/embeddings.pt",
+      "data_count": 54809,
+      "model_name": "GRU ProgressProbe (LF holdout ablation)",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/lf_holdout_results.json",
+    "log_path": "~/runs/agent_progress_probe/ablation-lf-holdout-v2.log",
+    "metrics": {
+      "baseline_all3_macro_f1": 0.905,
+      "no_cmd_rep": {
+        "macro_f1": 0.9563,
+        "accuracy": 0.9665,
+        "f1_stag": 0.9774,
+        "f1_prog": 0.9353,
+        "conf_ge2": 2801
+      },
+      "no_file_diff": {
+        "macro_f1": 0.9178,
+        "accuracy": 0.9267,
+        "f1_stag": 0.9448,
+        "f1_prog": 0.8908,
+        "conf_ge2": 3941
+      },
+      "no_outcome_bp": {
+        "macro_f1": 0.951,
+        "accuracy": 0.9763,
+        "f1_stag": 0.9159,
+        "f1_prog": 0.9862,
+        "conf_ge2": 10243
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T14:59:01.146331+00:00",
+  "trigger": "update_registry"
+}

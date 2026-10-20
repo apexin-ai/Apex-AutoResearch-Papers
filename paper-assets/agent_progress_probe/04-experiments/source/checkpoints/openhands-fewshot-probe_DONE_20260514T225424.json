@@ -1,0 +1,40 @@
+{
+  "exp_id": "openhands-fewshot-probe",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:21:29.626Z",
+    "updated_at": "2026-05-14T22:54:24.803Z",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/fewshot_results_fixed/",
+      "log_path": "/tmp/fewshot_fixed.log",
+      "command": "python fewshot_probe.py --oh_data embeddings_fixed_conf2.pt --checkpoint checkpoints_full/best_model.pt --output_dir fewshot_results_fixed --fractions 0.05 0.10 0.20 0.50",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings_fixed_conf2.pt",
+      "data_count": 43366,
+      "model_name": "GRU ProgressProbe fewshot (fixed OH labels, conf>=2)",
+      "seed": 42
+    },
+    "metrics": {
+      "zero_shot_macro_f1": 0.532,
+      "zero_shot_f1_stag": 0.2,
+      "fewshot_5pct_macro_f1": 0.5695,
+      "fewshot_10pct_macro_f1": 0.5744,
+      "fewshot_20pct_macro_f1": 0.6106,
+      "fewshot_50pct_macro_f1": 0.688,
+      "fewshot_50pct_f1_stag": 0.441,
+      "swe_agent_indomain_macro_f1": 0.906,
+      "swe_agent_indomain_f1_stag": 0.859,
+      "gap_50pct_vs_indomain_pp": -21.8,
+      "bottleneck": "LF agent-specificity (command_repetition 71% false positive on OH stagnation windows), not data quantity. Supports D017 reframing.",
+      "finding": "Few-shot improves monotonically (0.53→0.69) but plateaus far below in-domain (0.91). LF reliability is the ceiling, not probe adaptation."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T14:29:36.525Z"
+  },
+  "timestamp": "2026-05-14T22:54:24.917004+00:00",
+  "trigger": "update_registry"
+}

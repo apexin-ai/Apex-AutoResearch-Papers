@@ -1,0 +1,27 @@
+{
+  "exp_id": "f1-stag-analysis",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:19:40.218Z",
+    "updated_at": "2026-05-14T22:20:03.662Z",
+    "hypothesis": "Analysis: F1_stag per-class breakdown across 5 dimensions (confidence, trajectory length, LF consistency, outcome, error subtypes) on SWE test set.",
+    "spec": {
+      "command": "python f1_stag_per_class.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+      "data_count": 8101,
+      "model_name": "probe_001 analysis",
+      "seed": 42,
+      "checkpoint_path": "results/f1_stag_per_class.json",
+      "log_path": "results/f1_stag_per_class.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T22:20:03.662Z"
+  },
+  "timestamp": "2026-05-14T22:20:03.756547+00:00",
+  "trigger": "update_registry"
+}

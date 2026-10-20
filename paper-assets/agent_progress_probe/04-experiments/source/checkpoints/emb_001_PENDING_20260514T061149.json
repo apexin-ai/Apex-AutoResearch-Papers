@@ -1,0 +1,24 @@
+{
+  "exp_id": "emb_001",
+  "project": "agent_progress_probe",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:11:49.298Z",
+    "updated_at": "2026-05-14T06:11:49.298Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python generate_embeddings.py --data_dir data --output_dir embeddings --model Qwen/Qwen3-Embedding-0.6B --batch_size 32",
+      "server": "gpu-5090-2x-2",
+      "gpu": "cuda:0",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 59496,
+      "model_name": "Qwen/Qwen3-Embedding-0.6B",
+      "seed": 42,
+      "hypothesis": "Qwen3-Embedding-0.6B can encode SWE-bench agent trajectory steps into meaningful embeddings for downstream probe training"
+    }
+  },
+  "timestamp": "2026-05-14T06:11:49.357258+00:00",
+  "trigger": "update_registry"
+}

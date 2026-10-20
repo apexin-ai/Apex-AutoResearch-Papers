@@ -1,0 +1,25 @@
+{
+  "exp_id": "non-nlp-baseline",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:10:54.050Z",
+    "updated_at": "2026-05-14T16:11:16.155Z",
+    "spec": {
+      "command": "python non_nlp_baseline.py --data_dir data --split_info checkpoints/split_info.json --trajectories data/swe_agent_trajectories_5000.jsonl",
+      "server": "bjb2-23165",
+      "data_path": "data/windows_labeled.jsonl",
+      "data_count": 15401,
+      "model_name": "LogisticRegression+RandomForest+GradientBoosting",
+      "seed": 42,
+      "checkpoint_path": "data/non_nlp_baseline_results.json",
+      "log_path": "/tmp/non_nlp_baseline.log"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T16:11:16.224041+00:00",
+  "trigger": "update_registry"
+}

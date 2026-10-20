@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{devin2024,swebench2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Agent Monitoring and Degradation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak Supervision and Data Programming.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Task and Data}{2}{section.3}\protected@file@percent }
+\newlabel{sec:task}{{3}{2}{Task and Data}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Labeling Functions}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Gold set annotation statistics. $\kappa $=0.72 indicates substantial agreement; the 42\% stagnation prevalence is notably higher than LF-derived 28\%.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:annotation}{{1}{3}{Gold set annotation statistics. $\kappa $=0.72 indicates substantial agreement; the 42\% stagnation prevalence is notably higher than LF-derived 28\%}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Agent Trajectories}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Gold Standard Annotation}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:gold}{{3.4}{3}{Gold Standard Annotation}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{3}{section.4}\protected@file@percent }
+\newlabel{sec:methods}{{4}{3}{Methods}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Structural Classifiers.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural Embedding Probes.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-Judge.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temporal Label Models.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{3}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{3}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}LF--Human Agreement}{3}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:lf-agreement}{{5.1}{3}{LF--Human Agreement}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LF--Human confusion matrix ($N$=650). Overall agreement=68\%, Cohen's $\kappa $=0.34 (fair). The asymmetry ratio of 1.93 shows LFs disproportionately label true stagnation as progress.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:confusion}{{2}{4}{LF--Human confusion matrix ($N$=650). Overall agreement=68\%, Cohen's $\kappa $=0.34 (fair). The asymmetry ratio of 1.93 shows LFs disproportionately label true stagnation as progress}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-LF agreement with human labels.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:per-lf}{{3}{4}{Per-LF agreement with human labels}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Circular Evaluation: Quantifying Inflation}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:circular}{{5.2}{4}{Circular Evaluation: Quantifying Inflation}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Hierarchy Collapse}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:hierarchy}{{5.3}{4}{Hierarchy Collapse}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Structural Features on Gold Labels}{4}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:structural-gold}{{5.4}{4}{Structural Features on Gold Labels}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Probe Evaluation on Gold Labels}{4}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:probe-gold}{{5.5}{4}{Probe Evaluation on Gold Labels}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Circular evaluation inflation/deflation. All trained methods show 15--28\,pp{} inflation on LF-derived labels. LLM-as-judge is the only method whose gold performance \emph  {exceeds} its LF performance, because LF bias unfairly penalized its correct disagreements with noisy labels.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:inflation}{{4}{5}{Circular evaluation inflation/deflation. All trained methods show 15--28\pp {} inflation on LF-derived labels. LLM-as-judge is the only method whose gold performance \emph {exceeds} its LF performance, because LF bias unfairly penalized its correct disagreements with noisy labels}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Pairwise performance gaps collapse on gold labels. The structural advantage reverses; all methods converge to a 0.73--0.77 band.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:pairwise}{{5}{5}{Pairwise performance gaps collapse on gold labels. The structural advantage reverses; all methods converge to a 0.73--0.77 band}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}LLM-as-Judge Re-evaluation}{5}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:llm-gold}{{5.6}{5}{LLM-as-Judge Re-evaluation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Agent Generalization}{5}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:cross}{{5.7}{5}{Cross-Agent Generalization}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Per-Class and Slice Analysis}{5}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:slices}{{5.8}{5}{Per-Class and Slice Analysis}{subsection.5.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Structural classifiers: LF vs.\ gold evaluation. GB's slight advantage may reflect boosting's regularization against label noise.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:structural-gold}{{6}{6}{Structural classifiers: LF vs.\ gold evaluation. GB's slight advantage may reflect boosting's regularization against label noise}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Probe performance across encoders. Lower inflation than structural classifiers indicates probes learn genuine patterns beyond LF rules.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:probe-gold}{{7}{6}{Probe performance across encoders. Lower inflation than structural classifiers indicates probes learn genuine patterns beyond LF rules}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Error Pattern Analysis}{6}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:errors}{{5.9}{6}{Error Pattern Analysis}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Temporal Dynamics Validation}{6}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:temporal}{{5.10}{6}{Temporal Dynamics Validation}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.11}Temporal Label Models: Negative Finding}{6}{subsection.5.11}\protected@file@percent }
+\newlabel{sec:tlm}{{5.11}{6}{Temporal Label Models: Negative Finding}{subsection.5.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-agent (OpenHands) evaluation. Inflation persists at comparable magnitude, confirming circular evaluation is systematic, not domain-specific.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:cross}{{8}{7}{Cross-agent (OpenHands) evaluation. Inflation persists at comparable magnitude, confirming circular evaluation is systematic, not domain-specific}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces F\textsubscript  {1}{}\textsubscript  {stag} breakdown. On the 208 windows where LFs disagree with gold, the model achieves only 0.41---near random---confirming it learned LF errors rather than true stagnation patterns.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:slices}{{9}{7}{\fone {}\textsubscript {stag} breakdown. On the 208 windows where LFs disagree with gold, the model achieves only 0.41---near random---confirming it learned LF errors rather than true stagnation patterns}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why circular evaluation inflates sequential data more.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The 0.75 ceiling.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for agent monitoring.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{7}{Limitations}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Error distribution on gold labels. Error counts converge across methods; 89 shared errors (14\%) approximate the annotator disagreement rate, suggesting proximity to the Bayes error rate.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:errors}{{10}{8}{Error distribution on gold labels. Error counts converge across methods; 89 shared errors (14\%) approximate the annotator disagreement rate, suggesting proximity to the Bayes error rate}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces LF temporal dynamics: LF-derived vs.\ gold reference. Directional roles (leading/lagging) are preserved on gold with attenuated magnitudes. Kruskal-Wallis $p$=0.003.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:temporal}{{11}{8}{LF temporal dynamics: LF-derived vs.\ gold reference. Directional roles (leading/lagging) are preserved on gold with attenuated magnitudes. Kruskal-Wallis $p$=0.003}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{Conclusion}{section.8}{}}
+\gdef \@abspage@last{8}

@@ -1,0 +1,110 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jimenez2024swebench}
+\citation{slopcodebench2026}
+\citation{cdcs2024,specra2025}
+\citation{agentprm2026,prm_framework2025}
+\citation{reflexion2023,lats2024}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{cdcs2024}
+\citation{specra2025}
+\citation{trajad2025}
+\citation{slopcodebench2026}
+\citation{agentprm2026}
+\citation{prm_framework2025}
+\citation{toolprmbench2026}
+\citation{traj_reward2026}
+\citation{reflexion2023}
+\citation{lats2024}
+\citation{tot2024}
+\citation{seq_monitoring2025}
+\citation{weak_strong2025}
+\citation{ratner2016}
+\citation{ratner2020}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Failure Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process Reward Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Reflection and LLM-as-Judge.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent Monitoring.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak Supervision.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Labeling Functions}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Structural Feature Classifier}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Neural Embedding Probe}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Early Termination Policy}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-agent transfer on OpenHands. Structural features outperform the best LLM judge by 18.4\,pp ($p{<}0.001$, bootstrap) and zero-shot probes by 28--37\,pp. LLM results are on a matched 2,000-window stratified subset; structural GB evaluated on the same subset for direct comparison.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cross_agent}{{1}{4}{Cross-agent transfer on OpenHands. Structural features outperform the best LLM judge by 18.4\,pp ($p{<}0.001$, bootstrap) and zero-shot probes by 28--37\,pp. LLM results are on a matched 2,000-window stratified subset; structural GB evaluated on the same subset for direct comparison}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-encoder zero-shot transfer on OpenHands. Gap persists across encoders (28--37\,pp) though magnitude varies with encoder quality.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cross_encoder}{{2}{4}{Cross-encoder zero-shot transfer on OpenHands. Gap persists across encoders (28--37\,pp) though magnitude varies with encoder quality}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Agent Transfer}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}LLM-as-Judge Comparison}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Gold Set Validation}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overall performance.}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Error decomposition on conf${=}$1 gold windows ($N{=}282$). GB shows a net advantage of 10 windows over MV, suggestive of beyond-LF learned decision boundaries.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:conf1}{{3}{5}{Error decomposition on conf${=}$1 gold windows ($N{=}282$). GB shows a net advantage of 10 windows over MV, suggestive of beyond-LF learned decision boundaries}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Human ceiling estimate via leave-one-out annotator evaluation. GB performs within 1\,pp of the mean annotator agreement, though interpretation is complicated by the low ceiling itself.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ceiling}{{4}{5}{Human ceiling estimate via leave-one-out annotator evaluation. GB performs within 1\,pp of the mean annotator agreement, though interpretation is complicated by the low ceiling itself}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Conf${=}$1 error decomposition.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human ceiling estimate.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Power analysis.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Deployable 2-LF Configuration}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Statistical power at $N{=}505$ ($\alpha {=}0.05$, McNemar test). The gold set reliably detects effects $\geq $6\,pp but is underpowered for several comparisons of interest.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:power}{{5}{6}{Statistical power at $N{=}505$ ($\alpha {=}0.05$, McNemar test). The gold set reliably detects effects $\geq $6\,pp but is underpowered for several comparisons of interest}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 2-LF vs.\ 3-LF conf${\geq }$2 coverage. OH coverage drops to 2.8\% due to low cmd\_rep fire rate (5.39\%), requiring a fallback strategy for deployment.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:coverage}{{6}{6}{2-LF vs.\ 3-LF conf${\geq }$2 coverage. OH coverage drops to 2.8\% due to low cmd\_rep fire rate (5.39\%), requiring a fallback strategy for deployment}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Calibration Analysis}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Feature Importance}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Stride Sensitivity}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Calibration metrics. TC = temperature-calibrated. Gold-set ECE nearly doubles vs.\ silver, indicating overconfidence from circular training on LF-derived labels.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:calibration}{{7}{7}{Calibration metrics. TC = temperature-calibrated. Gold-set ECE nearly doubles vs.\ silver, indicating overconfidence from circular training on LF-derived labels}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Feature importance by category. While 52.8\% of importance is LF-correlated (confirming circularity), 32.1\% comes from residual features not directly encoded in any LF.}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:importance}{{8}{7}{Feature importance by category. While 52.8\% of importance is LF-correlated (confirming circularity), 32.1\% comes from residual features not directly encoded in any LF}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Compute Waste Audit}{7}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Early Termination Simulation}{7}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Cost-Effectiveness Pareto Analysis}{7}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Qualitative Analysis}{7}{subsection.4.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Stride sensitivity for the Qwen3 probe. Performance degrades gracefully; stride 1 CIs are anticonservative due to high autocorrelation.}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:stride}{{9}{8}{Stride sensitivity for the Qwen3 probe. Performance degrades gracefully; stride 1 CIs are anticonservative due to high autocorrelation}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Compute waste summary. Waste estimates carry ${\pm }$5\,pp uncertainty due to stagnation label quality (gold F1${=}$0.839).}}{8}{table.caption.21}\protected@file@percent }
+\newlabel{tab:waste}{{10}{8}{Compute waste summary. Waste estimates carry ${\pm }$5\,pp uncertainty due to stagnation label quality (gold F1${=}$0.839)}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Clear stagnation.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ambiguous case (conf${=}$1).}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{False positive.}{8}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Limitations}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gold set power.}{8}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human ceiling ambiguity.}{8}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{2-LF deployment gap.}{8}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent scope.}{8}{section*.30}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{jimenez2024swebench}{{1}{2024}{{Jimenez et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Early termination operating points. FK = false kills. $k{=}3$ balances savings and safety; achieving ${>}$30\% savings requires accepting task success below 87\%.}}{9}{table.caption.22}\protected@file@percent }
+\newlabel{tab:early_term}{{11}{9}{Early termination operating points. FK = false kills. $k{=}3$ balances savings and safety; achieving ${>}$30\% savings requires accepting task success below 87\%}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Pareto frontier comparison. AUPF = area under Pareto frontier. Best Point = compute saved / task success at best operating point. The structural detector clearly outperforms random but substantial room for improvement remains vs.\ oracle.}}{9}{table.caption.23}\protected@file@percent }
+\newlabel{tab:pareto}{{12}{9}{Pareto frontier comparison. AUPF = area under Pareto frontier. Best Point = compute saved / task success at best operating point. The structural detector clearly outperforms random but substantial room for improvement remains vs.\ oracle}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {paragraph}{Circular evaluation.}{9}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Early termination is simulated.}{9}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibcite{slopcodebench2026}{{2}{2026}{{SlopCodeBench}}{{}}}
+\bibcite{agentprm2026}{{3}{2026}{{Xi et al.}}{{}}}
+\bibcite{prm_framework2025}{{4}{2025}{{PRM Framework}}{{}}}
+\bibcite{toolprmbench2026}{{5}{2026}{{ToolPRMBench}}{{}}}
+\bibcite{traj_reward2026}{{6}{2026}{{Trajectory Reward}}{{}}}
+\bibcite{cdcs2024}{{7}{2024}{{CDCS}}{{}}}
+\bibcite{specra2025}{{8}{2025}{{SpecRA}}{{}}}
+\bibcite{trajad2025}{{9}{2025}{{TrajAD}}{{}}}
+\bibcite{reflexion2023}{{10}{2023}{{Shinn et al.}}{{}}}
+\bibcite{lats2024}{{11}{2024}{{Zhou et al.}}{{}}}
+\bibcite{tot2024}{{12}{2024}{{Yao et al.}}{{}}}
+\bibcite{seq_monitoring2025}{{13}{2025}{{Seq Monitoring}}{{}}}
+\bibcite{weak_strong2025}{{14}{2025}{{Weak-to-Strong}}{{}}}
+\bibcite{ratner2016}{{15}{2016}{{Ratner et al.}}{{}}}
+\bibcite{ratner2020}{{16}{2020}{{Ratner et al.}}{{}}}
+\gdef \@abspage@last{10}

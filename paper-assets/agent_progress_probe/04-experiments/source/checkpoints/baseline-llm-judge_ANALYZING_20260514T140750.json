@@ -1,0 +1,59 @@
+{
+  "exp_id": "baseline-llm-judge",
+  "project": "agent_progress_probe",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T10:19:08.933Z",
+    "updated_at": "2026-05-14T14:07:50.325Z",
+    "failure_reason": "",
+    "completed_at": "2026-05-14T13:38:10.471Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T13:38:13.995679+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "server": "bjb2-23165",
+    "spec": {
+      "command": "python3 baseline_llm_judge.py --data_dir data --split_info checkpoints/split_info.json --base_url http://47.94.22.126/v1 --model claude-sonnet-4-6 --mode zero-shot",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 1824,
+      "model_name": "Claude Sonnet 4.6 (via OpenRouter proxy)",
+      "seed": 42,
+      "parent": "probe_001",
+      "hypothesis": "LLM zero-shot/few-shot judgment on raw trajectory text serves as upper-bound baseline; probe should approach LLM performance at fraction of cost",
+      "plan_id": "plan_008",
+      "note": "Process still running on server (~1600/1824, 87.7%). Cron falsely marked FAILED due to server name change. Will collect results when done.",
+      "pid": "27419"
+    },
+    "metrics": {
+      "macro_f1": 0.6625,
+      "accuracy": 0.6721,
+      "precision_macro": 0.7062,
+      "recall_macro": 0.7596,
+      "f1_stagnation": 0.6055,
+      "f1_progress": 0.7195,
+      "total_windows": 1824,
+      "parse_failures": 0,
+      "model": "claude-sonnet-4-6",
+      "mode": "zero-shot",
+      "api_cost_usd": 11.66,
+      "total_tokens": 3060000,
+      "vs_probe001_delta_pp": -24.3,
+      "finding": "LLM zero-shot judge (0.6625) massively underperforms GRU probe (0.9055). Probe is both more accurate (+24.3pp) and orders of magnitude cheaper (<5ms vs $11.66 API cost)."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T14:07:50.379655+00:00",
+  "trigger": "update_registry"
+}

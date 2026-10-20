@@ -1,0 +1,122 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{jimenez2024swebench}
+\citation{wang2024opendevin}
+\citation{slopcodebench2026}
+\citation{chen2024cdcs}
+\citation{zhang2025specra}
+\citation{xi2026agentprm}
+\citation{lightman2023prm}
+\citation{zheng2024judging}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{iclr2025monitoring}
+\citation{chen2024cdcs}
+\citation{zhang2025specra}
+\citation{trajad2025}
+\citation{xi2026agentprm}
+\citation{prm_framework2025}
+\citation{toolprmbench2026}
+\citation{traj_reward2026}
+\citation{shinn2023reflexion}
+\citation{zhou2024lats}
+\citation{yao2024tot}
+\citation{weak2strong2025}
+\citation{ratner2016snorkel}
+\citation{safranchik2020weakly}
+\citation{slopcodebench2026}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent monitoring and failure detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process reward models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-reflection and intervention.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak supervision.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Agent degradation benchmarks.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Labeling Functions}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Detection Approaches}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural classifiers.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural probes.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Temporal Label Models}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Gold Standard Annotation}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Agent Transfer: Structural vs.\ Probe vs.\ LLM}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:cross-agent}{{4.1}{3}{Cross-Agent Transfer: Structural vs.\ Probe vs.\ LLM}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-agent zero-shot transfer (SWE-Agent $\to $ OpenHands). Macro F1 on all OpenHands windows (N=2{,}000 for LLM; full set for structural/probe). Cost per 2{,}000 windows.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:cross-agent}{{1}{4}{Cross-agent zero-shot transfer (SWE-Agent $\to $ OpenHands). Macro F1 on all OpenHands windows (N=2{,}000 for LLM; full set for structural/probe). Cost per 2{,}000 windows}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Encoder comparison for zero-shot cross-agent transfer. $^\dagger $Circular evaluation caveat (trained and evaluated on LF-derived labels). $^*$Old labels before correction.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:encoder}{{2}{4}{Encoder comparison for zero-shot cross-agent transfer. $^\dagger $Circular evaluation caveat (trained and evaluated on LF-derived labels). $^*$Old labels before correction}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Encoder Ablation for Zero-Shot Transfer}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Label Quality as Transfer Bottleneck}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}2-LF Deployable Configuration}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:2lf}{{4.4}{4}{2-LF Deployable Configuration}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 2-LF coverage by agent. Removing OB (outcome\_bp) retains 66.5\% of high-confidence labels on SWE-Agent but only 9.3\% on OpenHands.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:2lf}{{3}{5}{2-LF coverage by agent. Removing OB (outcome\_bp) retains 66.5\% of high-confidence labels on SWE-Agent but only 9.3\% on OpenHands}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Confidence-stratified gold set evaluation.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:gold-stratified}{{4}{5}{Confidence-stratified gold set evaluation}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Gold Set Validation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:gold}{{4.5}{5}{Gold Set Validation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Human Ceiling and $\kappa $=0.39}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ceiling}{{4.6}{5}{Human Ceiling and $\kappa $=0.39}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}LLM-as-Judge Detailed Results}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Error decomposition on conf=1 gold windows (N=282). Net GB advantage: $-$6 windows ($-$2.1\%), $p$=0.31 (not significant).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:error-decomp}{{5}{6}{Error decomposition on conf=1 gold windows (N=282). Net GB advantage: $-$6 windows ($-$2.1\%), $p$=0.31 (not significant)}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Human ceiling estimation. GB slightly exceeds the estimated ceiling, likely reflecting optimization toward annotator majority patterns.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:ceiling}{{6}{6}{Human ceiling estimation. GB slightly exceeds the estimated ceiling, likely reflecting optimization toward annotator majority patterns}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Calibration}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Feature Importance Analysis}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Temporal Label Model: Negative Result}{6}{subsection.4.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LLM judge variants on OpenHands (N=2{,}000). GPT-5.5 has 9.4\% parse failure rate.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:llm-judge}{{7}{7}{LLM judge variants on OpenHands (N=2{,}000). GPT-5.5 has 9.4\% parse failure rate}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Calibration metrics. Temperature scaling reduces ECE substantially on gold, but mid-range predictions (0.4--0.7 confidence) remain overconfident (45--63\% confidence vs.\ 12--23\% actual).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:calibration}{{8}{7}{Calibration metrics. Temperature scaling reduces ECE substantially on gold, but mid-range predictions (0.4--0.7 confidence) remain overconfident (45--63\% confidence vs.\ 12--23\% actual)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Power Analysis}{7}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:power}{{4.11}{7}{Power Analysis}{subsection.4.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Stride Sensitivity}{7}{subsection.4.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Preliminary Evidence for Early Termination}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Top-10 SHAP feature importance. LF-overlapping features account for 72.3\% of total importance; non-LF features contribute 27.7\%.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:shap}{{9}{8}{Top-10 SHAP feature importance. LF-overlapping features account for 72.3\% of total importance; non-LF features contribute 27.7\%}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Power analysis ($\alpha $=0.05, $\beta $=0.80). Only GB vs MV (overall) and GB vs Probe have adequate power. Effective $N$ is $\sim $420 after stride-overlap correction.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:power}{{10}{8}{Power analysis ($\alpha $=0.05, $\beta $=0.80). Only GB vs MV (overall) and GB vs Probe have adequate power. Effective $N$ is $\sim $420 after stride-overlap correction}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Circularity and Its Limits}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for Weak Supervision on Sequential Data}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gold set power.}{8}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Stride sensitivity. Structural classifiers are robust across strides; probe performance degrades with reduced training data. Non-overlapping stride=5 yields $\sim $2$\times $ wider confidence intervals.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:stride}{{11}{9}{Stride sensitivity. Structural classifiers are robust across strides; probe performance degrades with reduced training data. Non-overlapping stride=5 yields $\sim $2$\times $ wider confidence intervals}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Early termination threshold sweep. $k$: consecutive stagnation windows before termination. Oracle ceiling: 18.0\% compute saved at 100\% task success.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:early-term}{{12}{9}{Early termination threshold sweep. $k$: consecutive stagnation windows before termination. Oracle ceiling: 18.0\% compute saved at 100\% task success}{table.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scope.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{2-LF coverage collapse.}{9}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Encoder ceiling unknown.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stride-1 autocorrelation.}{9}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Early termination is simulation-only.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibdata{references}
+\bibstyle{acl_natbib}
+\bibcite{chen2024cdcs}{Chen et al.(2024)}
+\bibcite{jimenez2024swebench}{Jimenez et al.(2024)}
+\bibcite{lightman2023prm}{Lightman et al.(2023)}
+\bibcite{ratner2016snorkel}{Ratner et al.(2016)}
+\bibcite{safranchik2020weakly}{Safranchik et al.(2020)}
+\bibcite{shinn2023reflexion}{Shinn et al.(2023)}
+\bibcite{wang2024opendevin}{Wang et al.(2024)}
+\bibcite{xi2026agentprm}{Xi et al.(2026)}
+\bibcite{yao2024tot}{Yao et al.(2024)}
+\bibcite{zhang2025specra}{Zhang et al.(2025)}
+\bibcite{zheng2024judging}{Zheng et al.(2024)}
+\bibcite{zhou2024lats}{Zhou et al.(2024)}
+\bibcite{iclr2025monitoring}{{ICLR Workshop}(2025)}
+\bibcite{slopcodebench2026}{{SlopCodeBench}(2026)}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Stagnation tail statistics.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:waste}{{13}{10}{Stagnation tail statistics}{table.13}{}}
+\bibcite{weak2strong2025}{{Weak-to-Strong}(2025)}
+\bibcite{trajad2025}{{TrajAD}(2025)}
+\bibcite{prm_framework2025}{{PRM Framework}(2025)}
+\bibcite{toolprmbench2026}{{ToolPRMBench}(2026)}
+\bibcite{traj_reward2026}{{Traj-RM}(2026)}
+\gdef \@abspage@last{11}

@@ -1,0 +1,95 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2023react}
+\citation{yang2024swebench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Agent monitoring and error detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak supervision and data programming.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Progress estimation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Weak-Supervision Framework}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:framework}{{3.2}{3}{Weak-Supervision Framework}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LF\textsubscript  {1}: Command repetition.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LF\textsubscript  {2}: File-diff delta.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LF\textsubscript  {3}: Outcome back-propagation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label quality.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Probe Architecture}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{3}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data source.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Probe performance under different training regimes. Full-data training degrades by 8.5pp due to noisy conf=1 labels. Confidence-weighted loss recovers 2pp.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Probe performance under different training regimes. Full-data training degrades by 8.5pp due to noisy conf=1 labels. Confidence-weighted loss recovers 2pp}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human gold set.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results on Auto-Labeled Data}{4}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Evaluation on Human Gold Labels}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:gold}{{5.2}{4}{Evaluation on Human Gold Labels}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces All methods evaluated on the 400-window human gold set ($\kappa $=0.62). The probe is the best non-LLM method; the LLM judge leads at 35$\times $ higher cost.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:gold}{{2}{5}{All methods evaluated on the 400-window human gold set ($\kappa $=0.62). The probe is the best non-LLM method; the LLM judge leads at 35$\times $ higher cost}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cost--quality tradeoff between the probe and LLM judges. The probe operates on a fundamentally different cost--accuracy Pareto frontier.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:llm}{{3}{5}{Cost--quality tradeoff between the probe and LLM judges. The probe operates on a fundamentally different cost--accuracy Pareto frontier}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Label quality by confidence.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}LLM-as-Judge Comparison}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}LF Oracle Baseline}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Non-NLP Feature Baseline}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces NLP vs.\ non-NLP features. The 18.5pp gap demonstrates that natural language understanding is necessary for progress estimation.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:nonlp}{{4}{6}{NLP vs.\ non-NLP features. The 18.5pp gap demonstrates that natural language understanding is necessary for progress estimation}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-agent transfer from SWE-agent to OpenHands. Zero-shot transfer is viable (+23pp vs.\ random) but domain adaptation improves performance substantially.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:transfer}{{5}{6}{Cross-agent transfer from SWE-agent to OpenHands. Zero-shot transfer is viable (+23pp vs.\ random) but domain adaptation improves performance substantially}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Agent Transfer}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:transfer}{{5.6}{6}{Cross-Agent Transfer}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Error Analysis}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:errors}{{5.7}{6}{Error Analysis}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Complementarity with Repeat-3.}{6}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Error taxonomy on the conf$\geq $2 test set (221 errors, 7.2\% error rate).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:errors}{{6}{7}{Error taxonomy on the conf$\geq $2 test set (221 errors, 7.2\% error rate)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces LF hold-one-out ablation. Each LF contributes 1.5--3.5pp; none is redundant.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:lf_ablation}{{7}{7}{LF hold-one-out ablation. Each LF contributes 1.5--3.5pp; none is redundant}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Labeling Function Analysis}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Ablation Studies}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:ablation}{{5.9}{7}{Ablation Studies}{subsection.5.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal modeling.}{7}{table.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Window size.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data scaling.}{7}{table.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Architecture ablation on conf$\geq $2 data. The 3.5pp performance range across architectures is smaller than the 8.5pp impact of label noise.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:arch}{{8}{8}{Architecture ablation on conf$\geq $2 data. The 3.5pp performance range across architectures is smaller than the 8.5pp impact of label noise}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Data scaling curve (conf$\geq $2). The probe surpasses Repeat-3 at $\sim $25\% ($\sim $4K windows), demonstrating the framework's data efficiency.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:scaling}{{9}{8}{Data scaling curve (conf$\geq $2). The probe surpasses Repeat-3 at $\sim $25\% ($\sim $4K windows), demonstrating the framework's data efficiency}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Supervised contrastive loss.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Framework as primary contribution.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{When to use the probe vs.\ an LLM judge.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Early termination.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretability.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{9}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{9}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scope.}{9}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Goal awareness.}{9}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LF format dependency.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gold set size.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label noise ceiling.}{9}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{9}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Window Size Ablation Details}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:window}{{A}{10}{Window Size Ablation Details}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Full window size ablation.}}{10}{table.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}SupCon Ablation Details}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:supcon}{{B}{10}{SupCon Ablation Details}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Supervised contrastive loss ablation.}}{10}{table.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {C}Early Termination Simulation}{10}{appendix.C}\protected@file@percent }
+\newlabel{app:termination}{{C}{10}{Early Termination Simulation}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Early termination tradeoff on 320 held-out trajectories.}}{10}{table.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {D}LF Temporal Dynamics}{10}{appendix.D}\protected@file@percent }
+\newlabel{app:lf_temporal}{{D}{10}{LF Temporal Dynamics}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Temporal characteristics of labeling functions relative to stagnation onset.}}{11}{table.13}\protected@file@percent }
+\gdef \@abspage@last{11}

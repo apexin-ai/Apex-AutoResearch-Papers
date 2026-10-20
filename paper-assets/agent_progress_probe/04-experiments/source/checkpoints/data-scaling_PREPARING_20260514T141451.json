@@ -1,0 +1,23 @@
+{
+  "exp_id": "data-scaling",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:14:51.596Z",
+    "updated_at": "2026-05-14T14:14:51.596Z",
+    "spec": {
+      "hypothesis": "Data scaling curve: 10%/25%/50%/100% training data → probe F1. Evaluates minimum annotation requirement for practical adoption.",
+      "plan_id": "data-scaling",
+      "parent": "probe_001",
+      "model_name": "GRU ProgressProbe (data scaling)",
+      "server": "bjb2-23165",
+      "gpu": "cuda:1",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T14:14:51.660790+00:00",
+  "trigger": "update_registry"
+}

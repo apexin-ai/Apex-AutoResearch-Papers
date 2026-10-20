@@ -1,0 +1,263 @@
+{
+  "in_domain": {
+    "twv_train_twv_eval": {
+      "LR": {
+        "macro_f1": 0.9292,
+        "accuracy": 0.9518,
+        "precision_macro": 0.9261,
+        "recall_macro": 0.9323,
+        "f1_stagnation": 0.8892,
+        "f1_progress": 0.9692
+      },
+      "RF": {
+        "macro_f1": 0.9357,
+        "accuracy": 0.9556,
+        "precision_macro": 0.9272,
+        "recall_macro": 0.9449,
+        "f1_stagnation": 0.8999,
+        "f1_progress": 0.9715
+      },
+      "GB": {
+        "macro_f1": 0.9383,
+        "accuracy": 0.9572,
+        "precision_macro": 0.9281,
+        "recall_macro": 0.9497,
+        "f1_stagnation": 0.9042,
+        "f1_progress": 0.9725
+      }
+    },
+    "twv_train_mv_eval": {
+      "LR": {
+        "macro_f1": 0.9314,
+        "accuracy": 0.9496,
+        "precision_macro": 0.9641,
+        "recall_macro": 0.9078,
+        "f1_stagnation": 0.8962,
+        "f1_progress": 0.9667
+      },
+      "RF": {
+        "macro_f1": 0.9433,
+        "accuracy": 0.9578,
+        "precision_macro": 0.9693,
+        "recall_macro": 0.9232,
+        "f1_stagnation": 0.9145,
+        "f1_progress": 0.972
+      },
+      "GB": {
+        "macro_f1": 0.9457,
+        "accuracy": 0.9594,
+        "precision_macro": 0.9695,
+        "recall_macro": 0.927,
+        "f1_stagnation": 0.9183,
+        "f1_progress": 0.973
+      }
+    },
+    "mv_train_mv_eval": {
+      "LR": {
+        "macro_f1": 0.986,
+        "accuracy": 0.989,
+        "precision_macro": 0.986,
+        "recall_macro": 0.986,
+        "f1_stagnation": 0.9794,
+        "f1_progress": 0.9925
+      },
+      "RF": {
+        "macro_f1": 0.9944,
+        "accuracy": 0.9956,
+        "precision_macro": 0.9925,
+        "recall_macro": 0.9964,
+        "f1_stagnation": 0.9918,
+        "f1_progress": 0.997
+      },
+      "GB": {
+        "macro_f1": 0.9951,
+        "accuracy": 0.9962,
+        "precision_macro": 0.9935,
+        "recall_macro": 0.9967,
+        "f1_stagnation": 0.9928,
+        "f1_progress": 0.9974
+      }
+    },
+    "mv_train_twv_eval": {
+      "LR": {
+        "macro_f1": 0.9175,
+        "accuracy": 0.9397,
+        "precision_macro": 0.8925,
+        "recall_macro": 0.9533,
+        "f1_stagnation": 0.8747,
+        "f1_progress": 0.9603
+      },
+      "RF": {
+        "macro_f1": 0.9164,
+        "accuracy": 0.9386,
+        "precision_macro": 0.8904,
+        "recall_macro": 0.9544,
+        "f1_stagnation": 0.8733,
+        "f1_progress": 0.9595
+      },
+      "GB": {
+        "macro_f1": 0.9186,
+        "accuracy": 0.9402,
+        "precision_macro": 0.8926,
+        "recall_macro": 0.9564,
+        "f1_stagnation": 0.8766,
+        "f1_progress": 0.9606
+      }
+    }
+  },
+  "cross_agent": {
+    "twv_train": {
+      "oh_all": {
+        "LR": {
+          "macro_f1": 0.819,
+          "accuracy": 0.8758,
+          "precision_macro": 0.8083,
+          "recall_macro": 0.8318,
+          "f1_stagnation": 0.7176,
+          "f1_progress": 0.9204
+        },
+        "RF": {
+          "macro_f1": 0.9386,
+          "accuracy": 0.9606,
+          "precision_macro": 0.9518,
+          "recall_macro": 0.9268,
+          "f1_stagnation": 0.9019,
+          "f1_progress": 0.9753
+        },
+        "GB": {
+          "macro_f1": 0.7529,
+          "accuracy": 0.8297,
+          "precision_macro": 0.7437,
+          "recall_macro": 0.7643,
+          "f1_stagnation": 0.6151,
+          "f1_progress": 0.8907
+        }
+      },
+      "oh_conf2": {
+        "LR": {
+          "macro_f1": 0.9674,
+          "accuracy": 0.9798,
+          "precision_macro": 0.9811,
+          "recall_macro": 0.955,
+          "f1_stagnation": 0.9472,
+          "f1_progress": 0.9875
+        },
+        "RF": {
+          "macro_f1": 0.9786,
+          "accuracy": 0.9867,
+          "precision_macro": 0.9904,
+          "recall_macro": 0.9677,
+          "f1_stagnation": 0.9654,
+          "f1_progress": 0.9917
+        },
+        "GB": {
+          "macro_f1": 0.8983,
+          "accuracy": 0.9364,
+          "precision_macro": 0.9059,
+          "recall_macro": 0.8913,
+          "f1_stagnation": 0.8362,
+          "f1_progress": 0.9605
+        }
+      }
+    },
+    "mv_train": {
+      "oh_all": {
+        "LR": {
+          "macro_f1": 0.7527,
+          "accuracy": 0.793,
+          "precision_macro": 0.7396,
+          "recall_macro": 0.8442,
+          "f1_stagnation": 0.6528,
+          "f1_progress": 0.8526
+        },
+        "RF": {
+          "macro_f1": 0.9211,
+          "accuracy": 0.9438,
+          "precision_macro": 0.8961,
+          "recall_macro": 0.9559,
+          "f1_stagnation": 0.8788,
+          "f1_progress": 0.9634
+        },
+        "GB": {
+          "macro_f1": 0.9698,
+          "accuracy": 0.9802,
+          "precision_macro": 0.9744,
+          "recall_macro": 0.9653,
+          "f1_stagnation": 0.952,
+          "f1_progress": 0.9876
+        }
+      },
+      "oh_conf2": {
+        "LR": {
+          "macro_f1": 0.9626,
+          "accuracy": 0.9754,
+          "precision_macro": 0.9493,
+          "recall_macro": 0.9777,
+          "f1_stagnation": 0.9408,
+          "f1_progress": 0.9845
+        },
+        "RF": {
+          "macro_f1": 0.9969,
+          "accuracy": 0.998,
+          "precision_macro": 0.9952,
+          "recall_macro": 0.9985,
+          "f1_stagnation": 0.995,
+          "f1_progress": 0.9987
+        },
+        "GB": {
+          "macro_f1": 0.9949,
+          "accuracy": 0.9968,
+          "precision_macro": 0.9971,
+          "recall_macro": 0.9928,
+          "f1_stagnation": 0.9918,
+          "f1_progress": 0.998
+        }
+      }
+    }
+  },
+  "label_stats": {
+    "total_windows": 15401,
+    "mv_twv_agreement": 0.951,
+    "n_disagree": 754,
+    "mv_dist": {
+      "stag": 5846,
+      "prog": 9555
+    },
+    "twv_dist": {
+      "stag": 5274,
+      "prog": 10127
+    },
+    "train_mv_dist": {
+      "stag": 3894,
+      "prog": 6740
+    },
+    "train_twv_dist": {
+      "stag": 3527,
+      "prog": 7107
+    },
+    "test_mv_dist": {
+      "stag": 485,
+      "prog": 1339
+    },
+    "test_twv_dist": {
+      "stag": 393,
+      "prog": 1431
+    }
+  },
+  "hyperparams": {
+    "twv_trained": {
+      "LR_best_C": 0.1,
+      "RF_best_n_estimators": 200,
+      "GB_best_lr": 0.05
+    },
+    "mv_trained": {
+      "LR_best_C": 10.0,
+      "RF_best_n_estimators": 200,
+      "GB_best_lr": 0.05
+    }
+  },
+  "oh_stats": {
+    "non_abstain": 150652,
+    "conf2": 43376
+  }
+}

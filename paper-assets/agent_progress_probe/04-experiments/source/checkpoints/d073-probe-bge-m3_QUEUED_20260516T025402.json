@@ -1,0 +1,14 @@
+{
+  "exp_id": "d073-probe-bge-m3",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:26:43.491Z",
+    "updated_at": "2026-05-16T02:54:01.639Z"
+  },
+  "timestamp": "2026-05-16T02:54:02.214636+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "openhands-fewshot-probe",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:21:29.626Z",
+    "updated_at": "2026-05-14T12:24:30.072Z",
+    "spec": {
+      "hypothesis": "Few-shot fine-tuning with small amounts of OpenHands labeled data recovers probe effectiveness on new agent implementation, validating practical cross-agent transfer pathway (D017 Framing A)",
+      "plan_id": "openhands-fewshot-probe",
+      "parent": "cross-agent-eval",
+      "model_name": "GRU ProgressProbe (fewshot adaptation)",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings.pt + /root/autodl-tmp/agent_progress_probe/openhands_data/windows_labeled.jsonl",
+      "data_count": 154743,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T12:24:30.105466+00:00",
+  "trigger": "update_registry"
+}

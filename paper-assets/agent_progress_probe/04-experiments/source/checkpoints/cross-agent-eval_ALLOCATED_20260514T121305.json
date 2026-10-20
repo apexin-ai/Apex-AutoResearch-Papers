@@ -1,0 +1,22 @@
+{
+  "exp_id": "cross-agent-eval",
+  "project": "agent_progress_probe",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:12:50.544Z",
+    "updated_at": "2026-05-14T12:13:05.427Z",
+    "spec": {
+      "hypothesis": "SWE-agent-trained probe transfers zero-shot to OpenHands (Claim 3)",
+      "plan_id": "cross-agent",
+      "model_name": "GRU ProgressProbe (zero-shot transfer)",
+      "data_count": 154743,
+      "parent": "probe_001"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T12:13:05.448558+00:00",
+  "trigger": "update_registry"
+}

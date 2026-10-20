@@ -1,0 +1,573 @@
+# analysis confidence gradient
+
+**Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 9
+- **Original source:** `logs/chats/worker_analysis_confidence_gradient_20260514T170529.jsonl`
+- **Structured JSON:** [`b3ef14c8a0295c9f10e8.json`](../../sessions/b3/b3ef14c8a0295c9f10e8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+19 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T17:07:53.650486+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T17:07:53.650875+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T17:07:53.651116+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/train_probe.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/train_probe.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T17:07:53.651410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "head -5 /root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "head -5 /root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T17:07:53.651866+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Train the GRU progress probe on pre-computed window embeddings.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport random\\nimport sys\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nimport torch.nn as nn\\nfrom sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score\\nfrom torch.utils.data import DataLoader\\n\\nsys.path.insert(0, str(Path(__file__).parent))\\nfrom probe_model import ProgressProbe, WindowDataset, collate_fn, split_by_instance\\n\\n\\ndef set_seed(seed: int):\\n    random.seed(seed)\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef compute_metrics(labels: list[int], preds: list[int]) -> dict:\\n    return {\\n        \\\"macro_f1\\\": f1_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"accuracy\\\": accuracy_score(labels, preds),\\n        \\\"precision_macro\\\": precision_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"recall_macro\\\": recall_score(labels, preds, average=\\\"macro\\\", zero_division=0),\\n        \\\"f1_stagnation\\\": f1_score(labels, preds, pos_label=0, zero_division=0),\\n        \\\"f1_progress\\\": f1_score(labels, preds, pos_label=1, zero_division=0),\\n    }\\n\\n\\nclass EarlyStopping:\\n    def __init__(self, patience: int = 5):\\n        self.patience = patience\\n        self.counter = 0\\n        self.best_score = None\\n        self.should_stop = False\\n\\n    def step(self, score: float) -> bool:\\n        if self.best_score is None or score > self.best_score:\\n            self.best_score = score\\n            self.counter = 0\\n            return True\\n        self.counter += 1\\n        if self.counter >= self.patience:\\n            self.should_stop = True\\n        return False\\n\\n\\n@torch.no_grad()\\ndef evaluate_epo
+…[truncated 7127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T17:07:53.652119+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls /root/autodl-tmp/agent_progress_probe/checkpoints/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls /root/autodl-tmp/agent_progress_probe/checkpoints/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T17:07:53.652371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"trajectory_id\\\": \\\"Azure__azure-functions-python-worker-890__swe-agent-llama-70b__r0\\\", \\\"instance_id\\\": \\\"Azure__azure-functions-python-worker-890\\\", \\\"row_index\\\": 0, \\\"window_idx\\\": 0, \\\"step_indices\\\": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11], \\\"short_trajectory\\\": false, \\\"labels\\\": {\\\"file_diff_delta\\\": -1, \\\"command_repetition\\\": 1, \\\"outcome_backpropagation\\\": -1}, \\\"majority_label\\\": 1, \\\"confidence\\\": 1}\\n{\\\"trajectory_id\\\": \\\"Azure__azure-functions-python-worker-890__swe-agent-llama-70b__r0\\\", \\\"instance_id\\\": \\\"Azure__azure-functions-python-worker-890\\\", \\\"row_index\\\": 0, \\\"window_idx\\\": 1, \\\"step_indices\\\": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15], \\\"short_trajectory\\\": false, \\\"labels\\\": {\\\"file_diff_delta\\\": -1, \\\"command_repetition\\\": 1, \\\"outcome_backpropagation\\\": -1}, \\\"majority_label\\\": 1, \\\"confidence\\\": 1}\\n{\\\"trajectory_id\\\": \\\"Azure__azure-functions-python-worker-890__swe-agent-llama-70b__r0\\\", \\\"instance_id\\\": \\\"Azure__azure-functions-python-worker-890\\\", \\\"row_index\\\": 0, \\\"window_idx\\\": 2, \\\"step_indices\\\": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], \\\"short_trajectory\\\": false, \\\"labels\\\": {\\\"file_diff_delta\\\": -1, \\\"command_repetition\\\": 1, \\\"outcome_backpropagation\\\": 0}, \\\"majority_label\\\": 1, \\\"confidence\\\": 1}\\n{\\\"trajectory_id\\\": \\\"Azure__azure-functions-python-worker-890__swe-agent-llama-70b__r0\\\", \\\"instance_id\\\": \\\"Azure__azure-functions-python-worker-890\\\", \\\"row_index\\\": 0, \\\"window_idx\\\": 3, \\\"step_indices\\\": [14, 15, 16, 17, 18, 19, 20, 21, 22], \\\"short_trajectory\\\": false, \\\"labels\\\": {\\\"file_diff_delta\\\": 1, \\\"command_repetition\\\": 1, \\\"outcome_backpropagation\\\": 0}, \\\"majority_label\\\": 1, \\\"confidence\\\": 2}\\n{\\\"trajectory_id\\\": \\\"Melevir__cognitive_
+…[truncated 511 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T17:07:53.652607+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "ls /root/autodl-tmp/agent_progress_probe/data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "ls /root/autodl-tmp/agent_progress_probe/data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T17:07:53.652815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"best_model.pt\\nsplit_info.json\\ntrain_history.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T17:07:53.652997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"architecture_ablation_results.json\\ndata_scaling_results.json\\nembeddings.pt\\nembeddings_no_ob_clean.pt\\nembeddings_no_outcome_bp.pt\\nmeanpool_lr_results.json\\nnon_nlp_baseline_results.json\\nswe_agent_trajectories_5000.jsonl\\nwindows_labeled.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T17:07:53.653240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/probe_model.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/probe_model.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T17:07:53.653414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints/split_info.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat /root/autodl-tmp/agent_progress_probe/checkpoints/split_info.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T17:07:53.653705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"GRU-based progress probe model, dataset, and data splitting utilities.\\\"\\\"\\\"\\n\\nimport random\\nfrom pathlib import Path\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset\\n\\n\\nclass ProgressProbe(nn.Module):\\n    \\\"\\\"\\\"2-layer GRU probe for progress/stagnation binary classification.\\n\\n    Input:  (batch, seq_len, embed_dim)\\n    Output: (batch,) logits (apply sigmoid for probabilities)\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, embed_dim: int, hidden_size: int = 256, num_layers: int = 2, dropout: float = 0.1):\\n        super().__init__()\\n        self.gru = nn.GRU(\\n            embed_dim,\\n            hidden_size,\\n            num_layers=num_layers,\\n            batch_first=True,\\n            dropout=dropout if num_layers > 1 else 0.0,\\n        )\\n        self.classifier = nn.Linear(hidden_size, 1)\\n\\n    def forward(self, x: torch.Tensor, lengths: torch.Tensor = None) -> torch.Tensor:\\n        if lengths is not None:\\n            x = nn.utils.rnn.pack_padded_sequence(x, lengths.cpu(), batch_first=True, enforce_sorted=False)\\n        _, hidden = self.gru(x)\\n        out = hidden[-1]  # last layer hidden: (batch, hidden_size)\\n        return self.classifier(out).squeeze(-1)\\n\\n\\nclass WindowDataset(Dataset):\\n    \\\"\\\"\\\"Dataset of pre-computed window embeddings + binary labels.\\\"\\\"\\\"\\n\\n    def __init__(self, embeddings: list[torch.Tensor], labels: list[int]):\\n        assert len(embeddings) == len(labels)\\n        self.embeddings = embeddings\\n        self.labels = labels\\n\\n    def __len__(self):\\n        return len(self.labels)\\n\\n    def __getitem__(self, idx):\\n        return self.embeddings[idx], self.labels[idx]\\n\\n\\ndef collate_fn(batch):\\n    \\\"\\\"\\\"Pad variable-length window embeddings to the max length in the batch.\\\"\\\"\\\"\\n    embeddings_list, labels_l
+…[truncated 4061 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T17:07:53.653971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"train_indices\\\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 327, 328, 329, 330, 331, 332, 333, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 424, 425, 426, 427, 428, 431, 432, 433, 434, 435, 436, 437, 439, 440, 441, 442, 443, 444, 445, 446, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 490, 491, 492, 493, 494, 495, 496, 497, 498, 499, 500, 501, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 529, 530, 531, 532, 533, 534, 535, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, 590, 59
+…[truncated 6209 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T17:07:53.654228+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "cat > /root/autodl-tmp/agent_progress_probe/confidence_gradient.py << 'PYEOF'\n\"\"\"\nconfidence_gradient.py — Confidence Gradient diagnosis\nPer-confidence-level disagreement between probe predictions and LF majority labels.\n\"\"\"\nimport json\nfrom pathlib import Path\n\nimport torch\nimport torch.nn as nn\n\n\nclass ProgressProbe(nn.Module):\n    def __init__(self, embed_dim, hidden_size=256, num_layers=2, dropout=0.1):\n        super().__init__()\n        self.gru = nn.GRU(\n            embed_dim, hidden_size, num_layers=num_layers,\n            batch_first=True, dropout=dropout if num_layers > 1 else 0.0,\n        )\n        self.classifier = nn.Linear(hidden_size, 1)\n\n    def forward(self, x, lengths=None):\n        if lengths is not None:\n            x = nn.utils.rnn.pack_padded_sequence(\n                x, lengths.cpu(), batch_first=True, enforce_sorted=False\n            )\n        _, hidden = self.gru(x)\n        return self.classifier(hidden[-1]).squeeze(-1)\n\n\ndef main():\n    project = Path(\"/root/autodl-tmp/agent_progress_probe\")\n\n    # Load checkpoint\n    ckpt = torch.load(project / \"checkpoints/best_model.pt\",\n                       weights_only=False, map_location=\"cpu\")\n\n    # Load data\n    data = torch.load(project / \"data/embeddings.pt\",\n                       weights_only=False, map_location=\"cpu\")\n    embeddings = data[\"embeddings\"]\n    labels = data[\"labels\"]\n    confidences = data.get(\"confidences\", [1] * len(labels))\n    embed_dim = data[\"embed_dim\"]\n\n    n_total = len(labels)\n    print(f\"Total windows: {n_total}\")\n    print(f\"Embed dim: {embed_dim}\")\n    print(f\"Checkpoint epoch: {ckpt['epoch']}, val_macro_f1: {ckpt['val_macro_f1']:.4f}\")\n\n    # Build model\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n        dropout=ckpt[\"dropout\"],\n    )\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    # Batched inference (CPU)\n    batch_size = 256\n    all_preds = []\n\n    with torch.no_grad():\n        for i in range(0, n_total, batch_size):\n            batch_embs = embeddings[i : i + batch_size]\n            lengths = torch.tensor([e.shape[0] for e in batch_embs], dtype=torch.long)\n            max_len = lengths.max().item()\n            d = batch_embs[0].shape[1]\n\n            padded = torch.zeros(len(batch_embs), max_len, d)\n            for j, e in enumerate(batch_embs):\n                padded[j, : e.shape[0]] = e\n\n            logits = model(padded, lengths)\n            preds = (torch.sigmoid(logits) >= 0.5).long().tolist()\n            all_preds.extend(preds)\n\n            if (i // batch_size) % 50 == 0:\n                print(f\"  inference: {min(i + batch_size, n_total)}/{n_total}\")\n\n    # Group by confidence\n    results = {}\n    for conf_level in sorted(set(confidences)):\n        idx = [i for i, c in enumerate(confidences) if c == conf_level]\n        n = len(idx)\n        disagree = 0\n        pp_ls = 0  # probe→progress, LF→stagnation\n        ps_lp = 0  # probe→stagnation, LF→progress\n        for i in idx:\n            if all_preds[i] != labels[i]:\n                disagree += 1\n                if all_preds[i] == 1 and labels[i] == 0:\n                    pp_ls += 1\n                else:\n                    ps_lp += 1\n        results[conf_level] = {\n            \"n\": n,\n            \"disagreements\": disagree,\n            \"disagreement_rate\": round(disagree / n, 6) if n else 0,\n            \"probe_prog_lf_stag\": pp_ls,\n            \"probe_prog_lf_stag_rate\": round(pp_ls / n, 6) if n else 0,\n            \"probe_stag_lf_prog\": ps_lp,\n            \"probe_stag_lf_prog_rate\": round(ps_lp / n, 6) if n else 0,\n        }\n\n    # Print table\n    hdr = f\"{'conf':>4} | {'n':>7} | {'disagree%':>9} | {'P→prog,LF→stag':>18} | {'P→stag,LF→prog':>18}\"\n    sep = f\"{'-'*4}-+-{'-'*7}-+-{'-'*9}-+-{'-'*18}-+-{'-'*18}\"\n    print(f\"\\n{'='*len(hdr)}\")\n    print(\"Confidence Gradient: Probe vs LF Majority Disagreement\")\n    print(f\"{'='*len(hdr)}\")\n    print(hdr)\n    print(sep)\n\n    for c in sorted(results):\n        r = results[c]\n        print(f\"{c:>4} | {r['n']:>7} | {r['disagreement_rate']:>9.4f} | \"\n              f\"{r['probe_prog_lf_stag']:>6} ({r['probe_prog_lf_stag_rate']:.4f}) | \"\n              f\"{r['probe_stag_lf_prog']:>6} ({r['probe_stag_lf_prog_rate']:.4f})\")\n\n    tot_n = sum(r[\"n\"] for r in results.values())\n    tot_d = sum(r[\"disagreements\"] for r in results.values())\n    tot_pp = sum(r[\"probe_prog_lf_stag\"] for r in results.values())\n    tot_ps = sum(r[\"probe_stag_lf_prog\"] for r in results.values())\n    print(sep)\n    print(f\"{'ALL':>4} | {tot_n:>7} | {tot_d/tot_n:>9.4f} | \"\n          f\"{tot_pp:>6} ({tot_pp/tot_n:.4f}) | \"\n          f\"{tot_ps:>6} ({tot_ps/tot_n:.4f})\")\n\n    # Also print label distribution per confidence\n    print(f\"\\n{'='*50}\")\n    print(\"Label distribution per confidence level\")\n    print(f\"{'='*50}\")\n    print(f\"{'conf':>4} | {'n':>7} | {'progress':>8} | {'stagnation':>10} | {'prog%':>6}\")\n    print(f\"{'-'*4}-+-{'-'*7}-+-{'-'*8}-+-{'-'*10}-+-{'-'*6}\")\n    for c in sorted(results):\n        idx = [i for i, cc in enumerate(confidences) if cc == c]\n        prog = sum(1 for i in idx if labels[i] == 1)\n        stag = len(idx) - prog\n        print(f\"{c:>4} | {len(idx):>7} | {prog:>8} | {stag:>10} | {prog/len(idx):>6.3f}\")\n\n    # Save JSON\n    (project / \"artifacts\").mkdir(parents=True, exist_ok=True)\n    output = {\n        \"total_windows\": tot_n,\n        \"overall_disagreement_rate\": round(tot_d / tot_n, 6),\n        \"by_confidence\": {str(k): v for k, v in results.items()},\n    }\n    out_path = project / \"artifacts/confidence_gradient.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created.\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "cat > /root/autodl-tmp/agent_progress_probe/confidence_gradient.py << 'PYEOF'\n\"\"\"\nconfidence_gradient.py — Confidence Gradient diagnosis\nPer-confidence-level disagreement between probe predictions and LF majority labels.\n\"\"\"\nimport json\nfrom pathlib import Path\n\nimport torch\nimport torch.nn as nn\n\n\nclass ProgressProbe(nn.Module):\n    def __init__(self, embed_dim, hidden_size=256, num_layers=2, dropout=0.1):\n        super().__init__()\n        self.gru = nn.GRU(\n            embed_dim, hidden_size, num_layers=num_layers,\n            batch_first=True, dropout=dropout if num_layers > 1 else 0.0,\n        )\n        self.classifier = nn.Linear(hidden_size, 1)\n\n    def forward(self, x, lengths=None):\n        if lengths is not None:\n            x = nn.utils.rnn.pack_padded_sequence(\n                x, lengths.cpu(), batch_first=True, enforce_sorted=False\n            )\n        _, hidden = self.gru(x)\n        return self.classifier(hidden[-1]).squeeze(-1)\n\n\ndef main():\n    project = Path(\"/root/autodl-tmp/agent_progress_probe\")\n\n    # Load checkpoint\n    ckpt = torch.load(project / \"checkpoints/best_model.pt\",\n                       weights_only=False, map_location=\"cpu\")\n\n    # Load data\n    data = torch.load(project / \"data/embeddings.pt\",\n                       weights_only=False, map_location=\"cpu\")\n    embeddings = data[\"embeddings\"]\n    labels = data[\"labels\"]\n    confidences = data.get(\"confidences\", [1] * len(labels))\n    embed_dim = data[\"embed_dim\"]\n\n    n_total = len(labels)\n    print(f\"Total windows: {n_total}\")\n    print(f\"Embed dim: {embed_dim}\")\n    print(f\"Checkpoint epoch: {ckpt['epoch']}, val_macro_f1: {ckpt['val_macro_f1']:.4f}\")\n\n    # Build model\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n        dropout=ckpt[\"dropout\"],\n    )\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    # Batched inference (CPU)\n    batch_size = 256\n    all_preds = []\n\n    with torch.no_grad():\n        for i in range(0, n_total, batch_size):\n            batch_embs = embeddings[i : i + batch_size]\n            lengths = torch.tensor([e.shape[0] for e in batch_embs], dtype=torch.long)\n            max_len = lengths.max().item()\n            d = batch_embs[0].shape[1]\n\n            padded = torch.zeros(len(batch_embs), max_len, d)\n            for j, e in enumerate(batch_embs):\n                padded[j, : e.shape[0]] = e\n\n            logits = model(padded, lengths)\n            preds = (torch.sigmoid(logits) >= 0.5).long().tolist()\n            all_preds.extend(preds)\n\n            if (i // batch_size) % 50 == 0:\n                print(f\"  inference: {min(i + batch_size, n_total)}/{n_total}\")\n\n    # Group by confidence\n    results = {}\n    for conf_level in sorted(set(confidences)):\n        idx = [i for i, c in enumerate(confidences) if c == conf_level]\n        n = len(idx)\n        disagree = 0\n        pp_ls = 0  # probe→progress, LF→stagnation\n        ps_lp = 0  # probe→stagnation, LF→progress\n        for i in idx:\n            if all_preds[i] != labels[i]:\n                disagree += 1\n                if all_preds[i] == 1 and labels[i] == 0:\n                    pp_ls += 1\n                else:\n                    ps_lp += 1\n        results[conf_level] = {\n            \"n\": n,\n            \"disagreements\": disagree,\n            \"disagreement_rate\": round(disagree / n, 6) if n else 0,\n            \"probe_prog_lf_stag\": pp_ls,\n            \"probe_prog_lf_stag_rate\": round(pp_ls / n, 6) if n else 0,\n            \"probe_stag_lf_prog\": ps_lp,\n            \"probe_stag_lf_prog_rate\": round(ps_lp / n, 6) if n else 0,\n        }\n\n    # Print table\n    hdr = f\"{'conf':>4} | {'n':>7} | {'disagree%':>9} | {'P→prog,LF→stag':>18} | {'P→stag,LF→prog':>18}\"\n    sep = f\"{'-'*4}-+-{'-'*7}-+-{'-'*9}-+-{'-'*18}-+-{'-'*18}\"\n    print(f\"\\n{'='*len(hdr)}\")\n    print(\"Confidence Gradient: Probe vs LF Majority Disagreement\")\n    print(f\"{'='*len(hdr)}\")\n    print(hdr)\n    print(sep)\n\n    for c in sorted(results):\n        r = results[c]\n        print(f\"{c:>4} | {r['n']:>7} | {r['disagreement_rate']:>9.4f} | \"\n              f\"{r['probe_prog_lf_stag']:>6} ({r['probe_prog_lf_stag_rate']:.4f}) | \"\n              f\"{r['probe_stag_lf_prog']:>6} ({r['probe_stag_lf_prog_rate']:.4f})\")\n\n    tot_n = sum(r[\"n\"] for r in results.values())\n    tot_d = sum(r[\"disagreements\"] for r in results.values())\n    tot_pp = sum(r[\"probe_prog_lf_stag\"] for r in results.values())\n    tot_ps = sum(r[\"probe_stag_lf_prog\"] for r in results.values())\n    print(sep)\n    print(f\"{'ALL':>4} | {tot_n:>7} | {tot_d/tot_n:>9.4f} | \"\n          f\"{tot_pp:>6} ({tot_pp/tot_n:.4f}) | \"\n          f\"{tot_ps:>6} ({tot_ps/tot_n:.4f})\")\n\n    # Also print label distribution per confidence\n    print(f\"\\n{'='*50}\")\n    print(\"Label distribution per confidence level\")\n    print(f\"{'='*50}\")\n    print(f\"{'conf':>4} | {'n':>7} | {'progress':>8} | {'stagnation':>10} | {'prog%':>6}\")\n    print(f\"{'-'*4}-+-{'-'*7}-+-{'-'*8}-+-{'-'*10}-+-{'-'*6}\")\n    for c in sorted(results):\n        idx = [i for i, cc in enumerate(confidences) if cc == c]\n        prog = sum(1 for i in idx if labels[i] == 1)\n        stag = len(idx) - prog\n        print(f\"{c:>4} | {len(idx):>7} | {prog:>8} | {stag:>10} | {prog/len(idx):>6.3f}\")\n\n    # Save JSON\n    (project / \"artifacts\").mkdir(parents=True, exist_ok=True)\n    output = {\n        \"total_windows\": tot_n,\n        \"overall_disagreement_rate\": round(tot_d / tot_n, 6),\n        \"by_confidence\": {str(k): v for k, v in results.items()},\n    }\n    out_path = project / \"artifacts/confidence_gradient.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script created.\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T17:07:53.654432+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script created.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T17:07:53.654589+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-23165",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python confidence_gradient.py 2>&1 | tee /tmp/confidence_gradient.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-23165",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python confidence_gradient.py 2>&1 | tee /tmp/confidence_gradient.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T17:07:53.654780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total windows: 54809\\nEmbed dim: 1024\\nCheckpoint epoch: 3, val_macro_f1: 0.9511\\n  inference: 256/54809\\n  inference: 13056/54809\\n  inference: 25856/54809\\n  inference: 38656/54809\\n  inference: 51456/54809\\n\\n====================================================================\\nConfidence Gradient: Probe vs LF Majority Disagreement\\n====================================================================\\nconf |       n | disagree% |     P→prog,LF→stag |     P→stag,LF→prog\\n-----+---------+-----------+--------------------+-------------------\\n   1 |   39408 |    0.2361 |   1430 (0.0363) |   7876 (0.1999)\\n   2 |   14609 |    0.0382 |    231 (0.0158) |    327 (0.0224)\\n   3 |     792 |    0.0088 |      2 (0.0025) |      5 (0.0063)\\n-----+---------+-----------+--------------------+-------------------\\n ALL |   54809 |    0.1801 |   1663 (0.0303) |   8208 (0.1498)\\n\\n==================================================\\nLabel distribution per confidence level\\n==================================================\\nconf |       n | progress | stagnation |  prog%\\n-----+---------+----------+------------+-------\\n   1 |   39408 |    29654 |       9754 |  0.752\\n   2 |   14609 |     9276 |       5333 |  0.635\\n   3 |     792 |      279 |        513 |  0.352\\n\\nSaved to /root/autodl-tmp/agent_progress_probe/artifacts/confidence_gradient.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 18.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_confidence_gradient_20260514T170529",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T17:07:53.654975+00:00_
+
+结果如下：
+
+## Confidence Gradient: Probe vs LF Disagreement
+
+| conf | n | disagree% | P→prog, LF→stag | P→stag, LF→prog |
+|------|-------|-----------|-------------------|-------------------|
+| 1 | 39,408 | **23.61%** | 1,430 (3.63%) | 7,876 (19.99%) |
+| 2 | 14,609 | **3.82%** | 231 (1.58%) | 327 (2.24%) |
+| 3 | 792 | **0.88%** | 2 (0.25%) | 5 (0.63%) |
+| ALL | 54,809 | **18.01%** | 1,663 (3.03%) | 8,208 (14.98%) |
+
+**Label distribution per confidence:**
+
+| conf | n | progress | stagnation | prog% |
+|------|-------|----------|------------|-------|
+| 1 | 39,408 | 29,654 | 9,754 | 75.2% |
+| 2 | 14,609 | 9,276 | 5,333 | 63.5% |
+| 3 | 792 | 279 | 513 | 35.2% |
+
+关键发现：
+
+1. **Disagreement 随 confidence 单调递减**：conf=1 时 23.6%，conf=2 降至 3.8%，conf=3 仅 0.88%。Probe 在高共识样本上几乎完全同意 LF。
+2. **不对称性**：disagreement 主要来自 **probe→stagnation 但 LF→progress**（占总体 15.0%），集中在 conf=1 窗口（20.0%）。Probe 比 LF 更倾向于判断 stagnation。
+3. **conf=1 占比 72%**（39,408/54,809），是 noise 的主要来源。这些窗口 3 个 LF 中只有 1 个投了多数方向（有 abstain 或分裂），LF label 本身可信度低。
+
+JSON 已保存到 `artifacts/confidence_gradient.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_confidence_gradient_20260514T170529"
+}
+```
+
+</details>
+
+---

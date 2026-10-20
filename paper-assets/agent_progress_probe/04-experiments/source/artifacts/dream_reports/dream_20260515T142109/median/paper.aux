@@ -1,0 +1,82 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yang2024swe}
+\citation{wang2024opendevin}
+\citation{xi2026agentprm}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{slopcodeench2026}
+\citation{xi2026agentprm}
+\citation{ratner2017snorkel}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Agent Failure Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process Reward Models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM Self-Reflection and Monitoring.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Weak Supervision.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Labeling Functions}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Matched-scope comparison on OpenHands ($N{=}6{,}122$, stag prevalence 19.3\%). Structural GB trained on SWE-Agent, evaluated zero-shot.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:matched}{{1}{3}{Matched-scope comparison on OpenHands ($N{=}6{,}122$, stag prevalence 19.3\%). Structural GB trained on SWE-Agent, evaluated zero-shot}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Structural Features}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Models}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Structural classifiers.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Neural probe.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge baselines.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}2-LF Deployable Configuration}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments: Stagnation Detection}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments: Stagnation Detection}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Claim 1: Structural Features Dominate Zero-Shot Transfer}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:claim1}{{4.2}{3}{Claim 1: Structural Features Dominate Zero-Shot Transfer}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Matched-scope evaluation.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LLM judge cross-agent comparison. SWE F1 is in-domain; OH F1 is cross-agent zero-shot. Cost is per 5,000 windows.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:llm}{{2}{4}{LLM judge cross-agent comparison. SWE F1 is in-domain; OH F1 is cross-agent zero-shot. Cost is per 5,000 windows}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces SWE-Agent gold set evaluation ($N{=}328$, stag prevalence 32.9\%). TWV = temporal weighted vote probe.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:gold}{{3}{4}{SWE-Agent gold set evaluation ($N{=}328$, stag prevalence 32.9\%). TWV = temporal weighted vote probe}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM judge comparison.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gold set validation.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Claim 2: LF Temporal Dynamics and Label Quality}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:claim2}{{4.3}{4}{Claim 2: LF Temporal Dynamics and Label Quality}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal dynamics.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Label quality as transfer bottleneck.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{cmd\_rep coverage contribution.}{4}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Compute waste audit by agent and resolution status. Tail\% = fraction of instances with stagnation tail. Compute\% = fraction of total compute in tails.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:waste}{{4}{5}{Compute waste audit by agent and resolution status. Tail\% = fraction of instances with stagnation tail. Compute\% = fraction of total compute in tails}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Claim 3: Temporal Label Model Negative Finding}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:claim3}{{4.4}{5}{Claim 3: Temporal Label Model Negative Finding}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Deployment Analysis}{5}{section.5}\protected@file@percent }
+\newlabel{sec:deployment}{{5}{5}{Deployment Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Compute Waste Quantification}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:waste}{{5.1}{5}{Compute Waste Quantification}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Early Termination Simulation}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:et}{{5.2}{5}{Early Termination Simulation}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Early termination simulation using structural GB detector. Saved\% = compute saved; Pres.\% = task success preserved; FTR = false termination rate.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:et}{{5}{6}{Early termination simulation using structural GB detector. Saved\% = compute saved; Pres.\% = task success preserved; FTR = false termination rate}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Pareto AUC comparison (normalized). Higher AUC = better savings--preservation trade-off across all operating points.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:pareto}{{6}{6}{Pareto AUC comparison (normalized). Higher AUC = better savings--preservation trade-off across all operating points}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Cost-Effectiveness Pareto Analysis}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:pareto}{{5.3}{6}{Cost-Effectiveness Pareto Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}2-LF Deployable Configuration}{6}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:2lf}{{5.4}{6}{2-LF Deployable Configuration}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 2-LF vs.\ 3-LF cross-agent performance. Coverage = fraction of windows with conf$\geq $2 labels.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:2lf}{{7}{7}{2-LF vs.\ 3-LF cross-agent performance. Coverage = fraction of windows with conf$\geq $2 labels}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{7}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}TLM Failure Analysis}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:tlm}{{A}{7}{TLM Failure Analysis}{appendix.A}{}}
+\@writefile{toc}{\contentsline {paragraph}{TWV.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{HMM-TLM.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lag-aware HMM.}{7}{section*.17}\protected@file@percent }
+\bibcite{yang2024swe}{1}
+\bibcite{wang2024opendevin}{2}
+\bibcite{xi2026agentprm}{3}
+\bibcite{slopcodeench2026}{4}
+\bibcite{ratner2017snorkel}{5}
+\@writefile{toc}{\contentsline {paragraph}{Diagnosis.}{8}{section*.18}\protected@file@percent }
+\gdef \@abspage@last{8}

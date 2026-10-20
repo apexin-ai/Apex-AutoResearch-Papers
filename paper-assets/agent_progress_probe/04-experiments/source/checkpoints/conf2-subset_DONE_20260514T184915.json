@@ -1,0 +1,71 @@
+{
+  "exp_id": "conf2-subset",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:45:27.627Z",
+    "updated_at": "2026-05-14T18:49:15.137Z",
+    "spec": {
+      "command": "python3 -u train_conf2_subset.py --device cuda:1",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "131405",
+      "log_path": "~/runs/agent_progress_probe/conf2-subset.log",
+      "submitted_at": "2026-05-14T18:45:27.506Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/embeddings.pt",
+      "data_count": 54809,
+      "model_name": "ProgressProbe (GRU, hidden=256, layers=2)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints_conf2_subset/best_model.pt",
+      "wall_clock_seconds": 227.6,
+      "gpu_hours": 0.06
+    },
+    "hypothesis": "Training on conf>=2 subset only (higher quality labels) produces better probe than training on all data (including noisy conf=1). Uses probe-002's split for fair comparison on the same 8101-window test set.",
+    "conclusion": "negative",
+    "metrics": {
+      "full_test_8101": {
+        "macro_f1": 0.7875,
+        "accuracy": 0.8194,
+        "f1_stagnation": 0.7051,
+        "f1_progress": 0.8699
+      },
+      "conf2_test_2206": {
+        "macro_f1": 0.9281,
+        "accuracy": 0.9379,
+        "f1_stagnation": 0.9017,
+        "f1_progress": 0.9546
+      },
+      "training": {
+        "train_windows": 10769,
+        "train_windows_full": 38161,
+        "data_reduction_pct": 71.8,
+        "best_epoch": 6,
+        "best_val_macro_f1": 0.9401
+      },
+      "vs_probe_002_full_test": {
+        "probe_002_macro_f1": 0.8468,
+        "conf2_subset_macro_f1": 0.7875,
+        "delta_pp": -5.93,
+        "note": "Training on conf>=2 only hurts full test performance by -5.9pp"
+      },
+      "vs_probe_001_conf2_test": {
+        "probe_001_macro_f1": 0.9055,
+        "conf2_subset_macro_f1": 0.9281,
+        "delta_pp": 2.26,
+        "note": "On conf>=2 test subset (different split), conf2-subset improves +2.3pp"
+      },
+      "finding": "Conf>=2 training improves performance on high-confidence test windows (+2.3pp vs probe_001) but degrades on full test distribution (-5.9pp vs probe-002). The noisy conf=1 training data helps the model generalize to conf=1 test windows. Removing 72% of training data (conf=1 windows) causes significant regression on the full distribution."
+    },
+    "completed_at": "2026-05-14T18:49:15.137Z"
+  },
+  "timestamp": "2026-05-14T18:49:15.286045+00:00",
+  "trigger": "update_registry"
+}

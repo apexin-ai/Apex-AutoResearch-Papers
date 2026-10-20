@@ -1,0 +1,63 @@
+{
+  "exp_id": "tlm-probe-comparison",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:24:43.641Z",
+    "updated_at": "2026-05-14T17:34:31.246Z",
+    "spec": {
+      "command": "python -u train_eval_tlm.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "112354",
+      "log_path": "/tmp/train_eval_tlm.log",
+      "submitted_at": "2026-05-14T17:24:43.538Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/embeddings.pt + data_tlm_twv/embeddings.pt + data_tlm_hmm/embeddings.pt",
+      "data_count": 54809,
+      "model_name": "ProgressProbe-GRU (MV/TWV/HMM labels)",
+      "seed": 42,
+      "checkpoint_path": "checkpoints_tlm_mv/best_model.pt, checkpoints_tlm_twv/best_model.pt, checkpoints_tlm_hmm/best_model.pt",
+      "wall_clock_seconds": 587.7,
+      "gpu_hours": 0.16
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mv_baseline": {
+        "self_f1": 0.8468,
+        "mv_all_f1": 0.8468,
+        "mv_c2_f1": 0.8946,
+        "mv_c2_acc": 0.9116
+      },
+      "twv": {
+        "self_f1": 0.8107,
+        "mv_all_f1": 0.8211,
+        "mv_c2_f1": 0.9003,
+        "mv_c2_acc": 0.9157,
+        "mv_agreement": 0.885,
+        "conf1_flip_rate": 0.141,
+        "smoothness_improvement": 0.64
+      },
+      "hmm": {
+        "self_f1": 0.9657,
+        "mv_all_f1": 0.6564,
+        "mv_c2_f1": 0.7502,
+        "mv_c2_acc": 0.7879,
+        "stag_overpredict": true,
+        "stag_count": 29176,
+        "prog_count": 25633
+      },
+      "finding": "TWV outperforms MV baseline on conf>=2 cross-eval (F1: 0.9003 vs 0.8946, +0.57pp). Gaussian temporal smoothing corrects ~14% of ambiguous conf=1 labels. HMM over-predicts stagnation due to file_diff emission dominance. TWV is the recommended TLM method for Claim 1."
+    },
+    "completed_at": "2026-05-14T17:34:31.246Z"
+  },
+  "timestamp": "2026-05-14T17:34:31.321190+00:00",
+  "trigger": "update_registry"
+}

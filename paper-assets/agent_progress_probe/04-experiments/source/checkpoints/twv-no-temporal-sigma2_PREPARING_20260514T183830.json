@@ -1,0 +1,14 @@
+{
+  "exp_id": "twv-no-temporal-sigma2",
+  "project": "agent_progress_probe",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:38:30.398Z",
+    "updated_at": "2026-05-14T18:38:30.398Z"
+  },
+  "timestamp": "2026-05-14T18:38:30.483642+00:00",
+  "trigger": "update_registry"
+}

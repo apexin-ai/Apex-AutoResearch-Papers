@@ -1,0 +1,27 @@
+{
+  "exp_id": "oh-crossagent-error-analysis",
+  "project": "agent_progress_probe",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:14:59.286Z",
+    "updated_at": "2026-05-15T01:15:20.087Z",
+    "spec": {
+      "command": "python3 oh_crossagent_error_analysis.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/openhands_data/embeddings_fixed.pt",
+      "data_count": 43366,
+      "model_name": "ProgressProbe GRU (SWE checkpoint)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/agent_progress_probe/checkpoints_full/best_model.pt",
+      "eval_data": "OH conf>=2 (embeddings_fixed.pt)",
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/oh_error_analysis.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T01:15:20.199142+00:00",
+  "trigger": "update_registry"
+}

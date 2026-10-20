@@ -1,0 +1,14 @@
+{
+  "exp_id": "baseline-lf-oracle",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:09:05.346Z",
+    "updated_at": "2026-05-14T16:09:05.346Z"
+  },
+  "timestamp": "2026-05-14T16:09:05.434544+00:00",
+  "trigger": "update_registry"
+}

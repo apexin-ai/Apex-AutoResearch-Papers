@@ -1,0 +1,39 @@
+{
+  "exp_id": "emb_001",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:11:49.298Z",
+    "updated_at": "2026-05-14T08:01:42.186Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 generate_embeddings.py --windows data/windows_labeled.jsonl --trajectories data/swe_agent_trajectories_5000.jsonl --output data/embeddings.pt --device cuda\"",
+      "server": "gpu-5090-2x-2",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 54809,
+      "model_name": "Qwen/Qwen3-Embedding-0.6B",
+      "seed": 42,
+      "note": "54809 usable windows (excluding 4687 ABSTAIN), embed_dim=1024, batch_size=64, max_length=512, chunk_size=500 with resume checkpoint",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/logs/emb_001.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T07:42:33.938Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T07:42:33.973Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T07:42:35.105080+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T08:01:42.236297+00:00",
+  "trigger": "update_registry"
+}

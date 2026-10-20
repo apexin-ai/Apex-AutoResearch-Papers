@@ -1,0 +1,57 @@
+{
+  "exp_id": "instance-level-isolation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:01:15.515Z",
+    "updated_at": "2026-05-15T03:03:34.810Z",
+    "conclusion": "success",
+    "spec": {
+      "command": "python src/analysis/instance_level_isolation.py",
+      "server": "bjb2-23165",
+      "data_path": "SWE windows_labeled.jsonl + OH windows_labeled.jsonl",
+      "data_count": "SWE 1683 instances, OH 3409 instances",
+      "model_name": "GB/RF structural",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "artifacts/instance-isolation/results.json"
+    },
+    "completed_at": "2026-05-15T03:01:50.682Z",
+    "metrics": {
+      "instance_overlap": {
+        "swe_instances": 1683,
+        "oh_instances": 3409,
+        "overlap": 356,
+        "overlap_pct_of_oh": 10.4,
+        "oh_windows_in_overlap": 13805,
+        "oh_windows_unseen": 136847,
+        "oh_conf2_in_overlap": 4044,
+        "oh_conf2_unseen": 39332
+      },
+      "full_set": {
+        "all_gb": 0.9035,
+        "all_rf": 0.9657,
+        "conf2_gb": 0.9974,
+        "conf2_rf": 0.9984
+      },
+      "unseen_only": {
+        "all_gb": 0.9035,
+        "all_rf": 0.9651,
+        "conf2_gb": 0.9977,
+        "conf2_rf": 0.9987
+      },
+      "delta_pp": {
+        "all_gb": 0.01,
+        "all_rf": -0.06,
+        "conf2_gb": 0.03,
+        "conf2_rf": 0.03
+      },
+      "finding": "Instance overlap exists (356/3409=10.4%) but has ZERO impact on cross-agent F1. All deltas <0.1pp. Directly refutes instance-level data leakage concern."
+    }
+  },
+  "timestamp": "2026-05-15T03:03:34.921688+00:00",
+  "trigger": "update_registry"
+}

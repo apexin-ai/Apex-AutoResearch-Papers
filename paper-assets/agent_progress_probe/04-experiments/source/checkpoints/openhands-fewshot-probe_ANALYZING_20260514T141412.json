@@ -1,0 +1,38 @@
+{
+  "exp_id": "openhands-fewshot-probe",
+  "project": "agent_progress_probe",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:21:29.626Z",
+    "updated_at": "2026-05-14T14:14:12.696Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 fewshot_probe.py --device cuda\"",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "57040",
+      "log_path": "~/runs/agent_progress_probe/openhands-fewshot-probe.log",
+      "submitted_at": "2026-05-14T14:06:05.204Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "zero_shot_macro_f1": 0.5318,
+      "fewshot_5pct_macro_f1": 0.5695,
+      "fewshot_10pct_macro_f1": 0.5744,
+      "fewshot_20pct_macro_f1": 0.6106,
+      "fewshot_50pct_macro_f1": 0.688,
+      "swe_agent_probe_macro_f1": 0.905,
+      "trend": "monotonic increase with data, bottleneck is cmd_rep LF unreliability (71% false progress on OH), not data volume",
+      "finding": "Few-shot improves 0.53→0.69 but 50% data still -22pp vs SWE-agent. Supports D017 Claim 3 reframing: LFs exhibit agent-specificity, probe needs agent-specific LF adaptation not just embedding adaptation."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T14:14:12.744244+00:00",
+  "trigger": "update_registry"
+}

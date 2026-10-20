@@ -1,0 +1,6 @@
+See server: /root/autodl-tmp/agent_progress_probe/artifacts/multiseed_structural_results.json
+
+Summary (seeds=42,123,456):
+non-nlp-baseline: RF=0.9951±0.0000, GB=0.9951±0.0000
+cross-agent OH all: RF=0.9116±0.0190, GB=0.9678±0.0015
+cross-agent OH conf2: RF=0.9959±0.0012, GB=0.9923±0.0005

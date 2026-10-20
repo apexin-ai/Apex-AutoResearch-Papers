@@ -1,0 +1,26 @@
+{
+  "exp_id": "feature-overlap-ablation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:14:06.279Z",
+    "updated_at": "2026-05-15T02:14:27.113Z",
+    "spec": {
+      "command": "python src/analysis/feature_overlap_ablation.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data",
+      "data_count": 166053,
+      "model_name": "RF+GB (sklearn)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/feat_ablation.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T02:14:27.113Z"
+  },
+  "timestamp": "2026-05-15T02:14:27.255946+00:00",
+  "trigger": "update_registry"
+}

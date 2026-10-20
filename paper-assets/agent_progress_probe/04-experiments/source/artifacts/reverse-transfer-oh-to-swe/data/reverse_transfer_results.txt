@@ -1,0 +1,1 @@
+OH to SWE reverse transfer results. oh_all GB=0.9365, RF=0.9533. oh_conf2 GB=0.9951, RF=0.9951. Forward ref: SWE to OH all GB=0.9674, RF=0.9123. conf2 GB=0.9919, RF=0.9959. Full JSON at server:/root/autodl-tmp/agent_progress_probe/data/reverse_transfer_results.json

@@ -1,0 +1,14 @@
+BGE-M3 Multiseed Test Results
+==============================
+seed_42:  macro_f1=0.9413, f1_stag=0.9147, f1_prog=0.9679 (test_size=1824)
+seed_123: macro_f1=0.8474, f1_stag=0.8173, f1_prog=0.8775 (test_size=2216) **OUTLIER**
+seed_456: macro_f1=0.9364, f1_stag=0.9183, f1_prog=0.9545 (test_size=2343)
+
+Summary (mean +/- std, ddof=1):
+  macro_f1:  0.9084 +/- 0.0529
+  f1_stag:   0.8835 +/- 0.0573
+  f1_prog:   0.9333 +/- 0.0488
+
+seed123_outlier: TRUE (9.4pp below seed 42, std >> 0.01 threshold)
+Note: Each seed used different random train/val/test splits, so variance reflects both split and init randomness.
+Full JSON saved on server: /root/autodl-tmp/agent_progress_probe/artifacts/bgem3_multiseed_test_results.json

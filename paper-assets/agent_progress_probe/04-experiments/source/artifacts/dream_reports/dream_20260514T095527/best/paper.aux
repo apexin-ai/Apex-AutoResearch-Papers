@@ -1,0 +1,137 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plainnat}
+\citation{yao2023react,yang2024sweagent,wang2024opendevin}
+\citation{zhuge2024cdcs,zhang2024specra}
+\citation{lightman2023lets,wang2024mathshepherd}
+\citation{zheng2024judging}
+\citation{shinn2023reflexion,yao2024tree}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{fu2020fast}
+\citation{zhuge2024cdcs,zhang2024specra}
+\citation{li2024trajad}
+\citation{shinn2023reflexion,yao2024tree,hao2023reasoning}
+\citation{lightman2023lets,wang2024mathshepherd,uesato2022solving}
+\citation{ratner2017snorkel}
+\citation{fu2020fast}
+\citation{zheng2024judging,dubois2024alpacafarm}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Agent monitoring and failure detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Process reward models.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data programming and weak supervision.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM-as-judge.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces LF temporal roles relative to stagnation onset, measured over 3{,}847 onset windows. Offset is in steps (negative = before onset).}}{3}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:lf-temporal}{{1}{3}{LF temporal roles relative to stagnation onset, measured over 3{,}847 onset windows. Offset is in steps (negative = before onset)}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Labeling Functions}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:lfs}{{3.2}{3}{Labeling Functions}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}LF Temporal Dynamics}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:lf-dynamics}{{3.3}{3}{LF Temporal Dynamics}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Temporal Label Model}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:tlm}{{3.4}{3}{Temporal Label Model}{subsection.3.4}{}}
+\citation{yang2024sweagent}
+\citation{wang2024opendevin}
+\citation{fu2020fast}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}ProgressProbe Architecture}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:probe}{{3.5}{4}{ProgressProbe Architecture}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Data.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Human gold set.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Main Results on Human Gold Set}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:main-results}{{5.1}{4}{Main Results on Human Gold Set}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Label Model Comparison}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:label-models}{{5.2}{4}{Label Model Comparison}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces All methods on the 412-window human gold set ($\kappa {=}0.82$). Label model rows show label accuracy directly; probe/baseline rows show model predictions. Latency is per-window inference time (excluding encoding).}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:main}{{2}{5}{All methods on the 412-window human gold set ($\kappa {=}0.82$). Label model rows show label accuracy directly; probe/baseline rows show model predictions. Latency is per-window inference time (excluding encoding)}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Label model ladder. Gold F1: label accuracy on human annotations. Conf=1 Acc: accuracy on the 72\% of windows where $\leq 1$ LF fires. Probe~$\downarrow $~F1: downstream probe performance on gold set when trained on each label model's outputs.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:label-ladder}{{3}{5}{Label model ladder. Gold F1: label accuracy on human annotations. Conf=1 Acc: accuracy on the 72\% of windows where $\leq 1$ LF fires. Probe~$\downarrow $~F1: downstream probe performance on gold set when trained on each label model's outputs}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Student Exceeds Teacher}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:student-teacher}{{5.3}{5}{Student Exceeds Teacher}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparison with LLM-as-Judge}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:llm-judge}{{5.4}{5}{Comparison with LLM-as-Judge}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cross-Agent Transfer}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:cross-agent}{{5.5}{5}{Cross-Agent Transfer}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LLM-as-judge vs.\ \textsc  {ProgressProbe}{}. Latency and cost are per window. \textsc  {ProgressProbe}{} is $690\times $ faster and ${\sim }690\times $ cheaper than LLM baselines.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:llm-judge}{{4}{6}{LLM-as-judge vs.\ \ours {}. Latency and cost are per window. \ours {} is $690\times $ faster and ${\sim }690\times $ cheaper than LLM baselines}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-agent transfer (SWE-agent $\to $ OpenHands). \textsc  {ProgressProbe}{} degrades gracefully ($-6.7$~pp) while the LF oracle collapses ($-21.6$~pp).}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cross-agent}{{5}{6}{Cross-agent transfer (SWE-agent $\to $ OpenHands). \ours {} degrades gracefully ($-6.7$~pp) while the LF oracle collapses ($-21.6$~pp)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Ablation Studies}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ablations}{{5.6}{6}{Ablation Studies}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal modeling is essential.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Window size.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Encoder choice.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LF hold-one-out.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Outcome leakage sensitivity.}{6}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Temporal vs.\ non-temporal architectures. GRU+attention consistently outperforms non-sequential models by 6--7~pp.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:temporal-vs-static}{{6}{7}{Temporal vs.\ non-temporal architectures. GRU+attention consistently outperforms non-sequential models by 6--7~pp}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-seed stability.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data scaling.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Non-NLP Structural Baseline}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:structural}{{5.7}{7}{Non-NLP Structural Baseline}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Error Analysis}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:error-analysis}{{5.8}{7}{Error Analysis}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Interpretability}{7}{subsection.5.9}\protected@file@percent }
+\newlabel{sec:interpretability}{{5.9}{7}{Interpretability}{subsection.5.9}{}}
+\bibcite{ratner2017snorkel}{{1}{2017}{{Ratner et~al.}}{{}}}
+\bibcite{fu2020fast}{{2}{2020}{{Fu et~al.}}{{}}}
+\bibcite{lightman2023lets}{{3}{2023}{{Lightman et~al.}}{{}}}
+\bibcite{wang2024mathshepherd}{{4}{2024a}{{Wang et~al.}}{{}}}
+\bibcite{yang2024sweagent}{{5}{2024}{{Yang et~al.}}{{}}}
+\bibcite{wang2024opendevin}{{6}{2024b}{{Wang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Application: Early Termination}{8}{subsection.5.10}\protected@file@percent }
+\newlabel{sec:early-term}{{5.10}{8}{Application: Early Termination}{subsection.5.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Temporal label models beyond agent monitoring.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{yao2023react}{{7}{2023}{{Yao et~al.}}{{}}}
+\bibcite{shinn2023reflexion}{{8}{2023}{{Shinn et~al.}}{{}}}
+\bibcite{yao2024tree}{{9}{2024}{{Yao et~al.}}{{}}}
+\bibcite{hao2023reasoning}{{10}{2023}{{Hao et~al.}}{{}}}
+\bibcite{zheng2024judging}{{11}{2024}{{Zheng et~al.}}{{}}}
+\bibcite{dubois2024alpacafarm}{{12}{2024}{{DuBois et~al.}}{{}}}
+\bibcite{uesato2022solving}{{13}{2022}{{Uesato et~al.}}{{}}}
+\bibcite{zhuge2024cdcs}{{14}{2024}{{Zhuge et~al.}}{{}}}
+\bibcite{zhang2024specra}{{15}{2024}{{Zhang et~al.}}{{}}}
+\bibcite{li2024trajad}{{16}{2024}{{Li et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Results}{9}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Full Architecture Ablation}{9}{subsection.A.1}\protected@file@percent }
+\newlabel{app:arch}{{A.1}{9}{Full Architecture Ablation}{subsection.A.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Architecture ablation on conf$\geq $2 test set.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:arch-full}{{7}{9}{Architecture ablation on conf$\geq $2 test set}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Encoder ablation. Macro-F1 on conf$\geq $2 test set.}}{10}{table.caption.25}\protected@file@percent }
+\newlabel{tab:encoder}{{8}{10}{Encoder ablation. Macro-F1 on conf$\geq $2 test set}{table.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces LF hold-one-out ablation on gold set.}}{10}{table.caption.26}\protected@file@percent }
+\newlabel{tab:lf-holdout}{{9}{10}{LF hold-one-out ablation on gold set}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Encoder Ablation}{10}{subsection.A.2}\protected@file@percent }
+\newlabel{app:encoder}{{A.2}{10}{Encoder Ablation}{subsection.A.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}LF Hold-One-Out}{10}{subsection.A.3}\protected@file@percent }
+\newlabel{app:lf-holdout}{{A.3}{10}{LF Hold-One-Out}{subsection.A.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}CosineSim Threshold Sweep}{10}{subsection.A.4}\protected@file@percent }
+\newlabel{app:cosinesim}{{A.4}{10}{CosineSim Threshold Sweep}{subsection.A.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Full-Data (Conf$\geq $1) Training}{10}{subsection.A.5}\protected@file@percent }
+\newlabel{app:fulldata}{{A.5}{10}{Full-Data (Conf$\geq $1) Training}{subsection.A.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Data Scaling Curve}{10}{subsection.A.6}\protected@file@percent }
+\newlabel{app:scaling}{{A.6}{10}{Data Scaling Curve}{subsection.A.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Data scaling on conf$\geq $2. Diminishing returns at ${\sim }$40\%.}}{10}{table.caption.27}\protected@file@percent }
+\newlabel{tab:scaling}{{10}{10}{Data scaling on conf$\geq $2. Diminishing returns at ${\sim }$40\%}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}SupCon Auxiliary Loss}{11}{subsection.A.7}\protected@file@percent }
+\newlabel{app:supcon}{{A.7}{11}{SupCon Auxiliary Loss}{subsection.A.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.8}Early Termination Details}{11}{subsection.A.8}\protected@file@percent }
+\newlabel{app:early-term}{{A.8}{11}{Early Termination Details}{subsection.A.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Early termination simulation on 487 held-out trajectories. $N$: consecutive stagnation windows required to trigger termination.}}{11}{table.caption.28}\protected@file@percent }
+\newlabel{tab:early-term}{{11}{11}{Early termination simulation on 487 held-out trajectories. $N$: consecutive stagnation windows required to trigger termination}{table.caption.28}{}}
+\gdef \@abspage@last{11}

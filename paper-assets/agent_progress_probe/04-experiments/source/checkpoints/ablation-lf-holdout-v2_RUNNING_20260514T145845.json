@@ -1,0 +1,31 @@
+{
+  "exp_id": "ablation-lf-holdout-v2",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:37:39.937Z",
+    "updated_at": "2026-05-14T14:58:45.202Z",
+    "spec": {
+      "command": "python3 ablation_lf_holdout.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "61243",
+      "log_path": "~/runs/agent_progress_probe/ablation-lf-holdout-v2.log",
+      "submitted_at": "2026-05-14T14:37:39.881Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/embeddings.pt",
+      "data_count": 54809,
+      "model_name": "GRU ProgressProbe (LF holdout ablation)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T14:58:45.364192+00:00",
+  "trigger": "update_registry"
+}

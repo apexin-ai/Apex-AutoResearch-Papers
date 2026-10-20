@@ -1,0 +1,74 @@
+{
+  "exp_id": "llm-judge-strengthened",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:36:36.682Z",
+    "updated_at": "2026-05-15T04:29:07.619Z",
+    "spec": {
+      "command": "python llm_judge_enhanced.py (6 configs: zero-shot, few-shot, cot, few-shot-cot, structured-input, gpt5.5-zero-shot)",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 1824,
+      "model_name": "claude-sonnet-4-6 + gpt-5.5 via OpenRouter",
+      "seed": 42,
+      "description": "LLM-as-Judge strengthened evaluation: few-shot, CoT, few-shot-cot for Claude; zero-shot for GPT-5.5",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/artifacts/llm-judge-strengthened/results_summary.json",
+      "checkpoint_path": "/root/autodl-tmp/agent_progress_probe/artifacts/llm-judge-strengthened/"
+    },
+    "metrics": {
+      "claude_zeroshot": {
+        "macro_f1": 0.6625,
+        "accuracy": 0.6721,
+        "f1_stag": 0.6055,
+        "f1_prog": 0.7195,
+        "parse_failures": 0,
+        "cost_usd": 11.66
+      },
+      "claude_fewshot": {
+        "macro_f1": 0.7514,
+        "accuracy": 0.7703,
+        "f1_stag": 0.6828,
+        "f1_prog": 0.8199,
+        "parse_failures": 0,
+        "cost_usd": 36.08
+      },
+      "claude_cot": {
+        "macro_f1": 0.7499,
+        "accuracy": 0.7689,
+        "f1_stag": 0.6808,
+        "f1_prog": 0.8189,
+        "parse_failures": 2,
+        "cost_usd": 17.16
+      },
+      "claude_fewshot_cot": {
+        "macro_f1": 0.7994,
+        "accuracy": 0.8229,
+        "f1_stag": 0.7306,
+        "f1_prog": 0.8681,
+        "parse_failures": 0,
+        "cost_usd": 40.56
+      },
+      "gpt55_zeroshot": {
+        "macro_f1": 0.7465,
+        "accuracy": 0.7514,
+        "f1_stag": 0.711,
+        "f1_prog": 0.7819,
+        "parse_failures": 408,
+        "valid_windows": 1416,
+        "cost_usd": 11.62
+      },
+      "total_cost_usd": 117.08,
+      "best_variant": "claude_fewshot_cot",
+      "best_macro_f1": 0.7994,
+      "finding": "Best LLM (Claude few-shot-cot F1=0.799) still 16.8pp below structural GB cross-agent (F1=0.967). GPT-5.5 has 22.4% parse failure rate but competitive F1 on valid windows."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T04:26:44.187Z"
+  },
+  "timestamp": "2026-05-15T04:29:07.744562+00:00",
+  "trigger": "update_registry"
+}

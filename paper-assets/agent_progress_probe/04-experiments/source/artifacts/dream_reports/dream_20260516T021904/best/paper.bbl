@@ -1,0 +1,86 @@
+\begin{thebibliography}{13}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Anonymous(2025{\natexlab{a}})]{prm_framework2025}
+Anonymous.
+\newblock Process reward models for sequential decision making.
+\newblock \emph{arXiv preprint arXiv:2502.10325}, 2025{\natexlab{a}}.
+
+\bibitem[Anonymous(2025{\natexlab{b}})]{seqharm2025}
+Anonymous.
+\newblock Monitoring llm agents for sequentially contextual harm.
+\newblock In \emph{ICLR Workshop}, 2025{\natexlab{b}}.
+
+\bibitem[Anonymous(2025{\natexlab{c}})]{w2s_monitor2025}
+Anonymous.
+\newblock Reliable weak-to-strong monitoring of language model agents.
+\newblock \emph{arXiv preprint arXiv:2508.19461}, 2025{\natexlab{c}}.
+
+\bibitem[Anonymous(2026{\natexlab{a}})]{slopcodebench2026}
+Anonymous.
+\newblock Slopcodebench: Quantifying structural degradation in long-horizon
+  coding agents.
+\newblock \emph{arXiv preprint arXiv:2603.24755}, 2026{\natexlab{a}}.
+
+\bibitem[Anonymous(2026{\natexlab{b}})]{toolprmbench2026}
+Anonymous.
+\newblock Toolprmbench: Benchmarking tool-use process reward models.
+\newblock \emph{arXiv preprint arXiv:2601.12294}, 2026{\natexlab{b}}.
+
+\bibitem[Anonymous(2026{\natexlab{c}})]{traj_reward2026}
+Anonymous.
+\newblock Trajectory-level reward modeling for language agents.
+\newblock \emph{arXiv preprint arXiv:2604.08178}, 2026{\natexlab{c}}.
+
+\bibitem[Ratner et~al.(2017)Ratner, Bach, Ehrenberg, Fries, Wu, and
+  R{\'e}]{ratner2017snorkel}
+Alexander Ratner, Stephen~H Bach, Henry Ehrenberg, Jason Fries, Sen Wu, and
+  Christopher R{\'e}.
+\newblock Snorkel: Rapid training data creation with weak supervision.
+\newblock In \emph{VLDB}, 2017.
+
+\bibitem[Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and
+  Yao]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu
+  Yao.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Wang et~al.(2025)]{wang2024opendevin}
+Xingyao Wang et~al.
+\newblock Opendevin: An open platform for ai software developers as generalist
+  agents.
+\newblock In \emph{ICLR}, 2025.
+
+\bibitem[Xi et~al.(2026)]{agentprm2026}
+Zhiheng Xi et~al.
+\newblock Agentprm: Process reward models for llm agent task planning.
+\newblock \emph{ACM Web Conference}, 2026.
+
+\bibitem[Yang et~al.(2024)Yang, Jimenez, Wettig, Liber, Narasimhan, and
+  Press]{yang2024swe}
+John Yang, Carlos~E Jimenez, Alexander Wettig, Kilian Liber, Karthik
+  Narasimhan, and Ofir Press.
+\newblock Swe-agent: Agent-computer interfaces enable automated software
+  engineering.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Yao et~al.(2023)Yao, Yu, Zhao, Shafran, Griffiths, Cao, and
+  Narasimhan]{yao2023tree}
+Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Tom Griffiths, Yuan Cao, and
+  Karthik Narasimhan.
+\newblock Tree of thoughts: Deliberate problem solving with large language
+  models.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Zhou et~al.(2024)]{zhou2023lats}
+Andy Zhou et~al.
+\newblock Language agent tree search unifies reasoning acting and planning in
+  language models.
+\newblock In \emph{ICML}, 2024.
+
+\end{thebibliography}

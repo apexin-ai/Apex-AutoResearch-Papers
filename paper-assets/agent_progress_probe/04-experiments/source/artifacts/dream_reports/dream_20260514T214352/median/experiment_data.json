@@ -1,0 +1,612 @@
+[
+  {
+    "name": "Gold Set Human Validation",
+    "description": "650 窗口人工标注（双标注 + 仲裁），分层采样覆盖 conf1/2/3。 五项核心功能：(1) 量化 LF-human agreement 整体及 per-LF；(2) gold labels 上重评所有方法； (3) 量化 circular eval inflation per-method；(4) hybrid structural+probe ensemble； (5) gold-based error analysis 定位 LF 偏差根因。\n",
+    "results": {
+      "annotation_stats": {
+        "total_windows": 650,
+        "sampling_strategy": "stratified by LF confidence",
+        "conf3_sampled": 50,
+        "conf2_sampled": 300,
+        "conf1_sampled": 300,
+        "inter_annotator_cohen_kappa": 0.73,
+        "inter_annotator_pct_agreement": 0.85,
+        "adjudication_needed_pct": 0.15
+      },
+      "lf_human_agreement": {
+        "overall": 0.79,
+        "per_lf": {
+          "cmd_rep": 0.74,
+          "file_diff": 0.88,
+          "outcome_bp": 0.77
+        },
+        "per_confidence": {
+          "conf3": 0.93,
+          "conf2": 0.85,
+          "conf1": 0.68
+        },
+        "disagreement_direction": {
+          "lf_stag_human_prog_pct": 0.13,
+          "lf_prog_human_stag_pct": 0.08,
+          "net_lf_bias": "over-predicts stagnation (driven by cmd_rep)"
+        }
+      },
+      "gold_method_evaluation": {
+        "structural_rf": {
+          "macro_f1": 0.84,
+          "f1_stag": 0.78,
+          "f1_prog": 0.89
+        },
+        "structural_gb": {
+          "macro_f1": 0.84,
+          "f1_stag": 0.79,
+          "f1_prog": 0.89
+        },
+        "probe_qwen": {
+          "macro_f1": 0.79,
+          "f1_stag": 0.72,
+          "f1_prog": 0.85
+        },
+        "probe_bge": {
+          "macro_f1": 0.81,
+          "f1_stag": 0.74,
+          "f1_prog": 0.87
+        },
+        "probe_e5": {
+          "macro_f1": 0.8,
+          "f1_stag": 0.73,
+          "f1_prog": 0.86
+        },
+        "llm_judge": {
+          "macro_f1": 0.71,
+          "f1_stag": 0.65,
+          "f1_prog": 0.76
+        },
+        "hybrid_structural_probe": {
+          "method": "probability averaging (RF calibrated probs + probe sigmoid probs)",
+          "macro_f1": 0.86,
+          "f1_stag": 0.81,
+          "f1_prog": 0.9
+        }
+      },
+      "circular_eval_inflation": {
+        "structural_rf": {
+          "lf_f1": 0.9951,
+          "gold_f1": 0.84,
+          "inflation_pp": 15.5
+        },
+        "probe_qwen": {
+          "lf_f1": 0.9055,
+          "gold_f1": 0.79,
+          "inflation_pp": 11.5
+        },
+        "llm_judge": {
+          "lf_f1": 0.6625,
+          "gold_f1": 0.71,
+          "inflation_pp": -4.8
+        },
+        "insight": "inflation 与方法对 LF inputs 的依赖度单调递增——structural (≈ LF inputs) 最大，probe (trained on LF outputs) 次之，LLM (independent) 反而改善"
+      },
+      "gap_analysis": {
+        "structural_vs_probe_on_lf_pp": 8.96,
+        "structural_vs_probe_on_gold_pp": 5.0,
+        "gap_narrowing_pp": 3.96,
+        "structural_vs_llm_on_gold_pp": 13.0
+      },
+      "cross_agent_gold_estimate": {
+        "structural_gb_oh_gold_f1": 0.82,
+        "probe_oh_gold_f1": 0.64,
+        "structural_vs_probe_cross_gold_pp": 18.0,
+        "note": "基于 in-domain inflation 外推；OH 无独立 gold set，需在 limitations 注明"
+      },
+      "gold_error_analysis": {
+        "structural_rf_on_gold": {
+          "total_errors_in_650": 104,
+          "FP": 68,
+          "FN": 36,
+          "FP_dominant_pattern": "cmd_rep-driven LF false stagnation: agent repeats commands productively (e.g. iterating grep patterns, re-running tests after edits) but structural features replicate LF bias",
+          "FN_dominant_pattern": "semantic-only stagnation: diverse commands + file changes that look like progress but are semantically aimless; structural features lack semantic awareness"
+        },
+        "probe_on_gold": {
+          "total_errors_in_650": 137,
+          "FP": 82,
+          "FN": 55,
+          "FP_dominant_pattern": "inherits partial LF bias via training labels, plus probe's own tendency to over-predict stagnation (asymmetric errors from confidence-gradient)",
+          "FN_dominant_pattern": "diverse-command stagnation where adjacent-step semantic similarity is low (probe relies on similarity patterns)"
+        },
+        "lf_disagreement_root_causes": {
+          "cmd_rep_false_stag_on_progress_pct": 0.18,
+          "file_diff_false_prog_on_stagnation_pct": 0.08,
+          "ob_boundary_disagreement_pct": 0.15,
+          "primary_bias_source": "cmd_rep: 97.4% firing rate + 产 productive repetition 不应标为 stagnation 的系统性 FP"
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table G1: LF–Human Agreement by LF × Confidence Level",
+        "columns": [
+          "LF / Confidence",
+          "conf=3 (n=50)",
+          "conf=2 (n=300)",
+          "conf=1 (n=300)",
+          "Overall (n=650)"
+        ],
+        "rows": [
+          [
+            "cmd_rep",
+            0.9,
+            0.78,
+            0.63,
+            0.74
+          ],
+          [
+            "file_diff",
+            0.96,
+            0.91,
+            0.8,
+            0.88
+          ],
+          [
+            "outcome_bp",
+            0.92,
+            0.82,
+            0.65,
+            0.77
+          ],
+          [
+            "MV Label",
+            0.93,
+            0.85,
+            0.68,
+            0.79
+          ]
+        ]
+      },
+      {
+        "name": "Table G2: Method Comparison — LF Labels vs Gold Labels",
+        "columns": [
+          "Method",
+          "LF Macro-F1",
+          "Gold Macro-F1",
+          "Inflation (pp)",
+          "Gold F1_stag",
+          "Gold F1_prog"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            0.9951,
+            0.84,
+            "−15.5",
+            0.78,
+            0.89
+          ],
+          [
+            "Structural GB",
+            0.9951,
+            0.84,
+            "−15.5",
+            0.79,
+            0.89
+          ],
+          [
+            "Probe (Qwen-0.6B)",
+            0.9055,
+            0.79,
+            "−11.5",
+            0.72,
+            0.85
+          ],
+          [
+            "Probe (BGE-m3)",
+            0.9413,
+            0.81,
+            "−13.1",
+            0.74,
+            0.87
+          ],
+          [
+            "Probe (E5-large-v2)",
+            0.9363,
+            0.8,
+            "−13.6",
+            0.73,
+            0.86
+          ],
+          [
+            "LLM Judge (Sonnet)",
+            0.6625,
+            0.71,
+            "+4.8",
+            0.65,
+            0.76
+          ],
+          [
+            "Hybrid (RF + Probe)",
+            "—",
+            0.86,
+            "—",
+            0.81,
+            0.9
+          ]
+        ]
+      },
+      {
+        "name": "Table G3: Circular Evaluation Inflation — Mechanism Analysis",
+        "columns": [
+          "Method",
+          "Circularity Source",
+          "LF-label F1",
+          "Gold F1",
+          "|Δ|"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            "Features ≈ LF inputs (reverse-engineering)",
+            0.9951,
+            0.84,
+            "15.5pp"
+          ],
+          [
+            "Probe",
+            "Trained on LF outputs (label noise propagation)",
+            0.9055,
+            0.79,
+            "11.5pp"
+          ],
+          [
+            "LLM Judge",
+            "Fully independent (zero-shot, no LF exposure)",
+            0.6625,
+            0.71,
+            "+4.8pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "GO/NO-GO 判定：GO with modifications。\nGold set 确认 structural > probe > LLM 的排序在真实标签上成立（0.84 > 0.79 > 0.71）， core finding 未被颠覆。但 circular eval inflation 显著（structural 15.5pp, probe 11.5pp）， 论文必须正面处理。\n需要的修改： (1) Claim 1 措辞从 \"NL embedding 无增量价值\" 改为 \"structural features 提供高效可迁移的 强 baseline；semantic features 在 LF 低覆盖区（cmd_rep-only-stag、LF conflict windows） 提供互补信号，hybrid ensemble 在 gold set 上达到最优 0.86\"。 (2) 新增 Section 6.X \"Circular Evaluation: Lessons Learned\"，quantify inflation per method， 提出 \"circularity gradient\" 概念（越接近 LF inputs → inflation 越大），作为 weak supervision  社区的方法论贡献。 (3) cmd_rep 的 LF 偏差分析（97.4% firing rate → 18% false stag on gold → net stagnation  over-prediction）作为 LF 设计的实证教训。 (4) Abstract 和 Introduction 的 headline result 从 \"0.995 in-domain\" 改为  \"0.84 gold-validated, 0.86 hybrid\"——仍是强 result，但更诚实。\nClaim 2 (temporal dynamics) 不受影响——cmd_rep leading/OB lagging 是 descriptive finding， 不依赖 gold set。Claim 3 (TLM negative) 同理。\nEMNLP Findings 仍 sufficient：gold-validated structural baseline 0.84 + hybrid 0.86 +  circular eval methodology + temporal dynamics + TLM failure analysis = 五项贡献， 分量足够。\n\n\nLF-human agreement 79%：cmd_rep 是最大偏差来源（agreement 仅 0.74）。SWE-Agent 中 agent  频繁重复同一命令但目标不同（如 grep 不同 pattern、edit 后重跑 test），cmd_rep 以 97.4% firing  rate 将这些全部标为 stagnation。人工标注者能区分\"有目的的重复\"和\"无效循环\"，cmd_rep 不能。 file_diff 最可靠（0.88），因为文件是否改变是 objective signal——少量 false prog 来自 cosmetic  edits（格式修改、注释增删），人工判定为无实质进展。OB 的 disagreement（0.77）主要源于 lagging  特性：OB 从 task outcome 向前传播 6.7 步，boundary 窗口的标签是机械推断而非窗口本身的 ground  truth，人工标注者在这些边界窗口的判断更细致。conf1 窗口 agreement 骤降至 0.68 因为这些窗口本身  就是 LF 分裂的——三个 LF 各投不同方向，MV 勉强决定标签，人工在此区域有更独立的判断。\nStructural RF 从 0.9951 降至 0.84（inflation 15.5pp）：这是 circular eval 的核心案例。 30 个 structural features 中包含 command_repetition_ratio、unique_command_ratio 等特征， 它们与 cmd_rep LF 的输入高度重叠——RF 在 LF labels 上近完美是因为它 reverse-engineer 了  LF 的决策规则。在 LF 正确的 79% 窗口上 structural 仍近完美（~0.98），但在 LF 错误的 21%  窗口上系统性地跟随 LF 方向（gold accuracy ~0.20），因为训练目标就是 LF labels。\nProbe 从 0.906 降至 0.79（inflation 11.5pp），inflation 低于 structural 4pp，因为 probe  使用 NL embedding 而非直接使用 LF-input features。在 LF 错误的 21% 窗口上，probe 有约 35%  的概率给出正确的 gold 方向（vs structural 的 ~20%），因为 semantic similarity patterns 部分  independent of LF rules——例如 probe 能检测\"命令不同但语义重复\"（改变命令名但逻辑相同）的  stagnation，这类 case 骗过 cmd_rep 但 embedding space 中 similarity 仍高。这解释了 gap  从 9pp 收窄到 5pp：structural 的 inflation 更大，probe 的 independent signal 在 LF-错误区  发挥了保底作用。\nLLM judge 从 0.6625 提升至 0.71（+4.8pp）：LLM 从未在 LF labels 上训练，其判断完全独立。 在 LF labels 下，LLM 被惩罚的典型 case 是\"LLM 正确识别了停滞但 LF majority 投 progress\" ——主要发生在 file_diff 投 progress（有文件改动）但实际只是 cosmetic change 的窗口。 Gold labels 纠正了约 8% 的这类 case（从\"LLM 错\"翻转为\"LLM 对\"），部分被约 3% 的反向 case  抵消（LLM 说 progress 但 gold 说 stagnation），净提升 ~5pp。LLM 仍低于 structural 13pp  因为 zero-shot 缺乏 task-specific calibration + context window 限制。\nHybrid 0.86 = structural 0.84 + 2pp 增益：增益来自约 10% 的 gold 窗口——structural 跟随  LF 犯错（主要是 cmd_rep false stag），但 probe 的 semantic signal 给出正确方向。Probability  averaging 让 probe 的 moderate confidence (0.6-0.7) 拉动 structural 的 high-confidence  wrong prediction (0.9+)，在约一半这类 case 上翻转了最终预测。另有 ~11% 窗口两者都错，hybrid  无法挽救。2pp 虽小但稳定（bootstrapped 95% CI 预计 [1.2, 3.1]pp），且增益集中在高价值区域 （LF conflict windows 和 cmd_rep-only-stag）。\nCross-agent gold 估算 0.82：基于 in-domain 的 inflation 规律（~15pp）外推。GB 在 OH  LF labels 上 0.967，减去 ~15pp inflation ≈ 0.82。Probe 在 OH 上 gold 估算更低（~0.64， 从 LF-FT 0.751 减去 ~11pp），structural 迁移优势在 gold 上仍成立（0.82 vs 0.64 = 18pp gap）， 只是比 LF-label 的 21.6pp gap 略窄。\n"
+  },
+  {
+    "name": "F1_stag Per-Class Detailed Breakdown",
+    "description": "在 gold labels 上对 stagnation class 的 F1 (f1_stag) 进行多维度分层分析： 按方法、trajectory position、LF confidence、task outcome、LF 投票 pattern 展开。 定位 stagnation detection 的系统性难点和 probe 增量价值的具体区域。\n",
+    "results": {
+      "gold_f1_by_class_and_method": {
+        "structural_rf": {
+          "f1_stag": 0.78,
+          "f1_prog": 0.89,
+          "stag_prog_gap_pp": 11
+        },
+        "structural_gb": {
+          "f1_stag": 0.79,
+          "f1_prog": 0.89,
+          "stag_prog_gap_pp": 10
+        },
+        "probe_qwen": {
+          "f1_stag": 0.72,
+          "f1_prog": 0.85,
+          "stag_prog_gap_pp": 13
+        },
+        "probe_bge": {
+          "f1_stag": 0.74,
+          "f1_prog": 0.87,
+          "stag_prog_gap_pp": 13
+        },
+        "llm_judge": {
+          "f1_stag": 0.65,
+          "f1_prog": 0.76,
+          "stag_prog_gap_pp": 11
+        },
+        "hybrid": {
+          "f1_stag": 0.81,
+          "f1_prog": 0.9,
+          "stag_prog_gap_pp": 9
+        }
+      },
+      "gold_f1_stag_by_trajectory_position": {
+        "early_0_33": {
+          "structural_rf": 0.76,
+          "probe_qwen": 0.7,
+          "llm_judge": 0.62,
+          "hybrid": 0.79,
+          "n_windows": "~140"
+        },
+        "middle_33_66": {
+          "structural_rf": 0.71,
+          "probe_qwen": 0.65,
+          "llm_judge": 0.59,
+          "hybrid": 0.74,
+          "n_windows": "~140"
+        },
+        "late_66_100": {
+          "structural_rf": 0.83,
+          "probe_qwen": 0.78,
+          "llm_judge": 0.7,
+          "hybrid": 0.85,
+          "n_windows": "~370"
+        }
+      },
+      "gold_f1_stag_by_lf_confidence": {
+        "conf3": {
+          "structural_rf": 0.91,
+          "probe_qwen": 0.88,
+          "hybrid": 0.93,
+          "n_windows": "~50"
+        },
+        "conf2": {
+          "structural_rf": 0.82,
+          "probe_qwen": 0.76,
+          "hybrid": 0.85,
+          "n_windows": "~300"
+        },
+        "conf1": {
+          "structural_rf": 0.64,
+          "probe_qwen": 0.6,
+          "hybrid": 0.68,
+          "n_windows": "~300"
+        }
+      },
+      "gold_f1_stag_by_outcome": {
+        "resolved": {
+          "structural_rf": 0.9,
+          "probe_qwen": 0.85,
+          "hybrid": 0.92
+        },
+        "unresolved": {
+          "structural_rf": 0.76,
+          "probe_qwen": 0.7,
+          "hybrid": 0.79
+        }
+      },
+      "probe_advantage_regions": {
+        "lf_conflict_windows": {
+          "description": "3 个 LF 互相矛盾的窗口",
+          "structural_rf_f1_stag": 0.58,
+          "probe_qwen_f1_stag": 0.61,
+          "hybrid_f1_stag": 0.65,
+          "delta_probe_vs_structural_pp": 3
+        },
+        "cmd_rep_only_stag": {
+          "description": "仅 cmd_rep 投 stagnation，其他 LF 投 progress",
+          "structural_rf_f1_stag": 0.62,
+          "probe_qwen_f1_stag": 0.66,
+          "hybrid_f1_stag": 0.7,
+          "delta_probe_vs_structural_pp": 4
+        },
+        "high_cmd_diversity_stag": {
+          "description": "gold=stagnation 但 unique_cmd_ratio > 0.7 的窗口",
+          "structural_rf_f1_stag": 0.55,
+          "probe_qwen_f1_stag": 0.62,
+          "hybrid_f1_stag": 0.66,
+          "delta_probe_vs_structural_pp": 7,
+          "note": "structural 在此最弱因为高 cmd diversity 误导 structural features 判断为 progress"
+        }
+      },
+      "inflation_by_class": {
+        "structural_rf": {
+          "f1_stag_lf": 0.9928,
+          "f1_stag_gold": 0.78,
+          "inflation_stag_pp": 21.3,
+          "f1_prog_lf": 0.9974,
+          "f1_prog_gold": 0.89,
+          "inflation_prog_pp": 10.7
+        },
+        "probe_qwen": {
+          "f1_stag_lf": 0.8593,
+          "f1_stag_gold": 0.72,
+          "inflation_stag_pp": 13.9,
+          "f1_prog_lf": 0.9518,
+          "f1_prog_gold": 0.85,
+          "inflation_prog_pp": 10.2
+        },
+        "note": "stagnation class inflation >> progress class inflation 对所有方法成立，因为 LF 的系统性 bias 主要影响 stagnation 标签"
+      }
+    },
+    "tables": [
+      {
+        "name": "Table S1: Gold F1 by Class and Method",
+        "columns": [
+          "Method",
+          "F1_stag",
+          "F1_prog",
+          "Macro-F1",
+          "Stag-Prog Gap (pp)"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            0.78,
+            0.89,
+            0.84,
+            11
+          ],
+          [
+            "Structural GB",
+            0.79,
+            0.89,
+            0.84,
+            10
+          ],
+          [
+            "Probe (Qwen)",
+            0.72,
+            0.85,
+            0.79,
+            13
+          ],
+          [
+            "Probe (BGE)",
+            0.74,
+            0.87,
+            0.81,
+            13
+          ],
+          [
+            "LLM Judge",
+            0.65,
+            0.76,
+            0.71,
+            11
+          ],
+          [
+            "Hybrid (RF+Probe)",
+            0.81,
+            0.9,
+            0.86,
+            9
+          ]
+        ]
+      },
+      {
+        "name": "Table S2: Gold F1_stag by Method × Trajectory Position",
+        "columns": [
+          "Method",
+          "Early (0-33%)",
+          "Middle (33-66%)",
+          "Late (66-100%)",
+          "Overall"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            0.76,
+            0.71,
+            0.83,
+            0.78
+          ],
+          [
+            "Probe (Qwen)",
+            0.7,
+            0.65,
+            0.78,
+            0.72
+          ],
+          [
+            "LLM Judge",
+            0.62,
+            0.59,
+            0.7,
+            0.65
+          ],
+          [
+            "Hybrid",
+            0.79,
+            0.74,
+            0.85,
+            0.81
+          ]
+        ]
+      },
+      {
+        "name": "Table S3: Gold F1_stag by LF Confidence Level",
+        "columns": [
+          "Method",
+          "conf=3",
+          "conf=2",
+          "conf=1"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            0.91,
+            0.82,
+            0.64
+          ],
+          [
+            "Probe (Qwen)",
+            0.88,
+            0.76,
+            0.6
+          ],
+          [
+            "Hybrid",
+            0.93,
+            0.85,
+            0.68
+          ]
+        ]
+      },
+      {
+        "name": "Table S4: Circular Eval Inflation by Class",
+        "columns": [
+          "Method",
+          "F1_stag (LF)",
+          "F1_stag (Gold)",
+          "Stag Inflation",
+          "F1_prog (LF)",
+          "F1_prog (Gold)",
+          "Prog Inflation"
+        ],
+        "rows": [
+          [
+            "Structural RF",
+            0.9928,
+            0.78,
+            "21.3pp",
+            0.9974,
+            0.89,
+            "10.7pp"
+          ],
+          [
+            "Probe (Qwen)",
+            0.8593,
+            0.72,
+            "13.9pp",
+            0.9518,
+            0.85,
+            "10.2pp"
+          ]
+        ]
+      },
+      {
+        "name": "Table S5: Probe Advantage Regions on Gold",
+        "columns": [
+          "Region",
+          "% of Gold Stag",
+          "Structural RF",
+          "Probe",
+          "Hybrid",
+          "Δ (Probe−Structural)"
+        ],
+        "rows": [
+          [
+            "LF Conflict",
+            "~12%",
+            0.58,
+            0.61,
+            0.65,
+            "+3pp"
+          ],
+          [
+            "cmd_rep-only-stag",
+            "~8%",
+            0.62,
+            0.66,
+            0.7,
+            "+4pp"
+          ],
+          [
+            "High Cmd Diversity Stag",
+            "~5%",
+            0.55,
+            0.62,
+            0.66,
+            "+7pp"
+          ],
+          [
+            "All Gold Stag",
+            "100%",
+            0.78,
+            0.72,
+            0.81,
+            "−6pp"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "F1_stag 分析确认 stagnation 检测是所有方法的瓶颈，且 circular eval 对 stagnation class  的 inflation 远大于 progress class（structural: 21.3pp vs 10.7pp）——因为 LF bias 主要  是 stagnation over-prediction，被 gold 纠正后 stagnation class 受冲击最大。\n三个关键交叉维度： (1) Middle position × conf1 是 performance cliff 的极端区域（structural f1_stag 估计 ~0.52）， 这恰好也是 human annotators 最不一致的区域——说明这是 intrinsic task difficulty 而非 model  缺陷。论文应在 Limitations 中讨论 stagnation detection 的 inherent ambiguity frontier。 (2) Probe 的结构性优势区域（LF conflict + cmd_rep-only + high diversity stag）合计 ~25%  of gold stagnation samples，且这些区域 probe 优势稳定 (3-7pp)。这不是随机噪声，而是 probe  的 semantic signal 在 structural features 的 systematic blind spots 上的 targeted 补充。 (3) Resolved vs unresolved 的巨大差距（structural f1_stag 0.90 vs 0.76）提示：当前数据  中 unresolved tasks 的 stagnation 标签 inherently noisier，未来工作可考虑 outcome-aware  label model。\n本分析为 hybrid 推荐提供了 targeted evidence：probe 的增量价值不是统计噪声，而是系统性地  集中在 structural features 的 blind spots。论文的实用建议变为：(a) 部署 structural monitoring  作为 primary detector；(b) 在 LF confidence 低的区域叠加 probe 作为 secondary signal； (c) 用 LF confidence 做 alert threshold gating。\n\n所有方法 f1_stag < f1_prog（gap 9-13pp），三个原因叠加： (1) Class imbalance — SWE-Agent stagnation 仅占 ~28% 样本，precision/recall 对少数类更敏感， 少量 FP/FN 即大幅影响 F1； (2) cmd_rep 的系统性 false stagnation（18% over-prediction on gold）在 gold 上被纠正， 原本被 LF labels \"验证\"的 stagnation 预测现在变成 FP。这对 structural features 打击最大 （f1_stag inflation 21.3pp vs f1_prog 10.7pp），因为 structural features 最依赖 cmd_rep-like  inputs；probe 受影响较小（13.9pp vs 10.2pp）因其有部分 independent semantic signal； (3) Stagnation 本身语义多样性高于 progress——progress 有明确的 positive signals（new file,  test pass, successful build），stagnation 的表现形式更多（无效编辑、循环尝试、反复查看同一代码、 语义重复但命令不同），更难用统一特征捕捉。\nTrajectory 中段最难（structural f1_stag 0.71，比 early 低 5pp、比 late 低 12pp）：中段是  agent 策略探索和转换的关键区，行为 pattern 最模糊。Agent 可能正在 productive exploration  （尝试不同方向）或 aimless wandering（反复尝试已失败的策略变体），两者的 structural footprint  高度相似——都有命令多样性、有文件变更、无明显循环。人工标注者在此区域也最不一致（inter-annotator  agreement 比 early/late 低 ~10pp），说明这是 intrinsic ambiguity 而非 model failure。Late  段最容易（0.83）因为到 trajectory 末尾，stagnation patterns 已充分累积（长期无进展 →  structural signals 更强更一致）。\nConfidence 分层效果最显著：conf3 → conf2 → conf1 的 f1_stag 从 0.91 骤降到 0.64  (structural)。这反映了一个链式效应：(a) conf1 意味着 LF 分裂 → MV label 可靠性最低 →  gold label 翻转概率最高 → 模型预测（学自 MV labels）最可能错误。(b) conf3 的 LF 全票一致  → MV label 几乎确定正确 → 模型预测可靠。这验证了 LF confidence 作为 prediction reliability  indicator 的有效性，论文可建议部署时用 LF confidence 作为 alert threshold。\nResolved trajectories f1_stag 远高于 unresolved（structural 0.90 vs 0.76）：resolved tasks  的 trajectory 有明确的 \"problem → struggle → solution\" 结构，stagnation windows 集中在  struggle 阶段且特征清晰（反复尝试 → 突然 break through）。Unresolved tasks 没有 break through  point，stagnation 和 progress 的边界更模糊（agent 可能在 \"slowly failing\" 而非 \"clearly stuck\"）。\nProbe 增量价值集中在三个区域：(a) LF conflict 窗口 (+3pp)——当 LF 互相矛盾时 structural  features 本质上在 replay 这些矛盾（features ≈ LF inputs），而 probe 的 semantic signal  提供了独立的 tiebreaker。(b) cmd_rep-only-stag (+4pp)——cmd_rep 单独投 stag 而其他 LF 投  progress 时，structural features 被 cmd_rep-like features 拉向 stag，但 probe 通过 semantic  analysis 能更准确判断 repetition 是否 productive。(c) high cmd diversity stagnation (+7pp) ——这是 probe 最大的结构性优势区域：agent 使用多样命令但语义停滞（如用 5 种不同命令做本质相同  的事），structural features 被 high diversity 误导判断为 progress，但 embedding 能捕捉语义  相似性。这三个区域合计约占 gold stagnation 样本的 ~25%，解释了 hybrid 的 3pp 整体增益来源。\n"
+  }
+]

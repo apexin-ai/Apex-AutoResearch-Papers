@@ -1,0 +1,988 @@
+# research literature compilation
+
+**Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_research_literature-compilation_20260514T183143.jsonl`
+- **Structured JSON:** [`860c8387e6b465fa59ad.json`](../../sessions/86/860c8387e6b465fa59ad.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T18:39:42.663568+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,WebFetch",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T18:39:42.664042+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T18:39:42.664332+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search direct competitors",
+  "prompt": "Search for the following papers and verify their arxiv IDs, titles, authors, venues, and key findings. For each paper, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary of key findings.\n\nPapers to search:\n1. AgentPRM by Xie et al. - arxiv 2511.08325 - should be about process reward models for LLM agents\n2. arxiv 2502.10325 - should be about process reward models\n3. ToolPRMBench - arxiv 2601.12294 - benchmark for tool-use process reward models\n4. Trajectory reward model - arxiv 2604.08178\n5. \"Monitoring LLM Agents for Sequentially Contextual Harm\" - ICLR 2025 Workshop\n6. Weak-to-strong monitoring - arxiv 2508.19461\n\nFor each paper:\n- Use WebSearch to find and verify the paper\n- Confirm the arxiv ID actually exists and matches the described paper\n- Get the correct title, authors, venue/year\n- Summarize key finding in 1-2 sentences\n\nReport all findings in a structured format. If an arxiv ID doesn't match or doesn't exist, note that clearly.",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search direct competitors",
+    "prompt": "Search for the following papers and verify their arxiv IDs, titles, authors, venues, and key findings. For each paper, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary of key findings.\n\nPapers to search:\n1. AgentPRM by Xie et al. - arxiv 2511.08325 - should be about process reward models for LLM agents\n2. arxiv 2502.10325 - should be about process reward models\n3. ToolPRMBench - arxiv 2601.12294 - benchmark for tool-use process reward models\n4. Trajectory reward model - arxiv 2604.08178\n5. \"Monitoring LLM Agents for Sequentially Contextual Harm\" - ICLR 2025 Workshop\n6. Weak-to-strong monitoring - arxiv 2508.19461\n\nFor each paper:\n- Use WebSearch to find and verify the paper\n- Confirm the arxiv ID actually exists and matches the described paper\n- Get the correct title, authors, venue/year\n- Summarize key finding in 1-2 sentences\n\nReport all findings in a structured format. If an arxiv ID doesn't match or doesn't exist, note that clearly.",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T18:39:42.664595+00:00_
+
+Async agent launched successfully.
+agentId: a9f5872cb3d91ee5f (internal ID - do not mention to user. Use SendMessage with to: 'a9f5872cb3d91ee5f' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/fae8cc11-9c28-4e52-9d29-9d1c93dae4d2/tasks/a9f5872cb3d91ee5f.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T18:39:42.664891+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search method components",
+  "prompt": "Search for the following papers/systems related to data programming and weak supervision, and verify their details. For each, provide: title, authors, venue, year, arxiv ID (if available), and a 1-2 sentence summary.\n\nPapers to search:\n1. Snorkel - the original data programming system by Ratner et al. (should be VLDB 2020 or NeurIPS 2016/2017)\n2. FlyingSquid - fast weak supervision by Fu et al. \n3. WRENCH - weak supervision benchmark\n4. Hidden Markov Models for label aggregation / crowdsourcing (look for Dawid-Skene extensions with temporal/sequential structure)\n5. Search specifically for \"temporal label model\" OR \"temporal weak supervision\" OR \"sequential weak supervision\" OR \"weak supervision for sequential data\" - this is critical to check if anyone has done this before\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report all findings in structured format. For item 5, be thorough - search multiple query variations and report what you find (or don't find). This is important for establishing novelty.",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search method components",
+    "prompt": "Search for the following papers/systems related to data programming and weak supervision, and verify their details. For each, provide: title, authors, venue, year, arxiv ID (if available), and a 1-2 sentence summary.\n\nPapers to search:\n1. Snorkel - the original data programming system by Ratner et al. (should be VLDB 2020 or NeurIPS 2016/2017)\n2. FlyingSquid - fast weak supervision by Fu et al. \n3. WRENCH - weak supervision benchmark\n4. Hidden Markov Models for label aggregation / crowdsourcing (look for Dawid-Skene extensions with temporal/sequential structure)\n5. Search specifically for \"temporal label model\" OR \"temporal weak supervision\" OR \"sequential weak supervision\" OR \"weak supervision for sequential data\" - this is critical to check if anyone has done this before\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report all findings in structured format. For item 5, be thorough - search multiple query variations and report what you find (or don't find). This is important for establishing novelty.",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T18:39:42.665166+00:00_
+
+Async agent launched successfully.
+agentId: a65563bee1d3838d9 (internal ID - do not mention to user. Use SendMessage with to: 'a65563bee1d3838d9' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/fae8cc11-9c28-4e52-9d29-9d1c93dae4d2/tasks/a65563bee1d3838d9.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T18:39:42.665488+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search evaluation papers",
+  "prompt": "Search for the following evaluation-related papers and verify their details. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. SlopCodeBench - arxiv 2603.24755 - should be about benchmarking code quality degradation\n2. SWE-bench - the software engineering benchmark for LLM agents (by Jimenez et al.)\n3. SWE-agent - the agent system for SWE-bench\n4. OpenHands (formerly OpenDevin) - open platform for AI software developers\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format. If an arxiv ID doesn't match, note that clearly.",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search evaluation papers",
+    "prompt": "Search for the following evaluation-related papers and verify their details. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. SlopCodeBench - arxiv 2603.24755 - should be about benchmarking code quality degradation\n2. SWE-bench - the software engineering benchmark for LLM agents (by Jimenez et al.)\n3. SWE-agent - the agent system for SWE-bench\n4. OpenHands (formerly OpenDevin) - open platform for AI software developers\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format. If an arxiv ID doesn't match, note that clearly.",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T18:39:42.665766+00:00_
+
+Async agent launched successfully.
+agentId: a6174a94cc0fea02c (internal ID - do not mention to user. Use SendMessage with to: 'a6174a94cc0fea02c' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/fae8cc11-9c28-4e52-9d29-9d1c93dae4d2/tasks/a6174a94cc0fea02c.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T18:39:42.666028+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search background papers",
+  "prompt": "Search for the following background papers on agent self-reflection, failure modes, and cycle detection. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. Reflexion - by Shinn et al. - agent self-reflection with linguistic feedback\n2. LATS - Language Agent Tree Search - combines planning and self-reflection\n3. Tree of Thoughts - deliberate problem solving with LLMs (by Yao et al.)\n4. Search for papers on \"LLM agent failure modes\" OR \"agent degradation\" OR \"agent stuck in loops\" - find 2-3 relevant recent papers (2024-2026)\n5. Search for \"cycle detection\" + \"LLM agents\" OR \"repetitive behavior detection in language agents\" - find relevant work\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format.",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search background papers",
+    "prompt": "Search for the following background papers on agent self-reflection, failure modes, and cycle detection. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. Reflexion - by Shinn et al. - agent self-reflection with linguistic feedback\n2. LATS - Language Agent Tree Search - combines planning and self-reflection\n3. Tree of Thoughts - deliberate problem solving with LLMs (by Yao et al.)\n4. Search for papers on \"LLM agent failure modes\" OR \"agent degradation\" OR \"agent stuck in loops\" - find 2-3 relevant recent papers (2024-2026)\n5. Search for \"cycle detection\" + \"LLM agents\" OR \"repetitive behavior detection in language agents\" - find relevant work\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format.",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T18:39:42.666285+00:00_
+
+Async agent launched successfully.
+agentId: a1e9712f2dc70ac46 (internal ID - do not mention to user. Use SendMessage with to: 'a1e9712f2dc70ac46' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/fae8cc11-9c28-4e52-9d29-9d1c93dae4d2/tasks/a1e9712f2dc70ac46.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T18:39:42.666550+00:00_
+
+called Agent
+
+<details open><summary>🔧 Tool call — Agent</summary>
+
+```json
+{
+  "description": "Search technique papers",
+  "prompt": "Search for the following technique papers and verify their details. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. GRU (Gated Recurrent Unit) - the original paper by Cho et al. 2014\n2. Attention mechanism for sequence classification - find the most cited/canonical reference (Bahdanau attention or Vaswani transformer)\n3. Supervised Contrastive Learning (SupCon) - by Khosla et al., NeurIPS 2020\n4. Qwen3-Embedding - the embedding model from Alibaba/Qwen team - search for the technical report or paper\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format.",
+  "subagent_type": "general-purpose",
+  "run_in_background": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "tool_args": {
+    "description": "Search technique papers",
+    "prompt": "Search for the following technique papers and verify their details. For each, provide: title, authors, venue, year, arxiv ID (verified), and a 1-2 sentence summary.\n\nPapers to search:\n1. GRU (Gated Recurrent Unit) - the original paper by Cho et al. 2014\n2. Attention mechanism for sequence classification - find the most cited/canonical reference (Bahdanau attention or Vaswani transformer)\n3. Supervised Contrastive Learning (SupCon) - by Khosla et al., NeurIPS 2020\n4. Qwen3-Embedding - the embedding model from Alibaba/Qwen team - search for the technical report or paper\n\nFor each paper, use WebSearch to verify the arxiv ID and details. Report findings in structured format.",
+    "subagent_type": "general-purpose",
+    "run_in_background": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T18:39:42.666821+00:00_
+
+Async agent launched successfully.
+agentId: aa9b2fcba4f664ce0 (internal ID - do not mention to user. Use SendMessage with to: 'aa9b2fcba4f664ce0' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0513-projects-agent-progress-probe/fae8cc11-9c28-4e52-9d29-9d1c93dae4d2/tasks/aa9b2fcba4f664ce0.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Agent",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T18:39:42.668301+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/ 2>/dev/null",
+  "description": "Check project directory structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/ 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/ 2>/dev/null",
+    "description": "Check project directory structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T18:39:42.668562+00:00_
+
+__pycache__
+_project
+ablation-architecture
+ablation-supcon
+ablation-window-size
+annotation_guide.md
+annotation_mapping.csv
+annotation_sample_450_DEPRECATED.csv
+annotation_sample_650.csv
+baseline_flyingsquid
+baseline_llm_judge.py
+baseline_meanpool_lr.py
+baselines.py
+confidence-gradient
+cosinesim_analysis_report.md
+cross-agent-eval
+data
+data-volume-control
+data_format_report.md
+data_loader.py
+data_scaling.py
+download_5k.py
+dream_reports
+error_analysis_v3_report.md
+evaluate.py
+fewshot_probe.py
+generate_embeddings.py
+gpu_env_report.md
+human-annotation
+label_quality_check.py
+label_quality_check_v2.py
+label_quality_report.md
+label_quality_report_v2.md
+label_statistics_report.md
+labeling_functions.py
+lf-temporal-dynamics
+lf_conflict_analysis.md
+lf_conflict_analysis.py
+lf_oracle_baseline.py
+manifest.yaml
+non-nlp-baseline
+non_nlp_baseline.py
+oh-cmdrep-ablation
+oh-full-finetune
+oh-lf-temporal-dynamics
+oh_cmdrep_ablation.py
+oh_full_finetune.py
+openhands-fewshot-probe
+openhands_format_analysis.md
+outcome-bp-sensitivity
+outcome_bp_sensitivity_report.md
+phase05_disagree_investigation.md
+probe-002
+probe_model.py
+report_embedding_llmjudge_status.md
+report_label_encoding_audit.md
+ssh_diag_20260514.md
+structural-on-twv
+temporal-label-model
+tlm-probe-comparison
+train-without-ob
+train_architecture_ablation.py
+train_probe.py
+train_supcon.py
+twv-ablation
+window_extractor.py
+---
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+checkpoints
+data_volume_control.py
+decisions.lock
+decisions.yaml
+docs
+dream_registry.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+experiment_plan.lock
+experiment_plan.yaml
+logs
+memory.md
+paper_framing.md
+registry.lock
+registry.yaml
+report.md
+study_status.lock
+task_context
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T18:39:42.668824+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T18:39:42.669037+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T18:39:42.669352+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/literature_map.yaml",
+  "content": "# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n# Generated: 2026-05-14\n# Paper: Temporal Label Model for Progress Stagnation Detection in LLM Agents\n#\n# Novelty check result: \"temporal label model\" as a general-purpose extension\n# of data programming to sequential data appears NOVEL. Closest works are\n# Safranchik AAAI 2020 (NER-specific linked HMM) and Sala NeurIPS 2019\n# (multi-resolution WS, not temporal transitions).\n\npapers:\n\n  # ============================================================\n  # CATEGORY: direct-competitor\n  # ============================================================\n\n  - id: \"xi2025agentprm\"\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2511.08325\"\n    category: \"direct-competitor\"\n    role: \"主要竞争者：step-level PRM for agent guidance\"\n    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n\n  - id: \"choudhury2025prm\"\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Sanjiban Choudhury\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2502.10325\"\n    category: \"direct-competitor\"\n    role: \"PRM 框架综述 + InversePRM 方法\"\n    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n  - id: \"li2026toolprmbench\"\n    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.12294\"\n    category: \"direct-competitor\"\n    role: \"Tool-use PRM 评测基准\"\n    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n    our_differentiation: \"我们的 TLM 是 unsupervised（不需要 step-level reward labels），且关注 stagnation pattern 而非 step correctness\"\n\n  - id: \"wang2026planrewardbench\"\n    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.08178\"\n    category: \"direct-competitor\"\n    role: \"Trajectory-level reward model 评测\"\n    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n\n  - id: \"chen2025monitoring\"\n    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n    year: 2025\n    arxiv: null\n    openreview: \"LC0XQ6ufbr\"\n    category: \"direct-competitor\"\n    role: \"Agent monitoring 安全方向\"\n    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n\n  - id: \"kale2025weaktostrong\"\n    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2508.19461\"\n    category: \"direct-competitor\"\n    role: \"Weak-to-strong agent monitoring 方法论\"\n    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n    our_differentiation: \"他们用 LLM 作为 monitor，我们用 structural LFs + TLM，不依赖另一个 LLM；我们的方法更轻量且可解释\"\n\n  # ============================================================\n  # CATEGORY: method-component\n  # ============================================================\n\n  - id: \"ratner2016dataprogramming\"\n    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n    venue: \"NeurIPS 2016\"\n    year: 2016\n    arxiv: \"1605.07723\"\n    category: \"method-component\"\n    role: \"核心方法论基础：data programming 范式\"\n    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n    our_differentiation: \"我们扩展 data programming 到时序数据，加入 temporal transition structure\"\n\n  - id: \"ratner2017snorkel\"\n    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n    venue: \"VLDB 2018\"\n    year: 2018\n    arxiv: \"1711.10160\"\n    category: \"method-component\"\n    role: \"Data programming 系统实现，label model 基础\"\n    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们的 TLM 显式建模相邻 window 间的 label transition\"\n\n  - id: \"fu2020flyingsquid\"\n    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n    venue: \"ICML 2020\"\n    year: 2020\n    arxiv: \"2002.11955\"\n    category: \"method-component\"\n    role: \"快速 label model，triplet method of moments\"\n    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 TLM 需要不同的参数估计方法来处理时序依赖\"\n\n  - id: \"zhang2021wrench\"\n    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n    year: 2021\n    arxiv: \"2109.11377\"\n    category: \"method-component\"\n    role: \"弱监督评测基准\"\n    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n\n  - id: \"safranchik2020linkedhmm\"\n    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n    venue: \"AAAI 2020\"\n    year: 2020\n    arxiv: null\n    category: \"method-component\"\n    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n\n  - id: \"sala2019multiresolution\"\n    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n    venue: \"NeurIPS 2019\"\n    year: 2019\n    arxiv: \"1910.09505\"\n    category: \"method-component\"\n    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n\n  - id: \"dawid1979em\"\n    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n    authors: \"A. P. Dawid, A. M. Skene\"\n    venue: \"Journal of the Royal Statistical Society, Series C\"\n    year: 1979\n    arxiv: null\n    category: \"method-component\"\n    role: \"Label aggregation 奠基工作\"\n    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n    our_differentiation: \"经典 i.i.d. 假设；我们的 TLM 可视为 temporal extension of Dawid-Skene for programmatic LFs\"\n\n  - id: \"nguyen2017hmmcrowd\"\n    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n    venue: \"ACL 2017\"\n    year: 2017\n    arxiv: null\n    category: \"method-component\"\n    role: \"HMM + crowdsourcing label aggregation\"\n    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n\n  # ============================================================\n  # CATEGORY: evaluation\n  # ============================================================\n\n  - id: \"orlanski2026slopcodebench\"\n    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2603.24755\"\n    category: \"evaluation\"\n    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    category: \"evaluation\"\n    role: \"Agent 数据来源之一\"\n    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n\n  - id: \"yang2024sweagent\"\n    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    category: \"evaluation\"\n    role: \"Agent 系统——trajectory 数据来源\"\n    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n\n  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================\n\n  - id: \"shinn2023reflexion\"\n    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2303.11366\"\n    category: \"background\"\n    role: \"Agent self-reflection 代表工作\"\n    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n\n  - id: \"zhou2024lats\"\n    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n    venue: \"ICML 2024\"\n    year: 2024\n    arxiv: \"2310.04406\"\n    category: \"background\"\n    role: \"Agent planning + self-reflection\"\n    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n\n  - id: \"yao2023tot\"\n    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.10601\"\n    category: \"background\"\n    role: \"Deliberate reasoning 框架\"\n    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n\n  - id: \"cemri2025multiagentfail\"\n    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2503.13657\"\n    category: \"background\"\n    role: \"Agent failure taxonomy——problem motivation\"\n    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n\n  - id: \"zhu2025agentfail\"\n    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2509.25370\"\n    category: \"background\"\n    role: \"Agent failure 分析 + cascading failure 发现\"\n    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n\n  - id: \"george2025cycledetection\"\n    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n    venue: \"arXiv preprint (IBM Research)\"\n    year: 2025\n    arxiv: \"2511.10650\"\n    category: \"background\"\n    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；他们是 unsupervised rule-based，我们是 learned temporal model\"\n\n  - id: \"pipis2025reasoningloop\"\n    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2512.12895\"\n    category: \"background\"\n    role: \"Reasoning model looping 分析\"\n    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================\n\n  - id: \"cho2014gru\"\n    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n    venue: \"EMNLP 2014\"\n    year: 2014\n    arxiv: \"1406.1078\"\n    category: \"technique\"\n    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n\n  - id: \"bahdanau2015attention\"\n    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n    venue: \"ICLR 2015\"\n    year: 2015\n    arxiv: \"1409.0473\"\n    category: \"technique\"\n    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n\n  - id: \"khosla2020supcon\"\n    title: \"Supervised Contrastive Learning\"\n    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n    venue: \"NeurIPS 2020\"\n    year: 2020\n    arxiv: \"2004.11362\"\n    category: \"technique\"\n    role: \"SupCon loss——我们的辅助训练目标\"\n    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n\n  - id: \"zhang2025qwen3embedding\"\n    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2506.05176\"\n    category: \"technique\"\n    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n\n# ============================================================\n# NOVELTY ANALYSIS SUMMARY\n# ============================================================\n#\n# Key finding: \"Temporal Label Model\" 作为通用方法论是 NOVEL。\n#\n# 最近的前驱工作：\n# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n#\n# 没有人将 data programming + HMM-style temporal transitions 用于：\n# - 通用序列分类（非 NER）\n# - Agent trajectory monitoring\n# - Stagnation detection\n#\n# 我们的 TLM 填补的空白：general-purpose temporal extension of\n# data programming label models for sequential classification tasks.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/literature_map.yaml",
+    "content": "# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\n# Generated: 2026-05-14\n# Paper: Temporal Label Model for Progress Stagnation Detection in LLM Agents\n#\n# Novelty check result: \"temporal label model\" as a general-purpose extension\n# of data programming to sequential data appears NOVEL. Closest works are\n# Safranchik AAAI 2020 (NER-specific linked HMM) and Sala NeurIPS 2019\n# (multi-resolution WS, not temporal transitions).\n\npapers:\n\n  # ============================================================\n  # CATEGORY: direct-competitor\n  # ============================================================\n\n  - id: \"xi2025agentprm\"\n    title: \"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\"\n    authors: \"Zhiheng Xi, Chenyang Liao, Guanyu Li, Yajie Yang, Wenxiang Chen, Zhihao Zhang, Binghai Wang, Senjie Jin, Yuhao Zhou, Jian Guan, Wei Wu, Tao Ji, Tao Gui, Qi Zhang, Xuanjing Huang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2511.08325\"\n    category: \"direct-competitor\"\n    role: \"主要竞争者：step-level PRM for agent guidance\"\n    key_finding: \"用 promise（长期潜力）和 progress（即时进展）两个维度评估 agent 每步决策，实现 8x 计算效率提升\"\n    our_differentiation: \"我们是 window-level monitoring（不是 step-level guidance），不需要 outcome labels，目标是 stagnation detection 不是 reward shaping\"\n\n  - id: \"choudhury2025prm\"\n    title: \"Process Reward Models for LLM Agents: Practical Framework and Directions\"\n    authors: \"Sanjiban Choudhury\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2502.10325\"\n    category: \"direct-competitor\"\n    role: \"PRM 框架综述 + InversePRM 方法\"\n    key_finding: \"提出 AgentPRM（Monte Carlo rollout actor-critic）和 InversePRM（从 demonstrations 学习 process reward），3B 模型超越 GPT-4o\"\n    our_differentiation: \"InversePRM 仍需 demonstration trajectories，我们用 programmatic LFs 替代人工标注；我们关注 monitoring 而非 training signal\"\n\n  - id: \"li2026toolprmbench\"\n    title: \"ToolPRMBench: Evaluating and Advancing Process Reward Models for Tool-using Agents\"\n    authors: \"Dawei Li, Yuguang Yao, Zhen Tan, Huan Liu, Ruocheng Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2601.12294\"\n    category: \"direct-competitor\"\n    role: \"Tool-use PRM 评测基准\"\n    key_finding: \"大规模 benchmark 评测 PRM 在 tool-use 场景的效果，发现专用 PRM 显著优于通用 PRM\"\n    our_differentiation: \"我们的 TLM 是 unsupervised（不需要 step-level reward labels），且关注 stagnation pattern 而非 step correctness\"\n\n  - id: \"wang2026planrewardbench\"\n    title: \"Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling\"\n    authors: \"Jiaxuan Wang, Yulan Hu, Wenjin Yang, Zheng Pan, Xin Li, Lan-Zhe Guo\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2604.08178\"\n    category: \"direct-competitor\"\n    role: \"Trajectory-level reward model 评测\"\n    key_finding: \"所有 reward model 类别（generative, discriminative, LLM-as-Judge）在长 horizon trajectory 上性能显著下降\"\n    our_differentiation: \"验证了长 trajectory 评估的难度——我们的 window-level 方法通过局部化避免了这个问题\"\n\n  - id: \"chen2025monitoring\"\n    title: \"Monitoring LLM Agents for Sequentially Contextual Harm\"\n    authors: \"Yueh-Han Chen, Neelay Joshi, Yulin Chen, He He, Rico Angell\"\n    venue: \"ICLR 2025 Workshop on Building Trust in Language Models and Applications\"\n    year: 2025\n    arxiv: null\n    openreview: \"LC0XQ6ufbr\"\n    category: \"direct-competitor\"\n    role: \"Agent monitoring 安全方向\"\n    key_finding: \"将有害任务分解为单独无害的子任务可将 refusal rate 从 50% 降至 10%，现有 monitor 难以检测 sequentially contextual harm\"\n    our_differentiation: \"他们关注 safety monitoring（harmful behavior），我们关注 progress monitoring（stagnation）；互补方向\"\n\n  - id: \"kale2025weaktostrong\"\n    title: \"Reliable Weak-to-Strong Monitoring of LLM Agents\"\n    authors: \"Neil Kale, Chen Bo Calvin Zhang, Kevin Zhu, Ankit Aich, Paula Rodriguez, Scale Red Team, Christina Q. Knight, Zifan Wang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2508.19461\"\n    category: \"direct-competitor\"\n    role: \"Weak-to-strong agent monitoring 方法论\"\n    key_finding: \"Monitor scaffolding 比 monitor 能力更重要，弱模型可以可靠监控强模型；targeted human-in-the-loop 提升 TPR ~15%\"\n    our_differentiation: \"他们用 LLM 作为 monitor，我们用 structural LFs + TLM，不依赖另一个 LLM；我们的方法更轻量且可解释\"\n\n  # ============================================================\n  # CATEGORY: method-component\n  # ============================================================\n\n  - id: \"ratner2016dataprogramming\"\n    title: \"Data Programming: Creating Large Training Sets, Quickly\"\n    authors: \"Alexander Ratner, Christopher De Sa, Sen Wu, Daniel Selsam, Christopher Re\"\n    venue: \"NeurIPS 2016\"\n    year: 2016\n    arxiv: \"1605.07723\"\n    category: \"method-component\"\n    role: \"核心方法论基础：data programming 范式\"\n    key_finding: \"用户编写 labeling functions（噪声启发式），generative model 学习 LF 准确率生成概率训练标签\"\n    our_differentiation: \"我们扩展 data programming 到时序数据，加入 temporal transition structure\"\n\n  - id: \"ratner2017snorkel\"\n    title: \"Snorkel: Rapid Training Data Creation with Weak Supervision\"\n    authors: \"Alexander Ratner, Stephen H. Bach, Henry Ehrenberg, Jason Fries, Sen Wu, Christopher Re\"\n    venue: \"VLDB 2018\"\n    year: 2018\n    arxiv: \"1711.10160\"\n    category: \"method-component\"\n    role: \"Data programming 系统实现，label model 基础\"\n    key_finding: \"端到端弱监督系统：LFs → generative label model（建模 LF dependency）→ discriminative end model\"\n    our_differentiation: \"Snorkel 假设数据点 i.i.d.，我们的 TLM 显式建模相邻 window 间的 label transition\"\n\n  - id: \"fu2020flyingsquid\"\n    title: \"Fast and Three-rious: Speeding Up Weak Supervision with Triplet Methods\"\n    authors: \"Daniel Y. Fu, Mayee F. Chen, Frederic Sala, Sarah M. Hooper, Kayvon Fatahalian, Christopher Re\"\n    venue: \"ICML 2020\"\n    year: 2020\n    arxiv: \"2002.11955\"\n    category: \"method-component\"\n    role: \"快速 label model，triplet method of moments\"\n    key_finding: \"用 triplet method 闭式求解 label model 参数，比 SGD 快 170x\"\n    our_differentiation: \"FlyingSquid 同样假设 i.i.d.；我们的 TLM 需要不同的参数估计方法来处理时序依赖\"\n\n  - id: \"zhang2021wrench\"\n    title: \"WRENCH: A Comprehensive Benchmark for Weak Supervision\"\n    authors: \"Jieyu Zhang, Yue Yu, Yinghao Li, Yujing Wang, Yaming Yang, Mao Yang, Alexander Ratner\"\n    venue: \"NeurIPS 2021 Datasets and Benchmarks Track\"\n    year: 2021\n    arxiv: \"2109.11377\"\n    category: \"method-component\"\n    role: \"弱监督评测基准\"\n    key_finding: \"22 个真实数据集 + 120+ 方法变体评测，标准化弱监督研究\"\n    our_differentiation: \"WRENCH 数据集全是 i.i.d. 分类/序列标注，没有 temporal stagnation detection 任务\"\n\n  - id: \"safranchik2020linkedhmm\"\n    title: \"Weakly Supervised Sequence Tagging from Noisy Rules\"\n    authors: \"Esteban Safranchik, Shiying Luo, Stephen H. Bach\"\n    venue: \"AAAI 2020\"\n    year: 2020\n    arxiv: null\n    category: \"method-component\"\n    role: \"最近的方法论前驱：linked HMM for sequence tagging weak supervision\"\n    key_finding: \"将 HMM 引入弱监督序列标注（NER），加入 linking rules 建模 span 结构，比 i.i.d. label model +7 F1\"\n    our_differentiation: \"他们是 token-level NER（BIO 约束），我们是 window-level temporal classification；我们建模的是 stagnation temporal dynamics 而非 entity boundary\"\n\n  - id: \"sala2019multiresolution\"\n    title: \"Multi-Resolution Weak Supervision for Sequential Data\"\n    authors: \"Frederic Sala, Paroma Varma, Jason Fries, Daniel Y. Fu, Stefano Sagawa, Christopher Re\"\n    venue: \"NeurIPS 2019\"\n    year: 2019\n    arxiv: \"1910.09505\"\n    category: \"method-component\"\n    role: \"最近的方法论前驱：multi-resolution WS for sequential data\"\n    key_finding: \"处理不同时间分辨率的 LFs（如 frame-level vs span-level），建模 multi-resolution LF correlations\"\n    our_differentiation: \"他们关注 resolution mismatch，我们关注 temporal label transitions；互补视角\"\n\n  - id: \"dawid1979em\"\n    title: \"Maximum Likelihood Estimation of Observer Error-Rates Using the EM Algorithm\"\n    authors: \"A. P. Dawid, A. M. Skene\"\n    venue: \"Journal of the Royal Statistical Society, Series C\"\n    year: 1979\n    arxiv: null\n    category: \"method-component\"\n    role: \"Label aggregation 奠基工作\"\n    key_finding: \"用 EM 算法估计标注者混淆矩阵，无需 ground truth\"\n    our_differentiation: \"经典 i.i.d. 假设；我们的 TLM 可视为 temporal extension of Dawid-Skene for programmatic LFs\"\n\n  - id: \"nguyen2017hmmcrowd\"\n    title: \"Aggregating and Predicting Sequence Labels from Crowd Annotations\"\n    authors: \"An Thanh Nguyen, Byron C. Wallace, Junyi Jessy Li, Ani Nenkova, Matthew Lease\"\n    venue: \"ACL 2017\"\n    year: 2017\n    arxiv: null\n    category: \"method-component\"\n    role: \"HMM + crowdsourcing label aggregation\"\n    key_finding: \"HMM-Crowd：扩展 Dawid-Skene 到序列数据，加入 one-step Markov structure over true labels\"\n    our_differentiation: \"他们用于 crowdsourcing（人类标注者），我们用于 programmatic LFs（自动化）；他们是 NER/IE，我们是 agent progress monitoring\"\n\n  # ============================================================\n  # CATEGORY: evaluation\n  # ============================================================\n\n  - id: \"orlanski2026slopcodebench\"\n    title: \"SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks\"\n    authors: \"Gabriel Orlanski, Devjeet Roy, Alexander Yun, Changho Shin, Alex Gu, Albert Ge, Dyah Adila, Nicholas Roberts, Frederic Sala, Aws Albarghouthi\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    arxiv: \"2603.24755\"\n    category: \"evaluation\"\n    role: \"Agent degradation 基准——直接支持我们的 problem motivation\"\n    key_finding: \"Agent 代码质量在迭代任务中持续退化：比人类代码 2.3x 更冗余、2.0x 更结构侵蚀，75-77% trajectory 呈现退化趋势\"\n    our_differentiation: \"SlopCodeBench 量化了 degradation 现象，我们提供了检测方法；他们是 post-hoc 评测，我们是 online monitoring\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    arxiv: \"2310.06770\"\n    category: \"evaluation\"\n    role: \"Agent 数据来源之一\"\n    key_finding: \"2294 个真实 GitHub issue 任务，标准化 agent 评测\"\n    our_differentiation: \"我们使用 SWE-bench agent trajectories 作为实验数据源之一\"\n\n  - id: \"yang2024sweagent\"\n    title: \"SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering\"\n    authors: \"John Yang, Carlos E. Jimenez, Alexander Wettig, Kilian Lieret, Shunyu Yao, Karthik Narasimhan, Ofir Press\"\n    venue: \"NeurIPS 2024\"\n    year: 2024\n    arxiv: \"2405.15793\"\n    category: \"evaluation\"\n    role: \"Agent 系统——trajectory 数据来源\"\n    key_finding: \"提出 agent-computer interface (ACI)，GPT-4 Turbo 在 SWE-bench 达 12.47% resolve rate\"\n    our_differentiation: \"SWE-agent trajectories 是我们分析 stagnation 的数据来源之一\"\n\n  - id: \"wang2025openhands\"\n    title: \"OpenHands: An Open Platform for AI Software Developers as Generalist Agents\"\n    authors: \"Xingyao Wang, Boxuan Li, Yufan Song, Frank F. Xu, Xiangru Tang, et al.\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    arxiv: \"2407.16741\"\n    category: \"evaluation\"\n    role: \"Agent 平台——主要数据来源\"\n    key_finding: \"开源 agent 平台，sandbox 执行环境，15+ benchmarks 评测\"\n    our_differentiation: \"OpenHands trajectories 是我们的主要实验数据来源\"\n\n  # ============================================================\n  # CATEGORY: background\n  # ============================================================\n\n  - id: \"shinn2023reflexion\"\n    title: \"Reflexion: Language Agents with Verbal Reinforcement Learning\"\n    authors: \"Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, Shunyu Yao\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2303.11366\"\n    category: \"background\"\n    role: \"Agent self-reflection 代表工作\"\n    key_finding: \"通过 verbal feedback 强化 agent，反思文本存入 episodic memory 用于后续 trial\"\n    our_differentiation: \"Reflexion 是 agent 自我改进机制，我们是外部 monitoring；self-reflection 可能失效时我们的 monitor 仍能检测 stagnation\"\n\n  - id: \"zhou2024lats\"\n    title: \"Language Agent Tree Search Unifies Reasoning, Acting, and Planning in Language Models\"\n    authors: \"Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, Yu-Xiong Wang\"\n    venue: \"ICML 2024\"\n    year: 2024\n    arxiv: \"2310.04406\"\n    category: \"background\"\n    role: \"Agent planning + self-reflection\"\n    key_finding: \"结合 MCTS 与 LM value function 和 self-reflection，支持 backtracking\"\n    our_differentiation: \"LATS 通过搜索避免 stagnation，但计算开销大；我们的 monitor 可作为 LATS 的早期终止信号\"\n\n  - id: \"yao2023tot\"\n    title: \"Tree of Thoughts: Deliberate Problem Solving with Large Language Models\"\n    authors: \"Shunyu Yao, Dian Yu, Jeffrey Zhao, Izhak Shafran, Thomas L. Griffiths, Yuan Cao, Karthik Narasimhan\"\n    venue: \"NeurIPS 2023\"\n    year: 2023\n    arxiv: \"2305.10601\"\n    category: \"background\"\n    role: \"Deliberate reasoning 框架\"\n    key_finding: \"将 CoT 泛化为树结构，LM 自我评估中间 thought 并 backtrack\"\n    our_differentiation: \"ToT 的自评估是 single-step 的；我们捕捉 multi-step temporal patterns\"\n\n  - id: \"cemri2025multiagentfail\"\n    title: \"Why Do Multi-Agent LLM Systems Fail?\"\n    authors: \"Mert Cemri, Melissa Z. Pan, Shuyi Yang, Lakshya A. Agrawal, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2503.13657\"\n    category: \"background\"\n    role: \"Agent failure taxonomy——problem motivation\"\n    key_finding: \"MAST taxonomy：14 种失败模式，其中 Step Repetition 被识别为具体失败症状\"\n    our_differentiation: \"他们提供 taxonomy（what fails），我们提供 detection method（how to detect）\"\n\n  - id: \"zhu2025agentfail\"\n    title: \"Where LLM Agents Fail and How They Can Learn From Failures\"\n    authors: \"Kunlun Zhu, Zijia Liu, Bingxuan Li, et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2509.25370\"\n    category: \"background\"\n    role: \"Agent failure 分析 + cascading failure 发现\"\n    key_finding: \"Cascading failures（单一 root cause 传播到后续决策）是长 horizon 任务的主要失败模式\"\n    our_differentiation: \"Cascading failure 正是我们 temporal model 可以捕捉的 pattern——stagnation 往往是 cascade 的表现\"\n\n  - id: \"george2025cycledetection\"\n    title: \"Unsupervised Cycle Detection in Agentic Applications\"\n    authors: \"Felix George, Harshit Kumar, Divya Pathak, Kaustabha Ray, Mudit Verma, Pratibha Moogi\"\n    venue: \"arXiv preprint (IBM Research)\"\n    year: 2025\n    arxiv: \"2511.10650\"\n    category: \"background\"\n    role: \"Cycle detection——最相关的 stagnation detection 前驱\"\n    key_finding: \"混合方法：call-stack 分析（结构重复）+ embedding 语义相似度确认\"\n    our_differentiation: \"他们只检测 exact/near-exact cycles，我们检测更广义的 stagnation（包括非重复性的停滞）；他们是 unsupervised rule-based，我们是 learned temporal model\"\n\n  - id: \"pipis2025reasoningloop\"\n    title: \"Wait, Wait, Wait... Why Do Reasoning Models Loop?\"\n    authors: \"Charilaos Pipis, Shivam Garg, Vasilis Kontonis, Vaishnavi Shrivastava, Akshay Krishnamurthy, Dimitris Papailiopoulos\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2512.12895\"\n    category: \"background\"\n    role: \"Reasoning model looping 分析\"\n    key_finding: \"Looping 是 risk-aversion 的表现：模型选择简单循环动作而非推进；用 30-gram 重复检测\"\n    our_differentiation: \"他们分析 reasoning model 内部循环的原因，我们检测 agent trajectory 级别的 stagnation；n-gram 是我们 LFs 之一\"\n\n  # ============================================================\n  # CATEGORY: technique\n  # ============================================================\n\n  - id: \"cho2014gru\"\n    title: \"Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation\"\n    authors: \"Kyunghyun Cho, Bart van Merrienboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, Yoshua Bengio\"\n    venue: \"EMNLP 2014\"\n    year: 2014\n    arxiv: \"1406.1078\"\n    category: \"technique\"\n    role: \"GRU 原始论文——我们 probe model 的序列编码器\"\n    key_finding: \"提出 GRU hidden unit，自适应门控信息流\"\n\n  - id: \"bahdanau2015attention\"\n    title: \"Neural Machine Translation by Jointly Learning to Align and Translate\"\n    authors: \"Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio\"\n    venue: \"ICLR 2015\"\n    year: 2015\n    arxiv: \"1409.0473\"\n    category: \"technique\"\n    role: \"Attention mechanism——我们 probe model 的 attention 组件\"\n    key_finding: \"注意力机制允许 decoder 选择性关注输入序列不同位置\"\n\n  - id: \"khosla2020supcon\"\n    title: \"Supervised Contrastive Learning\"\n    authors: \"Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip Isola, Aaron Maschinot, Ce Liu, Dilip Krishnan\"\n    venue: \"NeurIPS 2020\"\n    year: 2020\n    arxiv: \"2004.11362\"\n    category: \"technique\"\n    role: \"SupCon loss——我们的辅助训练目标\"\n    key_finding: \"扩展自监督对比学习到有监督设置，同类样本拉近、异类推远，提升鲁棒性\"\n\n  - id: \"zhang2025qwen3embedding\"\n    title: \"Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models\"\n    authors: \"Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang, Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, Fei Huang, Jingren Zhou\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    arxiv: \"2506.05176\"\n    category: \"technique\"\n    role: \"Embedding model——我们用于生成 trajectory window embeddings\"\n    key_finding: \"基于 Qwen3 的 embedding 模型（0.6B/4B/8B），多阶段训练，MTEB 多语言 SOTA\"\n\n# ============================================================\n# NOVELTY ANALYSIS SUMMARY\n# ============================================================\n#\n# Key finding: \"Temporal Label Model\" 作为通用方法论是 NOVEL。\n#\n# 最近的前驱工作：\n# 1. Safranchik AAAI 2020 (linked HMM) — NER-specific，BIO 约束，token-level\n# 2. Sala NeurIPS 2019 (multi-resolution WS) — 处理分辨率不匹配，不建模 label transition\n# 3. Nguyen ACL 2017 (HMM-Crowd) — crowdsourcing 场景，不是 programmatic LFs\n#\n# 没有人将 data programming + HMM-style temporal transitions 用于：\n# - 通用序列分类（非 NER）\n# - Agent trajectory monitoring\n# - Stagnation detection\n#\n# 我们的 TLM 填补的空白：general-purpose temporal extension of\n# data programming label models for sequential classification tasks.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T18:39:42.669884+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/literature_map.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T18:39:42.670120+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T18:39:42.670350+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T18:39:42.670601+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "agent_progress_probe",
+  "file": "literature_map.yaml",
+  "max_chars": "500"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "agent_progress_probe",
+    "file": "literature_map.yaml",
+    "max_chars": "500"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:39:42.670842+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No literature_map.yaml found for 'agent_progress_probe'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T18:39:42.671081+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/*.yaml /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/*.md 2>/dev/null | head -20",
+  "description": "List yaml/md files in project root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/*.yaml /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/*.md 2>/dev/null | head -20",
+    "description": "List yaml/md files in project root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T18:39:42.671322+00:00_
+
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/AGENTS.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/ROADMAP.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/decisions.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/dream_registry.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/experiment_plan.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/memory.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/paper_framing.md
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/registry.yaml
+/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T18:39:42.671545+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/literature_map.yaml /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+  "description": "Copy literature_map.yaml to project root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/literature_map.yaml /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml",
+    "description": "Copy literature_map.yaml to project root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T18:39:42.671780+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T18:39:42.671976+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "agent_progress_probe",
+  "file": "literature_map.yaml",
+  "max_chars": "500"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "agent_progress_probe",
+    "file": "literature_map.yaml",
+    "max_chars": "500"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T18:39:42.672138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/literature_map.yaml\", \"content\": \"# Literature Map for Agent Progress Probe (EMNLP 2026 ARR)\\n# Generated: 2026-05-14\\n# Paper: Temporal Label Model for Progress Stagnation Detection in LLM Agents\\n#\\n# Novelty check result: \\\"temporal label model\\\" as a general-purpose extension\\n# of data programming to sequential data appears NOVEL. Closest works are\\n# Safranchik AAAI 2020 (NER-specific linked HMM) and Sala NeurIPS 2019\\n# (multi-resolution WS, not temporal transitions).\\n\\npapers:\\n\\n  # =================================================\\n\\n... [截断: 省略 16621 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 17121, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_literature-compilation_20260514T183143",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-14T18:39:42.672319+00:00_
+
+文件已就绪。完成总结：
+
+**literature_map.yaml 已创建**，包含 **30 篇论文**，覆盖 5 个类别：
+
+| 类别 | 数量 | 关键论文 |
+|------|------|----------|
+| direct-competitor | 6 | AgentPRM, PRM framework, ToolPRMBench, Plan-RewardBench, monitoring harm, weak-to-strong |
+| method-component | 9 | Data Programming, Snorkel, FlyingSquid, WRENCH, Dawid-Skene, HMM-Crowd, Linked HMM, Multi-resolution WS |
+| evaluation | 4 | SlopCodeBench, SWE-bench, SWE-agent, OpenHands |
+| background | 8 | Reflexion, LATS, ToT, 3 篇 failure taxonomy, 2 篇 cycle detection |
+| technique | 4 | GRU, Attention, SupCon, Qwen3-Embedding |
+
+**Novelty 检查结论**：Temporal Label Model 作为 general-purpose data programming extension for sequential data **是 novel 的**。最近前驱：
+- Safranchik AAAI 2020：linked HMM，但限于 NER/BIO tagging
+- Sala NeurIPS 2019：multi-resolution WS，不建模 label transitions
+- Nguyen ACL 2017：HMM-Crowd，crowdsourcing 而非 programmatic LFs
+
+没有人将 data programming + HMM-style temporal transitions 用于通用序列分类或 agent monitoring。
+
+**需注意**：AgentPRM 第一作者是 **Xi**（席）不是 Xie（谢）。Monitoring harm 论文无 arxiv ID（workshop-only, OpenReview: LC0XQ6ufbr）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_literature-compilation_20260514T183143"
+}
+```
+
+</details>
+
+---

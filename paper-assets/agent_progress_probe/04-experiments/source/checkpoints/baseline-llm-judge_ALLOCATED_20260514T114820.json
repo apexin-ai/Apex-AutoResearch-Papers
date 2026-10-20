@@ -1,0 +1,26 @@
+{
+  "exp_id": "baseline-llm-judge",
+  "project": "agent_progress_probe",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T10:19:08.933Z",
+    "updated_at": "2026-05-14T11:48:20.188Z",
+    "spec": {
+      "command": "python3 baseline_llm_judge.py --data_dir data --split_info checkpoints/split_info.json --base_url http://47.94.22.126/v1 --model TBD",
+      "server": "gpu-5090-2x-2",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 1824,
+      "model_name": "LLM-as-Judge (Claude 4 Sonnet or GPT-4o)",
+      "seed": 42,
+      "parent": "probe_001",
+      "hypothesis": "LLM zero-shot/few-shot judgment on raw trajectory text serves as upper-bound baseline; probe should approach LLM performance at fraction of cost",
+      "plan_id": "plan_008",
+      "note": "API key via request_secret('openrouter_api_key'), base_url=http://47.94.22.126/v1, budget $50-200"
+    }
+  },
+  "timestamp": "2026-05-14T11:48:20.205697+00:00",
+  "trigger": "update_registry"
+}

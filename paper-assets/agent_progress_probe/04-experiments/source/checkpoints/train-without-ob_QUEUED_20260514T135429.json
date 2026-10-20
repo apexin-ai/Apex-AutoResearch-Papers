@@ -1,0 +1,27 @@
+{
+  "exp_id": "train-without-ob",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:39:16.792Z",
+    "updated_at": "2026-05-14T13:54:29.665Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/agent_progress_probe && python3 train_without_ob.py\"",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "55740",
+      "log_path": "~/runs/agent_progress_probe/train-without-ob.log",
+      "submitted_at": "2026-05-14T13:53:54.253Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T13:54:29.731137+00:00",
+  "trigger": "update_registry"
+}

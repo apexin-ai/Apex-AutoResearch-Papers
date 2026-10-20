@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "date": "2026-05-15",
+    "annotation_file": "annotation_unknown_2026-05-15.csv",
+    "annotator": "unknown",
+    "total_gold_annotations": 199,
+    "matched_windows": 132,
+    "unmatched_windows": 67,
+    "unmatched_reason": "63 openhands windows not in windows_labeled.jsonl + 4 swe-agent windows not found",
+    "evaluation_scope": "swe-agent only"
+  },
+  "gold_distribution": {
+    "full_199": {
+      "progress": 132,
+      "stagnation": 67
+    },
+    "matched_132": {
+      "progress": 69,
+      "stagnation": 63
+    }
+  },
+  "model_results": {
+    "MV Labels": {
+      "n": 132,
+      "macro_f1": 0.7304,
+      "f1_stag": 0.6957,
+      "f1_prog": 0.7651,
+      "precision_stag": 0.7692,
+      "recall_stag": 0.6349,
+      "accuracy": 0.7348
+    },
+    "GRU Probe": {
+      "n": 132,
+      "macro_f1": 0.7348,
+      "f1_stag": 0.7328,
+      "f1_prog": 0.7368,
+      "precision_stag": 0.7059,
+      "recall_stag": 0.7619,
+      "accuracy": 0.7348,
+      "gold_in_train": {
+        "n": 39,
+        "macro_f1": 0.8436
+      },
+      "gold_in_test": {
+        "n": 17,
+        "macro_f1": 0.8712
+      }
+    },
+    "Structural RF": {
+      "n": 132,
+      "macro_f1": 0.7928,
+      "f1_stag": 0.7692,
+      "f1_prog": 0.8163,
+      "precision_stag": 0.8333,
+      "recall_stag": 0.7143,
+      "accuracy": 0.7955
+    },
+    "Structural GB": {
+      "n": 132,
+      "macro_f1": 0.7847,
+      "f1_stag": 0.7586,
+      "f1_prog": 0.8108,
+      "precision_stag": 0.8302,
+      "recall_stag": 0.6984,
+      "accuracy": 0.7879
+    },
+    "TWV Labels": {
+      "n": 136,
+      "macro_f1": 0.7184,
+      "f1_stag": 0.6667,
+      "f1_prog": 0.7702,
+      "precision_stag": 0.8222,
+      "recall_stag": 0.5606,
+      "accuracy": 0.7279
+    },
+    "TWV Probe": {
+      "n": 132,
+      "macro_f1": 0.7684,
+      "f1_stag": 0.7368,
+      "f1_prog": 0.8000,
+      "precision_stag": 0.8235,
+      "recall_stag": 0.6667,
+      "accuracy": 0.7727
+    }
+  },
+  "mv_gold_agreement": {
+    "overall": {
+      "agree": 97,
+      "total": 132,
+      "rate": 0.7348
+    },
+    "by_confidence": {
+      "conf_1": {"agree": 50, "total": 76, "rate": 0.6579},
+      "conf_2": {"agree": 39, "total": 48, "rate": 0.8125},
+      "conf_3": {"agree": 8, "total": 8, "rate": 1.0000}
+    },
+    "conf_ge2": {
+      "agree": 47,
+      "total": 56,
+      "rate": 0.8393
+    },
+    "confusion_matrix": {
+      "TP_prog": 57,
+      "TN_stag": 40,
+      "FP_mv_prog_gold_stag": 23,
+      "FN_mv_stag_gold_prog": 12
+    }
+  },
+  "twv_gold_agreement": {
+    "overall": {"agree": 99, "total": 132, "rate": 0.7500},
+    "by_confidence": {
+      "conf_1": {"agree": 53, "total": 76, "rate": 0.6974},
+      "conf_2": {"agree": 38, "total": 48, "rate": 0.7917},
+      "conf_3": {"agree": 8, "total": 8, "rate": 1.0000}
+    }
+  },
+  "stratified_by_confidence": {
+    "conf_1": {
+      "n": 76,
+      "gold_stag": 33,
+      "gold_prog": 43,
+      "mv_agreement": 0.6579,
+      "mv_macro_f1": 0.6420,
+      "mv_f1_stag": 0.5667,
+      "mv_f1_prog": 0.7174,
+      "disagreement_rate": 0.3421
+    },
+    "conf_2": {
+      "n": 48,
+      "gold_stag": 25,
+      "gold_prog": 23,
+      "mv_agreement": 0.8125,
+      "mv_macro_f1": 0.8118,
+      "mv_f1_stag": 0.8000,
+      "mv_f1_prog": 0.8235,
+      "disagreement_rate": 0.1875
+    },
+    "conf_3": {
+      "n": 8,
+      "gold_stag": 5,
+      "gold_prog": 3,
+      "mv_agreement": 1.0000,
+      "mv_macro_f1": 1.0000,
+      "mv_f1_stag": 1.0000,
+      "mv_f1_prog": 1.0000,
+      "disagreement_rate": 0.0000
+    }
+  },
+  "disagreement_analysis": {
+    "total_disagreements": 35,
+    "mv_progress_gold_stagnation": 23,
+    "mv_stagnation_gold_progress": 12,
+    "bias": "MV over-predicts progress (65.7% of disagreements are false-progress)"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "exp_id": "baseline-lf-oracle",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:09:05.346Z",
+    "updated_at": "2026-05-14T16:14:57.992Z",
+    "spec": {
+      "command": "python lf_ensemble_baselines.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/windows_labeled.jsonl",
+      "data_count": 1824,
+      "model_name": "LF ensemble baselines",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "lf_ensemble_baseline_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "test_set": "conf>=2, N=1824",
+      "caveat": "MV=1.0 is tautological (conf>=2 labels ARE majority votes). Real comparison is probe vs non-trivial LF baselines.",
+      "majority_vote": {
+        "macro_f1": 1,
+        "note": "≡ ground truth on conf>=2, not a real baseline"
+      },
+      "any_stagnation": {
+        "macro_f1": 0.8544,
+        "accuracy": 0.8712,
+        "f1_stag": 0.805,
+        "f1_prog": 0.9038
+      },
+      "all_stagnation": {
+        "macro_f1": 0.7659,
+        "accuracy": 0.8542,
+        "f1_stag": 0.6222,
+        "f1_prog": 0.9096
+      },
+      "weighted_vote": {
+        "macro_f1": 0.8154,
+        "accuracy": 0.8794,
+        "f1_stag": 0.7067,
+        "f1_prog": 0.9241
+      },
+      "single_file_diff": {
+        "macro_f1": 0.7636,
+        "accuracy": 0.8531,
+        "f1_stag": 0.6182,
+        "f1_prog": 0.909
+      },
+      "single_cmd_rep": {
+        "macro_f1": 0.9451,
+        "accuracy": 0.9589,
+        "f1_stag": 0.9175,
+        "f1_prog": 0.9726,
+        "note": "Exceeds probe on conf>=2 because cmd_rep covers 97.4% and almost always agrees with MV on this subset"
+      },
+      "single_outcome_bp": {
+        "macro_f1": 0.751,
+        "accuracy": 0.7955,
+        "f1_stag": 0.6458,
+        "f1_prog": 0.8563
+      },
+      "probe_001_ref": {
+        "macro_f1": 0.9055
+      },
+      "best_nontrivial_baseline": "any_stagnation (0.8544)",
+      "probe_vs_best_nontrivial_pp": 5.1,
+      "finding": "cmd_rep single LF (0.945) > probe (0.906) on conf>=2 is an artifact of circular eval (labels derived from LF votes). Probe's real value is on ambiguous conf=1 windows (39408 windows, not yet evaluated). Best non-trivial ensemble baseline is any-stagnation at 0.854."
+    },
+    "completed_at": "2026-05-14T16:14:57.992Z"
+  },
+  "timestamp": "2026-05-14T16:14:58.093036+00:00",
+  "trigger": "update_registry"
+}

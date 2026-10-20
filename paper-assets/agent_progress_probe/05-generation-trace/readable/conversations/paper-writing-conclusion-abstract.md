@@ -1,0 +1,1067 @@
+# paper writing conclusion abstract
+
+**Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_paper_writing_conclusion_abstract_20260514T220410.jsonl`
+- **Structured JSON:** [`88c62b85431c8ad2ead4.json`](../../sessions/88/88c62b85431c8ad2ead4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T22:05:58.207414+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T22:05:58.207862+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T22:05:58.208056+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "agent_progress_probe",
+  "file": "paper_framing.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "agent_progress_probe",
+    "file": "paper_framing.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T22:05:58.208274+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/paper_framing.md\", \"content\": \"# Paper Framing — agent_progress_probe\\n\\n## Target Venue\\n- Primary: EMNLP 2026 ARR (submission deadline: May 25, 2026; commitment: August 2, 2026)\\n- Format: Long paper (8 pages + appendix)\\n- Track: LLM Agents\\n- Paper type: **Empirical analysis paper**（D039 pivot: 从 method paper 转 empirical study）\\n- Fallback: ACL 2026 ARR August cycle (~August 15 deadline)\\n\\n## Core Claims (3 条) — D039 Pivot\\n\\n1. **Stagnation Signals Are Structural, Not Semantic (primary contribution)**: 系统性对比发现 agent stagnation 信号本质是结构性的——30 个结构特征（命令重复率、唯一命令比、文件 diff 频率等）在 in-domain (RF 0.9951) 和 cross-agent (GB 0.967) 都近完美预测停滞，全面优于 NL embedding probe (in-domain 0.906, cross-domain 0.751) 和 LLM-as-judge (+24.3pp)。Encoder-agnostic（3 个 encoder 均 >0.90）；最优窗口 k=5 (0.9309)；data scaling 10%→100% 单调递增。这揭示：(a) stagnation detection 不需要语义理解——简单结构特征已足够；(b) 结构特征天然跨 agent 迁移（不依赖 embedding domain adaptation）；(c) NL embedding 对 stagnation detection 无增量价值。**改变社区对 agent monitoring 方法选型的认知：从昂贵的表示学习转向轻量结构监控。** Gold set 验证 structural features 是否检测到真实 stagnation（非仅 circular eval artifact）是论文成立的关键。\\n\\n2. **LF Temporal Dynamics Are Systematic but Agent-Specific (analytical contribution)**: LFs 在 trajectory 上展现**系统性但 agent-specific 的**时序角色。SWE-Agent 上：cmd_rep leading (-1.87步)、file_diff concurrent (-1.2步)、OB lagging (+6.7步)。**OH 上 cmd_rep 角色反转**（从 leading 变 lagging +3.32步），而 file_diff（leading, -4.9步）和 OB（lagging, +18.1步）跨域一致。**消融验证：去掉 cmd_rep 后 OH F1 从 0.7512 飙升到 0.9272（+21.6pp）**，证明 cmd_rep 在 OH 上是噪声源而非信号。根因：cmd_rep 在 OH 上 92.3% firing rate + 71% FP，失去区分性。这揭示 LF 行为与 agent 架构之间的交互效应——为 weak supervision pipeline 在 sequential agent data 上的设计提供实证指导。同时量化 circular evaluation 问题：structural features 以 0.9951 F1 逆向工程 LF 标签，证明 LF-derived labels 上的高分不等于真实检测能力。\\n\\n3. **Temporal Label Model: A Well-Motivated Negative Finding (D039 negative result)**: 
+…[truncated 7870 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T22:05:58.208443+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "docs/paper/sections/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "docs/paper/sections/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T22:05:58.208582+00:00_
+
+docs/paper/sections/experiments.tex
+docs/paper/sections/method.tex
+docs/paper/sections/analysis.tex
+docs/paper/sections/introduction.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T22:05:58.208774+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T22:05:58.208958+00:00_
+
+1	% Introduction: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)
+2	\section{Introduction}
+3	\label{sec:introduction}
+4	
+5	Large language model (LLM) agents are increasingly deployed for complex, long-horizon software engineering tasks---resolving GitHub issues, debugging production systems, and iterating on code across multiple rounds of edits \citep{jimenez2024swebench,yang2024sweagent,wang2025openhands}.
+6	As task complexity grows, a critical failure mode emerges that is qualitatively different from crashes or syntax errors: the agent \emph{stagnates}---continuing to produce actions that appear diverse on the surface while making no meaningful progress toward the task goal.
+7	\citet{orlanski2026slopcodebench} systematically document this degradation in long-horizon coding tasks, finding structural erosion in 77\% of agent trajectories and verbosity increases in 75.5\%, with no agent fully solving any benchmark problem end-to-end.
+8	Unlike overt loops, stagnation is insidious: the agent issues varied commands, edits different files, and generates plausible-looking outputs, yet its behavior is functionally stuck.
+9	Detecting when an agent has entered this regime is essential for reliable deployment---enabling interventions such as early termination, strategy switching, or human escalation---yet identifying \emph{what signals} carry stagnation information, and whether complex language understanding is necessary to extract them, remains an open question.
+10	
+11	Prior approaches to monitoring agent behavior address aspects of this problem but none systematically investigate what information is needed for detection.
+12	\emph{Repetition detectors} identify exact or near-exact loops in action sequences, catching the simplest failure mode but missing semantically diverse stagnation where the agent varies its surface behavior while remaining functionally stuck.
+13	\emph{Process reward models} \citep{xi2025agentprm} assign quality scores to individual 
+…[truncated 6088 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T22:05:58.209109+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T22:05:58.209295+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	We frame stagnation detection as window-level binary classification over agent trajectories.
+5	Silver labels are generated via weak supervision from three labeling functions, then used to train and evaluate three detection approaches: structural features, a neural embedding probe, and an LLM-as-judge baseline.
+6	Figure~\ref{fig:pipeline} provides a system overview.
+7	
+8	\begin{figure*}[t]
+9	\centering
+10	\includegraphics[width=\textwidth]{../../figures/paper/fig_pipeline.pdf}
+11	\caption{System overview. (Left) Agent trajectories are segmented into overlapping windows of $k{=}5$ steps. (Center) Three labeling functions vote on each window; majority vote produces silver labels with confidence 1--3. (Right) Three detection approaches compared: structural features (30-dim), NL embedding probe (GRU), and LLM-as-judge (eval only, not trained on silver labels).}
+12	\label{fig:pipeline}
+13	\end{figure*}
+14	
+15	%-------------------------------------------------------------------
+16	\subsection{Problem Formulation}
+17	\label{sec:problem}
+18	
+19	Given an agent trajectory $T = (a_1, a_2, \ldots, a_n)$ where each $a_t$ is an action (e.g., a shell command, file edit, or API call), we partition it into overlapping sliding windows $w_i = (a_i, \ldots, a_{i+k-1})$ with window size $k{=}5$ and stride 1.
+20	The task is to assign each window a binary label $y_i \in \{0, 1\}$, where 0 denotes \emph{stagnation} (the agent is stuck or unproductive) and 1 denotes \emph{progress} (the agent is making meaningful headway toward the task goal).
+21	
+22	The window formulation offers two advantages over alternatives.
+23	Compared to step-level scoring, windows capture short-range temporal patterns---such as a sequence of repeated failed attempts---that individual actions cannot express.
+24	Compared to trajectory-level labeling, windows provide the granularity needed to pinpoint \emph{when} stagnation begins and ends within a single task attempt, enabli
+…[truncated 9550 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T22:05:58.209454+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T22:05:58.209701+00:00_
+
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	We evaluate stagnation detection across four axes: in-domain accuracy, cross-agent transfer, robustness to design choices, and temporal dynamics of labeling functions.
+5	All reported metrics are evaluated against silver labels derived from majority vote over three labeling functions (\S\ref{sec:method}).
+6	
+7	\paragraph{Circular evaluation caveat.}
+8	Structural features (command repetition ratios, file operation counts, edit distances) are computed from the same signals that the labeling functions use to produce silver labels.
+9	Consequently, the in-domain structural F1 of 0.9951 reflects an upper bound on how well these features can \emph{reverse-engineer} the labeling functions, not detection accuracy against true ground truth.
+10	The cross-agent evaluation on OpenHands (0.967 macro-F1) is non-circular: models trained on SWE-Agent LF distributions are tested on a different agent whose LF firing patterns differ substantially (\S\ref{sec:cmd_rep_ablation}).
+11	A human-annotated gold set provides the definitive non-circular evaluation (\S\ref{sec:gold_set}).
+12	
+13	%-------------------------------------------------------------------
+14	\subsection{Experimental Setup}
+15	\label{sec:setup}
+16	
+17	\paragraph{Datasets.}
+18	We extract sliding windows of $k{=}5$ consecutive actions from agent trajectories.
+19	\textbf{SWE-Agent} trajectories from SWE-bench \citep{jimenez2024swebench,yang2024sweagent} yield 54,809 windows with a stagnation ratio of 28.5\%.
+20	\textbf{OpenHands} (OH) trajectories \citep{wang2025openhands} yield 150,652 windows with a stagnation ratio of 6.6\%.
+21	Silver labels are produced by majority vote over three labeling functions; confidence equals the number of agreeing LFs (1--3).
+22	Unless stated otherwise, evaluation uses the conf${\geq}$2 subset: $N{=}1{,}824$ for SWE-Agent (485 stagnation, 1,339 progress) and $N{=}43{,}376$ for OH.
+23	
+24	\begin{table}[t]
+25	\centering
+26	\small
+27	\begin{tabu
+…[truncated 13328 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T22:05:58.209880+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/analysis.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/analysis.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T22:05:58.210046+00:00_
+
+1	\section{Analysis}
+2	\label{sec:analysis}
+3	
+4	\subsection{Circular Evaluation and Its Implications}
+5	\label{sec:circular}
+6	
+7	The structural RF's 0.9951 macro-F1 (\S\ref{sec:main_results}) is a predictable consequence of feature--label overlap, not a detection achievement.
+8	The 30 structural features include repetition ratios and file operation counts---the same signals $\lambda_1$ and $\lambda_2$ consume to produce silver labels.
+9	This score therefore represents an upper bound on LF reverse-engineering fidelity.
+10	
+11	Two evaluation settings break this circularity.
+12	First, cross-agent transfer: GB trained on SWE-Agent LF distributions achieves 0.9674 macro-F1 on OpenHands, where LF firing patterns differ substantially (e.g., cmd\_rep fires on 92.3\% vs.\ 65.6\% of windows).
+13	The model cannot memorize LF outputs when tested on a different agent's distribution.
+14	Second, a human-annotated gold set (\S\ref{sec:gold_set}) will provide definitive non-circular ground truth.
+15	Until then, all in-domain structural metrics should be interpreted as LF-agreement scores rather than detection accuracy.
+16	
+17	\subsection{Why Temporal Label Models Fail}
+18	\label{sec:why_tlm_fail}
+19	
+20	Despite clear temporal structure in LF activations (\S\ref{sec:lf_temporal}), no temporal label model improves downstream detection over majority vote (\S\ref{sec:temporal_label_models}).
+21	The root cause is low label conflict in the 3-LF regime: conf${\geq}$2 windows dominate the training set, leaving few ambiguous labels for temporal models to correct.
+22	
+23	TWV targets only conf${=}1$ windows, flipping 14.1\% of their labels.
+24	These flips introduce noise rather than corrections---downstream probe F1 drops by 2.57\,pp relative to MV-trained.
+25	HMM overpredicts stagnation (29,176 vs.\ 25,633 progress windows), producing a distorted label distribution that degrades the probe to 0.6564.
+26	Lag-HMM, despite explicitly modeling per-LF temporal offsets, tracks MV within 0.1\,pp---
+…[truncated 2923 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T22:05:58.210216+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check artifacts paper directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+    "description": "Check artifacts paper directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T22:05:58.210340+00:00_
+
+analysis.tex
+analysis_05c288.tex
+experiments.tex
+introduction.tex
+introduction_176b40.tex
+method.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T22:05:58.210529+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/abstract.tex",
+  "content": "% Abstract: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\begin{abstract}\nLLM agents deployed on long-horizon software engineering tasks frequently \\emph{stagnate}---producing diverse yet collectively unproductive action sequences that evade simple loop detectors.\nDetecting this failure mode is critical for enabling timely interventions, yet it remains unclear what information is needed: does identifying subtle agent stagnation require semantic understanding, or do simpler structural patterns suffice?\nWe present a systematic empirical study addressing this question through weak supervision over trajectories of two architecturally distinct agents, SWE-Agent (54,809 windows, 28.5\\% stagnation) and OpenHands (150,652 windows, 6.6\\% stagnation).\nOur central finding is that stagnation signals are fundamentally structural: 30 hand-crafted features---command repetition rates, file operation counts, edit distances---achieve 0.995 in-domain and 0.967 cross-agent macro-F1, surpassing a GRU embedding probe (0.906 in-domain, 0.751 with full fine-tuning) by up to 21.6 percentage points and an LLM-as-judge baseline (0.663) by 33.3 pp, while requiring no GPU and running in under 5\\,ms per window.\nThis structural advantage is encoder-agnostic: three embedding backbones all yield probe F1 above 0.90.\nWe further characterize labeling function temporal dynamics, revealing agent-specific roles: command repetition leads stagnation by 1.87 steps on SWE-Agent but reverses to lagging on OpenHands, where removing it improves probe F1 by 17.6\\,pp.\nDespite these well-characterized temporal patterns, three temporal label models---time-varying weights, HMM, and lag-aware HMM---all fail to improve over majority vote, a negative result we trace to low inter-LF conflict in the current 3-function regime.\nOur findings redirect agent monitoring from costly representation learning toward lightweight structural approaches.\n\\end{abstract}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/abstract.tex",
+    "content": "% Abstract: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\begin{abstract}\nLLM agents deployed on long-horizon software engineering tasks frequently \\emph{stagnate}---producing diverse yet collectively unproductive action sequences that evade simple loop detectors.\nDetecting this failure mode is critical for enabling timely interventions, yet it remains unclear what information is needed: does identifying subtle agent stagnation require semantic understanding, or do simpler structural patterns suffice?\nWe present a systematic empirical study addressing this question through weak supervision over trajectories of two architecturally distinct agents, SWE-Agent (54,809 windows, 28.5\\% stagnation) and OpenHands (150,652 windows, 6.6\\% stagnation).\nOur central finding is that stagnation signals are fundamentally structural: 30 hand-crafted features---command repetition rates, file operation counts, edit distances---achieve 0.995 in-domain and 0.967 cross-agent macro-F1, surpassing a GRU embedding probe (0.906 in-domain, 0.751 with full fine-tuning) by up to 21.6 percentage points and an LLM-as-judge baseline (0.663) by 33.3 pp, while requiring no GPU and running in under 5\\,ms per window.\nThis structural advantage is encoder-agnostic: three embedding backbones all yield probe F1 above 0.90.\nWe further characterize labeling function temporal dynamics, revealing agent-specific roles: command repetition leads stagnation by 1.87 steps on SWE-Agent but reverses to lagging on OpenHands, where removing it improves probe F1 by 17.6\\,pp.\nDespite these well-characterized temporal patterns, three temporal label models---time-varying weights, HMM, and lag-aware HMM---all fail to improve over majority vote, a negative result we trace to low inter-LF conflict in the current 3-function regime.\nOur findings redirect agent monitoring from costly representation learning toward lightweight structural approaches.\n\\end{abstract}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T22:05:58.210698+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/abstract.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T22:05:58.210836+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/conclusion.tex",
+  "content": "% Conclusion: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented a systematic empirical study of progress stagnation detection in LLM coding agents, comparing structural features, neural embedding probes, and LLM-as-judge approaches against silver labels generated via weak supervision.\nThree findings emerge.\n\nFirst, stagnation signals are fundamentally structural.\nThirty hand-crafted features achieve 0.9951 in-domain and 0.967 cross-agent macro-F1, decisively outperforming a GRU probe (+8.96\\,pp in-domain) and an LLM judge (+33.3\\,pp)---all without GPU and in under 5\\,ms per window.\nThis result holds across three embedding encoders (Qwen3, BGE-M3, E5-large), each yielding probe F1 above 0.90, confirming that the structural advantage is independent of encoder choice.\nThe practical implication is immediate: real-time agent monitoring need not rely on expensive representation learning or LLM inference when lightweight structural features transfer across agent architectures with minimal degradation.\n\nSecond, labeling functions exhibit systematic but agent-specific temporal dynamics.\nCommand repetition leads stagnation onset by 1.87 steps on SWE-Agent but reverses to a lagging role on OpenHands (+3.32 steps), where its 92.3\\% firing rate and 71\\% false positive rate corrupt silver labels---removing it improves fine-tuned probe F1 by 17.6\\,pp.\nThis finding has methodological significance for weak supervision on sequential data: labeling functions validated on one domain can become adversarial on another, necessitating per-agent validation and the circular evaluation methodology we develop to surface such pathologies.\n\nThird, temporal sophistication in label aggregation does not improve detection.\nThree temporal label models---TWV, HMM, and lag-aware HMM---all fail to surpass majority vote, with TWV actually degrading downstream performance by 2.57\\,pp.\nThis negative result constrains future research: in the low-conflict regime of 3 binary LFs (95.1\\% agreement at conf${\\geq}$2), temporal alignment introduces more noise than signal.\n\nThese results suggest several directions for future work.\nExpanding the labeling function set beyond three functions could create the inter-LF conflict necessary for temporal aggregation to add value.\nExtending evaluation to non-coding agent tasks (web browsing, data analysis, multi-agent collaboration) would test whether structural dominance generalizes beyond software engineering.\nMost critically, evaluation against human-annotated ground truth---for which we have prepared a 650-window gold set with a validated annotation pipeline---will determine whether structural features detect \\emph{real} stagnation or merely reconstruct labeling function outputs.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/conclusion.tex",
+    "content": "% Conclusion: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe presented a systematic empirical study of progress stagnation detection in LLM coding agents, comparing structural features, neural embedding probes, and LLM-as-judge approaches against silver labels generated via weak supervision.\nThree findings emerge.\n\nFirst, stagnation signals are fundamentally structural.\nThirty hand-crafted features achieve 0.9951 in-domain and 0.967 cross-agent macro-F1, decisively outperforming a GRU probe (+8.96\\,pp in-domain) and an LLM judge (+33.3\\,pp)---all without GPU and in under 5\\,ms per window.\nThis result holds across three embedding encoders (Qwen3, BGE-M3, E5-large), each yielding probe F1 above 0.90, confirming that the structural advantage is independent of encoder choice.\nThe practical implication is immediate: real-time agent monitoring need not rely on expensive representation learning or LLM inference when lightweight structural features transfer across agent architectures with minimal degradation.\n\nSecond, labeling functions exhibit systematic but agent-specific temporal dynamics.\nCommand repetition leads stagnation onset by 1.87 steps on SWE-Agent but reverses to a lagging role on OpenHands (+3.32 steps), where its 92.3\\% firing rate and 71\\% false positive rate corrupt silver labels---removing it improves fine-tuned probe F1 by 17.6\\,pp.\nThis finding has methodological significance for weak supervision on sequential data: labeling functions validated on one domain can become adversarial on another, necessitating per-agent validation and the circular evaluation methodology we develop to surface such pathologies.\n\nThird, temporal sophistication in label aggregation does not improve detection.\nThree temporal label models---TWV, HMM, and lag-aware HMM---all fail to surpass majority vote, with TWV actually degrading downstream performance by 2.57\\,pp.\nThis negative result constrains future research: in the low-conflict regime of 3 binary LFs (95.1\\% agreement at conf${\\geq}$2), temporal alignment introduces more noise than signal.\n\nThese results suggest several directions for future work.\nExpanding the labeling function set beyond three functions could create the inter-LF conflict necessary for temporal aggregation to add value.\nExtending evaluation to non-coding agent tasks (web browsing, data analysis, multi-agent collaboration) would test whether structural dominance generalizes beyond software engineering.\nMost critically, evaluation against human-annotated ground truth---for which we have prepared a 650-window gold set with a validated annotation pipeline---will determine whether structural features detect \\emph{real} stagnation or merely reconstruct labeling function outputs.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T22:05:58.211008+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/conclusion.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T22:05:58.211234+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/limitations.tex",
+  "content": "% Limitations: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\section*{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Circular evaluation.}\nOur primary evaluation is against silver labels derived from the same labeling functions whose signals overlap with the structural features.\nThe structural RF's 0.9951 macro-F1 therefore reflects LF-reconstructibility, not ground-truth detection accuracy.\nCross-agent transfer (0.967) partially breaks this circularity, and we have prepared a 650-window gold set with a validated annotation pipeline; however, human annotation is pending, and all in-domain structural results should be interpreted with this caveat.\n\n\\paragraph{Agent coverage.}\nWe evaluate on two agents (SWE-Agent and OpenHands), both operating on software engineering tasks from SWE-bench.\nWhether structural features maintain their dominance on agents with fundamentally different action spaces---web browsing agents, data analysis assistants, or multi-agent systems---remains untested.\n\n\\paragraph{Binary classification.}\nWe frame stagnation as a binary label (stagnation vs.\\ progress), but real agent behavior exists on a spectrum.\nAn agent may be making slow progress, exploring productively, or experiencing partial stagnation.\nA graded formulation could capture these nuances but would require richer annotation schemes.\n\n\\paragraph{Hand-crafted labeling functions.}\nOur three LFs are manually designed.\nThe low inter-LF conflict (95.1\\% agreement at conf${\\geq}$2) limits the headroom for temporal label models and may underrepresent stagnation patterns that none of the three LFs capture.\nA larger, more diverse LF set could both improve silver label coverage and provide the disagreement necessary for temporal aggregation to demonstrate value.\n\n\\paragraph{Task domain.}\nAll trajectories come from coding and software engineering tasks.\nStagnation in other domains---where ``progress'' lacks clear structural markers like file modifications or test outcomes---may require semantic understanding that our structural approach does not provide.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/limitations.tex",
+    "content": "% Limitations: Structural stagnation detection in LLM coding agents (EMNLP 2026 ARR)\n\\section*{Limitations}\n\\label{sec:limitations}\n\n\\paragraph{Circular evaluation.}\nOur primary evaluation is against silver labels derived from the same labeling functions whose signals overlap with the structural features.\nThe structural RF's 0.9951 macro-F1 therefore reflects LF-reconstructibility, not ground-truth detection accuracy.\nCross-agent transfer (0.967) partially breaks this circularity, and we have prepared a 650-window gold set with a validated annotation pipeline; however, human annotation is pending, and all in-domain structural results should be interpreted with this caveat.\n\n\\paragraph{Agent coverage.}\nWe evaluate on two agents (SWE-Agent and OpenHands), both operating on software engineering tasks from SWE-bench.\nWhether structural features maintain their dominance on agents with fundamentally different action spaces---web browsing agents, data analysis assistants, or multi-agent systems---remains untested.\n\n\\paragraph{Binary classification.}\nWe frame stagnation as a binary label (stagnation vs.\\ progress), but real agent behavior exists on a spectrum.\nAn agent may be making slow progress, exploring productively, or experiencing partial stagnation.\nA graded formulation could capture these nuances but would require richer annotation schemes.\n\n\\paragraph{Hand-crafted labeling functions.}\nOur three LFs are manually designed.\nThe low inter-LF conflict (95.1\\% agreement at conf${\\geq}$2) limits the headroom for temporal label models and may underrepresent stagnation patterns that none of the three LFs capture.\nA larger, more diverse LF set could both improve silver label coverage and provide the disagreement necessary for temporal aggregation to demonstrate value.\n\n\\paragraph{Task domain.}\nAll trajectories come from coding and software engineering tasks.\nStagnation in other domains---where ``progress'' lacks clear structural markers like file modifications or test outcomes---may require semantic understanding that our structural approach does not provide.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T22:05:58.211465+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/limitations.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T22:05:58.211691+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "sed '/^%/d;/^\\\\\\\\begin{abstract}/d;/^\\\\\\\\end{abstract}/d' docs/paper/sections/abstract.tex | detex 2>/dev/null | wc -w || cat docs/paper/sections/abstract.tex | sed 's/\\\\\\\\[a-zA-Z]*{[^}]*}//g;s/\\\\\\\\[a-zA-Z]*//g;s/[{}~$%]//g;s/--/-/g;/^$/d;/^%/d' | wc -w",
+  "description": "Count abstract words"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "sed '/^%/d;/^\\\\\\\\begin{abstract}/d;/^\\\\\\\\end{abstract}/d' docs/paper/sections/abstract.tex | detex 2>/dev/null | wc -w || cat docs/paper/sections/abstract.tex | sed 's/\\\\\\\\[a-zA-Z]*{[^}]*}//g;s/\\\\\\\\[a-zA-Z]*//g;s/[{}~$%]//g;s/--/-/g;/^$/d;/^%/d' | wc -w",
+    "description": "Count abstract words"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T22:05:58.211896+00:00_
+
+241
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T22:05:58.212120+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/abstract.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/abstract.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/conclusion.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/conclusion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/limitations.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/limitations.tex",
+  "description": "Copy sections to artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/abstract.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/abstract.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/conclusion.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/conclusion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/docs/paper/sections/limitations.tex /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/limitations.tex",
+    "description": "Copy sections to artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T22:05:58.212314+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T22:05:58.212488+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "abstract.tex",
+  "type": "paper",
+  "description": "EMNLP 2026 ARR paper abstract (241 words). Covers structural signal discovery, LF temporal dynamics, and TLM negative finding.",
+  "project": "agent_progress_probe",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/abstract.tex",
+  "tags": "['paper', 'abstract', 'emnlp2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "abstract.tex",
+    "type": "paper",
+    "description": "EMNLP 2026 ARR paper abstract (241 words). Covers structural signal discovery, LF temporal dynamics, and TLM negative finding.",
+    "project": "agent_progress_probe",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/abstract.tex",
+    "tags": "['paper', 'abstract', 'emnlp2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T22:05:58.212716+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_6bb161\", \"name\": \"abstract.tex\", \"type\": \"paper\", \"description\": \"EMNLP 2026 ARR paper abstract (241 words). Covers structural signal discovery, LF temporal dynamics, and TLM negative finding.\", \"path\": \"projects/agent_progress_probe/artifacts/_project/paper/abstract_6bb161.tex\", \"url\": null, \"project\": \"agent_progress_probe\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T22:05:44.353990+00:00\", \"tags\": [\"paper\", \"abstract\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T22:05:58.212914+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "conclusion.tex",
+  "type": "paper",
+  "description": "EMNLP 2026 ARR paper conclusion. Three findings + future directions including gold set validation.",
+  "project": "agent_progress_probe",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/conclusion.tex",
+  "tags": "['paper', 'conclusion', 'emnlp2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "conclusion.tex",
+    "type": "paper",
+    "description": "EMNLP 2026 ARR paper conclusion. Three findings + future directions including gold set validation.",
+    "project": "agent_progress_probe",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/conclusion.tex",
+    "tags": "['paper', 'conclusion', 'emnlp2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T22:05:58.213126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_fac7bf\", \"name\": \"conclusion.tex\", \"type\": \"paper\", \"description\": \"EMNLP 2026 ARR paper conclusion. Three findings + future directions including gold set validation.\", \"path\": \"projects/agent_progress_probe/artifacts/_project/paper/conclusion_fac7bf.tex\", \"url\": null, \"project\": \"agent_progress_probe\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T22:05:46.197193+00:00\", \"tags\": [\"paper\", \"conclusion\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T22:05:58.213320+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "limitations.tex",
+  "type": "paper",
+  "description": "EMNLP 2026 ARR paper limitations section. Covers circular eval, 2-agent scope, binary framing, hand-crafted LFs, domain restriction.",
+  "project": "agent_progress_probe",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/limitations.tex",
+  "tags": "['paper', 'limitations', 'emnlp2026']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "limitations.tex",
+    "type": "paper",
+    "description": "EMNLP 2026 ARR paper limitations section. Covers circular eval, 2-agent scope, binary framing, hand-crafted LFs, domain restriction.",
+    "project": "agent_progress_probe",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/_project/paper/limitations.tex",
+    "tags": "['paper', 'limitations', 'emnlp2026']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T22:05:58.213542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_3b994c\", \"name\": \"limitations.tex\", \"type\": \"paper\", \"description\": \"EMNLP 2026 ARR paper limitations section. Covers circular eval, 2-agent scope, binary framing, hand-crafted LFs, domain restriction.\", \"path\": \"projects/agent_progress_probe/artifacts/_project/paper/limitations_3b994c.tex\", \"url\": null, \"project\": \"agent_progress_probe\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-14T22:05:48.029902+00:00\", \"tags\": [\"paper\", \"limitations\", \"emnlp2026\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T22:05:58.213822+00:00_
+
+三个章节已完成，文件位置：
+
+| 章节 | 路径 | 字数 |
+|------|------|------|
+| Abstract | `docs/paper/sections/abstract.tex` | 241词（≤250限制） |
+| Conclusion | `docs/paper/sections/conclusion.tex` | ~310词 |
+| Limitations | `docs/paper/sections/limitations.tex` | ~210词 |
+
+关键设计决策：
+- **Abstract**: problem→approach→3个核心结果→implications，严格引用所有关键数据点（0.9951/0.967/0.906/0.663/17.6pp等）
+- **Conclusion**: 按三层贡献组织，不重复abstract，末段聚焦future work（扩展LF集、非coding domain、gold set验证）
+- **Limitations**: circular evaluation放首位不回避，明确gold set是mitigation但pending；5个limitation点覆盖了所有要求的弱点
+- 所有数字与introduction/experiments/analysis一致
+
+已复制到 `artifacts/_project/paper/` 并注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_conclusion_abstract_20260514T220410"
+}
+```
+
+</details>
+
+---

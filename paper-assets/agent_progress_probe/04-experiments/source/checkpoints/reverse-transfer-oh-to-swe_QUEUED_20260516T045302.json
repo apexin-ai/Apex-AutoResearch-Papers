@@ -1,0 +1,31 @@
+{
+  "exp_id": "reverse-transfer-oh-to-swe",
+  "project": "agent_progress_probe",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:48.336Z",
+    "updated_at": "2026-05-16T04:53:02.124Z",
+    "spec": {
+      "command": "python3 exp_reverse_transfer.py",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "471065",
+      "log_path": "~/runs/agent_progress_probe/reverse-transfer-oh-to-swe.log",
+      "submitted_at": "2026-05-16T04:52:48.112Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/openhands_data/ + /root/autodl-tmp/agent_progress_probe/data/",
+      "data_count": "OH ~150K train + SWE ~1.8K test",
+      "model_name": "GB+RF structural",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T04:53:02.290507+00:00",
+  "trigger": "update_registry"
+}

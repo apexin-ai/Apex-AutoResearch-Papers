@@ -1,0 +1,24 @@
+{
+  "exp_id": "instance-isolation-canonical",
+  "project": "agent_progress_probe",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:17:06.926Z",
+    "updated_at": "2026-05-15T03:17:11.839Z",
+    "spec": {
+      "command": "python src/analysis/instance_isolation_canonical.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data/",
+      "data_count": 150652,
+      "model_name": "GradientBoosting+RandomForest",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/tmp/instance_isolation_canonical.log"
+    }
+  },
+  "timestamp": "2026-05-15T03:17:12.034881+00:00",
+  "trigger": "update_registry"
+}

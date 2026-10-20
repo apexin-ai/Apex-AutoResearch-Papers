@@ -1,0 +1,29 @@
+{
+  "exp_id": "e5large-seed42",
+  "project": "agent_progress_probe",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:24:54.305Z",
+    "updated_at": "2026-05-16T04:25:19.013Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/agent_progress_probe && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=0 && python3 train_probe.py --data_dir data_e5 --output_dir checkpoints_ablation_e5_s42 --min_confidence 2 --lr 1e-3 --batch_size 32 --epochs 20 --seed 42 && python3 eval_probe_only.py --checkpoint checkpoints_ablation_e5_s42/best_model.pt --data_dir data_e5 --split_info checkpoints_ablation_e5_s42/split_info.json\"",
+      "server": "bjb2-23165",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "468564",
+      "log_path": "~/runs/agent_progress_probe/e5large-seed42.log",
+      "submitted_at": "2026-05-16T04:24:54.079Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "补跑 E5-large multiseed 缺失的 seed 42，与已有 seed 123/456 构成完整 3-seed 报告",
+    "parent": "encoder-ablation-probe-e5large"
+  },
+  "timestamp": "2026-05-16T04:25:19.334252+00:00",
+  "trigger": "update_registry"
+}

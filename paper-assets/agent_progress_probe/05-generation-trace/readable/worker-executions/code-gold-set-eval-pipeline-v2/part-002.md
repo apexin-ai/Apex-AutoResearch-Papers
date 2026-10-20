@@ -1,0 +1,3204 @@
+# code gold set eval pipeline v2 — Part 2 of 2
+
+**Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001** · Worker execution logs
+
+[← Part 1](part-001.md) · [Transcript overview](../code-gold-set-eval-pipeline-v2.md) · [Structured JSON](../../../sessions/dd/dd2b123464c2882036ff.json)
+
+## Before a recorded user message
+
+### Tool result
+
+_source line 50 · 2026-05-14T22:53:35.122Z_
+
+<details><summary>↩ Tool result · `toolu_01VZsBWjzZwYS9fv1oBMmGDR`</summary>
+
+```text
+750	
+751	    gold_map = dict(zip(gold_wids, gold_labels))
+752	
+753	    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={"width_ratios": [2, 1]})
+754	
+755	    ax1.plot([0, 1], [0, 1], "k--", lw=1, label="Perfect calibration")
+756	
+757	    colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"]
+758	    for i, (model_name, prob_map) in enumerate(model_probs.items()):
+759	        y_true, y_prob = [], []
+760	        for wid, prob in prob_map.items():
+761	            gl = gold_map.get(wid)
+762	            if gl is not None:
+763	                y_true.append(gl)
+764	                y_prob.append(prob)
+765	        if len(y_true) < 10:
+766	            continue
+767	
+768	        y_true = np.array(y_true)
+769	        y_prob = np.array(y_prob)
+770	
+771	        fraction_pos, mean_predicted = calibration_curve(
+772	            y_true, y_prob, n_bins=n_bins, strategy="uniform"
+773	        )
+774	        ax1.plot(
+775	            mean_predicted, fraction_pos,
+776	            "o-", color=colors[i % len(colors)], label=model_name, markersize=4,
+777	        )
+778	
+779	        ax2.hist(
+780	            y_prob, bins=n_bins, range=(0, 1),
+781	            alpha=0.5, color=colors[i % len(colors)], label=model_name,
+782	        )
+783	
+784	    ax1.set_xlabel("Mean predicted probability")
+785	    ax1.set_ylabel("Fraction of positives (progress)")
+786	    ax1.set_title("Reliability Diagram")
+787	    ax1.legend(loc="lower right")
+788	    ax1.set_xlim(-0.02, 1.02)
+789	    ax1.set_ylim(-0.02, 1.02)
+790	    ax1.set_aspect("equal")
+791	
+792	    ax2.set_xlabel("Predicted probability")
+793	    ax2.set_ylabel("Count")
+794	    ax2.set_title("Prediction Distribution")
+795	    ax2.legend(loc="upper right")
+796	
+797	    fig.tight_layout()
+798	    fig.savefig(output_path, bbox_inches="tight")
+799	    plt.close(fig)
+800	
+801	
+802	# ===========================================================================
+803	# Console summary
+804	# ===========================================================================
+805	
+806	def print_summary_table(results):
+807	    """Print markdown-formatted summary to console."""
+808	    header = (
+809	        "| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) "
+810	        "| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |"
+811	    )
+812	    sep = "|" + "|".join(["---"] * 11) + "|"
+813	    print(header)
+814	    print(sep)
+815	    for name, metrics, n, n_miss in results:
+816	        if metrics is None:
+817	            print(f"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}")
+818	            continue
+819	        print(
+820	            f"| {name:19s} "
+821	            f"| {n:5d} "
+822	            f"| {metrics['macro_f1']:.4f}   "
+823	            f"| {metrics['accuracy']:.4f}   "
+824	            f"| {metrics['precision_stag']:.4f}  "
+825	            f"| {metrics['recall_stag']:.4f}  "
+826	            f"| {metrics['f1_stag']:.4f}   "
+827	            f"| {metrics['precision_prog']:.4f}  "
+828	            f"| {metrics['recall_prog']:.4f}  "
+829	            f"| {metrics['f1_prog']:.4f}   "
+830	            f"| {metrics['cohens_kappa']:.4f}  |"
+831	        )
+832	
+833	
+834	# ===========================================================================
+835	# Main
+836	# ===========================================================================
+837	
+838	ALL_MODELS = ["silver", "rf", "gb", "lr", "gru_probe", "llm_judge"]
+839	
+840	
+841	def main():
+842	    parser = argparse.ArgumentParser(
+843	        description="Gold-set evaluation pipeline for agent_progress_probe",
+844	        formatter_class=argparse.RawDescriptionHelpFormatter,
+845	    )
+846	    parser.add_argument(
+847	        "--gold-file", required=True,
+848	        help="Path to gold label file (CSV or JSONL). "
+849	             "Required fields: window_id, gold_label (0=stagnation, 1=progress). "
+850	             "Optional: annotator_id, confidence.",
+851	    )
+852	    parser.add_argument(
+853	        "--predictions-dir", required=True,
+854	        help="Directory containing model artifacts: "
+855	             "data/windows_labeled.jsonl, data/embeddings.pt, "
+856	             "checkpoints/best_model.pt, checkpoints/split_info.json, "
+857	             "data/swe_agent_trajectories_5000.jsonl, "
+858	             "results/llm_judge_results.json",
+859	    )
+860	    parser.add_argument(
+861	        "--output-dir", default="artifacts",
+862	        help="Output directory for results JSON and reliability PDF (default: artifacts)",
+863	    )
+864	    parser.add_argument(
+865	        "--models", nargs="+", default=ALL_MODELS, choices=ALL_MODELS,
+866	        help="Which models to evaluate (default: all). "
+867	             "Choices: silver, rf, gb, lr, gru_probe, llm_judge",
+868	    )
+869	    parser.add_argument("--device", default=None, help="Torch device (default: auto)")
+870	    parser.add_argument(
+871	        "--llm-predictions", default=None,
+872	        help="Override path to LLM-as-judge cached predictions (JSON or JSONL)",
+873	    )
+874	    parser.add_argument(
+875	        "--checkpoint", default=None,
+876	        help="Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)",
+877	    )
+878	    parser.add_argument(
+879	        "--trajectories", default=None,
+880	        help="Override path to raw trajectories JSONL",
+881	    )
+882	    parser.add_argument("--n-bins", type=int, default=10, help="Calibration curve bins")
+883	    args = parser.parse_args()
+884	
+885	    t_start = time.time()
+886	    pdir = Path(args.predictions_dir)
+887	    output_dir = Path(args.output_dir)
+888	    output_dir.mkdir(parents=True, exist_ok=True)
+889	
+890	    device = args.device
+891	    if device is None and HAS_TORCH:
+892	        device = "cuda" if torch.cuda.is_available() else "cpu"
+893	    elif device is None:
+894	        device = "cpu"
+895	
+896	    selected_models = set(args.models)
+897	
+898	    # ------------------------------------------------------------------
+899	    # 1. Load gold labels
+900	    # ------------------------------------------------------------------
+901	    print(f"Loading gold labels: {args.gold_file}")
+902	    gold_records = load_gold_labels(args.gold_file)
+903	    gold_wids = [r["window_id"] for r in gold_records]
+904	    gold_labels = [r["gold_label"] for r in gold_records]
+905	    gold_dist = Counter(gold_labels)
+906	    print(f"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}")
+907	
+908	    # ------------------------------------------------------------------
+909	    # 2. Load windows_labeled.jsonl
+910	    # ------------------------------------------------------------------
+911	    windows_path = None
+912	    for candidate in [
+913	        pdir / "data" / "windows_labeled.jsonl",
+914	        pdir / "windows_labeled.jsonl",
+915	        pdir / "artifacts" / "data" / "windows_labeled.jsonl",
+916	    ]:
+917	        if candidate.exists():
+918	            windows_path = candidate
+919	            break
+920	    if windows_path is None:
+921	        print("ERROR: windows_labeled.jsonl not found under predictions-dir")
+922	        sys.exit(1)
+923	    print(f"Loading windows: {windows_path}")
+924	    all_windows = load_windows_jsonl(str(windows_path))
+925	    non_abstain = [w for w in all_windows if w.get("majority_label", -1) != -1]
+926	    print(f"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}")
+927	
+928	    wid_to_window = {window_id_from_window(w): w for w in non_abstain}
+929	    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}
+930	
+931	    # ------------------------------------------------------------------
+932	    # 3. Load split info
+933	    # ------------------------------------------------------------------
+934	    split_info_path = None
+935	    for candidate in [
+936	        pdir / "checkpoints" / "split_info.json",
+937	        pdir / "split_info.json",
+938	        pdir / "artifacts" / "split_info.json",
+939	    ]:
+940	        if candidate.exists():
+941	            split_info_path = candidate
+942	            break
+943	    split_info = None
+944	    if split_info_path is not None:
+945	        print(f"Loading split info: {split_info_path}")
+946	        with open(split_info_path) as f:
+947	            split_info = json.load(f)
+948	
+949	    # ------------------------------------------------------------------
+950	    # 4. Evaluate models
+951	    # ------------------------------------------------------------------
+952	    results = []
+953	    model_probs = {}
+954	
+955	    # --- Silver labels ---
+956	    if "silver" in selected_models:
+957	        print("\nEvaluating: Silver (MV) Labels vs Gold ...")
+958	        m, n, n_miss, prob_map, conf_map = evaluate_silver(
+959	            gold_wids, gold_labels, wid_to_window
+960	        )
+961	        if m:
+962	            print(f"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}")
+963	        results.append(("Silver (MV)", m, n, n_miss))
+964	        if prob_map:
+965	            model_probs["Silver (MV)"] = prob_map
+966	
+967	    # --- Structural classifiers (RF, GB, LR) ---
+968	    need_structural = selected_models & {"rf", "gb", "lr"}
+969	    if need_structural:
+970	        traj_path = Path(args.trajectories) if args.trajectories else None
+971	        if traj_path is None:
+972	            for candidate in [
+973	                pdir / "data" / "swe_agent_trajectories_5000.jsonl",
+974	                pdir / "swe_agent_trajectories_5000.jsonl",
+975	                pdir / "artifacts" / "data" / "swe_agent_trajectories_5000.jsonl",
+976	                pdir / "data" / "swe_agent_trajectories_1000.jsonl",
+977	                pdir / "artifacts" / "data" / "swe_agent_trajectories_1000.jsonl",
+978	            ]:
+979	                if candidate.exists():
+980	                    traj_path = candidate
+981	                    break
+982	
+983	        if traj_path is not None and traj_path.exists() and split_info is not None:
+984	            print(f"\nBuilding structural features (trajectories: {traj_path}) ...")
+985	            traj_index = build_trajectory_index(str(traj_path))
+986	            print(f"  Indexed {len(traj_index)} trajectories")
+987	
+988	            all_features = []
+989	            all_mv_labels = []
+990	            for w in non_abstain:
+991	                row_idx = w.get("row_index", 0)
+992	                step_indices = w["step_indices"]
+993	                traj_steps = traj_index.get(row_idx, [])
+994	                window_steps = []
+995	                for si in step_indices:
+996	                    if si < len(traj_steps):
+997	                        window_steps.append(traj_steps[si])
+998	                    else:
+999	                        window_steps.append({"role": "unknown", "text": ""})
+1000	                feat = extract_structural_features(window_steps, w.get("short_trajectory", False))
+1001	                all_features.append(feat)
+1002	                all_mv_labels.append(w["majority_label"])
+1003	
+1004	            all_features = np.stack(all_features)
+1005	            print(f"  Feature matrix: {all_features.shape}")
+1006	
+1007	            struct_configs = {
+1008	                "rf": (
+1009	                    "Structural RF",
+1010	                    RandomForestClassifier,
+1011	                    {"n_estimators": 200, "max_depth": 10, "random_state": 42, "n_jobs": -1},
+1012	                    False,
+1013	                ),
+1014	                "gb": (
+1015	                    "Structural GB",
+1016	                    GradientBoostingClassifier,
+1017	                    {"n_estimators": 200, "learning_rate": 0.1, "max_depth": 5, "random_state": 42},
+1018	                    False,
+1019	                ),
+1020	                "lr": (
+1021	                    "Structural LR",
+1022	                    LogisticRegression,
+1023	                    {"max_iter": 2000, "C": 1.0, "solver": "lbfgs"},
+1024	                    True,
+1025	                ),
+1026	            }
+1027	            for key in ["rf", "gb", "lr"]:
+1028	                if key not in selected_models:
+1029	                    continue
+1030	                name, cls, kwargs, scaler = struct_configs[key]
+1031	                print(f"  Evaluating {name} ...")
+1032	                m, n, n_miss, prob_map = evaluate_structural_clf(
+1033	                    gold_wids, gold_labels, wid_to_noabs_idx,
+1034	                    all_features, all_mv_labels, split_info,
+1035	                    cls, kwargs, use_scaler=scaler,
+1036	                )
+1037	                if m:
+1038	                    print(f"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}")
+1039	                results.append((name, m, n, n_miss))
+1040	                if prob_map:
+1041	                    model_probs[name] = prob_map
+1042	        else:
+1043	            reason = "trajectories not found" if traj_path is None else "split_info not found"
+1044	            print(f"\nSkipping structural classifiers: {reason}")
+1045	            for key in ["rf", "gb", "lr"]:
+1046	                if key in selected_models:
+1047	                    name = {"rf": "Structural RF", "gb": "Structural GB", "lr": "Structural LR"}[key]
+1048	                    results.append((name, None, 0, len(gold_wids)))
+1049	
+1050	    # --- GRU Probe ---
+1051	    if "gru_probe" in selected_models:
+1052	        ckpt_path = Path(args.checkpoint) if args.checkpoint else None
+1053	        if ckpt_path is None:
+1054	            for candidate in [
+1055	                pdir / "checkpoints" / "best_model.pt",
+1056	                pdir / "best_model.pt",
+1057	                pdir / "artifacts" / "best_model.pt",
+1058	            ]:
+1059	                if candidate.exists():
+1060	                    ckpt_path = candidate
+1061	                    break
+1062	
+1063	        emb_path = None
+1064	        for candidate in [
+1065	            pdir / "data" / "embeddings.pt",
+1066	            pdir / "embeddings.pt",
+1067	            pdir / "artifacts" / "data" / "embeddings.pt",
+1068	        ]:
+1069	            if candidate.exists():
+1070	                emb_path = candidate
+1071	                break
+1072	
+1073	        print(f"\nEvaluating: GRU Probe ...")
+1074	        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:
+1075	            emb_data = torch.load(emb_path, map_location="cpu", weights_only=False)
+1076	            embeddings = emb_data["embeddings"]
+1077	
+1078	            wid_to_emb_idx = {}
+1079	            if len(embeddings) == len(non_abstain):
+1080	                for i, w in enumerate(non_abstain):
+1081	                    wid_to_emb_idx[window_id_from_window(w)] = i
+1082	            else:
+1083	                for i in range(min(len(embeddings), len(non_abstain))):
+1084	                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i
+1085	
+1086	            m, n, n_miss, prob_map = evaluate_gru_probe(
+1087	                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device
+1088	            )
+1089	            if m:
+1090	                print(f"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}")
+1091	            results.append(("GRU Probe", m, n, n_miss))
+1092	            if prob_map:
+1093	                model_probs["GRU Probe"] = prob_map
+1094	        else:
+1095	            missing = []
+1096	            if not HAS_TORCH:
+1097	                missing.append("torch")
+1098	            if not HAS_PROBE:
+1099	                missing.append("probe_model")
+1100	            if emb_path is None:
+1101	                missing.append("embeddings.pt")
+1102	            if ckpt_path is None:
+1103	                missing.append("checkpoint")
+1104	            print(f"  SKIPPED: {', '.join(missing)} not available")
+1105	            results.append(("GRU Probe", None, 0, len(gold_wids)))
+1106	
+1107	    # --- LLM-as-judge ---
+1108	    if "llm_judge" in selected_models:
+1109	        llm_path = Path(args.llm_predictions) if args.llm_predictions else None
+1110	        if llm_path is None:
+1111	            for candidate in [
+1112	                pdir / "results" / "llm_judge_results.json",
+1113	                pdir / "llm_judge_results.json",
+1114	                pdir / "artifacts" / "results" / "llm_judge_results.json",
+1115	                pdir / "results" / "llm_judge_results.jsonl",
+1116	            ]:
+1117	                if candidate.exists():
+1118	                    llm_path = candidate
+1119	                    break
+1120	
+1121	        print(f"\nEvaluating: LLM-as-Judge ...")
+1122	        if llm_path is not None and llm_path.exists():
+1123	            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)
+1124	            if m:
+1125	                print(f"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}")
+1126	            results.append(("LLM-as-Judge", m, n, n_miss))
+1127	            if prob_map:
+1128	                model_probs["LLM-as-Judge"] = prob_map
+1129	        else:
+1130	            print(f"  SKIPPED: no cached predictions found")
+1131	            results.append(("LLM-as-Judge", None, 0, len(gold_wids)))
+1132	
+1133	    # ------------------------------------------------------------------
+1134	    # 5. Confidence stratification
+1135	    # ------------------------------------------------------------------
+1136	    print("\nConfidence stratification (silver conf vs gold agreement):")
+1137	    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)
+1138	    for conf_key in ["conf_1", "conf_2", "conf_3"]:
+1139	        s = conf_strat[conf_key]
+1140	        rate = f"{s['agreement_rate']:.4f}" if s["agreement_rate"] is not None else "N/A"
+1141	        print(f"  {conf_key}: {s['agree']}/{s['total']} = {rate}")
+1142	
+1143	    # ------------------------------------------------------------------
+1144	    # 6. Console summary
+1145	    # ------------------------------------------------------------------
+1146	    print("\n" + "=" * 120)
+1147	    print("GOLD SET EVALUATION RESULTS")
+1148	    print("=" * 120)
+1149	    print_summary_table(results)
+1150	
+1151	    # ------------------------------------------------------------------
+1152	    # 7. Reliability diagram
+1153	    # ------------------------------------------------------------------
+1154	    pdf_path = output_dir / "gold_set_reliability.pdf"
+1155	    if model_probs:
+1156	        try:
+1157	            plot_reliability_diagram(
+1158	                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins
+1159	            )
+1160	            print(f"\nReliability diagram: {pdf_path}")
+1161	        except Exception as e:
+1162	            print(f"\nFailed to generate reliability diagram: {e}")
+1163	    else:
+1164	        print("\nNo probability estimates available; skipping reliability diagram.")
+1165	
+1166	    # ------------------------------------------------------------------
+1167	    # 8. JSON output
+1168	    # ------------------------------------------------------------------
+1169	    elapsed = time.time() - t_start
+1170	    output = {
+1171	        "gold_file": str(args.gold_file),
+1172	        "gold_distribution": {"total": len(gold_labels), "stagnation": gold_dist.get(0, 0), "progress": gold_dist.get(1, 0)},
+1173	        "confidence_stratification": conf_strat,
+1174	        "models": {},
+1175	        "elapsed_seconds": round(elapsed, 2),
+1176	    }
+1177	    for name, metrics, n, n_miss in results:
+1178	        output["models"][name] = {
+1179	            "n_evaluated": n,
+1180	            "n_missing": n_miss,
+1181	            "metrics": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,
+1182	        }
+1183	
+1184	    json_path = output_dir / "gold_set_results.json"
+1185	    with open(json_path, "w") as f:
+1186	        json.dump(output, f, indent=2)
+1187	    print(f"Results JSON: {json_path}")
+1188	    print(f"Elapsed: {elapsed:.1f}s")
+1189	
+1190	
+1191	if __name__ == "__main__":
+1192	    main()
+1193	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "204a9331-4870-4011-9249-52e0ec47cfb8",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+      "content": "\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "numLines": 444,
+      "startLine": 750,
+      "totalLines": 1193
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to rewrite the main() function with all the changes. The main changes are:
+
+1. After loading gold labels (step 1), call compute_inter_annotator_agreement
+2. Track model_preds dict alongside model_probs
+3. Update callers to unpack the extra pred_map return value
+4. For LLM-as-Judge, use "(pseudo-probability)" suffix in model_probs key
+5. After all evaluations, compute pairwise comparisons
+6. Add inter_annotator_agreement and pairwise_comparisons to output JSON
+
+
+7. I'm going through the main function systematically, inserting the IAA check right after loading gold labels, initializing the model_preds dictionary alongside model_probs, and updating all the evaluation calls to handle the additional prediction mapping that gets returned. I need to update the LLM judge caller to unpack the prediction map and store it, rename the probability map key to be more descriptive, then add a new section for pairwise statistical comparisons using bootstrap confidence intervals and McNemar's test. I'm going to add the inter-annotator agreement and pairwise comparison results to the JSON output dictionary, making sure to integrate them carefully alongside the existing fields.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "4a8c1daf-fe7d-45b9-b09e-4574a4cf2498",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtgLDEmUDV1w1Hvgq8N2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6690,
+      "cache_read_input_tokens": 58265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6690
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 52_
+
+Now I'll update main() step by step. First, add IAA check after gold label loading:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "c0d1dbc8-64e0-4e3c-882b-5842b9f199be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtgLDEmUDV1w1Hvgq8N2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6690,
+      "cache_read_input_tokens": 58265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6690
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AhLZMDFLbysMsfCHVszgzS`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl",
+  "new_string": "    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "4603e0a3-f0de-4474-802b-5bdac5e7bd12",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NtgLDEmUDV1w1Hvgq8N2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6690,
+      "cache_read_input_tokens": 58265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6690
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 54 · 2026-05-14T22:53:58.489Z_
+
+<details><summary>↩ Tool result · `toolu_01AhLZMDFLbysMsfCHVszgzS`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "3d1b07c0-f0fe-444c-8c79-ec8a7e435e9b",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl",
+    "newString": "    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 906,
+        "oldLines": 6,
+        "newStart": 906,
+        "newLines": 12,
+        "lines": [
+          "     print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")",
+          " ",
+          "     # ------------------------------------------------------------------",
+          "+    # 1b. Inter-annotator agreement check",
+          "+    # ------------------------------------------------------------------",
+          "+    print(\"\\nInter-annotator agreement check:\")",
+          "+    iaa_result = compute_inter_annotator_agreement(gold_records)",
+          "+",
+          "+    # ------------------------------------------------------------------",
+          "     # 2. Load windows_labeled.jsonl",
+          "     # ------------------------------------------------------------------",
+          "     windows_path = None"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 55_
+
+Add model_preds tracking:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "0ef3410b-b5ed-4a94-903f-9da7f3dd12da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWR94fRHEwxz7dMuqNaNrd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1393,
+      "cache_read_input_tokens": 64955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1393
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01By124eB7KhSWqNrAG1m5fM`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "    results = []\n    model_probs = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map",
+  "new_string": "    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "05b6c282-8467-4ce4-b6b8-a1935cc5d52f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DWR94fRHEwxz7dMuqNaNrd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1393,
+      "cache_read_input_tokens": 64955,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1393
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 57 · 2026-05-14T22:54:06.272Z_
+
+<details><summary>↩ Tool result · `toolu_01By124eB7KhSWqNrAG1m5fM`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "f49deacf-1dc5-4b6e-b48d-d01f47f769ee",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "    results = []\n    model_probs = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map",
+    "newString": "    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 957,
+        "oldLines": 11,
+        "newStart": 957,
+        "newLines": 12,
+        "lines": [
+          "     # ------------------------------------------------------------------",
+          "     results = []",
+          "     model_probs = {}",
+          "+    model_preds = {}",
+          " ",
+          "     # --- Silver labels ---",
+          "     if \"silver\" in selected_models:",
+          "         print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")",
+          "-        m, n, n_miss, prob_map, conf_map = evaluate_silver(",
+          "+        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(",
+          "             gold_wids, gold_labels, wid_to_window",
+          "         )",
+          "         if m:"
+        ]
+      },
+      {
+        "oldStart": 969,
+        "oldLines": 6,
+        "newStart": 970,
+        "newLines": 8,
+        "lines": [
+          "         results.append((\"Silver (MV)\", m, n, n_miss))",
+          "         if prob_map:",
+          "             model_probs[\"Silver (MV)\"] = prob_map",
+          "+        if pred_map:",
+          "+            model_preds[\"Silver (MV)\"] = pred_map",
+          " ",
+          "     # --- Structural classifiers (RF, GB, LR) ---",
+          "     need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 58_
+
+Update structural classifier caller:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "2eaaf69d-27b0-4cac-9577-8f95d44f7e4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfwRU6BGkjbBeoV6PdLWHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 66348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01TQumYtujHzqNV2XsNm3vfV`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map",
+  "new_string": "                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "d5eb5a09-a979-4491-88ca-b9ab97684581",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfwRU6BGkjbBeoV6PdLWHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 66348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 60 · 2026-05-14T22:54:13.300Z_
+
+<details><summary>↩ Tool result · `toolu_01TQumYtujHzqNV2XsNm3vfV`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a7a76eb5-90d5-4a61-a481-a4b7596bca0a",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map",
+    "newString": "                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1038,
+        "oldLines": 7,
+        "newStart": 1038,
+        "newLines": 7,
+        "lines": [
+          "                     continue",
+          "                 name, cls, kwargs, scaler = struct_configs[key]",
+          "                 print(f\"  Evaluating {name} ...\")",
+          "-                m, n, n_miss, prob_map = evaluate_structural_clf(",
+          "+                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(",
+          "                     gold_wids, gold_labels, wid_to_noabs_idx,",
+          "                     all_features, all_mv_labels, split_info,",
+          "                     cls, kwargs, use_scaler=scaler,"
+        ]
+      },
+      {
+        "oldStart": 1048,
+        "oldLines": 6,
+        "newStart": 1048,
+        "newLines": 8,
+        "lines": [
+          "                 results.append((name, m, n, n_miss))",
+          "                 if prob_map:",
+          "                     model_probs[name] = prob_map",
+          "+                if pred_map:",
+          "+                    model_preds[name] = pred_map",
+          "         else:",
+          "             reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"",
+          "             print(f\"\\nSkipping structural classifiers: {reason}\")"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 61_
+
+Update GRU probe caller:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "7cbb0660-e6cf-4ca3-8bd4-f39beddb4d7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B6Ekm5xwGVAos2cPQCzTqB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 582,
+      "cache_read_input_tokens": 67061,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 582
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01D5TuHhESmfqtHXHn5nETyQ`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map",
+  "new_string": "            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n            if pred_map:\n                model_preds[\"GRU Probe\"] = pred_map"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "0555bccf-3e3c-4c20-a601-5f0e33dc3bb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B6Ekm5xwGVAos2cPQCzTqB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 582,
+      "cache_read_input_tokens": 67061,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 582
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 63 · 2026-05-14T22:54:18.874Z_
+
+<details><summary>↩ Tool result · `toolu_01D5TuHhESmfqtHXHn5nETyQ`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "0c0ebe6d-2418-405a-a03c-88742393db87",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map",
+    "newString": "            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n            if pred_map:\n                model_preds[\"GRU Probe\"] = pred_map",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1094,
+        "oldLines": 7,
+        "newStart": 1094,
+        "newLines": 7,
+        "lines": [
+          "                 for i in range(min(len(embeddings), len(non_abstain))):",
+          "                     wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i",
+          " ",
+          "-            m, n, n_miss, prob_map = evaluate_gru_probe(",
+          "+            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(",
+          "                 gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device",
+          "             )",
+          "             if m:"
+        ]
+      },
+      {
+        "oldStart": 1102,
+        "oldLines": 6,
+        "newStart": 1102,
+        "newLines": 8,
+        "lines": [
+          "             results.append((\"GRU Probe\", m, n, n_miss))",
+          "             if prob_map:",
+          "                 model_probs[\"GRU Probe\"] = prob_map",
+          "+            if pred_map:",
+          "+                model_preds[\"GRU Probe\"] = pred_map",
+          "         else:",
+          "             missing = []",
+          "             if not HAS_TORCH:"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 64_
+
+Update LLM judge caller (with pseudo-probability label):
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "fd556402-231e-4166-9ef6-2613b7bfccd7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LX61eh41riA5JCxyezK65z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 531,
+      "cache_read_input_tokens": 67643,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 531
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01DF2cNWoitkiS2dktD5QcWb`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map",
+  "new_string": "        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map, pred_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge (pseudo-probability)\"] = prob_map\n            if pred_map:\n                model_preds[\"LLM-as-Judge\"] = pred_map"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "5ff53f92-106d-4b76-90cb-e8f25a586782",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LX61eh41riA5JCxyezK65z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 531,
+      "cache_read_input_tokens": 67643,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 531
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 66 · 2026-05-14T22:54:25.464Z_
+
+<details><summary>↩ Tool result · `toolu_01DF2cNWoitkiS2dktD5QcWb`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "03290984-6ccc-454f-8efe-25cb0ee36b50",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map",
+    "newString": "        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map, pred_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge (pseudo-probability)\"] = prob_map\n            if pred_map:\n                model_preds[\"LLM-as-Judge\"] = pred_map",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n            if pred_map:\n                model_preds[\"GRU Probe\"] = pred_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge\"] = prob_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1133,
+        "oldLines": 12,
+        "newStart": 1133,
+        "newLines": 14,
+        "lines": [
+          " ",
+          "         print(f\"\\nEvaluating: LLM-as-Judge ...\")",
+          "         if llm_path is not None and llm_path.exists():",
+          "-            m, n, n_miss, prob_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)",
+          "+            m, n, n_miss, prob_map, pred_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)",
+          "             if m:",
+          "                 print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")",
+          "             results.append((\"LLM-as-Judge\", m, n, n_miss))",
+          "             if prob_map:",
+          "-                model_probs[\"LLM-as-Judge\"] = prob_map",
+          "+                model_probs[\"LLM-as-Judge (pseudo-probability)\"] = prob_map",
+          "+            if pred_map:",
+          "+                model_preds[\"LLM-as-Judge\"] = pred_map",
+          "         else:",
+          "             print(f\"  SKIPPED: no cached predictions found\")",
+          "             results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 67_
+
+Add pairwise comparisons section after confidence stratification:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "265f5fae-1a77-400a-ab22-28c4dc2c2a24",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1SzTwJfHQFVQenfZdKYg1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 586,
+      "cache_read_input_tokens": 68174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 586
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_0141bz5Bc8HxPvuGsYSmNgVA`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------",
+  "new_string": "    # ------------------------------------------------------------------\n    # 5b. Pairwise statistical comparisons\n    # ------------------------------------------------------------------\n    pairwise = {}\n    if len(model_preds) >= 2:\n        print(\"\\nPairwise statistical comparisons (bootstrap CI on macro-F1 diff + McNemar):\")\n        pairwise = compute_pairwise_comparisons(gold_wids, gold_labels, model_preds)\n        for pair_key, stats in pairwise.items():\n            sig = \" *\" if stats[\"mcnemar_p\"] < 0.05 else \"\"\n            print(\n                f\"  {pair_key}: ΔF1={stats['bootstrap_mean_diff']:+.4f} \"\n                f\"CI=[{stats['ci_95_lower']:+.4f}, {stats['ci_95_upper']:+.4f}] \"\n                f\"McNemar p={stats['mcnemar_p']:.4f}{sig}\"\n            )\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "8742e55e-3c9f-4891-88c7-085350a002aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E1SzTwJfHQFVQenfZdKYg1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 586,
+      "cache_read_input_tokens": 68174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 586
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 69 · 2026-05-14T22:54:33.830Z_
+
+<details><summary>↩ Tool result · `toolu_0141bz5Bc8HxPvuGsYSmNgVA`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "2a157873-728c-4dfd-b671-3a3ef8fd258d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------",
+    "newString": "    # ------------------------------------------------------------------\n    # 5b. Pairwise statistical comparisons\n    # ------------------------------------------------------------------\n    pairwise = {}\n    if len(model_preds) >= 2:\n        print(\"\\nPairwise statistical comparisons (bootstrap CI on macro-F1 diff + McNemar):\")\n        pairwise = compute_pairwise_comparisons(gold_wids, gold_labels, model_preds)\n        for pair_key, stats in pairwise.items():\n            sig = \" *\" if stats[\"mcnemar_p\"] < 0.05 else \"\"\n            print(\n                f\"  {pair_key}: ΔF1={stats['bootstrap_mean_diff']:+.4f} \"\n                f\"CI=[{stats['ci_95_lower']:+.4f}, {stats['ci_95_upper']:+.4f}] \"\n                f\"McNemar p={stats['mcnemar_p']:.4f}{sig}\"\n            )\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n            if pred_map:\n                model_preds[\"GRU Probe\"] = pred_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map, pred_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge (pseudo-probability)\"] = prob_map\n            if pred_map:\n                model_preds[\"LLM-as-Judge\"] = pred_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1156,
+        "oldLines": 6,
+        "newStart": 1156,
+        "newLines": 21,
+        "lines": [
+          "         print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")",
+          " ",
+          "     # ------------------------------------------------------------------",
+          "+    # 5b. Pairwise statistical comparisons",
+          "+    # ------------------------------------------------------------------",
+          "+    pairwise = {}",
+          "+    if len(model_preds) >= 2:",
+          "+        print(\"\\nPairwise statistical comparisons (bootstrap CI on macro-F1 diff + McNemar):\")",
+          "+        pairwise = compute_pairwise_comparisons(gold_wids, gold_labels, model_preds)",
+          "+        for pair_key, stats in pairwise.items():",
+          "+            sig = \" *\" if stats[\"mcnemar_p\"] < 0.05 else \"\"",
+          "+            print(",
+          "+                f\"  {pair_key}: ΔF1={stats['bootstrap_mean_diff']:+.4f} \"",
+          "+                f\"CI=[{stats['ci_95_lower']:+.4f}, {stats['ci_95_upper']:+.4f}] \"",
+          "+                f\"McNemar p={stats['mcnemar_p']:.4f}{sig}\"",
+          "+            )",
+          "+",
+          "+    # ------------------------------------------------------------------",
+          "     # 6. Console summary",
+          "     # ------------------------------------------------------------------",
+          "     print(\"\\n\" + \"=\" * 120)"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 70_
+
+Update the JSON output to include IAA and pairwise comparisons:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a7b1d772-33bb-45fc-81eb-56202f9c1492",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bQntHdsf9D2aErnVSAvAy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 68760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_012p4xCk898SqMzjVDtwfn5X`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "old_string": "    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }",
+  "new_string": "    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"inter_annotator_agreement\": iaa_result,\n        \"confidence_stratification\": conf_strat,\n        \"pairwise_comparisons\": pairwise,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "13c541a8-0ff7-403a-b799-19112e9807a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bQntHdsf9D2aErnVSAvAy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 482,
+      "cache_read_input_tokens": 68760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 482
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 72 · 2026-05-14T22:54:39.667Z_
+
+<details><summary>↩ Tool result · `toolu_012p4xCk898SqMzjVDtwfn5X`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "4bb570af-92e6-4672-9b7e-0b7e8c32374f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+    "oldString": "    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }",
+    "newString": "    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"inter_annotator_agreement\": iaa_result,\n        \"confidence_stratification\": conf_strat,\n        \"pairwise_comparisons\": pairwise,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }",
+    "originalFile": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,\n    f1_score,\n    precision_score,\n    recall_score,\n)\nfrom sklearn.preprocessing import StandardScaler\n\nwarnings.filterwarnings(\"ignore\", category=UserWarning)\n\n# ---------------------------------------------------------------------------\n# Optional: torch (only needed for GRU probe)\n# ---------------------------------------------------------------------------\ntry:\n    import torch\n    import torch.nn as nn\n    from torch.utils.data import DataLoader\n\n    HAS_TORCH = True\nexcept ImportError:\n    HAS_TORCH = False\n\n# ---------------------------------------------------------------------------\n# Try importing probe model from project artifacts\n# ---------------------------------------------------------------------------\n_ARTIFACTS_DIR = Path(__file__).resolve().parent.parent.parent / \"artifacts\"\nif _ARTIFACTS_DIR.exists():\n    sys.path.insert(0, str(_ARTIFACTS_DIR))\ntry:\n    from probe_model import ProgressProbe, WindowDataset, collate_fn\n    HAS_PROBE = True\nexcept ImportError:\n    HAS_PROBE = False\n\n\n# ===========================================================================\n# Metrics\n# ===========================================================================\n\ndef compute_metrics(y_true, y_pred):\n    \"\"\"Per-model metrics: macro-F1, accuracy, per-class P/R/F1, Cohen's kappa.\"\"\"\n    return {\n        \"macro_f1\": f1_score(y_true, y_pred, average=\"macro\", zero_division=0),\n        \"accuracy\": accuracy_score(y_true, y_pred),\n        \"precision_stag\": precision_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"recall_stag\": recall_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"f1_stag\": f1_score(y_true, y_pred, pos_label=0, zero_division=0),\n        \"precision_prog\": precision_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"recall_prog\": recall_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"f1_prog\": f1_score(y_true, y_pred, pos_label=1, zero_division=0),\n        \"cohens_kappa\": cohen_kappa_score(y_true, y_pred),\n    }\n\n\n# ===========================================================================\n# Structural feature extraction (mirrors non_nlp_baseline.py)\n# ===========================================================================\n\nEDIT_CMDS = {\"edit\", \"str_replace\", \"create\", \"insert\"}\nSEARCH_CMDS = {\"search_dir\", \"search_file\", \"find_file\", \"find\", \"grep\", \"view\"}\nNAV_CMDS = {\"open\", \"goto\", \"scroll_down\", \"scroll_up\", \"cd\", \"ls\", \"cat\"}\n\nSTRUCTURAL_FEATURE_NAMES = [\n    \"num_steps\", \"num_actions\", \"num_observations\", \"action_ratio\",\n    \"mean_text_len\", \"std_text_len\", \"max_text_len\", \"min_text_len\",\n    \"mean_action_len\", \"mean_obs_len\", \"text_len_trend\",\n    \"num_commands\", \"mean_cmd_len\", \"max_cmd_len\",\n    \"unique_cmd_ratio\", \"max_repeat_ratio\",\n    \"num_edit_cmds\", \"num_search_cmds\", \"num_nav_cmds\", \"num_submit_cmds\",\n    \"edit_ratio\", \"search_ratio\",\n    \"avg_adjacent_cmd_sim\", \"max_adjacent_cmd_sim\", \"max_consecutive_similar\",\n    \"num_errors\", \"num_test_outputs\", \"num_file_displays\", \"num_nonzero_exits\",\n    \"is_short_trajectory\",\n]\n_EXPECTED_FEATURE_DIM = 30\n\n\ndef _extract_command(text):\n    match = re.search(r\"```\\n?(.*?)```\", text, re.DOTALL)\n    return match.group(1).strip() if match else None\n\n\ndef _cmd_similarity(a, b):\n    if a == b:\n        return 1.0\n    if not a or not b:\n        return 0.0\n    return SequenceMatcher(None, a, b).ratio()\n\n\ndef extract_structural_features(steps, is_short):\n    \"\"\"Extract 30-dim structural feature vector from a list of step dicts.\"\"\"\n    n = len(steps)\n    if n == 0:\n        return np.zeros(30, dtype=np.float32)\n\n    texts = [s[\"text\"] for s in steps]\n    text_lens = [len(t) for t in texts]\n    actions = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"ai\"]\n    observations = [(s, t) for s, t in zip(steps, texts) if s[\"role\"] == \"user\"]\n    n_actions = len(actions)\n    n_obs = len(observations)\n\n    mean_tlen = np.mean(text_lens)\n    std_tlen = np.std(text_lens) if n > 1 else 0.0\n    max_tlen = max(text_lens)\n    min_tlen = min(text_lens)\n    action_lens = [len(t) for _, t in actions] if actions else [0]\n    obs_lens = [len(t) for _, t in observations] if observations else [0]\n    mean_action_len = np.mean(action_lens)\n    mean_obs_len = np.mean(obs_lens)\n\n    if n > 1:\n        x = np.arange(n, dtype=float)\n        y = np.array(text_lens, dtype=float)\n        slope = (n * np.dot(x, y) - x.sum() * y.sum()) / (\n            n * np.dot(x, x) - x.sum() ** 2 + 1e-9\n        )\n    else:\n        slope = 0.0\n\n    commands = []\n    for _, t in actions:\n        cmd = _extract_command(t)\n        if cmd:\n            commands.append(cmd)\n    n_cmds = len(commands)\n    cmd_lens = [len(c) for c in commands] if commands else [0]\n    mean_cmd_len = np.mean(cmd_lens)\n    max_cmd_len = max(cmd_lens) if cmd_lens else 0\n\n    if n_cmds > 0:\n        unique_cmds = len(set(commands))\n        unique_cmd_ratio = unique_cmds / n_cmds\n        cmd_counter = Counter(commands)\n        max_repeat = cmd_counter.most_common(1)[0][1]\n        repeat_ratio = max_repeat / n_cmds\n    else:\n        unique_cmd_ratio = 1.0\n        repeat_ratio = 0.0\n\n    n_edit = n_search = n_nav = n_submit = 0\n    for cmd in commands:\n        first_word = cmd.strip().split()[0] if cmd.strip() else \"\"\n        if first_word in EDIT_CMDS:\n            n_edit += 1\n        elif first_word in SEARCH_CMDS:\n            n_search += 1\n        elif first_word in NAV_CMDS:\n            n_nav += 1\n        elif first_word == \"submit\":\n            n_submit += 1\n    edit_ratio = n_edit / max(n_cmds, 1)\n    search_ratio = n_search / max(n_cmds, 1)\n\n    if n_cmds >= 2:\n        sims = [_cmd_similarity(commands[i], commands[i + 1]) for i in range(n_cmds - 1)]\n        avg_adj_sim = np.mean(sims)\n        max_adj_sim = max(sims)\n        max_run, cur_run = 1, 1\n        for s in sims:\n            if s >= 0.9:\n                cur_run += 1\n                max_run = max(max_run, cur_run)\n            else:\n                cur_run = 1\n    else:\n        avg_adj_sim = max_adj_sim = 0.0\n        max_run = 0\n\n    n_errors = sum(1 for t in texts if \"Traceback\" in t or \"Error\" in t)\n    n_test_output = sum(\n        1 for t in texts if (\"PASSED\" in t or \"FAILED\" in t) and \"test\" in t.lower()\n    )\n    n_file_display = sum(1 for t in texts if \"[File:\" in t)\n    n_nonzero_exit = sum(\n        1\n        for _, t in observations\n        if re.search(r\"exit code [1-9]|returned non-zero|command not found\", t)\n    )\n\n    vec = np.array(\n        [\n            n, n_actions, n_obs, n_actions / max(n, 1),\n            mean_tlen, std_tlen, max_tlen, min_tlen,\n            mean_action_len, mean_obs_len, slope,\n            n_cmds, mean_cmd_len, max_cmd_len,\n            unique_cmd_ratio, repeat_ratio,\n            n_edit, n_search, n_nav, n_submit,\n            edit_ratio, search_ratio,\n            avg_adj_sim, max_adj_sim, max_run,\n            n_errors, n_test_output, n_file_display, n_nonzero_exit,\n            float(is_short),\n        ],\n        dtype=np.float32,\n    )\n    assert vec.shape[0] == _EXPECTED_FEATURE_DIM, (\n        f\"Structural feature dim mismatch: got {vec.shape[0]}, expected {_EXPECTED_FEATURE_DIM}\"\n    )\n    assert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM, (\n        f\"STRUCTURAL_FEATURE_NAMES length {len(STRUCTURAL_FEATURE_NAMES)} != {_EXPECTED_FEATURE_DIM}\"\n    )\n    return vec\n\n\n# ===========================================================================\n# Inter-annotator agreement\n# ===========================================================================\n\ndef _fleiss_kappa(table):\n    \"\"\"Fleiss' κ for multiple raters.\n\n    Args:\n        table: (N, k) array where N = items, k = categories.\n               table[i, j] = number of raters who assigned category j to item i.\n\n    Reference: Fleiss, J.L. (1971). \"Measuring nominal scale agreement among\n    many raters.\" Psychological Bulletin, 76(5), 378–382.\n    \"\"\"\n    N, k = table.shape\n    n = table[0].sum()\n    if n <= 1 or N == 0:\n        return 0.0\n\n    p_j = table.sum(axis=0) / (N * n)\n    P_i = (np.sum(table ** 2, axis=1) - n) / (n * (n - 1))\n    P_bar = np.mean(P_i)\n    P_e = np.sum(p_j ** 2)\n\n    if abs(1.0 - P_e) < 1e-9:\n        return 1.0\n    return (P_bar - P_e) / (1.0 - P_e)\n\n\ndef compute_inter_annotator_agreement(gold_records):\n    \"\"\"Compute inter-annotator agreement on gold labels.\n\n    Args:\n        gold_records: list of dicts with window_id, gold_label, optional annotator_id.\n\n    Returns:\n        dict with keys: n_annotators, metric (\"cohens_kappa\" | \"fleiss_kappa\" | None),\n        value (float | None), passed (bool).\n    \"\"\"\n    annotators = set()\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            annotators.add(aid)\n\n    if len(annotators) <= 1:\n        print(\"  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\")\n        return {\"n_annotators\": max(len(annotators), 1), \"metric\": None, \"value\": None, \"passed\": True}\n\n    by_window = defaultdict(dict)\n    for r in gold_records:\n        aid = r.get(\"annotator_id\")\n        if aid is not None:\n            by_window[r[\"window_id\"]][aid] = r[\"gold_label\"]\n\n    multi_annotated = {wid: labels for wid, labels in by_window.items() if len(labels) >= 2}\n    if not multi_annotated:\n        print(\"  WARNING: No windows with multiple annotations; skipping IAA check.\")\n        return {\"n_annotators\": len(annotators), \"metric\": None, \"value\": None, \"passed\": True}\n\n    n_annotators = len(annotators)\n\n    if n_annotators == 2:\n        ann_list = sorted(annotators)\n        y1, y2 = [], []\n        for wid, labels in multi_annotated.items():\n            if ann_list[0] in labels and ann_list[1] in labels:\n                y1.append(labels[ann_list[0]])\n                y2.append(labels[ann_list[1]])\n        if not y1:\n            return {\"n_annotators\": 2, \"metric\": None, \"value\": None, \"passed\": True}\n        kappa = cohen_kappa_score(y1, y2)\n        metric_name = \"cohens_kappa\"\n    else:\n        categories = sorted({r[\"gold_label\"] for r in gold_records})\n        cat_idx = {c: i for i, c in enumerate(categories)}\n        table = np.zeros((len(multi_annotated), len(categories)), dtype=float)\n        for row_i, (wid, labels) in enumerate(multi_annotated.items()):\n            for aid, lbl in labels.items():\n                table[row_i, cat_idx[lbl]] += 1\n        kappa = _fleiss_kappa(table)\n        metric_name = \"fleiss_kappa\"\n\n    passed = kappa >= 0.8\n    status = \"PASS\" if passed else \"WARNING — below 0.8 threshold\"\n    print(f\"  Inter-annotator agreement ({metric_name}): {kappa:.4f} [{status}]\")\n    print(f\"  Annotators: {n_annotators}, windows with ≥2 annotations: {len(multi_annotated)}\")\n    if not passed:\n        print(\"  WARNING: Low agreement. Results may be unreliable. Continuing anyway.\")\n\n    return {\"n_annotators\": n_annotators, \"metric\": metric_name, \"value\": round(kappa, 6), \"passed\": passed}\n\n\n# ===========================================================================\n# Pairwise statistical tests\n# ===========================================================================\n\ndef _paired_bootstrap_ci(y_true, preds_a, preds_b, n_bootstrap=1000, seed=42):\n    \"\"\"Bootstrap 95% CI for the difference in macro-F1 between two models.\n\n    Returns (mean_diff, ci_lower, ci_upper) where diff = F1(a) - F1(b).\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n    n = len(y_true)\n    diffs = []\n    for _ in range(n_bootstrap):\n        idx = rng.randint(0, n, size=n)\n        f1_a = f1_score(y_true[idx], preds_a[idx], average=\"macro\", zero_division=0)\n        f1_b = f1_score(y_true[idx], preds_b[idx], average=\"macro\", zero_division=0)\n        diffs.append(f1_a - f1_b)\n    diffs = np.array(diffs)\n    return float(np.mean(diffs)), float(np.percentile(diffs, 2.5)), float(np.percentile(diffs, 97.5))\n\n\ndef _mcnemar_test(y_true, preds_a, preds_b):\n    \"\"\"McNemar's test (with continuity correction) comparing two models.\n\n    Returns p-value. Uses scipy.stats.chi2 for the p-value computation.\n    \"\"\"\n    from scipy.stats import chi2\n\n    y_true = np.asarray(y_true)\n    preds_a = np.asarray(preds_a)\n    preds_b = np.asarray(preds_b)\n\n    correct_a = (preds_a == y_true)\n    correct_b = (preds_b == y_true)\n    # b: A correct, B wrong; c: A wrong, B correct\n    b = int(np.sum(correct_a & ~correct_b))\n    c = int(np.sum(~correct_a & correct_b))\n\n    if b + c == 0:\n        return 1.0\n    stat = (abs(b - c) - 1) ** 2 / (b + c)\n    return float(chi2.sf(stat, df=1))\n\n\ndef compute_pairwise_comparisons(gold_wids, gold_labels, model_preds):\n    \"\"\"Compute bootstrap CIs and McNemar tests for all model pairs.\n\n    Args:\n        gold_wids: list of window IDs (gold order).\n        gold_labels: list of gold labels.\n        model_preds: dict {model_name: {wid: predicted_label}}.\n\n    Returns:\n        dict of pairwise results keyed as \"model_a_vs_model_b\".\n    \"\"\"\n    gold_map = dict(zip(gold_wids, gold_labels))\n    model_names = list(model_preds.keys())\n    results = {}\n\n    for name_a, name_b in combinations(model_names, 2):\n        preds_a_map = model_preds[name_a]\n        preds_b_map = model_preds[name_b]\n        common_wids = set(preds_a_map.keys()) & set(preds_b_map.keys()) & set(gold_map.keys())\n        if len(common_wids) < 10:\n            continue\n\n        wids = sorted(common_wids)\n        y_true = [gold_map[w] for w in wids]\n        pa = [preds_a_map[w] for w in wids]\n        pb = [preds_b_map[w] for w in wids]\n\n        mean_diff, ci_lo, ci_hi = _paired_bootstrap_ci(y_true, pa, pb)\n        p_val = _mcnemar_test(y_true, pa, pb)\n\n        key = f\"{name_a}_vs_{name_b}\"\n        results[key] = {\n            \"n_common\": len(wids),\n            \"bootstrap_mean_diff\": round(mean_diff, 6),\n            \"ci_95_lower\": round(ci_lo, 6),\n            \"ci_95_upper\": round(ci_hi, 6),\n            \"mcnemar_p\": round(p_val, 6),\n        }\n\n    return results\n\n\n# ===========================================================================\n# Data loading helpers\n# ===========================================================================\n\ndef load_gold_labels(path):\n    \"\"\"Load gold labels from CSV or JSONL.\n\n    Returns list of dicts: [{window_id, gold_label, annotator_id?, confidence?}]\n    \"\"\"\n    path = Path(path)\n    records = []\n    if path.suffix == \".csv\":\n        with open(path) as f:\n            reader = csv.DictReader(f)\n            for row in reader:\n                rec = {\n                    \"window_id\": row[\"window_id\"],\n                    \"gold_label\": int(row[\"gold_label\"]),\n                }\n                if \"annotator_id\" in row:\n                    rec[\"annotator_id\"] = row[\"annotator_id\"]\n                if \"confidence\" in row:\n                    rec[\"confidence\"] = int(row[\"confidence\"]) if row[\"confidence\"] else None\n                records.append(rec)\n    else:\n        with open(path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                rec = {\n                    \"window_id\": obj[\"window_id\"],\n                    \"gold_label\": int(obj[\"gold_label\"]),\n                }\n                if \"annotator_id\" in obj:\n                    rec[\"annotator_id\"] = obj[\"annotator_id\"]\n                if \"confidence\" in obj:\n                    rec[\"confidence\"] = obj.get(\"confidence\")\n                records.append(rec)\n    return records\n\n\ndef load_windows_jsonl(path):\n    windows = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                windows.append(json.loads(line))\n    return windows\n\n\ndef build_trajectory_index(traj_path):\n    index = {}\n    with open(traj_path) as f:\n        for row_idx, line in enumerate(f):\n            line = line.strip()\n            if not line:\n                continue\n            raw = json.loads(line)\n            steps = []\n            for s in raw.get(\"trajectory\") or []:\n                steps.append(\n                    {\n                        \"role\": s.get(\"role\", \"unknown\"),\n                        \"text\": s.get(\"text\") or s.get(\"system_prompt\") or \"\",\n                    }\n                )\n            index[row_idx] = steps\n    return index\n\n\ndef window_id_from_window(w):\n    return f\"{w['trajectory_id']}__w{w['window_idx']}\"\n\n\ndef parse_row_index(trajectory_id):\n    return int(trajectory_id.rsplit(\"__r\", 1)[1])\n\n\n# ===========================================================================\n# Model evaluators\n# ===========================================================================\n\ndef _align(gold_wids, gold_labels, prediction_map):\n    \"\"\"Align gold labels with predictions by window_id.\n\n    Returns (aligned_gold, aligned_preds, n_missing).\n    \"\"\"\n    aligned_gold, aligned_preds = [], []\n    n_missing = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        pred = prediction_map.get(wid)\n        if pred is None:\n            n_missing += 1\n            continue\n        aligned_gold.append(gl)\n        aligned_preds.append(pred)\n    return aligned_gold, aligned_preds, n_missing\n\n\ndef evaluate_silver(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Silver majority-vote labels vs gold.\"\"\"\n    pred_map = {}\n    prob_map = {}\n    conf_map = {}\n    for wid in gold_wids:\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        pred_map[wid] = w[\"majority_label\"]\n        prob_map[wid] = float(w[\"majority_label\"])\n        conf_map[wid] = w.get(\"confidence\", 0)\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, {}, {}, {}, {}\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, conf_map, pred_map\n\n\ndef evaluate_structural_clf(\n    gold_wids,\n    gold_labels,\n    wid_to_noabs_idx,\n    all_features,\n    all_mv_labels,\n    split_info,\n    model_cls,\n    model_kwargs,\n    use_scaler=False,\n):\n    \"\"\"Train structural classifier on silver train split, predict on gold windows.\"\"\"\n    keep_indices = split_info.get(\"keep_indices\")\n    if keep_indices is not None:\n        feat_subset = all_features[keep_indices]\n        label_subset = np.array(all_mv_labels)[keep_indices]\n    else:\n        feat_subset = all_features\n        label_subset = np.array(all_mv_labels)\n\n    train_idx = split_info[\"train_indices\"]\n    X_train = feat_subset[train_idx]\n    y_train = label_subset[train_idx]\n\n    scaler = None\n    if use_scaler:\n        scaler = StandardScaler()\n        X_train = scaler.fit_transform(X_train)\n\n    clf = model_cls(**model_kwargs)\n    clf.fit(X_train, y_train)\n\n    pred_map = {}\n    prob_map = {}\n    for wid in gold_wids:\n        idx = wid_to_noabs_idx.get(wid)\n        if idx is None:\n            continue\n        feat = all_features[idx].reshape(1, -1)\n        if scaler is not None:\n            feat = scaler.transform(feat)\n        pred_map[wid] = int(clf.predict(feat)[0])\n        if hasattr(clf, \"predict_proba\"):\n            prob_map[wid] = float(clf.predict_proba(feat)[0, 1])\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\ndef evaluate_gru_probe(gold_wids, gold_labels, wid_to_emb_idx, embeddings, ckpt_path, device):\n    \"\"\"GRU probe evaluation on gold windows.\"\"\"\n    if not HAS_TORCH or not HAS_PROBE:\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt_path = Path(ckpt_path)\n    if not ckpt_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)\n    model = ProgressProbe(\n        embed_dim=ckpt[\"embed_dim\"],\n        hidden_size=ckpt[\"hidden_size\"],\n        num_layers=ckpt[\"num_layers\"],\n    ).to(device)\n    model.load_state_dict(ckpt[\"model_state_dict\"])\n    model.eval()\n\n    ordered_wids = []\n    gold_embs = []\n    valid_gold = []\n    n_miss = 0\n    for wid, gl in zip(gold_wids, gold_labels):\n        idx = wid_to_emb_idx.get(wid)\n        if idx is None:\n            n_miss += 1\n            continue\n        ordered_wids.append(wid)\n        gold_embs.append(embeddings[idx])\n        valid_gold.append(gl)\n\n    if not gold_embs:\n        return None, 0, n_miss, {}, {}\n\n    ds = WindowDataset(gold_embs, valid_gold)\n    loader = DataLoader(ds, batch_size=64, collate_fn=collate_fn)\n\n    all_preds = []\n    all_probs = []\n    all_labels = []\n    with torch.no_grad():\n        for padded, labels, lengths in loader:\n            logits = model(padded.to(device), lengths)\n            probs = torch.sigmoid(logits).cpu()\n            preds = (probs >= 0.5).long()\n            all_preds.extend(preds.tolist())\n            all_probs.extend(probs.tolist())\n            all_labels.extend(labels.long().tolist())\n\n    prob_map = {wid: p for wid, p in zip(ordered_wids, all_probs)}\n    pred_map_out = {wid: p for wid, p in zip(ordered_wids, all_preds)}\n    return compute_metrics(all_labels, all_preds), len(all_preds), n_miss, prob_map, pred_map_out\n\n\ndef evaluate_llm_judge(gold_wids, gold_labels, predictions_path):\n    \"\"\"LLM-as-judge from cached predictions JSONL/JSON.\"\"\"\n    predictions_path = Path(predictions_path)\n    if not predictions_path.exists():\n        return None, 0, len(gold_wids), {}, {}\n\n    pred_index = {}\n    if predictions_path.suffix == \".jsonl\":\n        with open(predictions_path) as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                obj = json.loads(line)\n                wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n                if obj.get(\"predicted_label\", -1) != -1:\n                    pred_index[wid] = obj\n    else:\n        with open(predictions_path) as f:\n            data = json.load(f)\n        for obj in data.get(\"results\", []):\n            wid = f\"{obj['trajectory_id']}__w{obj['window_idx']}\"\n            if obj.get(\"predicted_label\", -1) != -1:\n                pred_index[wid] = obj\n\n    pred_map = {wid: obj[\"predicted_label\"] for wid, obj in pred_index.items()}\n    prob_map = {}\n    for wid, obj in pred_index.items():\n        conf = obj.get(\"llm_confidence\", 3)\n        label = obj[\"predicted_label\"]\n        prob_map[wid] = label * (0.5 + conf / 10.0) + (1 - label) * (0.5 - conf / 10.0)\n\n    gold_al, pred_al, n_miss = _align(gold_wids, gold_labels, pred_map)\n    if not gold_al:\n        return None, 0, n_miss, prob_map, pred_map\n    return compute_metrics(gold_al, pred_al), len(gold_al), n_miss, prob_map, pred_map\n\n\n# ===========================================================================\n# Confidence stratification (silver label confidence vs gold agreement)\n# ===========================================================================\n\ndef confidence_stratification(gold_wids, gold_labels, wid_to_window):\n    \"\"\"Agreement between silver and gold stratified by silver confidence (1/2/3).\"\"\"\n    strata = {1: {\"agree\": 0, \"total\": 0}, 2: {\"agree\": 0, \"total\": 0}, 3: {\"agree\": 0, \"total\": 0}}\n    for wid, gl in zip(gold_wids, gold_labels):\n        w = wid_to_window.get(wid)\n        if w is None:\n            continue\n        conf = w.get(\"confidence\", 0)\n        if conf not in strata:\n            continue\n        strata[conf][\"total\"] += 1\n        if w[\"majority_label\"] == gl:\n            strata[conf][\"agree\"] += 1\n\n    result = {}\n    for conf in [1, 2, 3]:\n        total = strata[conf][\"total\"]\n        agree = strata[conf][\"agree\"]\n        result[f\"conf_{conf}\"] = {\n            \"total\": total,\n            \"agree\": agree,\n            \"agreement_rate\": agree / total if total > 0 else None,\n        }\n    return result\n\n\n# ===========================================================================\n# Reliability diagram\n# ===========================================================================\n\ndef plot_reliability_diagram(model_probs, gold_wids, gold_labels, output_path, n_bins=10):\n    \"\"\"Plot calibration curves for all models with predicted probabilities.\"\"\"\n    import matplotlib\n\n    matplotlib.use(\"Agg\")\n    import matplotlib.pyplot as plt\n\n    plt.rcParams.update(\n        {\n            \"font.family\": \"serif\",\n            \"font.size\": 10,\n            \"axes.labelsize\": 11,\n            \"axes.titlesize\": 12,\n            \"legend.fontsize\": 9,\n            \"figure.dpi\": 150,\n        }\n    )\n\n    gold_map = dict(zip(gold_wids, gold_labels))\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={\"width_ratios\": [2, 1]})\n\n    ax1.plot([0, 1], [0, 1], \"k--\", lw=1, label=\"Perfect calibration\")\n\n    colors = [\"#1f77b4\", \"#ff7f0e\", \"#2ca02c\", \"#d62728\", \"#9467bd\", \"#8c564b\"]\n    for i, (model_name, prob_map) in enumerate(model_probs.items()):\n        y_true, y_prob = [], []\n        for wid, prob in prob_map.items():\n            gl = gold_map.get(wid)\n            if gl is not None:\n                y_true.append(gl)\n                y_prob.append(prob)\n        if len(y_true) < 10:\n            continue\n\n        y_true = np.array(y_true)\n        y_prob = np.array(y_prob)\n\n        fraction_pos, mean_predicted = calibration_curve(\n            y_true, y_prob, n_bins=n_bins, strategy=\"uniform\"\n        )\n        ax1.plot(\n            mean_predicted, fraction_pos,\n            \"o-\", color=colors[i % len(colors)], label=model_name, markersize=4,\n        )\n\n        ax2.hist(\n            y_prob, bins=n_bins, range=(0, 1),\n            alpha=0.5, color=colors[i % len(colors)], label=model_name,\n        )\n\n    ax1.set_xlabel(\"Mean predicted probability\")\n    ax1.set_ylabel(\"Fraction of positives (progress)\")\n    ax1.set_title(\"Reliability Diagram\")\n    ax1.legend(loc=\"lower right\")\n    ax1.set_xlim(-0.02, 1.02)\n    ax1.set_ylim(-0.02, 1.02)\n    ax1.set_aspect(\"equal\")\n\n    ax2.set_xlabel(\"Predicted probability\")\n    ax2.set_ylabel(\"Count\")\n    ax2.set_title(\"Prediction Distribution\")\n    ax2.legend(loc=\"upper right\")\n\n    fig.tight_layout()\n    fig.savefig(output_path, bbox_inches=\"tight\")\n    plt.close(fig)\n\n\n# ===========================================================================\n# Console summary\n# ===========================================================================\n\ndef print_summary_table(results):\n    \"\"\"Print markdown-formatted summary to console.\"\"\"\n    header = (\n        \"| Model               | N     | Macro-F1 | Accuracy | P(stag) | R(stag) \"\n        \"| F1(stag) | P(prog) | R(prog) | F1(prog) | Cohen κ |\"\n    )\n    sep = \"|\" + \"|\".join([\"---\"] * 11) + \"|\"\n    print(header)\n    print(sep)\n    for name, metrics, n, n_miss in results:\n        if metrics is None:\n            print(f\"| {name:19s} | {'—':>5s} | SKIPPED (missing={n_miss}) |{'|' * 8}\")\n            continue\n        print(\n            f\"| {name:19s} \"\n            f\"| {n:5d} \"\n            f\"| {metrics['macro_f1']:.4f}   \"\n            f\"| {metrics['accuracy']:.4f}   \"\n            f\"| {metrics['precision_stag']:.4f}  \"\n            f\"| {metrics['recall_stag']:.4f}  \"\n            f\"| {metrics['f1_stag']:.4f}   \"\n            f\"| {metrics['precision_prog']:.4f}  \"\n            f\"| {metrics['recall_prog']:.4f}  \"\n            f\"| {metrics['f1_prog']:.4f}   \"\n            f\"| {metrics['cohens_kappa']:.4f}  |\"\n        )\n\n\n# ===========================================================================\n# Main\n# ===========================================================================\n\nALL_MODELS = [\"silver\", \"rf\", \"gb\", \"lr\", \"gru_probe\", \"llm_judge\"]\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Gold-set evaluation pipeline for agent_progress_probe\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n    )\n    parser.add_argument(\n        \"--gold-file\", required=True,\n        help=\"Path to gold label file (CSV or JSONL). \"\n             \"Required fields: window_id, gold_label (0=stagnation, 1=progress). \"\n             \"Optional: annotator_id, confidence.\",\n    )\n    parser.add_argument(\n        \"--predictions-dir\", required=True,\n        help=\"Directory containing model artifacts: \"\n             \"data/windows_labeled.jsonl, data/embeddings.pt, \"\n             \"checkpoints/best_model.pt, checkpoints/split_info.json, \"\n             \"data/swe_agent_trajectories_5000.jsonl, \"\n             \"results/llm_judge_results.json\",\n    )\n    parser.add_argument(\n        \"--output-dir\", default=\"artifacts\",\n        help=\"Output directory for results JSON and reliability PDF (default: artifacts)\",\n    )\n    parser.add_argument(\n        \"--models\", nargs=\"+\", default=ALL_MODELS, choices=ALL_MODELS,\n        help=\"Which models to evaluate (default: all). \"\n             \"Choices: silver, rf, gb, lr, gru_probe, llm_judge\",\n    )\n    parser.add_argument(\"--device\", default=None, help=\"Torch device (default: auto)\")\n    parser.add_argument(\n        \"--llm-predictions\", default=None,\n        help=\"Override path to LLM-as-judge cached predictions (JSON or JSONL)\",\n    )\n    parser.add_argument(\n        \"--checkpoint\", default=None,\n        help=\"Override path to GRU probe checkpoint (default: {predictions-dir}/checkpoints/best_model.pt)\",\n    )\n    parser.add_argument(\n        \"--trajectories\", default=None,\n        help=\"Override path to raw trajectories JSONL\",\n    )\n    parser.add_argument(\"--n-bins\", type=int, default=10, help=\"Calibration curve bins\")\n    args = parser.parse_args()\n\n    t_start = time.time()\n    pdir = Path(args.predictions_dir)\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    device = args.device\n    if device is None and HAS_TORCH:\n        device = \"cuda\" if torch.cuda.is_available() else \"cpu\"\n    elif device is None:\n        device = \"cpu\"\n\n    selected_models = set(args.models)\n\n    # ------------------------------------------------------------------\n    # 1. Load gold labels\n    # ------------------------------------------------------------------\n    print(f\"Loading gold labels: {args.gold_file}\")\n    gold_records = load_gold_labels(args.gold_file)\n    gold_wids = [r[\"window_id\"] for r in gold_records]\n    gold_labels = [r[\"gold_label\"] for r in gold_records]\n    gold_dist = Counter(gold_labels)\n    print(f\"  Total: {len(gold_labels)}, stag={gold_dist.get(0, 0)}, prog={gold_dist.get(1, 0)}\")\n\n    # ------------------------------------------------------------------\n    # 1b. Inter-annotator agreement check\n    # ------------------------------------------------------------------\n    print(\"\\nInter-annotator agreement check:\")\n    iaa_result = compute_inter_annotator_agreement(gold_records)\n\n    # ------------------------------------------------------------------\n    # 2. Load windows_labeled.jsonl\n    # ------------------------------------------------------------------\n    windows_path = None\n    for candidate in [\n        pdir / \"data\" / \"windows_labeled.jsonl\",\n        pdir / \"windows_labeled.jsonl\",\n        pdir / \"artifacts\" / \"data\" / \"windows_labeled.jsonl\",\n    ]:\n        if candidate.exists():\n            windows_path = candidate\n            break\n    if windows_path is None:\n        print(\"ERROR: windows_labeled.jsonl not found under predictions-dir\")\n        sys.exit(1)\n    print(f\"Loading windows: {windows_path}\")\n    all_windows = load_windows_jsonl(str(windows_path))\n    non_abstain = [w for w in all_windows if w.get(\"majority_label\", -1) != -1]\n    print(f\"  Total: {len(all_windows)}, non-abstain: {len(non_abstain)}\")\n\n    wid_to_window = {window_id_from_window(w): w for w in non_abstain}\n    wid_to_noabs_idx = {window_id_from_window(w): i for i, w in enumerate(non_abstain)}\n\n    # ------------------------------------------------------------------\n    # 3. Load split info\n    # ------------------------------------------------------------------\n    split_info_path = None\n    for candidate in [\n        pdir / \"checkpoints\" / \"split_info.json\",\n        pdir / \"split_info.json\",\n        pdir / \"artifacts\" / \"split_info.json\",\n    ]:\n        if candidate.exists():\n            split_info_path = candidate\n            break\n    split_info = None\n    if split_info_path is not None:\n        print(f\"Loading split info: {split_info_path}\")\n        with open(split_info_path) as f:\n            split_info = json.load(f)\n\n    # ------------------------------------------------------------------\n    # 4. Evaluate models\n    # ------------------------------------------------------------------\n    results = []\n    model_probs = {}\n    model_preds = {}\n\n    # --- Silver labels ---\n    if \"silver\" in selected_models:\n        print(\"\\nEvaluating: Silver (MV) Labels vs Gold ...\")\n        m, n, n_miss, prob_map, conf_map, pred_map = evaluate_silver(\n            gold_wids, gold_labels, wid_to_window\n        )\n        if m:\n            print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n        results.append((\"Silver (MV)\", m, n, n_miss))\n        if prob_map:\n            model_probs[\"Silver (MV)\"] = prob_map\n        if pred_map:\n            model_preds[\"Silver (MV)\"] = pred_map\n\n    # --- Structural classifiers (RF, GB, LR) ---\n    need_structural = selected_models & {\"rf\", \"gb\", \"lr\"}\n    if need_structural:\n        traj_path = Path(args.trajectories) if args.trajectories else None\n        if traj_path is None:\n            for candidate in [\n                pdir / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_5000.jsonl\",\n                pdir / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n                pdir / \"artifacts\" / \"data\" / \"swe_agent_trajectories_1000.jsonl\",\n            ]:\n                if candidate.exists():\n                    traj_path = candidate\n                    break\n\n        if traj_path is not None and traj_path.exists() and split_info is not None:\n            print(f\"\\nBuilding structural features (trajectories: {traj_path}) ...\")\n            traj_index = build_trajectory_index(str(traj_path))\n            print(f\"  Indexed {len(traj_index)} trajectories\")\n\n            all_features = []\n            all_mv_labels = []\n            for w in non_abstain:\n                row_idx = w.get(\"row_index\", 0)\n                step_indices = w[\"step_indices\"]\n                traj_steps = traj_index.get(row_idx, [])\n                window_steps = []\n                for si in step_indices:\n                    if si < len(traj_steps):\n                        window_steps.append(traj_steps[si])\n                    else:\n                        window_steps.append({\"role\": \"unknown\", \"text\": \"\"})\n                feat = extract_structural_features(window_steps, w.get(\"short_trajectory\", False))\n                all_features.append(feat)\n                all_mv_labels.append(w[\"majority_label\"])\n\n            all_features = np.stack(all_features)\n            print(f\"  Feature matrix: {all_features.shape}\")\n\n            struct_configs = {\n                \"rf\": (\n                    \"Structural RF\",\n                    RandomForestClassifier,\n                    {\"n_estimators\": 200, \"max_depth\": 10, \"random_state\": 42, \"n_jobs\": -1},\n                    False,\n                ),\n                \"gb\": (\n                    \"Structural GB\",\n                    GradientBoostingClassifier,\n                    {\"n_estimators\": 200, \"learning_rate\": 0.1, \"max_depth\": 5, \"random_state\": 42},\n                    False,\n                ),\n                \"lr\": (\n                    \"Structural LR\",\n                    LogisticRegression,\n                    {\"max_iter\": 2000, \"C\": 1.0, \"solver\": \"lbfgs\"},\n                    True,\n                ),\n            }\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key not in selected_models:\n                    continue\n                name, cls, kwargs, scaler = struct_configs[key]\n                print(f\"  Evaluating {name} ...\")\n                m, n, n_miss, prob_map, pred_map = evaluate_structural_clf(\n                    gold_wids, gold_labels, wid_to_noabs_idx,\n                    all_features, all_mv_labels, split_info,\n                    cls, kwargs, use_scaler=scaler,\n                )\n                if m:\n                    print(f\"    macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n                results.append((name, m, n, n_miss))\n                if prob_map:\n                    model_probs[name] = prob_map\n                if pred_map:\n                    model_preds[name] = pred_map\n        else:\n            reason = \"trajectories not found\" if traj_path is None else \"split_info not found\"\n            print(f\"\\nSkipping structural classifiers: {reason}\")\n            for key in [\"rf\", \"gb\", \"lr\"]:\n                if key in selected_models:\n                    name = {\"rf\": \"Structural RF\", \"gb\": \"Structural GB\", \"lr\": \"Structural LR\"}[key]\n                    results.append((name, None, 0, len(gold_wids)))\n\n    # --- GRU Probe ---\n    if \"gru_probe\" in selected_models:\n        ckpt_path = Path(args.checkpoint) if args.checkpoint else None\n        if ckpt_path is None:\n            for candidate in [\n                pdir / \"checkpoints\" / \"best_model.pt\",\n                pdir / \"best_model.pt\",\n                pdir / \"artifacts\" / \"best_model.pt\",\n            ]:\n                if candidate.exists():\n                    ckpt_path = candidate\n                    break\n\n        emb_path = None\n        for candidate in [\n            pdir / \"data\" / \"embeddings.pt\",\n            pdir / \"embeddings.pt\",\n            pdir / \"artifacts\" / \"data\" / \"embeddings.pt\",\n        ]:\n            if candidate.exists():\n                emb_path = candidate\n                break\n\n        print(f\"\\nEvaluating: GRU Probe ...\")\n        if HAS_TORCH and HAS_PROBE and emb_path is not None and ckpt_path is not None:\n            emb_data = torch.load(emb_path, map_location=\"cpu\", weights_only=False)\n            embeddings = emb_data[\"embeddings\"]\n\n            wid_to_emb_idx = {}\n            if len(embeddings) == len(non_abstain):\n                for i, w in enumerate(non_abstain):\n                    wid_to_emb_idx[window_id_from_window(w)] = i\n            else:\n                for i in range(min(len(embeddings), len(non_abstain))):\n                    wid_to_emb_idx[window_id_from_window(non_abstain[i])] = i\n\n            m, n, n_miss, prob_map, pred_map = evaluate_gru_probe(\n                gold_wids, gold_labels, wid_to_emb_idx, embeddings, str(ckpt_path), device\n            )\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"GRU Probe\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"GRU Probe\"] = prob_map\n            if pred_map:\n                model_preds[\"GRU Probe\"] = pred_map\n        else:\n            missing = []\n            if not HAS_TORCH:\n                missing.append(\"torch\")\n            if not HAS_PROBE:\n                missing.append(\"probe_model\")\n            if emb_path is None:\n                missing.append(\"embeddings.pt\")\n            if ckpt_path is None:\n                missing.append(\"checkpoint\")\n            print(f\"  SKIPPED: {', '.join(missing)} not available\")\n            results.append((\"GRU Probe\", None, 0, len(gold_wids)))\n\n    # --- LLM-as-judge ---\n    if \"llm_judge\" in selected_models:\n        llm_path = Path(args.llm_predictions) if args.llm_predictions else None\n        if llm_path is None:\n            for candidate in [\n                pdir / \"results\" / \"llm_judge_results.json\",\n                pdir / \"llm_judge_results.json\",\n                pdir / \"artifacts\" / \"results\" / \"llm_judge_results.json\",\n                pdir / \"results\" / \"llm_judge_results.jsonl\",\n            ]:\n                if candidate.exists():\n                    llm_path = candidate\n                    break\n\n        print(f\"\\nEvaluating: LLM-as-Judge ...\")\n        if llm_path is not None and llm_path.exists():\n            m, n, n_miss, prob_map, pred_map = evaluate_llm_judge(gold_wids, gold_labels, llm_path)\n            if m:\n                print(f\"  macro_f1={m['macro_f1']:.4f}, kappa={m['cohens_kappa']:.4f}, n={n}\")\n            results.append((\"LLM-as-Judge\", m, n, n_miss))\n            if prob_map:\n                model_probs[\"LLM-as-Judge (pseudo-probability)\"] = prob_map\n            if pred_map:\n                model_preds[\"LLM-as-Judge\"] = pred_map\n        else:\n            print(f\"  SKIPPED: no cached predictions found\")\n            results.append((\"LLM-as-Judge\", None, 0, len(gold_wids)))\n\n    # ------------------------------------------------------------------\n    # 5. Confidence stratification\n    # ------------------------------------------------------------------\n    print(\"\\nConfidence stratification (silver conf vs gold agreement):\")\n    conf_strat = confidence_stratification(gold_wids, gold_labels, wid_to_window)\n    for conf_key in [\"conf_1\", \"conf_2\", \"conf_3\"]:\n        s = conf_strat[conf_key]\n        rate = f\"{s['agreement_rate']:.4f}\" if s[\"agreement_rate\"] is not None else \"N/A\"\n        print(f\"  {conf_key}: {s['agree']}/{s['total']} = {rate}\")\n\n    # ------------------------------------------------------------------\n    # 5b. Pairwise statistical comparisons\n    # ------------------------------------------------------------------\n    pairwise = {}\n    if len(model_preds) >= 2:\n        print(\"\\nPairwise statistical comparisons (bootstrap CI on macro-F1 diff + McNemar):\")\n        pairwise = compute_pairwise_comparisons(gold_wids, gold_labels, model_preds)\n        for pair_key, stats in pairwise.items():\n            sig = \" *\" if stats[\"mcnemar_p\"] < 0.05 else \"\"\n            print(\n                f\"  {pair_key}: ΔF1={stats['bootstrap_mean_diff']:+.4f} \"\n                f\"CI=[{stats['ci_95_lower']:+.4f}, {stats['ci_95_upper']:+.4f}] \"\n                f\"McNemar p={stats['mcnemar_p']:.4f}{sig}\"\n            )\n\n    # ------------------------------------------------------------------\n    # 6. Console summary\n    # ------------------------------------------------------------------\n    print(\"\\n\" + \"=\" * 120)\n    print(\"GOLD SET EVALUATION RESULTS\")\n    print(\"=\" * 120)\n    print_summary_table(results)\n\n    # ------------------------------------------------------------------\n    # 7. Reliability diagram\n    # ------------------------------------------------------------------\n    pdf_path = output_dir / \"gold_set_reliability.pdf\"\n    if model_probs:\n        try:\n            plot_reliability_diagram(\n                model_probs, gold_wids, gold_labels, str(pdf_path), n_bins=args.n_bins\n            )\n            print(f\"\\nReliability diagram: {pdf_path}\")\n        except Exception as e:\n            print(f\"\\nFailed to generate reliability diagram: {e}\")\n    else:\n        print(\"\\nNo probability estimates available; skipping reliability diagram.\")\n\n    # ------------------------------------------------------------------\n    # 8. JSON output\n    # ------------------------------------------------------------------\n    elapsed = time.time() - t_start\n    output = {\n        \"gold_file\": str(args.gold_file),\n        \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},\n        \"confidence_stratification\": conf_strat,\n        \"models\": {},\n        \"elapsed_seconds\": round(elapsed, 2),\n    }\n    for name, metrics, n, n_miss in results:\n        output[\"models\"][name] = {\n            \"n_evaluated\": n,\n            \"n_missing\": n_miss,\n            \"metrics\": {k: round(v, 6) for k, v in metrics.items()} if metrics else None,\n        }\n\n    json_path = output_dir / \"gold_set_results.json\"\n    with open(json_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"Results JSON: {json_path}\")\n    print(f\"Elapsed: {elapsed:.1f}s\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1200,
+        "oldLines": 7,
+        "newStart": 1200,
+        "newLines": 9,
+        "lines": [
+          "     output = {",
+          "         \"gold_file\": str(args.gold_file),",
+          "         \"gold_distribution\": {\"total\": len(gold_labels), \"stagnation\": gold_dist.get(0, 0), \"progress\": gold_dist.get(1, 0)},",
+          "+        \"inter_annotator_agreement\": iaa_result,",
+          "         \"confidence_stratification\": conf_strat,",
+          "+        \"pairwise_comparisons\": pairwise,",
+          "         \"models\": {},",
+          "         \"elapsed_seconds\": round(elapsed, 2),",
+          "     }"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+````
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 73_
+
+Now verify the file parses correctly:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a11c9f4b-eb5a-409b-a69d-0e5bd151e4ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8DNV94y2aXpNJWdCAopaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 69242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 552
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BxkWNeEQdyQx53mgzpppee`</summary>
+
+```json
+{
+  "command": "python -c \"import ast; ast.parse(open('src/evaluation/gold_set_eval.py').read()); print('OK')\"",
+  "description": "Verify Python syntax"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "2f0cfbae-16e1-451a-983a-13d23f948c0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B8DNV94y2aXpNJWdCAopaY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 69242,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 552
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 75 · 2026-05-14T22:54:45.146Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01BxkWNeEQdyQx53mgzpppee`</summary>
+
+```text
+Exit code 127
+/bin/bash: line 1: python: command not found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "117592cf-42ae-4b17-b2ad-74a2490504a5",
+  "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CUGquKeR8Mo7EwXxNVVnKb`</summary>
+
+```json
+{
+  "command": "python3 -c \"import ast; ast.parse(open('src/evaluation/gold_set_eval.py').read()); print('Syntax OK')\"",
+  "description": "Verify Python syntax"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "546ac456-db61-4ec5-9bcf-d6724422b96e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016xM5g18Wxk7C3F2hsLQiqT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 152,
+      "cache_read_input_tokens": 69794,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 152
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 77 · 2026-05-14T22:54:47.844Z_
+
+<details><summary>↩ Tool result · `toolu_01CUGquKeR8Mo7EwXxNVVnKb`</summary>
+
+```text
+Syntax OK
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a6bb78e1-b4d0-4b90-a53c-4b375adf3164",
+  "tool_use_result": {
+    "stdout": "Syntax OK",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 78_
+
+Now test `--help` to verify no import crashes:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "40e7e102-6c5e-47e5-a7f3-c683e6ce3202",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z9FrXNcuerkLZapjKT7gP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 69946,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 123
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01C6oqxZbUpjiC3xnQfQ2a6a`</summary>
+
+```json
+{
+  "command": "python3 src/evaluation/gold_set_eval.py --help",
+  "description": "Run --help to verify no import-time crashes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "fe8cf5cb-7ef7-4484-bfba-5b25731cb642",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Z9FrXNcuerkLZapjKT7gP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 69946,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 123
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 80 · 2026-05-14T22:54:50.849Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01C6oqxZbUpjiC3xnQfQ2a6a`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py", line 45, in &lt;module>
+    from sklearn.calibration import calibration_curve
+ModuleNotFoundError: No module named 'sklearn'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "8412a34c-b6be-4da7-8391-47b1a007aa2a",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py\", line 45, in &lt;module>\n    from sklearn.calibration import calibration_curve\nModuleNotFoundError: No module named 'sklearn'"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AmB33NoQavPYckzRZ5dTex`</summary>
+
+```json
+{
+  "command": "pip3 install scikit-learn --quiet 2>&1 | tail -1",
+  "description": "Install scikit-learn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a213e440-8aa4-40d6-889c-fab7f4212fcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RCfT1VtBdj6UXW8uZGFZsM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 70069,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 82 · 2026-05-14T22:54:55.584Z_
+
+<details><summary>↩ Tool result · `toolu_01AmB33NoQavPYckzRZ5dTex`</summary>
+
+```text
+hint: See PEP 668 for the detailed specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "a9838d10-8b07-4986-af49-309c472a01c0",
+  "tool_use_result": {
+    "stdout": "hint: See PEP 668 for the detailed specification.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018J6eDeRN75Egs2yQRtESQN`</summary>
+
+```json
+{
+  "command": "pip3 install scikit-learn scipy --break-system-packages --quiet 2>&1 | tail -3",
+  "description": "Install scikit-learn and scipy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "b2138e66-4d64-469e-97b6-f705a3f5f970",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017rdMCeEHR3JpWpcCAdoXcX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 116,
+      "cache_read_input_tokens": 70284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 116
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 84_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bkhb4aff2",
+  "tool_use_id": "toolu_018J6eDeRN75Egs2yQRtESQN",
+  "description": "Install scikit-learn and scipy",
+  "task_type": "local_bash",
+  "uuid": "e7dd04b5-5804-4a9e-b895-064bce926a41",
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b"
+}
+```
+
+---
+
+
+### System
+
+_source line 85_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bkhb4aff2",
+  "tool_use_id": "toolu_018J6eDeRN75Egs2yQRtESQN",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Install scikit-learn and scipy",
+  "uuid": "e1c06bc3-6d92-4f1e-941e-6c1052879051",
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 86 · 2026-05-14T22:55:04.761Z_
+
+<details><summary>↩ Tool result · `toolu_018J6eDeRN75Egs2yQRtESQN`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "9cde56f7-7f5a-4e4c-8181-0d66b5a81c83",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GHw5usJoJL89JqV3JaY1bt`</summary>
+
+```json
+{
+  "command": "python3 src/evaluation/gold_set_eval.py --help",
+  "description": "Run --help to verify no crashes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "6e0d5261-7e65-4ce3-862b-5216a5c60b76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVi8cpkZbFzfL14f6ZQX6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 118,
+      "cache_read_input_tokens": 70400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 118
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 88 · 2026-05-14T22:55:09.783Z_
+
+<details><summary>↩ Tool result · `toolu_01GHw5usJoJL89JqV3JaY1bt`</summary>
+
+```text
+usage: gold_set_eval.py [-h] --gold-file GOLD_FILE
+                        --predictions-dir PREDICTIONS_DIR
+                        [--output-dir OUTPUT_DIR]
+                        [--models {silver,rf,gb,lr,gru_probe,llm_judge} [{silver,rf,gb,lr,gru_probe,llm_judge} ...]]
+                        [--device DEVICE] [--llm-predictions LLM_PREDICTIONS]
+                        [--checkpoint CHECKPOINT]
+                        [--trajectories TRAJECTORIES] [--n-bins N_BINS]
+
+Gold-set evaluation pipeline for agent_progress_probe
+
+options:
+  -h, --help            show this help message and exit
+  --gold-file GOLD_FILE
+                        Path to gold label file (CSV or JSONL). Required
+                        fields: window_id, gold_label (0=stagnation,
+                        1=progress). Optional: annotator_id, confidence.
+  --predictions-dir PREDICTIONS_DIR
+                        Directory containing model artifacts:
+                        data/windows_labeled.jsonl, data/embeddings.pt,
+                        checkpoints/best_model.pt,
+                        checkpoints/split_info.json,
+                        data/swe_agent_trajectories_5000.jsonl,
+                        results/llm_judge_results.json
+  --output-dir OUTPUT_DIR
+                        Output directory for results JSON and reliability PDF
+                        (default: artifacts)
+  --models {silver,rf,gb,lr,gru_probe,llm_judge} [{silver,rf,gb,lr,gru_probe,llm_judge} ...]
+                        Which models to evaluate (default: all). Choices:
+                        silver, rf, gb, lr, gru_probe, llm_judge
+  --device DEVICE       Torch device (default: auto)
+  --llm-predictions LLM_PREDICTIONS
+                        Override path to LLM-as-judge cached predictions (JSON
+                        or JSONL)
+  --checkpoint CHECKPOINT
+                        Override path to GRU probe checkpoint (default:
+                        {predictions-dir}/checkpoints/best_model.pt)
+  --trajectories TRAJECTORIES
+                        Override path to raw trajectories JSONL
+  --n-bins N_BINS       Calibration curve bins
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "694fb965-126a-4644-8d63-bd4206249dba",
+  "tool_use_result": {
+    "stdout": "usage: gold_set_eval.py [-h] --gold-file GOLD_FILE\n                        --predictions-dir PREDICTIONS_DIR\n                        [--output-dir OUTPUT_DIR]\n                        [--models {silver,rf,gb,lr,gru_probe,llm_judge} [{silver,rf,gb,lr,gru_probe,llm_judge} ...]]\n                        [--device DEVICE] [--llm-predictions LLM_PREDICTIONS]\n                        [--checkpoint CHECKPOINT]\n                        [--trajectories TRAJECTORIES] [--n-bins N_BINS]\n\nGold-set evaluation pipeline for agent_progress_probe\n\noptions:\n  -h, --help            show this help message and exit\n  --gold-file GOLD_FILE\n                        Path to gold label file (CSV or JSONL). Required\n                        fields: window_id, gold_label (0=stagnation,\n                        1=progress). Optional: annotator_id, confidence.\n  --predictions-dir PREDICTIONS_DIR\n                        Directory containing model artifacts:\n                        data/windows_labeled.jsonl, data/embeddings.pt,\n                        checkpoints/best_model.pt,\n                        checkpoints/split_info.json,\n                        data/swe_agent_trajectories_5000.jsonl,\n                        results/llm_judge_results.json\n  --output-dir OUTPUT_DIR\n                        Output directory for results JSON and reliability PDF\n                        (default: artifacts)\n  --models {silver,rf,gb,lr,gru_probe,llm_judge} [{silver,rf,gb,lr,gru_probe,llm_judge} ...]\n                        Which models to evaluate (default: all). Choices:\n                        silver, rf, gb, lr, gru_probe, llm_judge\n  --device DEVICE       Torch device (default: auto)\n  --llm-predictions LLM_PREDICTIONS\n                        Override path to LLM-as-judge cached predictions (JSON\n                        or JSONL)\n  --checkpoint CHECKPOINT\n                        Override path to GRU probe checkpoint (default:\n                        {predictions-dir}/checkpoints/best_model.pt)\n  --trajectories TRAJECTORIES\n                        Override path to raw trajectories JSONL\n  --n-bins N_BINS       Calibration curve bins",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 89_
+
+`--help` runs clean. Let me also write a quick dry-run test to verify the new functions work in isolation:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "04b146f5-aa63-421a-9588-e6b3e17d35c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUDWkw2oAQQxEmUKTVScRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 70518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DrRqMJWR43jwdFnxEBvUwy`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport sys; sys.path.insert(0, 'src/evaluation')\nfrom gold_set_eval import (\n    compute_inter_annotator_agreement,\n    _fleiss_kappa,\n    _paired_bootstrap_ci,\n    _mcnemar_test,\n    compute_pairwise_comparisons,\n    extract_structural_features,\n    STRUCTURAL_FEATURE_NAMES,\n    _EXPECTED_FEATURE_DIM,\n)\nimport numpy as np\n\n# Test 1: IAA with 1 annotator\nprint('=== IAA: 1 annotator ===')\nrecords = [{'window_id': 'w1', 'gold_label': 1}, {'window_id': 'w2', 'gold_label': 0}]\nr = compute_inter_annotator_agreement(records)\nassert r['metric'] is None and r['passed'] is True\nprint('  OK')\n\n# Test 2: IAA with 2 annotators, perfect agreement\nprint('=== IAA: 2 annotators, perfect ===')\nrecords = [\n    {'window_id': 'w1', 'gold_label': 1, 'annotator_id': 'A'},\n    {'window_id': 'w1', 'gold_label': 1, 'annotator_id': 'B'},\n    {'window_id': 'w2', 'gold_label': 0, 'annotator_id': 'A'},\n    {'window_id': 'w2', 'gold_label': 0, 'annotator_id': 'B'},\n    {'window_id': 'w3', 'gold_label': 1, 'annotator_id': 'A'},\n    {'window_id': 'w3', 'gold_label': 1, 'annotator_id': 'B'},\n]\nr = compute_inter_annotator_agreement(records)\nassert r['metric'] == 'cohens_kappa' and r['value'] == 1.0 and r['passed'] is True\nprint('  OK')\n\n# Test 3: IAA with 3 annotators\nprint('=== IAA: 3 annotators (Fleiss) ===')\nrecords = []\nfor wid in ['w1','w2','w3','w4','w5']:\n    for aid in ['A','B','C']:\n        records.append({'window_id': wid, 'gold_label': 1, 'annotator_id': aid})\nr = compute_inter_annotator_agreement(records)\nassert r['metric'] == 'fleiss_kappa' and r['value'] == 1.0\nprint(f'  kappa={r[\\\"value\\\"]}, OK')\n\n# Test 4: Bootstrap CI\nprint('=== Bootstrap CI ===')\ny = [0,1,0,1,0,1,0,1,0,1]*5\npa = [0,1,0,1,0,1,0,1,0,1]*5\npb = [1,0,1,0,1,0,1,0,1,0]*5  # completely wrong\nmd, lo, hi = _paired_bootstrap_ci(y, pa, pb)\nprint(f'  mean_diff={md:.4f}, ci=[{lo:.4f}, {hi:.4f}]')\nassert md > 0  # model a is better\n\n# Test 5: McNemar\nprint('=== McNemar ===')\np = _mcnemar_test(y, pa, pb)\nprint(f'  p={p:.6f}')\nassert p < 0.05\n\n# Test 6: Feature dim assertion\nprint('=== Feature dim assertion ===')\nsteps = [{'role': 'ai', 'text': 'hello'}, {'role': 'user', 'text': 'world'}]\nv = extract_structural_features(steps, False)\nassert v.shape[0] == 30\nassert len(STRUCTURAL_FEATURE_NAMES) == _EXPECTED_FEATURE_DIM\nprint(f'  dim={v.shape[0]}, names={len(STRUCTURAL_FEATURE_NAMES)}, OK')\n\n# Test 7: Pairwise comparisons\nprint('=== Pairwise comparisons ===')\ngold_wids = [f'w{i}' for i in range(50)]\ngold_labels = [i % 2 for i in range(50)]\nmp = {\n    'ModelA': {f'w{i}': i % 2 for i in range(50)},\n    'ModelB': {f'w{i}': (i+1) % 2 for i in range(50)},\n}\npw = compute_pairwise_comparisons(gold_wids, gold_labels, mp)\nassert 'ModelA_vs_ModelB' in pw\nprint(f'  {pw}')\n\nprint()\nprint('ALL TESTS PASSED')\n\"\n",
+  "description": "Dry-run test of all new functions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "4afab9d5-6a2b-442a-802c-6fe7f8fc6eb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUDWkw2oAQQxEmUKTVScRR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 659,
+      "cache_read_input_tokens": 70518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 659
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 91_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bu0dt5m6g",
+  "tool_use_id": "toolu_01DrRqMJWR43jwdFnxEBvUwy",
+  "description": "Dry-run test of all new functions",
+  "task_type": "local_bash",
+  "uuid": "460c2c27-7938-430f-b883-10f380b02f83",
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b"
+}
+```
+
+---
+
+
+### System
+
+_source line 92_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bu0dt5m6g",
+  "tool_use_id": "toolu_01DrRqMJWR43jwdFnxEBvUwy",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Dry-run test of all new functions",
+  "uuid": "8d295724-bd68-4390-87c6-4d147f250c90",
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-14T22:55:37.740Z_
+
+<details><summary>↩ Tool result · `toolu_01DrRqMJWR43jwdFnxEBvUwy`</summary>
+
+```text
+=== IAA: 1 annotator ===
+  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.
+  OK
+=== IAA: 2 annotators, perfect ===
+  Inter-annotator agreement (cohens_kappa): 1.0000 [PASS]
+  Annotators: 2, windows with ≥2 annotations: 3
+  OK
+=== IAA: 3 annotators (Fleiss) ===
+  Inter-annotator agreement (fleiss_kappa): 1.0000 [PASS]
+  Annotators: 3, windows with ≥2 annotations: 5
+  kappa=1.0, OK
+=== Bootstrap CI ===
+  mean_diff=1.0000, ci=[1.0000, 1.0000]
+=== McNemar ===
+  p=0.000000
+=== Feature dim assertion ===
+  dim=30, names=30, OK
+=== Pairwise comparisons ===
+  {'ModelA_vs_ModelB': {'n_common': 50, 'bootstrap_mean_diff': 1.0, 'ci_95_lower': 1.0, 'ci_95_upper': 1.0, 'mcnemar_p': 0.0}}
+
+ALL TESTS PASSED
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "c3984afc-eb0b-4342-a666-9c1bb1321bdc",
+  "tool_use_result": {
+    "stdout": "=== IAA: 1 annotator ===\n  WARNING: Only 1 annotator (or no annotator_id field); skipping IAA check.\n  OK\n=== IAA: 2 annotators, perfect ===\n  Inter-annotator agreement (cohens_kappa): 1.0000 [PASS]\n  Annotators: 2, windows with ≥2 annotations: 3\n  OK\n=== IAA: 3 annotators (Fleiss) ===\n  Inter-annotator agreement (fleiss_kappa): 1.0000 [PASS]\n  Annotators: 3, windows with ≥2 annotations: 5\n  kappa=1.0, OK\n=== Bootstrap CI ===\n  mean_diff=1.0000, ci=[1.0000, 1.0000]\n=== McNemar ===\n  p=0.000000\n=== Feature dim assertion ===\n  dim=30, names=30, OK\n=== Pairwise comparisons ===\n  {'ModelA_vs_ModelB': {'n_common': 50, 'bootstrap_mean_diff': 1.0, 'ci_95_lower': 1.0, 'ci_95_upper': 1.0, 'mcnemar_p': 0.0}}\n\nALL TESTS PASSED",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 94_
+
+All tests pass. Let me do a final review of the complete file to make sure everything is consistent:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "c7acafb4-fcca-4335-a1a4-30b5e324f95f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThgJu7E8zCRt9EtAjgCM4e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1762,
+      "cache_read_input_tokens": 71177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DhePKibc5qHfmodJdoD5Wy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "86795c90-36b5-4022-9a2a-53b87987cd9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ThgJu7E8zCRt9EtAjgCM4e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1762,
+      "cache_read_input_tokens": 71177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1762
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 96 · 2026-05-14T22:55:42.643Z_
+
+<details><summary>↩ Tool result · `toolu_01DhePKibc5qHfmodJdoD5Wy`</summary>
+
+```text
+1	#!/usr/bin/env python3
+2	"""Gold-set evaluation pipeline for agent_progress_probe.
+3	
+4	Evaluates multiple stagnation detectors against human-annotated gold labels:
+5	  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features
+6	  - GRU probe (ProgressProbe) on pre-computed embeddings
+7	  - LLM-as-judge (from cached prediction JSONL)
+8	  - Silver labels (majority-vote from labeling functions)
+9	
+10	Pre-evaluation checks:
+11	  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)
+12	    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.
+13	
+14	Post-evaluation statistics:
+15	  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)
+16	  - McNemar's test for pairwise model comparisons
+17	
+18	Inputs:
+19	  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),
+20	                    optional annotator_id, confidence
+21	  --predictions-dir Directory with model artifacts (checkpoints, embeddings,
+22	                    windows_labeled.jsonl, trajectories, cached LLM predictions)
+23	  --output-dir      Where to write results JSON and reliability diagram PDF
+24	
+25	Outputs:
+26	  {output-dir}/gold_set_results.json   — full metrics for every model
+27	  {output-dir}/gold_set_reliability.pdf — calibration curves
+28	
+29	Dependencies: torch, scikit-learn, numpy, matplotlib, scipy
+30	"""
+31	
+32	import argparse
+33	import csv
+34	import json
+35	import re
+36	import sys
+37	import time
+38	import warnings
+39	from collections import Counter, defaultdict
+40	from difflib import SequenceMatcher
+41	from itertools import combinations
+42	from pathlib import Path
+43	
+44	import numpy as np
+45	from sklearn.calibration import calibration_curve
+46	from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+47	from sklearn.linear_model import LogisticRegression
+48	from sklearn.metrics import (
+49	    accuracy_score,
+50	    cohen_kappa_score,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "b49dd88b-0409-4981-b182-79650d428e04",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513/projects/agent_progress_probe/src/evaluation/gold_set_eval.py",
+      "content": "#!/usr/bin/env python3\n\"\"\"Gold-set evaluation pipeline for agent_progress_probe.\n\nEvaluates multiple stagnation detectors against human-annotated gold labels:\n  - Structural classifiers (RF / GB / LR) trained on 30-dim hand-crafted features\n  - GRU probe (ProgressProbe) on pre-computed embeddings\n  - LLM-as-judge (from cached prediction JSONL)\n  - Silver labels (majority-vote from labeling functions)\n\nPre-evaluation checks:\n  - Inter-annotator agreement (Cohen's κ for 2 raters, Fleiss' κ for 3+)\n    Gate: κ ≥ 0.8 passes; < 0.8 warns but does not abort.\n\nPost-evaluation statistics:\n  - Paired bootstrap 95% CIs on macro-F1 differences (1000 resamples)\n  - McNemar's test for pairwise model comparisons\n\nInputs:\n  --gold-file       CSV or JSONL with fields: window_id, gold_label (0/1),\n                    optional annotator_id, confidence\n  --predictions-dir Directory with model artifacts (checkpoints, embeddings,\n                    windows_labeled.jsonl, trajectories, cached LLM predictions)\n  --output-dir      Where to write results JSON and reliability diagram PDF\n\nOutputs:\n  {output-dir}/gold_set_results.json   — full metrics for every model\n  {output-dir}/gold_set_reliability.pdf — calibration curves\n\nDependencies: torch, scikit-learn, numpy, matplotlib, scipy\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport re\nimport sys\nimport time\nimport warnings\nfrom collections import Counter, defaultdict\nfrom difflib import SequenceMatcher\nfrom itertools import combinations\nfrom pathlib import Path\n\nimport numpy as np\nfrom sklearn.calibration import calibration_curve\nfrom sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import (\n    accuracy_score,\n    cohen_kappa_score,",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 1225
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 97_
+
+Good. Let me verify the final line count and spot-check a few key sections:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "2060fadb-b48b-4ddd-9dfa-1fd4f079a762",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Luh7XdNfKNQ3kz2KQ1Re2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 72939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 754
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AxKvS34UGHwc1aAruRqKnD`</summary>
+
+```json
+{
+  "command": "wc -l src/evaluation/gold_set_eval.py",
+  "description": "Count lines in updated file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "ccdce175-d6b6-4dc4-b8b9-9863714a0d43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Luh7XdNfKNQ3kz2KQ1Re2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 72939,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 754
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-14T22:55:45.681Z_
+
+<details><summary>↩ Tool result · `toolu_01AxKvS34UGHwc1aAruRqKnD`</summary>
+
+```text
+1224 src/evaluation/gold_set_eval.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "fbe0c17f-7077-4d9a-bd8c-e6d256cb13d9",
+  "tool_use_result": {
+    "stdout": "1224 src/evaluation/gold_set_eval.py",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VDmDmcBLJsXxEYv4QazfFe`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport ast, sys\nwith open('src/evaluation/gold_set_eval.py') as f:\n    tree = ast.parse(f.read())\nfns = [n.name for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]\nprint('Functions:', fns)\n\"",
+  "description": "List all functions in the file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "7c49ac6f-9141-406f-b524-2a0a464884cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012DA9D16ihuhrJUQfMmvWd5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 132,
+      "cache_read_input_tokens": 73693,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 132
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 101 · 2026-05-14T22:55:49.258Z_
+
+<details><summary>↩ Tool result · `toolu_01VDmDmcBLJsXxEYv4QazfFe`</summary>
+
+```text
+Functions: ['compute_metrics', '_extract_command', '_cmd_similarity', 'extract_structural_features', '_fleiss_kappa', 'compute_inter_annotator_agreement', '_paired_bootstrap_ci', '_mcnemar_test', 'compute_pairwise_comparisons', 'load_gold_labels', 'load_windows_jsonl', 'build_trajectory_index', 'window_id_from_window', 'parse_row_index', '_align', 'evaluate_silver', 'evaluate_structural_clf', 'evaluate_gru_probe', 'evaluate_llm_judge', 'confidence_stratification', 'plot_reliability_diagram', 'print_summary_table', 'main']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "6367714f-b1e1-441f-ba5c-571b25b8ad2e",
+  "tool_use_result": {
+    "stdout": "Functions: ['compute_metrics', '_extract_command', '_cmd_similarity', 'extract_structural_features', '_fleiss_kappa', 'compute_inter_annotator_agreement', '_paired_bootstrap_ci', '_mcnemar_test', 'compute_pairwise_comparisons', 'load_gold_labels', 'load_windows_jsonl', 'build_trajectory_index', 'window_id_from_window', 'parse_row_index', '_align', 'evaluate_silver', 'evaluate_structural_clf', 'evaluate_gru_probe', 'evaluate_llm_judge', 'confidence_stratification', 'plot_reliability_diagram', 'print_summary_table', 'main']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 102_
+
+All new functions present. Summary of changes:
+
+**P0-1: Inter-Annotator Agreement**
+- `_fleiss_kappa()` — manual implementation with formula citation (Fleiss 1971)
+- `compute_inter_annotator_agreement()` — handles 1/2/3+ annotators, κ ≥ 0.8 gate, warns but doesn't abort
+- Called in main() after gold load, before model evaluation
+- Result written to `inter_annotator_agreement` field in output JSON
+
+**P0-2: Bootstrap CIs + McNemar**
+- `_paired_bootstrap_ci()` — 1000 resamples, returns (mean_diff, ci_lower, ci_upper)
+- `_mcnemar_test()` — continuity-corrected, uses scipy.stats.chi2
+- `compute_pairwise_comparisons()` — all model pairs via `itertools.combinations`
+- All evaluate functions now return `pred_map` for McNemar input
+- Results written to `pairwise_comparisons` field in output JSON
+
+**Minor fix 1: LLM pseudo-probability**
+- Reliability diagram key changed from `"LLM-as-Judge"` to `"LLM-as-Judge (pseudo-probability)"`
+
+**Minor fix 2: Structural feature assertion**
+- Added `STRUCTURAL_FEATURE_NAMES` (30 names from `non_nlp_baseline.py`)
+- Added assertions: `vec.shape[0] == 30` and `len(STRUCTURAL_FEATURE_NAMES) == 30`
+
+READY — all reviewer gaps addressed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "uuid": "7b49c28b-a052-43e4-b486-99bd4ba232c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tkk3df5cXXsoBVRq2gaTyy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 339,
+      "cache_read_input_tokens": 73825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 339
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Task result
+
+_source line 103_
+
+All new functions present. Summary of changes:
+
+**P0-1: Inter-Annotator Agreement**
+- `_fleiss_kappa()` — manual implementation with formula citation (Fleiss 1971)
+- `compute_inter_annotator_agreement()` — handles 1/2/3+ annotators, κ ≥ 0.8 gate, warns but doesn't abort
+- Called in main() after gold load, before model evaluation
+- Result written to `inter_annotator_agreement` field in output JSON
+
+**P0-2: Bootstrap CIs + McNemar**
+- `_paired_bootstrap_ci()` — 1000 resamples, returns (mean_diff, ci_lower, ci_upper)
+- `_mcnemar_test()` — continuity-corrected, uses scipy.stats.chi2
+- `compute_pairwise_comparisons()` — all model pairs via `itertools.combinations`
+- All evaluate functions now return `pred_map` for McNemar input
+- Results written to `pairwise_comparisons` field in output JSON
+
+**Minor fix 1: LLM pseudo-probability**
+- Reliability diagram key changed from `"LLM-as-Judge"` to `"LLM-as-Judge (pseudo-probability)"`
+
+**Minor fix 2: Structural feature assertion**
+- Added `STRUCTURAL_FEATURE_NAMES` (30 names from `non_nlp_baseline.py`)
+- Added assertions: `vec.shape[0] == 30` and `len(STRUCTURAL_FEATURE_NAMES) == 30`
+
+READY — all reviewer gaps addressed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 395687,
+  "duration_api_ms": 379871,
+  "num_turns": 35,
+  "stop_reason": "end_turn",
+  "session_id": "13222614-c969-4796-8fbd-cc13c4d5d58b",
+  "total_cost_usd": 1.9171562499999997,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 62323,
+    "cache_read_input_tokens": 2020575,
+    "output_tokens": 20617,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 62323,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 387,
+        "cache_read_input_tokens": 73825,
+        "cache_creation_input_tokens": 339,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 339
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1665,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001745,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 36,
+      "outputTokens": 20617,
+      "cacheReadInputTokens": 2020575,
+      "cacheCreationInputTokens": 62323,
+      "webSearchRequests": 0,
+      "costUSD": 1.9154112499999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b1e188c0-2604-481a-8d25-5eb756987cde"
+}
+```
+
+</details>
+
+---

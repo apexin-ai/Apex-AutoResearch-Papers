@@ -1,0 +1,27 @@
+{
+  "exp_id": "feature-overlap-ablation",
+  "project": "agent_progress_probe",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T02:14:06.279Z",
+    "updated_at": "2026-05-15T02:16:05.975Z",
+    "spec": {
+      "command": "python src/analysis/feature_overlap_ablation.py",
+      "server": "bjb2-23165",
+      "data_path": "/root/autodl-tmp/agent_progress_probe/data + /root/autodl-tmp/openhands_data/",
+      "data_count": "SWE 54809 train, OH 150652 cross-agent",
+      "model_name": "GB/RF structural ablations",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/agent_progress_probe/artifacts/feature-overlap-ablation/ablation_results.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T02:14:27.113Z",
+    "notes": "Ablation results: no_all_lf (19 features) → RF in_domain=0.933 (-6.2pp), GB in_domain=0.952 (-4.4pp), RF cross_agent=0.460 (-45.2pp), GB cross_agent=0.566 (-40.2pp). cmd_rep features are most critical for cross-agent transfer. Results at artifacts/feature-overlap-ablation/ablation_results.json"
+  },
+  "timestamp": "2026-05-15T02:16:06.159490+00:00",
+  "trigger": "update_registry"
+}
