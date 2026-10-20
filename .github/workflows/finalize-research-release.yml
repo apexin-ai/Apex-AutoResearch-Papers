@@ -31,6 +31,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: unmatched-source-metadata
-          path: ${{ runner.temp }}/release-finalization/repo/unmatched-mirror-objects.json
+          path: |
+            ${{ runner.temp }}/release-finalization/repo/unmatched-indexed-assets.json
+            ${{ runner.temp }}/release-finalization/repo/unmatched-mirror-objects.json
           if-no-files-found: ignore
           retention-days: 7

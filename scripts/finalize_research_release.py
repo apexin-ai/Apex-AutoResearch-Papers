@@ -88,6 +88,7 @@ def main():
     (repo / 'MANUSCRIPT_EXPORTS.md').write_text('\n'.join(lines))
     with (repo / 'CONTENTS.md').open('a') as out: out.write('\n[Manuscript exports and revisions](MANUSCRIPT_EXPORTS.md) groups duplicate PDF files and links matching primary project assets.\n')
     rows_checked = 0
+    missing_indexed = []
     for path in manifests + snapshots:
         folder = path.parents[1]
         metadata = json.loads(path.read_text())
@@ -96,8 +97,14 @@ def main():
         with (folder / '08-index/asset-manifest.csv').open(encoding='utf-8-sig') as handle:
             for row in csv.DictReader(handle):
                 name = str((folder / row['output_path']).relative_to(repo))
-                assert name in tracked or name in directories or name + '.parts' in directories, 'Missing indexed asset: ' + name
+                if name not in tracked and name not in directories and name + '.parts' not in directories:
+                    missing_indexed.append({'manifest': str(path.relative_to(repo)), 'output_path': row['output_path'], 'release_path': name, 'archive_path': row['archive_path'], 'source_bytes': row['source_bytes']})
                 rows_checked += 1
+    if missing_indexed:
+        from collections import Counter
+        (repo / 'unmatched-indexed-assets.json').write_text(json.dumps(missing_indexed, indent=2) + '\n')
+        print(json.dumps({'missing_indexed_assets': len(missing_indexed), 'names': Counter(Path(r['release_path']).name for r in missing_indexed).most_common(20), 'first_paths': [r['release_path'] for r in missing_indexed[:20]]}), flush=True)
+        raise RuntimeError('Indexed asset paths are absent from the committed Git tree.')
     for entry in index:
         name = str((repo / 'traces' / entry['catalog']).resolve().relative_to(repo))
         assert name in tracked, 'Missing trace catalogue: ' + entry['project']
