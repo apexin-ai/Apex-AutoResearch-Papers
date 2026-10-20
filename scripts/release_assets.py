@@ -18,6 +18,10 @@ from contextlib import ExitStack
 from pathlib import Path
 
 
+class InvalidNestedArchive(ValueError):
+    pass
+
+
 ROOT = Path(__file__).resolve().parents[1]
 PDF_DIR = ROOT / "papers"
 OUT = ROOT / "paper-assets"
@@ -360,7 +364,12 @@ def sanitize_nested(archive, target):
         if reason:
             rows.append(dict(member_path=rel,source_bytes=info.size,output_bytes=0,status=reason,sha256=''));return
         destination=directory/safe_rel(rel)
-        size,details=sanitize_member(reader,info,destination);total+=size
+        try:size,details=sanitize_member(reader,info,destination)
+        except InvalidNestedArchive:
+            shutil.rmtree(destination.with_name(destination.name+'.contents'),ignore_errors=True)
+            rows.append(dict(member_path=rel,source_bytes=info.size,output_bytes=0,status='Invalid nested archive; original retained in S3',sha256=''))
+            return
+        total+=size
         rows.append(dict(member_path=rel,source_bytes=info.size,output_bytes=size,status='Sanitized extracted copy',sha256=details['sha256']))
     if zipfile.is_zipfile(archive):
         with zipfile.ZipFile(archive) as z:
@@ -377,7 +386,7 @@ def sanitize_nested(archive, target):
                 if not info.isdir():member(t,info)
     else:
         suffix=target.suffix.lower();opener={'.gz':gzip.open,'.bz2':bz2.open,'.xz':lzma.open}.get(suffix)
-        if opener is None:raise ValueError('Unsupported or invalid nested archive: '+target.name)
+        if opener is None:raise InvalidNestedArchive('Unsupported or invalid nested archive: '+target.name)
         class Reader:
             def extractfile(self,info):return opener(archive,'rb')
         m=SimpleNamespace(name=target.stem,size=archive.stat().st_size,isfile=lambda:True)
@@ -505,7 +514,12 @@ def collect(archive, repo, archive_key, metadata=None):
                     n=2
                     while target.with_name(target.stem+f'-archive-copy-{n}'+target.suffix).exists():n+=1
                     target=target.with_name(target.stem+f'-archive-copy-{n}'+target.suffix)
-                size,details=sanitize_member(tf,member,target);out=str(target.relative_to(p['_dir']))+(('.contents') if details and details.get('storage')=='sanitized-archive-contents' else '')
+                try:size,details=sanitize_member(tf,member,target)
+                except InvalidNestedArchive:
+                    shutil.rmtree(target.with_name(target.name+'.contents'),ignore_errors=True)
+                    p['_exclusions'].append(dict(member_path=member.name,source_bytes=member.size,reason='Invalid nested archive; original retained in S3'))
+                    continue
+                out=str(target.relative_to(p['_dir']))+(('.contents') if details and details.get('storage')=='sanitized-archive-contents' else '')
                 if category=='03-code':p['code_count']+=1;p['env_count']+=int(path.name.lower() in ENV_NAMES)
                 if category=='04-experiments':p['data_count']+=1
                 if category=='01-manuscript':p['tex_count']+=int(path.suffix.lower() in {'.tex','.bib','.bst','.sty','.cls'});p['bib_count']+=int(path.suffix.lower()=='.bib')

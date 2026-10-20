@@ -29,11 +29,14 @@ class ReleaseAssetTests(unittest.TestCase):
                 f.writestr('code/run.py','print("retained")')
                 f.writestr('.env','PRIVATE_DATA=secret')
                 f.writestr('config.json','{"api_key":"synthetic-sensitive-value"}')
+                f.writestr('invalid.zip','<!doctype html><title>Validating...</title>')
             _,info=a.sanitize_nested(path,root/'release.zip')
             self.assertEqual(info['storage'],'sanitized-archive-contents')
             out=root/'release.zip.contents'
             self.assertTrue((out/'code/run.py').exists());self.assertFalse((out/'.env').exists())
             self.assertNotIn('synthetic-sensitive-value',(out/'config.json').read_text())
+            self.assertFalse((out/'invalid.zip.contents').exists())
+            self.assertIn('Invalid nested archive',(out/'extraction-manifest.csv').read_text())
             with zipfile.ZipFile(root/'traversal.zip','w') as f:f.writestr('../../escape','bad')
             with self.assertRaises(ValueError):a.sanitize_nested(root/'traversal.zip',root/'out.zip')
             with gzip.open(root/'metrics.csv.gz','wb') as f:f.write(b'seed,score\n1,0.7\n')
@@ -47,6 +50,7 @@ class ReleaseAssetTests(unittest.TestCase):
               'workspace/projects/example/scripts/run.py':b'print("not executed")\n',
               'workspace/projects/example/.venv/ignored.py':b'ignored',
               'workspace/projects/example/.env':b'PRIVATE_DATA=secret',
+              'workspace/projects/example/artifacts/data/dataset.zip':b'<!doctype html><title>Validating...</title>',
               'workspace/projects/example/logs/chats/task.jsonl':json.dumps({'role':'assistant','content':{'api_key':'synthetic-sensitive-value','text':'retained evidence'}}).encode()+b'\n',
               'workspace/projects/example/docs/paper/main.pdf':pdf.getvalue(),
               'workspace/projects/second/results/metrics.csv':b'seed,score\n1,0.7\n',
@@ -64,7 +68,8 @@ class ReleaseAssetTests(unittest.TestCase):
                 text=f.extractfile(f.getmembers()[0]).read().decode()
                 self.assertNotIn('synthetic-sensitive-value',text);self.assertIn('retained evidence',text)
             exclusions=(project/'08-index/excluded-files.csv').read_text()
-            for marker in ['.venv','.env','Non-regular']:self.assertIn(marker,exclusions)
+            for marker in ['.venv','.env','Non-regular','dataset.zip','Invalid nested archive']:self.assertIn(marker,exclusions)
+            self.assertFalse((project/'04-experiments/source/artifacts/data/dataset.zip.contents').exists())
             self.assertFalse((project/'03-code/source/scripts/escape').exists())
 
 if __name__=='__main__':unittest.main()
