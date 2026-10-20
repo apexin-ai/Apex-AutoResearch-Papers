@@ -1,0 +1,295 @@
+{
+  "audit_date": "2026-05-19",
+  "total_claims": 47,
+  "verified": 38,
+  "inconsistent": [
+    {
+      "id": "INC-01",
+      "severity": "HIGH",
+      "locations": [
+        "abstract.tex:4 (\"ρ up to 0.50\")",
+        "introduction.tex:12 (\"ρ up to 0.50, AUROC up to 0.82\")",
+        "introduction.tex:33 (\"ρ up to 0.50\")",
+        "conclusion.tex:3 (\"ρ up to 0.50\")",
+        "introduction.tex:23 (fig_overview caption: \"ρ up to 0.50\")"
+      ],
+      "current_value": "ρ up to 0.50",
+      "correct_value": "ρ up to 0.48 (LLaMA CoNLL N=16 SJ 3-seed mean 0.474±0.009; single-seed max 0.484). Main table N=8 max: EM 0.451 on CoNLL Qwen.",
+      "source": "Table 1 (tab:quality_estimation), Table robustness (LLaMA CoNLL N=16), registry exp_017_llama_conll_n16_r1024 (SJ ρ=0.4836 single seed). No reported value reaches 0.50.",
+      "fix": "Change to \"ρ up to 0.48\" (includes N=16 appendix data) or \"ρ up to 0.45\" (N=8 primary results only). Must update in abstract, introduction (×2), conclusion, and fig_overview caption."
+    },
+    {
+      "id": "INC-02",
+      "severity": "LOW",
+      "locations": [
+        "experiments.tex:103 (\"Δ_oracle=13.1 pp\")",
+        "experiments.tex:89 (fig_selection_gap caption: \"+13.1 pp\")",
+        "experiments.tex:97 (\"13.0 pp of headroom\")",
+        "experiments.tex:171 (\"13.0 pp headroom\")"
+      ],
+      "current_value": "13.1 pp in decomposition and figure caption; 13.0 pp elsewhere",
+      "correct_value": "Table selection: Oracle 0.775 − Greedy 0.645 = 0.130 = 13.0 pp (2-seed mean). Exact value depends on rounding.",
+      "source": "Table selection (tab:selection)",
+      "fix": "Standardize to 13.0 pp everywhere, or note that 13.1 comes from a different protocol (e.g., single-seed 0.7798−0.6617=11.81 doesn't match either). Most likely 0.775−0.644=0.131≈13.1 from single-seed greedy 0.644. Recommend using 13 pp (integer) in text and 13.0 in table references."
+    },
+    {
+      "id": "INC-03",
+      "severity": "LOW",
+      "locations": [
+        "method.tex:62"
+      ],
+      "current_value": "\"SciERC greedy F1 appears as four values across tables (0.640, 0.644, 0.645, 0.650)\"",
+      "correct_value": "Entity construction table (tab:entity_construction) shows .646±.002 (3-seed mean), which is a 5th distinct value not listed.",
+      "source": "tab:entity_construction (experiments.tex:201)",
+      "fix": "Add .646 to the enumeration or reword: \"SciERC greedy F1 ranges from 0.640 to 0.650 across tables due to protocol variants\" to subsume all values including multi-seed means."
+    },
+    {
+      "id": "INC-04",
+      "severity": "MEDIUM",
+      "locations": [
+        "experiments.tex:89 (fig_selection_gap caption: \"Despite ρ up to 0.36\")"
+      ],
+      "current_value": "ρ up to 0.36",
+      "correct_value": "If the figure shows all 5 QE signals on SciERC, the max ρ is VC=0.379, not SJ=0.360. If it only shows signals used in MBR selection (SJ, FK, LP), then SJ=0.360≈0.36 is correct.",
+      "source": "Table 1 (tab:quality_estimation): VC ρ=.379 on SciERC",
+      "fix": "If figure includes VC bar, change to \"ρ up to 0.38\". If figure only shows MBR-compatible signals, add a note clarifying this subset. Verify by inspecting fig_selection_gap."
+    },
+    {
+      "id": "INC-05",
+      "severity": "MEDIUM",
+      "locations": [
+        "discussion.tex:6 (\"ρ=0.225 vs. Few-NERD ~0.5–0.7\")"
+      ],
+      "current_value": "ρ=0.225 (T=1.2 within-instance alignment)",
+      "correct_value": "Registry exp_026_T12: within_instance_rho_mean=0.2245, within_instance_rho_median=0.3152. Paper uses 0.225 (mean). But Table within_rho (appendix) reports median values for cross-dataset comparison (SciERC median=0.262, Few-NERD median=0.667).",
+      "source": "Registry exp_026_T12; appendix tab:within_rho",
+      "fix": "Either: (a) use median 0.315 for T=1.2 and compare with Few-NERD median 0.667 (consistent convention), or (b) explicitly note 'mean ρ=0.225' to distinguish from the medians reported elsewhere. Current implicit mixing of mean vs median is misleading."
+    }
+  ],
+  "needs_update": [
+    {
+      "id": "UPD-01",
+      "severity": "HIGH",
+      "locations": [
+        "experiments.tex:143 (\"Few-NERD N=16: +0.52 pp, p=0.003; Appendix app:n_scaling\")"
+      ],
+      "current_value": "+0.52 pp LP selection at N=16 on Few-NERD",
+      "issue": "The referenced Appendix section (app:n_scaling, appendix.tex line 968) contains only SciERC N-scaling data (tab:n_scaling_selection). No Few-NERD N=16 LP selection data exists in app:n_scaling. Registry exp_027_fewnerd_n16 shows LP_delta=+1.88pp but on a 5K subsample (n=5000), not the full test set (n=32,565). The +0.52pp value has no identifiable source in the paper or appendix.",
+      "fix": "Either: (a) add Few-NERD N=16 LP selection results to Appendix app:n_scaling with the full test set, or (b) correct the +0.52pp to match actual data, or (c) if the value comes from an unreported full-test-set experiment, add supporting data."
+    },
+    {
+      "id": "UPD-02",
+      "severity": "LOW",
+      "locations": [
+        "experiments.tex:213 (\"at N=16 on Few-NERD, Δ rises to +1.32 pp (seed-42; Appendix app:n_scaling)\")"
+      ],
+      "current_value": "+1.32 pp construction at N=16 on Few-NERD",
+      "issue": "This value matches registry (exp_entity_construction → n16_fair_cv → fewnerd_ner → cv_uniform_delta: +1.32pp), but Appendix app:n_scaling does not contain this data. The referenced section only has SciERC N-scaling tables.",
+      "fix": "Add Few-NERD N=16 construction results to Appendix app:n_scaling, or correct the appendix reference."
+    }
+  ],
+  "missing_source": [
+    {
+      "id": "SRC-01",
+      "severity": "LOW",
+      "locations": [
+        "method.tex:32 (\"mild negative dependence (−0.4% to −4.0%; Appendix app:fk_independence)\")"
+      ],
+      "current_value": "−0.4% to −4.0% FK dependence range",
+      "issue": "Appendix app:fk_independence (appendix.tex:93-117) reports FK means, 95% CIs, t-statistics, and split-half reliability, but does not report the specific −0.4% to −4.0% dependence magnitude range cited in the main text.",
+      "fix": "Add the dependence calculation to the appendix table or text, or remove the specific range from the main text."
+    }
+  ],
+  "verified_claims": [
+    {
+      "claim": "AUROC up to 0.82",
+      "locations": ["abstract.tex:4", "introduction.tex:12", "introduction.tex:33", "conclusion.tex:3"],
+      "source": "Table 1: EM CoNLL Qwen AUROC=.816, rounds to 0.82. WNUT-17 VC AUROC=.913 excluded (boundary-driven). Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "LP +1.39 pp on Few-NERD (p<0.001)",
+      "locations": ["introduction.tex:13", "introduction.tex:37", "experiments.tex:99", "experiments.tex:122", "experiments.tex:128", "experiments.tex:217", "appendix.tex:1259"],
+      "source": "Table fewnerd (tab:fewnerd), Table fewnerd_full (appendix), registry exp_fewnerd_s789_n8 (4-seed mean 1.38pp). All consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Entity construction +1.40 pp Few-NERD, +1.02 pp SciERC (multi-seed, p<0.005)",
+      "locations": ["abstract.tex:7", "introduction.tex:41", "discussion.tex:9", "conclusion.tex:4", "experiments.tex:204,212"],
+      "source": "Table entity_construction (tab:entity_construction). SciERC p=.004, Few-NERD p<.001. Both <0.005. Consistent across all locations.",
+      "status": "OK"
+    },
+    {
+      "claim": "Selective prediction +5–8 pp F1 at 80% coverage",
+      "locations": ["abstract.tex:4", "introduction.tex:34", "conclusion.tex:3", "experiments.tex:224"],
+      "source": "Registry exp_selective_prediction: SciERC +5.0pp, Few-NERD +6.2pp, CoNLL +8.4pp. Range 5.0–8.4 ≈ 5–8. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "AUPRC 0.70–0.92",
+      "locations": ["introduction.tex:34", "experiments.tex:224"],
+      "source": "Referenced in contribution list and prescriptive section. VC strongest. Not directly contradicted by any table.",
+      "status": "OK (not independently verified from raw data)"
+    },
+    {
+      "claim": "Instance degeneracy 13–87% across benchmarks",
+      "locations": ["introduction.tex:15"],
+      "source": "Few-NERD 13.8% (tab:fewnerd), CoNLL LLaMA N=16 86.4-86.7% (registry). Range 13.8–86.7% ≈ 13–87%. Acceptable rounding.",
+      "status": "OK"
+    },
+    {
+      "claim": "Degeneracy-LP correlation ρ=0.052, p=0.81, 23 configurations",
+      "locations": ["introduction.tex:38", "experiments.tex:132", "fig_degeneracy_scatter caption"],
+      "source": "Consistent across all three locations.",
+      "status": "OK"
+    },
+    {
+      "claim": "MBR utility ρ=0.52 (SJ median)",
+      "locations": ["introduction.tex:17", "discussion.tex:4", "related_work.tex:20"],
+      "source": "Degeneracy table (tab:degeneracy): Within-inst SJ ρ (median)=0.524. Rounds to 0.52. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "SciERC LP selection: +0.2 pp (p=0.29, 2-seed)",
+      "locations": ["introduction.tex:14", "experiments.tex:97"],
+      "source": "Table selection: LP 0.647 − Greedy 0.645 = +0.2pp, p=.29. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "SciERC LP 3-seed: +0.04±0.48 pp",
+      "locations": ["experiments.tex:103", "experiments.tex:216"],
+      "source": "Multi-seed selection data. Consistent between decomposition and prescriptive sections.",
+      "status": "OK"
+    },
+    {
+      "claim": "SciERC degeneracy 17.8% (8B), 10.4% (4B)",
+      "locations": ["experiments.tex:103", "experiments.tex:172", "appendix degeneracy table"],
+      "source": "Registry exp_012_rerun_1024: degen=0.1777. Registry exp_qwen3_4b_scierc: degen=0.104. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "CoNLL degeneracy 48.4%",
+      "locations": ["experiments.tex:103,120", "introduction.tex:15"],
+      "source": "Table fewnerd (tab:fewnerd), registry exp_002_conll_n16 (degen=0.4844). Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Few-NERD degeneracy 13.8%",
+      "locations": ["experiments.tex:122,129", "appendix.tex:1248"],
+      "source": "Table fewnerd (tab:fewnerd). Consistent. Note: registry seed-specific values (12.1%, 13.1%) average to ~12.7% for Qwen seeds 123+456; the 13.8% includes seed-42.",
+      "status": "OK"
+    },
+    {
+      "claim": "QE table values (SciERC VC .379, SJ .360, FK .267, EM .295, LP .205)",
+      "locations": ["experiments.tex:33-40 (Table 1)", "experiments.tex:46"],
+      "source": "Registry exp_012_rerun_1024: SJ=0.3599, FK=0.2665, LP=0.2052, EM=0.2945 (all match after rounding). VC=.379 from multi-seed table (.386±.019, seed-42 within range). Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Temperature T=1.2 degeneracy 14.9%",
+      "locations": ["discussion.tex:6"],
+      "source": "Appendix tab:t_degeneracy: T=1.2 Degen%=14.9. Registry exp_026_T12: 0.1493. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "ECE 0.069–0.096 (NER calibration)",
+      "locations": ["experiments.tex:151", "appendix.tex:124,129"],
+      "source": "Appendix fig_reliability caption and text: NER ECE 0.069–0.096. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Kendall's W=1.0 (NER N=8, 3 seeds)",
+      "locations": ["experiments.tex:150", "appendix.tex:1003"],
+      "source": "Appendix tab:ranking-stability: NER N=8 W=1.000 for both Qwen and LLaMA. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "LoRA rank=8 degeneracy 7.2%",
+      "locations": ["experiments.tex:175"],
+      "source": "Not independently verified from registry, but internally consistent with the narrative.",
+      "status": "OK (not registry-verified)"
+    },
+    {
+      "claim": "Hidden state probes: ρ=0.388 vs LP 0.283, +37%, gap closure −5.1%",
+      "locations": ["experiments.tex:180", "appendix.tex:459,465-466"],
+      "source": "Appendix tab:hidden_probe: MLP ρ=.388±.013, LP ρ=.283, Gap% −5.1 vs +4.8. (.388-.283)/.283=+37%. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Verbalized confidence: mean 8.58/10 SciERC, 9.24/10 CoNLL",
+      "locations": ["limitations.tex:10", "appendix.tex:1200,1207"],
+      "source": "Appendix tab:verbconf: VerbConf mean score SciERC 8.58/10, CoNLL 9.24/10. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "SciERC n=529 (from 551), CoNLL n=2,756 (from 3,453)",
+      "locations": ["method.tex:56", "experiments.tex:9"],
+      "source": "Registry exp_012: n_valid=529, n_instances=551. Registry exp_002_conll_n16: n_valid=2756, n_instances=3453. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Few-NERD: 37,648 instances, 8 entity types, ≈75% F1",
+      "locations": ["experiments.tex:10"],
+      "source": "Registry exp_021 seeds: instance_count=37648. Greedy F1≈0.748–0.789 depending on seed/epoch. 0.748≈75%. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "LLaMA Few-NERD: LP +0.36pp, VC −2.39pp, SJ −0.52pp",
+      "locations": ["appendix.tex:230-231 (cross_selection text)"],
+      "source": "Registry exp_llama_fewnerd_inference: lp_delta=0.36, signal_ranking confirms. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Conditional +2.47pp on SciERC favorable subset",
+      "locations": ["experiments.tex:134"],
+      "source": "Appendix tab:conditional_decomp: SciERC LP Δ=+2.47pp, CI [+0.30, +4.70]. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "LP-alignment gating: dev scores SciERC 0.167, CoNLL 0.065, Few-NERD 0.516, threshold 0.3",
+      "locations": ["experiments.tex:221"],
+      "source": "Registry exp_lp_alignment_gating: threshold=0.3, accuracy=3/3. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "5-epoch Few-NERD raises degeneracy to 31%",
+      "locations": ["experiments.tex:129"],
+      "source": "Appendix tab:epoch_confound: 5-epoch degen=31.3%. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "SciERC epoch curve: degen 6.4% → 17.8% → 47.8%",
+      "locations": ["appendix.tex:1407,1425"],
+      "source": "Registry exp_029a: degen=0.064 (3-epoch), exp_012: 0.1777 (5-epoch), exp_029b: 0.478 (10-epoch). Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Selection table values (SciERC 2-seed)",
+      "locations": ["experiments.tex:69-83 (Table 2)"],
+      "source": "Oracle 0.775, Greedy 0.645, LP 0.647, SJ 0.646, FK 0.646, EM 0.637, VC 0.623, Random 0.610. Internally consistent with text references.",
+      "status": "OK"
+    },
+    {
+      "claim": "SJ normalizer |Δρ|≤0.009",
+      "locations": ["method.tex:40"],
+      "source": "Appendix tab:sj_normalizer: max |Δρ|=0.009 (SciERC LLaMA). Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "LP 50× more seed-stable (σ=0.04 vs SJ 2.02pp)",
+      "locations": ["experiments.tex:128"],
+      "source": "2.02/0.04=50.5≈50×. Consistent.",
+      "status": "OK"
+    },
+    {
+      "claim": "Scale ablation: mean |Δρ|=0.042",
+      "locations": ["experiments.tex:171"],
+      "source": "Table scale_ablation: |Δ| values are .014, .018, .062, .059. Mean=(0.014+0.018+0.062+0.059)/4=0.0383. Reported as 0.042.",
+      "status": "MINOR DISCREPANCY — computed mean is 0.038, reported 0.042. Difference may be due to including additional signals not shown in the table."
+    }
+  ],
+  "summary": {
+    "critical_issues": 2,
+    "description": "Two high-severity issues: (1) 'ρ up to 0.50' is unsupported — no reported value reaches 0.50 (max ~0.48); this appears in 5 locations including abstract and conclusion. (2) Few-NERD N=16 LP selection '+0.52pp' references Appendix app:n_scaling which contains only SciERC data — the claim has no identifiable source. Three medium/low issues: oracle headroom rounding (13.0 vs 13.1), fig_selection_gap caption ρ discrepancy, and mean vs median convention mixing for within-instance alignment. One missing source: FK dependence range in method text."
+  }
+}

@@ -1,0 +1,441 @@
+\begin{thebibliography}{54}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Aggarwal et~al.(2023)Aggarwal, Madaan, Yang, and
+  Mausam}]{aggarwal2023adaptive}
+Pranjal Aggarwal, Aman Madaan, Yiming Yang, and Mausam. 2023.
+\newblock \href {https://arxiv.org/abs/2305.11860} {Let's sample step by step:
+  Adaptive-consistency for efficient reasoning and coding with {LLMs}}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP 2023)}.
+
+\bibitem[{Angelopoulos and Bates(2023)}]{angelopoulos2023conformal}
+Anastasios~N. Angelopoulos and Stephen Bates. 2023.
+\newblock Conformal prediction: A gentle introduction.
+\newblock \emph{Foundations and Trends in Machine Learning}, 16(4):494--591.
+
+\bibitem[{Berg-Kirkpatrick et~al.(2012)Berg-Kirkpatrick, Burkett, and
+  Klein}]{bergkirkpatrick2012empirical}
+Taylor Berg-Kirkpatrick, David Burkett, and Dan Klein. 2012.
+\newblock An empirical investigation of statistical significance in {NLP}.
+\newblock In \emph{Proceedings of the 2012 Joint Conference on Empirical
+  Methods in Natural Language Processing and Computational Natural Language
+  Learning (EMNLP-CoNLL)}, pages 995--1005. Association for Computational
+  Linguistics.
+
+\bibitem[{Brown et~al.(2024)Brown, Juravsky, Ehrlich, Clark, Le, Ré, and
+  Mirhoseini}]{brown2024monkeys}
+Bradley Brown, Jordan Juravsky, Ryan Ehrlich, Ronald Clark, Quoc~V. Le,
+  Christopher Ré, and Azalia Mirhoseini. 2024.
+\newblock \href {https://arxiv.org/abs/2407.21787} {Large language monkeys:
+  Scaling inference compute with repeated sampling}.
+\newblock \emph{arXiv preprint arXiv:2407.21787}.
+
+\bibitem[{Chen et~al.(2024{\natexlab{a}})Chen, Phang, Parrish, Padmakumar,
+  Zhao, Bowman, and Cho}]{chen2023twofailures}
+Angelica Chen, Jason Phang, Alicia Parrish, Vishakh Padmakumar, Chen Zhao,
+  Samuel~R. Bowman, and Kyunghyun Cho. 2024{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2305.14279} {Two failures of
+  self-consistency in the multi-step reasoning of {LLMs}}.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Chen et~al.(2024{\natexlab{b}})Chen, Aksitov, Alon, Ren, Xiao, Yin,
+  Prakash, Sutton, Wang, and Zhou}]{chen2024usc}
+Xinyun Chen, Renat Aksitov, Uri Alon, Jie Ren, Kefan Xiao, Pengcheng Yin,
+  Sushant Prakash, Charles Sutton, Xuezhi Wang, and Denny Zhou.
+  2024{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2311.17311} {Universal self-consistency
+  for large language model generation}.
+\newblock In \emph{ICML 2024 Workshop on In-Context Learning}.
+
+\bibitem[{Cobbe et~al.(2021)Cobbe, Kosaraju, Bavarian, Chen, Jun, Kaiser,
+  Plappert, Tworek, Hilton, Nakano, Hesse, and Schulman}]{cobbe2021verifiers}
+Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz
+  Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano,
+  Christopher Hesse, and John Schulman. 2021.
+\newblock \href {https://arxiv.org/abs/2110.14168} {Training verifiers to solve
+  math word problems}.
+\newblock \emph{arXiv preprint arXiv:2110.14168}.
+
+\bibitem[{Dembczy{\'n}ski et~al.(2011)Dembczy{\'n}ski, Waegeman, Cheng, and
+  H{\"u}llermeier}]{dembczynski2011exact}
+Krzysztof~J. Dembczy{\'n}ski, Willem Waegeman, Weiwei Cheng, and Eyke
+  H{\"u}llermeier. 2011.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2011/hash/71ad16ad2c4d81f348082ff6c4b20768-Abstract.html}
+  {An exact algorithm for {F}-measure maximization}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~24, pages 1404--1412.
+
+\bibitem[{Derczynski et~al.(2017)Derczynski, Nichols, Erp, and
+  Limsopatham}]{derczynski2017wnut}
+Leon Derczynski, Eric Nichols, Marieke~van Erp, and Nut Limsopatham. 2017.
+\newblock \href {https://aclanthology.org/W17-4418/} {Results of the wnut2017
+  shared task on novel and emerging entity recognition}.
+\newblock In \emph{Proceedings of the 3rd Workshop on Noisy User-generated Text
+  (W-NUT 2017)}.
+
+\bibitem[{Desai and Durrett(2020)}]{desai2020calibration}
+Shrey Desai and Greg Durrett. 2020.
+\newblock \href {https://aclanthology.org/2020.emnlp-main.21/} {Calibration of
+  pre-trained transformers}.
+\newblock In \emph{Proceedings of the 2020 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 295--302.
+
+\bibitem[{Ding et~al.(2021)Ding, Xu, Chen, Wang, Han, Xie, Zheng, and
+  Liu}]{ding2021fewnerd}
+Ning Ding, Guangwei Xu, Yulin Chen, Xiaobin Wang, Xu~Han, Pengjun Xie, Hai-Tao
+  Zheng, and Zhiyuan Liu. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.248} {Few-{NERD}: A
+  few-shot named entity recognition dataset}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 3198--3213.
+
+\bibitem[{Dong et~al.(2024)Dong, Ruan, Cai, Lai, Xu, Zhao, and
+  Chen}]{dong2024xgrammar}
+Yixin Dong, Charlie~F. Ruan, Yaxing Cai, Ruihang Lai, Ziyi Xu, Yilong Zhao, and
+  Tianqi Chen. 2024.
+\newblock \href {https://arxiv.org/abs/2411.15100} {{XGrammar}: Flexible and
+  efficient structured generation engine for large language models}.
+\newblock \emph{arXiv preprint arXiv:2411.15100}.
+
+\bibitem[{Eikema and Aziz(2020)}]{eikema2020map}
+Bryan Eikema and Wilker Aziz. 2020.
+\newblock \href {https://aclanthology.org/2020.coling-main.398/} {Is {MAP}
+  decoding all you need? {T}he inadequacy of the mode in neural machine
+  translation}.
+\newblock In \emph{Proceedings of the 28th International Conference on
+  Computational Linguistics (COLING)}, pages 4506--4520.
+
+\bibitem[{Eikema and Aziz(2022)}]{eikema2022sampling}
+Bryan Eikema and Wilker Aziz. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.emnlp-main.754}
+  {Sampling-based approximations to minimum {B}ayes risk decoding for neural
+  machine translation}.
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing}, pages 10978--10993.
+
+\bibitem[{Eikema et~al.(2025)Eikema, Rutkiewicz, and
+  Giulianelli}]{eikema2025structured}
+Bryan Eikema, Anna Rutkiewicz, and Mario Giulianelli. 2025.
+\newblock \href {https://arxiv.org/abs/2510.20700} {Structure-conditional
+  minimum {B}ayes risk decoding}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Farquhar et~al.(2024)Farquhar, Kossen, Kuhn, and
+  Gal}]{farquhar2024detecting}
+Sebastian Farquhar, Jannik Kossen, Lorenz Kuhn, and Yarin Gal. 2024.
+\newblock \href {https://doi.org/10.1038/s41586-024-07421-0} {Detecting
+  hallucinations in large language models using semantic entropy}.
+\newblock \emph{Nature}, 630:625--630.
+
+\bibitem[{Fleiss(1971)}]{fleiss1971agreement}
+Joseph~L. Fleiss. 1971.
+\newblock \href {https://doi.org/10.1037/h0031619} {Measuring nominal scale
+  agreement among many raters.}
+\newblock \emph{Psychological Bulletin}.
+
+\bibitem[{Freitag et~al.(2022)Freitag, Grangier, Tan, and
+  Liang}]{freitag2022high}
+Markus Freitag, David Grangier, Qijun Tan, and Bowen Liang. 2022.
+\newblock \href {https://doi.org/10.1162/tacl_a_00491} {High quality rather
+  than high model probability: Minimum {B}ayes risk decoding with neural
+  metrics}.
+\newblock \emph{Transactions of the Association for Computational Linguistics},
+  10:811--825.
+
+\bibitem[{Gao et~al.(2023)Gao, Schulman, and Hilton}]{gao2023scaling}
+Leo Gao, John Schulman, and Jacob Hilton. 2023.
+\newblock \href {https://proceedings.mlr.press/v202/gao23h.html} {Scaling laws
+  for reward model overoptimization}.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Geifman and El-Yaniv(2017)}]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+\newblock \href {https://arxiv.org/abs/1705.08500} {Selective classification
+  for deep neural networks}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~30.
+
+\bibitem[{Guo et~al.(2017)Guo, Pleiss, Sun, and
+  Weinberger}]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q. Weinberger. 2017.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{Proceedings of the 34th International Conference on Machine
+  Learning}, pages 1321--1330.
+
+\bibitem[{Huang et~al.(2024)Huang, Chen, Mishra, Zheng, Yu, Song, and
+  Zhou}]{huang2024large}
+Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu~Steven Zheng, Adams~Wei Yu,
+  Xinying Song, and Denny Zhou. 2024.
+\newblock \href {https://openreview.net/forum?id=IkmD3fKBPQ} {Large language
+  models cannot self-correct reasoning yet}.
+\newblock In \emph{Proceedings of the Twelfth International Conference on
+  Learning Representations (ICLR)}.
+
+\bibitem[{Jinnai et~al.(2024)Jinnai, Morimura, Honda, Ariu, and
+  Abe}]{jinnai2024mbr}
+Yuu Jinnai, Tetsuro Morimura, Ukyo Honda, Kaito Ariu, and Kenshi Abe. 2024.
+\newblock \href {https://arxiv.org/abs/2311.05263} {Model-based minimum {B}ayes
+  risk decoding for text generation}.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Kadavath et~al.(2022)Kadavath, Conerly, Askell, Henighan, Drain,
+  Perez, Schiefer, Hatfield-Dodds, DasSarma, Tran-Johnson, Johnston, El-Showk,
+  Jones, Elhage, Hume, Chen, Bai, Bowman, Fort, Ganguli, Hernandez, Jacobson,
+  Kernion, Kravec, Lovitt, Ndousse, Olsson, Ringer, Amodei, Brown, Clark,
+  Joseph, Mann, McCandlish, Olah, and Kaplan}]{kadavath2022language}
+Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan
+  Perez, Nicholas Schiefer, Zac Hatfield-Dodds, Nova DasSarma, Eli
+  Tran-Johnson, Scott Johnston, Sheer El-Showk, Andy Jones, Nelson Elhage,
+  Tristan Hume, Anna Chen, Yuntao Bai, Sam Bowman, Stanislav Fort, and 17
+  others. 2022.
+\newblock \href {https://arxiv.org/abs/2207.05221} {Language models (mostly)
+  know what they know}.
+\newblock \emph{arXiv preprint arXiv:2207.05221}.
+
+\bibitem[{Kang et~al.(2025)Kang, Zhao, and Song}]{kang2025selfcertainty}
+Zhewei Kang, Xuandong Zhao, and Dawn Song. 2025.
+\newblock \href {https://arxiv.org/abs/2502.18581} {Scalable best-of-n
+  selection for large language models via self-certainty}.
+\newblock In \emph{Advances in Neural Information Processing Systems 38
+  (NeurIPS)}.
+
+\bibitem[{Kuhn et~al.(2023)Kuhn, Gal, and Farquhar}]{kuhn2023semantic}
+Lorenz Kuhn, Yarin Gal, and Sebastian Farquhar. 2023.
+\newblock \href {https://arxiv.org/abs/2302.09664} {Semantic uncertainty:
+  Linguistic invariances for uncertainty estimation in natural language
+  generation}.
+\newblock In \emph{Proceedings of the Eleventh International Conference on
+  Learning Representations (ICLR 2023)}.
+
+\bibitem[{Kumar and Byrne(2004)}]{kumar2004minimum}
+Shankar Kumar and William Byrne. 2004.
+\newblock \href {https://aclanthology.org/N04-1022/} {Minimum {B}ayes-risk
+  decoding for statistical machine translation}.
+\newblock In \emph{Proceedings of the Human Language Technology Conference of
+  the North {A}merican Chapter of the Association for Computational
+  Linguistics: {HLT}-{NAACL} 2004}, pages 169--176, Boston, Massachusetts, USA.
+  Association for Computational Linguistics.
+
+\bibitem[{Landesberg(2026)}]{landesberg2026bon}
+Eddie Landesberg. 2026.
+\newblock When {LLM} judge scores look good but best-of-{N} decisions fail.
+\newblock \emph{arXiv preprint arXiv:2603.12520}.
+
+\bibitem[{Li et~al.(2026)Li, Qian, and Mou}]{li2026rewardtail}
+Muheng Li, Jian Qian, and Wenlong Mou. 2026.
+\newblock Predicting and improving test-time scaling laws via reward
+  tail-guided search.
+\newblock \emph{arXiv preprint arXiv:2602.01485}.
+
+\bibitem[{Li et~al.(2023)Li, Lin, Zhang, Fu, Chen, Lou, and
+  Chen}]{li2023stepaware}
+Yifei Li, Zeqi Lin, Shizhuo Zhang, Qiang Fu, Bei Chen, Jian-Guang Lou, and
+  Weizhu Chen. 2023.
+\newblock \href {https://arxiv.org/abs/2206.02336} {Making large language
+  models better reasoners with step-aware verifier}.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Lightman et~al.(2024)Lightman, Kosaraju, Burda, Edwards, Baker, Lee,
+  Leike, Schulman, Sutskever, and Cobbe}]{lightman2024verify}
+Hunter Lightman, Vineet Kosaraju, Yura Burda, Harri Edwards, Bowen Baker, Teddy
+  Lee, Jan Leike, John Schulman, Ilya Sutskever, and Karl Cobbe. 2024.
+\newblock \href {https://arxiv.org/abs/2305.20050} {Let's verify step by step}.
+\newblock In \emph{Proceedings of the Twelfth International Conference on
+  Learning Representations (ICLR 2024)}.
+
+\bibitem[{Lin et~al.(2022)Lin, Hilton, and Evans}]{lin2022teaching}
+Stephanie Lin, Jacob Hilton, and Owain Evans. 2022.
+\newblock \href {https://arxiv.org/abs/2205.14334} {Teaching models to express
+  their uncertainty in words}.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Luan et~al.(2018)Luan, He, Ostendorf, and
+  Hajishirzi}]{luan2018scierc}
+Yi~Luan, Luheng He, Mari Ostendorf, and Hannaneh Hajishirzi. 2018.
+\newblock \href {https://doi.org/10.18653/v1/D18-1360} {Multi-task
+  identification of entities, relations, and coreference for scientific
+  knowledge graph construction}.
+\newblock In \emph{Proceedings of the 2018 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
+  Alon, Dziri, Prabhumoye, Yang, Gupta, Majumder, Hermann, Welleck,
+  Yazdanbakhsh, and Clark}]{madaan2023selfrefine}
+Aman Madaan, Niket Tandon, Prakhar Gupta, Skyler Hallinan, Luyu Gao, Sarah
+  Wiegreffe, Uri Alon, Nouha Dziri, Shrimai Prabhumoye, Yiming Yang, Shashank
+  Gupta, Bodhisattwa~Prasad Majumder, Katherine Hermann, Sean Welleck, Amir
+  Yazdanbakhsh, and Peter Clark. 2023.
+\newblock Self-refine: Iterative refinement with self-feedback.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Malinin and Gales(2021)}]{malinin2021uncertainty}
+Andrey Malinin and Mark Gales. 2021.
+\newblock Uncertainty estimation in autoregressive structured prediction.
+\newblock In \emph{Proceedings of the Ninth International Conference on
+  Learning Representations}.
+
+\bibitem[{Muennighoff et~al.(2025)Muennighoff, Yang, Shi, Li, Fei-Fei,
+  Hajishirzi, Zettlemoyer, Liang, Cand{\`e}s, and
+  Hashimoto}]{muennighoff2025s1}
+Niklas Muennighoff, Zitong Yang, Weijia Shi, Xiang~Lisa Li, Li~Fei-Fei,
+  Hannaneh Hajishirzi, Luke Zettlemoyer, Percy Liang, Emmanuel Cand{\`e}s, and
+  Tatsunori Hashimoto. 2025.
+\newblock \href {https://arxiv.org/abs/2501.19393} {s1: Simple test-time
+  scaling}.
+\newblock In \emph{Proceedings of the 2025 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{M{\"u}ller and Sennrich(2021)}]{muller2021understanding}
+Mathias M{\"u}ller and Rico Sennrich. 2021.
+\newblock \href {https://doi.org/10.18653/v1/2021.acl-long.22} {Understanding
+  the properties of minimum {B}ayes risk decoding in neural machine
+  translation}.
+\newblock In \emph{Proceedings of the 59th Annual Meeting of the Association
+  for Computational Linguistics and the 11th International Joint Conference on
+  Natural Language Processing (Volume 1: Long Papers)}, pages 259--272, Online.
+  Association for Computational Linguistics.
+
+\bibitem[{Platt(1999)}]{platt1999probabilistic}
+John~C. Platt. 1999.
+\newblock Probabilistic outputs for support vector machines and comparisons to
+  regularized likelihood methods.
+\newblock In \emph{Advances in Large Margin Classifiers}, pages 61--74. MIT
+  Press.
+
+\bibitem[{Ratinov and Roth(2009)}]{ratinov2009design}
+Lev Ratinov and Dan Roth. 2009.
+\newblock Design challenges and misconceptions in named entity recognition.
+\newblock In \emph{Proceedings of the Thirteenth Conference on Computational
+  Natural Language Learning (CoNLL)}, pages 147--155. Association for
+  Computational Linguistics.
+
+\bibitem[{Sang and Meulder(2003)}]{tjongkimsang2003conll}
+Erik F. Tjong~Kim Sang and Fien~De Meulder. 2003.
+\newblock \href {https://aclanthology.org/W03-0419/} {Introduction to the
+  {CoNLL}-2003 shared task: Language-independent named entity recognition}.
+\newblock In \emph{Proceedings of the Seventh Conference on Computational
+  Natural Language Learning (CoNLL 2003)}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and
+  Yao}]{shinn2023reflexion}
+Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu
+  Yao. 2023.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~36.
+
+\bibitem[{Snell et~al.(2025)Snell, Lee, Xu, and Kumar}]{snell2025scaling}
+Charlie Snell, Jaehoon Lee, Kelvin Xu, and Aviral Kumar. 2025.
+\newblock \href {https://arxiv.org/abs/2408.03314} {Scaling {LLM} test-time
+  compute optimally can be more effective than scaling parameters for
+  reasoning}.
+\newblock In \emph{Proceedings of the International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Taubenfeld et~al.(2025)Taubenfeld, Sheffer, Ofek, Feder, Goldstein,
+  Gekhman, and Yona}]{taubenfeld2025cisc}
+Amir Taubenfeld, Tom Sheffer, Eran Ofek, Amir Feder, Ariel Goldstein, Zorik
+  Gekhman, and Gal Yona. 2025.
+\newblock \href {https://doi.org/10.18653/v1/2025.findings-acl.1030}
+  {Confidence improves self-consistency in llms}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL 2025}.
+
+\bibitem[{Thirukovalluru et~al.(2024)Thirukovalluru, Huang, and
+  Dhingra}]{thirukovalluru2024atomic}
+Raghuveer Thirukovalluru, Yukun Huang, and Bhuwan Dhingra. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.emnlp-main.706} {Atomic
+  self-consistency for better long form generations}.
+\newblock In \emph{Proceedings of the 2024 Conference on Empirical Methods in
+  Natural Language Processing}.
+
+\bibitem[{Tian et~al.(2023)Tian, Mitchell, Zhou, Sharma, Rafailov, Yao, Finn,
+  and Manning}]{tian2023calibration}
+Katherine Tian, Eric Mitchell, Allan Zhou, Archit Sharma, Rafael Rafailov,
+  Huaxiu Yao, Chelsea Finn, and Christopher~D. Manning. 2023.
+\newblock Just ask for calibration: Strategies for eliciting calibrated
+  confidence scores from language models fine-tuned with human feedback.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 5433--5442. Association for
+  Computational Linguistics.
+
+\bibitem[{Wang et~al.(2023)Wang, Wei, Schuurmans, Le, Chi, Narang, Chowdhery,
+  and Zhou}]{wang2023selfconsistency}
+Xuezhi Wang, Jason Wei, Dale Schuurmans, Quoc Le, Ed~Chi, Sharan Narang,
+  Aakanksha Chowdhery, and Denny Zhou. 2023.
+\newblock \href {https://arxiv.org/abs/2203.11171} {Self-consistency improves
+  chain of thought reasoning in language models}.
+\newblock In \emph{Proceedings of the Eleventh International Conference on
+  Learning Representations (ICLR 2023)}.
+
+\bibitem[{Willard and Louf(2023)}]{willard2023guided}
+Brandon~T. Willard and Rémi Louf. 2023.
+\newblock \href {https://arxiv.org/abs/2307.09702} {Efficient guided generation
+  for large language models}.
+\newblock \emph{arXiv preprint arXiv:2307.09702}.
+
+\bibitem[{Xiao et~al.(2022)Xiao, Liang, Bhatt, Neiswanger, Salakhutdinov, and
+  Morency}]{xiao2022uncertainty}
+Yuxin Xiao, Paul~Pu Liang, Umang Bhatt, Willie Neiswanger, Ruslan
+  Salakhutdinov, and Louis-Philippe Morency. 2022.
+\newblock Uncertainty quantification with pre-trained language models: A
+  large-scale empirical analysis.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2022}.
+
+\bibitem[{Xie et~al.(2023)Xie, Li, Zhang, Zhang, Liu, and
+  Wang}]{xie2023zeroshot}
+Tingyu Xie, Qi~Li, Jian Zhang, Yan Zhang, Zuozhu Liu, and Hongwei Wang. 2023.
+\newblock \href {https://doi.org/10.18653/v1/2023.emnlp-main.493} {Empirical
+  study of zero-shot {NER} with {ChatGPT}}.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}, pages 7935--7956. Association for
+  Computational Linguistics.
+
+\bibitem[{Xie et~al.(2024)Xie, Li, Zhang, Liu, and Wang}]{xie2024selfimproving}
+Tingyu Xie, Qi~Li, Yan Zhang, Zuozhu Liu, and Hongwei Wang. 2024.
+\newblock Self-improving for zero-shot named entity recognition with large
+  language models.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}.
+
+\bibitem[{Yao et~al.(2026)Yao, Nédellec, Xia, and Bossy}]{yao2026consistency}
+Xinzhi Yao, Claire Nédellec, Jingbo Xia, and Robert Bossy. 2026.
+\newblock \href {https://doi.org/10.1186/s44342-025-00063-2}
+  {Consistency–accuracy correlation in hard-prompted llms for entity and
+  relation extraction: empirical findings from plant-health data}.
+\newblock \emph{Genomics \& Informatics}.
+
+\bibitem[{Yee et~al.(2019)Yee, Dauphin, and Auli}]{yee2019noisy}
+Kyra Yee, Yann Dauphin, and Michael Auli. 2019.
+\newblock \href {https://arxiv.org/abs/1908.05731} {Simple and effective noisy
+  channel modeling for neural machine translation}.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing and the 9th International Joint Conference on
+  Natural Language Processing (EMNLP-IJCNLP)}.
+
+\bibitem[{Yun et~al.(2025)Yun, An, Wang, Peng, and Shang}]{yun2025price}
+Longfei Yun, Chenyang An, Zilong Wang, Letian Peng, and Jingbo Shang. 2025.
+\newblock \href {https://aclanthology.org/2025.findings-emnlp.836/} {The price
+  of format: Diversity collapse in {LLMs}}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EMNLP 2025}.
+
+\bibitem[{Zheng et~al.(2024)Zheng, Zhang, Zhang, Ye, and
+  Luo}]{zheng2024llamafactory}
+Yaowei Zheng, Richong Zhang, Junhao Zhang, Yanhan Ye, and Zheyan Luo. 2024.
+\newblock \href {https://doi.org/10.18653/v1/2024.acl-demos.38}
+  {{L}lama{F}actory: Unified efficient fine-tuning of 100+ language models}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics (Volume 3: System Demonstrations)}, pages
+  400--410.
+
+\end{thebibliography}

@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_024_claim_audit",
+  "project": "struct_self_consist_ie",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:54:36.291Z",
+    "updated_at": "2026-05-17T10:55:08.244Z",
+    "hypothesis": "Systematic cross-chapter numerical consistency audit: verify all quantitative claims in paper against source experiment data, catch stale values and cross-reference errors before submission.",
+    "conclusion": "success",
+    "metrics": {
+      "consistent": 97,
+      "errors": 1,
+      "warnings": 5,
+      "old_residuals_found": 0
+    },
+    "spec": {
+      "checkpoint_path": "artifacts/exp_024_claim_audit/audit_report.md",
+      "log_path": "N/A",
+      "command": "CPU-only paper audit",
+      "server": "local",
+      "data_path": "docs/paper/",
+      "data_count": 0,
+      "model_name": "N/A",
+      "seed": 0
+    },
+    "completed_at": "2026-05-17T10:55:08.244Z"
+  },
+  "timestamp": "2026-05-17T10:55:08.477144+00:00",
+  "trigger": "update_registry"
+}

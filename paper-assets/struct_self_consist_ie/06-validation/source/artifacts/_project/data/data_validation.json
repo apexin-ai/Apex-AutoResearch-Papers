@@ -1,0 +1,84 @@
+{
+  "exp_027_fewnerd_n16": {
+    "total_lines": 5000,
+    "n_with_gold": 4351,
+    "n_without_gold": 649,
+    "n_samples": 16,
+    "id_range": [
+      "fewnerd_test_07296",
+      "fewnerd_test_25907"
+    ],
+    "greedy_f1": 0.7926360352662445,
+    "greedy_precision": 0.7937767405678724,
+    "greedy_recall": 0.7914986037852932
+  },
+  "full_fewnerd_test": {
+    "total_lines": 37648,
+    "n_with_gold": 32565,
+    "n_samples": 8,
+    "greedy_f1": 0.791313739980672,
+    "greedy_precision": 0.7920628187752822,
+    "greedy_recall": 0.7905660767022573
+  },
+  "diagnosis": {
+    "n_4351_reason": "subset: exp_027 has 5000 total lines, 4351 after gold_filter",
+    "f1_0_7926_reason": "greedy F1 on this subset, not full test set (full: 0.7913)",
+    "n_samples_exp027": 16,
+    "n_samples_full": 8,
+    "is_code_bug": false,
+    "is_data_subset": true,
+    "subset_id_range": [
+      6,
+      37627
+    ],
+    "full_test_n_with_gold": 32565,
+    "issues": [
+      "Uses 4351/32565 instances (subset)",
+      "N_samples mismatch: 16 vs 8"
+    ]
+  },
+  "config_validation": {
+    "Qwen_SciERC": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_001_seed42_v2/samples.jsonl",
+      "total_lines": 551,
+      "n_with_gold": 529,
+      "n_samples": 16,
+      "greedy_f1": 0.665067
+    },
+    "Qwen_CoNLL": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16/samples.jsonl",
+      "total_lines": 3453,
+      "n_with_gold": 2756,
+      "n_samples": 16,
+      "greedy_f1": 0.912367
+    },
+    "Qwen_FewNERD": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_027_fewnerd_n16/samples.jsonl",
+      "total_lines": 5000,
+      "n_with_gold": 4351,
+      "n_samples": 16,
+      "greedy_f1": 0.792636
+    },
+    "LLaMA_SciERC": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_007_llama_n16_r1024/samples.jsonl",
+      "total_lines": 551,
+      "n_with_gold": 529,
+      "n_samples": 16,
+      "greedy_f1": 0.661027
+    },
+    "LLaMA_CoNLL": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/exp_017_llama_conll_n16/samples.jsonl",
+      "total_lines": 3453,
+      "n_with_gold": 2756,
+      "n_samples": 16,
+      "greedy_f1": 0.929755
+    },
+    "LLaMA_FewNERD": {
+      "path": "/root/autodl-tmp/struct_self_consist_ie/output/llama_fewnerd_s42/samples.jsonl",
+      "total_lines": 37648,
+      "n_with_gold": 32565,
+      "n_samples": 8,
+      "greedy_f1": 0.799124
+    }
+  }
+}

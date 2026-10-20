@@ -1,0 +1,48 @@
+Anonymous Repository Audit Report
+===================================
+Repo: https://github.com/anonymous-nlp-2026/struct_self_consist_ie
+Local: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/anon_repo
+Date: 2026-05-25
+
+(a) 密钥验证
+-------------
+- PAT (ghp_*) 从 _anonymous_repo.json 获取，HTTPS push 有效
+- git push --dry-run 返回 "Everything up-to-date"
+- 状态: ✓ 有效
+
+(b) 匿名性检查
+---------------
+- Git author/committer: 全部为 "Anonymous <anonymous@example.com>" ✓
+- LaTeX \author: "Anonymous" ✓
+- LICENSE: "Copyright (c) 2026 Anonymous Authors" ✓
+- grep 搜索 university/institute/lab/@*.edu: 仅在 appendix.tex 示例句中出现 "University of Notre Dame"（NER 数据集 gold 标注示例，非真实机构信息）✓
+- grep 搜索真实姓名/邮箱/GitHub 用户名: 无泄露 ✓
+- grep 搜索 wandb entity/project 引用: 无 ✓
+- grep 搜索 API key/token/secret: [REDACTED] ✓
+- 修复: 无需修复，匿名性完好
+
+(c) 完整性/干净度检查
+---------------------
+完整性:
+- README.md: 包含环境要求、依赖安装、入口脚本说明、数据获取方式、项目结构 ✓
+- requirements.txt: 存在且合理（14 个依赖） ✓
+- 核心代码: code/sampling.py, code/consistency.py, code/evaluation.py 等均存在 ✓
+- configs/: 训练和导出配置存在 ✓
+- AI_DISCLOSURE.md: 存在 ✓
+- .gitignore: 合理覆盖 __pycache__, *.pyc, .env, wandb/, data/, checkpoints/ 等 ✓
+
+干净度:
+- .DS_Store: 无 ✓
+- __pycache__/: 无 ✓
+- *.pyc: 无 ✓
+- .env: 无 ✓
+- wandb/: 无 ✓
+- 大二进制文件 (>1MB): 无 ✓
+- 临时实验日志: 无 ✓
+- 修复: 无需修复，仓库干净
+
+(d) Force-push 状态
+--------------------
+仓库已与 origin/main 同步（"Everything up-to-date"），无新增修改需要推送。
+最新 commit: b91180e "Fix fig_selection_gap Oracle annotation: 13.1pp -> 13.0pp (matches 3-seed mean)"
+确认时间: 2026-05-25T08:41:27Z

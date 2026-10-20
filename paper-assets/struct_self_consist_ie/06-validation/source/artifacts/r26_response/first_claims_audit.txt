@@ -1,0 +1,172 @@
+==============================================================================
+FIRST-CLAIMS AUDIT — struct_self_consist_ie paper
+Scanned: 2026-05-20
+Patterns: first systematic, first comprehensive, first to, first study,
+          first work, first framework, first analysis, the first,
+          we are the first, this is the first, novel, pioneering, unprecedented
+==============================================================================
+
+==============================
+SECTION A: ACTIVE PAPER FILES (docs/paper/sections/*.tex)
+==============================
+
+--- Match 1 ---
+FILE: docs/paper/sections/abstract.tex
+LINE: 6
+CONTEXT:
+  4: All signals achieve reliable QE ($\rho$ up to 0.45 on CoNLL-2003, area under the ROC curve [AUROC] up to 0.82), enabling selective prediction ($+5$--$8$\,pp F1 at 80\% coverage).
+  5: For instance-level selection, log-probability (LP) succeeds only where LP-quality alignment is strong, and gains are absent elsewhere despite large oracle headroom (the \textbf{correlation-selection gap}).
+>>6: ...providing the first systematic characterization of when test-time scaling succeeds or fails for NER and similar set-valued extraction tasks.
+  7: The diagnostic motivates entity-level \textit{construction}...
+  8: \end{abstract}
+MATCH: "the first systematic characterization"
+SUGGESTION: "a systematic characterization" or "the first systematic characterization, to our knowledge,"
+RISK: HIGH — unqualified "first" claim in the abstract with no hedging or domain scope qualifier
+
+--- Match 2 ---
+FILE: docs/paper/sections/introduction.tex
+LINE: 9
+CONTEXT:
+  7: Prior work on confidence estimation for LLM-based IE has conflated \textit{quality estimation}...with \textit{sample selection}...
+  8: Existing self-consistency methods...assume outputs can be grouped by equivalence...
+>>9: ...we provide the first systematic empirical characterization of \textit{when and why} test-time scaling via LP-based selection succeeds or fails for NER...
+ 10: [blank]
+ 11: A key distinction structures our analysis...
+MATCH: "the first systematic empirical characterization"
+SUGGESTION: "the first systematic empirical characterization, to our knowledge," or simply "a systematic empirical characterization"
+RISK: HIGH — unqualified "first" in the introduction body text
+
+--- Match 3 (FALSE POSITIVE — ordinal, not a priority claim) ---
+FILE: docs/paper/sections/single_signal.tex
+LINE: 5
+CONTEXT:
+  3: \paragraph{Definitional vs.\ empirical.}
+  4: We decompose the correlation-selection gap into two layers.
+>>5: The first is structural: four of five signals are instance-level aggregates...
+  6: The second layer is empirical...
+  7: Cross-instance $\rho$...
+MATCH: "The first" (ordinal usage — "The first [layer] is structural")
+SUGGESTION: No change needed — this is ordinal enumeration, not a priority/novelty claim.
+RISK: LOW — false positive
+
+--- Match 4 (FALSE POSITIVE — data description) ---
+FILE: docs/paper/sections/appendix.tex
+LINE: 1619
+CONTEXT:
+  1617: \centering
+  1618: \small
+>>1619: ...Few-NERD evaluated on the first 5K test instances without gold-filtering...
+  1620: \label{tab:calibration}
+  1621: \resizebox{\columnwidth}{!}{
+MATCH: "the first 5K test instances" (data subset description)
+SUGGESTION: No change needed — refers to data subsetting, not a novelty claim.
+RISK: LOW — false positive
+
+
+==============================
+SECTION B: OLD PAPER FILES (artifacts/_project/paper/*.tex)
+  Note: per C001, these are NOT compiled; included for completeness.
+==============================
+
+--- Match 5 ---
+FILE: artifacts/_project/paper/conclusion.tex
+LINE: 3
+CONTEXT:
+  1: \section{Conclusion}\label{sec:conclusion}
+  2: [blank]
+>>3: This work provides the first systematic evaluation of confidence signals for test-time scaling in generative information extraction.
+  4: By comparing five signals from three families...
+  5: Our experiments on SciERC, CoNLL-2003, and WNUT-17...
+MATCH: "the first systematic evaluation"
+SUGGESTION: "a systematic evaluation" or add "to our knowledge, the first systematic evaluation"
+RISK: HIGH — unqualified "first" with no hedging
+
+--- Match 6 ---
+FILE: artifacts/_project/paper/introduction.tex
+LINE: 42
+CONTEXT:
+  40: Our contributions are as follows:
+  41: \begin{enumerate}
+>>42:     \item \textbf{First systematic comparison of confidence signals for generative IE.}
+  43:     We evaluate five signals from three families on quality estimation for NER and RE.
+  44:     Entity voting achieves $\rho{=}0.50$ and AUROC${=}0.73$...
+MATCH: "First systematic comparison"
+SUGGESTION: "Systematic comparison" (drop "First") or "First systematic comparison of confidence signals for generative IE, to our knowledge"
+RISK: HIGH — unqualified "first" in bold contribution claim
+
+--- Match 7 ---
+FILE: artifacts/_project/paper/related_work.tex
+LINE: 24
+CONTEXT:
+  22: [blank]
+  23: All of these methods target reasoning and QA tasks with discrete or near-discrete answer spaces.
+>>24: Our work is, to our knowledge, the first to extend self-consistency to set-valued structured outputs in IE, and the first to identify the correlation-selection gap...
+  25: In direct dialogue with \citet{kang2025selfcertainty}...
+  26: [blank]
+MATCH: "the first to extend" + "the first to identify"
+SUGGESTION: Already hedged with "to our knowledge" — acceptable as-is. Consider reducing double "first": "Our work is, to our knowledge, the first to extend self-consistency to set-valued structured outputs in IE and to identify the correlation-selection gap"
+RISK: MEDIUM — hedged with "to our knowledge" but uses "first" twice in one sentence
+
+--- Match 8 (FALSE POSITIVE — domain term) ---
+FILE: artifacts/_project/paper/experiments.tex
+LINE: 182
+CONTEXT:
+  180: WNUT-17 establishes where the approach breaks down.
+  181: SJ achieves $\rho{=}0.062$...with 54\% of instances at zero F1.
+>>182: ...the model is confidently wrong on novel entities, a calibration failure...
+  183: This is a boundary of the method, not a limitation of the datasets.
+MATCH: "novel entities"
+SUGGESTION: No change needed — "novel entities" refers to the WNUT task definition (novel/emerging entity recognition), not an overclaim.
+RISK: LOW — false positive
+
+
+==============================
+SECTION C: PATTERNS WITH ZERO MATCHES
+==============================
+
+The following patterns returned NO matches across all scanned .tex files:
+  - "first comprehensive"
+  - "first study"      (standalone — "first systematic study" appears only in dream_reports)
+  - "first work"
+  - "first framework"
+  - "first analysis"   (standalone — "first systematic analysis" appears only in dream_reports)
+  - "we are the first" (appears only in dream_reports)
+  - "this is the first"
+  - "pioneering"
+  - "unprecedented"
+  - "novel" as overclaim (only false-positive match: "novel entities" = dataset term)
+
+
+==============================
+SUMMARY
+==============================
+
+Total matches:              8
+  True positives:           5 (actual overclaim / needs attention)
+  False positives:          3 (ordinal, data subset, domain term)
+
+HIGH risk:                  4
+  - abstract.tex:6          "the first systematic characterization" (ACTIVE)
+  - introduction.tex:9      "the first systematic empirical characterization" (ACTIVE)
+  - conclusion.tex:3        "the first systematic evaluation" (OLD, not compiled)
+  - introduction.tex:42     "First systematic comparison" (OLD, not compiled)
+
+MEDIUM risk:                1
+  - related_work.tex:24     "the first to extend...the first to identify" (OLD, hedged)
+
+LOW risk (false positive):  3
+  - single_signal.tex:5     ordinal "The first [layer]"
+  - appendix.tex:1619       "the first 5K test instances"
+  - experiments.tex:182     "novel entities"
+
+Files affected:             6 (2 active, 4 old/non-compiled)
+
+ACTIVE FILES REQUIRING ACTION: 2
+  1. docs/paper/sections/abstract.tex — line 6
+  2. docs/paper/sections/introduction.tex — line 9
+
+RECOMMENDED FIXES for active files:
+  abstract.tex:6 →  add "to our knowledge," before "the first"
+  introduction.tex:9 → already references \citet{yao2026consistency} for contrast;
+                       add "to our knowledge," before "the first" or rephrase to
+                       "a systematic empirical characterization"

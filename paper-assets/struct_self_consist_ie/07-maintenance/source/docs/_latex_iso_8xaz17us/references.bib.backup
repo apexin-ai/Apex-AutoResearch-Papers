@@ -1,0 +1,695 @@
+% Auto-generated from literature_map.yaml — do not edit manually
+
+@inproceedings{min2023factscore,
+  title = {{FActScore}: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation},
+  author = {Min, Sewon and Krishna, Kalpesh and Lyu, Xinxi and Lewis, Mike and Yih, Wen-tau and Koh, Pang Wei and Iyyer, Mohit and Zettlemoyer, Luke and Hajishirzi, Hannaneh},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  year = {2023},
+  url = {https://aclanthology.org/2023.emnlp-main.741/},
+}
+
+@article{hu2024refchecker,
+  title = {{RefChecker}: Reference-based Fine-grained Hallucination Checker and Benchmark for Large Language Models},
+  author = {Hu, Xiangkun and Ru, Dongyu and Qiu, Lin and Guo, Qipeng and Zhang, Tianhang and Xu, Yang and Luo, Yun and Liu, Pengfei and Zhang, Yue and Zhang, Zheng},
+  journal = {arXiv preprint arXiv:2405.14486},
+  year = {2024},
+  url = {https://arxiv.org/abs/2405.14486},
+}
+
+@inproceedings{wei2024long,
+  title = {Long-form Factuality in Large Language Models},
+  author = {Wei, Jerry and Yang, Chengrun and Song, Xinying and Lu, Yifeng and Hu, Nathan and Huang, Jie and Tran, Dustin and Peng, Daiyi and Liu, Ruibo and Huang, Da and Du, Cosmo and Le, Quoc V.},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year = {2024},
+  url = {https://arxiv.org/abs/2403.18802},
+}
+
+@article{holm1979simple,
+  title = {A Simple Sequentially Rejective Multiple Test Procedure},
+  author = {Holm, Sture},
+  journal = {Scandinavian Journal of Statistics},
+  volume = {6},
+  number = {2},
+  pages = {65--70},
+  year = {1979},
+}
+
+@inproceedings{xiong2024verbalized,
+  title = {Can {LLMs} Express Their Uncertainty? {An} Empirical Evaluation of Confidence Elicitation in {LLMs}},
+  author = {Xiong, Miao and Hu, Zhiyuan and Lu, Xinyang and Li, Yifei and Fu, Jie and He, Junxian and Hooi, Bryan},
+  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations},
+  year = {2024},
+  url = {https://arxiv.org/abs/2306.13063},
+}
+
+@inproceedings{vijayakumar2018diverse,
+  title = {Diverse Beam Search for Improved Description of Complex Scenes},
+  author = {Vijayakumar, Ashwin K. and Cogswell, Michael and Selvaraju, Ramprasaath R. and Sun, Qing and Lee, Stefan and Crandall, David J. and Batra, Dhruv},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year = {2018},
+  url = {https://arxiv.org/abs/1610.02424}
+}
+
+@inproceedings{shi2022mbr,
+  title = {Natural Language to Code Translation with Execution},
+  author = {Shi, Freda and Fried, Daniel and Ghazvininejad, Marjan and Zettlemoyer, Luke and Wang, Sida I.},
+  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages = {3533--3546},
+  year = {2022},
+  url = {https://arxiv.org/abs/2204.11454}
+}
+
+@article{brown2024monkeys,
+  title = {Large Language Monkeys: Scaling Inference Compute with Repeated Sampling},
+  author = {Brown, Bradley and Juravsky, Jordan and Ehrlich, Ryan and Clark, Ronald and Le, Quoc V. and Ré, Christopher and Mirhoseini, Azalia},
+  journal = {arXiv preprint arXiv:2407.21787},
+  year = {2024},
+  url = {https://arxiv.org/abs/2407.21787}
+}
+
+@inproceedings{chen2024usc,
+  title = {Universal Self-Consistency for Large Language Model Generation},
+  author = {Chen, Xinyun and Aksitov, Renat and Alon, Uri and Ren, Jie and Xiao, Kefan and Yin, Pengcheng and Prakash, Sushant and Sutton, Charles and Wang, Xuezhi and Zhou, Denny},
+  booktitle = {ICML 2024 Workshop on In-Context Learning},
+  year = {2024},
+  url = {https://arxiv.org/abs/2311.17311}
+}
+
+@article{cobbe2021verifiers,
+  title = {Training Verifiers to Solve Math Word Problems},
+  author = {Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},
+  journal = {arXiv preprint arXiv:2110.14168},
+  year = {2021},
+  url = {https://arxiv.org/abs/2110.14168}
+}
+
+@inproceedings{culotta2004confidence,
+  title = {Confidence Estimation for Information Extraction},
+  author = {Culotta, Aron and McCallum, Andrew},
+  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL 2004)},
+  year = {2004},
+  url = {https://aclanthology.org/N04-4028/}
+}
+
+@inproceedings{derczynski2017wnut,
+  title = {Results of the WNUT2017 Shared Task on Novel and Emerging Entity Recognition},
+  author = {Derczynski, Leon and Nichols, Eric and Erp, Marieke van and Limsopatham, Nut},
+  booktitle = {Proceedings of the 3rd Workshop on Noisy User-generated Text (W-NUT 2017)},
+  year = {2017},
+  url = {https://aclanthology.org/W17-4418/}
+}
+
+@inproceedings{ding2021fewnerd,
+  title = {Few-{NERD}: A Few-shot Named Entity Recognition Dataset},
+  author = {Ding, Ning and Xu, Guangwei and Chen, Yulin and Wang, Xiaobin and Han, Xu and Xie, Pengjun and Zheng, Hai-Tao and Liu, Zhiyuan},
+  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics and the 11th International Joint Conference on Natural Language Processing (Volume 1: Long Papers)},
+  pages = {3198--3213},
+  year = {2021},
+  doi = {10.18653/v1/2021.acl-long.248}
+}
+
+@inproceedings{eikema2022sampling,
+  title = {Sampling-Based Approximations to Minimum {B}ayes Risk Decoding for Neural Machine Translation},
+  author = {Eikema, Bryan and Aziz, Wilker},
+  booktitle = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},
+  year = {2022},
+  pages = {10978--10993},
+  doi = {10.18653/v1/2022.emnlp-main.754}
+}
+
+@article{freitag2022high,
+  title = {High Quality Rather than High Model Probability: Minimum {B}ayes Risk Decoding with Neural Metrics},
+  author = {Freitag, Markus and Grangier, David and Tan, Qijun and Liang, Bowen},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume = {10},
+  year = {2022},
+  pages = {811--825},
+  doi = {10.1162/tacl_a_00491}
+}
+
+@article{fleiss1971agreement,
+  title = {Measuring nominal scale agreement among many raters.},
+  author = {Fleiss, Joseph L.},
+  journal = {Psychological Bulletin},
+  year = {1971},
+  doi = {10.1037/h0031619},
+  url = {http://dx.doi.org/10.1037/h0031619}
+}
+
+@article{feng2025optimal,
+  title = {Optimal Self-Consistency for Efficient Reasoning with Large Language Models},
+  author = {Feng, Austin and Alonso, Marius and Odonnat, Ambroise},
+  journal = {arXiv preprint arXiv:2511.12309},
+  year = {2025},
+  url = {https://arxiv.org/abs/2511.12309}
+}
+
+@inproceedings{geng2024confidence,
+  title = {A Survey of Confidence Estimation and Calibration in Large Language Models},
+  author = {Geng, Jiahui and Cai, Fengyu and Wang, Yuxia and Koeppl, Heinz and Nakov, Preslav and Gurevych, Iryna},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)},
+  year = {2024},
+  doi = {10.18653/v1/2024.naacl-long.366},
+  url = {http://dx.doi.org/10.18653/v1/2024.naacl-long.366}
+}
+
+
+@article{kadavath2022language,
+  title = {Language Models (Mostly) Know What They Know},
+  author = {Kadavath, Saurav and Conerly, Tom and Askell, Amanda and Henighan, Tom and Drain, Dawn and Perez, Ethan and Schiefer, Nicholas and Hatfield-Dodds, Zac and DasSarma, Nova and Tran-Johnson, Eli and Johnston, Scott and El-Showk, Sheer and Jones, Andy and Elhage, Nelson and Hume, Tristan and Chen, Anna and Bai, Yuntao and Bowman, Sam and Fort, Stanislav and Ganguli, Deep and Hernandez, Danny and Jacobson, Josh and Kernion, Jackson and Kravec, Shauna and Lovitt, Liane and Ndousse, Kamal and Olsson, Catherine and Ringer, Sam and Amodei, Dario and Brown, Tom and Clark, Jack and Joseph, Nicholas and Mann, Ben and McCandlish, Sam and Olah, Chris and Kaplan, Jared},
+  journal = {arXiv preprint arXiv:2207.05221},
+  year = {2022},
+  url = {https://arxiv.org/abs/2207.05221}
+}
+
+@inproceedings{kang2025selfcertainty,
+  title = {Scalable Best-of-N Selection for Large Language Models via Self-Certainty},
+  author = {Kang, Zhewei and Zhao, Xuandong and Song, Dawn},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+  year = {2025},
+  url = {https://arxiv.org/abs/2502.18581}
+}
+
+@inproceedings{kim2026reasc,
+  title = {Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in {LLM} Reasoning},
+  author = {Kim, Junseok and Yang, Nakyeong and Min, Kyungmin and Jung, Kyomin},
+  booktitle = {Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},
+  year = {2026},
+  url = {https://arxiv.org/abs/2601.02970}
+}
+
+@inproceedings{kuhn2023semantic,
+  title = {Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation},
+  author = {Kuhn, Lorenz and Gal, Yarin and Farquhar, Sebastian},
+  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},
+  year = {2023},
+  url = {https://arxiv.org/abs/2302.09664}
+}
+
+@inproceedings{li2023codeie,
+  title = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},
+  author = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year = {2023},
+  doi = {10.18653/v1/2023.acl-long.855},
+  url = {https://arxiv.org/abs/2305.05711}
+}
+
+@inproceedings{lightman2024verify,
+  title = {Let's Verify Step by Step},
+  author = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},
+  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},
+  year = {2024},
+  url = {https://arxiv.org/abs/2305.20050}
+}
+
+@inproceedings{luan2018scierc,
+  title = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},
+  author = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},
+  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},
+  year = {2018},
+  doi = {10.18653/v1/D18-1360},
+  url = {http://dx.doi.org/10.18653/v1/D18-1360}
+}
+
+@inproceedings{manakul2023selfcheckgpt,
+  title = {SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models},
+  author = {Manakul, Potsawee and Liusie, Adian and Gales, Mark},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  year = {2023},
+  doi = {10.18653/v1/2023.emnlp-main.557},
+  url = {http://dx.doi.org/10.18653/v1/2023.emnlp-main.557}
+}
+
+@article{yao2026consistency,
+  title = {Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data},
+  author = {Yao, Xinzhi and Nédellec, Claire and Xia, Jingbo and Bossy, Robert},
+  journal = {Genomics \& Informatics},
+  year = {2026},
+  doi = {10.1186/s44342-025-00063-2},
+  url = {http://dx.doi.org/10.1186/s44342-025-00063-2}
+}
+
+@inproceedings{oh2026latentsc,
+  title = {Latent Self-Consistency for Reliable Majority-Set Selection in Short- and Long-Answer Reasoning},
+  author = {Oh, Jungsuk and Lee, Jay-Yoon},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},
+  year = {2026},
+  url = {https://ojs.aaai.org/index.php/AAAI/article/view/40536}
+}
+
+@inproceedings{sainz2024gollie,
+  title = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction},
+  author = {Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lacalle, Oier Lopez de and Rigau, German and Agirre, Eneko},
+  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR 2024)},
+  year = {2024},
+  url = {https://arxiv.org/abs/2310.03668}
+}
+
+@inproceedings{snell2025scaling,
+  title = {Scaling {LLM} Test-Time Compute Optimally can be More Effective than Scaling Model Parameters},
+  author = {Snell, Charlie and Lee, Jaehoon and Xu, Kelvin and Kumar, Aviral},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year = {2025},
+  url = {https://arxiv.org/abs/2408.03314}
+}
+
+@inproceedings{taubenfeld2025cisc,
+  title = {Confidence Improves Self-Consistency in LLMs},
+  author = {Taubenfeld, Amir and Sheffer, Tom and Ofek, Eran and Feder, Amir and Goldstein, Ariel and Gekhman, Zorik and Yona, Gal},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+  year = {2025},
+  doi = {10.18653/v1/2025.findings-acl.1030},
+  url = {http://dx.doi.org/10.18653/v1/2025.findings-acl.1030}
+}
+
+@inproceedings{thirukovalluru2024atomic,
+  title = {Atomic Self-Consistency for Better Long Form Generations},
+  author = {Thirukovalluru, Raghuveer and Huang, Yukun and Dhingra, Bhuwan},
+  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+  year = {2024},
+  doi = {10.18653/v1/2024.emnlp-main.706},
+  url = {http://dx.doi.org/10.18653/v1/2024.emnlp-main.706}
+}
+
+@inproceedings{tjongkimsang2003conll,
+  title = {Introduction to the {CoNLL}-2003 Shared Task: Language-Independent Named Entity Recognition},
+  author = {Sang, Erik F. Tjong Kim and Meulder, Fien De},
+  booktitle = {Proceedings of the Seventh Conference on Computational Natural Language Learning (CoNLL 2003)},
+  year = {2003},
+  url = {https://aclanthology.org/W03-0419/}
+}
+
+@inproceedings{vashurin2025cocoa,
+  title = {Uncertainty Quantification for {LLMs} through Minimum Bayes Risk: Bridging Confidence and Consistency},
+  author = {Vashurin, Roman and Goloburda, Maiya and Ilina, Albina and Rubashevskii, Aleksandr and Nakov, Preslav and Shelmanov, Artem and Panov, Maxim},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS)},
+  year = {2025},
+  url = {https://arxiv.org/abs/2502.04964}
+}
+
+@inproceedings{wadhwa2023revisiting,
+  title = {Revisiting Relation Extraction in the era of Large Language Models},
+  author = {Wadhwa, Somin and Amir, Silvio and Wallace, Byron},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  year = {2023},
+  doi = {10.18653/v1/2023.acl-long.868},
+  url = {http://dx.doi.org/10.18653/v1/2023.acl-long.868}
+}
+
+@inproceedings{wang2023selfconsistency,
+  title = {Self-Consistency Improves Chain of Thought Reasoning in Language Models},
+  author = {Wang, Xuezhi and Wei, Jason and Schuurmans, Dale and Le, Quoc and Chi, Ed and Narang, Sharan and Chowdhery, Aakanksha and Zhou, Denny},
+  booktitle = {Proceedings of the Eleventh International Conference on Learning Representations (ICLR 2023)},
+  year = {2023},
+  url = {https://arxiv.org/abs/2203.11171}
+}
+
+@inproceedings{wang2025make,
+  title = {Make Every Penny Count: Difficulty-Adaptive Self-Consistency for Cost-Efficient Reasoning},
+  author = {Wang, Xinglin and Feng, Shaoxiong and Li, Yiwei and Yuan, Peiwen and Zhang, Yueqi and Tan, Chuyi and Pan, Boyuan and Hu, Yao and Li, Kan},
+  booktitle = {Findings of the Association for Computational Linguistics: NAACL 2025},
+  pages = {6919--6932},
+  year = {2025}
+}
+
+@inproceedings{wang2025rankedvoting,
+  title = {Ranked Voting based Self-Consistency of Large Language Models},
+  author = {Wang, Weiqin and Wang, Yile and Huang, Hui},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+  year = {2025},
+  url = {https://arxiv.org/abs/2505.10772}
+}
+
+@article{willard2023guided,
+  title = {Efficient Guided Generation for Large Language Models},
+  author = {Willard, Brandon T. and Louf, Rémi},
+  journal = {arXiv preprint arXiv:2307.09702},
+  year = {2023},
+  url = {https://arxiv.org/abs/2307.09702}
+}
+
+@inproceedings{xia2025survey,
+  title = {A Survey of Uncertainty Estimation Methods on Large Language Models},
+  author = {Xia, Zhiqiu and Xu, Jinxuan and Zhang, Yuqian and Liu, Hang},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+  year = {2025},
+  url = {https://aclanthology.org/2025.findings-acl.1101/}
+}
+
+@inproceedings{zheng2024llamafactory,
+  title = {{L}lama{F}actory: Unified Efficient Fine-Tuning of 100+ Language Models},
+  author = {Zheng, Yaowei and Zhang, Richong and Zhang, Junhao and Ye, Yanhan and Luo, Zheyan},
+  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)},
+  year = {2024},
+  pages = {400--410},
+  doi = {10.18653/v1/2024.acl-demos.38}
+}
+
+@inproceedings{zhou2024uniner,
+  title = {{UniversalNER}: Targeted Distillation from Large Language Models for Open Named Entity Recognition},
+  author = {Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year = {2024},
+  url = {https://arxiv.org/abs/2308.03279}
+}
+
+@inproceedings{muller2021understanding,
+  title = {Understanding the Properties of Minimum {Bayes} Risk Decoding in Neural Machine Translation},
+  author = {M{\"u}ller, Mathias and Sennrich, Rico},
+  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},
+  year = {2021},
+  url = {https://arxiv.org/abs/2105.08504}
+}
+
+@inproceedings{eikema2025structured,
+  title = {Structure-Conditional Minimum {B}ayes Risk Decoding},
+  author = {Eikema, Bryan and Rutkiewicz, Anna and Giulianelli, Mario},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+  year = {2025},
+  url = {https://arxiv.org/abs/2510.20700}
+}
+
+@inproceedings{jinnai2024mbr,
+  title = {Model-Based Minimum {B}ayes Risk Decoding for Text Generation},
+  author = {Jinnai, Yuu and Morimura, Tetsuro and Honda, Ukyo and Ariu, Kaito and Abe, Kenshi},
+  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},
+  year = {2024},
+  url = {https://arxiv.org/abs/2311.05263}
+}
+
+@inproceedings{ratinov2009design,
+  title = {Design Challenges and Misconceptions in Named Entity Recognition},
+  author = {Ratinov, Lev and Roth, Dan},
+  booktitle = {Proceedings of the Thirteenth Conference on Computational Natural Language Learning (CoNLL)},
+  year = {2009},
+  pages = {147--155},
+  publisher = {Association for Computational Linguistics}
+}
+
+@inproceedings{bergkirkpatrick2012empirical,
+  title = {An Empirical Investigation of Statistical Significance in {NLP}},
+  author = {Berg-Kirkpatrick, Taylor and Burkett, David and Klein, Dan},
+  booktitle = {Proceedings of the 2012 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning (EMNLP-CoNLL)},
+  year = {2012},
+  pages = {995--1005},
+  publisher = {Association for Computational Linguistics}
+}
+
+@inproceedings{tian2023calibration,
+  title = {Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback},
+  author = {Tian, Katherine and Mitchell, Eric and Zhou, Allan and Sharma, Archit and Rafailov, Rafael and Yao, Huaxiu and Finn, Chelsea and Manning, Christopher D.},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year = {2023},
+  pages = {5433--5442},
+  publisher = {Association for Computational Linguistics}
+}
+
+@inproceedings{fernandes2022quality,
+  title = {Quality-Aware Decoding for Neural Machine Translation},
+  author = {Fernandes, Patrick and Farinhas, Ant{\'o}nio and Rei, Ricardo and de Souza, Jos{\'e} G. C. and Ogayo, Perez and Neubig, Graham and Martins, Andr{\'e}},
+  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},
+  year = {2022},
+  pages = {1396--1412},
+  url = {https://arxiv.org/abs/2205.00978}
+}
+
+@inproceedings{deguchi2024centroid,
+  title = {Centroid-Based Efficient Minimum Bayes Risk Decoding},
+  author = {Deguchi, Hiroyuki and Sakai, Yusuke and Kamigaito, Hidetaka and Watanabe, Taro and Tanaka, Hideki and Utiyama, Masao},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2024},
+  pages = {11009--11018},
+  year = {2024},
+  url = {https://aclanthology.org/2024.findings-acl.654/}
+}
+
+@inproceedings{mejer2010confidence,
+  title = {Confidence in Structured-Prediction Using Confidence-Weighted Models},
+  author = {Mejer, Avihai and Crammer, Koby},
+  booktitle = {Proceedings of the 2010 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year = {2010},
+  pages = {971--981},
+  url = {https://aclanthology.org/D10-1095/}
+}
+
+@inproceedings{schall2025hidden,
+  title = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},
+  author = {Schall, Maximilian and de Melo, Gerard},
+  booktitle = {Proceedings of Recent Advances in Natural Language Processing (RANLP)},
+  year = {2025},
+  pages = {1074--1084},
+  url = {https://aclanthology.org/2025.ranlp-1.124/}
+}
+
+@inproceedings{yun2025price,
+  title = {The Price of Format: Diversity Collapse in {LLMs}},
+  author = {Yun, Longfei and An, Chenyang and Wang, Zilong and Peng, Letian and Shang, Jingbo},
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2025},
+  year = {2025},
+  url = {https://aclanthology.org/2025.findings-emnlp.836/}
+}
+
+@inproceedings{park2024grammar,
+  title = {Grammar-Aligned Decoding},
+  author = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS)},
+  year = {2024},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2024/hash/2bdc2267c3d7d01523e2e17ac0a754f3-Abstract-Conference.html}
+}
+
+@inproceedings{gao2023scaling,
+  title = {Scaling Laws for Reward Model Overoptimization},
+  author = {Gao, Leo and Schulman, John and Hilton, Jacob},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  year = {2023},
+  url = {https://proceedings.mlr.press/v202/gao23h.html}
+}
+
+@inproceedings{kirk2024understanding,
+  title = {Understanding the Effects of {RLHF} on {LLM} Generalisation and Diversity},
+  author = {Kirk, Robert and Mediratta, Ishita and Nalmpantis, Christoforos and Luketina, Jelena and Hambro, Eric and Grefenstette, Edward and Raileanu, Roberta},
+  booktitle = {Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+  year = {2024},
+  url = {https://openreview.net/forum?id=PXoFut3dWW}
+}
+
+@inproceedings{holtzman2020curious,
+  title = {The Curious Case of Neural Text Degeneration},
+  author = {Holtzman, Ari and Buys, Jan and Du, Li and Forbes, Maxwell and Choi, Yejin},
+  booktitle = {Proceedings of the Eighth International Conference on Learning Representations (ICLR)},
+  year = {2020},
+  url = {https://openreview.net/forum?id=rygGQyrFvH}
+}
+
+@inproceedings{kuleshov2015calibrated,
+  title = {Calibrated Structured Prediction},
+  author = {Kuleshov, Volodymyr and Liang, Percy},
+  booktitle = {Advances in Neural Information Processing Systems 28 (NeurIPS)},
+  year = {2015},
+  url = {https://proceedings.neurips.cc/paper/2015/hash/b3b4d2dbedc99fe843fd3dedb02f086f-Abstract.html}
+}
+
+@article{fomicheva2020unsupervised,
+  title = {Unsupervised Quality Estimation for Neural Machine Translation},
+  author = {Fomicheva, Marina and Sun, Shuo and Yankovskaya, Lisa and Blain, Fr{\'e}d{\'e}ric and Guzm{\'a}n, Francisco and Fishel, Mark and Aletras, Nikolaos and Chaudhary, Vishrav and Specia, Lucia},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume = {8},
+  pages = {539--555},
+  year = {2020},
+  doi = {10.1162/tacl_a_00330}
+}
+
+@inproceedings{platt1999probabilistic,
+  title = {Probabilistic Outputs for Support Vector Machines and Comparisons to Regularized Likelihood Methods},
+  author = {Platt, John C.},
+  booktitle = {Advances in Large Margin Classifiers},
+  pages = {61--74},
+  year = {1999},
+  publisher = {MIT Press}
+}
+
+@inproceedings{guo2017calibration,
+  title = {On Calibration of Modern Neural Networks},
+  author = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and Weinberger, Kilian Q.},
+  booktitle = {Proceedings of the 34th International Conference on Machine Learning},
+  pages = {1321--1330},
+  year = {2017}
+}
+
+@inproceedings{geifman2017selective,
+  title = {Selective Classification for Deep Neural Networks},
+  author = {Geifman, Yonatan and El-Yaniv, Ran},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume = {30},
+  year = {2017},
+  url = {https://arxiv.org/abs/1705.08500}
+}
+
+@article{dong2024xgrammar,
+  title = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},
+  author = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},
+  journal = {arXiv preprint arXiv:2411.15100},
+  year = {2024},
+  url = {https://arxiv.org/abs/2411.15100}
+}
+
+@article{lin2022teaching,
+  title = {Teaching Models to Express Their Uncertainty in Words},
+  author = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},
+  journal = {Transactions on Machine Learning Research},
+  year = {2022},
+  url = {https://arxiv.org/abs/2205.14334}
+}
+
+@inproceedings{varshney2022investigating,
+  title = {Investigating Selective Prediction Approaches Across Several Tasks in {IID}, {OOD}, and Adversarial Settings},
+  author = {Varshney, Neeraj and Mishra, Swaroop and Baral, Chitta},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2022},
+  pages = {1995--2002},
+  year = {2022},
+  url = {https://aclanthology.org/2022.findings-acl.158}
+}
+
+@article{farquhar2024detecting,
+  title = {Detecting hallucinations in large language models using semantic entropy},
+  author = {Farquhar, Sebastian and Kossen, Jannik and Kuhn, Lorenz and Gal, Yarin},
+  journal = {Nature},
+  volume = {630},
+  pages = {625--630},
+  year = {2024},
+  doi = {10.1038/s41586-024-07421-0}
+}
+
+@article{chen2021evaluating,
+  title = {Evaluating Large Language Models Trained on Code},
+  author = {Chen, Mark and Tworek, Jerry and Jun, Heewoo and Yuan, Qiming and Pinto, Henrique Ponde de Oliveira and Kaplan, Jared and Edwards, Harri and Burda, Yuri and Joseph, Nicholas and Brockman, Greg and Ray, Alex and Puri, Raul and Krueger, Gretchen and Petrov, Michael and Khlaaf, Heidy and Sastry, Girish and Mishkin, Pamela and Chan, Brooke and Gray, Scott and Ryder, Nick and Pavlov, Mikhail and Power, Alethea and Kaiser, Lukasz and Bavarian, Mohammad and Winter, Clemens and Tillet, Philippe and Such, Felipe Petroski and Cummings, Dave and Plappert, Matthias and Chantzis, Fotios and Barnes, Elizabeth and Herbert-Voss, Ariel and Guss, William Hebgen and Nichol, Alex and Paino, Alex and Tezak, Nikolas and Tang, Jie and Babuschkin, Igor and Balaji, Suchir and Jain, Shantanu and Saunders, William and Hesse, Christopher and Carr, Andrew N. and Leike, Jan and Achiam, Josh and Misra, Vedant and Morikawa, Evan and Radford, Alec and Knight, Matthew and Brundage, Miles and Murati, Mira and Mayer, Katie and Welinder, Peter and McGrew, Bob and Amodei, Dario and McCandlish, Sam and Sutskever, Ilya and Zaremba, Wojciech},
+  journal = {arXiv preprint arXiv:2107.03374},
+  year = {2021},
+  url = {https://arxiv.org/abs/2107.03374}
+}
+
+@article{chen2023twofailures,
+  title = {Two Failures of Self-Consistency in the Multi-Step Reasoning of {LLMs}},
+  author = {Chen, Angelica and Phang, Jason and Parrish, Alicia and Padmakumar, Vishakh and Zhao, Chen and Bowman, Samuel R. and Cho, Kyunghyun},
+  journal = {Transactions on Machine Learning Research},
+  year = {2024},
+  url = {https://arxiv.org/abs/2305.14279}
+}
+
+@inproceedings{aggarwal2023adaptive,
+  title = {Let's Sample Step by Step: Adaptive-Consistency for Efficient Reasoning and Coding with {LLMs}},
+  author = {Aggarwal, Pranjal and Madaan, Aman and Yang, Yiming and Mausam},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023)},
+  year = {2023},
+  url = {https://arxiv.org/abs/2305.11860}
+}
+
+@inproceedings{xie2023selfevaluation,
+  title = {Self-Evaluation Guided Beam Search for Reasoning},
+  author = {Xie, Yuxi and Kawaguchi, Kenji and Zhao, Yiran and Zhao, James Xu and Kan, Min-Yen and He, Junxian},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS)},
+  year = {2023},
+  url = {https://arxiv.org/abs/2305.00633}
+}
+
+@inproceedings{xie2024selfimproving,
+  title = {Self-Improving for Zero-Shot Named Entity Recognition with Large Language Models},
+  author = {Xie, Tingyu and Li, Qi and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},
+  booktitle = {Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+  year = {2024},
+  url = {https://arxiv.org/abs/2311.08921}
+}
+
+@inproceedings{xie2023zeroshot,
+  title = {Empirical Study of Zero-Shot {NER} with {ChatGPT}},
+  author = {Xie, Tingyu and Li, Qi and Zhang, Jian and Zhang, Yan and Liu, Zuozhu and Wang, Hongwei},
+  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  pages = {7935--7956},
+  year = {2023},
+  publisher = {Association for Computational Linguistics},
+  doi = {10.18653/v1/2023.emnlp-main.493},
+  url = {https://aclanthology.org/2023.emnlp-main.493/}
+}
+
+@article{xiao2025el4ner,
+  title = {{EL4NER}: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models},
+  author = {Xiao, Yuzhen and Song, Jiahe and Xu, Yongxin and Zhang, Ruizhe and Xiao, Yiqi and Lu, Xin and Zhu, Runchuan and Jiang, Bowen and Zhao, Junfeng},
+  journal = {arXiv preprint arXiv:2505.23038},
+  year = {2025},
+  url = {https://arxiv.org/abs/2505.23038}
+}
+
+@inproceedings{jiang2023llmblender,
+  title = {{LLM}-Blender: Ensembling Large Language Models with Pairwise Ranking and Generative Fusion},
+  author = {Jiang, Dongfu and Ren, Xiang and Lin, Bill Yuchen},
+  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages = {14165--14178},
+  year = {2023},
+  publisher = {Association for Computational Linguistics},
+  doi = {10.18653/v1/2023.acl-long.792},
+  url = {https://aclanthology.org/2023.acl-long.792/}
+}
+
+@inproceedings{florian2003named,
+  title = {Named Entity Recognition through Classifier Combination},
+  author = {Florian, Radu and Ittycheriah, Abe and Jing, Hongyan and Zhang, Tong},
+  booktitle = {Proceedings of the Seventh Conference on Natural Language Learning (CoNLL-2003)},
+  pages = {168--171},
+  year = {2003},
+  publisher = {Association for Computational Linguistics},
+  doi = {10.3115/1119176.1119201},
+  url = {https://aclanthology.org/W03-0425/}
+}
+
+@inproceedings{muennighoff2025s1,
+  title = {s1: Simple Test-Time Scaling},
+  author = {Muennighoff, Niklas and Yang, Zitong and Shi, Weijia and Li, Xiang Lisa and Fei-Fei, Li and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Liang, Percy and Cand{\`e}s, Emmanuel and Hashimoto, Tatsunori},
+  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+  year = {2025},
+  url = {https://arxiv.org/abs/2501.19393}
+}
+
+@inproceedings{eikema2020map,
+  title = {Is {MAP} Decoding All You Need? {T}he Inadequacy of the Mode in Neural Machine Translation},
+  author = {Eikema, Bryan and Aziz, Wilker},
+  booktitle = {Proceedings of the 28th International Conference on Computational Linguistics (COLING)},
+  pages = {4506--4520},
+  year = {2020},
+  url = {https://aclanthology.org/2020.coling-main.398/}
+}
+
+@inproceedings{kumar2004minimum,
+  title = {Minimum {B}ayes-Risk Decoding for Statistical Machine Translation},
+  author = {Kumar, Shankar and Byrne, William},
+  booktitle = {Proceedings of the Human Language Technology Conference of the North American Chapter of the Association for Computational Linguistics (HLT-NAACL)},
+  pages = {169--176},
+  year = {2004},
+  url = {https://aclanthology.org/N04-1022/}
+}
+
+@inproceedings{dembczynski2011exact,
+  title = {An Exact Algorithm for {F}-Measure Maximization},
+  author = {Dembczy{\'n}ski, Krzysztof and Waegeman, Willem and Cheng, Weiwei and H{\"u}llermeier, Eyke},
+  booktitle = {Advances in Neural Information Processing Systems 24 (NeurIPS)},
+  year = {2011},
+  url = {https://proceedings.neurips.cc/paper/2011/hash/03e0704b5690a2dee1861dc3ad3316c9-Abstract.html}
+}
+
+@article{wen2025abstention,
+  title = {Know Your Limits: A Survey of Abstention in Large Language Models},
+  author = {Wen, Bingbing and Yao, Jihan and Feng, Shangbin and Xu, Chenjun and Tsvetkov, Yulia and Howe, Bill and Wang, Lucy Lu},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume = {13},
+  pages = {520--553},
+  year = {2025},
+  doi = {10.1162/tacl_a_00734},
+  url = {https://doi.org/10.1162/tacl_a_00734}
+}
+
+@article{liu2025uqcc,
+  title = {Uncertainty Quantification and Confidence Calibration in Large Language Models: A Survey},
+  author = {Liu, Xiaoou and Chen, Tiejin and Da, Longchao and Chen, Chacha and Lin, Zhen and Wei, Hua},
+  journal = {arXiv preprint arXiv:2503.15850},
+  year = {2025},
+  url = {https://arxiv.org/abs/2503.15850}
+}
