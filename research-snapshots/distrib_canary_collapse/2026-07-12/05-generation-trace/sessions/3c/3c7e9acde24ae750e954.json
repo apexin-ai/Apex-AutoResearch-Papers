@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7e9acde24ae750e954",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器 westd-19828, 工作目录 /root/autodl-tmp/distrib_canary_collapse。Python: source /root/miniconda3/etc/profi",
+  "task_key": "c17c9e80-ff9e-4ee7-aa3a-232ea2c21ac7",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c17c9e80-ff9e-4ee7-aa3a-232ea2c21ac7.jsonl",
+    "occurrence": 1,
+    "bytes": 584272,
+    "sha256": "3a0d1f6b05bbc9962ed2daa47e0b852f8d00eb141bc57ccf523640ef60c2f288"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 1,
+    "tool_calls": 126,
+    "roles": {
+      "record": 53,
+      "user": 1,
+      "assistant": 40,
+      "tool_call": 126,
+      "tool_result": 126
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3c7e9acde24ae750e954-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 344,
+      "chunks": [
+        {
+          "path": "3c7e9acde24ae750e954-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "3c7e9acde24ae750e954-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-19828-root-autodl-tmp-distrib-canary-collapsepython-source-copy-3.md"
+}

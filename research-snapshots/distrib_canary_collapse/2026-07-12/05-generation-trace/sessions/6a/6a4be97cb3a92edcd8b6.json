@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "6a4be97cb3a92edcd8b6",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: distrib_canary_collapse - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/project",
+  "task_key": "00dbe38e-17b0-4b00-9aae-ad3328af906e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/00dbe38e-17b0-4b00-9aae-ad3328af906e.jsonl",
+    "occurrence": 1,
+    "bytes": 692008,
+    "sha256": "492634b0d91ade6743f5c91d0642ea8a47c62cda5c26d205dce64c82ae0af451"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 12,
+    "tool_calls": 45,
+    "roles": {
+      "record": 57,
+      "user": 12,
+      "assistant": 31,
+      "tool_call": 45,
+      "tool_result": 45
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0001.json",
+          "message_count": 2
+        },
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "6a4be97cb3a92edcd8b6-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-distrib-canary-collapse-home-ubuntu-agent-ml-research-idea-gen-0514-4-project.md"
+}

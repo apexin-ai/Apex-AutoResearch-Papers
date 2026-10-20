@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "631d68611dc8b7708b14",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 执行项目轨迹扫描，将报告写入 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scan_reports/layer2_2026",
+  "task_key": "953d43f1-052f-4e91-a09a-d2cc55ee7031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/953d43f1-052f-4e91-a09a-d2cc55ee7031.jsonl",
+    "occurrence": 1,
+    "bytes": 1099671,
+    "sha256": "445a63a5efd5359fd0dfd68be2be21f1a70bbeaa7bdfbd6e88b673c62f4109e8"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 1,
+    "tool_calls": 66,
+    "roles": {
+      "record": 29,
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 66,
+      "tool_result": 66
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "631d68611dc8b7708b14-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "631d68611dc8b7708b14-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "631d68611dc8b7708b14-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse-copy-3.md"
+}

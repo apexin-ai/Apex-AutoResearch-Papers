@@ -1,0 +1,1122 @@
+{
+  "schema_version": "1.0",
+  "id": "33346a42dc3ad6c48a9f",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract all Pythia-1.4B experiment data from a registry dump. The registry JSON is at: /home/ubuntu/.claude-ac",
+  "task_key": "agent-a5d4390633c67bcb9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a5d4390633c67bcb9.jsonl",
+    "occurrence": 1,
+    "bytes": 123032,
+    "sha256": "3a5ba8182669d486a709e0a47c2d768629577e1fd9cd40203b38d342fb8f0dee"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T08:07:53.675Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to extract all Pythia-1.4B experiment data from a registry dump. The registry JSON is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt\n\nThe file has schema: {result: string} where result is a JSON string that needs to be parsed.\n\n## Task\n\n1. Parse the JSON, extract all experiments whose exp_id contains \"14b\"\n2. For each such experiment, extract:\n   - exp_id\n   - All fields related to PermG detection: look for keys containing any of: perm_granger, PermG, permg, fdr_forward, fdr_reverse\n   - All fields related to K≥3 consensus: look for keys containing: robust_pairs, K_ge_3, K3\n   - The fields: alpha, T (or generations), seed, status, conclusion\n   - Any field named threshold_onset_3sigma\n   - Actually just dump ALL fields for each 14b experiment so I don't miss anything\n\n3. Output the complete data for ALL 14b experiments as a structured summary. For each experiment, list:\n   - exp_id\n   - alpha, T, seed\n   - ALL metrics fields (every key-value pair in the experiment)\n\nUse jq or python to parse. The file is large so be efficient. Return the COMPLETE data - do not summarize or truncate. I need every field for every 14b experiment."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "b7566487-3c8a-481b-bb93-df926f19103f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T08:07:53.679Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b7566487-3c8a-481b-bb93-df926f19103f",
+                "isSidechain": true,
+                "agentId": "a5d4390633c67bcb9",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "57858a4d-4f53-41ae-bacb-b9834c9f2f4e",
+                "timestamp": "2026-05-25T08:07:53.679Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T08:07:56.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read the file first to understand its structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57858a4d-4f53-41ae-bacb-b9834c9f2f4e",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwjuB4brwt9wJyWtgwj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7fb7b8ca-d63e-4f5c-983b-e6cff9d25cac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJUNDszh2D6ch1KqQ5A1bo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16460,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16460,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T08:07:57.229Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018hUoFZTVcsxsuDCvvF2Aff",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fb7b8ca-d63e-4f5c-983b-e6cff9d25cac",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwjuB4brwt9wJyWtgwj",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3557ce76-60c2-48be-bc34-e86950364b10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJUNDszh2D6ch1KqQ5A1bo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16460,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16460
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16460,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T08:07:57.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (193582 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_018hUoFZTVcsxsuDCvvF2Aff"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3557ce76-60c2-48be-bc34-e86950364b10",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "edad3772-6ec2-4c81-aaff-04fdf97d9499",
+            "toolUseResult": "Error: File content (193582 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "3557ce76-60c2-48be-bc34-e86950364b10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T08:08:00.133Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is very large. Let me use Python to parse it efficiently."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edad3772-6ec2-4c81-aaff-04fdf97d9499",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwkBt9wJ5QpYChEQkQx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "803c5ddc-f105-4cff-a20b-039b50031924",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016y5WLQLzXFqcPyNHVYRg2n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 16460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1073,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T08:08:03.111Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TabDcREoMmMoCFQDU8z8qc",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt', 'r') as f:\n    raw = json.load(f)\n\n# The outer structure is {result: string}\ninner = json.loads(raw['result'])\n\n# Check what the inner structure looks like\nif isinstance(inner, dict):\n    print('Top-level keys:', list(inner.keys())[:20])\n    print('Type:', type(inner))\nelif isinstance(inner, list):\n    print('List of length:', len(inner))\n    if len(inner) > 0:\n        print('First item keys:', list(inner[0].keys()) if isinstance(inner[0], dict) else type(inner[0]))\n\"\n",
+                "description": "Parse registry JSON and inspect structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "803c5ddc-f105-4cff-a20b-039b50031924",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwkBt9wJ5QpYChEQkQx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bf004126-4f31-4dd4-a54c-da861ff8a002",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016y5WLQLzXFqcPyNHVYRg2n",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1073,
+                "cache_read_input_tokens": 16460,
+                "output_tokens": 341,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1073
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 341,
+                    "cache_read_input_tokens": 16460,
+                    "cache_creation_input_tokens": 1073,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1073,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T08:08:03.378Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TabDcREoMmMoCFQDU8z8qc",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType: <class 'dict'>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf004126-4f31-4dd4-a54c-da861ff8a002",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "e32c31de-b0c9-4c3a-833c-4e8592b38153",
+            "sourceToolAssistantUUID": "bf004126-4f31-4dd4-a54c-da861ff8a002",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T08:08:07.745Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014yUy7Z8vv4LL3sB6UhBum8",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt', 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\ndata = inner['data']\nprint('data type:', type(data))\nif isinstance(data, dict):\n    print('data keys:', list(data.keys())[:20])\nelif isinstance(data, list):\n    print('data length:', len(data))\n    if len(data) > 0:\n        print('first item type:', type(data[0]))\n        if isinstance(data[0], dict):\n            print('first item keys:', list(data[0].keys()))\n\"\n",
+                "description": "Inspect data structure inside registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e32c31de-b0c9-4c3a-833c-4e8592b38153",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwkcidyGW5cvSeDtxth",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "459363a3-6aaf-4303-9b8e-35eabfb8cac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QaM34hcfDt1FXGkPt5qRbV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 382,
+                "cache_read_input_tokens": 17533,
+                "output_tokens": 318,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 382
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 318,
+                    "cache_read_input_tokens": 17533,
+                    "cache_creation_input_tokens": 382,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 382,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T08:08:07.864Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014yUy7Z8vv4LL3sB6UhBum8",
+              "type": "tool_result",
+              "content": "data type: <class 'dict'>\ndata keys: ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "459363a3-6aaf-4303-9b8e-35eabfb8cac7",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "0dc34240-0387-4b80-bab4-ecb44516bca4",
+            "sourceToolAssistantUUID": "459363a3-6aaf-4303-9b8e-35eabfb8cac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T08:08:13.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LcayrRodYcwj2Bvcsswz31",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt', 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\nprint('experiments type:', type(experiments))\nif isinstance(experiments, dict):\n    all_keys = list(experiments.keys())\n    print('Total experiments:', len(all_keys))\n    # Find all 14b experiments\n    keys_14b = [k for k in all_keys if '14b' in k.lower()]\n    print('14b experiment keys:', keys_14b)\nelif isinstance(experiments, list):\n    print('Total experiments:', len(experiments))\n    exps_14b = [e for e in experiments if isinstance(e, dict) and '14b' in str(e.get('exp_id', '')).lower()]\n    print('14b experiments count:', len(exps_14b))\n\"\n",
+                "description": "Find all 14b experiments in registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dc34240-0387-4b80-bab4-ecb44516bca4",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwkwpqbBdz6vk4sGvcT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0adcb4d4-606a-4872-bd16-3b647d1c25fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0187P3ufUHmEwNpPLaWUSTVt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 358,
+                "cache_read_input_tokens": 17915,
+                "output_tokens": 385,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 358
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 385,
+                    "cache_read_input_tokens": 17915,
+                    "cache_creation_input_tokens": 358,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 358,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T08:08:13.588Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LcayrRodYcwj2Bvcsswz31",
+              "type": "tool_result",
+              "content": "experiments type: <class 'dict'>\nTotal experiments: 218\n14b experiment keys: ['scale_14b_t10_a050_s44_fp32', 'scale_14b_t10_a060_s44_fp32', 'scale_14b_t15_a045_s43_fp32', 'scale_14b_t15_a050_s43_fp32', 'scale_14b_t15_a060_s43_fp32', 'scale_14b_t10_a075_s44_fp32', 'scale_14b_t10_a045_s44_fp32', 'scale_14b_t15_a075_s43_fp32', 'scale_14b_t10_a045_s42_fp32', 'scale_14b_t10_a045_s43_fp32', 'scale_14b_t10_a075_s42_fp32_v2', 'scale_14b_t10_a050_s42_fp32_v2', 'scale_14b_t10_a075_s43_fp32', 'scale_14b_t10_a050_s43_fp32', 'scale_14b_t10_a060_s43_fp32', 'scale_14b_t15_a075_s42_fp32', 'scale_14b_t15_a045_s42_fp32', 'scale_14b_t15_a050_s42_fp32_v3', 'scale_14b_t15_a060_s42_fp32_v2', '14b_t10_a060_s43', '14b_t10_a075_s43', '14b_t10_a050_s43', 'scale_14b_t10_a060_s42_fp32_v2', 'scale_14b_t15_a050_s42_fp32', 'scale_14b_t15_a060_s42_fp32', 'scale_14b_t10_a050_s42_fp32_19828', 'scale_14b_t10_a075_s42_fp32', 'scale_14b_t10_a060_s42_fp32', 'scale_14b_t10_a050_s42_fp32', 'interv_pred_14b_s42_fp32', 'scale_14b_a050_s42_bf16', 'scale_14b_c4_s42_fp32', 'scale_14b_a050_s42_fp32', 'generalize_pythia14b_wiki_a100_s43', 'generalize_pythia14b_wiki_a100_s42', 'scale_14b_a050_s42']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0adcb4d4-606a-4872-bd16-3b647d1c25fd",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "6b3434ac-44bd-4628-931d-0ac1bf514afc",
+            "sourceToolAssistantUUID": "0adcb4d4-606a-4872-bd16-3b647d1c25fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T08:08:20.674Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012A1XuieYE4hHtvRJQLCar4",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/mcp-agent-ml-research-read_registry-1779696463728.txt', 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Extract all 14b experiments\nkeys_14b = sorted([k for k in experiments.keys() if '14b' in k.lower()])\n\nfor k in keys_14b:\n    exp = experiments[k]\n    print(\"=\" * 100)\n    print(f\"EXP_ID: {k}\")\n    print(\"=\" * 100)\n    # Print ALL fields, formatted nicely\n    def print_dict(d, indent=0):\n        prefix = \"  \" * indent\n        for key, val in sorted(d.items()):\n            if isinstance(val, dict):\n                print(f\"{prefix}{key}:\")\n                print_dict(val, indent + 1)\n            elif isinstance(val, list):\n                print(f\"{prefix}{key}: {json.dumps(val)}\")\n            else:\n                print(f\"{prefix}{key}: {val}\")\n    print_dict(exp)\n    print()\n\nprint(f\"\\nTotal 14b experiments: {len(keys_14b)}\")\nPYEOF\n",
+                "description": "Dump all fields for all 14b experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b3434ac-44bd-4628-931d-0ac1bf514afc",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwmNLEUncPGXdDaYgYE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "232a7bc3-45e9-4312-aacb-dbae85d8e007",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PPBVTqfTgXVdYqLG3LUvbc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1081,
+                "cache_read_input_tokens": 18273,
+                "output_tokens": 484,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1081
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 484,
+                    "cache_read_input_tokens": 18273,
+                    "cache_creation_input_tokens": 1081,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1081,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T08:08:20.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012A1XuieYE4hHtvRJQLCar4",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (67.1KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/b66rhf38x.txt\n\nPreview (first 2KB):\n====================================================================================================\nEXP_ID: 14b_t10_a050_s43\n====================================================================================================\ncreated_at: 2026-05-22T20:13:47.793Z\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_t10_a050_s43_fp32 2>&1 | tee /tmp/14b_t10_a050_s43.log\"\n  gpu: [\"cuda:1\"]\n  log_path: ~/runs/distrib_canary_collapse/14b_t10_a050_s43.log\n  pid: 821294\n  server: westd-19828\n  submitted_at: 2026-05-22T20:13:47.049Z\n  submitted_via: submit_training_job\nstatus: PREPARING\nupdated_at: 2026-05-22T20:13:47.793Z\n\n====================================================================================================\nEXP_ID: 14b_t10_a060_s43\n====================================================================================================\ncreated_at: 2026-05-22T20:13:54.353Z\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/scale/14b_t10_a060_s43_fp32 2>&1 | tee /tmp/14b_t10_a060_s43.log\"\n  gpu: [\"cuda:3\"]\n  log_path: ~/runs/distrib_canary_collapse/14b_t10_a060_s43.log\n  pid: 717753\n  server: westd-17855\n  submitted_at: 2026-05-22T20:13:53.729Z\n  submitted_via: submit_training_job\nstatus: PREPARING\nupdated_at: 2026-05-22T20:13:54.353Z\n\n====================================================================================================\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "232a7bc3-45e9-4312-aacb-dbae85d8e007",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "73868b32-1f7d-4339-bab1-105f736bd15e",
+            "sourceToolAssistantUUID": "232a7bc3-45e9-4312-aacb-dbae85d8e007",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T08:08:23.311Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LeJbq2iXerxyLg1PSHFmub",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/b66rhf38x.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73868b32-1f7d-4339-bab1-105f736bd15e",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwmu3vvqLBvahQq9BdG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c68499e-72c3-4d15-bf71-c8d878839f3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0156WfVzh2hmqu9zJ1yDTC5b",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 19354,
+                "output_tokens": 129,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1297
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 129,
+                    "cache_read_input_tokens": 19354,
+                    "cache_creation_input_tokens": 1297,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1297,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T08:08:23.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (27845 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01LeJbq2iXerxyLg1PSHFmub"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c68499e-72c3-4d15-bf71-c8d878839f3a",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "d91d960a-4767-445b-9637-4a4637fa8797",
+            "toolUseResult": "Error: File content (27845 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "1c68499e-72c3-4d15-bf71-c8d878839f3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T08:08:26.479Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AEob99vBYJ4YQCZ7BLP7Ed",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/b66rhf38x.txt",
+                "limit": 600
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d91d960a-4767-445b-9637-4a4637fa8797",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwn77U95qXT3Y2bfiQ7",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fa0c82f9-c855-4205-9f4d-76f068181cab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013HRP6MSSsNoG9uMDEZtcca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 190,
+                "cache_read_input_tokens": 20651,
+                "output_tokens": 146,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 190
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 146,
+                    "cache_read_input_tokens": 20651,
+                    "cache_creation_input_tokens": 190,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 190,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T08:08:26.777Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AEob99vBYJ4YQCZ7BLP7Ed",
+              "type": "tool_result",
+              "content": "1\t====================================================================================================\n2\tEXP_ID: 14b_t10_a050_s43\n3\t====================================================================================================\n4\tcreated_at: 2026-05-22T20:13:47.793Z\n5\tretry_count: 0\n6\tspec:\n7\t  account: root\n8\t  backend: tmux\n9\t  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_t10_a050_s43_fp32 2>&1 | tee /tmp/14b_t10_a050_s43.log\"\n10\t  gpu: [\"cuda:1\"]\n11\t  log_path: ~/runs/distrib_canary_collapse/14b_t10_a050_s43.log\n12\t  pid: 821294\n13\t  server: westd-19828\n14\t  submitted_at: 2026-05-22T20:13:47.049Z\n15\t  submitted_via: submit_training_job\n16\tstatus: PREPARING\n17\tupdated_at: 2026-05-22T20:13:47.793Z\n18\t\n19\t====================================================================================================\n20\tEXP_ID: 14b_t10_a060_s43\n21\t====================================================================================================\n22\tcreated_at: 2026-05-22T20:13:54.353Z\n23\tretry_count: 0\n24\tspec:\n25\t  account: root\n26\t  backend: tmux\n27\t  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/scale/14b_t10_a060_s43_fp32 2>&1 | tee /tmp/14b_t10_a060_s43.log\"\n28\t  gpu: [\"cuda:3\"]\n29\t  log_path: ~/runs/distrib_canary_collapse/14b_t10_a060_s43.log\n30\t  pid: 717753\n31\t  server: westd-17855\n32\t  submitted_at: 2026-05-22T20:13:53.729Z\n33\t  submitted_via: submit_training_job\n34\tstatus: PREPARING\n35\tupdated_at: 2026-05-22T20:13:54.353Z\n36\t\n37\t====================================================================================================\n38\tEXP_ID: 14b_t10_a075_s43\n39\t====================================================================================================\n40\tcreated_at: 2026-05-22T20:13:51.886Z\n41\tretry_count: 0\n42\tspec:\n43\t  account: root\n44\t  backend: tmux\n45\t  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/scale/14b_t10_a075_s43_fp32 2>&1 | tee /tmp/14b_t10_a075_s43.log\"\n46\t  gpu: [\"cuda:2\"]\n47\t  log_path: ~/runs/distrib_canary_collapse/14b_t10_a075_s43.log\n48\t  pid: 717612\n49\t  server: westd-17855\n50\t  submitted_at: 2026-05-22T20:13:50.500Z\n51\t  submitted_via: submit_training_job\n52\tstatus: PREPARING\n53\tupdated_at: 2026-05-22T20:13:51.886Z\n54\t\n55\t====================================================================================================\n56\tEXP_ID: generalize_pythia14b_wiki_a100_s42\n57\t====================================================================================================\n58\taccount: root\n59\tcompleted_at: 2026-05-17T23:45:42.719Z\n60\tconclusion: success\n61\tcreated_at: 2026-05-17T13:25:15.889Z\n62\tgpu: cuda:1\n63\thypothesis: 方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\n64\tmetrics:\n65\t  diff_xcorr_fdr_forward_sig: 7\n66\t  diff_xcorr_fdr_reverse_sig: 7\n67\t  lead_lag:\n68\t    K_gte3: 3/8\n69\t    diff_xcorr_fdr_fwd: 7/8\n70\t    perm_granger_fdr_fwd: 2/8\n71\t    threshold_onset_3sigma: 0/8\n72\t  note: M046 D120 canonical reanalysis: TY 0→3, K≥3 1→3\n73\t  perm_granger_fdr_forward_sig: 2\n74\t  perm_granger_fdr_reverse_sig: 0\n75\t  robust_pairs_K3: 1\n76\t  robust_pairs_K4: 0\n77\t  threshold_onset_forward_sig: 0\n78\t  ty_forward_sig: 0\n79\tnotes: D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\n80\treproduce:\n81\t  gpu: cuda:1\n82\t  server: westd-19828\n83\t  started_at: 2026-05-17T13:57:38.626Z\n84\tretry_count: 0\n85\tserver: westd-19828\n86\tspec:\n87\t  account: root\n88\t  backend: tmux\n89\t  checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\n90\t  command: iterative_train.py --start_gen 8 (resumed)\n91\t  data_count: 5000\n92\t  data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n93\t  gpu: [\"cuda:1\"]\n94\t  gpu_hours: 3.57\n95\t  log_path: ~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\n96\t  model_name: EleutherAI/pythia-1.4b\n97\t  pid: 292246\n98\t  seed: 42\n99\t  server: westd-19828\n100\t  submitted_at: 2026-05-17T20:11:35.916Z\n101\t  submitted_via: submit_training_job\n102\t  wall_clock_seconds: 12846.8\n103\tstatus: DONE\n104\tupdated_at: 2026-05-20T20:35:16.834Z\n105\t\n106\t====================================================================================================\n107\tEXP_ID: generalize_pythia14b_wiki_a100_s43\n108\t====================================================================================================\n109\tcheckpoint_path: results/generalize/pythia14b_wiki_a100_s43\n110\tcompleted_at: 2026-05-18T10:20:31.314Z\n111\tconclusion: success\n112\tcreated_at: 2026-05-18T02:44:10.708Z\n113\textra:\n114\t  hook_events: [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:13:54.511136+00:00\"}]\n115\thypothesis: Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\n116\tlog_path: ~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\n117\tmetrics:\n118\t  diff_xcorr_fdr_forward_sig: 8\n119\t  diff_xcorr_fdr_reverse_sig: 8\n120\t  lead_lag:\n121\t    K_gte3: 3/8\n122\t    diff_xcorr_fdr_fwd: 8/8\n123\t    perm_granger_fdr_fwd: 6/8\n124\t    threshold_onset_3sigma: 0/8\n125\t  note: M046 D120 canonical reanalysis: TY 4→3, K≥3 7→3, Threshold 8→0\n126\t  perm_granger_fdr_forward_sig: 6\n127\t  perm_granger_fdr_reverse_sig: 0\n128\t  robust_pairs_K3: 2\n129\t  robust_pairs_K4: 0\n130\t  threshold_onset_forward_sig: 0\n131\t  ty_forward_sig: 2\n132\tnotes: D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\n133\tparent: generalize_pythia14b_wiki_a100_s42\n134\treproduce:\n135\t  finished_at: 2026-05-18T10:13:51.203Z\n136\tretry_count: 0\n137\tspec:\n138\t  account: root\n139\t  backend: tmux\n140\t  command: CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\n141\t  data_count: 5000\n142\t  data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n143\t  gpu: [\"cuda:1\"]\n144\t  gpu_hours: 7.57\n145\t  log_path: ~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\n146\t  model_name: EleutherAI/pythia-1.4b\n147\t  pid: 314396\n148\t  seed: 43\n149\t  server: westd-19828\n150\t  submitted_at: 2026-05-18T02:46:35.941Z\n151\t  submitted_via: submit_training_job\n152\t  wall_clock_seconds: 27235.4\n153\tstatus: DONE\n154\tupdated_at: 2026-05-20T20:35:19.609Z\n155\t\n156\t====================================================================================================\n157\tEXP_ID: interv_pred_14b_s42_fp32\n158\t====================================================================================================\n159\tcheckpoint_path: results/intervention/predictive_te_14b_s42/gen_10/checkpoint\n160\tcompleted_at: 2026-05-20T05:43:57.316Z\n161\tconclusion: killed\n162\tcreated_at: 2026-05-19T20:44:38.477Z\n163\thypothesis: Cross-scale intervention validation: Tests if canary-based predictive intervention (token_entropy >15% drop → α=0.0) is effective at 1.4B scale. At 410M, intervention triggers Gen 1 and recovers by Gen 2. If 1.4B shows same pattern, validates scale-independence of canary utility (Claim 4).\n164\tlog_path: results/intervention/predictive_te_14b_s42/all_metrics.json\n165\tparent: intervention_predictive_s42\n166\tplan_id: plan_037\n167\tresults:\n168\t  ece:\n169\t    gen0: 0.007\n170\t    gen10_final: 0.026\n171\t    gen1_spike: 0.281\n172\t    gen2_recovery: 0.017\n173\t  effective_alpha_post_intervention: 0\n174\t  effective_rank:\n175\t    gen0: 50.76\n176\t    gen10_final: 51.53\n177\t    gen1_spike: 90.17\n178\t    gen2_recovery: 58.29\n179\t  mauve_gen10: 0.03\n180\t  pattern_matches_410m: yes - intervention triggers gen1, recovery gen2, stable through gen10\n181\t  perplexity:\n182\t    gen0: 19.68\n183\t    gen10_final: 17.6\n184\t    gen1_spike: 65.37\n185\t    gen2_recovery: 17.44\n186\t  recovery_gen: 2\n187\t  runtime_hours: 9\n188\t  token_entropy:\n189\t    gen0: 2.946\n190\t    gen10_final: 2.832\n191\t    gen1_trigger: 1.418\n192\t    gen2_recovery: 2.892\n193\t  trigger_drop: 51.9% (2.946 → 1.418)\n194\t  trigger_gen: 1\n195\t  trigger_metric: token_entropy\n196\t  validates_claim4: True\n197\tretry_count: 0\n198\tspec:\n199\t  checkpoint_source: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\n200\t  command: CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_14b_s42\n201\t  data_count: 5000\n202\t  data_path: data/wikitext103_5k\n203\t  eval_data: data/wikitext103_5k/eval\n204\t  gpu: cuda:0\n205\t  model_name: EleutherAI/pythia-1.4b\n206\t  pid: 191999\n207\t  precision: fp32\n208\t  seed: 42\n209\t  server: westd-17855\n210\t  tmux_session: interv_pred_14b\n211\tstatus: DONE\n212\tupdated_at: 2026-05-21T08:29:10.289Z\n213\t\n214\t====================================================================================================\n215\tEXP_ID: scale_14b_a050_s42\n216\t====================================================================================================\n217\tcheckpoint_path: results/scale_check/pythia14b_a050_s42\n218\tcompleted_at: 2026-05-19T00:21:09.604Z\n219\tconclusion: success\n220\tcreated_at: 2026-05-18T16:34:35.480Z\n221\textra:\n222\t  hook_events: [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:52:07.044983+00:00\"}]\n223\thypothesis: Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\n224\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\n225\tmetrics:\n226\t  distinct_1_drift_pct: -36\n227\t  distinct_1_g0: 0.0993\n228\t  distinct_1_g10: 0.0636\n229\t  distinct_2_drift_pct: -49.7\n230\t  distinct_2_g0: 0.521\n231\t  distinct_2_g10: 0.262\n232\t  distinct_3_drift_pct: -49.8\n233\t  distinct_3_g0: 0.813\n234\t  distinct_3_g10: 0.408\n235\t  ece_g0: 0.007\n236\t  ece_g10: 0.153\n237\t  effective_rank_g0: 50.76\n238\t  effective_rank_g10: 82.21\n239\t  mauve_drift_pct: -28.2\n240\t  mauve_g0: 0.033\n241\t  mauve_g10: 0.024\n242\t  num_generations: 11\n243\t  perplexity_drift_pct: 78.6\n244\t  perplexity_g0: 19.68\n245\t  perplexity_g10: 35.14\n246\t  token_entropy_drift_pct: -24.4\n247\t  token_entropy_g0: 2.946\n248\t  token_entropy_g10: 2.227\n249\treproduce:\n250\t  finished_at: 2026-05-18T23:52:03.891Z\n251\tretry_count: 0\n252\tspec:\n253\t  account: root\n254\t  backend: tmux\n255\t  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale_check/pythia14b_a050_s42\"\n256\t  data_count: 5000\n257\t  data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n258\t  gpu: [\"cuda:0\"]\n259\t  gpu_hours: 7.77\n260\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\n261\t  model_name: EleutherAI/pythia-1.4b\n262\t  pid: 369470\n263\t  seed: 42\n264\t  server: westd-19828\n265\t  submitted_at: 2026-05-18T16:34:46.977Z\n266\t  submitted_via: submit_training_job\n267\t  wall_clock_seconds: 27982.6\n268\tstatus: DONE\n269\tupdated_at: 2026-05-19T00:21:09.604Z\n270\t\n271\t====================================================================================================\n272\tEXP_ID: scale_14b_a050_s42_bf16\n273\t====================================================================================================\n274\tcompleted_at: 2026-05-21T02:05:38.434Z\n275\tconclusion: killed\n276\tcreated_at: 2026-05-18T17:24:05.784Z\n277\thypothesis: Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\n278\tretry_count: 0\n279\tspec:\n280\t  account: root\n281\t  backend: tmux\n282\t  command: python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --bf16 --output_dir results/scale_check/pythia14b_a050_s42_bf16\n283\t  data_count: 5000\n284\t  data_path: data/wikitext103_5k\n285\t  gpu: [\"cuda:0\"]\n286\t  gpu_hours: 3.0\n287\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_a050_s42_bf16.log\n288\t  model_name: EleutherAI/pythia-1.4b\n289\t  pid: 619318\n290\t  seed: 42\n291\t  server: westd-19828\n292\t  submitted_at: 2026-05-20T23:05:33.809Z\n293\t  submitted_via: submit_training_job\n294\t  wall_clock_seconds: 10804.6\n295\tstatus: DONE\n296\tupdated_at: 2026-05-21T02:05:38.434Z\n297\t\n298\t====================================================================================================\n299\tEXP_ID: scale_14b_a050_s42_fp32\n300\t====================================================================================================\n301\tcheckpoint_path: results/scale/14b_a050_s42_fp32/gen_10\n302\tcompleted_at: 2026-05-20T16:29:33.239Z\n303\tconclusion: negative\n304\tcreated_at: 2026-05-20T05:49:21.885Z\n305\textra:\n306\t  hook_events: [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:19:37.780889+00:00\"}]\n307\thypothesis: Pythia-1.4B at onset boundary α=0.50: tests if canary lead-lag persists at 1.4B scale in the boundary regime. 410M shows PermG=6/8 at α=0.50. If 1.4B also detects → onset boundary is scale-independent; if not → onset shifts with model size. Claim 1 cross-scale dose-response.\n308\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log\n309\tmetrics:\n310\t  DiffXCorr_fdr_dir: 3/8\n311\t  NaiveXCorr_dir: 3/8\n312\t  PermG_fwd_fdr: 3/8\n313\t  PermG_rev_fdr: 0/8\n314\t  Threshold_3sigma: 2/8\n315\t  diff_xcorr_fdr_forward_sig: 6\n316\t  diff_xcorr_fdr_reverse_sig: 6\n317\t  note: CORRECTED 2026-05-20: PermG 0/8→3/8. Original analysis used non-canonical pairs (metrics→perplexity). Canonical source: scale_check/pythia14b_a050_s42/ with 8 standard pairs {te,ece}×{d1,d2,d3,mauve}. 3/8 all via ece channel (ece→d1/d2/d3 fdr_p≈0.044).\n318\t  perm_granger_fdr_forward_sig: 0\n319\t  perm_granger_fdr_reverse_sig: 0\n320\t  ppl_drift_pct: 78.7\n321\t  robust_pairs_K3: 0\n322\t  robust_pairs_K4: 0\n323\t  threshold_onset_forward_sig: 0\n324\t  token_entropy_drift_pct: -25.6\n325\t  ty_forward_sig: 0\n326\treproduce:\n327\t  finished_at: 2026-05-20T16:19:32.507Z\n328\tretry_count: 0\n329\tspec:\n330\t  account: root\n331\t  backend: tmux\n332\t  command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\"\n333\t  data_count: 5000\n334\t  data_path: data/wikitext103_5k\n335\t  gpu: [\"cuda:1\"]\n336\t  gpu_hours: 10.66\n337\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log\n338\t  model_name: EleutherAI/pythia-1.4b\n339\t  pid: 538774\n340\t  precision: fp32\n341\t  seed: 42\n342\t  server: westd-19828\n343\t  submitted_at: 2026-05-20T05:49:48.469Z\n344\t  submitted_via: submit_training_job\n345\t  wall_clock_seconds: 38384.8\n346\tstatus: DONE\n347\tupdated_at: 2026-05-20T21:56:01.317Z\n348\t\n349\t====================================================================================================\n350\tEXP_ID: scale_14b_c4_s42_fp32\n351\t====================================================================================================\n352\tcompleted_at: 2026-05-20T06:59:36.134Z\n353\tconclusion: success\n354\tcreated_at: 2026-05-19T22:26:29.074Z\n355\textra:\n356\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T06:59:41.051846+00:00\"}]\n357\tfailure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n358\thypothesis: D112 scale×domain cross: Pythia-1.4B × C4 × α=1.0 分离域效应 vs 规模效应。C4 在 410M 下 collapse 机制与 WikiText 不同（ppl-dominated, d1 仅 -4%）。1.4B 下如果 C4 仍 ppl-dominated → 域效应；如果转为 diversity-dominated → 规模效应。Claim 1 cross-domain scale validation.\n359\tmetrics:\n360\t  PermG_fwd: 8/8\n361\t  PermG_rev: 0/8\n362\t  diff_xcorr_fdr: 8/8\n363\t  diff_xcorr_fdr_forward_sig: 8\n364\t  diff_xcorr_fdr_reverse_sig: 8\n365\t  naive_xcorr: 8/8\n366\t  note: D120 TY-fixed analysis. TY=0 due to T=11 low power (dmax=1, df_resid insufficient). Threshold=0 (signal too strong, all gens exceed threshold, no onset detectable).\n367\t  perm_granger_fdr_forward_sig: 8\n368\t  perm_granger_fdr_reverse_sig: 0\n369\t  robust_pairs_K3: 8\n370\t  robust_pairs_K4: 2\n371\t  threshold_onset: 0/8\n372\t  threshold_onset_forward_sig: 0\n373\t  ty_forward_sig: 2\n374\tparent: generalize_pythia1b_c4_a100_s42_v2\n375\tplan_id: plan_036\n376\treproduce:\n377\t  finished_at: 2026-05-20T06:59:34.137Z\n378\tretry_count: 0\n379\tspec:\n380\t  command: CUDA_VISIBLE_DEVICES=5 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/scale/14b_c4_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\n381\t  data_count: 5000\n382\t  data_path: data/c4_5k\n383\t  gpu: [\"cuda:5\"]\n384\t  model_name: EleutherAI/pythia-1.4b\n385\t  pid: 201974\n386\t  precision: fp32\n387\t  seed: 42\n388\t  server: westd-17855\n389\tstatus: DONE\n390\tupdated_at: 2026-05-20T21:56:03.658Z\n391\t\n392\t====================================================================================================\n393\tEXP_ID: scale_14b_t10_a045_s42_fp32\n394\t====================================================================================================\n395\tcompleted_at: 2026-05-23T00:46:45.347Z\n396\tconclusion: success\n397\tcreated_at: 2026-05-22T12:32:59.333Z\n398\thypothesis: 1.4B scale verification: T=10 α=0.45, below α_c(10)=0.487. At 410M PermG=0/8. If 1.4B also 0/8, confirms α_c boundary is scale-robust. C2 判定点。\n399\tmetrics:\n400\t  consensus_max_votes: 2\n401\t  d102_downstream: distinct_1,distinct_2,distinct_3,mauve\n402\t  d102_n_perm: 5000\n403\t  d102_threshold: true_3sigma_d105\n404\t  diffxcorr_fwd_fdr: 8/8\n405\t  diffxcorr_rev_fdr: 8/8\n406\t  naive_fwd: 2/8\n407\t  note: DiffXCorr 8/8 survives FDR but bidirectional (8/8 reverse), no robust pairs. Not reliable forward causation.\n408\t  permg_fwd_fdr: 0/8\n409\t  permg_rev_fdr: 0/8\n410\t  robust_pairs: 0/8\n411\t  threshold_fwd: 0/8\n412\t  ty_fwd: 2/8\n413\tretry_count: 0\n414\tspec:\n415\t  checkpoint_path: results/phase_diagram/t10_a045_s42_fp32_14b\n416\t  command: CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n417\t  data_count: 5000\n418\t  data_path: data/wikitext103_5k\n419\t  gpu: cuda:4\n420\t  log_path: /tmp/train_scale_14b_t10_a045_s42.log\n421\t  model_name: EleutherAI/pythia-1.4b-deduped\n422\t  pid: 679204\n423\t  precision: fp32\n424\t  progress: gen_6/10 in training (gen_0-5 complete)\n425\t  seed: 42\n426\t  server: westd-17855\n427\t  tmux_session: nohup (no tmux)\n428\tstatus: DONE\n429\tupdated_at: 2026-05-23T21:48:58.910Z\n430\t\n431\t====================================================================================================\n432\tEXP_ID: scale_14b_t10_a045_s43_fp32\n433\t====================================================================================================\n434\tcheckpoint_path: results/phase_diagram/t10_a045_s43_fp32_14b/\n435\tcompleted_at: 2026-05-23T12:28:59.567Z\n436\tconclusion: success\n437\tcreated_at: 2026-05-23T00:49:15.345Z\n438\thypothesis: 1.4B scale multi-seed: T=10 α=0.45 seed=43. s42 PermG=0/8 confirmed below-threshold. s43 replication for consistency check.\n439\tlog_path: logs/scale_14b_t10_a045_s43_fp32.log\n440\tmetrics:\n441\t  DiffXCorr_fwd: 7/8\n442\t  DiffXCorr_rev: 7/8\n443\t  K_ge_3: 2/8\n444\t  K_ge_4: 0/8\n445\t  PermG_fwd: 1/8\n446\t  PermG_rev: 0/8\n447\t  TY_fwd: 1/8\n448\t  Threshold_fwd: 0/8\n449\t  distinct1_drift_pct: -30.0%\n450\t  ece_drift_pct: +1668%\n451\t  entropy_drift_pct: -24.9%\n452\t  mauve_drift_pct: -11.0%\n453\t  note: Blind zone confirmed. PermG=1/8 marginal (ece→distinct_1 only). Consistent with s42=0/8.\n454\t  ppl_drift_pct: +58.2%\n455\tretry_count: 0\n456\tspec:\n457\t  checkpoint_path: results/phase_diagram/t10_a045_s43_fp32_14b\n458\t  command: CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n459\t  data_count: 5000\n460\t  data_path: data/wikitext103_5k\n461\t  gpu: cuda:4\n462\t  log_path: logs/scale_14b_t10_a045_s43_fp32.log\n463\t  model_name: EleutherAI/pythia-1.4b-deduped\n464\t  pid: 738796\n465\t  precision: fp32\n466\t  seed: 43\n467\t  server: westd-17855\n468\t  tmux_session: 14b_t10_a045_s43\n469\tstatus: DONE\n470\tupdated_at: 2026-05-23T12:31:24.497Z\n471\t\n472\t====================================================================================================\n473\tEXP_ID: scale_14b_t10_a045_s44_fp32\n474\t====================================================================================================\n475\tcompleted_at: 2026-05-24T00:09:14.916Z\n476\tconclusion: success\n477\tcreated_at: 2026-05-23T12:31:25.999Z\n478\thypothesis: Third-seed (s44) replication of 1.4B T=10 α=0.45: s42 PermG=0/8, s43 PermG=1/8 (both blind zone). If s44 also 0-1/8, confirms blind zone is seed-robust at 1.4B scale.\n479\tmetrics:\n480\t  d102_6pair:\n481\t    perm_granger_fwd: 0\n482\t    perm_granger_rev: 0\n483\t    robust_pairs: 0\n484\t    total_pairs: 6\n485\t  gen_0:\n486\t    distinct_3: 0.819\n487\t    ece: 0.0081\n488\t    perplexity: 19.83\n489\t    token_entropy: 2.9731\n490\t  gen_10:\n491\t    distinct_3: 0.4813\n492\t    ece: 0.1454\n493\t    perplexity: 31.56\n494\t    token_entropy: 2.229\n495\t  n_gens: 11\n496\tparent: scale_14b_t10_a045_s42_fp32\n497\tretry_count: 0\n498\tspec:\n499\t  checkpoint_path: results/phase_diagram/t10_a045_s44_fp32_14b\n500\t  checkpoint_source: scale_14b_t10_a045_s42_fp32\n501\t  command: CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n502\t  data_count: 5000\n503\t  data_path: data/wikitext103_5k\n504\t  eval_data: data/wikitext103_5k\n505\t  gpu: cuda:4\n506\t  log_path: results/phase_diagram/t10_a045_s44_fp32_14b.log\n507\t  model_name: EleutherAI/pythia-1.4b-deduped\n508\t  pid: 796624\n509\t  seed: 44\n510\t  server: westd-17855\n511\tstatus: DONE\n512\tupdated_at: 2026-05-24T00:18:38.610Z\n513\t\n514\t====================================================================================================\n515\tEXP_ID: scale_14b_t10_a050_s42_fp32\n516\t====================================================================================================\n517\taccount: root\n518\tcompleted_at: 2026-05-22T06:51:04.593Z\n519\tconclusion: failed\n520\tcreated_at: 2026-05-22T05:01:51.491Z\n521\textra:\n522\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:51:10.709147+00:00\"}]\n523\tfailure_reason: EXIT_CODE=1 (generic error — check log tail)\n524\tgpu: cuda:1\n525\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.50. At 410M, α=0.50 is the onset boundary (T=10 PermG=6/8). If 1.4B also shows 6/8, confirms detection onset is scale-invariant. If different, reveals model-size dependence of α_c.\n526\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32.log\n527\tpid: 752483\n528\treproduce:\n529\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n530\t  finished_at: 2026-05-22T06:51:00.660Z\n531\tretry_count: 0\n532\tserver: westd-19828\n533\tspec:\n534\t  account: root\n535\t  command: python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\n536\t  data_count: 5000\n537\t  data_path: data/wikitext103_5k\n538\t  gpu: [\"cuda:1\"]\n539\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32.log\n540\t  model_name: EleutherAI/pythia-1.4b-deduped\n541\t  pid: 752483\n542\t  seed: 42\n543\t  server: westd-19828\n544\t  tmux_session: scale_14b_t10_a050_s42_fp32\n545\tstatus: DONE\n546\tupdated_at: 2026-05-22T07:01:13.583Z\n547\t\n548\t====================================================================================================\n549\tEXP_ID: scale_14b_t10_a050_s42_fp32_19828\n550\t====================================================================================================\n551\taccount: root\n552\tcompleted_at: 2026-05-22T09:03:13.292Z\n553\tconclusion: failed\n554\tcreated_at: 2026-05-22T07:29:15.144Z\n555\textra:\n556\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:03:19.912444+00:00\"}]\n557\tfailure_reason: Traceback → line 376, in <module> try: ^ File \"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\", line 360, in main f\"eff_rank={metrics['effective_rank']:.1f}, \" ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\n558\tgpu: cuda:1\n559\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.50 (retry on 19828 with local model path). At 410M, α=0.50 is the onset boundary (T=10 PermG=6/8). If 1.4B also shows 6/8, confirms detection onset is scale-invariant.\n560\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32_19828.log\n561\tpid: 765029\n562\treproduce:\n563\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n564\t  finished_at: 2026-05-22T09:03:08.978Z\n565\tretry_count: 0\n566\tserver: westd-19828\n567\tspec:\n568\t  account: root\n569\t  backend: tmux\n570\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n571\t  gpu: [\"cuda:1\"]\n572\t  gpu_hours: 1.55\n573\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32_19828.log\n574\t  pid: 765029\n575\t  server: westd-19828\n576\t  submitted_at: 2026-05-22T07:30:06.302Z\n577\t  submitted_via: submit_training_job\n578\t  wall_clock_seconds: 5587.0\n579\tstatus: DONE\n580\tupdated_at: 2026-05-22T09:03:13.292Z\n581\t\n582\t====================================================================================================\n583\tEXP_ID: scale_14b_t10_a050_s42_fp32_v2\n584\t====================================================================================================\n585\tcompleted_at: 2026-05-22T17:51:56.409Z\n586\tconclusion: success\n587\tcreated_at: 2026-05-22T12:13:39.827Z\n588\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.50 (v2, post-MAUVE fix). At 410M, α=0.50 T=10 is onset boundary (s42=6/8, s43=0/8). 1.4B result shows whether onset boundary shifts with model size.\n589\tmetrics:\n590\t  DiffXCorr_fwd: 4/8\n591\t  DiffXCorr_rev: 4/8\n592\t  K_ge_3: 3/8\n593\t  K_ge_4: 0/8\n594\t  PermG_fwd: 4/8\n595\t  PermG_rev: 2/8\n596\t  TY_fwd: 0/8\n597\t  Threshold_fwd: 2/8\n598\t  note: Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) → 4/8 (FDR). Threshold was 1/8 → 2/8. TY was NaN → 0/8.\n599\tparent: scale_14b_t10_a050_s42_fp32\n600\tretry_count: 0"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa0c82f9-c855-4205-9f4d-76f068181cab",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "1b7a1891-c412-46a6-a264-7920296bfb09",
+            "sourceToolAssistantUUID": "fa0c82f9-c855-4205-9f4d-76f068181cab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T08:08:31.721Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EAZNrqhBtAY53aZ1EZ9wKm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/b66rhf38x.txt",
+                "offset": 600
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b7a1891-c412-46a6-a264-7920296bfb09",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwnLe4Sx9P7B1bp7Lke",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0ba23ed-ac81-4595-b842-0c2b8f3cff71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mf6k37zpdm4HVpFMrezg9K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12880,
+                "cache_read_input_tokens": 20841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12880,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T08:08:31.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EAZNrqhBtAY53aZ1EZ9wKm",
+              "type": "tool_result",
+              "content": "600\tretry_count: 0\n601\tspec:\n602\t  checkpoint_path: results/phase_diagram/t10_a050_s42_fp32_14b\n603\t  checkpoint_source: results/phase_diagram/t10_a050_s42_fp32_14b/gen_1/checkpoint\n604\t  command: python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --start_gen 2\n605\t  data_count: 5000\n606\t  data_path: data/wikitext103_5k\n607\t  eval_data: data/wikitext103_5k\n608\t  gpu: cuda:1\n609\t  log_path: /root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a050_s42_fp32_14b/train.log\n610\t  model_name: EleutherAI/pythia-1.4b-deduped\n611\t  pid: 776064\n612\t  seed: 42\n613\t  server: westd-19828\n614\tstatus: DONE\n615\tupdated_at: 2026-05-23T10:33:40.677Z\n616\t\n617\t====================================================================================================\n618\tEXP_ID: scale_14b_t10_a050_s43_fp32\n619\t====================================================================================================\n620\tcompleted_at: 2026-05-23T08:20:51.218Z\n621\tconclusion: success\n622\tcreated_at: 2026-05-22T20:12:22.036Z\n623\textra:\n624\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T20:25:37.940774+00:00\"}]\n625\tfailure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n626\thypothesis: Cross-seed verification: 1.4B T=10 α=0.50 seed 43. s42 gave PermG 4/8 (onset boundary). Seed variance test.\n627\tmetrics:\n628\t  DiffXCorr_fwd: 6/6\n629\t  DiffXCorr_rev: 0/6\n630\t  K_ge_3: 1/6\n631\t  K_ge_4: 0/6\n632\t  PermG_fwd: 6/8 (6/6 valid pairs)\n633\t  PermG_rev: 0/8 (0/6)\n634\t  TY_fwd: 0/6\n635\t  Threshold_fwd: 0/6\n636\t  distinct1_drift_pct: -24%\n637\t  ece_drift_pct: +2842%\n638\t  entropy_drift_pct: -34%\n639\t  note: MAUVE null, 6-pair basis. ece→distinct_1 is sole K≥3 pair.\n640\t  ppl_drift_pct: +216%\n641\tnotes: D102 analysis: PermG=6/8 fwd (0 rev), DiffXCorr=5/8 fwd (5 rev), Threshold=0/8, TY=0/8, K≥3=1/8. MAUVE recomputed post-hoc (HF_HOME missing during training). Drift: ppl +73%, entropy -24%, ece +1762%, mauve -10.5%, distinct1 -29%. vs s42: PermG higher (6 vs 4) but K≥3 lower (1 vs 4) — seed variance at onset boundary.\n642\tparent: scale_14b_t10_a050_s42_fp32_v2\n643\treproduce:\n644\t  finished_at: 2026-05-23T08:20:47.284Z\n645\tretry_count: 0\n646\tspec:\n647\t  checkpoint_path: results/scale/14b_t10_a050_s43_fp32/\n648\t  checkpoint_source: /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped\n649\t  command: CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/scale/14b_t10_a050_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n650\t  data_count: 5000\n651\t  data_path: data/wikitext103_5k\n652\t  eval_data: data/wikitext103_5k\n653\t  gpu: cuda:1\n654\t  log_path: /tmp/14b_t10_a050_s43.log\n655\t  model_name: EleutherAI/pythia-1.4b-deduped\n656\t  pid: 822048\n657\t  precision: fp32\n658\t  seed: 43\n659\t  server: westd-19828\n660\t  tmux_session: 14b_t10_a050_s43\n661\tstatus: DONE\n662\tupdated_at: 2026-05-23T10:28:40.914Z\n663\t\n664\t====================================================================================================\n665\tEXP_ID: scale_14b_t10_a050_s44_fp32\n666\t====================================================================================================\n667\tcompleted_at: 2026-05-23T20:55:01.460Z\n668\tconclusion: success\n669\tcreated_at: 2026-05-23T08:18:23.933Z\n670\thypothesis: Third-seed (s44) replication of 1.4B T=10 α=0.50: s42 shows PermG=4/8, s43 pending. If s44 also shows 3-5/8, confirms onset-boundary attenuation is seed-robust at 1.4B scale.\n671\tmetrics:\n672\t  d102_6pair:\n673\t    perm_granger_fwd: 6\n674\t    perm_granger_rev: 0\n675\t    robust_pairs: 0\n676\t    total_pairs: 6\n677\t  gen_0:\n678\t    distinct_3: 0.819\n679\t    ece: 0.0081\n680\t    perplexity: 19.83\n681\t    token_entropy: 2.9731\n682\t  gen_10:\n683\t    distinct_3: 0.5031\n684\t    ece: 0.1504\n685\t    perplexity: 34.45\n686\t    token_entropy: 2.2427\n687\t  n_gens: 11\n688\tparent: scale_14b_t10_a050_s42_fp32_v2\n689\tretry_count: 0\n690\tspec:\n691\t  checkpoint_path: results/phase_diagram/t10_a050_s44_fp32_14b\n692\t  checkpoint_source: scale_14b_t10_a050_s42_fp32_v2\n693\t  command: CUDA_VISIBLE_DEVICES=2 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n694\t  data_count: 5000\n695\t  data_path: data/wikitext103_5k\n696\t  eval_data: data/wikitext103_5k\n697\t  gpu: cuda:2\n698\t  log_path: results/phase_diagram/t10_a050_s44_fp32_14b.log\n699\t  model_name: EleutherAI/pythia-1.4b-deduped\n700\t  pid: 781724\n701\t  precision: fp32\n702\t  seed: 44\n703\t  server: westd-17855\n704\tstatus: DONE\n705\tupdated_at: 2026-05-24T00:19:10.014Z\n706\t\n707\t====================================================================================================\n708\tEXP_ID: scale_14b_t10_a060_s42_fp32\n709\t====================================================================================================\n710\taccount: root\n711\tcompleted_at: 2026-05-22T08:30:30.837Z\n712\tconclusion: failed\n713\tcreated_at: 2026-05-22T05:01:53.938Z\n714\textra:\n715\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:30:41.898027+00:00\"}]\n716\tfailure_reason: Traceback → e_train.py\", line 374, in <module> main() File \"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\", line 358, in main f\"mauve={metrics['mauve']:.4f}\") ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\n717\tgpu: cuda:3\n718\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.60. At 410M, α=0.60 shows sync-dip (PermG=0/8). If 1.4B also shows 0/8, confirms sync-dip is scale-invariant. If >0/8, sync-dip may be a small-model artifact.\n719\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a060_s42_fp32.log\n720\tpid: 635574\n721\treproduce:\n722\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n723\t  finished_at: 2026-05-22T08:30:32.130Z\n724\tretry_count: 0\n725\tserver: westd-17855\n726\tspec:\n727\t  account: root\n728\t  backend: tmux\n729\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n730\t  gpu: [\"cuda:3\"]\n731\t  gpu_hours: 1.47\n732\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a060_s42_fp32.log\n733\t  pid: 635574\n734\t  server: westd-17855\n735\t  submitted_at: 2026-05-22T07:02:36.361Z\n736\t  submitted_via: submit_training_job\n737\t  wall_clock_seconds: 5274.5\n738\tstatus: DONE\n739\tupdated_at: 2026-05-22T08:30:40.136Z\n740\t\n741\t====================================================================================================\n742\tEXP_ID: scale_14b_t10_a060_s42_fp32_v2\n743\t====================================================================================================\n744\tcompleted_at: 2026-05-22T20:03:20.821Z\n745\tconclusion: success\n746\tcreated_at: 2026-05-22T08:53:30.644Z\n747\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.60 (resume from gen 2 after MAUVE=None crash). At 410M, α=0.60 shows sync-dip (PermG=0/8). If 1.4B also shows 0/8, confirms sync-dip is scale-invariant. If >0/8, sync-dip may be a small-model artifact.\n748\tmetrics:\n749\t  data_points: 11 (gen_0 to gen_10)\n750\t  fdr_pvalues:\n751\t    ece_d1: sig\n752\t    ece_d2: sig\n753\t    ece_d3: sig\n754\t    te_d1: 0.04\n755\t  k3_consensus: 3/8\n756\t  note: 1.4B does NOT show sync-dip at α=0.60 T=10 (410M=0/8, 1.4B=4/8). Scale suppresses sync-dip; detection still works via canary-leads-downstream asymmetry.\n757\t  permg_fwd: 4/8\n758\t  permg_rev: 0/8\n759\t  threshold_onset: 0/8\n760\t  ty_granger: 0/8\n761\tparent: scale_14b_t10_a060_s42_fp32\n762\tretry_count: 0\n763\tspec:\n764\t  checkpoint_path: results/phase_diagram/t10_a060_s42_fp32_14b/\n765\t  checkpoint_source: results/phase_diagram/t10_a060_s42_fp32_14b/gen_1/checkpoint\n766\t  command: python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b\n767\t  data_count: 5000\n768\t  data_path: data/wikitext103_5k\n769\t  eval_data: data/wikitext103_5k\n770\t  gpu: cuda:3\n771\t  log_path: /tmp/14b_t10_a060.log\n772\t  model_name: EleutherAI/pythia-1.4b-deduped\n773\t  note: Restarted from gen_5 after tmux server kill at ~20:37\n774\t  pid: 680531\n775\t  seed: 42\n776\t  server: westd-17855\n777\t  start_gen: 5\n778\t  tmux_session: scale_14b_a060_s42\n779\tstatus: DONE\n780\tupdated_at: 2026-05-22T20:10:54.526Z\n781\t\n782\t====================================================================================================\n783\tEXP_ID: scale_14b_t10_a060_s43_fp32\n784\t====================================================================================================\n785\tcompleted_at: 2026-05-23T08:14:57.073Z\n786\tconclusion: success\n787\tcreated_at: 2026-05-22T20:12:26.370Z\n788\thypothesis: Cross-seed verification: 1.4B T=10 α=0.60 seed 43. s42 gave PermG 4/8 (sync-dip disappeared at 1.4B). If s43 also >0/8, confirms sync-dip disappearance is robust.\n789\tmetrics:\n790\t  diff_xcorr_fdr_forward: 6/8\n791\t  diff_xcorr_fdr_reverse: 6/8\n792\t  distinct1_drift_pct: -23.7\n793\t  ece_drift_pct: 2842\n794\t  entropy_drift_pct: -33.9\n795\t  mauve_drift_pct: N/A (mauve null - gpt2-large load failed)\n796\t  note: mauve=null all gens (gpt2-large offline load failure on 17855). 2/8 pairs (mauve) are N/A. Effective PermG 4/6 on valid pairs.\n797\t  perm_granger_fdr_forward: 4/8\n798\t  perm_granger_fdr_reverse: 6/8\n799\t  ppl_drift_pct: 216.1\n800\t  robust_pairs_K_ge_3: 3/8\n801\t  robust_pairs_K_ge_4: 2/8\n802\t  threshold_forward: 0/8\n803\t  ty_forward: 2/8\n804\tparent: scale_14b_t10_a060_s42_fp32_v2\n805\tretry_count: 0\n806\tspec:\n807\t  checkpoint_path: results/scale/14b_t10_a060_s43_fp32/\n808\t  checkpoint_source: /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped\n809\t  command: CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/scale/14b_t10_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n810\t  data_count: 5000\n811\t  data_path: data/wikitext103_5k\n812\t  eval_data: data/wikitext103_5k\n813\t  gpu: cuda:3\n814\t  log_path: /tmp/14b_t10_a060_s43.log\n815\t  model_name: EleutherAI/pythia-1.4b-deduped\n816\t  pid: 719252\n817\t  precision: fp32\n818\t  seed: 43\n819\t  server: westd-17855\n820\t  tmux_session: 14b_t10_a060_s43\n821\tstatus: DONE\n822\tupdated_at: 2026-05-23T08:15:12.669Z\n823\t\n824\t====================================================================================================\n825\tEXP_ID: scale_14b_t10_a060_s44_fp32\n826\t====================================================================================================\n827\tcompleted_at: 2026-05-23T20:45:29.379Z\n828\tconclusion: success\n829\tcreated_at: 2026-05-23T08:18:27.298Z\n830\thypothesis: Third-seed (s44) replication of 1.4B T=10 α=0.60: s42 and s43 both show PermG=4/8 (sync-dip dissolved). If s44 also shows 4/8, confirms sync-dip dissolution is seed-robust at 1.4B.\n831\tmetrics:\n832\t  d102_6pair:\n833\t    perm_granger_fwd: 6\n834\t    perm_granger_rev: 0\n835\t    robust_pairs: 5\n836\t    total_pairs: 6\n837\t  gen_0:\n838\t    distinct_3: 0.819\n839\t    ece: 0.0081\n840\t    perplexity: 19.83\n841\t    token_entropy: 2.9731\n842\t  gen_10:\n843\t    distinct_3: 0.598\n844\t    ece: 0.2366\n845\t    perplexity: 63.79\n846\t    token_entropy: 2.0126\n847\t  n_gens: 11\n848\tparent: scale_14b_t10_a060_s42_fp32_v2\n849\tretry_count: 0\n850\tspec:\n851\t  checkpoint_path: results/phase_diagram/t10_a060_s44_fp32_14b\n852\t  checkpoint_source: scale_14b_t10_a060_s42_fp32_v2\n853\t  command: CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n854\t  data_count: 5000\n855\t  data_path: data/wikitext103_5k\n856\t  eval_data: data/wikitext103_5k\n857\t  gpu: cuda:3\n858\t  log_path: results/phase_diagram/t10_a060_s44_fp32_14b.log\n859\t  model_name: EleutherAI/pythia-1.4b-deduped\n860\t  pid: 780907\n861\t  precision: fp32\n862\t  seed: 44\n863\t  server: westd-17855\n864\tstatus: DONE\n865\tupdated_at: 2026-05-24T00:19:07.913Z\n866\t\n867\t====================================================================================================\n868\tEXP_ID: scale_14b_t10_a075_s42_fp32\n869\t====================================================================================================\n870\taccount: root\n871\tcompleted_at: 2026-05-22T08:31:01.663Z\n872\tconclusion: failed\n873\tcreated_at: 2026-05-22T05:01:56.128Z\n874\textra:\n875\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:31:15.263573+00:00\"}]\n876\tfailure_reason: Traceback → e_train.py\", line 374, in <module> main() File \"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\", line 358, in main f\"mauve={metrics['mauve']:.4f}\") ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\n877\tgpu: cuda:2\n878\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.75. At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.\n879\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a075_s42_fp32.log\n880\tpid: 635893\n881\treproduce:\n882\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n883\t  finished_at: 2026-05-22T08:30:57.649Z\n884\tretry_count: 0\n885\tserver: westd-17855\n886\tspec:\n887\t  account: root\n888\t  backend: tmux\n889\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n890\t  gpu: [\"cuda:2\"]\n891\t  gpu_hours: 1.47\n892\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t10_a075_s42_fp32.log\n893\t  pid: 635893\n894\t  server: westd-17855\n895\t  submitted_at: 2026-05-22T07:02:43.185Z\n896\t  submitted_via: submit_training_job\n897\t  wall_clock_seconds: 5298.5\n898\tstatus: DONE\n899\tupdated_at: 2026-05-22T08:32:07.328Z\n900\t\n901\t====================================================================================================\n902\tEXP_ID: scale_14b_t10_a075_s42_fp32_v2\n903\t====================================================================================================\n904\tcompleted_at: 2026-05-22T20:04:13.599Z\n905\tconclusion: success\n906\tcreated_at: 2026-05-22T08:53:33.625Z\n907\textra:\n908\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T20:04:24.112389+00:00\"}]\n909\tfailure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n910\thypothesis: Scale verification: Pythia-1.4B T=10 α=0.75 (resume from gen 2 after MAUVE=None crash). At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.\n911\tmetrics:\n912\t  DiffXCorr_fwd: 6/8\n913\t  DiffXCorr_rev: 6/8\n914\t  K_ge_3: 5/8\n915\t  K_ge_4: 2/8\n916\t  PermG_fwd: 5/8\n917\t  PermG_rev: 0/8\n918\t  TY_fwd: 3/8\n919\t  Threshold_fwd: 0/8\n920\t  note: Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) → 6/8 (FDR). TY was NaN → 3/8.\n921\tnotes: Cron 误判 failed — 日志显示实验已完成: gen_9 checkpoint saved, metrics computed (ppl=89.37, mauve=0.0311), sentinel written. Worker 已派发验证完整结果并运行 D102 分析。worker_id: worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658\n922\tparent: scale_14b_t10_a075_s42_fp32\n923\treproduce:\n924\t  finished_at: 2026-05-22T20:04:10.285Z\n925\tretry_count: 0\n926\tspec:\n927\t  checkpoint_path: results/scale/14b_t10_a075_s42_fp32/\n928\t  checkpoint_source: results/phase_diagram/t10_a075_s42_fp32_14b/gen_1/checkpoint\n929\t  command: python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/scale/14b_t10_a075_s42_fp32\n930\t  data_count: 5000\n931\t  data_path: data/wikitext103_5k\n932\t  eval_data: data/wikitext103_5k\n933\t  gpu: cuda:2\n934\t  log_path: /tmp/14b_t10_a075.log\n935\t  model_name: EleutherAI/pythia-1.4b-deduped\n936\t  note: Restarted from gen_5 after tmux server kill at ~20:37\n937\t  pid: 679944\n938\t  seed: 42\n939\t  server: westd-17855\n940\t  start_gen: 5\n941\t  tmux_session: scale_14b_s42\n942\tstatus: DONE\n943\tupdated_at: 2026-05-23T10:33:42.475Z\n944\t\n945\t====================================================================================================\n946\tEXP_ID: scale_14b_t10_a075_s43_fp32\n947\t====================================================================================================\n948\tcompleted_at: 2026-05-23T08:17:24.499Z\n949\tconclusion: success\n950\tcreated_at: 2026-05-22T20:12:24.032Z\n951\textra:\n952\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-23T08:17:32.275333+00:00\"}]\n953\tfailure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n954\thypothesis: Cross-seed verification: 1.4B T=10 α=0.75 seed 43. s42 gave PermG 5/8. If s43 also ≥5/8, confirms scale-robust detection is not seed-dependent.\n955\tmetrics:\n956\t  DiffXCorr_fwd: 7/8\n957\t  DiffXCorr_rev: 7/8\n958\t  K_ge_3: 5/8\n959\t  K_ge_4: 0/8\n960\t  PermG_fwd: 6/8\n961\t  PermG_rev: 5/8\n962\t  TY_fwd: 1/8\n963\t  Threshold_fwd: 0/8\n964\t  distinct1_drift_pct: -18%\n965\t  ece_drift_pct: +3174%\n966\t  entropy_drift_pct: -34%\n967\t  mauve_drift_pct: -11%\n968\t  note: MAUVE recomputed before D102. Bidirectional confounding (rev=5/8), seed-specific (s42 rev=0/8).\n969\t  ppl_drift_pct: +348%\n970\tnotes: D102 complete. MAUVE recomputed (was null due to HF offline). PermG fwd=6/8, K≥3=5/8, K≥4=0/8. Drift: ppl +348%, entropy -34%, ece +3174%, mauve -11%, distinct1 -18%. Consistent with parent s42 (PermG=5/8, K≥3=5/8).\n971\tparent: scale_14b_t10_a075_s42_fp32_v2\n972\treproduce:\n973\t  finished_at: 2026-05-23T08:17:20.776Z\n974\tretry_count: 0\n975\tspec:\n976\t  checkpoint_path: results/scale/14b_t10_a075_s43_fp32/\n977\t  log_path: /tmp/14b_t10_a075_s43.log\n978\tstatus: DONE\n979\tupdated_at: 2026-05-23T10:28:44.799Z\n980\t\n981\t====================================================================================================\n982\tEXP_ID: scale_14b_t10_a075_s44_fp32\n983\t====================================================================================================\n984\tcompleted_at: 2026-05-23T21:09:47.476Z\n985\tconclusion: success\n986\tcreated_at: 2026-05-23T08:18:30.361Z\n987\thypothesis: Third-seed (s44) replication of 1.4B T=10 α=0.75: s42 shows PermG=5/8, s43 pending. If s44 reaches 5-6/8, confirms high-α detection robustness at 1.4B scale.\n988\tmetrics:\n989\t  d102_6pair:\n990\t    perm_granger_fwd: 6\n991\t    perm_granger_rev: 0\n992\t    robust_pairs: 6\n993\t    total_pairs: 6\n994\t  gen_0:\n995\t    distinct_3: 0.819\n996\t    ece: 0.0081\n997\t    perplexity: 19.83\n998\t    token_entropy: 2.9731\n999\t  gen_10:\n1000\t    distinct_3: 0.6636\n1001\t    ece: 0.2677\n1002\t    perplexity: 89.59\n1003\t    token_entropy: 1.9102\n1004\t  n_gens: 11\n1005\tparent: scale_14b_t10_a075_s42_fp32_v2\n1006\tretry_count: 0\n1007\tspec:\n1008\t  checkpoint_path: results/phase_diagram/t10_a075_s44_fp32_14b\n1009\t  checkpoint_source: scale_14b_t10_a075_s42_fp32_v2\n1010\t  command: CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n1011\t  data_count: 5000\n1012\t  data_path: data/wikitext103_5k\n1013\t  eval_data: data/wikitext103_5k\n1014\t  gpu: cuda:1\n1015\t  log_path: results/phase_diagram/t10_a075_s44_fp32_14b.log\n1016\t  model_name: EleutherAI/pythia-1.4b-deduped\n1017\t  pid: 865467\n1018\t  precision: fp32\n1019\t  seed: 44\n1020\t  server: westd-19828\n1021\tstatus: DONE\n1022\tupdated_at: 2026-05-24T00:18:41.059Z\n1023\t\n1024\t====================================================================================================\n1025\tEXP_ID: scale_14b_t15_a045_s42_fp32\n1026\t====================================================================================================\n1027\tcheckpoint_path: results/phase_diagram/t15_a045_s42_fp32_14b\n1028\tcompleted_at: 2026-05-23T04:51:51.130Z\n1029\tconclusion: success\n1030\tcreated_at: 2026-05-22T05:02:13.927Z\n1031\thypothesis: 1.4B T=15 α=0.45: above α_c(15)≈0.304. If detected, extends 1.4B detection to moderate contamination at T=15.\n1032\tlog_path: /root/autodl-tmp/distrib_canary_collapse/logs/scale_14b_t15_a045_s42_fp32.log\n1033\tmetrics:\n1034\t  diff_xcorr_fdr_forward_sig: 6/8\n1035\t  final_mauve: 0.0252\n1036\t  final_ppl: 34.16\n1037\t  n_gens: 16\n1038\t  perm_granger_fdr_forward_sig: 3/8\n1039\t  perm_granger_fdr_reverse_sig: 0/8\n1040\t  robust_pairs_K3: 4/8\n1041\t  threshold_forward_sig: 2/8\n1042\t  ty_forward_sig: 6/8\n1043\tretry_count: 0\n1044\tspec:\n1045\t  command: CUDA_VISIBLE_DEVICES=5 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a045_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 2\n1046\t  data_count: 5000\n1047\t  data_path: data/wikitext103_5k\n1048\t  gpu: cuda:5\n1049\t  log_path: /root/autodl-tmp/distrib_canary_collapse/logs/scale_14b_t15_a045_s42_fp32.log\n1050\t  model_name: EleutherAI/pythia-1.4b-deduped\n1051\t  note: restarted from gen_2 after tmux server killed at ~20:37\n1052\t  pid: 680608\n1053\t  precision: fp32\n1054\t  seed: 42\n1055\t  server: westd-17855\n1056\t  start_gen: 2\n1057\t  tmux_session: scale_14b_t15_a045_s42_fp32\n1058\tstatus: DONE\n1059\tupdated_at: 2026-05-23T04:51:54.609Z\n1060\t\n1061\t====================================================================================================\n1062\tEXP_ID: scale_14b_t15_a045_s43_fp32\n1063\t====================================================================================================\n1064\tcompleted_at: 2026-05-23T22:23:45.761Z\n1065\tconclusion: success\n1066\tcreated_at: 2026-05-23T04:57:10.458Z\n1067\thypothesis: At alpha=0.45 with T=15 generations (pythia-1.4b, seed=43), canary metrics (token_entropy, ece) will show statistically significant early-warning signals of downstream collapse in distinct_3, detectable via multi-method consensus\n1068\tmetrics:\n1069\t  d102_6pair:\n1070\t    perm_granger_fwd: 5\n1071\t    perm_granger_rev: 3\n1072\t    robust_pairs: 3\n1073\t    total_pairs: 6\n1074\t  gen_0:\n1075\t    distinct_3: 0.8167\n1076\t    ece: 0.0081\n1077\t    perplexity: 19.83\n1078\t    token_entropy: 2.9731\n1079\t  gen_15:\n1080\t    distinct_3: 0.4643\n1081\t    ece: 0.1494\n1082\t    perplexity: 34.18\n1083\t    token_entropy: 2.2626\n1084\t  n_gens: 16\n1085\tretry_count: 0\n1086\tspec:\n1087\t  checkpoint_path: results/phase_diagram/t15_a045_s43_fp32_14b\n1088\t  log_path: results/phase_diagram/t15_a045_s43_fp32_14b.log\n1089\tstatus: DONE\n1090\tupdated_at: 2026-05-24T00:19:05.310Z\n1091\t\n1092\t====================================================================================================\n1093\tEXP_ID: scale_14b_t15_a050_s42_fp32\n1094\t====================================================================================================\n1095\taccount: root\n1096\tcompleted_at: 2026-05-22T09:09:18.578Z\n1097\tconclusion: failed\n1098\tcreated_at: 2026-05-22T05:02:18.300Z\n1099\textra:\n1100\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:09:35.556361+00:00\"}]\n1101\tfailure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)\n1102\tgpu: cuda:1\n1103\thypothesis: Scale verification: Pythia-1.4B T=15 α=0.50. At 410M, α=0.50 PermG=6/8 (above α_c(15)≈0.304). If 1.4B consistent, confirms detection at moderate α is robust to model scale.\n1104\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log\n1105\tnotes: Broken pipe at gen 2, EXIT_CODE=1. Replaced by v3.\n1106\tpid: 643878\n1107\treproduce:\n1108\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n1109\t  finished_at: 2026-05-22T09:09:09.056Z\n1110\tretry_count: 0\n1111\tserver: westd-17855\n1112\tspec:\n1113\t  account: root\n1114\t  backend: tmux\n1115\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n1116\t  gpu: [\"cuda:1\"]\n1117\t  gpu_hours: 1.63\n1118\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log\n1119\t  pid: 643878\n1120\t  server: westd-17855\n1121\t  submitted_at: 2026-05-22T07:31:40.940Z\n1122\t  submitted_via: submit_training_job\n1123\t  wall_clock_seconds: 5857.6\n1124\tstatus: DONE\n1125\tupdated_at: 2026-05-22T10:36:26.113Z\n1126\t\n1127\t====================================================================================================\n1128\tEXP_ID: scale_14b_t15_a050_s42_fp32_v3\n1129\t====================================================================================================\n1130\tcompleted_at: 2026-05-23T02:40:30.563Z\n1131\tconclusion: success\n1132\tcreated_at: 2026-05-22T10:36:39.526Z\n1133\thypothesis: 1.4B T=15 α=0.50: onset boundary test at T=15. α_c(15)≈0.304, α=0.50 above threshold.\n1134\tmetrics:\n1135\t  comparison_410M: 410M T=15 a=0.50 = 6/8 K>=3 vs 1.4B = 2/8 K>=3. Onset shift confirmed at T=15.\n1136\t  diff_xcorr_fdr_forward_sig: 8/8\n1137\t  diff_xcorr_fdr_reverse_sig: 8/8\n1138\t  n_perm: 5000\n1139\t  perm_granger_fdr_forward_sig: 3/8\n1140\t  perm_granger_fdr_reverse_sig: 0/8\n1141\t  robust_pairs_K3: 2/8\n1142\t  threshold_forward_sig: 2/8\n1143\t  ty_forward_sig: 3/8\n1144\tretry_count: 0\n1145\tspec:\n1146\t  account: root\n1147\t  checkpoint_path: results/phase_diagram/t15_a050_s42_fp32_14b\n1148\t  command: CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 4\n1149\t  data_count: 5000\n1150\t  data_path: data/wikitext103_5k\n1151\t  gpu: cuda:1\n1152\t  log_path: results/phase_diagram/t15_a050_s42_fp32_14b/train_restart_gen4.log\n1153\t  model_name: EleutherAI/pythia-1.4b-deduped\n1154\t  note: Restarted from gen_4 after tmux server kill at ~20:37\n1155\t  pid: 680095\n1156\t  precision: fp32\n1157\t  seed: 42\n1158\t  server: westd-17855\n1159\t  start_gen: 4\n1160\t  tmux_session: scale_14b_a050_s42\n1161\tstatus: DONE\n1162\tupdated_at: 2026-05-23T03:41:59.072Z\n1163\t\n1164\t====================================================================================================\n1165\tEXP_ID: scale_14b_t15_a050_s43_fp32\n1166\t====================================================================================================\n1167\tcompleted_at: 2026-05-23T20:19:09.895Z\n1168\tconclusion: success\n1169\tcreated_at: 2026-05-23T02:50:43.126Z\n1170\thypothesis: At alpha=0.50 synthetic ratio with pythia-1.4b, distributional canary metrics (entropy, ece) will show statistically significant lead-lag relationships preceding downstream quality degradation (distinct_3), indicating early warning of model collapse.\n1171\tmetrics:\n1172\t  d102_6pair:\n1173\t    perm_granger_fwd: 3\n1174\t    perm_granger_rev: 0\n1175\t    robust_pairs: 3\n1176\t    total_pairs: 6\n1177\t  gen_0:\n1178\t    distinct_3: 0.8167\n1179\t    ece: 0.0081\n1180\t    perplexity: 19.83\n1181\t    token_entropy: 2.9731\n1182\t  gen_15:\n1183\t    distinct_3: 0.4996\n1184\t    ece: 0.1568\n1185\t    perplexity: 37.09\n1186\t    token_entropy: 2.2712\n1187\t  n_gens: 16\n1188\tretry_count: 0\n1189\tspec:\n1190\t  checkpoint_path: results/phase_diagram/t15_a050_s43_fp32_14b\n1191\t  command: CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n1192\t  data_count: 5000\n1193\t  data_path: data/wikitext103_5k\n1194\t  gpu: cuda:1\n1195\t  log_path: results/phase_diagram/t15_a050_s43_fp32_14b/train.log\n1196\t  model_name: EleutherAI/pythia-1.4b-deduped\n1197\t  pid: 750075\n1198\t  precision: fp32\n1199\t  seed: 43\n1200\t  server: westd-17855\n1201\tstatus: DONE\n1202\tupdated_at: 2026-05-24T00:19:03.091Z\n1203\t\n1204\t====================================================================================================\n1205\tEXP_ID: scale_14b_t15_a060_s42_fp32\n1206\t====================================================================================================\n1207\taccount: root\n1208\tcompleted_at: 2026-05-22T09:08:46.094Z\n1209\tconclusion: failed\n1210\tcreated_at: 2026-05-22T05:02:20.424Z\n1211\textra:\n1212\t  hook_events: [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:08:57.598497+00:00\"}]\n1213\tfailure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)\n1214\tgpu: cuda:0\n1215\thypothesis: Scale verification: Pythia-1.4B T=15 α=0.60. At 410M, α=0.60 PermG=0/8 (sync-dip). Cross-T + cross-scale test: if 1.4B also 0/8 at T=15, sync-dip is both T-invariant and scale-invariant — a fundamental structural feature.\n1216\tlog_path: ~/runs/distrib_canary_collapse/scale_14b_t15_a060_s42_fp32.log\n1217\tnotes: SIGTERM (exit 143) at 09:08 UTC, same time as scale_14b_t15_a050_s42_fp32 (cuda:1). Both on westd-17855 cuda:0/1 while cuda:2-5 still running. Diagnosing via worker_diagnose_scale_14b_t15_a050_s42_fp32_20260522T093206\n1218\tpid: 643570\n1219\treproduce:\n1220\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n1221\t  finished_at: 2026-05-22T09:08:44.807Z\n1222\tretry_count: 0\n1223\tserver: westd-17855\n1224\tspec:\n1225\t  account: root\n1226\t  backend: tmux\n1227\t  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\"\n1228\t  gpu: [\"cuda:0\"]\n1229\t  gpu_hours: 1.62\n1230\t  log_path: ~/runs/distrib_canary_collapse/scale_14b_t15_a060_s42_fp32.log\n1231\t  pid: 643570\n1232\t  server: westd-17855\n1233\t  submitted_at: 2026-05-22T07:31:33.499Z\n1234\t  submitted_via: submit_training_job\n1235\t  wall_clock_seconds: 5832.6\n1236\tstatus: DONE\n1237\tupdated_at: 2026-05-22T09:32:20.627Z\n1238\t\n1239\t====================================================================================================\n1240\tEXP_ID: scale_14b_t15_a060_s42_fp32_v2\n1241\t====================================================================================================\n1242\tcompleted_at: 2026-05-23T02:39:07.105Z\n1243\tconclusion: success\n1244\tcreated_at: 2026-05-22T10:08:53.904Z\n1245\thypothesis: 1.4B T=15 α=0.60: at 410M this is sync-dip range (0/8 at T=15). If 1.4B >0/8, further confirms sync-dip is 410M-specific.\n1246\tmetrics:\n1247\t  K_ge_3: 6/8\n1248\t  K_ge_4: 3/8\n1249\t  PermG_fwd: 6/8\n1250\t  PermG_rev: 0/8\n1251\t  TY_granger: 1/8\n1252\t  diff_xcorr_fdr_fwd: 7/8\n1253\t  drift_ece: +2791%\n1254\t  drift_entropy: -27.9%\n1255\t  drift_mauve: 0.033->0.029\n1256\t  drift_ppl: +246.5%\n1257\t  threshold_onset_3sigma: 6/8\n1258\tparent: scale_14b_t15_a060_s42_fp32\n1259\tretry_count: 0\n1260\tspec:\n1261\t  account: root\n1262\t  checkpoint_path: results/phase_diagram/t15_a060_s42_fp32_14b\n1263\t  checkpoint_source: gen_0-1 completed, resume from gen_2\n1264\t  command: CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 4\n1265\t  data_count: 5000\n1266\t  data_path: data/wikitext103_5k\n1267\t  eval_data: data/wikitext103_5k\n1268\t  gpu: cuda:0\n1269\t  log_path: /tmp/train_scale_14b_t15_a060_s42_fp32_v2.log\n1270\t  model_name: EleutherAI/pythia-1.4b-deduped\n1271\t  note: Restarted from gen_3 checkpoint after tmux server kill at ~20:37\n1272\t  pid: 679656\n1273\t  precision: fp32\n1274\t  seed: 42\n1275\t  server: westd-17855\n1276\t  start_gen: 4\n1277\t  tmux_session: scale_14b_t15_a060_s42\n1278\tstatus: DONE\n1279\tupdated_at: 2026-05-23T03:41:53.181Z\n1280\t\n1281\t====================================================================================================\n1282\tEXP_ID: scale_14b_t15_a060_s43_fp32\n1283\t====================================================================================================\n1284\tcompleted_at: 2026-05-23T20:03:08.708Z\n1285\tconclusion: success\n1286\tcreated_at: 2026-05-23T03:16:03.546Z\n1287\thypothesis: Scaling model size to 1.4B (pythia-1.4b) at alpha=0.60 with T=15 generations will exhibit similar distributional collapse trajectory as smaller models, with perplexity growth and diversity loss following power-law scaling with sqrt(T)\n1288\tmetrics:\n1289\t  d102_6pair:\n1290\t    perm_granger_fwd: 6\n1291\t    perm_granger_rev: 3\n1292\t    robust_pairs: 6\n1293\t    total_pairs: 6\n1294\t  gen_0:\n1295\t    distinct_3: 0.8167\n1296\t    ece: 0.0081\n1297\t    perplexity: 19.83\n1298\t    token_entropy: 2.9731\n1299\t  gen_15:\n1300\t    distinct_3: 0.5661\n1301\t    ece: 0.2369\n1302\t    perplexity: 68.88\n1303\t    token_entropy: 2.1014\n1304\t  n_gens: 16\n1305\tretry_count: 0\n1306\tspec:\n1307\t  checkpoint_path: results/phase_diagram/t15_a060_s43_fp32_14b\n1308\t  command: CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n1309\t  data_count: 5000\n1310\t  data_path: data/wikitext103_5k\n1311\t  gpu: cuda:0\n1312\t  log_path: results/phase_diagram/t15_a060_s43_fp32_14b/\n1313\t  model_name: EleutherAI/pythia-1.4b-deduped\n1314\t  pid: 749427\n1315\t  precision: fp32\n1316\t  seed: 43\n1317\t  server: westd-17855\n1318\tstatus: DONE\n1319\tupdated_at: 2026-05-24T00:19:00.782Z\n1320\t\n1321\t====================================================================================================\n1322\tEXP_ID: scale_14b_t15_a075_s42_fp32\n1323\t====================================================================================================\n1324\tcheckpoint_path: outputs/scale_14b_t15_a075_s42_fp32\n1325\tcompleted_at: 2026-05-23T06:19:06.976Z\n1326\tconclusion: success\n1327\tcreated_at: 2026-05-22T12:02:45.511Z\n1328\thypothesis: 1.4B T=15 α=0.75: strong contamination at longer horizon. If PermG≥5/8, confirms 1.4B detection extends to T=15.\n1329\tlog_path: /root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log\n1330\tmetrics:\n1331\t  diff_xcorr_fdr_forward_sig: 8\n1332\t  diff_xcorr_fdr_reverse_sig: 8\n1333\t  drift_distinct1_pct: -19.4\n1334\t  drift_distinct2_pct: -23.3\n1335\t  drift_distinct3_pct: -19.9\n1336\t  drift_ece_pct: 3091.2\n1337\t  drift_entropy_pct: -29.5\n1338\t  drift_mauve_pct: -3.6\n1339\t  drift_ppl_pct: 390.5\n1340\t  perm_granger_fdr_forward_sig: 6\n1341\t  perm_granger_fdr_reverse_sig: 0\n1342\t  robust_pairs_K3: 6\n1343\t  robust_pairs_K4: 6\n1344\t  threshold_forward_sig: 7\n1345\t  ty_forward_sig: 5\n1346\tretry_count: 0\n1347\tspec:\n1348\t  command: CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir outputs/scale_14b_t15_a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n1349\t  data_count: 5000\n1350\t  data_path: data/wikitext103_5k\n1351\t  gpu: cuda:0\n1352\t  log_path: /root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log\n1353\t  model_name: EleutherAI/pythia-1.4b-deduped\n1354\t  pid: 793171\n1355\t  precision: fp32\n1356\t  seed: 42\n1357\t  server: westd-19828\n1358\t  tmux_session: scale_14b_t15_a075\n1359\tstatus: DONE\n1360\tupdated_at: 2026-05-23T06:19:11.443Z\n1361\t\n1362\t====================================================================================================\n1363\tEXP_ID: scale_14b_t15_a075_s43_fp32\n1364\t====================================================================================================\n1365\tcompleted_at: 2026-05-24T00:16:42.897Z\n1366\tconclusion: success\n1367\tcreated_at: 2026-05-23T06:39:02.256Z\n1368\thypothesis: Cross-seed (s43) replication of 1.4B T=15 α=0.75: parent s42 shows PermG=6/8 at ceiling. If s43 also reaches 6/8, confirms high-α detection is seed-robust at 1.4B scale.\n1369\tmetrics:\n1370\t  d102_6pair:\n1371\t    perm_granger_fwd: 6\n1372\t    perm_granger_rev: 0\n1373\t    robust_pairs: 6\n1374\t    total_pairs: 6\n1375\t  gen_0:\n1376\t    distinct_3: 0.8167\n1377\t    ece: 0.0081\n1378\t    perplexity: 19.83\n1379\t    token_entropy: 2.9731\n1380\t  gen_15:\n1381\t    distinct_3: 0.6675\n1382\t    ece: 0.2646\n1383\t    perplexity: 99.96\n1384\t    token_entropy: 2.0783\n1385\t  n_gens: 16\n1386\tparent: scale_14b_t15_a075_s42_fp32\n1387\tretry_count: 0\n1388\tspec:\n1389\t  checkpoint_path: results/phase_diagram/t15_a075_s43_fp32_14b\n1390\t  checkpoint_source: scale_14b_t15_a075_s42_fp32\n1391\t  command: CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\n1392\t  data_count: 5000\n1393\t  data_path: data/wikitext103_5k\n1394\t  eval_data: data/wikitext103_5k\n1395\t  gpu: cuda:0\n1396\t  log_path: results/phase_diagram/t15_a075_s43_fp32_14b.log\n1397\t  model_name: EleutherAI/pythia-1.4b-deduped\n1398\t  pid: 857058\n1399\t  precision: fp32\n1400\t  seed: 43\n1401\t  server: westd-19828\n1402\tstatus: DONE\n1403\tupdated_at: 2026-05-24T00:18:36.206Z\n1404\t\n1405\t\n1406\tTotal 14b experiments: 36\n1407\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ba23ed-ac81-4595-b842-0c2b8f3cff71",
+            "isSidechain": true,
+            "promptId": "21b8d9b4-b821-4dfe-b62e-11a1d927b767",
+            "agentId": "a5d4390633c67bcb9",
+            "type": "user",
+            "uuid": "9e161757-3018-4f23-b72c-73cf25429921",
+            "sourceToolAssistantUUID": "f0ba23ed-ac81-4595-b842-0c2b8f3cff71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T08:10:05.625Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete data for all 36 Pythia-1.4B experiments from the registry.\n\n---\n\n## Summary: 36 experiments with exp_id containing \"14b\"\n\n### COMPLETED WITH METRICS (sorted by alpha, T)\n\n---\n\n#### 1. `14b_t10_a050_s43` — status: PREPARING\n- alpha=0.50, T=10, seed=43\n- No metrics (never ran to completion)\n- Server: westd-19828, gpu: cuda:1\n\n#### 2. `14b_t10_a060_s43` — status: PREPARING\n- alpha=0.60, T=10, seed=43\n- No metrics\n- Server: westd-17855, gpu: cuda:3\n\n#### 3. `14b_t10_a075_s43` — status: PREPARING\n- alpha=0.75, T=10, seed=43\n- No metrics\n- Server: westd-17855, gpu: cuda:2\n\n---\n\n#### 4. `generalize_pythia14b_wiki_a100_s42` — DONE, conclusion: **success**\n- alpha=1.0, T=10, seed=42, model: pythia-1.4b (not deduped), data: wikitext103_5k\n- **PermG fwd: 2/8**, PermG rev: 0/8\n- DiffXCorr fwd: 7/8, DiffXCorr rev: 7/8\n- K_gte3: 3/8, robust_pairs_K3: 1, robust_pairs_K4: 0\n- threshold_onset_3sigma: 0/8, threshold_onset_forward_sig: 0\n- ty_forward_sig: 0\n- Note: \"M046 D120 canonical reanalysis: TY 0->3, K>=3 1->3\"\n- GPU hours: 3.57\n\n#### 5. `generalize_pythia14b_wiki_a100_s43` — DONE, conclusion: **success**\n- alpha=1.0, T=10, seed=43, model: pythia-1.4b (not deduped), data: wikitext103_5k\n- **PermG fwd: 6/8**, PermG rev: 0/8\n- DiffXCorr fwd: 8/8, DiffXCorr rev: 8/8\n- K_gte3: 3/8, robust_pairs_K3: 2, robust_pairs_K4: 0\n- threshold_onset_3sigma: 0/8, threshold_onset_forward_sig: 0\n- ty_forward_sig: 2\n- Note: \"M046 D120 canonical reanalysis: TY 4->3, K>=3 7->3, Threshold 8->0\"\n- GPU hours: 7.57\n\n---\n\n#### 6. `interv_pred_14b_s42_fp32` — DONE, conclusion: **killed**\n- Intervention experiment: alpha=1.0 with predictive intervention (token_entropy >15% drop -> alpha=0.0)\n- T=10, seed=42, model: pythia-1.4b, precision: fp32\n- **Intervention results (NOT lead-lag metrics):**\n  - trigger_gen: 1, trigger_drop: 51.9% (2.946 -> 1.418)\n  - recovery_gen: 2\n  - perplexity: gen0=19.68, gen1_spike=65.37, gen2_recovery=17.44, gen10_final=17.6\n  - token_entropy: gen0=2.946, gen1_trigger=1.418, gen2_recovery=2.892, gen10_final=2.832\n  - ece: gen0=0.007, gen1_spike=0.281, gen2_recovery=0.017, gen10_final=0.026\n  - effective_rank: gen0=50.76, gen1_spike=90.17, gen2_recovery=58.29, gen10_final=51.53\n  - mauve_gen10: 0.03\n  - validates_claim4: True\n  - pattern_matches_410m: yes\n\n---\n\n#### 7. `scale_14b_a050_s42` — DONE, conclusion: **success**\n- alpha=0.50, T=10, seed=42, model: pythia-1.4b, data: wikitext103_5k\n- **Raw trajectory metrics only (no lead-lag):**\n  - perplexity: g0=19.68, g10=35.14, drift=+78.6%\n  - token_entropy: g0=2.946, g10=2.227, drift=-24.4%\n  - ece: g0=0.007, g10=0.153\n  - effective_rank: g0=50.76, g10=82.21\n  - mauve: g0=0.033, g10=0.024, drift=-28.2%\n  - distinct_1: g0=0.0993, g10=0.0636, drift=-36%\n  - distinct_2: g0=0.521, g10=0.262, drift=-49.7%\n  - distinct_3: g0=0.813, g10=0.408, drift=-49.8%\n- GPU hours: 7.77\n\n#### 8. `scale_14b_a050_s42_bf16` — DONE, conclusion: **killed**\n- alpha=0.50, T=10, seed=42, model: pythia-1.4b, precision: bf16\n- No metrics recorded\n- GPU hours: 3.0\n\n#### 9. `scale_14b_a050_s42_fp32` — DONE, conclusion: **negative**\n- alpha=0.50, T=10, seed=42, model: pythia-1.4b, precision: fp32\n- **PermG_fwd_fdr: 3/8**, PermG_rev_fdr: 0/8\n- DiffXCorr_fdr_dir: 3/8, NaiveXCorr_dir: 3/8\n- Threshold_3sigma: 2/8\n- diff_xcorr_fdr_forward_sig: 6, diff_xcorr_fdr_reverse_sig: 6\n- perm_granger_fdr_forward_sig: 0, perm_granger_fdr_reverse_sig: 0\n- robust_pairs_K3: 0, robust_pairs_K4: 0\n- threshold_onset_forward_sig: 0, ty_forward_sig: 0\n- ppl_drift_pct: 78.7%, token_entropy_drift_pct: -25.6%\n- Note: \"CORRECTED 2026-05-20: PermG 0/8->3/8. Original used non-canonical pairs.\"\n- GPU hours: 10.66\n\n---\n\n#### 10. `scale_14b_c4_s42_fp32` — DONE, conclusion: **success**\n- alpha=1.0, T=10, seed=42, model: pythia-1.4b, data: **C4**, precision: fp32\n- **PermG_fwd: 8/8**, PermG_rev: 0/8\n- diff_xcorr_fdr: 8/8, naive_xcorr: 8/8\n- robust_pairs_K3: 8, robust_pairs_K4: 2\n- threshold_onset: 0/8, threshold_onset_forward_sig: 0\n- ty_forward_sig: 2\n- Note: \"D120 TY-fixed analysis. TY=0 due to T=11 low power\"\n\n---\n\n### T=10 Phase Diagram Experiments (pythia-1.4b-deduped)\n\n#### 11. `scale_14b_t10_a045_s42_fp32` — DONE, conclusion: **success**\n- alpha=0.45, T=10, seed=42\n- **permg_fwd_fdr: 0/8**, permg_rev_fdr: 0/8\n- diffxcorr_fwd_fdr: 8/8, diffxcorr_rev_fdr: 8/8\n- robust_pairs: 0/8, consensus_max_votes: 2\n- threshold_fwd: 0/8, ty_fwd: 2/8, naive_fwd: 2/8\n- Note: \"DiffXCorr 8/8 survives FDR but bidirectional (8/8 reverse), no robust pairs.\"\n\n#### 12. `scale_14b_t10_a045_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.45, T=10, seed=43\n- **PermG_fwd: 1/8**, PermG_rev: 0/8\n- DiffXCorr_fwd: 7/8, DiffXCorr_rev: 7/8\n- K_ge_3: 2/8, K_ge_4: 0/8\n- TY_fwd: 1/8, Threshold_fwd: 0/8\n- Drift: ppl +58.2%, entropy -24.9%, ece +1668%, mauve -11.0%, distinct1 -30.0%\n- Note: \"Blind zone confirmed. PermG=1/8 marginal (ece->distinct_1 only).\"\n\n#### 13. `scale_14b_t10_a045_s44_fp32` — DONE, conclusion: **success**\n- alpha=0.45, T=10, seed=44\n- **d102_6pair: perm_granger_fwd=0, perm_granger_rev=0, robust_pairs=0** (6 valid pairs)\n- gen_0: distinct_3=0.819, ece=0.0081, ppl=19.83, te=2.9731\n- gen_10: distinct_3=0.4813, ece=0.1454, ppl=31.56, te=2.229\n\n---\n\n#### 14. `scale_14b_t10_a050_s42_fp32` — DONE, conclusion: **failed**\n- alpha=0.50, T=10, seed=42\n- No metrics (crashed: MAUVE=None format error)\n\n#### 15. `scale_14b_t10_a050_s42_fp32_19828` — DONE, conclusion: **failed**\n- alpha=0.50, T=10, seed=42 (retry on westd-19828)\n- No metrics (crashed: effective_rank=None format error)\n\n#### 16. `scale_14b_t10_a050_s42_fp32_v2` — DONE, conclusion: **success**\n- alpha=0.50, T=10, seed=42\n- **PermG_fwd: 4/8**, PermG_rev: 2/8\n- DiffXCorr_fwd: 4/8, DiffXCorr_rev: 4/8\n- K_ge_3: 3/8, K_ge_4: 0/8\n- TY_fwd: 0/8, Threshold_fwd: 2/8\n- Note: \"Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) -> 4/8 (FDR).\"\n\n#### 17. `scale_14b_t10_a050_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.50, T=10, seed=43\n- **PermG_fwd: 6/8 (6/6 valid pairs)**, PermG_rev: 0/8\n- DiffXCorr_fwd: 6/6, DiffXCorr_rev: 0/6\n- K_ge_3: 1/6, K_ge_4: 0/6\n- TY_fwd: 0/6, Threshold_fwd: 0/6\n- Drift: ppl +216%, entropy -34%, ece +2842%, distinct1 -24%\n- Note: \"MAUVE null, 6-pair basis. ece->distinct_1 is sole K>=3 pair.\"\n- Notes field: \"PermG=6/8 fwd (0 rev), DiffXCorr=5/8 fwd (5 rev), Threshold=0/8, TY=0/8, K>=3=1/8. vs s42: PermG higher (6 vs 4) but K>=3 lower (1 vs 4) -- seed variance at onset boundary.\"\n\n#### 18. `scale_14b_t10_a050_s44_fp32` — DONE, conclusion: **success**\n- alpha=0.50, T=10, seed=44\n- **d102_6pair: perm_granger_fwd=6, perm_granger_rev=0, robust_pairs=0** (6 valid pairs)\n- gen_0: distinct_3=0.819, ece=0.0081, ppl=19.83, te=2.9731\n- gen_10: distinct_3=0.5031, ece=0.1504, ppl=34.45, te=2.2427\n\n---\n\n#### 19. `scale_14b_t10_a060_s42_fp32` — DONE, conclusion: **failed**\n- alpha=0.60, T=10, seed=42\n- No metrics (crashed: MAUVE=None format error)\n\n#### 20. `scale_14b_t10_a060_s42_fp32_v2` — DONE, conclusion: **success**\n- alpha=0.60, T=10, seed=42\n- **permg_fwd: 4/8**, permg_rev: 0/8\n- k3_consensus: 3/8\n- threshold_onset: 0/8, ty_granger: 0/8\n- fdr_pvalues: ece_d1=sig, ece_d2=sig, ece_d3=sig, te_d1=0.04\n- Note: \"1.4B does NOT show sync-dip at alpha=0.60 T=10 (410M=0/8, 1.4B=4/8).\"\n\n#### 21. `scale_14b_t10_a060_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.60, T=10, seed=43\n- **perm_granger_fdr_forward: 4/8**, perm_granger_fdr_reverse: 6/8\n- diff_xcorr_fdr_forward: 6/8, diff_xcorr_fdr_reverse: 6/8\n- robust_pairs_K_ge_3: 3/8, robust_pairs_K_ge_4: 2/8\n- threshold_forward: 0/8, ty_forward: 2/8\n- Drift: ppl +216.1%, entropy -33.9%, ece +2842%, distinct1 -23.7%, mauve N/A\n- Note: \"mauve=null all gens. Effective PermG 4/6 on valid pairs.\"\n\n#### 22. `scale_14b_t10_a060_s44_fp32` — DONE, conclusion: **success**\n- alpha=0.60, T=10, seed=44\n- **d102_6pair: perm_granger_fwd=6, perm_granger_rev=0, robust_pairs=5** (6 valid pairs)\n- gen_0: distinct_3=0.819, ece=0.0081, ppl=19.83, te=2.9731\n- gen_10: distinct_3=0.598, ece=0.2366, ppl=63.79, te=2.0126\n\n---\n\n#### 23. `scale_14b_t10_a075_s42_fp32` — DONE, conclusion: **failed**\n- alpha=0.75, T=10, seed=42\n- No metrics (crashed: MAUVE=None format error)\n\n#### 24. `scale_14b_t10_a075_s42_fp32_v2` — DONE, conclusion: **success**\n- alpha=0.75, T=10, seed=42\n- **PermG_fwd: 5/8**, PermG_rev: 0/8\n- DiffXCorr_fwd: 6/8, DiffXCorr_rev: 6/8\n- K_ge_3: 5/8, K_ge_4: 2/8\n- TY_fwd: 3/8, Threshold_fwd: 0/8\n- Note: \"Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) -> 6/8 (FDR). TY was NaN -> 3/8.\"\n\n#### 25. `scale_14b_t10_a075_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.75, T=10, seed=43\n- **PermG_fwd: 6/8**, PermG_rev: 5/8\n- DiffXCorr_fwd: 7/8, DiffXCorr_rev: 7/8\n- K_ge_3: 5/8, K_ge_4: 0/8\n- TY_fwd: 1/8, Threshold_fwd: 0/8\n- Drift: ppl +348%, entropy -34%, ece +3174%, mauve -11%, distinct1 -18%\n- Note: \"Bidirectional confounding (rev=5/8), seed-specific (s42 rev=0/8).\"\n\n#### 26. `scale_14b_t10_a075_s44_fp32` — DONE, conclusion: **success**\n- alpha=0.75, T=10, seed=44\n- **d102_6pair: perm_granger_fwd=6, perm_granger_rev=0, robust_pairs=6** (6 valid pairs)\n- gen_0: distinct_3=0.819, ece=0.0081, ppl=19.83, te=2.9731\n- gen_10: distinct_3=0.6636, ece=0.2677, ppl=89.59, te=1.9102\n\n---\n\n### T=15 Phase Diagram Experiments (pythia-1.4b-deduped)\n\n#### 27. `scale_14b_t15_a045_s42_fp32` — DONE, conclusion: **success**\n- alpha=0.45, T=15, seed=42\n- **perm_granger_fdr_forward_sig: 3/8**, perm_granger_fdr_reverse_sig: 0/8\n- diff_xcorr_fdr_forward_sig: 6/8\n- robust_pairs_K3: 4/8\n- threshold_forward_sig: 2/8, ty_forward_sig: 6/8\n- final_mauve: 0.0252, final_ppl: 34.16, n_gens: 16\n\n#### 28. `scale_14b_t15_a045_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.45, T=15, seed=43\n- **d102_6pair: perm_granger_fwd=5, perm_granger_rev=3, robust_pairs=3** (6 valid pairs)\n- gen_0: distinct_3=0.8167, ece=0.0081, ppl=19.83, te=2.9731\n- gen_15: distinct_3=0.4643, ece=0.1494, ppl=34.18, te=2.2626, n_gens=16\n\n---\n\n#### 29. `scale_14b_t15_a050_s42_fp32` — DONE, conclusion: **failed**\n- alpha=0.50, T=15, seed=42 — SIGTERM (exit 143)\n- No metrics\n\n#### 30. `scale_14b_t15_a050_s42_fp32_v3` — DONE, conclusion: **success**\n- alpha=0.50, T=15, seed=42\n- **perm_granger_fdr_forward_sig: 3/8**, perm_granger_fdr_reverse_sig: 0/8\n- diff_xcorr_fdr_forward_sig: 8/8, diff_xcorr_fdr_reverse_sig: 8/8\n- robust_pairs_K3: 2/8\n- threshold_forward_sig: 2/8, ty_forward_sig: 3/8\n- comparison_410M: \"410M T=15 a=0.50 = 6/8 K>=3 vs 1.4B = 2/8 K>=3. Onset shift confirmed at T=15.\"\n\n#### 31. `scale_14b_t15_a050_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.50, T=15, seed=43\n- **d102_6pair: perm_granger_fwd=3, perm_granger_rev=0, robust_pairs=3** (6 valid pairs)\n- gen_0: distinct_3=0.8167, ece=0.0081, ppl=19.83, te=2.9731\n- gen_15: distinct_3=0.4996, ece=0.1568, ppl=37.09, te=2.2712, n_gens=16\n\n---\n\n#### 32. `scale_14b_t15_a060_s42_fp32` — DONE, conclusion: **failed**\n- alpha=0.60, T=15, seed=42 — SIGTERM (exit 143)\n- No metrics\n\n#### 33. `scale_14b_t15_a060_s42_fp32_v2` — DONE, conclusion: **success**\n- alpha=0.60, T=15, seed=42\n- **PermG_fwd: 6/8**, PermG_rev: 0/8\n- K_ge_3: 6/8, K_ge_4: 3/8\n- diff_xcorr_fdr_fwd: 7/8\n- **threshold_onset_3sigma: 6/8**\n- TY_granger: 1/8\n- Drift: ece +2791%, entropy -27.9%, mauve 0.033->0.029, ppl +246.5%\n\n#### 34. `scale_14b_t15_a060_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.60, T=15, seed=43\n- **d102_6pair: perm_granger_fwd=6, perm_granger_rev=3, robust_pairs=6** (6 valid pairs)\n- gen_0: distinct_3=0.8167, ece=0.0081, ppl=19.83, te=2.9731\n- gen_15: distinct_3=0.5661, ece=0.2369, ppl=68.88, te=2.1014, n_gens=16\n\n---\n\n#### 35. `scale_14b_t15_a075_s42_fp32` — DONE, conclusion: **success**\n- alpha=0.75, T=15, seed=42\n- **perm_granger_fdr_forward_sig: 6**, perm_granger_fdr_reverse_sig: 0\n- diff_xcorr_fdr_forward_sig: 8, diff_xcorr_fdr_reverse_sig: 8\n- **robust_pairs_K3: 6, robust_pairs_K4: 6**\n- **threshold_forward_sig: 7**, ty_forward_sig: 5\n- Drift: ppl +390.5%, entropy -29.5%, ece +3091.2%, mauve -3.6%, distinct1 -19.4%, distinct2 -23.3%, distinct3 -19.9%\n\n#### 36. `scale_14b_t15_a075_s43_fp32` — DONE, conclusion: **success**\n- alpha=0.75, T=15, seed=43\n- **d102_6pair: perm_granger_fwd=6, perm_granger_rev=0, robust_pairs=6** (6 valid pairs)\n- gen_0: distinct_3=0.8167, ece=0.0081, ppl=19.83, te=2.9731\n- gen_15: distinct_3=0.6675, ece=0.2646, ppl=99.96, te=2.0783, n_gens=16\n\n---\n\n### Quick reference: PermG fwd counts across successful 1.4B T=10 experiments\n\n| alpha | s42 | s43 | s44 |\n|-------|-----|-----|-----|\n| 0.45  | 0/8 | 1/8 | 0/6 |\n| 0.50  | 4/8 | 6/8 (6/6) | 6/6 |\n| 0.60  | 4/8 | 4/8 (4/6) | 6/6 |\n| 0.75  | 5/8 | 6/8 | 6/6 |\n\n### Quick reference: PermG fwd counts across successful 1.4B T=15 experiments\n\n| alpha | s42 | s43 |\n|-------|-----|-----|\n| 0.45  | 3/8 | 5/6 |\n| 0.50  | 3/8 | 3/6 |\n| 0.60  | 6/8 | 6/6 |\n| 0.75  | 6/8 | 6/6 |\n\nThe full raw dump is also saved at `/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/7b3b0300-c947-4be1-a432-592ca84bb473/tool-results/b66rhf38x.txt`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e161757-3018-4f23-b72c-73cf25429921",
+            "isSidechain": true,
+            "agentId": "a5d4390633c67bcb9",
+            "requestId": "req_011CbNwnixz9fsBWk7et5Hyw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c498644c-1e43-4d8b-bf64-32818b96d73f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "7b3b0300-c947-4be1-a432-592ca84bb473",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQWSDVMEpMd9kchcDV5BAR",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18643,
+                "cache_read_input_tokens": 33721,
+                "output_tokens": 6552,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18643
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6552,
+                    "cache_read_input_tokens": 33721,
+                    "cache_creation_input_tokens": 18643,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18643,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-all-pythia-1-4b-experiment-data-from-a-registry-dump-the-reg.md"
+}

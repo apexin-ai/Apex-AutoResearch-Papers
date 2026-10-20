@@ -1,0 +1,1961 @@
+{
+  "schema_version": "1.0",
+  "id": "00019b8c57ca7857dcf4",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find the D102 analysis script in this project. The project is at /home/ubuntu/.agent-ml-research-idea_gen_0514",
+  "task_key": "agent-a39d25412520925fe",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a39d25412520925fe.jsonl",
+    "occurrence": 1,
+    "bytes": 104697,
+    "sha256": "3b57c08870e6a02a5d0306ed8af37f695daf69564d6f85a11f35fb3bb3df2a20"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T22:20:04.207Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find the D102 analysis script in this project. The project is at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/\n\nD102 analysis involves running multi-method causal analysis (naive_xcorr, diff_xcorr, threshold_onset, perm_granger, ty_granger) on experiment results to check if canary metrics (token_entropy, ece) causally lead downstream metrics (distinct_3).\n\nThe output format is a JSON with meta, summary, consensus, and metrics_trajectory sections.\n\nSearch for:\n1. Any Python file that references \"D102\" or \"d102\"\n2. Any Python file that contains both \"perm_granger\" and \"threshold_onset\" \n3. Any script named like \"change_point_analysis\" or \"causal_analysis\" or \"consensus\"\n4. Check scripts/ directory for anything related\n\nSearch breadth: medium. Report what you find with file paths."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "9b2d5f84-1504-417c-95b3-1a68a61df6f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T22:20:05.743Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the D102 analysis script in this project. Let me start with multiple targeted searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b2d5f84-1504-417c-95b3-1a68a61df6f3",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH77z2zPDdWbYgHqyXZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2bccf4e3-a917-482e-8849-55ff4016edae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8Cp22N7waaPfDMnRpvdar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18000,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18000,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T22:20:05.976Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CZh2ZxuxTz2sbf6yjz7V8Z",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bccf4e3-a917-482e-8849-55ff4016edae",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH77z2zPDdWbYgHqyXZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0df9f387-0af6-44c6-bcc9-a3aeb51687fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8Cp22N7waaPfDMnRpvdar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18000,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18000,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T22:20:06.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CZh2ZxuxTz2sbf6yjz7V8Z",
+              "type": "tool_result",
+              "content": "artifacts/prepare_data.py\nartifacts/analyze_mvp.py\nartifacts/test_alpha_sweep.py\nbootstrap_ty_validation.py\nartifacts/detrending_utils.py\nartifacts/_project/data/permutation_granger.py\nartifacts/permutation_granger.py\nartifacts/analyze_extended.py\ncross_alpha_analysis.py\nartifacts/_project/data/cross_alpha_analysis.py\nartifacts/_project/data/consensus_framework.py\nartifacts/cross_alpha_analysis_v4.py\nartifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py\nconsensus_framework.py\nartifacts/analysis/consensus_framework/consensus_framework.py\nscripts/plot_regime_map.py\nscripts/plot_consensus_workflow.py\nfigures/paper/gen_fig_differencing_dmax.py\nartifacts/figures/plot_regime_map.py\nscripts/gen_single_method_table.py\nconfigs/sprint_day1/_generate.py\nartifacts/lag_sensitivity/run_lag_sensitivity.py\nartifacts/_project/intermediate/iterative_train.py\nfigures/paper/gen_dose_response.py\nscripts/tail_sensitive_canary_analysis.py\nartifacts/intervention_threshold_sweep/threshold_sweep.py\nartifacts/d127_csd_analysis.py\nscripts/d127_multispatial_ccm.py\nscripts/d127_wasserstein.py\nscripts/d127_csd_analysis.py\nscripts/d127_spec_curve.py\nartifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py\nartifacts/run_d147.py\nscripts/permg_power_analysis.py\nscripts/fig_sr_framework.py\ndocs/paper/figures/gen_sr_framework.py\nscripts/t20_post_analysis.py\nartifacts/mi_analysis/compute_mi.py\nfigures/paper/gen_consensus_heatmap.py\nartifacts/moment_cascade/moment_cascade_analysis.py\nartifacts/scaling_law/alpha_c_scaling_analysis.py\nscripts/moment_cascade_analysis.py\nscripts/ucs_analysis.py\nscripts/ucs_postprocess.py\nartifacts/j2_first_diff_simulation.py\ncompile_dose_response.py\n.venv/lib/python3.14/site-packages/pip/__init__.py\n.venv/lib/python3.14/site-packages/pip/__main__.py\n.venv/lib/python3.14/site-packages/pip/__pip-runner__.py\n.venv/lib/python3.14/site-packages/pip/_internal/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/build_env.py\n.venv/lib/python3.14/site-packages/pip/_internal/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/autocompletion.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/cmdoptions.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/main_parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/parser.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/progress_bars.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/spinners.py\n.venv/lib/python3.14/site-packages/pip/_internal/cli/status_codes.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/cache.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/check.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/completion.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/debug.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/download.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/freeze.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/hash.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/help.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/index.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/inspect.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/install.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/list.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/lock.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/search.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/show.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/uninstall.py\n.venv/lib/python3.14/site-packages/pip/_internal/commands/wheel.py\n.venv/lib/python3.14/site-packages/pip/_internal/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/distributions/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/distributions/base.py\n.venv/lib/python3.14/site-packages/pip/_internal/distributions/installed.py\n.venv/lib/python3.14/site-packages/pip/_internal/distributions/sdist.py\n.venv/lib/python3.14/site-packages/pip/_internal/distributions/wheel.py\n.venv/lib/python3.14/site-packages/pip/_internal/exceptions.py\n.venv/lib/python3.14/site-packages/pip/_internal/index/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/index/collector.py\n.venv/lib/python3.14/site-packages/pip/_internal/index/package_finder.py\n.venv/lib/python3.14/site-packages/pip/_internal/index/sources.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/__init__.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/_distutils.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/_sysconfig.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/base.py\n.venv/lib/python3.14/site-packages/pip/_internal/main.py\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0df9f387-0af6-44c6-bcc9-a3aeb51687fd",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "c4e2d8d8-2e43-4c52-8ca5-bcbb88722950",
+            "sourceToolAssistantUUID": "0df9f387-0af6-44c6-bcc9-a3aeb51687fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T22:20:06.436Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y1VN7VjsLQGwxmLvPsPBeT",
+              "name": "Grep",
+              "input": {
+                "pattern": "[Dd]102",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "type": "py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4e2d8d8-2e43-4c52-8ca5-bcbb88722950",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH77z2zPDdWbYgHqyXZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a7abc1aa-653f-4427-8e6a-bff21e88f29a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8Cp22N7waaPfDMnRpvdar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18000,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18000,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T22:20:06.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y1VN7VjsLQGwxmLvPsPBeT",
+              "type": "tool_result",
+              "content": "Found 9 files\nartifacts/phase_diagram_final.py\nartifacts/_project/data/verify_theory_d102_pmax.py\nartifacts/alpha_c_theory/verify_theory_d102_pmax.py\nartifacts/_project/data/verify_theory_d102_pmax_grid.py\nartifacts/alpha_c_theory/verify_theory_d102_pmax_grid.py\nartifacts/alpha_c_theory/verify_theory_d102.py\nscripts/t20_post_analysis.py\nartifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py\nscripts/d127_spec_curve.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7abc1aa-653f-4427-8e6a-bff21e88f29a",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "55faacc6-7af6-4727-bbaf-b750a489bbf4",
+            "sourceToolAssistantUUID": "a7abc1aa-653f-4427-8e6a-bff21e88f29a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T22:20:06.805Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R8uDrf4rwj7eXaAs1Pwr6K",
+              "name": "Grep",
+              "input": {
+                "pattern": "perm_granger.*threshold_onset|threshold_onset.*perm_granger",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "type": "py",
+                "multiline": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55faacc6-7af6-4727-bbaf-b750a489bbf4",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH77z2zPDdWbYgHqyXZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e88c0626-951e-4e4d-b5fc-aad9d4acf5d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8Cp22N7waaPfDMnRpvdar",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18000,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18000,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T22:20:06.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R8uDrf4rwj7eXaAs1Pwr6K",
+              "type": "tool_result",
+              "content": "Found 13 files\nartifacts/d102_14b_t10_a075_s42_fp32/run_analysis.py\nartifacts/phase_diagram_t20_a075_s43_fp32/run_analysis.py\nartifacts/phase_diagram_t15_a050_s42_fp32/run_analysis.py\nartifacts/alpha_sweep_a000_s48_fp32/run_analysis.py\nartifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py\nartifacts/phase_diagram_t05_a045_s42_fp32/run_analysis.py\nspecification_curve_analysis.py\ncompile_dose_response.py\nartifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py\nscripts/d127_spec_curve.py\nscripts/gen_single_method_table.py\nartifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py\nartifacts/cross_alpha_analysis_v4.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e88c0626-951e-4e4d-b5fc-aad9d4acf5d1",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "5ec09f25-c169-4f18-bf2f-15621a94c349",
+            "sourceToolAssistantUUID": "e88c0626-951e-4e4d-b5fc-aad9d4acf5d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T22:20:07.233Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018TPKRGrtdaBr53Qv5Wn6e2",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts -type f -name \"*analysis*\" -o -name \"*causal*\" -o -name \"*consensus*\" 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ec09f25-c169-4f18-bf2f-15621a94c349",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH77z2zPDdWbYgHqyXZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0e73be7f-08bc-4c6b-a8d7-cf837088f9fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8Cp22N7waaPfDMnRpvdar",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18000,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 458,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18000
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 458,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18000,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18000,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T22:20:07.408Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018TPKRGrtdaBr53Qv5Wn6e2",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/tail_sensitive_canary_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_consensus_workflow.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/permg_power_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/fpr_sensitivity_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/d127_csd_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/t20_post_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/moment_cascade_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/ucs_analysis.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e73be7f-08bc-4c6b-a8d7-cf837088f9fc",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "2e0b0dd6-4cc3-4982-80f6-b678462b28da",
+            "sourceToolAssistantUUID": "0e73be7f-08bc-4c6b-a8d7-cf837088f9fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T22:20:09.225Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found several D102-related files. Let me look more closely at the most relevant ones:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e0b0dd6-4cc3-4982-80f6-b678462b28da",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7Mf4b8Jj2UmQX6EAt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "22b32af6-e853-4309-8e9b-a8e27fd8a2bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AjsscmKbfkRd1Gf43MXshH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4045,
+                "cache_read_input_tokens": 18000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4045,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T22:20:09.970Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KxsSjzGobGPgAH5791Jht7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_14b_t10_a075_s42_fp32/run_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22b32af6-e853-4309-8e9b-a8e27fd8a2bd",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7Mf4b8Jj2UmQX6EAt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e168f833-ccdf-481c-ab8c-578c53fee541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AjsscmKbfkRd1Gf43MXshH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4045,
+                "cache_read_input_tokens": 18000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4045,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T22:20:09.977Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KxsSjzGobGPgAH5791Jht7",
+              "type": "tool_result",
+              "content": "1\t\"\"\"5-method lead-lag analysis for phase_diagram t10_a075_s42_fp32 (1.4B).\n2\tReads metrics from gen directories. Handles null mauve in early gens.\n3\t\"\"\"\n4\timport json\n5\timport os\n6\timport sys\n7\timport numpy as np\n8\tfrom scipy import stats\n9\tfrom statsmodels.tsa.stattools import adfuller\n10\tfrom statsmodels.tsa.vector_ar.var_model import VAR\n11\t\n12\tN_PERM = 5000\n13\tALPHA_SIG = 0.05\n14\t\n15\tCANARIES = [\"token_entropy\", \"ece\"]\n16\tDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n17\t\n18\tHIGHER_IS_WORSE = {\"ece\"}\n19\tLOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\n20\t\n21\tRESULTS_DIR = sys.argv[1] if len(sys.argv) > 1 else \"results/phase_diagram/t10_a075_s42_fp32_14b\"\n22\tEND_GEN = int(sys.argv[2]) if len(sys.argv) > 2 else 10\n23\t\n24\t\n25\tdef load_metrics(results_dir, end_gen):\n26\t    data = []\n27\t    for g in range(end_gen + 1):\n28\t        path = os.path.join(results_dir, f\"gen_{g}\", \"metrics.json\")\n29\t        if not os.path.exists(path):\n30\t            print(f\"WARNING: {path} missing, stopping at gen_{g-1}\")\n31\t            break\n32\t        with open(path) as f:\n33\t            m = json.load(f)\n34\t        data.append(m)\n35\t    return sorted(data, key=lambda x: x[\"generation\"])\n36\t\n37\t\n38\tdef orient(series, name):\n39\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n40\t\n41\t\n42\tdef _build_lag_matrix(y, x, max_lag):\n43\t    T = len(y)\n44\t    n = T - max_lag\n45\t    Y = y[max_lag:]\n46\t    cols_r = [np.ones(n)]\n47\t    for lag in range(1, max_lag + 1):\n48\t        cols_r.append(y[max_lag - lag: T - lag])\n49\t    cols_u = list(cols_r)\n50\t    for lag in range(1, max_lag + 1):\n51\t        cols_u.append(x[max_lag - lag: T - lag])\n52\t    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\n53\t\n54\t\n55\tdef _granger_f_stat(y, x, max_lag):\n56\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n57\t    n = len(Y)\n58\t    q = max_lag\n59\t    try:\n60\t        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n61\t        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n62\t    except np.linalg.LinAlgError:\n63\t        return np.nan\n64\t    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n65\t    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n66\t    k_u = X_u.shape[1]\n67\t    df_resid = n - k_u\n68\t    if df_resid <= 0 or rss_u < 1e-15:\n69\t        return np.nan\n70\t    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n71\t\n72\t\n73\tdef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\n74\t    x = np.asarray(x, dtype=float)\n75\t    y = np.asarray(y, dtype=float)\n76\t    if difference:\n77\t        x = np.diff(x)\n78\t        y = np.diff(y)\n79\t    f_obs = _granger_f_stat(y, x, max_lag)\n80\t    if np.isnan(f_obs):\n81\t        return {\"f_stat\": None, \"p_value\": None, \"significant\": False}\n82\t    rng = np.random.default_rng(seed)\n83\t    null_f = np.empty(n_perm)\n84\t    for i in range(n_perm):\n85\t        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n86\t    valid_null = null_f[~np.isnan(null_f)]\n87\t    if len(valid_null) == 0:\n88\t        return {\"f_stat\": round(float(f_obs), 4), \"p_value\": None, \"significant\": False}\n89\t    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\n90\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n91\t    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\n92\t    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\n93\t    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\n94\t    return {\n95\t        \"f_stat\": round(float(f_obs), 4),\n96\t        \"p_value\": round(float(p_value), 6),\n97\t        \"null_mean\": round(float(np.mean(valid_null)), 4),\n98\t        \"null_std\": round(float(np.std(valid_null)), 4),\n99\t        \"effect_size_f2\": round(float(f2), 4) if f2 is not None else None,\n100\t        \"significant\": bool(p_value < 0.05),\n101\t    }\n102\t\n103\t\n104\tdef bh_fdr(p_values, alpha=0.05):\n105\t    pv = np.array(p_values, dtype=float)\n106\t    n = len(pv)\n107\t    valid = ~np.isnan(pv)\n108\t    adjusted = np.full(n, np.nan)\n109\t    if valid.sum() == 0:\n110\t        return adjusted.tolist(), [False] * n\n111\t    idx = np.where(valid)[0]\n112\t    p_valid = pv[idx]\n113\t    sorted_idx = np.argsort(p_valid)\n114\t    ranks = np.empty_like(sorted_idx)\n115\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\n116\t    m = len(p_valid)\n117\t    adj = p_valid * m / ranks\n118\t    adj_sorted = adj[sorted_idx].copy()\n119\t    for i in range(m - 2, -1, -1):\n120\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\n121\t    adj_sorted = np.minimum(adj_sorted, 1.0)\n122\t    adj_final = np.empty(m)\n123\t    adj_final[sorted_idx] = adj_sorted\n124\t    for i, ix in enumerate(idx):\n125\t        adjusted[ix] = adj_final[i]\n126\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\n127\t    return adjusted.tolist(), significant\n128\t\n129\t\n130\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\n131\t    x, y = orient(c, cn), orient(d, dn)\n132\t    n = len(x)\n133\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n134\t    for lag in range(-max_lag, max_lag + 1):\n135\t        if lag >= 0:\n136\t            a, b = x[lag:], y[:n - lag]\n137\t        else:\n138\t            a, b = x[:n + lag], y[-lag:]\n139\t        if len(a) < 4:\n140\t            continue\n141\t        r, p = stats.pearsonr(a, b)\n142\t        if abs(r) > abs(best_r):\n143\t            best_lag, best_r, best_p = lag, r, p\n144\t    return {\n145\t        \"method\": \"naive_xcorr\",\n146\t        \"peak_lag\": int(best_lag),\n147\t        \"r\": round(float(best_r), 4),\n148\t        \"p_value\": round(float(best_p), 6),\n149\t        \"significant\": bool(best_p < ALPHA_SIG),\n150\t    }\n151\t\n152\t\n153\tdef diff_xcorr(c, d, cn, dn, max_lag=5):\n154\t    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\n155\t    n = len(dx)\n156\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n157\t    for lag in range(-max_lag, max_lag + 1):\n158\t        if lag >= 0:\n159\t            a, b = dx[lag:], dy[:n - lag]\n160\t        else:\n161\t            a, b = dx[:n + lag], dy[-lag:]\n162\t        if len(a) < 4:\n163\t            continue\n164\t        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n165\t            continue\n166\t        r, p = stats.pearsonr(a, b)\n167\t        if abs(r) > abs(best_r):\n168\t            best_lag, best_r, best_p = lag, r, p\n169\t    return {\n170\t        \"method\": \"diff_xcorr\",\n171\t        \"peak_lag\": int(best_lag),\n172\t        \"r\": round(float(best_r), 4),\n173\t        \"p_value\": round(float(best_p), 6),\n174\t        \"significant\": bool(best_p < ALPHA_SIG),\n175\t    }\n176\t\n177\t\n178\tdef _onset_gen(series, name):\n179\t    s = orient(series, name)\n180\t    base, sigma = s[0], np.std(s)\n181\t    if sigma < 1e-12:\n182\t        return None\n183\t    thresh = base + 3.0 * sigma\n184\t    for i in range(1, len(s)):\n185\t        if s[i] > thresh:\n186\t            return i\n187\t    return None\n188\t\n189\t\n190\tdef threshold_onset(c, d, cn, dn):\n191\t    c_onset = _onset_gen(c, cn)\n192\t    d_onset = _onset_gen(d, dn)\n193\t    if c_onset is not None and d_onset is not None:\n194\t        lead_time = d_onset - c_onset\n195\t        significant = lead_time > 0\n196\t    else:\n197\t        lead_time = None\n198\t        significant = False\n199\t    return {\n200\t        \"method\": \"threshold_onset\",\n201\t        \"canary_onset\": c_onset,\n202\t        \"downstream_onset\": d_onset,\n203\t        \"lead_time\": lead_time,\n204\t        \"significant\": significant,\n205\t        \"threshold\": \"true_3sigma_d105\",\n206\t    }\n207\t\n208\t\n209\tdef perm_granger(c, d, cn, dn, seed):\n210\t    x = orient(c, cn)\n211\t    y = orient(d, dn)\n212\t    result = permutation_granger_test(x, y, max_lag=1, n_perm=N_PERM, seed=seed, difference=True)\n213\t    return {\n214\t        \"method\": \"perm_granger\",\n215\t        \"f_stat\": result[\"f_stat\"],\n216\t        \"p_value\": result[\"p_value\"],\n217\t        \"null_mean\": result.get(\"null_mean\"),\n218\t        \"null_std\": result.get(\"null_std\"),\n219\t        \"effect_size_f2\": result.get(\"effect_size_f2\"),\n220\t        \"significant\": bool(result[\"p_value\"] < ALPHA_SIG) if result[\"p_value\"] is not None else False,\n221\t    }\n222\t\n223\t\n224\tdef ty_granger(c, d, cn, dn, max_order=2):\n225\t    x = orient(c, cn)\n226\t    y = orient(d, dn)\n227\t    n = len(x)\n228\t    d_max = 0\n229\t    for series in [x, y]:\n230\t        try:\n231\t            result = adfuller(series, maxlag=min(3, n // 3 - 1))\n232\t            if result[1] > 0.05:\n233\t                d_max = max(d_max, 1)\n234\t        except:\n235\t            d_max = max(d_max, 1)\n236\t    best_k, best_aic = 1, np.inf\n237\t    data = np.column_stack([x, y])\n238\t    for k in range(1, max_order + 1):\n239\t        try:\n240\t            model = VAR(data)\n241\t            result = model.fit(k)\n242\t            if result.aic < best_aic:\n243\t                best_k, best_aic = k, result.aic\n244\t        except:\n245\t            continue\n246\t    total_order = best_k + d_max\n247\t    if total_order >= n // 2:\n248\t        total_order = max(1, n // 2 - 1)\n249\t    try:\n250\t        model = VAR(data)\n251\t        result = model.fit(total_order)\n252\t        test_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n253\t        f_stat = float(test_result.test_statistic)\n254\t        p_value = float(test_result.pvalue)\n255\t        return {\n256\t            \"method\": \"ty_granger\",\n257\t            \"f_stat\": round(f_stat, 4),\n258\t            \"p_value\": round(p_value, 4),\n259\t            \"significant\": bool(p_value < ALPHA_SIG),\n260\t            \"order\": total_order,\n261\t            \"k_opt\": best_k,\n262\t            \"d_max\": d_max,\n263\t        }\n264\t    except Exception as e:\n265\t        return {\n266\t            \"method\": \"ty_granger\",\n267\t            \"f_stat\": None,\n268\t            \"p_value\": None,\n269\t            \"significant\": False,\n270\t            \"error\": str(e),\n271\t            \"order\": total_order,\n272\t            \"k_opt\": best_k,\n273\t            \"d_max\": d_max,\n274\t        }\n275\t\n276\t\n277\tdef main():\n278\t    data = load_metrics(RESULTS_DIR, END_GEN)\n279\t    n_gens = len(data)\n280\t    print(f\"Loaded {n_gens} generations from {RESULTS_DIR}\")\n281\t    seed = 42\n282\t\n283\t    series = {}\n284\t    for k in CANARIES + DOWNSTREAMS:\n285\t        vals = []\n286\t        for d in data:\n287\t            v = d.get(k)\n288\t            vals.append(v)\n289\t        series[k] = vals\n290\t\n291\t    # For mauve: find first non-null index\n292\t    mauve_start = 0\n293\t    for i, v in enumerate(series[\"mauve\"]):\n294\t        if v is not None:\n295\t            mauve_start = i\n296\t            break\n297\t\n298\t    pairs = [{\"canary\": c, \"downstream\": d} for c in CANARIES for d in DOWNSTREAMS]\n299\t\n300\t    pair_results = []\n301\t    perm_pval_fwd, perm_pval_rev = [], []\n302\t    diff_pval_fwd, diff_pval_rev = [], []\n303\t\n304\t    for pair in pairs:\n305\t        cn, dn = pair[\"canary\"], pair[\"downstream\"]\n306\t\n307\t        if dn == \"mauve\":\n308\t            start = mauve_start\n309\t            c = np.array(series[cn][start:])\n310\t            d = np.array([v for v in series[dn][start:]])\n311\t            n_pts = len(c)\n312\t        else:\n313\t            c = np.array(series[cn])\n314\t            d = np.array(series[dn])\n315\t            n_pts = len(c)\n316\t\n317\t        fwd_naive = naive_xcorr(c, d, cn, dn)\n318\t        fwd_diff = diff_xcorr(c, d, cn, dn)\n319\t        fwd_onset = threshold_onset(c, d, cn, dn)\n320\t        fwd_perm = perm_granger(c, d, cn, dn, seed)\n321\t        fwd_ty = ty_granger(c, d, cn, dn)\n322\t\n323\t        rev_naive = naive_xcorr(d, c, dn, cn)\n324\t        rev_diff = diff_xcorr(d, c, dn, cn)\n325\t        rev_onset = threshold_onset(d, c, dn, cn)\n326\t        rev_perm = perm_granger(d, c, dn, cn, seed)\n327\t        rev_ty = ty_granger(d, c, dn, cn)\n328\t\n329\t        result = {\n330\t            \"canary\": cn, \"downstream\": dn, \"n_points\": n_pts,\n331\t            \"forward\": {\n332\t                \"naive_xcorr\": fwd_naive, \"diff_xcorr\": fwd_diff,\n333\t                \"threshold_onset\": fwd_onset, \"perm_granger\": fwd_perm,\n334\t                \"ty_granger\": fwd_ty,\n335\t            },\n336\t            \"reverse\": {\n337\t                \"naive_xcorr\": rev_naive, \"diff_xcorr\": rev_diff,\n338\t                \"threshold_onset\": rev_onset, \"perm_granger\": rev_perm,\n339\t                \"ty_granger\": rev_ty,\n340\t            },\n341\t        }\n342\t\n343\t        perm_pval_fwd.append(fwd_perm[\"p_value\"] if fwd_perm[\"p_value\"] is not None else np.nan)\n344\t        perm_pval_rev.append(rev_perm[\"p_value\"] if rev_perm[\"p_value\"] is not None else np.nan)\n345\t        diff_pval_fwd.append(fwd_diff[\"p_value\"] if fwd_diff[\"p_value\"] is not None else np.nan)\n346\t        diff_pval_rev.append(rev_diff[\"p_value\"] if rev_diff[\"p_value\"] is not None else np.nan)\n347\t        pair_results.append(result)\n348\t\n349\t    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_pval_fwd)\n350\t    perm_adj_rev, perm_sig_rev = bh_fdr(perm_pval_rev)\n351\t    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_pval_fwd)\n352\t    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\n353\t\n354\t    for i, r in enumerate(pair_results):\n355\t        r[\"forward\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\n356\t        r[\"forward\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_fwd[i]\n357\t        r[\"reverse\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\n358\t        r[\"reverse\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_rev[i]\n359\t        r[\"forward\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\n360\t        r[\"forward\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_fwd[i]\n361\t        r[\"reverse\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\n362\t        r[\"reverse\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_rev[i]\n363\t\n364\t    print(\"=\" * 100)\n365\t    print(\"5-METHOD LEAD-LAG ANALYSIS | 1.4B | T=10 | alpha=0.75 | seed=42 | fp32\")\n366\t    print(\"=\" * 100)\n367\t\n368\t    for direction in [\"forward\", \"reverse\"]:\n369\t        dir_label = \"FORWARD (canary -> downstream)\" if direction == \"forward\" else \"REVERSE (downstream -> canary)\"\n370\t        print(f\"\\n{'=' * 100}\")\n371\t        print(f\"  {dir_label}\")\n372\t        print(f\"{'=' * 100}\")\n373\t        print(f\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\")\n374\t        print(\"-\" * 130)\n375\t        for r in pair_results:\n376\t            label = f\"{r['canary']}<{r['downstream']}\"\n377\t            dd = r[direction]\n378\t            naive_str = f\"lag={dd['naive_xcorr']['peak_lag']} r={dd['naive_xcorr']['r']:.3f} {'*' if dd['naive_xcorr']['significant'] else ''}\"\n379\t            diff_str = f\"lag={dd['diff_xcorr']['peak_lag']} r={dd['diff_xcorr']['r']:.3f} {'*' if dd['diff_xcorr'].get('significant_fdr', False) else ''}\"\n380\t            onset_str = f\"c={dd['threshold_onset']['canary_onset']} d={dd['threshold_onset']['downstream_onset']} {'*' if dd['threshold_onset']['significant'] else ''}\"\n381\t            perm_str = f\"F={dd['perm_granger']['f_stat']:.2f} p={dd['perm_granger']['p_value']:.4f} {'*' if dd['perm_granger'].get('significant_fdr', False) else ''}\" if dd['perm_granger']['f_stat'] else \"N/A\"\n382\t            ty_str = f\"F={dd['ty_granger']['f_stat']:.2f} p={dd['ty_granger']['p_value']:.4f} {'*' if dd['ty_granger']['significant'] else ''}\" if dd['ty_granger']['f_stat'] else \"N/A\"\n383\t            print(f\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\")\n384\t\n385\t    # Consensus (D111: peak_lag < 0 for xcorr, C009)\n386\t    print(f\"\\n{'=' * 100}\")\n387\t    print(\"  CONSENSUS (forward, D111 direction filter: peak_lag < 0 for xcorr)\")\n388\t    print(f\"{'=' * 100}\")\n389\t    consensus = []\n390\t    for r in pair_results:\n391\t        f = r[\"forward\"]\n392\t        votes = 0\n393\t        methods_sig = []\n394\t        if f[\"naive_xcorr\"][\"significant\"] and f[\"naive_xcorr\"][\"peak_lag\"] < 0:\n395\t            votes += 1; methods_sig.append(\"naive\")\n396\t        if f[\"diff_xcorr\"].get(\"significant_fdr\", False) and f[\"diff_xcorr\"][\"peak_lag\"] < 0:\n397\t            votes += 1; methods_sig.append(\"diff\")\n398\t        if f[\"threshold_onset\"][\"significant\"]:\n399\t            votes += 1; methods_sig.append(\"threshold\")\n400\t        if f[\"perm_granger\"].get(\"significant_fdr\", False):\n401\t            votes += 1; methods_sig.append(\"perm\")\n402\t        if f[\"ty_granger\"][\"significant\"]:\n403\t            votes += 1; methods_sig.append(\"ty\")\n404\t        label = f\"{r['canary']}<{r['downstream']}\"\n405\t        consensus.append({\"pair\": label, \"votes\": votes, \"methods\": methods_sig})\n406\t        print(f\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\")\n407\t\n408\t    summary = {\n409\t        \"PermG_fwd\": f\"{sum(perm_sig_fwd)}/8\",\n410\t        \"PermG_rev\": f\"{sum(perm_sig_rev)}/8\",\n411\t        \"diff_xcorr_fdr_fwd\": f\"{sum(diff_sig_fwd)}/8\",\n412\t        \"diff_xcorr_fdr_rev\": f\"{sum(diff_sig_rev)}/8\",\n413\t        \"naive_xcorr_fwd_D111\": f\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\",\n414\t        \"threshold_onset_3sigma\": f\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\",\n415\t        \"TY_granger\": f\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\",\n416\t        \"K_ge_3\": f\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\",\n417\t        \"K_ge_4\": f\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\",\n418\t    }\n419\t\n420\t    print(f\"\\n{'=' * 100}\")\n421\t    print(\"  SUMMARY\")\n422\t    print(f\"{'=' * 100}\")\n423\t    for k, v in summary.items():\n424\t        print(f\"  {k:<30} {v}\")\n425\t\n426\t    print(f\"\\n{'=' * 100}\")\n427\t    print(f\"  DRIFT STATISTICS (gen0 -> gen{n_gens-1})\")\n428\t    print(f\"{'=' * 100}\")\n429\t    g0, gN = data[0], data[-1]\n430\t    for metric in [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\", \"effective_rank\"]:\n431\t        v0, vN = g0.get(metric), gN.get(metric)\n432\t        if v0 is not None and vN is not None and abs(v0) > 1e-12:\n433\t            drift = (vN - v0) / abs(v0) * 100\n434\t            print(f\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({drift:+.2f}%)\")\n435\t        else:\n436\t            print(f\"  {metric:<20} {v0} -> {vN}\")\n437\t\n438\t    def clean(obj):\n439\t        if isinstance(obj, (np.floating, np.float64)):\n440\t            return float(obj)\n441\t        if isinstance(obj, (np.integer,)):\n442\t            return int(obj)\n443\t        if isinstance(obj, np.bool_):\n444\t            return bool(obj)\n445\t        if isinstance(obj, dict):\n446\t            return {k: clean(v) for k, v in obj.items()}\n447\t        if isinstance(obj, list):\n448\t            return [clean(v) for v in obj]\n449\t        return obj\n450\t\n451\t    full_results = {\n452\t        \"meta\": {\n453\t            \"exp_id\": \"phase_diagram_t10_a075_s42_fp32_14b\",\n454\t            \"model\": \"pythia-1.4b-deduped\",\n455\t            \"alpha\": 0.75,\n456\t            \"seed\": 42,\n457\t            \"T\": 10,\n458\t            \"n_gens\": n_gens,\n459\t            \"n_perm\": N_PERM,\n460\t            \"canaries\": CANARIES,\n461\t            \"downstreams\": DOWNSTREAMS,\n462\t            \"threshold_criterion\": \"true_3sigma_d105\",\n463\t            \"D111_direction\": \"peak_lag < 0 (C009 corrected)\",\n464\t            \"mauve_start_gen\": mauve_start,\n465\t        },\n466\t        \"summary\": summary,\n467\t        \"consensus\": consensus,\n468\t        \"pairs\": [],\n469\t        \"raw_metrics\": data,\n470\t    }\n471\t\n472\t    for r in pair_results:\n473\t        pr = clean(r)\n474\t        full_results[\"pairs\"].append(pr)\n475\t\n476\t    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), \"5method_leadlag.json\")\n477\t    with open(out_path, \"w\") as f:\n478\t        json.dump(clean(full_results), f, indent=2)\n479\t    print(f\"\\nSaved: {out_path}\")\n480\t\n481\t\n482\tif __name__ == \"__main__\":\n483\t    main()\n484\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e168f833-ccdf-481c-ab8c-578c53fee541",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "ff3be54f-6beb-485a-af00-553b61484358",
+            "sourceToolAssistantUUID": "e168f833-ccdf-481c-ab8c-578c53fee541",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T22:20:10.317Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HD3jvWfuc4abVv43Ss5c82",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/verify_theory_d102.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff3be54f-6beb-485a-af00-553b61484358",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7Mf4b8Jj2UmQX6EAt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa572db8-e3d1-480a-a6fc-faab23666e21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AjsscmKbfkRd1Gf43MXshH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4045,
+                "cache_read_input_tokens": 18000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4045,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T22:20:10.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HD3jvWfuc4abVv43Ss5c82",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCross-T Prediction Validation for Distributional Canary Theory.\n3\t\n4\tModel: P(det | alpha, T) = Phi(A * max(0, alpha - alpha_inf)^beta * sqrt(T) - z0)\n5\t4 params: A, alpha_inf, beta, z0\n6\tDerived: gamma = 1/(2*beta)\n7\t\n8\tProfile likelihood over (beta, alpha_inf) grid to avoid boundary degeneracy.\n9\tJoint fit T={10,20}, validate T={5,15}.\n10\tData: D102-standard PermG_fwd, excl alpha=0.60 (sync-dip).\n11\t\"\"\"\n12\t\n13\timport json\n14\timport numpy as np\n15\tfrom scipy.optimize import differential_evolution\n16\tfrom scipy.stats import norm, binom\n17\tfrom scipy.special import comb\n18\timport matplotlib\n19\tmatplotlib.use('Agg')\n20\timport matplotlib.pyplot as plt\n21\tfrom pathlib import Path\n22\t\n23\tOUT_DIR = Path(__file__).parent\n24\t\n25\t# ============================================================\n26\t# DATA\n27\t# ============================================================\n28\t\n29\tDATA_T10 = [\n30\t    (0.00, 0, 8), (0.05, 0, 8), (0.10, 0, 8), (0.25, 0, 8),\n31\t    (0.30, 0, 8), (0.35, 0, 8), (0.40, 0, 8), (0.45, 0, 8),\n32\t    (0.50, 6, 8), (0.75, 6, 8), (1.00, 6, 8),\n33\t]\n34\tDATA_T20 = [(0.45, 5, 8), (0.50, 6, 8), (0.75, 6, 8)]\n35\tDATA_T5  = [(0.45, 0, 8), (0.50, 0, 8), (0.75, 0, 8)]\n36\tDATA_T15 = [(0.45, 6, 8), (0.50, 6, 8), (0.75, 6, 8)]\n37\t\n38\tTRAIN = [(10, a, k, n) for a, k, n in DATA_T10] + \\\n39\t        [(20, a, k, n) for a, k, n in DATA_T20]\n40\tTEST  = [(5,  a, k, n) for a, k, n in DATA_T5] + \\\n41\t        [(15, a, k, n) for a, k, n in DATA_T15]\n42\t\n43\t# ============================================================\n44\t# MODEL\n45\t# ============================================================\n46\t\n47\tdef det_prob(alpha, T, A, ainf, beta, z0):\n48\t    alpha = np.asarray(alpha, dtype=float)\n49\t    T = np.asarray(T, dtype=float)\n50\t    s = A * np.maximum(0.0, alpha - ainf) ** beta\n51\t    return norm.cdf(s * np.sqrt(T) - z0)\n52\t\n53\t\n54\tdef nll(A, ainf, beta, z0, T_arr, a_arr, k_arr, n_arr):\n55\t    if A <= 0 or beta <= 0 or z0 < 0:\n56\t        return 1e12\n57\t    p = det_prob(a_arr, T_arr, A, ainf, beta, z0)\n58\t    p = np.clip(p, 1e-12, 1 - 1e-12)\n59\t    return -np.sum(k_arr * np.log(p) + (n_arr - k_arr) * np.log(1 - p))\n60\t\n61\t\n62\tdef nll_inner(inner_p, beta, ainf, T_arr, a_arr, k_arr, n_arr):\n63\t    A, z0 = inner_p\n64\t    return nll(A, ainf, beta, z0, T_arr, a_arr, k_arr, n_arr)\n65\t\n66\t\n67\t# ============================================================\n68\t# PROFILE LIKELIHOOD\n69\t# ============================================================\n70\t\n71\tT_tr  = np.array([x[0] for x in TRAIN])\n72\ta_tr  = np.array([x[1] for x in TRAIN])\n73\tk_tr  = np.array([x[2] for x in TRAIN])\n74\tn_tr  = np.array([x[3] for x in TRAIN])\n75\t\n76\tbeta_grid = np.concatenate([\n77\t    np.arange(0.05, 0.30, 0.01),\n78\t    np.arange(0.30, 0.60, 0.05),\n79\t    np.arange(0.60, 2.01, 0.10),\n80\t])\n81\tainf_grid = np.arange(0.00, 0.49, 0.02)\n82\t\n83\tinner_bounds = [(0.01, 200.0), (0.5, 20.0)]\n84\t\n85\tprint(\"Profile scan...\")\n86\tresults = []\n87\t\n88\tfor beta_v in beta_grid:\n89\t    for ainf_v in ainf_grid:\n90\t        best_inner = None\n91\t        for seed in [0, 42]:\n92\t            try:\n93\t                res = differential_evolution(\n94\t                    nll_inner, inner_bounds,\n95\t                    args=(beta_v, ainf_v, T_tr, a_tr, k_tr, n_tr),\n96\t                    seed=seed, maxiter=500, tol=1e-10, polish=True, popsize=15,\n97\t                )\n98\t                if best_inner is None or res.fun < best_inner.fun:\n99\t                    best_inner = res\n100\t            except:\n101\t                pass\n102\t        if best_inner is None:\n103\t            continue\n104\t\n105\t        A_opt, z0_opt = best_inner.x\n106\t        tnll = best_inner.fun\n107\t\n108\t        test_resids = []\n109\t        for T, a, k, n in TEST:\n110\t            p = float(det_prob(a, T, A_opt, ainf_v, beta_v, z0_opt))\n111\t            test_resids.append(k/n - p)\n112\t        test_mae = np.mean([abs(r) for r in test_resids])\n113\t\n114\t        results.append({\n115\t            'beta': float(beta_v), 'ainf': float(ainf_v),\n116\t            'A': float(A_opt), 'z0': float(z0_opt),\n117\t            'train_nll': float(tnll), 'test_mae': float(test_mae),\n118\t            'gamma': 1.0 / (2.0 * float(beta_v)),\n119\t        })\n120\t\n121\t# Select by test MAE\n122\tresults.sort(key=lambda x: x['test_mae'])\n123\t\n124\tprint(f\"\\nTop 15 by test MAE:\")\n125\tprint(f\"{'beta':>5s} {'ainf':>5s} {'A':>8s} {'z0':>7s} {'nll':>8s} {'tMAE':>7s} {'gamma':>6s}\")\n126\tfor r in results[:15]:\n127\t    print(f\"{r['beta']:5.2f} {r['ainf']:5.2f} {r['A']:8.3f} {r['z0']:7.3f} \"\n128\t          f\"{r['train_nll']:8.2f} {r['test_mae']:7.4f} {r['gamma']:6.2f}\")\n129\t\n130\t# Also show best by train NLL\n131\tresults_by_nll = sorted(results, key=lambda x: x['train_nll'])\n132\tprint(f\"\\nTop 5 by train -logL:\")\n133\tfor r in results_by_nll[:5]:\n134\t    print(f\"  beta={r['beta']:.2f} ainf={r['ainf']:.2f} nll={r['train_nll']:.2f} tMAE={r['test_mae']:.4f} gamma={r['gamma']:.2f}\")\n135\t\n136\t# ============================================================\n137\t# BEST MODEL\n138\t# ============================================================\n139\t\n140\tbest = results[0]\n141\tA_fit, ainf_fit, beta_fit, z0_fit = best['A'], best['ainf'], best['beta'], best['z0']\n142\tgamma_fit = best['gamma']\n143\tfpr_null = float(norm.cdf(-z0_fit))\n144\t\n145\tprint(f\"\\n{'=' * 65}\")\n146\tprint(\"BEST MODEL (min test MAE, sqrt(T) scaling)\")\n147\tprint(\"=\" * 65)\n148\tprint(f\"  A         = {A_fit:.4f}\")\n149\tprint(f\"  alpha_inf = {ainf_fit:.4f}\")\n150\tprint(f\"  beta      = {beta_fit:.4f}\")\n151\tprint(f\"  z0        = {z0_fit:.4f}\")\n152\tprint(f\"  gamma     = 1/(2*beta) = {gamma_fit:.4f}\")\n153\tprint(f\"  -logL     = {best['train_nll']:.4f}\")\n154\tprint(f\"  FPR       = {fpr_null:.6f}\")\n155\t\n156\t# Training details\n157\tp_tr = det_prob(a_tr, T_tr, A_fit, ainf_fit, beta_fit, z0_fit)\n158\ttr_mae = np.mean(np.abs(k_tr/n_tr - p_tr))\n159\ttr_rmse = np.sqrt(np.mean((k_tr/n_tr - p_tr)**2))\n160\t\n161\tp_null_rate = np.mean(k_tr) / np.mean(n_tr)\n162\tll_null = np.sum(\n163\t    k_tr*np.log(max(p_null_rate,1e-12))\n164\t    + (n_tr-k_tr)*np.log(max(1-p_null_rate,1e-12))\n165\t)\n166\tr2 = 1 - (-best['train_nll']) / ll_null\n167\t\n168\tprint(f\"\\nTraining: MAE={tr_mae:.4f}, RMSE={tr_rmse:.4f}, R²={r2:.4f}\")\n169\tfor T, a, k, n in TRAIN:\n170\t    p = det_prob(a, T, A_fit, ainf_fit, beta_fit, z0_fit)\n171\t    print(f\"  T={T:2d} a={a:.2f}: {k}/{n} pred={p:.3f} ({p*n:.1f}/8)\")\n172\t\n173\t# Cross-validation details\n174\tprint(f\"\\nCross-Validation:\")\n175\ttest_results = []\n176\tfor T, a, k, n in TEST:\n177\t    p = float(det_prob(a, T, A_fit, ainf_fit, beta_fit, z0_fit))\n178\t    r = k/n - p\n179\t    test_results.append({\n180\t        'T': T, 'alpha': a, 'k_actual': k, 'n': n,\n181\t        'p_pred': p, 'k_pred': p*n, 'residual': r,\n182\t    })\n183\t    print(f\"  T={T:2d} a={a:.2f}: {k}/{n} pred={p:.3f} ({p*n:.1f}/8) resid={r:+.3f}\")\n184\t\n185\ttst_mae = np.mean([abs(r['residual']) for r in test_results])\n186\ttst_rmse = np.sqrt(np.mean([r['residual']**2 for r in test_results]))\n187\t\n188\tci_cov = 0\n189\tci_det = []\n190\tfor r in test_results:\n191\t    p = np.clip(r['p_pred'], 1e-6, 1-1e-6)\n192\t    lo = binom.ppf(0.025, r['n'], p) / r['n']\n193\t    hi = binom.ppf(0.975, r['n'], p) / r['n']\n194\t    ok = lo <= r['k_actual']/r['n'] <= hi\n195\t    ci_cov += ok\n196\t    ci_det.append({'lo': float(lo), 'hi': float(hi), 'covered': bool(ok)})\n197\t\n198\tprint(f\"\\n  MAE = {tst_mae:.4f}, RMSE = {tst_rmse:.4f}\")\n199\tprint(f\"  95% CI coverage = {ci_cov}/{len(test_results)} = {ci_cov/len(test_results):.2f}\")\n200\tfor Tv in [5, 15]:\n201\t    pts = [r for r in test_results if r['T']==Tv]\n202\t    m = np.mean([abs(r['residual']) for r in pts])\n203\t    print(f\"    T={Tv}: MAE={m:.4f}\")\n204\t\n205\t# alpha_c(T)\n206\tdef alpha_c(T, A, ainf, beta, z0):\n207\t    s_need = z0 / np.sqrt(T)\n208\t    if s_need <= 0:\n209\t        return ainf\n210\t    return ainf + (s_need / A) ** (1.0 / beta)\n211\t\n212\tC_coeff = (z0_fit / A_fit) ** (1.0 / beta_fit)\n213\tprint(f\"\\nalpha_c(T) = {ainf_fit:.4f} + {C_coeff:.2f} * T^(-{gamma_fit:.3f})\")\n214\tfor Tv in [5, 8, 10, 15, 20, 25, 50]:\n215\t    ac = alpha_c(Tv, A_fit, ainf_fit, beta_fit, z0_fit)\n216\t    print(f\"  T={Tv:2d}: {min(ac, 99.9):.4f}\")\n217\t\n218\t# ============================================================\n219\t# SAVE JSON\n220\t# ============================================================\n221\t\n222\toutput = {\n223\t    'method': 'Cross-T Prediction Validation (D102, profile likelihood)',\n224\t    'description': (\n225\t        'Profile likelihood over (beta, alpha_inf) with sqrt(T) scaling. '\n226\t        'Joint fit T={10,20}, validate T={5,15}. '\n227\t        'Best model selected by min cross-validation MAE.'\n228\t    ),\n229\t    'model': 'P(det|alpha,T) = Phi(A * max(0,alpha-alpha_inf)^beta * sqrt(T) - z0)',\n230\t    'fitted_params': {\n231\t        'A': A_fit, 'alpha_inf': ainf_fit,\n232\t        'beta': beta_fit, 'z0': z0_fit,\n233\t        'neg_logL': best['train_nll'], 'FPR_null': fpr_null,\n234\t    },\n235\t    'derived': {\n236\t        'gamma': gamma_fit,\n237\t        'gamma_formula': '1/(2*beta)',\n238\t        'scaling': f'alpha_c(T) = {ainf_fit:.4f} + {C_coeff:.2f} * T^(-{gamma_fit:.3f})',\n239\t        'alpha_c_values': {\n240\t            str(Tv): float(min(alpha_c(Tv, A_fit, ainf_fit, beta_fit, z0_fit), 99))\n241\t            for Tv in [5, 8, 10, 15, 20, 25, 50]\n242\t        },\n243\t    },\n244\t    'training_fit': {\n245\t        'n_train': len(TRAIN), 'n_params': 4,\n246\t        'MAE': tr_mae, 'RMSE': tr_rmse, 'McFadden_R2': r2,\n247\t        'points': [\n248\t            {'T': int(T), 'alpha': float(a), 'k_actual': int(k), 'n': int(n),\n249\t             'p_pred': float(det_prob(a, T, A_fit, ainf_fit, beta_fit, z0_fit))}\n250\t            for T, a, k, n in TRAIN\n251\t        ],\n252\t    },\n253\t    'cross_validation': {\n254\t        'n_test': len(TEST), 'MAE': tst_mae, 'RMSE': tst_rmse,\n255\t        'CI_95_coverage': f\"{ci_cov}/{len(test_results)}\",\n256\t        'CI_95_coverage_rate': ci_cov / len(test_results),\n257\t        'points': [{**r, 'CI_95': ci_det[i]} for i, r in enumerate(test_results)],\n258\t    },\n259\t    'profile_top10': results[:10],\n260\t    'data_sources': {\n261\t        'training_T10': 'dose_response_5method_regime_m035.csv (seed=42, Pythia-410M alpha_sweep D102)',\n262\t        'training_T20': 'heatmap_data_manifest.json (D102)',\n263\t        'validation_T5': 'heatmap_data_manifest.json (D102)',\n264\t        'validation_T15': 'heatmap + t15_a075_v2 leadlag (D102)',\n265\t    },\n266\t    'note': (\n267\t        'T=10 data alone shows a step function (0/8 for alpha<=0.45, 6/8 for alpha>=0.50), '\n268\t        'which makes the T-scaling exponent unconstrained. Adding T=20 data '\n269\t        '(where alpha=0.45 gives 5/8) breaks the degeneracy and enables cross-T prediction. '\n270\t        'Profile likelihood over (beta, alpha_inf) avoids boundary solutions.'\n271\t    ),\n272\t}\n273\t\n274\twith open(OUT_DIR / 'theory_verification_d102.json', 'w') as f:\n275\t    json.dump(output, f, indent=2)\n276\tprint(f\"\\nJSON saved.\")\n277\t\n278\t# ============================================================\n279\t# FIGURE\n280\t# ============================================================\n281\t\n282\tfig, axes = plt.subplots(1, 3, figsize=(15, 4.8))\n283\t\n284\t# Panel A\n285\tax = axes[0]\n286\talpha_f = np.linspace(0, 1.05, 500)\n287\tsty = {5: ('#2196F3','--','s'), 10: ('black','-','o'), 15: ('#4CAF50','-.', '^'), 20: ('#FF9800',':','D')}\n288\t\n289\tfor Tv in [5, 10, 15, 20]:\n290\t    c, ls, mk = sty[Tv]\n291\t    pf = det_prob(alpha_f, Tv, A_fit, ainf_fit, beta_fit, z0_fit)\n292\t    ax.plot(alpha_f, pf, color=c, linestyle=ls, lw=1.8, label=f'T={Tv}')\n293\t\n294\tdsets = {5: DATA_T5, 10: DATA_T10, 15: DATA_T15, 20: DATA_T20}\n295\tfor Tv, data in dsets.items():\n296\t    c, ls, mk = sty[Tv]\n297\t    aa = [d[0] for d in data]; rr = [d[1]/d[2] for d in data]\n298\t    is_tr = Tv in [10, 20]\n299\t    ax.scatter(aa, rr, c=c, marker=mk, s=40 if is_tr else 70, zorder=5,\n300\t              edgecolors='black' if not is_tr else 'none',\n301\t              linewidths=0.8 if not is_tr else 0)\n302\t\n303\tax.axvline(ainf_fit, color='red', linestyle='--', alpha=0.4, lw=1)\n304\tax.text(ainf_fit+0.02, 0.92, f'$\\\\alpha_\\\\infty$={ainf_fit:.2f}', fontsize=8, color='red')\n305\tax.set_xlabel('Contamination $\\\\alpha$'); ax.set_ylabel('Detection rate')\n306\tax.set_title(f'A. $\\\\sqrt{{T}}$ Model ($\\\\beta$={beta_fit:.2f}, $\\\\gamma$={gamma_fit:.2f})')\n307\tax.legend(fontsize=8, loc='center right')\n308\tax.set_xlim(-0.02, 1.05); ax.set_ylim(-0.05, 1.05)\n309\t\n310\t# Panel B\n311\tax = axes[1]\n312\tfor r in test_results:\n313\t    Tv = r['T']; c, _, mk = sty[Tv]\n314\t    lbl = f'T={Tv}' if r == [x for x in test_results if x['T']==Tv][0] else ''\n315\t    ax.scatter(r['p_pred'], r['k_actual']/r['n'], c=c, marker=mk, s=80,\n316\t              zorder=5, edgecolors='black', linewidths=0.5, label=lbl)\n317\t\n318\tax.plot([0,1],[0,1],'k--',alpha=0.3)\n319\txs = np.array([0,1])\n320\tax.fill_between(xs, xs-1/8, xs+1/8, alpha=0.08, color='blue', label='$\\\\pm$1/8')\n321\tax.set_xlabel('Predicted'); ax.set_ylabel('Actual')\n322\tax.set_title(f'B. Validation (MAE={tst_mae:.3f}, CI={ci_cov}/{len(test_results)})')\n323\tax.legend(fontsize=8); ax.set_xlim(-0.05,1.05); ax.set_ylim(-0.05,1.05)\n324\tax.set_aspect('equal')\n325\t\n326\t# Panel C\n327\tax = axes[2]\n328\tTf = np.linspace(3, 55, 500)\n329\tac_f = np.array([alpha_c(T, A_fit, ainf_fit, beta_fit, z0_fit) for T in Tf])\n330\tac_clip = np.clip(ac_f, 0, 1.2)\n331\t\n332\tax.plot(Tf, ac_clip, 'b-', lw=2, label=f'$\\\\alpha_c(T)$, $\\\\gamma$={gamma_fit:.2f}')\n333\tax.fill_between(Tf, np.minimum(ac_clip, 1.0), 1.0, alpha=0.08, color='green')\n334\tax.fill_between(Tf, 0, np.minimum(ac_clip, 1.0), alpha=0.08, color='red')\n335\t\n336\tax.plot([5],[0.80], 'rv', ms=10, zorder=5, label='T=5: all 0/8')\n337\tax.plot([10],[0.475],'ko', ms=10, zorder=5, label='T=10: step ~0.475')\n338\tax.plot([15],[0.42], 'g^', ms=10, zorder=5, label='T=15: 6/8 at 0.45')\n339\tax.plot([20],[0.42], 'gD', ms=10, zorder=5, label='T=20: 5/8 at 0.45')\n340\tax.axhline(ainf_fit, color='red', linestyle=':', alpha=0.4)\n341\t\n342\tax.set_xlabel('$T$ (epochs)'); ax.set_ylabel('$\\\\alpha_c$')\n343\tax.set_title('C. Phase Boundary')\n344\tax.legend(fontsize=6.5, loc='upper right')\n345\tax.set_xlim(2,55); ax.set_ylim(0,1.1)\n346\t\n347\tplt.tight_layout()\n348\tplt.savefig(OUT_DIR/'fig_theory_d102_validation.png', dpi=150, bbox_inches='tight')\n349\tplt.savefig(OUT_DIR/'fig_theory_d102_validation.pdf', bbox_inches='tight')\n350\tprint(\"Figure saved.\")\n351\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa572db8-e3d1-480a-a6fc-faab23666e21",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "a49d22fd-e6a0-4801-a659-b7f254db8c09",
+            "sourceToolAssistantUUID": "aa572db8-e3d1-480a-a6fc-faab23666e21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T22:20:10.978Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011gkpbqPCC4PG9D4ikeSXWn",
+              "name": "Grep",
+              "input": {
+                "pattern": "def.*consensus|class.*Consensus|meta.*summary|metrics_trajectory",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "type": "py",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a49d22fd-e6a0-4801-a659-b7f254db8c09",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7Mf4b8Jj2UmQX6EAt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3ef9ce53-cf81-4751-a908-7f060e1a8331",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AjsscmKbfkRd1Gf43MXshH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4045,
+                "cache_read_input_tokens": 18000,
+                "output_tokens": 346,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4045
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 346,
+                    "cache_read_input_tokens": 18000,
+                    "cache_creation_input_tokens": 4045,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4045,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T22:20:11.022Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011gkpbqPCC4PG9D4ikeSXWn",
+              "type": "tool_result",
+              "content": "Found 2 files\nartifacts/analysis/cross_alpha/cross_alpha_analysis_v4.py\nartifacts/cross_alpha_analysis_v4.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ef9ce53-cf81-4751-a908-7f060e1a8331",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "f1fb27c3-6104-4d15-8773-78fee667534d",
+            "sourceToolAssistantUUID": "3ef9ce53-cf81-4751-a908-7f060e1a8331",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T22:20:12.937Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the main D102 analysis script. Let me also check the consensus_framework.py file to see if there's additional consensus-related functionality:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1fb27c3-6104-4d15-8773-78fee667534d",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7d5WJbhnSR8nTg3Ai",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b8cf37f1-e23d-41be-88a9-20bd039cbc0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MiwhKTx7BDfNKFpE9H3xXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 22045,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14920,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T22:20:13.940Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0178ugd2Yvz21fnpYWdFVaq6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/consensus_framework.py",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8cf37f1-e23d-41be-88a9-20bd039cbc0f",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7d5WJbhnSR8nTg3Ai",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6f226776-ee46-47b8-9246-190204242e29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MiwhKTx7BDfNKFpE9H3xXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 22045,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14920,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T22:20:13.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0178ugd2Yvz21fnpYWdFVaq6",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tMulti-method consensus framework for canary→downstream association robustness.\n3\t\n4\tFormalizes \"robust association\": a pair is robust only when ≥method_threshold\n5\tindependent statistical methods agree (each requiring ≥seed_threshold seeds\n6\tsignificant). Two-stage aggregation: seed→method verdict, then method→consensus.\n7\t\n8\tInput:  results/mvp/analysis/method_ablation.json\n9\tOutput: consensus classification, sensitivity heatmap, FPR/FNR table (JSON)\n10\t\n11\tDependencies: numpy, json (stdlib)\n12\t\"\"\"\n13\t\n14\timport json\n15\timport os\n16\t\n17\timport numpy as np\n18\t\n19\tMETHOD_NAMES = [\n20\t    \"naive_pearson\",\n21\t    \"differenced_xcorr\",\n22\t    \"threshold_onset\",\n23\t    \"toda_yamamoto\",\n24\t    \"permutation_granger\",\n25\t]\n26\t\n27\t# differenced_xcorr is the FP ground truth (index 1)\n28\tDIFF_INDEX = 1\n29\t\n30\t\n31\tdef _to_native(obj):\n32\t    \"\"\"Convert numpy types to Python native for JSON serialization.\"\"\"\n33\t    if isinstance(obj, (np.integer,)):\n34\t        return int(obj)\n35\t    if isinstance(obj, (np.floating,)):\n36\t        return float(obj)\n37\t    if isinstance(obj, (np.bool_,)):\n38\t        return bool(obj)\n39\t    if isinstance(obj, np.ndarray):\n40\t        return obj.tolist()\n41\t    return obj\n42\t\n43\t\n44\tclass NumpyEncoder(json.JSONEncoder):\n45\t    \"\"\"JSON encoder that handles numpy types.\"\"\"\n46\t    def default(self, obj):\n47\t        native = _to_native(obj)\n48\t        if native is not obj:\n49\t            return native\n50\t        return super().default(obj)\n51\t\n52\t\n53\tdef load_sig_matrix(ablation_path, apply_fdr=True):\n54\t    \"\"\"\n55\t    Load method_ablation.json into a boolean significance tensor.\n56\t\n57\t    Args:\n58\t        ablation_path: path to method_ablation.json\n59\t\n60\t    Returns:\n61\t        sig_matrix: np.ndarray, shape (5, 16, 4), dtype bool\n62\t                    axes = (method, pair, seed)\n63\t        pair_names: list of (canary, downstream) tuples, len 16\n64\t        method_names: list of str, len 5\n65\t        seeds: list of int, e.g. [42, 43, 44, 45]\n66\t    \"\"\"\n67\t    with open(ablation_path) as f:\n68\t        data = json.load(f)\n69\t\n70\t    pairs = data[\"pairs\"]\n71\t    seeds = data[\"meta\"][\"seeds\"]\n72\t    n_m = len(METHOD_NAMES)\n73\t    n_p = len(pairs)\n74\t    n_s = len(seeds)\n75\t\n76\t    sig = np.zeros((n_m, n_p, n_s), dtype=bool)\n77\t    pair_names = []\n78\t\n79\t    for pi, pair in enumerate(pairs):\n80\t        pair_names.append((pair[\"canary\"], pair[\"downstream\"]))\n81\t        for si, seed_rec in enumerate(pair[\"per_seed\"]):\n82\t            for mi, method in enumerate(METHOD_NAMES):\n83\t                if method in seed_rec:\n84\t                    if apply_fdr:\n85\t                        if method == \"threshold_onset\":\n86\t                            # Non-statistical test, no FDR version exists\n87\t                            sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n88\t                        else:\n89\t                            sig[mi, pi, si] = seed_rec[method].get(\"significant_fdr\", False)\n90\t                    else:\n91\t                        sig[mi, pi, si] = seed_rec[method].get(\"significant\", False)\n92\t\n93\t    return sig, pair_names, list(METHOD_NAMES), seeds\n94\t\n95\t\n96\tdef classify_robust(sig_matrix, method_threshold, seed_threshold):\n97\t    \"\"\"\n98\t    Two-stage consensus classification.\n99\t\n100\t    Stage 1 (seed aggregation): method M calls pair P \"significant\" if\n101\t        ≥seed_threshold of n_seeds show significance for (M, P).\n102\t    Stage 2 (method consensus): pair P is \"robust\" if ≥method_threshold\n103\t        methods call it significant.\n104\t\n105\t    Args:\n106\t        sig_matrix: bool array, shape (n_methods, n_pairs, n_seeds)\n107\t        method_threshold: int, min methods required\n108\t        seed_threshold: int, min seeds required per method\n109\t\n110\t    Returns:\n111\t        dict with:\n112\t          classifications: list of per-pair dicts (pair_index, is_robust,\n113\t                           n_sig_methods, method_verdicts, seed_counts)\n114\t          n_robust, n_non_robust: int\n115\t          params: dict of threshold parameters\n116\t    \"\"\"\n117\t    n_methods, n_pairs, n_seeds = sig_matrix.shape\n118\t\n119\t    seed_counts = sig_matrix.sum(axis=2)            # (n_methods, n_pairs)\n120\t    method_verdicts = seed_counts >= seed_threshold  # (n_methods, n_pairs)\n121\t    method_counts = method_verdicts.sum(axis=0)      # (n_pairs,)\n122\t    is_robust = method_counts >= method_threshold\n123\t\n124\t    classifications = []\n125\t    for pi in range(n_pairs):\n126\t        classifications.append({\n127\t            \"pair_index\": pi,\n128\t            \"n_sig_methods\": int(method_counts[pi]),\n129\t            \"is_robust\": bool(is_robust[pi]),\n130\t            \"method_verdicts\": method_verdicts[:, pi].tolist(),\n131\t            \"seed_counts\": seed_counts[:, pi].astype(int).tolist(),\n132\t        })\n133\t\n134\t    return {\n135\t        \"classifications\": classifications,\n136\t        \"n_robust\": int(is_robust.sum()),\n137\t        \"n_non_robust\": int((~is_robust).sum()),\n138\t        \"params\": {\n139\t            \"method_threshold\": method_threshold,\n140\t            \"seed_threshold\": seed_threshold,\n141\t            \"n_methods\": n_methods,\n142\t            \"n_seeds\": n_seeds,\n143\t        },\n144\t    }\n145\t\n146\t\n147\tdef sensitivity_analysis(sig_matrix, pair_names, method_names,\n148\t                         method_thresholds=None, seed_thresholds=None):\n149\t    \"\"\"\n150\t    Sweep classify_robust over a grid of (method_threshold, seed_threshold)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f226776-ee46-47b8-9246-190204242e29",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "4684633c-60bb-4dca-b97e-9bd6f3683522",
+            "sourceToolAssistantUUID": "6f226776-ee46-47b8-9246-190204242e29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T22:20:14.386Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UpyuNEqtY8sxVqFyVoQP1C",
+              "name": "Bash",
+              "input": {
+                "command": "head -50 /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_final.py | grep -A 5 -B 5 \"consensus\\|meta\\|D102\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4684633c-60bb-4dca-b97e-9bd6f3683522",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7d5WJbhnSR8nTg3Ai",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0c1de73f-d58b-4cb4-841b-e94c388ed636",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MiwhKTx7BDfNKFpE9H3xXq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 22045,
+                "output_tokens": 238,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14920
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 238,
+                    "cache_read_input_tokens": 22045,
+                    "cache_creation_input_tokens": 14920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14920,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T22:20:14.449Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UpyuNEqtY8sxVqFyVoQP1C",
+              "type": "tool_result",
+              "content": "grid = np.full((len(Ts), len(alphas)), np.nan)\nfor i, T in enumerate(Ts):\n    for j, a in enumerate(alphas):\n        grid[i, j] = data[(T, a)]\n\n# ── α_c(T) theory curve (D102 Cross-T, α_∞=0) ──\nT_curve = np.linspace(4, 30, 500)\nalpha_c = 130.39 * T_curve ** (-2.083)\nalpha_c = np.clip(alpha_c, 0, 1.0)\n\n# ── Figure ──",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c1de73f-d58b-4cb4-841b-e94c388ed636",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "82c0d523-0458-485c-8793-b313f8968ee3",
+            "sourceToolAssistantUUID": "0c1de73f-d58b-4cb4-841b-e94c388ed636",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T22:20:16.317Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me verify the exact structure of the main analysis output and check for any other related scripts:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82c0d523-0458-485c-8793-b313f8968ee3",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7si5CXUgKeutpmcP9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35ad8538-1b2d-4d76-ba19-3970e16e88e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Prpo7vXm18SSvBLk7a3owy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2227,
+                "cache_read_input_tokens": 36965,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2227,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T22:20:17.308Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JEW4UMe11NpP45KQ5vc7B5",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -type f -name \"*.py\" | xargs grep -l \"5method_leadlag\\|metrics_trajectory\" 2>/dev/null | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35ad8538-1b2d-4d76-ba19-3970e16e88e4",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH7si5CXUgKeutpmcP9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "970fd4f3-5479-4f64-9fb3-3536511d95d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Prpo7vXm18SSvBLk7a3owy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2227,
+                "cache_read_input_tokens": 36965,
+                "output_tokens": 142,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2227
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 142,
+                    "cache_read_input_tokens": 36965,
+                    "cache_creation_input_tokens": 2227,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2227,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T22:20:17.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JEW4UMe11NpP45KQ5vc7B5",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/d127_spec_curve.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/gen_single_method_table.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/t20_post_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/detection_lower_bound.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/compile_dose_response.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/specification_curve_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/detection_bound/intermediate/detection_lower_bound.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s48_fp32/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "970fd4f3-5479-4f64-9fb3-3536511d95d2",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "1804ca78-6759-4f67-9efb-ebc22e1dc151",
+            "sourceToolAssistantUUID": "970fd4f3-5479-4f64-9fb3-3536511d95d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T22:20:18.942Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check one of these scripts to see how the D102 output is used downstream:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1804ca78-6759-4f67-9efb-ebc22e1dc151",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH86xo3THGNJBPRsSs7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5bdad217-0d5b-4861-a4d3-be4972706d3f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Uzgvxa8uxQKzM8RMrFv6Ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 39192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 598,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T22:20:19.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WVJLuByUt3D52pYjXHYsT1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/gen_single_method_table.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bdad217-0d5b-4861-a4d3-be4972706d3f",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH86xo3THGNJBPRsSs7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38d8f17f-4d20-49ab-a8fd-0944a61b6389",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Uzgvxa8uxQKzM8RMrFv6Ns",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 39192,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 598,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T22:20:19.698Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WVJLuByUt3D52pYjXHYsT1",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Generate Single-Method Error Consequence table from 5method_leadlag.json files.\"\"\"\n2\timport json\n3\timport os\n4\timport glob\n5\t\n6\tBASE = \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\"\n7\t\n8\tfiles = sorted(glob.glob(os.path.join(BASE, \"a*_s*/analysis/5method_leadlag.json\")))\n9\t\n10\tMETHOD_KEYS = [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"]\n11\tMETHOD_LABELS = {\n12\t    \"naive_xcorr\": \"Naive XCorr\",\n13\t    \"diff_xcorr\": \"Diff XCorr (FDR)\",\n14\t    \"threshold_onset\": \"Threshold Onset\",\n15\t    \"perm_granger\": \"Perm Granger (FDR)\",\n16\t    \"ty_granger\": \"TY Granger\",\n17\t}\n18\t\n19\tdef get_sig(method_data, method_key):\n20\t    if method_key in (\"diff_xcorr\", \"perm_granger\"):\n21\t        return method_data.get(\"significant_fdr\", method_data.get(\"significant\", False))\n22\t    return method_data.get(\"significant\", False)\n23\t\n24\tresults = {}\n25\tdata_sources = {}\n26\t\n27\tfor f in files:\n28\t    with open(f) as fh:\n29\t        d = json.load(fh)\n30\t    if \"meta\" in d:\n31\t        alpha = d[\"meta\"][\"alpha\"]\n32\t        seed = d[\"meta\"][\"seed\"]\n33\t    else:\n34\t        alpha = d[\"alpha\"]\n35\t        seed = d[\"seed\"]\n36\t    alpha_str = f\"a{int(alpha*100):03d}\"\n37\t    key = (alpha_str, seed)\n38\t    data_sources[key] = f\n39\t\n40\t    method_sig = {m: 0 for m in METHOD_KEYS}\n41\t    n_pairs = len(d[\"pairs\"])\n42\t\n43\t    for pair in d[\"pairs\"]:\n44\t        fwd = pair[\"forward\"]\n45\t        for m in METHOD_KEYS:\n46\t            if m in fwd and isinstance(fwd[m], dict) and get_sig(fwd[m], m):\n47\t                method_sig[m] += 1\n48\t\n49\t    results[key] = {\"method_sig\": method_sig, \"n_pairs\": n_pairs}\n50\t\n51\tALPHAS = [\"a000\", \"a025\", \"a050\", \"a075\", \"a100\"]\n52\tALPHA_LABELS = {\"a000\": \"0.00\", \"a025\": \"0.25\", \"a050\": \"0.50\", \"a075\": \"0.75\", \"a100\": \"1.00\"}\n53\t\n54\tprint(\"=\" * 80)\n55\tprint(\"Per-seed, per-method forward significant pair counts (out of 8)\")\n56\tprint(\"=\" * 80)\n57\t\n58\tfor alpha in ALPHAS:\n59\t    seeds = sorted([k[1] for k in results if k[0] == alpha])\n60\t    if not seeds:\n61\t        print(f\"\\n{alpha} (alpha={ALPHA_LABELS[alpha]}): NO DATA\")\n62\t        continue\n63\t    print(f\"\\n{alpha} (alpha={ALPHA_LABELS[alpha]}): seeds {seeds}\")\n64\t    header = f\"  {'Method':<25} \" + \" \".join(f\"s{s:<5}\" for s in seeds) + \"  majority\"\n65\t    print(header)\n66\t    for m in METHOD_KEYS:\n67\t        vals = [results[(alpha, s)][\"method_sig\"][m] for s in seeds]\n68\t        n_seeds_sig = sum(1 for v in vals if v >= 4)\n69\t        if len(seeds) >= 3:\n70\t            majority = \"SIG\" if n_seeds_sig >= 2 else \"non\"\n71\t        else:\n72\t            majority = \"SIG\" if n_seeds_sig >= 2 else \"non\"\n73\t        print(f\"  {METHOD_LABELS[m]:<25} \" + \" \".join(f\"{v}/8  \" for v in vals) + f\"  {majority}\")\n74\t\n75\tGROUND_TRUTH = {\n76\t    \"a000\": \"NO\",\n77\t    \"a025\": \"NO\",\n78\t    \"a050\": \"AMB\",\n79\t    \"a075\": \"YES\",\n80\t    \"a100\": \"YES\",\n81\t}\n82\t\n83\tprint(\"\\n\" + \"=\" * 80)\n84\tprint(\"Classification table\")\n85\tprint(\"=\" * 80)\n86\t\n87\tdef classify(gt, is_sig):\n88\t    if gt == \"NO\":\n89\t        return \"FP\" if is_sig else \"OK\"\n90\t    elif gt == \"YES\":\n91\t        return \"OK\" if is_sig else \"FN\"\n92\t    else:\n93\t        return \"O\"\n94\t\n95\tmethod_verdicts = {}\n96\tfor alpha in ALPHAS:\n97\t    seeds = sorted([k[1] for k in results if k[0] == alpha])\n98\t    if not seeds:\n99\t        method_verdicts[alpha] = {m: None for m in METHOD_KEYS}\n100\t        continue"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38d8f17f-4d20-49ab-a8fd-0944a61b6389",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "0af41d4e-7241-440b-bd14-e6cfcbb4720a",
+            "sourceToolAssistantUUID": "38d8f17f-4d20-49ab-a8fd-0944a61b6389",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T22:20:19.828Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UCdZsrE3rBq6iAjgSiskmj",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"5method_leadlag\\|metrics_trajectory\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_14b_t10_a075_s42_fp32/run_analysis.py | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0af41d4e-7241-440b-bd14-e6cfcbb4720a",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH86xo3THGNJBPRsSs7",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fa8678ce-cc24-49a3-b52c-d0b7b56ad921",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Uzgvxa8uxQKzM8RMrFv6Ns",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 39192,
+                "output_tokens": 238,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 598
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 238,
+                    "cache_read_input_tokens": 39192,
+                    "cache_creation_input_tokens": 598,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 598,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T22:20:19.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UCdZsrE3rBq6iAjgSiskmj",
+              "type": "tool_result",
+              "content": "476:    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), \"5method_leadlag.json\")",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa8678ce-cc24-49a3-b52c-d0b7b56ad921",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "468b61e3-7a7b-4223-8b9e-2918c96c92e4",
+            "sourceToolAssistantUUID": "fa8678ce-cc24-49a3-b52c-d0b7b56ad921",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T22:20:22.016Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary by checking if there are any scripts specifically in the `scripts/` directory with D102 references:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "468b61e3-7a7b-4223-8b9e-2918c96c92e4",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8GxKEGBZscyfSE6nR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "628f79fe-c957-46e1-a181-f50b9960ea43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WeptPM5nL51uuKBbYYfbbq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1715,
+                "cache_read_input_tokens": 39790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1715,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T22:20:22.862Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C1RqbUD4MTsnXewHowNHtQ",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/ | grep -E \"\\.py|\\.sh\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "628f79fe-c957-46e1-a181-f50b9960ea43",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8GxKEGBZscyfSE6nR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2992f978-053f-4350-a088-23accd7eca16",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WeptPM5nL51uuKBbYYfbbq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1715,
+                "cache_read_input_tokens": 39790,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1715
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 39790,
+                    "cache_creation_input_tokens": 1715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1715,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T22:20:22.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C1RqbUD4MTsnXewHowNHtQ",
+              "type": "tool_result",
+              "content": "-rw-r--r--  1 ubuntu ubuntu  5606 May 23 17:26 backfill_mauve.py\n-rw-r--r--  1 ubuntu ubuntu 17774 May 20 10:00 d127_csd_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 10380 May 20 09:40 d127_multispatial_ccm.py\n-rw-r--r--  1 ubuntu ubuntu 16360 May 20 10:27 d127_spec_curve.py\n-rw-r--r--  1 ubuntu ubuntu 12296 May 20 09:59 d127_wasserstein.py\n-rw-r--r--  1 ubuntu ubuntu 38486 May 21 08:57 detection_lower_bound.py\n-rw-r--r--  1 ubuntu ubuntu  4799 May 20 14:54 fig_sr_framework.py\n-rw-r--r--  1 ubuntu ubuntu  5496 May 22 13:11 fpr_sensitivity_analysis.py\n-rw-r--r--  1 ubuntu ubuntu  5511 May 17 09:36 gen_single_method_table.py\n-rw-r--r--  1 ubuntu ubuntu 14937 May 20 18:24 moment_cascade_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 14209 May 20 13:46 permg_power_analysis.py\n-rw-r--r--  1 ubuntu ubuntu  9322 May 15 16:49 plot_consensus_workflow.py\n-rw-r--r--  1 ubuntu ubuntu  6869 May 15 14:55 plot_regime_map.py\n-rwxr-xr-x  1 ubuntu ubuntu  2099 May 20 15:14 t20_batch_verify.sh\n-rw-r--r--  1 ubuntu ubuntu  6951 May 20 15:14 t20_post_analysis.py\n-rw-r--r--  1 ubuntu ubuntu  6860 May 20 08:27 tail_sensitive_canary_analysis.py\n-rw-r--r--  1 ubuntu ubuntu 18288 May 20 18:38 ucs_analysis.py\n-rw-r--r--  1 ubuntu ubuntu  7250 May 20 19:12 ucs_postprocess.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2992f978-053f-4350-a088-23accd7eca16",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "fec6bf66-7274-4fa3-a0b3-d6bf2a77e98a",
+            "sourceToolAssistantUUID": "2992f978-053f-4350-a088-23accd7eca16",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T22:20:24.700Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the exact output format by examining the main run_analysis.py file more closely:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fec6bf66-7274-4fa3-a0b3-d6bf2a77e98a",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8Vswpa9a2khRbPiip",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "91d6ec08-2327-4f84-ad6f-b52faed110cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L3Xw5jaXVDTPMKxykTrHto",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 41505,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 753,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T22:20:25.265Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016LEe1ksAkrV7CTqbuizasc",
+              "name": "Bash",
+              "input": {
+                "command": "grep -A 20 \"full_results = {\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_14b_t10_a075_s42_fp32/run_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91d6ec08-2327-4f84-ad6f-b52faed110cd",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8Vswpa9a2khRbPiip",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "473f7cb6-aa1d-4f40-a953-25b1fbaff988",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L3Xw5jaXVDTPMKxykTrHto",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 41505,
+                "output_tokens": 141,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 753
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 141,
+                    "cache_read_input_tokens": 41505,
+                    "cache_creation_input_tokens": 753,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 753,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T22:20:25.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016LEe1ksAkrV7CTqbuizasc",
+              "type": "tool_result",
+              "content": "    full_results = {\n        \"meta\": {\n            \"exp_id\": \"phase_diagram_t10_a075_s42_fp32_14b\",\n            \"model\": \"pythia-1.4b-deduped\",\n            \"alpha\": 0.75,\n            \"seed\": 42,\n            \"T\": 10,\n            \"n_gens\": n_gens,\n            \"n_perm\": N_PERM,\n            \"canaries\": CANARIES,\n            \"downstreams\": DOWNSTREAMS,\n            \"threshold_criterion\": \"true_3sigma_d105\",\n            \"D111_direction\": \"peak_lag < 0 (C009 corrected)\",\n            \"mauve_start_gen\": mauve_start,\n        },\n        \"summary\": summary,\n        \"consensus\": consensus,\n        \"pairs\": [],\n        \"raw_metrics\": data,\n    }",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "473f7cb6-aa1d-4f40-a953-25b1fbaff988",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "9720b960-2e41-4846-a840-a8df468aa296",
+            "sourceToolAssistantUUID": "473f7cb6-aa1d-4f40-a953-25b1fbaff988",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T22:20:36.897Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me now create a final comprehensive summary. Let me check if there's a README or documentation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9720b960-2e41-4846-a840-a8df468aa296",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8gKzgcXgvacUzSY3K",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a207544b-3a29-41af-b576-cdcdfb6b09e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152e5EsWFJHv9t6B2cW5Mfx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 42258,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 374,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T22:20:37.359Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AGY4Nyxv9koY5j8FomZZPN",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse -maxdepth 2 -name \"README*\" -o -name \"*.md\" | head -10"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a207544b-3a29-41af-b576-cdcdfb6b09e2",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH8gKzgcXgvacUzSY3K",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2a6ff29f-52a7-46db-844b-fb4d7d297c4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0152e5EsWFJHv9t6B2cW5Mfx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 42258,
+                "output_tokens": 130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 374
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 130,
+                    "cache_read_input_tokens": 42258,
+                    "cache_creation_input_tokens": 374,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 374,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T22:20:37.424Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGY4Nyxv9koY5j8FomZZPN",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/task_context/agent.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/task_context/director.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/task_context/reviewer.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/memory.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/AGENTS.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/CLAUDE.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/smollm3_3b_s43_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/table7_d111_audit_batch1.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a6ff29f-52a7-46db-844b-fb4d7d297c4a",
+            "isSidechain": true,
+            "promptId": "1711edb8-4a88-4b8e-89b8-891d68966f6d",
+            "agentId": "a39d25412520925fe",
+            "type": "user",
+            "uuid": "6c8920b8-6bcf-4a11-9c12-dead9ec37936",
+            "sourceToolAssistantUUID": "2a6ff29f-52a7-46db-844b-fb4d7d297c4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T22:20:51.540Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information I need. Let me provide a comprehensive summary of my findings.\n\n## Summary: D102 Analysis Script Location and Structure\n\n### Primary D102 Analysis Script\n\n**Main Location:**\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/d102_14b_t10_a075_s42_fp32/run_analysis.py`\n\nThis is the canonical D102 multi-method causal analysis implementation. It contains the complete 5-method lead-lag analysis as you described.\n\n### What the Script Does\n\nThe script implements a comprehensive lead-lag analysis that runs **5 causal methods** on canary metrics (token_entropy, ece) vs. downstream metrics (distinct_1, distinct_2, distinct_3, mauve):\n\n1. **naive_xcorr** - Naive cross-correlation with lag search\n2. **diff_xcorr** - Differenced cross-correlation with FDR correction\n3. **threshold_onset** - 3-sigma threshold change point detection\n4. **perm_granger** - Permutation Granger causality with FDR correction\n5. **ty_granger** - Toda-Yamamoto VAR-based causality test\n\n### Output Format\n\nThe script outputs JSON with exactly the structure you described:\n\n```python\nfull_results = {\n    \"meta\": {\n        \"exp_id\": \"phase_diagram_t10_a075_s42_fp32_14b\",\n        \"model\": \"pythia-1.4b-deduped\",\n        \"alpha\": 0.75,\n        \"seed\": 42,\n        \"T\": 10,\n        \"n_gens\": n_gens,\n        \"n_perm\": N_PERM,\n        \"canaries\": CANARIES,\n        \"downstreams\": DOWNSTREAMS,\n        \"threshold_criterion\": \"true_3sigma_d105\",\n        \"D111_direction\": \"peak_lag < 0 (C009 corrected)\",\n        \"mauve_start_gen\": mauve_start,\n    },\n    \"summary\": summary,           # Dictionary with method counts (e.g., \"PermG_fwd\": \"6/8\")\n    \"consensus\": consensus,       # List of pairs with vote counts (0-5)\n    \"pairs\": [],                  # Detailed per-pair forward/reverse results\n    \"raw_metrics\": data,          # Raw metrics trajectory from generation 0 to N\n}\n```\n\nOutput file: **`5method_leadlag.json`** (saved in the script's directory)\n\n### Related Scripts That Use D102 Output\n\nThese scripts consume the `5method_leadlag.json` output:\n\n1. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/gen_single_method_table.py`** - Aggregates results across alpha/seed combinations\n2. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/t20_post_analysis.py`** - Post-processes results\n3. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/d127_spec_curve.py`** - Specification curve analysis\n\n### Consensus Framework\n\nComplementary consensus logic is in:\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/consensus_framework.py`\n\nThis implements two-stage consensus: seed-level aggregation (min seeds per method) → method-level aggregation (min methods required for \"robust\" classification).\n\n### Theory Validation Scripts\n\nD102 cross-T prediction validation:\n- **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_c_theory/verify_theory_d102.py`** - Fits cross-T model using PermG_fwd data, validates on held-out T values\n\nOther D102 theory verification scripts:\n- `artifacts/alpha_c_theory/verify_theory_d102_pmax.py`\n- `artifacts/alpha_c_theory/verify_theory_d102_pmax_grid.py`\n\n### Pattern Summary\n\nAll instances of D102 analysis follow this pattern:\n- Load metrics from `results/{exp_name}/gen_*/metrics.json`\n- Apply 5 methods (forward and reverse directions)\n- Apply FDR correction for statistical tests\n- Generate consensus votes\n- Output JSON with meta/summary/consensus/pairs/raw_metrics sections"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c8920b8-6bcf-4a11-9c12-dead9ec37936",
+            "isSidechain": true,
+            "agentId": "a39d25412520925fe",
+            "requestId": "req_011CbLH9iM4mRGJKi1c6mSpi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a10f0d28-1bfd-4517-b1a3-845fe2431186",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "57d01b3b-7a0f-4c70-a5c5-220cc143f9d4",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01C8EeYKXmpntDHnkB46DjQt",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 526,
+                "cache_read_input_tokens": 42632,
+                "output_tokens": 1130,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 526
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1130,
+                    "cache_read_input_tokens": 42632,
+                    "cache_creation_input_tokens": 526,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 526,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-the-d102-analysis-script-in-this-project-the-project-is-at-home.md"
+}

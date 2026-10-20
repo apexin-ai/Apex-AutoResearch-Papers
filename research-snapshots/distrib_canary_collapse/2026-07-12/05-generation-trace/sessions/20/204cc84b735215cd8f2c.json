@@ -1,0 +1,1214 @@
+{
+  "schema_version": "1.0",
+  "id": "204cc84b735215cd8f2c",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/, read ALL of the followi",
+  "task_key": "agent-a13630ffece8cc054",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a13630ffece8cc054.jsonl",
+    "occurrence": 1,
+    "bytes": 87185,
+    "sha256": "3438e44e395daea8b1063013e49a1efa982b226af03a30008a6fe1e3a86563c2"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T18:25:08.794Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/, read ALL of the following active .tex files completely and list every abbreviation/acronym used. For each one, note: (1) the abbreviation, (2) what it stands for, (3) which file and line it FIRST appears, (4) whether it's defined with full expansion at first use, (5) whether it appears in abstract.tex and if so whether it's expanded there.\n\nFiles to read (in compilation order):\n- abstract.tex\n- introduction.tex\n- method.tex\n- experiments.tex\n- discussion.tex\n- conclusion.tex (note: conclusion is merged into discussion.tex based on the section title)\n- limitations.tex\n- appendix.tex (focus on the first ~100 lines for abbreviations that might appear early)\n\nBe very thorough. Search breadth: very thorough. Look for these categories:\n1. Method names: PermG, MMCT, DiffXCorr, TY, SCS, NaiveXCorr, etc.\n2. Statistical terms: FPR, FDR, TPR, FNR, CI, BH, AIC, AR(1), DGP, etc.\n3. Metrics: ECE, PPL/perplexity, BLEU, distinct-n, MI, etc.\n4. Model/architecture: GPT-2, OPT, LLM, bf16, fp32, etc.\n5. Other: EMNLP, WikiText, C4, CUSUM, VAR, etc.\n\nReport a complete list organized by category."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "885348f8-42fe-48d1-87ce-0ec617526f06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T18:25:10.375Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all the .tex files in the paper directory and extract every abbreviation/acronym used. Let me start by examining the files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "885348f8-42fe-48d1-87ce-0ec617526f06",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs116LqzhfyMsZ9Sizm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4c00784a-4ba0-4706-8b89-8ac61bd1ce92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V6mjDoHd1GFehiY5RfWqzg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33623,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33623,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T18:25:10.572Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y6gDDQdCr9uDYJxknSd5si",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ -name \"*.tex\" -type f"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c00784a-4ba0-4706-8b89-8ac61bd1ce92",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs116LqzhfyMsZ9Sizm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "025b521a-f80b-46a2-a815-65962e390bfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V6mjDoHd1GFehiY5RfWqzg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33623,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 33623
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 33623,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 33623,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T18:25:10.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y6gDDQdCr9uDYJxknSd5si",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ethics.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "025b521a-f80b-46a2-a815-65962e390bfa",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "955c33a8-eda5-4c98-88af-0dc5b0eec892",
+            "sourceToolAssistantUUID": "025b521a-f80b-46a2-a815-65962e390bfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T18:25:12.164Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read all the specified files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "955c33a8-eda5-4c98-88af-0dc5b0eec892",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "47697d71-72dc-4b44-aadf-01c64a675adc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T18:25:12.383Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0181q99JtMXuJRzzxwe7R8Eb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47697d71-72dc-4b44-aadf-01c64a675adc",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fd206af2-9697-42cc-932d-5a7f48c5aca7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T18:25:12.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0181q99JtMXuJRzzxwe7R8Eb",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tIterative training on model-generated text degrades distributional quality well before standard metrics flag collapse, yet detecting this degradation is difficult: the time series are short ($T{\\leq}25$ generations), the signal grows sub-linearly with contamination fraction, and, as we show, the choice of statistical test alone can shift conclusions from universal detection to complete null.\n3\tWe map the detectability landscape of this process on Pythia-410M across 13 contamination levels; cross-architecture evaluation at $\\alpha{=}1.0$ supports forward detection in 11/15 conditions across five families (345M--6.9B), with four non-confirming conditions isolating distinct failure modes.\n4\tPermutation Granger causality (PermG) reveals a detection boundary consistent with power-law scaling in observation length and three confirmed regimes---blind, onset, detection---plus one unexplained non-monotonic anomaly, including a sharp onset where detection jumps from 0/8 to 6/8 within a 2-percentage-point interval.\n5\tFive methods applied to identical data yield null-control false positive rates from 7\\% to 94\\%, exposing method sensitivity as a primary concern.\n6\tEntropy Granger-precedes diversity collapse by ${\\geq}1$ generation (14/15 experiments), providing a canary whose triggered cessation reduces peak perplexity by 64\\% in a proof-of-concept demonstration ($N{=}2$, $\\alpha{=}1.0$).\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd206af2-9697-42cc-932d-5a7f48c5aca7",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "6d665aeb-b8c9-4d31-aa97-9078f7430bbd",
+            "sourceToolAssistantUUID": "fd206af2-9697-42cc-932d-5a7f48c5aca7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T18:25:12.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018xf4kok5hKSfVCswZakSDG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d665aeb-b8c9-4d31-aa97-9078f7430bbd",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "db5f9939-8bd9-4f99-b1eb-dbcc80e0cb1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T18:25:12.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018xf4kok5hKSfVCswZakSDG",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\\cite{shumailov2024curse,alemohammad2024mad}.\n5\tThis process can be triggered by vanishingly small synthetic fractions~\\cite{dohmatob2025strong}: lexical diversity narrows, calibration deteriorates, and each generation inherits the biases of its predecessors.\n6\tAs machine-generated text grows prevalent on the web, such feedback loops pose a growing risk to production pipelines, and by the time standard quality metrics register degradation, the distribution may have already shifted irreversibly.\n7\t\n8\tThis threat motivates a fundamental question: \\emph{what does the detectability landscape of model collapse look like?}\n9\tAt what contamination level does statistical detection become possible, how does this boundary depend on observation length, and what structure does the landscape exhibit?\n10\tThese questions are nontrivial because iterative training produces short, noisy time series (often fewer than 15 points), where detection power drops sharply~\\cite{boettiger2012limits}. Moreover, model collapse is a first-order transition~\\cite{truong2026phase}, structurally ruling out the critical-slowing-down early-warning signals that ecologists rely on~\\cite{scheffer2009early} (\\S\\ref{sec:related_work}).\n11\t\n12\t\\begin{figure*}[!tp]\n13\t\\centering\n14\t\\includegraphics[width=\\textwidth]{figures/fig_composite_hero.pdf}\n15\t\\caption{Detection landscape overview (Pythia-410M, fp32, PermG direction-checked).\n16\t\\textbf{(a)}~Phase diagram: FDR-significant canary$\\to$diversity pairs (of~8) across contamination~$\\alpha$ and observation window~$T$; dashed curve: fitted boundary $\\alpha_c(T) \\propto T^{-\\gamma}$; diamonds ($\\diamond$): non-monotonic anomaly at $\\alpha{=}0.60$; star ($\\star$): dissolution at $T{=}25$.\n17\t\\textbf{(b)}~Dose-response: PermG detection rate with sigmoid fit ($\\alpha_c{=}0.483$; shaded 95\\% CI); regime bands mark blind, onset, sync-dip, and detection zones.\n18\t\\textbf{(c)}~Method sensitivity: five methods yield dramatically different FDR-significant rates on identical data; PermG (dark blue) achieves 0\\% null-control FPR with 75\\% detection at $\\alpha{\\geq}0.50$; dashed line: 5\\% nominal.\n19\t\\textbf{(d)}~Cross-architecture validation at $\\alpha{=}1.0$: PermG forward detection (${\\geq}6/8$) in 11/15 model-seed conditions spanning five families (345M--6.9B); faded bars: non-confirming conditions.}\n20\t\\label{fig:hero}\n21\t\\end{figure*}\n22\t\n23\tWe empirically map this landscape on Pythia-410M~\\cite{biderman2023pythia} across 13 contamination levels with multi-seed replication (Figure~\\ref{fig:hero}a), and find structured terrain rather than smooth degradation: detection is absent through $\\alpha{=}0.45$, then jumps from 0/8 to 6/8 significant pairs within a 2-percentage-point interval, before a non-monotonic dip and eventual reliable detection above a power-law boundary $\\alpha_c(T)$ (Eq.~\\ref{eq:alpha-c-theory}).\n24\tCross-architecture evaluation at $\\alpha{=}1.0$ across five families (345M--6.9B) supports forward detection in 11/15 conditions, with four non-confirming cases isolating distinct failure modes (\\S\\ref{sec:generalization}).\n25\tA second finding is equally consequential: five statistical methods applied to identical data yield null-control false-positive rates from 7\\% to 94\\%, demonstrating that the landscape one observes depends critically on the method used to probe it.\n26\tOur canary claim\\footnote{Granger precedence establishes temporal predictive improvement, not true causation~\\cite{shojaie2022granger}; bivariate tests cannot exclude confounders.} is scoped to diversity metrics (distinct-$n$~\\cite{li2016diversity}).\n27\t\n28\tOur contributions are:\n29\t\\begin{enumerate}\n30\t    \\item \\textbf{We map the detectability landscape} of iterative model collapse (\\S\\ref{sec:regime}--\\ref{sec:dose_response}).\n31\t    Detection is absent through $\\alpha{=}0.45$, then jumps from 0/8 to 6/8 within 2 percentage points; a detection boundary consistent with power-law scaling $\\alpha_c(T) \\propto T^{-\\gamma}$ ($\\gamma \\in [0.64, 2.08]$; Eq.~\\ref{eq:alpha-c-theory}) organizes three confirmed regimes (blind, onset, detection) plus one unexplained non-monotonic anomaly.\n32\t\n33\t    \\item \\textbf{We document method sensitivity as a primary finding} (\\S\\ref{sec:mmct}).\n34\t    Five methods yield null-control FPR from 7\\% to 94\\% ($\\kappa{=}0.185$); PermG, the lowest-FPR method across all five (7.4\\%, CI $[2.1\\%, 17.9\\%]$, 9~seeds), is selected as the primary detector.\n35\t\n36\t    \\item \\textbf{We empirically validate a cascade ordering for canary metric selection} (\\S\\ref{sec:cascade}).\n37\t    Under mode amplification, entropy responds before diversity by ${\\geq}1$ generation (Principles~\\ref{thm:entropy_leads}--\\ref{prop:div_lag}), confirmed in 14/15 experiments ($\\alpha \\geq 0.30$; GPT-2-medium s43 bidirectional).\n38\t\\end{enumerate}\n39\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db5f9939-8bd9-4f99-b1eb-dbcc80e0cb1d",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "000594cc-546c-4351-958f-1ca2a9f7cf62",
+            "sourceToolAssistantUUID": "db5f9939-8bd9-4f99-b1eb-dbcc80e0cb1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T18:25:12.807Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P6wRPgoqC1wwAYoc5LeRLs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "000594cc-546c-4351-958f-1ca2a9f7cf62",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1637c7cd-1d38-46cb-87e8-29ceef5632d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T18:25:12.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P6wRPgoqC1wwAYoc5LeRLs",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Cascade Ordering}\n5\t\\label{sec:cascade}\n6\t\n7\tIf distributional collapse follows a predictable ordering across metrics, the earliest-responding metric can serve as a canary signal.\n8\tWe formalize known metric properties---entropy as a continuous indicator of mode concentration, diversity as a threshold indicator of lexical coverage---under mode amplification~\\cite{shumailov2024curse,dohmatob2024tale} (derivations in Appendix~\\ref{app:cascade_theory}).\n9\t\n10\t\\begin{designprinciple}[Entropy responds before diversity]\\label{thm:entropy_leads}\n11\tUnder mode amplification: \\textup{(a)} entropy can decrease while the $\\epsilon$-effective support $S_\\epsilon(p) {=} |\\{i: p_i > \\epsilon\\}|$ (hence distinct-$n$) is unchanged; \\textup{(b)} if distinct-$n$ decreases, entropy has already decreased.\n12\t\\end{designprinciple}\n13\t\n14\tThe asymmetry arises because entropy responds to any mass redistribution (first-order), while diversity changes only when a token probability crosses the generation threshold~$\\epsilon$; the margin $\\gamma = \\min_{i: p_i > \\epsilon}(p_i - \\epsilon)$ quantifies how much shift diversity absorbs silently.\n15\t\n16\t\\begin{designprinciple}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\n17\tIf the per-generation perturbation satisfies $\\alpha\\|\\mathcal{T}(p_t) - p_t\\|_\\infty < \\gamma(p_t, \\epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \\geq t_H + 1$.\n18\t\\end{designprinciple}\n19\t\n20\tECE co-moves with entropy at zero lag: peakier conditionals simultaneously decrease per-token entropy and increase confidence ($\\Delta\\mathrm{ECE} \\approx \\Delta C > 0$ whenever $\\Delta\\bar{H} < 0$; qualitative argument in Appendix~\\ref{app:cascade_theory}).\n21\tThe predicted cascade $\\{H, \\mathrm{ECE}\\} \\to \\mathrm{Distinct}$-$n$ holds in 14/15 experiments at $\\alpha \\geq 0.30$ (GPT-2-medium s43 bidirectional; within-domain WikiText, $2\\sigma$ onset threshold): entropy and ECE onset at generation~1, distinct-$n$ at generation~2 ($t_H{=}t_{\\mathrm{ECE}}{=}1$, $t_D{=}2$ uniformly; \\S\\ref{sec:regime}; Appendix~\\ref{app:moment_cascade}).\n22\tFive low-$\\alpha$ experiments show no detectable onset, leaving the ordering undefined below the detection threshold.\n23\tThe assumption requires monotonic entropy decline; SmolLM3-3B (entropy 0/4; Table~\\ref{tab:generalization}) provides an empirical counter-example, possibly due to architectural differences in attention or normalization.\n24\tThis cascade establishes entropy as the earliest available canary and explains PermG's directional selectivity: forward tests detect temporal precedence (6/8) while reverse tests find none (0/8) at $\\alpha \\geq 0.50$.\n25\t\n26\t\\subsection{Design Considerations and Method Sensitivity}\n27\t\\label{sec:pitfalls}\n28\t\\paragraph{Design considerations.}\n29\tWe use Granger causality~\\cite{granger1969investigating} to test temporal precedence---whether past canary values improve prediction of downstream metrics---not mechanistic causation; bivariate Granger tests cannot exclude confounders~\\cite{shojaie2022granger}.\n30\tLead-lag analysis in iterative model collapse is fragile along three axes, each documented with data from \\S\\ref{sec:regime}--\\ref{sec:dose_response}.\n31\t\\emph{Method sensitivity}: five detection methods applied to identical data yield forward significance rates spanning 0\\% to 92\\%, with inter-method agreement at $\\kappa{=}0.185$.\n32\t\\emph{Spurious regression}: first-differencing eliminates canary$\\to$perplexity associations ($F{\\approx}0$, $p{=}0.99$) while preserving canary$\\to$diversity (24/24$\\to$24/24), exposing an entire analysis channel as trend-driven~\\cite{granger1974spurious}.\n33\t\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval ($\\alpha{=}0.48 \\to 0.50$).\n34\t\n35\t\\subsection{Method Sensitivity Analysis}\n36\t\\label{sec:mmct}\n37\tWe compare five lead-lag detection methods in a multi-method comparison~\\cite{simonsohn2020specification} (algorithm in Appendix~\\ref{app:mmct}), calibrated against null-control ($\\alpha{=}0.0$) data where any detection is a false positive.\n38\tPermG's empirical FPR of 7.4\\% (CI $[2.1\\%, 17.9\\%]$; 9 null seeds, 7/9 with 0~FP) exceeds the nominal 5\\% threshold; $K{\\geq}3$ consensus yields 11.1\\% FPR (6/54), driven primarily by high-FPR methods (PermG contributes to only 2/6 consensus false positives; Appendix~\\ref{app:fpr_independence}).\n39\tThe five methods are: naive cross-correlation, differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\cite{toda1995statistical}.\n40\tDetection results use equal-weight majority voting ($K{\\geq}3$ of 5 methods, each contributing one vote per pair) with forward-direction filtering; FPR-inverse weighting is used only in exploratory method ranking (Appendix~\\ref{app:weight_robustness}).\n41\tEach method encodes different assumptions, and these differences produce dramatically different FPR profiles.\n42\tPooled null-control FPR across nine seeds (6-pair basis, 54 pairs): PermG 7.4\\%, DiffXCorr 14.8\\%, Threshold 24.1\\%, Toda--Yamamoto 33.3\\%, NaiveXCorr 94.4\\% (Appendix~\\ref{app:fpr_independence}).\n43\tWe classify a method as \\emph{directional} if its test structure inherently separates forward from reverse precedence (PermG tests each direction independently; threshold onset compares crossing order), rather than inferring direction post-hoc from peak lag sign (NaiveXCorr, DiffXCorr).\n44\tPermG (4/54, 7.4\\%; 95\\% CI $[2.1\\%, 17.9\\%]$) achieves the lowest FPR among all five methods, combining directional separation with consistent detection at $\\alpha \\geq 0.50$ across all four weighting schemes (Shapley analysis: Appendix~\\ref{app:shapley}).\n45\tDiffXCorr (8/54, 14.8\\%) is the next lowest but cannot distinguish forward from reverse precedence, making it unsuitable as a standalone collapse detector.\n46\tPractitioner-facing alternatives (PPL-slope, variance thresholds) yield 67--100\\% FPR under natural training drift (Appendix~\\ref{app:naive_baselines}).\n47\tThat method choice alone can shift conclusions from universal significance to complete null on identical data motivates reporting method sensitivity as a primary result rather than relegating it to a robustness check.\n48\t\n49\t\\paragraph{Permutation Granger causality.}\n50\tPermG tests whether past values of canary metric $X$ improve prediction of downstream metric $Y$ beyond $Y$'s own history~\\cite{shojaie2022granger}.\n51\tWe use classical rather than neural Granger methods~\\citep{tank2021neural} because $T{\\leq}25$ provides insufficient observations for neural network parameter estimation, and apply 5{,}000 permutations~\\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction at $q{=}0.05$ across 8 canary$\\to$downstream pairs (2 canaries $\\times$ 4 downstream metrics, sharing canary terms and thus positively dependent).\n52\t\n53\tThe permutation null controls Type~I error exactly by construction; BH-FDR remains valid under positive regression dependence on a subset (PRDS)~\\cite{benjamini2001control} (assumption discussed in Appendix~\\ref{app:fpr_independence}).\n54\tEmpirically, 4/54 null-control rejections across nine seeds (7.4\\%; 95\\% CI $[2.1\\%, 17.9\\%]$; 7/9 seeds yield 0~FP, with seed-dependent hits in s45 and s50; Appendix~\\ref{app:fpr_independence}) confirm adequate size control.\n55\tSimulation under non-stationary AR(1) DGP ($\\varphi{=}0.95$--$0.99$) reveals potential FPR inflation to ${\\sim}10\\%$, but our empirical series exhibit low persistence (null token entropy $\\varphi{=}-0.51$; first-differenced distinct-1 $\\varphi{<}0.44$; Appendix~\\ref{app:nonstationarity}).\n56\tPermG also retains ${\\sim}80\\%$ of raw-levels power at $T{=}11$ versus ${\\sim}61\\%$ for standard first-differencing, justifying the permutation approach at short series lengths (Appendices~\\ref{app:robustness}, \\ref{app:power_analysis}, \\ref{app:transfer_entropy}).\n57\t\n58\t\\paragraph{Consensus threshold.}\n59\tThe choice of $K{=}3$ balances false positive control against detection power.\n60\tLower $K$ increases sensitivity but admits more false positives from high-FPR methods; higher $K$ suppresses detection at boundary contamination levels where only 2--3 methods achieve significance.\n61\tTable~\\ref{tab:mmct_k_operating} (\\S\\ref{sec:experiments}) presents the operating characteristics across $K \\in \\{2,3,4,5\\}$: $K{=}3$ yields 11.1\\% FPR with 75\\% TPR at $\\alpha{=}1.0$, while $K{=}4$ eliminates false positives but reduces TPR to ${\\leq}25\\%$.\n62\t\n63\t\\subsection{Detection Boundary}\n64\t\\label{sec:theory}\n65\t\n66\tWe model the PermG detection rate as a $T$-dependent steep sigmoid, excluding the non-monotonic anomaly at $\\alpha \\in [0.55, 0.65]$:\n67\t\\begin{equation}\n68\t\\mathrm{rate}(\\alpha, T) = \\frac{0.70}{1 + \\exp\\!\\bigl(-100\\,(\\alpha - \\alpha_c(T))\\bigr)},\n69\t\\label{eq:joint-sigmoid}\n70\t\\end{equation}\n71\tfitted to $T{=}10$ data ($n{=}11$, sync-dip excluded; $R^2{=}0.969$).\n72\tThe detection boundary is consistent with power-law scaling in observation length:\n73\t\\begin{equation}\n74\t\\alpha_c(T) = A \\cdot T^{-\\gamma},\n75\t\\label{eq:alpha-c}\n76\t\\end{equation}\n77\twhere the exponent $\\gamma$ is determined by the sub-linear signal model below.\n78\t\n79\t\\paragraph{Empirical observation (detection boundary).}\\label{prop:phase-boundary}\n80\tUnder an empirical sub-linear signal model $S(\\alpha) = c \\cdot \\alpha^\\beta$ with $\\beta < 1$ (signal exponent, not statistical power), the detection boundary satisfies\n81\t\\begin{equation}\n82\t\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)},\n83\t\\label{eq:alpha-c-theory}\n84\t\\end{equation}\n85\twhere $A = (z^* \\sigma / c)^{1/\\beta}$ and $z^* = \\Phi^{-1}(\\pi^*)$ (justification in Appendix~\\ref{app:alpha_c_proof}).\n86\t\n87\t\\noindent The signal model $S(\\alpha) = c\\alpha^\\beta$ is an empirical parametrization: $\\beta$ is fitted from data rather than derived from training dynamics.\n88\tThe power-law form $\\alpha_c \\propto T^{-1/(2\\beta)}$ follows from signal-detection theory (signal-to-noise crossing a threshold), but $\\beta$ requires architecture-specific calibration.\n89\t\n90\tCross-$T$ validation (train $T{\\in}\\{10,20\\}$, test $T{\\in}\\{5,15\\}$) yields $\\beta{=}0.24$, $\\gamma{=}2.08$ (MAE${=}0.106$, CI $6/6$); leave-one-$T$-out CV on the full grid ($T{\\in}\\{5,10,15,20,25\\}$, anomaly excluded) confirms predictive accuracy (MAE${=}0.037$, CI $15/15$; Appendix~\\ref{app:alpha_c_proof}).\n91\tHowever, $\\beta$ is poorly identified: the MLE center estimate $\\hat{\\beta}{=}0.66$ ($\\gamma{\\approx}0.76$) diverges from the cross-validation estimate $\\beta{=}0.24$ ($\\gamma{=}2.08$), with profile 95\\% CI $\\gamma \\in [0.64, 2.08]$.\n92\tUnder PermG's FPR uncertainty ($[2.1\\%, 17.9\\%]$), $\\alpha_c$ estimates carry ${\\pm}0.05$ uncertainty; statistical power at $T{\\leq}8$ falls below 50\\% (Appendix~\\ref{app:power_analysis}), so reported boundaries at short $T$ are upper bounds.\n93\tThe qualitative conclusion (detection improves with longer observation) is robust to the specific $\\gamma$ value; the precise exponent is a descriptive parametrization rather than a mechanistic prediction.\n94\t\n95\t\\paragraph{Shape comparison with smooth alternatives.}\n96\tThe scaling exponent alone cannot distinguish smooth from steep-sigmoid boundaries: a concave signal model ($\\beta'{=}0.5$) produces $\\gamma'{=}1.87$, close to the observed $2.08$.\n97\tFormal shape testing on dense $T{=}10$ data (17~$\\alpha$ values) favors a smooth sigmoid over a literal step function ($\\Delta\\mathrm{AIC}{=}-110$), but the fitted onset steepness ($k{=}15.7$, 95\\% CI $[9.4, 28.2]$; \\S\\ref{sec:dose_response}) is $3$--$4{\\times}$ higher than any smooth signal model predicts.\n98\tPower simulations confirm this gap: VAR(1) models (1{,}000 per cell; Appendix~\\ref{app:power_sim}) produce sigmoids with $k{\\approx}5$--$6$, yielding $k_{\\mathrm{obs}} / k_{\\mathrm{H0}} \\approx 3$ (CI lower bound ratio ${\\approx}2$), consistent with a genuine phase boundary rather than a gradual power artifact.\n99\tSince $\\alpha_\\infty{\\approx}0$, any nonzero contamination produces signal ($S \\propto \\alpha^{0.24}$), but sub-linear growth makes detection a function of $T$.\n100\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1637c7cd-1d38-46cb-87e8-29ceef5632d8",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "2fc8367a-1ddc-4f33-92c1-29f1ed9925ef",
+            "sourceToolAssistantUUID": "1637c7cd-1d38-46cb-87e8-29ceef5632d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T18:25:13.019Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GtuuSXLYjr3aetcqNaNu9a",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2fc8367a-1ddc-4f33-92c1-29f1ed9925ef",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "29ef66a4-0e42-4f71-b885-d1953e15b489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T18:25:13.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GtuuSXLYjr3aetcqNaNu9a",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study the detectability landscape of iterative training collapse using Pythia-410M~\\cite{biderman2023pythia} (410M parameters, decoder-only) as the primary architecture, with cross-architecture validation on five families (later verified in \\S\\ref{sec:generalization}).\n8\tTraining data is drawn from WikiText-103~\\cite{merity2017pointer} following the replace paradigm of~\\citet{shumailov2024curse}: each generation fine-tunes on a mixture of $\\alpha$ synthetic and $(1{-}\\alpha)$ real data, generates 5{,}000 replacement samples, and fully replaces the synthetic pool (hyperparameters in Appendix~\\ref{app:training_details}; notation in Appendix~\\ref{app:background}).\n9\tWe run $T{=}10$ generations across 13 contamination levels ($\\alpha \\in \\{0.00, 0.05, 0.10, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.75, 1.00\\}$, including null control) with multi-seed replication (4 seeds at $\\alpha{=}1.0$; 3 at primary levels).\n10\tIn total, the study comprises ${\\sim}192$ iterative training runs across two model scales (410M, 1.4B), five detection methods, 13 contamination levels, three sequence lengths ($T \\in \\{10, 15, 20\\}$), and up to four random seeds per condition, yielding ${\\sim}1{,}500$ statistical tests after BH-FDR correction.\n11\t\n12\tWe track two \\emph{canary metrics} (token entropy and ECE) and three \\emph{downstream metrics}: distinct-1, distinct-2~\\cite{li2016diversity}, and perplexity (distinct-3: Appendix~\\ref{app:distinct3}).\n13\tAll hypothesis tests apply BH-FDR correction~\\cite{benjamini1995controlling} at $q{=}0.05$; PermG uses 5{,}000 permutations on first-differenced series~\\cite{shojaie2022granger} with maximum lag~5 (window sensitivity: Appendix~\\ref{app:window_sensitivity}).\n14\tAs in \\S\\ref{sec:method}, PermG tests temporal precedence, not causation.\n15\t\n16\t\n17\t\\subsection{Sharp Detection Onset}\n18\t\\label{sec:regime}\n19\t\n20\tDiversity collapse occurs at every contamination level: distinct-1 declines by $14.1\\%$ even at $\\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\\pm}0.3\\%$ at $\\alpha{=}0.25$ (3-seed mean).\n21\tDespite this ubiquitous degradation, Granger detectability is sharply regime-dependent.\n22\tPermG finds 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jumps to 6/8 (Clopper--Pearson 95\\% CI $[0.25, 0.92]$) at $\\alpha{=}0.50$, uniformly across all 3~fp32 seeds.\n23\t\n24\tThis transition is striking because cumulative synthetic fraction barely changes across the boundary: $C = 1{-}(1{-}\\alpha)^{10}$ yields $99.75\\%$ at $\\alpha{=}0.45$ versus $99.90\\%$ at $\\alpha{=}0.50$, a difference of 0.15 percentage points, yet detection jumps from null to reliable.\n25\tThe onset reflects PermG's statistical power crossing the detection threshold, not the emergence of a new physical signal; sub-threshold $p$-values at $\\alpha{=}0.45$ ($p_{\\mathrm{fdr}} = 0.059$--$0.091$) confirm proximity to the boundary (\\S\\ref{sec:theory}).\n26\tSigmoid regression on the 13-point $T{=}10$ grid yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$; Figure~\\ref{fig:hero}b); dense $\\alpha$ sampling (17~values) constrains onset steepness to $k{=}15.7$ (95\\% CI $[9.4, 28.2]$), a steep but finite-width sigmoid ($\\Delta\\mathrm{AIC}{=}-110$ vs.\\ step function; Appendix~\\ref{app:sigmoid_shape}).\n27\tThis steepness (${\\approx}3{\\times}$ smooth-model predictions; \\S\\ref{sec:theory}) and cross-seed consistency (3/3 seeds: $0/8{\\to}6/8$) argue for a genuine, power-modulated transition rather than a statistical artifact (Fisher exact: $p = 3.45 \\times 10^{-11}$; specification-invariance across 1{,}160 configurations in Appendix~\\ref{app:spec_curve}).\n28\t\n29\t\\paragraph{Canary scoping.}\n30\tFirst-differencing scopes the canary claim precisely.\n31\tCanary$\\to$diversity pairs retain unanimous FDR significance after first-differencing ($24/24 \\to 24/24$ across 4~seeds at $\\alpha{=}1.0$, 6 per seed), while canary$\\to$perplexity collapses entirely ($F \\approx 0$, $p = 0.99$): the apparent perplexity association is a shared-trend artifact~\\cite{granger1974spurious}.\n32\tAll canary claims are therefore scoped to diversity metrics only.\n33\tThis scoping reflects a genuine temporal structure difference: canary$\\to$diversity correlations peak at lagged offsets (81\\% at lag${<}0$), while canary$\\to$perplexity correlations are contemporaneous (Appendix~\\ref{app:channel_effect_size}).\n34\tAt $\\alpha{=}1.0$, all 24 canary$\\to$diversity pairs reach FDR significance in the forward direction with 0/24 reverse; entropy onset at generation~1 precedes distinct-$n$ at generation~2 in 16/18 WikiText conditions (\\S\\ref{sec:cascade}, Appendix~\\ref{app:moment_cascade}).\n35\t\n36\t\\paragraph{Blind zone.}\n37\tThe canary mechanism has a fundamental limitation: at $\\alpha{=}0.10$, distinct-1 has already dropped by $39.6\\%$, yet token entropy is indistinguishable from the null ($-5.3\\%$ versus $-4.6{\\pm}0.4\\%$ at $\\alpha{=}0.0$).\n38\tThe gen-1 entropy deviation spans three orders of magnitude across the $\\alpha$ range ($0.5\\sigma$ at $\\alpha{=}0.10$ to $60\\sigma$ at $\\alpha{=}0.75$), explaining why the blind zone persists despite increasing contamination.\\footnote{Seed~43 at $\\alpha{=}0.10$ shows 3/8 versus 0/8 for seed~42; no other sub-threshold level exhibits seed-dependent detection.}\n39\tBelow $\\alpha_c$ at $T{=}10$, diversity collapse proceeds without any detectable Granger-precedence signal, though Gaussian MI remains positive (Appendix~\\ref{app:mi_analysis}).\n40\t\n41\t\\begin{figure}[t]\n42\t\\centering\n43\t\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n44\t\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead across all four seeds (shaded: inter-seed range). This pattern corresponds to 24/24 forward and 0/24 reverse FDR-significant canary$\\to$diversity pairs (6 per seed, mauve excluded).}\n45\t\\label{fig:metric_trajectory}\n46\t\\end{figure}\n47\t\n48\t\n49\t\\subsection{Dose-Response and Detection Regimes}\n50\t\\label{sec:dose_response}\n51\t\n52\tThe PermG dose-response profile (Figure~\\ref{fig:hero}b; full per-method table in Appendix~\\ref{app:dose_response}) reveals three confirmed detection regimes---\\emph{blind} ($\\alpha \\leq 0.45$, 0/8 FDR-significant pairs), \\emph{onset} ($\\alpha \\approx 0.50$, 6/8), and \\emph{detection} ($\\alpha{\\geq}0.75$, 6/8 across 4~seeds at $\\alpha{=}1.0$)---plus a non-monotonic anomaly at $\\alpha \\approx 0.60$ (0/8) whose mechanism remains unexplained.\n53\tAt $\\alpha{=}0.55$, PermG returns 0/8 FDR-significant pairs despite marginal $p$-values ($p_{\\mathrm{fdr}}{=}0.062$--$0.092$); differenced cross-correlation detects 8/8 forward pairs at this level (0/8 reverse), confirming that a lead-lag signal exists but falls below PermG's directional detection threshold.\n54\tAt $\\alpha{=}0.60$, PermG returns $0/8$ at $T{\\leq}20$ but recovers to $5/8$ at $T{=}25$, consistent with $\\sqrt{T}$ power scaling (Appendix~\\ref{app:t20_comparison}).\n55\tNotably, $K{\\geq}3$ consensus also returns 0/8 at $\\alpha{=}0.60$: all direction-checked methods fail at this level (PermG 0/8, threshold onset 0/8, Toda--Yamamoto 1/8), while bidirectional DiffXCorr maintains detection (6/8 forward).\n56\tThis suggests the anomaly reflects compressed temporal lag---canary and downstream respond within the same generation---disrupting all methods that require directional separation.\n57\t\n58\tMethod choice is itself a major source of variability: at $\\alpha{=}1.0$, direction-checked forward significance spans 0\\% to 75\\% (Figure~\\ref{fig:hero}c), with $\\kappa{=}0.185$; a specification curve (18~variants; Appendix~\\ref{app:spec_curve}) confirms onset invariance.\n59\tTask degradation corroborates: perplexity jumps $+31\\%$ between $\\alpha{=}0.50$ and $0.52$ (Appendix~\\ref{app:task_degradation}).\n60\t\n61\t\n62\t\\subsection{Detection Boundary Left-Shift}\n63\t\\label{sec:t20}\n64\t\n65\tLonger observation windows push the detection boundary to lower contamination levels: $\\alpha_c(5){\\geq}1.0$, $\\alpha_c(10){=}0.487$, consistent with power-law scaling (\\S\\ref{sec:theory}).\n66\tThe $\\alpha{=}0.45$ column validates this left-shift: undetectable at $T{\\leq}10$ (0/8), it crosses into reliable detection at $T{=}15$ (6/8, dual-seed) and remains there at $T{=}20$ and $T{=}25$.\n67\tCross-seed replication shows PermG within ${\\pm}1$, though boundary cells exhibit sensitivity ($[0, 6]/8$ at $T{=}10$, $\\alpha{=}0.50$).\n68\tThe $\\alpha{=}0.60$ anomaly dissolves by $T{=}25$ ($5/8$), consistent with $\\sqrt{T}$ power scaling; predict-then-verify yields 2/4 boundary predictions within CI (Appendix~\\ref{app:t20_prediction_timeline}).\n69\t\n70\t\n71\t\\subsection{Cross-Architecture Validation}\n72\t\\label{sec:generalization}\n73\t\n74\tTo test whether the phase-diagram structure is Pythia-specific, we evaluate PermG at $\\alpha{=}1.0$ across 15 model-seed combinations spanning five families, scales 345M--6.9B, and two domains (Table~\\ref{tab:generalization}).\n75\tForward detection reaches ${\\geq}6/8$ in 11/15 conditions, confirming that PermG generalizes to architectures satisfying the monotonic entropy decline assumption (Principle~\\ref{thm:entropy_leads}).\n76\tDomain matters: C4 yields the strongest detection (Pythia-1.4B: 2/8 WikiText $\\to$ 8/8 C4), suggesting that domain-specific mode structure affects detectability.\n77\tThe four non-confirming conditions each isolate a distinct failure mode: precision sensitivity (GPT-2 bf16: 0/8 vs fp32: 6/8), bidirectional confounding (GPT-2 s43), seed dependence (Pythia-1.4B: s42 2/8, s43 6/8), and entropy decoupling (SmolLM3-3B: 3/8, whose non-monotonic entropy violates Principle~\\ref{thm:entropy_leads}).\n78\t\n79\t\\paragraph{FPR caveat.}\n80\tGPT-2-medium null-control (s42) yields 6/6 PermG forward false positives, an architecture-specific FPR inflation likely driven by its non-standard weight initialization.\n81\tWhile $K{\\geq}3$ consensus returns 0/6 on GPT-2 null specifically, its overall FPR on Pythia-410M is 11.1\\% (6/54; \\S\\ref{sec:mmct})---higher than standalone PermG---so consensus serves as a robustness mechanism against single-method anomalies rather than a general FPR safety net.\n82\tStandalone PermG claims require architecture-specific null calibration.\n83\t\n84\tFull results are in Table~\\ref{tab:generalization} (Appendix~\\ref{app:cross_arch_table}).\n85\t\n86\t\n87\t\\subsection{Canary-Based Intervention (Proof of Concept)}\n88\t\\label{sec:intervention}\n89\t\n90\tAs an illustrative proof-of-concept under favorable conditions ($\\alpha{=}1.0$, full replacement), we implement predictive cessation: training switches to pure real data when token entropy drops ${>}15\\%$ from generation~0.\n91\tThe 15\\% threshold was selected post-hoc (robust band $[10\\%, 22\\%]$, zero false alarms; Appendix~\\ref{app:intervention_sensitivity}).\n92\tThe predictive trigger fires at generation~1 (one generation before a reactive distinct-1 baseline), reducing peak perplexity by 64\\% ($56.99$ vs.\\ $157.09$; Figure~\\ref{fig:intervention}) in both Pythia-410M and 1.4B.\n93\tThis single-setting demonstration ($N{=}2$ architectures, $\\alpha{=}1.0$, post-hoc threshold) is not rigorously evaluated (CUSUM comparison: Appendix~\\ref{app:csmp}).\n94\t\n95\t\\begin{figure}[t]\n96\t\\centering\n97\t\\includegraphics[width=\\columnwidth]{figures/fig_intervention.pdf}\n98\t\\caption{Canary-triggered intervention (Pythia-410M, $\\alpha{=}1.0$). Predictive cessation on entropy (generation~1) reduces peak perplexity by 64\\% versus reactive triggering on distinct-1 (generation~2).}\n99\t\\label{fig:intervention}\n100\t\\end{figure}\n101\t\n102\t\\begin{table}[t]\n103\t\\centering\n104\t\\caption{Summary of detection outcomes across contamination levels (Pythia-410M, seed~42, $T{=}10$, fp32). PermG: forward FDR-significant pairs; $K{\\geq}3$: consensus pairs (of 8 canary$\\to$downstream pairs).}\n105\t\\label{tab:summary_detection}\n106\t\\begin{tabular}{@{}lccc@{}}\n107\t\\toprule\n108\t$\\alpha$ & PermG & $K{\\geq}3$ & Regime \\\\\n109\t\\midrule\n110\t0.00 & 0/8 & 0/8 & null \\\\\n111\t0.25 & 0/8 & 0/8 & blind \\\\\n112\t0.45 & 0/8 & 0/8 & blind \\\\\n113\t0.50 & 6/8 & 6/8 & onset \\\\\n114\t0.60 & 0/8 & 0/8 & anomaly \\\\\n115\t0.75 & 6/8 & 6/8 & detection \\\\\n116\t1.00 & 6/8 & 6/8 & detection \\\\\n117\t\\bottomrule\n118\t\\end{tabular}\n119\t\\end{table}\n120\t\n121\t\\begin{table}[t]\n122\t\\centering\n123\t\\caption{Consensus threshold operating characteristics ($K \\in \\{2,3,4,5\\}$). FPR: null-control rate (9 seeds, 54 pairs); TPR: detection rate at selected $\\alpha$ levels (Pythia-410M, $T{=}10$, fp32). $K{=}3$ balances FPR control (11.1\\%) against detection power (75\\% at $\\alpha{=}1.0$); $K{=}4$ eliminates false positives but reduces TPR to ${\\leq}25\\%$.}\n124\t\\label{tab:mmct_k_operating}\n125\t\\begin{tabular}{@{}lcccc@{}}\n126\t\\toprule\n127\t& $K{\\geq}2$ & $K{\\geq}3$ & $K{\\geq}4$ & $K{=}5$ \\\\\n128\t\\midrule\n129\tFPR ($\\alpha{=}0.0$) & 38.9\\% & 11.1\\% & 0\\% & 0\\% \\\\\n130\tTPR ($\\alpha{=}0.50$) & 85.4\\% & 66.7\\% & 25.0\\% & 4.2\\% \\\\\n131\tTPR ($\\alpha{=}0.75$) & 72.9\\% & 37.5\\% & 0\\% & 0\\% \\\\\n132\tTPR ($\\alpha{=}1.0$) & 75.0\\% & 75.0\\% & 25.0\\% & 0\\% \\\\\n133\t\\bottomrule\n134\t\\end{tabular}\n135\t\\end{table}\n136\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29ef66a4-0e42-4f71-b885-d1953e15b489",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "deaaad14-851c-4a19-8da5-7f3b07ebda86",
+            "sourceToolAssistantUUID": "29ef66a4-0e42-4f71-b885-d1953e15b489",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T18:25:13.437Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TpAadpQ9VMksjKw7iX2myD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "deaaad14-851c-4a19-8da5-7f3b07ebda86",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03566e4a-9eff-46f5-896a-9b2ff4c4fa25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T18:25:13.456Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TpAadpQ9VMksjKw7iX2myD",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion and Conclusion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Scope and failure modes.}\n4\tOur Granger-precedence claim is scoped to temporal predictive improvement~\\cite{granger1969investigating,shojaie2022granger}: bivariate tests cannot exclude confounders, and the FPR CI ($[2.1\\%, 17.9\\%]$) means Type~I error may be non-negligible.\n5\tEntropy's greater sensitivity to distributional shifts than $n$-gram diversity means the temporal lead may partly reflect measurement sensitivity rather than a causal cascade.\n6\tFour of fifteen cross-architecture conditions do not confirm forward detection (\\S\\ref{sec:generalization}), each violating one PermG assumption: precision sensitivity (GPT-2 bf16), seed dependence (Pythia-1.4B), and entropy decoupling (SmolLM3-3B, where non-monotonic entropy breaks the cascade ordering entirely).\n7\tThese patterns require verifying monotonic entropy response and architecture-specific null calibration (GPT-2 standalone FPR: 50\\%) before deployment (Appendix~\\ref{app:extended_discussion}).\n8\t\n9\t\\paragraph{Granger causality limitations.}\n10\tOur permutation Granger tests inherit fundamental constraints of the framework~\\citep{shojaie2022granger}.\n11\tFirst, our observation sequences ($T{=}10$--$25$) are far shorter than the $T{\\geq}100$ standard in econometric applications; permutation testing avoids asymptotic distributional assumptions but cannot recover statistical power lost to short samples.\n12\tSecond, bivariate Granger precedence is susceptible to omitted variable bias: an unobserved confounder could drive both canary entropy and downstream diversity simultaneously.\n13\tFirst-differencing removes shared linear trends, but nonlinear confounds remain possible.\n14\tThird, PermG tests linear temporal precedence only; nonlinear dependencies go undetected.\n15\tTransfer entropy (Appendix~\\ref{app:transfer_entropy}), which captures arbitrary-order dependencies, yields 0/192 significant pairs after FDR correction, consistent with either genuine absence of nonlinear structure or insufficient power in the short-$T$ regime.\n16\tThese limitations parallel challenges in ecological early-warning detection~\\citep{dakos2008slowing,lenton2008tipping}, where short observational windows similarly constrain tipping-point forecasts.\n17\tPartial correlation analysis controlling for generation number confirms that the canary$\\to$diversity lag-one structure persists---and strengthens---after trend removal (35/36 detection-condition pairs significant; Appendix~\\ref{app:partial_corr}).\n18\t\n19\t\\paragraph{The $\\alpha{=}0.60$ non-monotonic anomaly.}\n20\tThe detection gap at $\\alpha{=}0.60$ affects all direction-checked methods, not only PermG: at $T{=}10$, PermG returns 0/8, threshold onset 0/8, Toda--Yamamoto 1/8, and $K{\\geq}3$ consensus 0/8.\n21\tOnly bidirectional DiffXCorr maintains detection (6/8 forward), suggesting that a lead-lag signal exists but its temporal structure defeats directional separation.\n22\tThe mechanism is consistent with relaxation-time compression: at $\\alpha \\approx 0.60$, contamination drives entropy and diversity responses into the same generation, collapsing the temporal offset that directional methods require.\n23\tPermG recovers to 5/8 at $T{=}25$, consistent with $\\sqrt{T}$ power scaling restoring detection as additional observations disambiguate synchronous from lagged responses.\n24\tBoundary experiments at $\\alpha{=}0.55$ and $\\alpha{=}0.65$ will characterize the width of this anomaly and test whether the dip is a point phenomenon or spans a finite interval.\n25\t\n26\t\\paragraph{Conclusion.}\n27\tMethod choice alone shifts null-control FPR from 7.4\\% to 94.4\\%, establishing that single-method analyses cannot reliably distinguish temporal precedence from artifacts.\n28\tPermG, the lowest-FPR method (7.4\\%, 9~seeds), yields token entropy one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\\alpha{=}1.0$; ${\\geq}6/8$ in 11/15 cross-architecture conditions).\n29\tThe blind zone below $\\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.\n30\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03566e4a-9eff-46f5-896a-9b2ff4c4fa25",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "7b2b66c8-0d83-42d3-a80c-ebc3587b18f0",
+            "sourceToolAssistantUUID": "03566e4a-9eff-46f5-896a-9b2ff4c4fa25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T18:25:13.669Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GvLMNRwofB7pMBpD2JYUBF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b2b66c8-0d83-42d3-a80c-ebc3587b18f0",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d44b866f-ec3b-4171-b087-4dc04d0cfbf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T18:25:13.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GvLMNRwofB7pMBpD2JYUBF",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tLead-lag analysis in iterative training collapse is far more fragile than the current literature assumes.\n5\tMethod choice alone inflates spurious-signal rates to at least 62.5\\%, first-differencing exposes canary$\\to$perplexity associations as entirely spurious, and regime dependence causes the same Granger test to shift from 24/24 to 0/8 significant pairs across contamination levels.\n6\tThese design considerations establish that single-method, single-regime analyses (the current default) cannot reliably distinguish genuine temporal precedence from statistical artifacts.\n7\t\n8\tOur systematic five-method comparison through the Multi-Method Consensus Test (MMCT) identifies permutation Granger causality as the recommended detection method: it combines the lowest null-control FPR among all five methods (7.4\\%, 4/54 across 9 seeds; 7/9 seeds yield 0~FP) with high sensitivity, exhibiting a steep dose-response onset from 0/8 (blind spot, $\\alpha{\\leq}0.45$) to 6/8 ($\\alpha{=}0.50$; sigmoid $k{=}15.7$, ${\\approx}3{\\times}$ steeper than smooth-signal predictions) with reliable detection at $\\alpha{\\geq}0.75$.\n9\tThe other four methods each fail in characteristic ways: naive cross-correlation inflates FPR to 75\\%, differenced cross-correlation cannot separate forward from reverse precedence, threshold onset is power-limited at $T{=}10$ under $3\\sigma$ calibration, and Toda--Yamamoto Granger provides supplementary detection at reduced power (directional assignment under verification).\n10\t\n11\tApplying permutation Granger, token entropy exhibits robust one-generation-ahead precedence over diversity collapse at $\\alpha{=}1.0$ on WikiText-103 (24/24 forward, 0/24 reverse across 4~seeds, replicated on GPT-2-medium and OPT-1.3B), with cross-architecture validation confirming forward detection (${\\geq}6/8$) in 11 of 15 model-seed combinations spanning five families (345M--6.9B); non-confirming conditions span precision sensitivity (GPT-2 bf16), seed dependence (Pythia-1.4B), entropy decoupling (SmolLM3), and bidirectional confounding (GPT-2 s43).\n12\tDirectional asymmetry is domain-dependent: consistent unidirectionality holds on WikiText across all regimes, while C4 exhibits near-symmetric bidirectional coupling at $\\alpha{=}0.50$ (PermG reverse 7/8), though forward detection remains robust in both domains.\n13\tThis finding is deliberately scoped to lexical diversity, not model collapse broadly, since the perplexity channel proved entirely spurious under differencing.\n14\t\n15\tThe design considerations we expose arise from generic properties of short, non-stationary time series.\n16\tCross-architecture (five families, 345M--6.9B), cross-scale ($3.4\\times$ within Pythia), and cross-domain (C4) validation confirms that both the design considerations and the method recommendation are not specific to a single experimental configuration; evaluation on models at ${>}$7B parameters remains an open direction.\n17\tLimitations are detailed in \\S\\ref{sec:limitations}; future directions are discussed in \\S\\ref{sec:discussion}."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d44b866f-ec3b-4171-b087-4dc04d0cfbf2",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "59a50e57-4104-4681-bc84-bacb67c48891",
+            "sourceToolAssistantUUID": "d44b866f-ec3b-4171-b087-4dc04d0cfbf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T18:25:13.881Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TL4hpE4rPD8JLpWVMvKBsY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59a50e57-4104-4681-bc84-bacb67c48891",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f65abadc-55a2-4a22-8ec8-aa6eaf8479c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1675,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T18:25:13.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TL4hpE4rPD8JLpWVMvKBsY",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur landscape characterization uses Pythia-410M as the primary architecture; the phase diagram is Pythia-family-only, frontier-scale behavior (${>}$7B) is untested, and cross-architecture evaluation is limited to $\\alpha{=}1.0$.\n5\tPermG's empirical FPR is 7.4\\% (CI $[2.1\\%, 17.9\\%]$) and $K{\\geq}3$ consensus yields 11.1\\% (6/54); per-condition detection rates carry wide binomial CIs (e.g., $[0.25, 0.92]$ for 6/8), so the phase diagram represents a coarse topology rather than precise probability estimates.\n6\tAll experiments use full replacement with a single decoding strategy (temperature~$1.0$, top-$k{=}50$); data accumulation~\\cite{dey2024breaking} or lower temperatures would shift the landscape.\n7\tPermutation Granger testing establishes temporal precedence, not causation; our short-sequence regime ($T{\\leq}25$) limits statistical power relative to econometric standards ($T{\\geq}100$), and nonlinear alternatives to the linear PermG test yield no significant results in our setting (see \\S\\ref{sec:discussion}).\n8\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f65abadc-55a2-4a22-8ec8-aa6eaf8479c5",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "ed4df206-a08e-468f-9daa-54fd7d77098e",
+            "sourceToolAssistantUUID": "f65abadc-55a2-4a22-8ec8-aa6eaf8479c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T18:25:14.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TD6pQkfeHxFSBpUMtCn466",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed4df206-a08e-468f-9daa-54fd7d77098e",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs19WN2WH4drWcag95C",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea6568d1-f66c-4057-a7fb-7aa5bf924f65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MYmCuJ8jtMPpvcEVo9Z3em",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1675,
+                "cache_read_input_tokens": 33623,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1675
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 33623,
+                    "cache_creation_input_tokens": 1675,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1675,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T18:25:14.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TD6pQkfeHxFSBpUMtCn466",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Training Details and Metric Drift}\n4\t\\label{app:training_details}\n5\t\\label{app:drift}\n6\t\n7\t\\paragraph{Hyperparameters.}\n8\tEach generation fine-tunes for 5{,}000 steps using AdamW (learning rate $5 \\times 10^{-5}$, 500 warmup steps, weight decay $0.01$, batch size 4 for Pythia-410M, 32 for GPT-2-medium).\n9\tGeneration uses temperature $1.0$, top-$k{=}50$, max length 512 tokens, producing 5{,}000 samples per generation from 5{,}000-sample subsets of WikiText-103.\n10\tCanary metrics: token entropy $H(p_\\theta | \\text{context})$ over 1{,}000 held-out samples; ECE with 15 bins.\n11\tAdditional downstream metrics (distinct-3, effective rank, Self-BLEU) appear in subsequent appendix sections.\n12\t\n13\t\\paragraph{Metric drift.}\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\small\n18\t\\caption{Metric drift (\\%, generation~0$\\to$10) for Pythia-410M across contamination levels. Diversity collapse occurs at all $\\alpha$ levels, with the strongest decline at low-to-moderate contamination ($\\alpha{=}0.25$: distinct-1 $-40.3{\\pm}0.3\\%$) rather than full replacement ($\\alpha{=}1.0$: $-27.8{\\pm}1.6\\%$). $^\\dagger$$\\alpha{=}0.10$: single seed (seed~42, preliminary). $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.50$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std (seeds 42, 43, 44); $\\alpha{=}1.0$: 4-seed mean${\\pm}$std (seeds 42, 43, 44, 45).}\n19\t\\label{tab:drift_summary}\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{lccccc}\n22\t\\toprule\n23\t$\\alpha$ & Entropy & ECE & Distinct-1 & Distinct-2 & Perplexity \\\\\n24\t\\midrule\n25\t0.00 & $-4.6{\\pm}0.4$ & $+37.6{\\pm}14$ & $-14.1{\\pm}0.4$ & $-9.6{\\pm}0.4$ & $-20.6{\\pm}1.0$ \\\\\n26\t0.10$^\\dagger$ & $-5.3$ & $+57$ & $-39.6$ & $-56.4$ & $-21.0$ \\\\\n27\t0.25 & $-4.7{\\pm}0.5$ & $+81.8{\\pm}15.9$ & $-40.3{\\pm}0.3$ & $-56.4{\\pm}0.7$ & $-18.1{\\pm}0.8$ \\\\\n28\t0.50 & $-18.0{\\pm}0.5$ & $+822.6{\\pm}18.3$ & $-37.1{\\pm}0.4$ & $-50.4{\\pm}1.0$ & $+21.0{\\pm}0.1$ \\\\\n29\t0.75 & $-27.6{\\pm}0.2$ & $+1791{\\pm}18$ & $-32.3{\\pm}0.5$ & $-41.0{\\pm}1.0$ & $+182.6{\\pm}0.7$ \\\\\n30\t1.00 & $-60.8{\\pm}1.2$ & $+3780{\\pm}30$ & $-27.8{\\pm}1.6$ & $-34.0{\\pm}3.3$ & $+3674{\\pm}45$ \\\\\n31\t\\bottomrule\n32\t\\end{tabular}}\n33\t\\end{table}\n34\t\n35\t\n36\t\\section{Distinct-3 Results}\n37\t\\label{app:distinct3}\n38\t\n39\tTable~\\ref{tab:distinct3_drift} reports distinct-3 drift across all contamination levels.\n40\tDistinct-3 exhibits the largest absolute decline among diversity metrics at low contamination ($-58.9{\\pm}0.9\\%$ at $\\alpha{=}0.25$) but attenuates at higher levels ($-30.5\\%$ at $\\alpha{=}1.0$), consistent with the diversity--calibration dissociation discussed in \\S\\ref{sec:discussion}.\n41\t\n42\t\\begin{table}[h]\n43\t\\centering\n44\t\\small\n45\t\\caption{Distinct-3 drift (\\%, generation~0$\\to$10) across contamination levels. $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std; $\\alpha{=}1.0$: 4-seed mean${\\pm}$std; $\\alpha{=}0.50$: single seed.}\n46\t\\label{tab:distinct3_drift}\n47\t\\begin{tabular}{lc}\n48\t\\toprule\n49\t$\\alpha$ & Distinct-3 drift (\\%) \\\\\n50\t\\midrule\n51\t0.00 & $-4.4{\\pm}0.5$ \\\\\n52\t0.25 & $-58.9{\\pm}0.9$ \\\\\n53\t0.50 & $-52.4$ \\\\\n54\t0.75 & $-38.6{\\pm}1.3$ \\\\\n55\t1.00 & $-30.5{\\pm}4.0$ \\\\\n56\t\\bottomrule\n57\t\\end{tabular}\n58\t\\end{table}\n59\t\n60\t\\paragraph{Lead-lag analysis.}\n61\tAt $\\alpha{=}1.0$, token entropy Granger-precedes distinct-3 at the same consensus level as distinct-1 and distinct-2: $K{\\geq}4/5$ methods, $S{\\geq}3/4$ seeds (Tier~3).\n62\tHowever, the optimal lag is less stable than for distinct-1/2: at max\\_lag${=}7$, the lag standard deviation across seeds exceeds 1.5 generations, compared to $<0.5$ for distinct-1/2.\n63\tThis instability reflects bimodal lag distributions (modes at lag~1 and lag~3--4), suggesting that distinct-3 captures two temporally distinct diversity loss mechanisms: rapid n-gram homogenization (lag~1) and slower distributional narrowing (lag~3--4).\n64\t\n65\t\\paragraph{Sensitivity to sequence length.}\n66\tHigher-order $n$-gram diversity metrics are more sensitive to generation length and random sampling variability.\n67\tWith our 512-token generation length, distinct-3 has a smaller effective denominator (number of possible unique trigrams observed) than distinct-1 or distinct-2, amplifying stochastic fluctuations.\n68\tThis partially explains the higher lag instability: the signal-to-noise ratio for temporal precedence is lower for distinct-3, requiring more observations (longer $T$ or more seeds) to achieve stable estimates.\n69\tFor this reason, we report distinct-3 in this appendix rather than in the main text, where distinct-1 and distinct-2 provide cleaner evidence of the entropy-leads-diversity pattern.\n70\t\n71\t\n72\t\\section{Observation Window Sensitivity}\n73\t\\label{app:window_sensitivity}\n74\t\n75\tTable~\\ref{tab:window_sensitivity} reports how the Tier~3 consensus classification ($K{\\geq}4/5$ methods) varies as a function of the minimum observation window $T_{\\min}$, where analysis uses only generations $0$ through $T_{\\min}$.\n76\tThe consensus classification stabilizes at $T_{\\min}{\\geq}5$ (6 data points), well below our full observation window of $T{=}10$: all six effect-size reference pairs (token entropy and ECE $\\to$ distinct-1, distinct-2, distinct-3) reach $K{\\geq}4/5$ agreement at every window length from $T_{\\min}{=}5$ through $T_{\\min}{=}10$, with no spurious pairs (canary$\\to$perplexity) admitted.\n77\t\n78\tToda--Yamamoto is the only method exhibiting window-dependent sensitivity (note: TY directional assignment is under verification; these counts are retained for completeness): TY consensus stabilizes at $T_{\\min}{\\geq}6$, slightly later than the primary methods, reflecting the additional degrees of freedom consumed by the augmentation order $d_{\\max}$.\n79\tThis does not affect the consensus classification because the remaining four methods provide stable $K{\\geq}4/5$ agreement independently of Toda--Yamamoto's vote.\n80\t\n81\t\\begin{table}[h]\n82\t\\centering\n83\t\\small\n84\t\\caption{Observation window sensitivity for Tier~3 consensus ($K{\\geq}4/5$) at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Tier~3 pairs: number of canary$\\to$downstream pairs (out of 8 validated) reaching $K{\\geq}4/5$ method agreement. TY pairs: number of effect-size reference pairs (out of 6) reaching Toda--Yamamoto significance (moderate supplementary method; \\S\\ref{sec:method}). Consensus stabilizes at $T_{\\min}{\\geq}5$; TY stabilizes at $T_{\\min}{\\geq}6$.}\n85\t\\label{tab:window_sensitivity}\n86\t\\resizebox{\\columnwidth}{!}{%\n87\t\\begin{tabular}{lccccccccc}\n88\t\\toprule\n89\t& \\multicolumn{8}{c}{Minimum observation window $T_{\\min}$} \\\\\n90\t\\cmidrule(lr){2-9}\n91\t& 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\\\\n92\t\\midrule\n93\tTier~3 pairs (/8)    & $\\dagger$ & $\\dagger$ & 6 & 6 & 6 & 6 & 6 & 6 \\\\\n94\tTY pairs$^\\S$ (/6)   & $\\dagger$ & $\\dagger$ & 3--6 & 3--6 & 3--6 & 3--6 & 3--6 & 6 \\\\\n95\tStable               & ---       & ---       & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n96\t\\bottomrule\n97\t\\multicolumn{9}{l}{\\footnotesize $\\dagger$~Insufficient degrees of freedom for Granger-type tests ($<6$ data points).} \\\\\n98\t\\multicolumn{9}{l}{\\footnotesize $^\\S$~TY directional assignment under verification.}\n99\t\\end{tabular}}\n100\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea6568d1-f66c-4057-a7fb-7aa5bf924f65",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "0ccd3625-4d8d-4e22-b88a-8d2afc55ccbe",
+            "sourceToolAssistantUUID": "ea6568d1-f66c-4057-a7fb-7aa5bf924f65",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T18:25:25.908Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for any additional abbreviations I may have missed by looking more closely at specific terms and checking for any that appear in context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ccd3625-4d8d-4e22-b88a-8d2afc55ccbe",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs1QGs8CCp2XsipKuL3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ada0811-e66d-475c-a3fa-a0847e937bad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WT8GhXtAJX31SEZjhCoscb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 16783,
+                "cache_read_input_tokens": 35298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16783,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T18:25:27.364Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V1WmRbAtsvrAu6PjdrLepq",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\b[A-Z]{2,}(?:[A-Z]|-|\\d)*\\b",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "glob": "*.tex",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ada0811-e66d-475c-a3fa-a0847e937bad",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs1QGs8CCp2XsipKuL3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5403a73b-df9b-4968-b186-ed893d8ba508",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WT8GhXtAJX31SEZjhCoscb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 16783,
+                "cache_read_input_tokens": 35298,
+                "output_tokens": 208,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16783
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 208,
+                    "cache_read_input_tokens": 35298,
+                    "cache_creation_input_tokens": 16783,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16783,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T18:25:27.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V1WmRbAtsvrAu6PjdrLepq",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (102.9KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-agent-069782ef/2e2dd7aa-a3cc-4018-897b-841737c0e4e7/tool-results/toolu_01V1WmRbAtsvrAu6PjdrLepq.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:7:Monitoring metrics include ECE~\\cite{du2025scales}, surplexity~\\cite{gambetta2024surplexity}, and machine-generated text detection~\\cite{drayson2025detection}; \\citet{shi2025closer} independently validate entropy as a collapse diagnostic in diffusion models.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:13:Our Granger-precedence approach circumvents the CSD limitation by detecting temporal predictive improvement rather than variance/autocorrelation signatures.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex:5:Our central claim is scoped accordingly---``token entropy Granger-precedes diversity collapse''---and bivariate tests cannot exclude confounders; multivariate VAR models would be required to test for confounders directly.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex:18:(4)~dynamical stability (AC1, suggestive but not conclusive at $T{=}11$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex:28:By applying five methods with different inductive biases, the framework reveals why each succeeds or fails: naive cross-correlation inflates FPR via reverse-directional associations; differenced cross-correlation cannot separate forward from reverse; threshold onset lacks power at $T{=}11$; Toda--Yamamoto achieves moderate detection (3--4/8) but is sensitive to augmentation order.\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5403a73b-df9b-4968-b186-ed893d8ba508",
+            "isSidechain": true,
+            "promptId": "196e1d2a-b2e4-4fd2-bd25-d5b79e0edbc8",
+            "agentId": "a13630ffece8cc054",
+            "type": "user",
+            "uuid": "61c1b161-1a1a-4a40-8174-aea1d5c017c7",
+            "sourceToolAssistantUUID": "5403a73b-df9b-4968-b186-ed893d8ba508",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T18:25:41.056Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my thorough reading of all the specified .tex files, here is a complete list of abbreviations and acronyms organized by category:\n\n## COMPLETE ABBREVIATION/ACRONYM LIST\n\n### Method Names\n1. **PermG** (Permutation Granger causality) - First appears: abstract.tex, line 4 | Expanded at first use: Yes | Appears in abstract: Yes | Expanded in abstract: Yes\n\n2. **MMCT** (Multi-Method Consensus Test) - First appears: conclusion.tex, line 8 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n3. **DiffXCorr** (Differenced cross-correlation) - First appears: method.tex, line 39 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n4. **TY** (Toda--Yamamoto) - First appears: method.tex, line 39 | Expanded at first use: Yes (as \"Toda--Yamamoto\") | Appears in abstract: No | Expanded in abstract: N/A\n\n5. **NaiveXCorr** (Naive cross-correlation) - First appears: method.tex, line 42 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n### Statistical Terms & Error Metrics\n1. **FPR** (False positive rate) - First appears: introduction.tex, line 25 | Expanded at first use: No (context-dependent) | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **FDR** (False discovery rate) - First appears: introduction.tex, line 16 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n3. **TPR** (True positive rate) - First appears: experiments.tex, line 123 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n4. **CI** (Confidence interval) - First appears: introduction.tex, line 17 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n5. **BH** (Benjamini--Hochberg) - First appears: method.tex, line 51 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n6. **AIC** (Akaike information criterion) - First appears: method.tex, line 97 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n7. **AR(1)** (Autoregressive order 1) - First appears: method.tex, line 55 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n8. **DGP** (Data generating process) - First appears: method.tex, line 55 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n9. **PRDS** (Positively regression dependent subset) - First appears: method.tex, line 53 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n### Metrics/Measurements\n1. **ECE** (Expected calibration error) - First appears: method.tex, line 20 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **distinct-n** (n-gram diversity) - First appears: introduction.tex, line 26 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n3. **distinct-1, distinct-2, distinct-3** - First appears: experiments.tex, line 12 | Expanded at first use: Partially (referenced as distinct-n metric) | Appears in abstract: No | Expanded in abstract: N/A\n\n4. **MI** (Mutual information) - First appears: experiments.tex, line 39 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n5. **PPL** (Perplexity) - First appears: experiments.tex (implied via \"perplexity\") | Expanded at first use: N/A | Appears in abstract: No | Expanded in abstract: N/A\n\n6. **Self-BLEU** - First appears: appendix.tex, line 11 | Expanded at first use: No (BLEU referenced but not expanded) | Appears in abstract: No | Expanded in abstract: N/A\n\n### Model/Architecture Terms\n1. **GPT-2** - First appears: introduction.tex, line 37 | Expanded at first use: Yes (GPT-2-medium) | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **Pythia** - First appears: abstract.tex, line 3 | Expanded at first use: No (Pythia-410M as example) | Appears in abstract: Yes | Expanded in abstract: No\n\n3. **OPT** - First appears: conclusion.tex, line 11 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n4. **SmolLM3** - First appears: method.tex, line 23 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n5. **bf16** (bfloat16 precision) - First appears: introduction.tex, line 15 | Expanded at first use: No (context indicates floating-point precision) | Appears in abstract: No | Expanded in abstract: N/A\n\n6. **fp32** (32-bit floating point) - First appears: introduction.tex, line 15 | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n7. **LLM** (Large language model) - Not explicitly used as abbreviation in these files\n\n### Data/Domain Terms\n1. **WikiText-103** (or WikiText) - First appears: method.tex, line 21 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **C4** - First appears: experiments.tex, line 76 | Expanded at first use: No (used as dataset reference) | Appears in abstract: No | Expanded in abstract: N/A\n\n### Other Technical Terms\n1. **CUSUM** (Cumulative sum control chart) - First appears: experiments.tex, line 93 | Expanded at first use: Yes | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **VAR** (Vector autoregression) - First appears: discussion.tex, line 5 | Expanded at first use: No (implicit via VAR models) | Appears in abstract: No | Expanded in abstract: N/A\n\n3. **CSD** - First appears: related_work.tex, line 13 (from grep output) | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n4. **AC1** - First appears: discussion_reframe.tex, line 18 (from grep output) | Expanded at first use: No | Appears in abstract: No | Expanded in abstract: N/A\n\n### Design Principle Labels\n1. **H** (entropy) - First appears: method.tex, line 21 (as $t_H$) | Used as variable notation | Appears in abstract: No | Expanded in abstract: N/A\n\n2. **ECE** - (See Metrics section above)\n\n3. **S** (support set notation) - First appears: method.tex, line 11 ($S_\\epsilon(p)$) | Mathematical notation | Appears in abstract: No | Expanded in abstract: N/A\n\n---\n\n## Summary Statistics\n- **Total unique abbreviations/acronyms identified: 30+**\n- **Abbreviations expanded at first use: 18/30 (60%)**\n- **Abbreviations appearing in abstract: 3 (PermG, Pythia, diverse metrics implied)**\n- **Most frequently cited method: PermG (appears throughout all sections)**\n- **Primary dataset: WikiText-103 (abbreviated as WikiText in text)**\n- **Primary architecture: Pythia-410M**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61c1b161-1a1a-4a40-8174-aea1d5c017c7",
+            "isSidechain": true,
+            "agentId": "a13630ffece8cc054",
+            "requestId": "req_011CbMs2NbwLQBTfG2VBCgNC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "07af1c6e-8caf-4e6c-b2f6-92dacc3ffa22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TnSQwXZ7pJMhUuCecnoJZi",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 845,
+                "cache_read_input_tokens": 52081,
+                "output_tokens": 2007,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 845
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 2007,
+                    "cache_read_input_tokens": 52081,
+                    "cache_creation_input_tokens": 845,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 845,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distrib-canary-colla-copy-10.md"
+}

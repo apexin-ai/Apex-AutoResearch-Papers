@@ -1,0 +1,1037 @@
+{
+  "schema_version": "1.0",
+  "id": "67af2014df43ffb9d780",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify and fix the method comparison figure (Figure 5) in a research paper. The figure's hardcoded data appear",
+  "task_key": "agent-a4cc118a3009c8123",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a4cc118a3009c8123.jsonl",
+    "occurrence": 1,
+    "bytes": 64846,
+    "sha256": "c1f336e6771dc42e215af325fe2f3b16029d21d4c797d65543ea81c27589f4f6"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T20:26:08.810Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify and fix the method comparison figure (Figure 5) in a research paper. The figure's hardcoded data appears stale at α=1.0.\n\n**Task**:\n1. Read `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py` — extract all hardcoded data (all 5 methods × all alpha levels)\n2. Read `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dose_response_d120_compiled.csv` — find GPT-2 Medium (model containing \"gpt2m\" or \"gpt2\") rows for the alpha_sweep category, seed 42, wikitext, fp32. Extract naive_rate, diff_rate, threshold_rate, permg_rate, ty_rate for each alpha level.\n3. Compare the figure's hardcoded data against the CSV data for ALL alpha levels, not just α=1.0\n4. Also check: the figure caption says \"GPT-2 Medium\" — is the CSV data for this model? Or is the figure actually showing Pythia-410M data? Which model should the figure show?\n\nThe figure is supposed to show method sensitivity across contamination levels. Tell me:\n- Which cells mismatch between the figure script and the CSV\n- What the correct values should be\n- Whether the figure is showing the right model's data"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "f98673d4-1499-45a3-98ea-e1c0f5f2f231",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T20:26:08.812Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f98673d4-1499-45a3-98ea-e1c0f5f2f231",
+                "isSidechain": true,
+                "agentId": "a4cc118a3009c8123",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__add_constraint",
+                    "mcp__agent-ml-research__approve_experiment",
+                    "mcp__agent-ml-research__approve_secret_request",
+                    "mcp__agent-ml-research__archive_project",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__backup_project_to_s3",
+                    "mcp__agent-ml-research__cancel_agent_queue_item",
+                    "mcp__agent-ml-research__cancel_pending_director_messages",
+                    "mcp__agent-ml-research__check_credentials",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__complete_mvp",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__create_project",
+                    "mcp__agent-ml-research__delete_secret",
+                    "mcp__agent-ml-research__director_allocate_gpus",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_main_agent",
+                    "mcp__agent-ml-research__director_post_to_manager",
+                    "mcp__agent-ml-research__director_post_to_paper_agent",
+                    "mcp__agent-ml-research__director_reply_to_user",
+                    "mcp__agent-ml-research__distill_papers",
+                    "mcp__agent-ml-research__dream_simulate",
+                    "mcp__agent-ml-research__feishu_read_chat_history",
+                    "mcp__agent-ml-research__feishu_read_tum_pending_key",
+                    "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+                    "mcp__agent-ml-research__feishu_upload_file",
+                    "mcp__agent-ml-research__get_agent_queue_status",
+                    "mcp__agent-ml-research__get_distill_status",
+                    "mcp__agent-ml-research__get_dream_status",
+                    "mcp__agent-ml-research__get_dream_trend",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_matrix_value",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__get_project_status",
+                    "mcp__agent-ml-research__get_resource_inventory",
+                    "mcp__agent-ml-research__get_tum_config",
+                    "mcp__agent-ml-research__impact_analysis",
+                    "mcp__agent-ml-research__keepalive_respond",
+                    "mcp__agent-ml-research__list_available_gpus",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__list_projects",
+                    "mcp__agent-ml-research__list_s3_backups",
+                    "mcp__agent-ml-research__list_secrets",
+                    "mcp__agent-ml-research__list_ssh_hosts",
+                    "mcp__agent-ml-research__list_workspace_projects",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__log_decision",
+                    "mcp__agent-ml-research__log_mistake",
+                    "mcp__agent-ml-research__matrix_gap_analysis",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__post_to_reviewer",
+                    "mcp__agent-ml-research__ralph_respond",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_mistakes",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_server",
+                    "mcp__agent-ml-research__reject_experiment",
+                    "mcp__agent-ml-research__reject_secret_request",
+                    "mcp__agent-ml-research__remove_constraint",
+                    "mcp__agent-ml-research__remove_server",
+                    "mcp__agent-ml-research__replace_agent_queue",
+                    "mcp__agent-ml-research__request_study_approval",
+                    "mcp__agent-ml-research__research_director_post_to_study_director",
+                    "mcp__agent-ml-research__should_skip_dream",
+                    "mcp__agent-ml-research__store_secret",
+                    "mcp__agent-ml-research__submit_paper_to_review",
+                    "mcp__agent-ml-research__sync_matrix_status",
+                    "mcp__agent-ml-research__update_matrix",
+                    "mcp__agent-ml-research__update_project_config",
+                    "mcp__agent-ml-research__update_review_issues",
+                    "mcp__agent-ml-research__update_roadmap",
+                    "mcp__agent-ml-research__update_skill",
+                    "mcp__agent-ml-research__upgrade_to_dual_group",
+                    "mcp__agent-ml-research__urgent_agent_message"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e93c63dd-34c1-4703-ac85-1f3ca4a7fb07",
+                "timestamp": "2026-05-25T20:26:08.812Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+                "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T20:26:12.375Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll read both files to compare the data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e93c63dd-34c1-4703-ac85-1f3ca4a7fb07",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv35tyuRmaYGvHaVRmk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "85090016-9cdf-48b3-910a-2a3318954fe0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012RqKSsHcxux7fni4apNMve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34160,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 34160,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T20:26:12.780Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8ahHe7oPmVEn3mA6sTSJk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85090016-9cdf-48b3-910a-2a3318954fe0",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv35tyuRmaYGvHaVRmk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f2b4481c-1e4c-4d57-81b0-2346ab9e4fee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012RqKSsHcxux7fni4apNMve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34160,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 34160,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T20:26:12.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V8ahHe7oPmVEn3mA6sTSJk",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tGrouped bar chart: method sensitivity across contamination levels.\n3\tReplaces Table 1 in main text.\n4\tnarrative_intent: \"Different statistical methods yield dramatically different\n5\tconclusions on the same data — making method choice a first-order concern.\"\n6\t\"\"\"\n7\timport matplotlib\n8\tmatplotlib.use('Agg')\n9\timport matplotlib.pyplot as plt\n10\timport matplotlib.patches as mpatches\n11\timport matplotlib.patheffects as pe\n12\timport numpy as np\n13\t\n14\tplt.rcParams.update({\n15\t    'font.family': 'DejaVu Sans',\n16\t    'font.size': 9,\n17\t    'axes.titlesize': 10,\n18\t    'axes.labelsize': 9,\n19\t    'xtick.labelsize': 8,\n20\t    'ytick.labelsize': 8,\n21\t    'legend.fontsize': 7.5,\n22\t    'figure.dpi': 300,\n23\t    'savefig.dpi': 300,\n24\t    'savefig.bbox': 'tight',\n25\t    'savefig.pad_inches': 0.02,\n26\t    'axes.spines.top': False,\n27\t    'axes.spines.right': False,\n28\t    'pdf.fonttype': 42,\n29\t    'ps.fonttype': 42,\n30\t    'lines.linewidth': 1.8,\n31\t})\n32\t\n33\t# ── Data ──\n34\talpha_labels = [r'$\\alpha{=}0$', r'$\\alpha{=}.25$', r'$\\alpha{=}.50$',\n35\t                r'$\\alpha{=}.75$', r'$\\alpha{=}1$']\n36\tmethods = ['Naive XCorr', 'Diff. XCorr', r'Threshold ($3\\sigma$)',\n37\t           'Perm. Granger', 'Toda–Yamamoto']\n38\t\n39\tdata = {\n40\t    'Naive XCorr':            [75,   62.5, 62.5, 0,    0],\n41\t    'Diff. XCorr':            [0,    25,   12.5, 0,    0],\n42\t    r'Threshold ($3\\sigma$)': [37.5, 62.5, 100,  100,  25],\n43\t    'Perm. Granger':          [0,    0,    75,   75,   75],\n44\t    'Toda–Yamamoto':          [12.5, 37.5, 50,   100,  12.5],\n45\t}\n46\t\n47\t# ── Colors (softened Okabe-Ito) ──\n48\tcolors = {\n49\t    'Naive XCorr':            '#CC5A5A',\n50\t    'Diff. XCorr':            '#E8A04C',\n51\t    r'Threshold ($3\\sigma$)': '#8B6BB0',\n52\t    'Perm. Granger':          '#4A90C4',\n53\t    'Toda–Yamamoto':          '#4DAF7C',\n54\t}\n55\t\n56\tn_groups = len(alpha_labels)\n57\tn_methods = len(methods)\n58\tbar_width = 0.14\n59\tx = np.arange(n_groups)\n60\t\n61\tfig, ax = plt.subplots(figsize=(3.35, 1.9))\n62\t\n63\t# ── Background bands ──\n64\tax.axvspan(-0.45, 0.45, color='#FDEDEC', alpha=0.45, zorder=0)\n65\tax.text(0, 106, 'null', ha='center', va='bottom',\n66\t        fontsize=5, color='#B03A2E', fontstyle='italic', fontweight='bold')\n67\t\n68\tax.axvspan(1.55, 2.45, color='#EBF5FB', alpha=0.35, zorder=0)\n69\tax.text(2, 106, 'onset', ha='center', va='bottom',\n70\t        fontsize=5, color='#1A5276', fontstyle='italic', fontweight='bold')\n71\t\n72\t# ── 5% nominal FPR reference line ──\n73\tax.axhline(y=5, color='#B03A2E', linewidth=0.5, linestyle='--', alpha=0.45, zorder=1)\n74\t\n75\t# ── Draw bars ──\n76\tbar_containers = {}\n77\tfor i, method in enumerate(methods):\n78\t    offset = (i - n_methods / 2 + 0.5) * bar_width\n79\t    vals = data[method]\n80\t    c = colors[method]\n81\t    is_hero = method == 'Perm. Granger'\n82\t    alpha_val = 1.0 if is_hero else 0.72\n83\t    edgecolor = '#222222' if is_hero else 'none'\n84\t    linewidth = 1.0 if is_hero else 0\n85\t    bars = ax.bar(x + offset, vals, bar_width * 0.92,\n86\t                  color=c, alpha=alpha_val, label=method,\n87\t                  edgecolor=edgecolor, linewidth=linewidth, zorder=2)\n88\t    bar_containers[method] = (bars, offset)\n89\t\n90\t# ── Value labels on PermG bars ──\n91\thero_bars, hero_offset = bar_containers['Perm. Granger']\n92\thero_vals = data['Perm. Granger']\n93\tfor j, v in enumerate(hero_vals):\n94\t    if v > 0:\n95\t        ax.text(x[j] + hero_offset, v + 1.5, f'{int(v)}',\n96\t                ha='center', va='bottom', fontsize=4.5,\n97\t                fontweight='bold', color='#2166AC')\n98\t    else:\n99\t        ax.text(x[j] + hero_offset, 1.5, '0',\n100\t                ha='center', va='bottom', fontsize=4.5,\n101\t                fontweight='bold', color='#2166AC', alpha=0.65)\n102\t\n103\t# ── Axes ──\n104\tax.set_xticks(x)\n105\tax.set_xticklabels(alpha_labels)\n106\tax.set_ylabel('FDR-significant pairs (%)', fontsize=9)\n107\tax.set_ylim(0, 113)\n108\tax.set_yticks([0, 25, 50, 75, 100])\n109\tax.set_xlim(-0.55, n_groups - 0.45)\n110\t\n111\t# ── Light grid ──\n112\tax.yaxis.grid(True, alpha=0.2, linewidth=0.5, zorder=0)\n113\tax.set_axisbelow(True)\n114\t\n115\t# ── Legend (below chart, compact horizontal strip) ──\n116\tleg = ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.12),\n117\t                frameon=True, framealpha=0.95,\n118\t                edgecolor='#cccccc', ncol=3, handlelength=0.9,\n119\t                handletextpad=0.25, columnspacing=0.4, borderpad=0.2)\n120\tleg.get_frame().set_linewidth(0.4)\n121\t\n122\tplt.tight_layout(pad=0.2)\n123\tplt.subplots_adjust(bottom=0.22)\n124\tplt.savefig('docs/paper/figures/fig_method_comparison.pdf')\n125\tplt.savefig('docs/paper/figures/fig_method_comparison.png')\n126\tprint('Saved fig_method_comparison.pdf + .png')\n127\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2b4481c-1e4c-4d57-81b0-2346ab9e4fee",
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "7d1367eb-7701-4081-a249-5ec4b76daa52",
+            "sourceToolAssistantUUID": "f2b4481c-1e4c-4d57-81b0-2346ab9e4fee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T20:26:13.037Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H24dpudjuaQeBxs8drhjXR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dose_response_d120_compiled.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d1367eb-7701-4081-a249-5ec4b76daa52",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv35tyuRmaYGvHaVRmk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d87a2d15-ebc7-47aa-b7b6-345d4236eaa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012RqKSsHcxux7fni4apNMve",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 34160,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 186,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 34160
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 186,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 34160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 34160,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T20:26:13.041Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H24dpudjuaQeBxs8drhjXR",
+              "type": "tool_result",
+              "content": "1\tcategory,experiment,alpha,seed,dataset,precision,model,naive_rate,diff_rate,threshold_rate,permg_rate,ty_rate,naive_count,diff_count,threshold_count,permg_count,ty_count,K_ge3,K_ge4,K_ge5,server\n2\talpha_sweep,a000_s42_fp32,0.0,42,wikitext,fp32,gpt2,1.0,0.5,0.375,0.0,0.125,8,4,3,0,1,2,1,0,17855\n3\talpha_sweep,a000_s43,0.0,43,wikitext,fp32,gpt2,0.875,0.25,0.125,0.0,0.125,7,2,1,0,1,0,0,0,19828\n4\talpha_sweep,a000_s44,0.0,44,wikitext,fp32,gpt2,0.875,0.375,0.25,0.0,0.0,7,3,2,0,0,1,0,0,19828\n5\talpha_sweep,a010_s42_fp32,0.1,42,wikitext,fp32,gpt2,0.875,0.75,0.0,0.0,0.0,7,6,0,0,0,0,0,0,17855\n6\talpha_sweep,a010_s43_fp32,0.1,43,wikitext,fp32,gpt2,1.0,0.875,0.25,0.375,0.375,8,7,2,3,3,6,2,0,17855\n7\talpha_sweep,c4_a025_s42_fp32,0.25,42,c4,fp32,gpt2,1.0,1.0,0.25,0.0,0.5,8,8,2,0,4,5,1,0,17855\n8\talpha_sweep,a025_s42_fp32,0.25,42,wikitext,fp32,gpt2,1.0,0.375,0.0,0.0,0.25,8,3,0,0,2,2,0,0,17855\n9\talpha_sweep,a025_s43_fp32,0.25,43,wikitext,fp32,gpt2,1.0,0.0,0.0,0.0,0.125,8,0,0,0,1,0,0,0,17855\n10\talpha_sweep,a025_s44_fp32,0.25,44,wikitext,fp32,gpt2,1.0,0.0,0.0,0.0,0.0,8,0,0,0,0,0,0,0,17855\n11\talpha_sweep,a030_s42_fp32,0.3,42,wikitext,fp32,gpt2,1.0,0.5,0.0,0.0,0.375,8,4,0,0,3,2,0,0,17855\n12\talpha_sweep,a035_s42_fp32,0.35,42,wikitext,fp32,gpt2,1.0,0.5,0.0,0.0,0.125,8,4,0,0,1,1,0,0,17855\n13\talpha_sweep,a040_s42_fp32,0.4,42,wikitext,fp32,gpt2,1.0,0.375,0.0,0.0,0.5,8,3,0,0,4,3,0,0,17855\n14\talpha_sweep,a045_s42_fp32,0.45,42,wikitext,fp32,gpt2,1.0,0.75,0.0,0.0,0.125,8,6,0,0,1,1,0,0,17855\n15\talpha_sweep,c4_a050_s42_fp32,0.5,42,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.25,8,8,0,8,2,8,2,0,17855\n16\talpha_sweep,a050_s42_fp32,0.5,42,wikitext,fp32,gpt2,1.0,0.875,0.5,0.75,0.375,8,7,4,6,3,6,5,2,17855\n17\talpha_sweep,c4_a050_s43_fp32,0.5,43,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.0,8,8,0,8,0,8,0,0,19828\n18\talpha_sweep,a050_s43_fp32,0.5,43,wikitext,fp32,gpt2,1.0,0.75,0.75,0.75,0.0,8,6,6,6,0,6,4,0,17855\n19\talpha_sweep,a050_s44_fp32,0.5,44,wikitext,fp32,gpt2,1.0,1.0,0.0,0.75,0.0,8,8,0,6,0,6,0,0,17855\n20\talpha_sweep,a055_s42_fp32,0.55,42,wikitext,fp32,gpt2,1.0,1.0,0.0,0.0,0.125,8,8,0,0,1,1,0,0,19828\n21\talpha_sweep,a060_s42_fp32_v4,0.6,42,wikitext,fp32,gpt2,1.0,0.75,0.0,0.0,0.0,8,6,0,0,0,0,0,0,17855\n22\talpha_sweep,a060_s43_fp32,0.6,43,wikitext,fp32,gpt2,0.875,0.75,0.0,0.0,0.125,7,6,0,0,1,1,0,0,17855\n23\talpha_sweep,c4_a075_s42_fp32,0.75,42,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.375,8,8,0,8,3,8,3,0,17855\n24\talpha_sweep,a075_s42_fp32,0.75,42,wikitext,fp32,gpt2,0.875,0.75,0.0,0.75,0.375,7,6,0,6,3,6,3,0,17855\n25\talpha_sweep,c4_a075_s43_fp32,0.75,43,c4,fp32,gpt2,1.0,1.0,0.0,1.0,0.125,8,8,0,8,1,8,1,0,19828\n26\talpha_sweep,a075_s43,0.75,43,wikitext,fp32,gpt2,1.0,0.75,0.25,0.625,0.125,8,6,2,5,1,5,1,0,19828\n27\talpha_sweep,a075_s44,0.75,44,wikitext,fp32,gpt2,1.0,0.875,0.0,0.0,0.0,8,7,0,0,0,0,0,0,19828\n28\tgeneralize,pythia1b_c4_a100_s42,1.0,42,c4,fp32,pythia1b,1.0,1.0,0.0,1.0,0.125,8,8,0,8,1,8,1,0,19828\n29\tgeneralize,qwen35_08b_wiki_a100_s42_fp32_v2,1.0,42,wikitext,fp32,qwen35_08b,1.0,1.0,0.0,1.0,0.75,8,8,0,8,6,8,6,0,17855\n30\tgeneralize,pythia410m_wiki_a100_s42,1.0,42,wikitext,fp32,pythia410m,1.0,0.75,0.25,0.75,0.125,8,6,2,6,1,6,1,0,19828\n31\tgeneralize,opt1b_wiki_a100_s42,1.0,42,wikitext,fp32,opt1b,1.0,0.875,0.25,0.75,0.0,8,7,2,6,0,6,2,0,19828\n32\tgeneralize,pythia14b_wiki_a100_s42,1.0,42,wikitext,fp32,pythia14b,1.0,0.875,0.0,0.25,0.375,8,7,0,2,3,4,1,0,19828\n33\tgeneralize,gpt2m_wiki_a100_s42,1.0,42,wikitext,fp32,gpt2m,1.0,0.75,0.0,0.75,0.25,8,6,0,6,2,6,2,0,19828\n34\tgeneralize,smollm3_3b_wiki_a100_s42_fp32_v3,1.0,42,wikitext,fp32,smollm3_3b,1.0,0.75,0.0,0.375,0.0,8,6,0,3,0,3,0,0,19828\n35\tgeneralize,pythia1b_c4_a100_s43,1.0,43,c4,fp32,pythia1b,1.0,1.0,0.25,1.0,0.5,8,8,2,8,4,8,4,2,19828\n36\tgeneralize,gpt2m_wiki_a100_s43_bf16,1.0,43,wikitext,bf16,gpt2m,1.0,0.625,0.0,0.0,0.375,8,5,0,0,3,2,0,0,17855\n37\tgeneralize,qwen35_08b_wiki_a100_s43_fp32,1.0,43,wikitext,fp32,qwen35_08b,1.0,1.0,0.0,0.75,0.0,8,8,0,6,0,6,0,0,17855\n38\tgeneralize,pythia410m_wiki_a100_s43,1.0,43,wikitext,fp32,pythia410m,0.75,0.75,0.0,0.75,0.5,6,6,0,6,4,6,4,0,17855\n39\tgeneralize,smollm3_3b_wiki_a100_s43_17855,1.0,43,wikitext,fp32,smollm3_3b,0.875,0.0,0.0,0.0,0.0,7,0,0,0,0,0,0,0,17855\n40\tgeneralize,pythia14b_wiki_a100_s43,1.0,43,wikitext,fp32,pythia14b,0.875,1.0,0.0,0.75,0.375,7,8,0,6,3,6,3,0,19828\n41\tgeneralize,gen_wiki_gpt2m_a100_s43,1.0,43,wikitext,fp32,gpt2m,1.0,0.75,0.0,0.75,0.5,8,6,0,6,4,6,4,0,19828\n42\tgeneralize,gen_opt13b_wiki_a100_s43_fp32,1.0,43,wikitext,fp32,opt1.3b,1.0,0.75,0.0,0.75,0.125,8,6,0,6,1,6,0,0,19828\n43\tscale_check,pythia14b_a050_s42,0.5,42,wikitext,fp32,pythia14b,1.0,0.75,0.0,0.375,0.0,8,6,0,3,0,3,0,0,19828\n44\tscale_check,pythia69b_wiki_a100_s42,1.0,42,wikitext,fp32,pythia69b,1.0,0.75,0.25,0.875,0.125,8,6,2,7,1,8,0,0,17855\n45\tscale_check,pythia69b_wiki_a100_s43,1.0,43,wikitext,fp32,pythia69b,0.75,0.75,0.0,0.75,0.0,6,6,0,6,0,6,0,0,17855\n46\tscale,14b_c4_s42_fp32,1.0,42,c4,fp32,14b,1.0,1.0,0.0,1.0,0.0,8,8,0,8,0,8,0,0,17855\n47\tintervention,reactive_d1_s42,1.0,42,wikitext,fp32,gpt2,1.0,0.75,1.0,1.0,0.75,8,6,8,8,6,8,6,6,19828\n48\tintervention,predictive_te_s42,1.0,42,wikitext,fp32,gpt2,0.25,0.75,1.0,0.0,0.125,2,6,8,0,1,2,0,0,19828\n49\tablation,accumulate_a050_s43,0.5,43,wikitext,fp32,gpt2,0.75,0.25,0.0,0.0,0.375,6,2,0,0,3,2,0,0,19828\n50\tpadding_robustness,a100_s42_fp32,1.0,42,wikitext,fp32,gpt2,0.75,0.75,0.0,0.75,0.0,6,6,0,6,0,6,0,0,17855\n51\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d87a2d15-ebc7-47aa-b7b6-345d4236eaa2",
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "e9fca063-17c3-4b9c-8777-2fb2f59e17ef",
+            "sourceToolAssistantUUID": "d87a2d15-ebc7-47aa-b7b6-345d4236eaa2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T20:26:18.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me extract the relevant CSV rows. The figure script uses `gpt2` model data (not `gpt2m`), and the CSV has `gpt2` model rows in the `alpha_sweep` category. Let me also check the paper's figure caption to see what model it claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9fca063-17c3-4b9c-8777-2fb2f59e17ef",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv3QC4wEftkACMoPD73",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfdcf2e5-70c6-428a-bae4-2807c6633440",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WgteSqstbK9R9JSQoELNi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6791,
+                "cache_read_input_tokens": 34160,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6791,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T20:26:21.362Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BqMTf3qF6WRdZZksxL4DfJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "method.comparison|fig_method_comparison|Figure 5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content",
+                "-C": 2,
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfdcf2e5-70c6-428a-bae4-2807c6633440",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv3QC4wEftkACMoPD73",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7d5518fa-b7e2-403c-9baa-7f4ab2150e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WgteSqstbK9R9JSQoELNi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6791,
+                "cache_read_input_tokens": 34160,
+                "output_tokens": 234,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6791
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 234,
+                    "cache_read_input_tokens": 34160,
+                    "cache_creation_input_tokens": 6791,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6791,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T20:26:21.378Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BqMTf3qF6WRdZZksxL4DfJ",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-17-\\citet{boettiger2012limits} establish fundamental power limits for early-warning detection in short time series ($T{<}25$), directly relevant to iterative training where observation windows are typically $T{=}5$--$20$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-18-However, these works evaluate single metrics in isolation without cross-validating against alternative statistical tests.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:19:We differ by applying five detection methods to identical data, mapping detectability across contamination regimes, and treating method sensitivity as a primary finding rather than a robustness check (detailed comparison: Appendix~\\ref{app:method_comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-20-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-21-\\subsection{Statistical Methods for Distribution Shift}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-26-Our permutation-based approach circumvents the critical-slowing-down limitation by detecting temporal predictive improvement rather than variance or autocorrelation signatures.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex-27-Specification-curve analysis~\\citep{simonsohn2020specification} formalizes the sensitivity of conclusions to analytical choices; we adapt this framework to show that method choice alone shifts detection rates from 0\\% to 94\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:28:The multiverse analysis perspective~\\citep{steegen2016increasing,silberzahn2018many,coretta2023multidimensional,kapoor2024reforms} motivates our multi-method comparison: five methods on identical data produce conclusions ranging from universal significance to complete null, instantiating many-analysts divergence at the method level.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex-3-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex-4-Iterative training collapse exhibits a steep detection onset: PermG detection jumps from 0/8 to 6/8 significant pairs (95\\% CI $[0.25, 0.92]$) within 2~percentage points of $\\alpha_c \\approx 0.50$, organizing three regimes (blind, onset, detection) that characterize when statistical monitoring can and cannot succeed.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex:5:The detection boundary shifts leftward with longer observation ($\\alpha_c(T) \\propto T^{-\\eta}$), and systematic method comparison reveals that single-method analyses are unreliable: null-control FPR spans 6.7\\% (PermG; 95\\% CI $[1.8\\%, 16.2\\%]$, 10~seeds) to 94.4\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex-6-Token entropy exhibits robust one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\\alpha{=}1.0$; ${\\geq}6/8$ in 11/15 cross-architecture conditions at $\\alpha{=}1.0$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex-7-The blind zone below $\\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-36-Method choice is itself a major source of analytic variability.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-37-At $\\alpha{=}1.0$, forward-direction significance rates range from 100\\% (naive cross-correlation) to 37.5\\% (PermG), with inter-method $\\kappa = 0.185$ (near chance) and a spurious rate of at least 62.5\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:38:PermG achieves the lowest null-control FPR among directionally-specific methods (11.1\\%, 4/36 across 6 seeds; DiffXCorr achieves 2.8\\% but lacks directional separation) with consistent detection at $\\alpha \\geq 0.50$ (Table~\\ref{tab:method_comparison}); its nonparametric null distribution, built-in directionality, and hyperparameter-free design explain this advantage.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-39-The $S \\times R$ framework generates three testable predictions for $T{=}20$ via $\\mathrm{Power}(\\alpha, T) = \\Phi(S \\cdot R \\cdot \\sqrt{T}/\\sigma)$: (i)~$\\alpha_c$ at $T{=}10$ should left-shift, (ii)~the transition should smooth, and (iii)~different methods should exhibit different $\\alpha_c$ values.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-40-These predictions are under empirical verification.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-52-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-53-\\caption{Forward-direction FDR significance rates (\\%) across contamination levels (Pythia-410M, seed~42, fp32, direction-checked). Each cell: fraction of 8 validated pairs at BH-corrected significance ($q{=}0.05$). PermG achieves the lowest null-control FPR among directional methods (11.1\\% pooled across 6 seeds) with consistent detection at $\\alpha \\geq 0.50$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:54:\\label{tab:method_comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-55-\\begin{tabular}{lcccccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex-56-\\toprule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-32-This is distinct from Granger causality, which additionally implies a mechanistic causal link that bivariate tests cannot establish~\\citep{shojaie2022granger}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-33-Even within this narrower scope, lead-lag analysis in iterative model collapse is fragile along three axes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:34:\\emph{Method sensitivity}: five detection methods applied to identical data yield forward significance rates spanning 0\\% to 92\\%, with $\\kappa{=}0.187$ (Figure~\\ref{fig:method_comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-35-\\emph{Spurious regression}: first-differencing eliminates canary$\\to$perplexity associations ($F{\\approx}0$, $p{=}0.99$) while preserving canary$\\to$diversity (24/24$\\to$24/24)~\\citep{granger1974spurious}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-36-\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-38-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-39-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:40:\\includegraphics[width=\\columnwidth]{figures/fig_method_comparison.pdf}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-41-\\caption{Method sensitivity: five methods yield dramatically different FDR-significant rates on identical data. PermG achieves the lowest null-control FPR (6.7\\%, pooled across 10~seeds) with 75\\% detection at $\\alpha{\\geq}0.50$; dashed line: 5\\% nominal.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:42:\\label{fig:method_comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-43-\\end{figure}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-44-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-47-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-48-These fragilities motivate a systematic comparison.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:49:We evaluate five lead-lag detection methods (naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\citep{toda1995statistical}) in a multi-method comparison framework~\\citep{simonsohn2020specification}, calibrating each against null-control ($\\alpha{=}0.0$) data.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-50-Among these, PermG assesses whether past values of a canary metric improve prediction of a downstream metric beyond its own history~\\citep{shojaie2022granger}, using 5{,}000 permutations~\\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction ($q{=}0.05$) across 8 canary$\\to$downstream pairs; the permutation null controls Type~I error by construction, and BH-FDR remains valid under positive regression dependence~\\citep{benjamini2001control}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-51-The full multi-method consensus test (MMCT) is given in Algorithm~\\ref{alg:mmct}.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex-8-\\emph{Spurious regression}: first-differencing to remove shared trends~\\cite{granger1974spurious} eliminates canary$\\to$perplexity associations ($F{\\approx}0$, $p{=}0.99$) while preserving canary$\\to$diversity (24/24$\\to$24/24), exposing an entire analysis channel as trend-driven rather than temporally precedent.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex-9-\\emph{Regime dependence}: the same Granger test finds 0/8 pairs significant through $\\alpha{=}0.45$ but 6/8 at $\\alpha{=}0.50$, a categorical shift at a 5-percentage-point boundary that a single-$\\alpha$ study would miss entirely.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:10:These pitfalls motivate systematic method comparison rather than reliance on any single detection approach.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex-11-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex-12-\\paragraph{Multi-Method Consensus Test (MMCT).}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-396-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-397-\\section{Methodological Comparison Table}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:398:\\label{app:method_comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-399-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:400:Table~\\ref{tab:method-comparison} summarizes the methodological coverage of existing canary and monitoring analyses across the diagnostic dimensions identified in \\S\\ref{sec:method}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-401-No prior work combines all six dimensions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-402-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-405-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-406-\\caption{Methodological comparison of canary and monitoring analyses. \\checkmark\\ = present, $\\times$ = absent, $\\circ$ = partial (${\\leq}2$ levels or limited replication). Diff.\\ = differencing/stationarity controls. Multi-M.\\ = ${\\geq}2$ independent statistical methods. MTC = multiple testing correction. Regime = systematic variation of $\\alpha$. Seeds = ${\\geq}3$ independent seeds. Arch.\\ = ${\\geq}2$ architecturally distinct model families.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:407:\\label{tab:method-comparison}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-408-\\resizebox{\\columnwidth}{!}{%\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-409-\\begin{tabular}{lccccccl}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-424-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-425-\\paragraph{Dimension justification.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:426:The six diagnostic dimensions in Table~\\ref{tab:method-comparison} are motivated by known failure modes in time-series causal inference:\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-427-\\emph{Differencing} controls spurious regression when both series share a deterministic trend~\\citep{granger1974spurious}---without it, any two monotonically declining series will appear correlated.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:428:\\emph{Multi-method comparison} addresses the method sensitivity documented in \\S\\ref{sec:mmct}: a single method's conclusion may reflect its assumptions rather than the data.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-429-\\emph{Multiple testing correction} is necessary because each contamination level generates 8 metric pairs; uncorrected testing at $p{<}0.05$ expects ${\\sim}0.4$ false positives per condition.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-430-\\emph{Regime variation} is required to map the detection landscape rather than reporting a single operating point.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-21-We systematically map this \\emph{detectability landscape}, examining how detection outcomes vary across contamination levels ($\\alpha$), observation windows ($T$), and statistical methods, on Pythia-410M~\\citep{biderman2023pythia} across 13 contamination levels with multi-seed replication (Figure~\\ref{fig:phase_diagram}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-22-Our central finding is a steep detection onset: Permutation Granger causality (PermG) finds 0/8 significant canary$\\to$downstream pairs through $\\alpha{=}0.45$, then jumps to 6/8 (95\\% CI $[0.25, 0.92]$) within a 2-percentage-point interval at $\\alpha{=}0.50$ (Figure~\\ref{fig:phase_diagram}), defining an empirical detection boundary $\\alpha_c(T)$ (Eq.~\\ref{eq:alpha-c}) that organizes three confirmed regimes (blind, onset, detection) plus one non-monotonic anomaly.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:23:This transition emerges from a five-method comparison that itself reveals dramatic method sensitivity: null-control FPR spans 6.7\\% to 94.4\\% ($\\kappa{=}0.187$; Figure~\\ref{fig:method_comparison}), demonstrating that single-method analyses cannot reliably distinguish real signals from artifacts.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-24-Cross-architecture evaluation at $\\alpha{=}1.0$ across five families (345M--6.9B) supports forward detection in 11/15 conditions, with four non-confirming cases isolating distinct failure modes (\\S\\ref{sec:generalization}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-25-Our canary claim is scoped to diversity metrics (distinct-$n$~\\citep{li2016diversity}); Granger precedence establishes temporal predictive improvement, not causation (\\S\\ref{sec:method})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d5518fa-b7e2-403c-9baa-7f4ab2150e22",
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "b156012a-f77d-46df-8b8d-2a656597d5c3",
+            "sourceToolAssistantUUID": "7d5518fa-b7e2-403c-9baa-7f4ab2150e22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T20:26:24.993Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have clear picture. Let me check the `experiments_reframe.tex` table to see if there's a Pythia-410M table that might reveal what model was intended."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b156012a-f77d-46df-8b8d-2a656597d5c3",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv41rRY2RqvSWiwj9Lr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3be75230-f787-4903-a2a3-cde0352402f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011CX8SkyJUGjCh9rs9nWSQj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5914,
+                "cache_read_input_tokens": 40951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5914,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T20:26:25.688Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011KYkGq246Gps7DxMwiMqhF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex",
+                "offset": 48,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3be75230-f787-4903-a2a3-cde0352402f7",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv41rRY2RqvSWiwj9Lr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "690747df-8df8-455d-b06b-0b4f2c484fd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011CX8SkyJUGjCh9rs9nWSQj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5914,
+                "cache_read_input_tokens": 40951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5914,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T20:26:25.694Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011KYkGq246Gps7DxMwiMqhF",
+              "type": "tool_result",
+              "content": "48\t\\end{figure}\n49\t\n50\t\\begin{table}[t]\n51\t\\centering\n52\t\\small\n53\t\\caption{Forward-direction FDR significance rates (\\%) across contamination levels (Pythia-410M, seed~42, fp32, direction-checked). Each cell: fraction of 8 validated pairs at BH-corrected significance ($q{=}0.05$). PermG achieves the lowest null-control FPR among directional methods (11.1\\% pooled across 6 seeds) with consistent detection at $\\alpha \\geq 0.50$.}\n54\t\\label{tab:method_comparison}\n55\t\\begin{tabular}{lcccccc}\n56\t\\toprule\n57\tMethod & $\\alpha{=}0.0$ & $\\alpha{=}0.25$ & $\\alpha{=}0.50$ & $\\alpha{=}0.75$ & $\\alpha{=}1.0$ & FPR$_\\text{null}$ \\\\\n58\t\\midrule\n59\tNaive XCorr          & 75   & 12.5 & 37.5 & 87.5 & 0    & 75  \\\\\n60\tDiff.\\ XCorr         & 0    & 37.5 & 87.5 & 75   & 75   & 0   \\\\\n61\tThreshold ($3\\sigma$) & ---  & 0    & 50   & 0    & 0    & --- \\\\\n62\tPerm.\\ Granger       & 0    & 0    & 75   & 75   & 75   & 0   \\\\\n63\tToda--Yamamoto       & ---  & 0    & 37.5 & 37.5 & 50   & --- \\\\\n64\t\\bottomrule\n65\t\\end{tabular}\n66\t\\end{table}\n67\t\n68\t\n69\t\\subsection{Cross-Architecture Generalization}\n70\t\\label{sec:generalization}\n71\t\n72\tWe evaluate the sharp detection onset across 15 model-seed combinations spanning six families (Pythia, GPT-2, OPT, Qwen, SmolLM3, Padding-variant), scales from 345M to 6.9B parameters, and two training domains (WikiText-103, C4).\n73\tTable~\\ref{tab:generalization} reports PermG forward detection at $\\alpha{=}1.0$.\n74\tPermG forward significance reaches ${\\geq}$6/8 in 11 of 15 conditions (73\\%).\n75\tNon-confirming conditions span precision sensitivity (GPT-2 bf16: 0/8 vs fp32: 6/8), bidirectional confounding (GPT-2 s43: 6/8 both directions), seed dependence (Pythia-1.4B: s42 2/8, s43 6/8), and entropy decoupling (SmolLM3-3B: 3/8, entropy 0/4).\n76\tSmolLM3's token entropy exhibits non-monotonic oscillations across generations; this pattern violates the monotonic decline that Granger tests require.\n77\tThe onset boundary $\\alpha_c \\approx 0.50$ at $T{=}10$ is architecture-independent: every family that achieves detection does so at or above this threshold, and none achieves reliable detection below it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "690747df-8df8-455d-b06b-0b4f2c484fd6",
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "f409cb4f-d969-4c8c-b425-acd6f8f28295",
+            "sourceToolAssistantUUID": "690747df-8df8-455d-b06b-0b4f2c484fd6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T20:26:28.895Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me also check if there's Pythia-410M data in the CSV for the alpha_sweep category."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f409cb4f-d969-4c8c-b425-acd6f8f28295",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv4Lc3hnRH9PduLLo4h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3571f630-2495-40a0-ab6e-4db37f2dabb2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178WqCk2uDGeSXU6CHxKyHe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1023,
+                "cache_read_input_tokens": 46865,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1023,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T20:26:29.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DJmB1UbbJHSpqe8L5PBduU",
+              "name": "Grep",
+              "input": {
+                "pattern": "pythia410m",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dose_response_d120_compiled.csv",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3571f630-2495-40a0-ab6e-4db37f2dabb2",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv4Lc3hnRH9PduLLo4h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a7e561b1-e241-447e-b80e-a3665d745450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178WqCk2uDGeSXU6CHxKyHe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1023,
+                "cache_read_input_tokens": 46865,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1023
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 46865,
+                    "cache_creation_input_tokens": 1023,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1023,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T20:26:29.999Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DJmB1UbbJHSpqe8L5PBduU",
+              "type": "tool_result",
+              "content": "30:generalize,pythia410m_wiki_a100_s42,1.0,42,wikitext,fp32,pythia410m,1.0,0.75,0.25,0.75,0.125,8,6,2,6,1,6,1,0,19828\n38:generalize,pythia410m_wiki_a100_s43,1.0,43,wikitext,fp32,pythia410m,0.75,0.75,0.0,0.75,0.5,6,6,0,6,4,6,4,0,17855"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7e561b1-e241-447e-b80e-a3665d745450",
+            "isSidechain": true,
+            "promptId": "b8f2c1e2-4bb2-44ae-b468-ec8a862393f2",
+            "agentId": "a4cc118a3009c8123",
+            "type": "user",
+            "uuid": "67388420-ee09-4bc3-b494-7fb42284b385",
+            "sourceToolAssistantUUID": "a7e561b1-e241-447e-b80e-a3665d745450",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T20:27:18.966Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed. Let me do the systematic comparison.\n\n**Key findings from the CSV:**\n\nThe CSV `alpha_sweep` rows are all for model `gpt2` (GPT-2 base, 124M), NOT `gpt2m` (GPT-2 Medium). There is NO Pythia-410M data in the `alpha_sweep` category — Pythia-410M only appears in `generalize` at α=1.0.\n\nLet me now extract the correct CSV values for the figure's 5 alpha levels. The figure uses: α=0, 0.25, 0.50, 0.75, 1.0, all seed 42, wikitext, fp32, gpt2.\n\n**CSV rows (seed 42, wikitext, fp32, gpt2):**\n\n| α | Row | naive_rate | diff_rate | threshold_rate | permg_rate | ty_rate |\n|---|-----|-----------|-----------|---------------|------------|---------|\n| 0.0 | line 2 | 1.0 | 0.5 | 0.375 | 0.0 | 0.125 |\n| 0.25 | line 8 | 1.0 | 0.375 | 0.0 | 0.0 | 0.25 |\n| 0.50 | line 16 | 1.0 | 0.875 | 0.5 | 0.75 | 0.375 |\n| 0.75 | line 24 | 0.875 | 0.75 | 0.0 | 0.75 | 0.375 |\n| 1.0 | **NO ROW** | — | — | — | — | — |\n\nThere is **no α=1.0 row** for model `gpt2` (GPT-2 base) with seed 42, wikitext, fp32 in the `alpha_sweep` category. The α=1.0 data for `gpt2` only exists in the `intervention` and `padding_robustness` categories, which are different experimental conditions.\n\nConverting CSV rates (0-1) to percentages (0-100) and comparing against the figure's hardcoded data:\n\n**Figure hardcoded vs CSV (×100):**\n\n| Method | α level | Figure | CSV (×100) | Match? |\n|--------|---------|--------|------------|--------|\n| **Naive XCorr** | α=0 | 75 | 100 | **MISMATCH** |\n| Naive XCorr | α=0.25 | 62.5 | 100 | **MISMATCH** |\n| Naive XCorr | α=0.50 | 62.5 | 100 | **MISMATCH** |\n| Naive XCorr | α=0.75 | 0 | 87.5 | **MISMATCH** |\n| Naive XCorr | α=1.0 | 0 | no data | **NO SOURCE** |\n| **Diff. XCorr** | α=0 | 0 | 50 | **MISMATCH** |\n| Diff. XCorr | α=0.25 | 25 | 37.5 | **MISMATCH** |\n| Diff. XCorr | α=0.50 | 12.5 | 87.5 | **MISMATCH** |\n| Diff. XCorr | α=0.75 | 0 | 75 | **MISMATCH** |\n| Diff. XCorr | α=1.0 | 0 | no data | **NO SOURCE** |\n| **Threshold** | α=0 | 37.5 | 37.5 | match |\n| Threshold | α=0.25 | 62.5 | 0 | **MISMATCH** |\n| Threshold | α=0.50 | 100 | 50 | **MISMATCH** |\n| Threshold | α=0.75 | 100 | 0 | **MISMATCH** |\n| Threshold | α=1.0 | 25 | no data | **NO SOURCE** |\n| **Perm. Granger** | α=0 | 0 | 0 | match |\n| Perm. Granger | α=0.25 | 0 | 0 | match |\n| Perm. Granger | α=0.50 | 75 | 75 | match |\n| Perm. Granger | α=0.75 | 75 | 75 | match |\n| Perm. Granger | α=1.0 | 75 | no data | **NO SOURCE** |\n| **Toda-Yamamoto** | α=0 | 12.5 | 12.5 | match |\n| Toda-Yamamoto | α=0.25 | 37.5 | 25 | **MISMATCH** |\n| Toda-Yamamoto | α=0.50 | 50 | 37.5 | **MISMATCH** |\n| Toda-Yamamoto | α=0.75 | 100 | 37.5 | **MISMATCH** |\n| Toda-Yamamoto | α=1.0 | 12.5 | no data | **NO SOURCE** |\n\nNow let me check: the `experiments_reframe.tex` table says it's Pythia-410M data. Maybe the figure data was originally intended to be Pythia-410M, but Pythia-410M only has α=1.0 in the CSV. Let me check if the figure might actually match the table in `experiments_reframe.tex` which also claims Pythia-410M.\n\nComparing figure data against the `experiments_reframe.tex` table (line 59-63):\n\n| Method | α=0 | α=0.25 | α=0.50 | α=0.75 | α=1.0 |\n|--------|-----|--------|--------|--------|-------|\n| **Table** Naive | 75 | 12.5 | 37.5 | 87.5 | 0 |\n| **Figure** Naive | 75 | 62.5 | 62.5 | 0 | 0 |\n| **Table** Diff | 0 | 37.5 | 87.5 | 75 | 75 |\n| **Figure** Diff | 0 | 25 | 12.5 | 0 | 0 |\n| **Table** Threshold | --- | 0 | 50 | 0 | 0 |\n| **Figure** Threshold | 37.5 | 62.5 | 100 | 100 | 25 |\n| **Table** PermG | 0 | 0 | 75 | 75 | 75 |\n| **Figure** PermG | 0 | 0 | 75 | 75 | 75 |\n| **Table** TY | --- | 0 | 37.5 | 37.5 | 50 |\n| **Figure** TY | 12.5 | 37.5 | 50 | 100 | 12.5 |\n\nThe figure and the table also don't match each other. **Only PermG is consistent across all three sources** (figure, table, and CSV for α=0 through α=0.75).\n\n---\n\nHere is the complete analysis:\n\n## Summary of Findings\n\n### 1. Model identity confusion\n\nThree different data sources claim or use different models:\n- **Figure script** (`gen_fig_method_comparison.py`): No model specified in the code — just hardcoded numbers. The figure caption in `method.tex` (line 41) does NOT mention a model name; it just says \"five methods yield dramatically different FDR-significant rates on identical data.\"\n- **Table in `experiments_reframe.tex`** (line 53): Explicitly says \"Pythia-410M, seed 42, fp32\".\n- **CSV data** (`dose_response_d120_compiled.csv`): The only alpha-sweep data with multiple α levels is for model `gpt2` (GPT-2 base 124M), NOT Pythia-410M or GPT-2 Medium. Pythia-410M only has α=1.0 data.\n\n**Conclusion**: The CSV alpha sweep was run on **GPT-2 base (124M)**, not GPT-2 Medium and not Pythia-410M. Neither the figure nor the table in `experiments_reframe.tex` matches the CSV data. The figure's hardcoded numbers don't match ANY known data source.\n\n### 2. Cell-by-cell mismatches (figure vs CSV)\n\nFor the gpt2 seed-42 wikitext fp32 data from CSV (the only complete alpha sweep available), converting rates to percentages:\n\n**Matching cells (6 out of 20 with CSV data):**\n- Threshold α=0: both 37.5\n- PermG α=0, 0.25, 0.50, 0.75: all match (0, 0, 75, 75)\n- TY α=0: both 12.5\n\n**Mismatching cells (14 out of 20):**\n- Naive XCorr: ALL 4 levels with data mismatch (figure: 75/62.5/62.5/0 vs CSV: 100/100/100/87.5)\n- Diff XCorr: ALL 4 levels mismatch (figure: 0/25/12.5/0 vs CSV: 50/37.5/87.5/75)\n- Threshold α=0.25,0.50,0.75: mismatch (figure: 62.5/100/100 vs CSV: 0/50/0)\n- TY α=0.25,0.50,0.75: mismatch (figure: 37.5/50/100 vs CSV: 25/37.5/37.5)\n\n**α=1.0 for all 5 methods**: No gpt2 alpha_sweep CSV data exists at α=1.0. The figure's α=1.0 column (0, 0, 25, 75, 12.5) is unverifiable from this CSV.\n\n### 3. What the correct values should be\n\nIf the figure should show GPT-2 base (gpt2) seed 42 wikitext fp32 alpha_sweep data, the correct values from CSV would be:\n\n```python\ndata = {\n    'Naive XCorr':            [100,  100,  100,  87.5, ???],  # no α=1.0 data\n    'Diff. XCorr':            [50,   37.5, 87.5, 75,   ???],\n    'Threshold (3σ)':         [37.5, 0,    50,   0,    ???],\n    'Perm. Granger':          [0,    0,    75,   75,   ???],\n    'Toda–Yamamoto':          [12.5, 25,   37.5, 37.5, ???],\n}\n```\n\n### 4. Which model should the figure show?\n\nThis is a research decision, but there are structural problems:\n\n- **GPT-2 base (124M)**: Has the full alpha sweep in the CSV but is missing α=1.0. Also, the Naive XCorr FPR at α=0 would be 100%, which undermines the narrative (it means naive is always \"significant\" even with no contamination).\n- **Pythia-410M**: The table in `experiments_reframe.tex` claims this model, but only α=1.0 exists in the CSV — there's no alpha sweep for Pythia-410M.\n- **GPT-2 Medium (`gpt2m`)**: Only has α=1.0 data in the `generalize` category (line 33 and 41). No alpha sweep exists.\n\n**The fundamental problem**: The figure's hardcoded data appears to come from a data source NOT captured in `dose_response_d120_compiled.csv`, or the numbers were hand-edited and have drifted. The `experiments_reframe.tex` table has yet another set of numbers that also doesn't match either the figure or the CSV."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67388420-ee09-4bc3-b494-7fb42284b385",
+            "isSidechain": true,
+            "agentId": "a4cc118a3009c8123",
+            "requestId": "req_011CbPv4eovSanZxVmpqP6ew",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9cd95758-8291-4f7d-bf5f-c3bbdbeac667",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/director_6dc4a1c8",
+            "sessionId": "c40115ed-b6c5-49fe-b59f-6952ab09f6a3",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XLdeVm4oYjAAuuvPcjWx97",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 325,
+                "cache_read_input_tokens": 47888,
+                "output_tokens": 3030,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 325
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3030,
+                    "cache_read_input_tokens": 47888,
+                    "cache_creation_input_tokens": 325,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 325,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-and-fix-the-method-comparison-figure-figure-5-in-a-research-p.md"
+}

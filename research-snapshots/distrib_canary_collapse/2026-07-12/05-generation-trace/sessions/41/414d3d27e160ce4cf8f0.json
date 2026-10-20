@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "414d3d27e160ce4cf8f0",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目: distrib_canary_collapse (Distributional Canary for Model Collapse Detection) 核心方法: 用 Permutation Gra",
+  "task_key": "14b8879c-cd07-46fd-a3bc-6946c68e928c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/14b8879c-cd07-46fd-a3bc-6946c68e928c.jsonl",
+    "occurrence": 1,
+    "bytes": 668786,
+    "sha256": "b5564ac5d4905c4eed8fcff949c6d2b9baab685bdec2cc77d3a593ad50429612"
+  },
+  "statistics": {
+    "messages": 157,
+    "user_turns": 1,
+    "tool_calls": 42,
+    "roles": {
+      "record": 39,
+      "user": 1,
+      "assistant": 33,
+      "tool_call": 42,
+      "tool_result": 42
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "414d3d27e160ce4cf8f0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "414d3d27e160ce4cf8f0-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "414d3d27e160ce4cf8f0-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-distrib-canary-collapse-distributional-canary-for-model-collapse.md"
+}

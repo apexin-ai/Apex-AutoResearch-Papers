@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "15f168d52dfa01b14390",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：distrib_canary_collapse Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary",
+  "task_key": "0c24edaa-0929-44fd-bc23-a88b03c0a978",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/0c24edaa-0929-44fd-bc23-a88b03c0a978.jsonl",
+    "occurrence": 1,
+    "bytes": 792220,
+    "sha256": "814eae1e3dd4671a9549d2ced161ea39e61a12f6a05a5babb8a71a8ce3c15fe0"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 1,
+    "tool_calls": 80,
+    "roles": {
+      "record": 71,
+      "user": 1,
+      "assistant": 41,
+      "tool_call": 80,
+      "tool_result": 80
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "15f168d52dfa01b14390-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 271,
+      "chunks": [
+        {
+          "path": "15f168d52dfa01b14390-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "15f168d52dfa01b14390-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-distrib-canary-collapse-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-ge-copy-6.md"
+}

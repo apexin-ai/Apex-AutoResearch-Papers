@@ -1,0 +1,625 @@
+{
+  "schema_version": "1.0",
+  "id": "508aeb070f1074d66e8b",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/, I need to find an e",
+  "task_key": "agent-a735d0c2a40d0bc0c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a735d0c2a40d0bc0c.jsonl",
+    "occurrence": 1,
+    "bytes": 61522,
+    "sha256": "486acf6b01a11381091454d8ad92fc8c06501eec4f27ea002680cac77939724a"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:54:28.073Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/, I need to find an existing 5-method lead-lag analysis script (run_analysis.py) that was used for a previous phase_diagram experiment (e.g., t15_a045, t05_a050, or similar). Search in the artifacts/ directory for run_analysis.py files. I need the full path to the most relevant one so I can use it as a template. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "5e94e1fa-2420-4e42-a515-6e94a895b576",
+            "agentId": "a735d0c2a40d0bc0c",
+            "type": "user",
+            "uuid": "7df8fced-ecb4-4431-ba4d-0e2bbf5ae399",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T17:54:29.473Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the run_analysis.py files in the artifacts directory of your project. Let me start by exploring the structure and finding these files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7df8fced-ecb4-4431-ba4d-0e2bbf5ae399",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EZvk36WtrERyhisLQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b58de853-0b1e-47c7-81c4-2ce6dba42081",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YLERy3vXizUq9ystQJkbcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17088,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17088,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T17:54:29.707Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UYHg3SsXY46jTEd3WNvvv3",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/**/run_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b58de853-0b1e-47c7-81c4-2ce6dba42081",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EZvk36WtrERyhisLQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "266ab332-0418-401a-a0f6-557ff2006c2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YLERy3vXizUq9ystQJkbcP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17088,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17088,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T17:54:29.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UYHg3SsXY46jTEd3WNvvv3",
+              "type": "tool_result",
+              "content": "artifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py\nartifacts/phase_diagram_t05_a045_s42_fp32/run_analysis.py\nartifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py\nartifacts/alpha_sweep_a000_s48_fp32/run_analysis.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "266ab332-0418-401a-a0f6-557ff2006c2a",
+            "isSidechain": true,
+            "promptId": "5e94e1fa-2420-4e42-a515-6e94a895b576",
+            "agentId": "a735d0c2a40d0bc0c",
+            "type": "user",
+            "uuid": "640c80ff-aaeb-4ad5-97e5-af1f0ed50e51",
+            "sourceToolAssistantUUID": "266ab332-0418-401a-a0f6-557ff2006c2a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T17:54:30.029Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GFoYtM9SCbgpDfxvi3SeTH",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts -name \"run_analysis.py\" -type f 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "640c80ff-aaeb-4ad5-97e5-af1f0ed50e51",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EZvk36WtrERyhisLQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "12eb0013-7cd4-4454-bc2b-5fd3c5ae04b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YLERy3vXizUq9ystQJkbcP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17088,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17088
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17088,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17088,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T17:54:30.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GFoYtM9SCbgpDfxvi3SeTH",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_sweep_a000_s48_fp32/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/alpha_sweep_a060_s42_fp32_v4/run_analysis.py\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a045_s42_fp32/run_analysis.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12eb0013-7cd4-4454-bc2b-5fd3c5ae04b9",
+            "isSidechain": true,
+            "promptId": "5e94e1fa-2420-4e42-a515-6e94a895b576",
+            "agentId": "a735d0c2a40d0bc0c",
+            "type": "user",
+            "uuid": "da1fa0db-88d7-4e4b-8d3b-1380e033709a",
+            "sourceToolAssistantUUID": "12eb0013-7cd4-4454-bc2b-5fd3c5ae04b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T17:54:31.924Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! I found several run_analysis.py files. Now let me examine the phase_diagram experiments you mentioned to find the one with the 5-method lead-lag analysis, and read one to understand the structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da1fa0db-88d7-4e4b-8d3b-1380e033709a",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EizhPxK92PgNrosAf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c6629893-2b8e-4f41-a350-7f290169b48f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GRBTHbk5okjrMDnFRwZeFq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 17088,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1406,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T17:54:32.516Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QzQz1xsKgKTAG3r5RBSxgj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6629893-2b8e-4f41-a350-7f290169b48f",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EizhPxK92PgNrosAf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ac801e02-47e9-4f4c-afb7-58a7a4216ae2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GRBTHbk5okjrMDnFRwZeFq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 17088,
+                "output_tokens": 240,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1406
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 240,
+                    "cache_read_input_tokens": 17088,
+                    "cache_creation_input_tokens": 1406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1406,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T17:54:32.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QzQz1xsKgKTAG3r5RBSxgj",
+              "type": "tool_result",
+              "content": "1\t\"\"\"5-method lead-lag analysis for phase_diagram_t05_a050_s42_fp32.\n2\tT=5 generations, alpha=0.50, seed=42, fp32, Pythia-410m.\n3\tAdapted from canonical run_analysis.py methodology.\n4\t\"\"\"\n5\timport json\n6\timport numpy as np\n7\tfrom scipy import stats\n8\tfrom statsmodels.tsa.stattools import adfuller\n9\tfrom statsmodels.tsa.vector_ar.var_model import VAR\n10\t\n11\tN_PERM = 5000\n12\tALPHA_SIG = 0.05\n13\t\n14\tCANARIES = [\"token_entropy\", \"ece\"]\n15\tDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n16\t\n17\tHIGHER_IS_WORSE = {\"ece\"}\n18\tLOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\n19\t\n20\tALL_METRICS = [\n21\t  {\"token_entropy\": 3.23419483150593, \"self_bleu\": 0.011078699301381554, \"ece\": 0.010804557477709054, \"effective_rank\": 46.612774691899155, \"perplexity\": 26.948958972544652, \"distinct_1\": 0.0979600146585773, \"distinct_2\": 0.5141374985748489, \"distinct_3\": 0.8127010497341054, \"mauve\": 0.031110582626136873, \"generation\": 0, \"effective_alpha\": 0.5},\n22\t  {\"token_entropy\": 2.500745799007679, \"self_bleu\": 0.01181542928801186, \"ece\": 0.06923721421227194, \"effective_rank\": 58.664278351426624, \"perplexity\": 22.906680552682573, \"distinct_1\": 0.09759209446336131, \"distinct_2\": 0.5124500211292787, \"distinct_3\": 0.8121673127402459, \"mauve\": 0.0314065242440103, \"generation\": 1, \"effective_alpha\": 0.5},\n23\t  {\"token_entropy\": 2.5279709900041323, \"self_bleu\": 0.011853806854457662, \"ece\": 0.0814817014521384, \"effective_rank\": 63.1498418789002, \"perplexity\": 25.913836211243243, \"distinct_1\": 0.0839296875, \"distinct_2\": 0.4421597043726904, \"distinct_3\": 0.7366443225675401, \"mauve\": 0.03198531125622274, \"generation\": 2, \"effective_alpha\": 0.5},\n24\t  {\"token_entropy\": 2.5705517679931194, \"self_bleu\": 0.01206434172162393, \"ece\": 0.08541292666745874, \"effective_rank\": 64.57902052385074, \"perplexity\": 27.20622452107867, \"distinct_1\": 0.0768828125, \"distinct_2\": 0.397964046594114, \"distinct_3\": 0.6739089673276145, \"mauve\": 0.0325659067423255, \"generation\": 3, \"effective_alpha\": 0.5},\n25\t  {\"token_entropy\": 2.5547223568996094, \"self_bleu\": 0.012242930650399822, \"ece\": 0.09349395109952266, \"effective_rank\": 65.14919303940499, \"perplexity\": 28.386376019698663, \"distinct_1\": 0.0728046875, \"distinct_2\": 0.362682520957195, \"distinct_3\": 0.6109548586696667, \"mauve\": 0.03118548395894347, \"generation\": 4, \"effective_alpha\": 0.5},\n26\t  {\"token_entropy\": 2.580346416130023, \"self_bleu\": 0.012304872677139776, \"ece\": 0.09296360416233349, \"effective_rank\": 63.564618303082256, \"perplexity\": 29.28162815993609, \"distinct_1\": 0.0696484375, \"distinct_2\": 0.3320025937702638, \"distinct_3\": 0.554360224378506, \"mauve\": 0.030921812037617825, \"generation\": 5, \"effective_alpha\": 0.5},\n27\t]\n28\t\n29\t\n30\tdef orient(series, name):\n31\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n32\t\n33\t\n34\tdef _build_lag_matrix(y, x, max_lag):\n35\t    T = len(y)\n36\t    n = T - max_lag\n37\t    Y = y[max_lag:]\n38\t    cols_r = [np.ones(n)]\n39\t    for lag in range(1, max_lag + 1):\n40\t        cols_r.append(y[max_lag - lag: T - lag])\n41\t    cols_u = list(cols_r)\n42\t    for lag in range(1, max_lag + 1):\n43\t        cols_u.append(x[max_lag - lag: T - lag])\n44\t    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\n45\t\n46\t\n47\tdef _granger_f_stat(y, x, max_lag):\n48\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n49\t    n = len(Y)\n50\t    q = max_lag\n51\t    try:\n52\t        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n53\t        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n54\t    except np.linalg.LinAlgError:\n55\t        return np.nan\n56\t    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n57\t    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n58\t    k_u = X_u.shape[1]\n59\t    df_resid = n - k_u\n60\t    if df_resid <= 0 or rss_u < 1e-15:\n61\t        return np.nan\n62\t    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n63\t\n64\t\n65\tdef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\n66\t    x = np.asarray(x, dtype=float)\n67\t    y = np.asarray(y, dtype=float)\n68\t    if difference:\n69\t        x = np.diff(x)\n70\t        y = np.diff(y)\n71\t    f_obs = _granger_f_stat(y, x, max_lag)\n72\t    if np.isnan(f_obs):\n73\t        return {\"f_stat\": None, \"p_value\": None, \"significant\": False}\n74\t    rng = np.random.default_rng(seed)\n75\t    null_f = np.empty(n_perm)\n76\t    for i in range(n_perm):\n77\t        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n78\t    valid_null = null_f[~np.isnan(null_f)]\n79\t    if len(valid_null) == 0:\n80\t        return {\"f_stat\": round(float(f_obs), 4), \"p_value\": None, \"significant\": False}\n81\t    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\n82\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n83\t    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\n84\t    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\n85\t    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\n86\t    return {\n87\t        \"f_stat\": round(float(f_obs), 4),\n88\t        \"p_value\": round(float(p_value), 6),\n89\t        \"null_mean\": round(float(np.mean(valid_null)), 4),\n90\t        \"null_std\": round(float(np.std(valid_null)), 4),\n91\t        \"effect_size_f2\": round(float(f2), 4) if f2 is not None else None,\n92\t        \"significant\": bool(p_value < 0.05),\n93\t    }\n94\t\n95\t\n96\tdef bh_fdr(p_values, alpha=0.05):\n97\t    pv = np.array(p_values, dtype=float)\n98\t    n = len(pv)\n99\t    valid = ~np.isnan(pv)\n100\t    adjusted = np.full(n, np.nan)\n101\t    if valid.sum() == 0:\n102\t        return adjusted.tolist(), [False] * n\n103\t    idx = np.where(valid)[0]\n104\t    p_valid = pv[idx]\n105\t    sorted_idx = np.argsort(p_valid)\n106\t    ranks = np.empty_like(sorted_idx)\n107\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\n108\t    m = len(p_valid)\n109\t    adj = p_valid * m / ranks\n110\t    adj_sorted = adj[sorted_idx].copy()\n111\t    for i in range(m - 2, -1, -1):\n112\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\n113\t    adj_sorted = np.minimum(adj_sorted, 1.0)\n114\t    adj_final = np.empty(m)\n115\t    adj_final[sorted_idx] = adj_sorted\n116\t    for i, ix in enumerate(idx):\n117\t        adjusted[ix] = adj_final[i]\n118\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\n119\t    return adjusted.tolist(), significant\n120\t\n121\t\n122\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\n123\t    x, y = orient(c, cn), orient(d, dn)\n124\t    n = len(x)\n125\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n126\t    all_lags = []\n127\t    for lag in range(-max_lag, max_lag + 1):\n128\t        if lag >= 0:\n129\t            a, b = x[lag:], y[:n - lag]\n130\t        else:\n131\t            a, b = x[:n + lag], y[-lag:]\n132\t        if len(a) < 4:\n133\t            continue\n134\t        r, p = stats.pearsonr(a, b)\n135\t        all_lags.append({\"lag\": int(lag), \"r\": round(float(r), 4), \"p\": round(float(p), 6)})\n136\t        if abs(r) > abs(best_r):\n137\t            best_lag, best_r, best_p = lag, r, p\n138\t    return {\n139\t        \"method\": \"naive_xcorr\",\n140\t        \"peak_lag\": int(best_lag),\n141\t        \"r\": round(float(best_r), 4),\n142\t        \"p_value\": round(float(best_p), 6),\n143\t        \"significant\": bool(best_p < ALPHA_SIG),\n144\t        \"all_lags\": all_lags,\n145\t    }\n146\t\n147\t\n148\tdef diff_xcorr(c, d, cn, dn, max_lag=5):\n149\t    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\n150\t    n = len(dx)\n151\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n152\t    all_lags = []\n153\t    for lag in range(-max_lag, max_lag + 1):\n154\t        if lag >= 0:\n155\t            a, b = dx[lag:], dy[:n - lag]\n156\t        else:\n157\t            a, b = dx[:n + lag], dy[-lag:]\n158\t        if len(a) < 4:\n159\t            continue\n160\t        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n161\t            continue\n162\t        r, p = stats.pearsonr(a, b)\n163\t        all_lags.append({\"lag\": int(lag), \"r\": round(float(r), 4), \"p\": round(float(p), 6)})\n164\t        if abs(r) > abs(best_r):\n165\t            best_lag, best_r, best_p = lag, r, p\n166\t    return {\n167\t        \"method\": \"diff_xcorr\",\n168\t        \"peak_lag\": int(best_lag),\n169\t        \"r\": round(float(best_r), 4),\n170\t        \"p_value\": round(float(best_p), 6),\n171\t        \"significant\": bool(best_p < ALPHA_SIG),\n172\t        \"all_lags\": all_lags,\n173\t    }\n174\t\n175\t\n176\tdef _onset_gen(series, name):\n177\t    s = orient(series, name)\n178\t    base, sigma = s[0], np.std(s)\n179\t    if sigma < 1e-12:\n180\t        return None\n181\t    thresh = base + 3.0 * sigma\n182\t    for i in range(1, len(s)):\n183\t        if s[i] > thresh:\n184\t            return i\n185\t    return None\n186\t\n187\t\n188\tdef threshold_onset(c, d, cn, dn):\n189\t    c_onset = _onset_gen(c, cn)\n190\t    d_onset = _onset_gen(d, dn)\n191\t    if c_onset is not None and d_onset is not None:\n192\t        lead_time = d_onset - c_onset\n193\t        significant = lead_time > 0\n194\t    else:\n195\t        lead_time = None\n196\t        significant = False\n197\t    return {\n198\t        \"method\": \"threshold_onset\",\n199\t        \"canary_onset\": c_onset,\n200\t        \"downstream_onset\": d_onset,\n201\t        \"lead_time\": lead_time,\n202\t        \"significant\": significant,\n203\t        \"threshold\": \"true_3sigma_d105\",\n204\t    }\n205\t\n206\t\n207\tdef perm_granger(c, d, cn, dn, seed):\n208\t    x = orient(c, cn)\n209\t    y = orient(d, dn)\n210\t    result = permutation_granger_test(x, y, max_lag=1, n_perm=N_PERM, seed=seed, difference=True)\n211\t    return {\n212\t        \"method\": \"perm_granger\",\n213\t        \"f_stat\": result[\"f_stat\"],\n214\t        \"p_value\": result[\"p_value\"],\n215\t        \"null_mean\": result.get(\"null_mean\"),\n216\t        \"null_std\": result.get(\"null_std\"),\n217\t        \"effect_size_f2\": result.get(\"effect_size_f2\"),\n218\t        \"significant\": bool(result[\"p_value\"] < ALPHA_SIG) if result[\"p_value\"] is not None else False,\n219\t    }\n220\t\n221\t\n222\tdef ty_granger(c, d, cn, dn, max_order=2):\n223\t    x = orient(c, cn)\n224\t    y = orient(d, dn)\n225\t    n = len(x)\n226\t    d_max = 0\n227\t    for series in [x, y]:\n228\t        try:\n229\t            result = adfuller(series, maxlag=min(3, n // 3 - 1))\n230\t            if result[1] > 0.05:\n231\t                d_max = max(d_max, 1)\n232\t        except:\n233\t            d_max = max(d_max, 1)\n234\t    best_k, best_aic = 1, np.inf\n235\t    data = np.column_stack([x, y])\n236\t    for k in range(1, max_order + 1):\n237\t        try:\n238\t            model = VAR(data)\n239\t            result = model.fit(k)\n240\t            if result.aic < best_aic:\n241\t                best_k, best_aic = k, result.aic\n242\t        except:\n243\t            continue\n244\t    total_order = best_k + d_max\n245\t    if total_order >= n // 2:\n246\t        total_order = max(1, n // 2 - 1)\n247\t    try:\n248\t        model = VAR(data)\n249\t        result = model.fit(total_order)\n250\t        test_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n251\t        f_stat = float(test_result.test_statistic)\n252\t        p_value = float(test_result.pvalue)\n253\t        return {\n254\t            \"method\": \"ty_granger\",\n255\t            \"f_stat\": round(f_stat, 4),\n256\t            \"p_value\": round(p_value, 4),\n257\t            \"significant\": bool(p_value < ALPHA_SIG),\n258\t            \"order\": total_order,\n259\t            \"k_opt\": best_k,\n260\t            \"d_max\": d_max,\n261\t        }\n262\t    except Exception as e:\n263\t        return {\n264\t            \"method\": \"ty_granger\",\n265\t            \"f_stat\": None,\n266\t            \"p_value\": None,\n267\t            \"significant\": False,\n268\t            \"error\": str(e),\n269\t            \"order\": total_order,\n270\t            \"k_opt\": best_k,\n271\t            \"d_max\": d_max,\n272\t        }\n273\t\n274\t\n275\tdef main():\n276\t    data = sorted(ALL_METRICS, key=lambda x: x[\"generation\"])\n277\t    series = {}\n278\t    for k in CANARIES + DOWNSTREAMS:\n279\t        series[k] = np.array([d[k] for d in data])\n280\t\n281\t    n_gens = len(data)\n282\t    seed = 42\n283\t\n284\t    pairs = [{\"canary\": c, \"downstream\": d} for c in CANARIES for d in DOWNSTREAMS]\n285\t\n286\t    pair_results = []\n287\t    perm_pval_fwd, perm_pval_rev = [], []\n288\t    diff_pval_fwd, diff_pval_rev = [], []\n289\t\n290\t    for pair in pairs:\n291\t        cn, dn = pair[\"canary\"], pair[\"downstream\"]\n292\t        c, d = series[cn], series[dn]\n293\t\n294\t        fwd_naive = naive_xcorr(c, d, cn, dn)\n295\t        fwd_diff = diff_xcorr(c, d, cn, dn)\n296\t        fwd_onset = threshold_onset(c, d, cn, dn)\n297\t        fwd_perm = perm_granger(c, d, cn, dn, seed)\n298\t        fwd_ty = ty_granger(c, d, cn, dn)\n299\t\n300\t        rev_naive = naive_xcorr(d, c, dn, cn)\n301\t        rev_diff = diff_xcorr(d, c, dn, cn)\n302\t        rev_onset = threshold_onset(d, c, dn, cn)\n303\t        rev_perm = perm_granger(d, c, dn, cn, seed)\n304\t        rev_ty = ty_granger(d, c, dn, cn)\n305\t\n306\t        result = {\n307\t            \"canary\": cn, \"downstream\": dn,\n308\t            \"forward\": {\n309\t                \"naive_xcorr\": fwd_naive, \"diff_xcorr\": fwd_diff,\n310\t                \"threshold_onset\": fwd_onset, \"perm_granger\": fwd_perm,\n311\t                \"ty_granger\": fwd_ty,\n312\t            },\n313\t            \"reverse\": {\n314\t                \"naive_xcorr\": rev_naive, \"diff_xcorr\": rev_diff,\n315\t                \"threshold_onset\": rev_onset, \"perm_granger\": rev_perm,\n316\t                \"ty_granger\": rev_ty,\n317\t            },\n318\t        }\n319\t\n320\t        perm_pval_fwd.append(fwd_perm[\"p_value\"] if fwd_perm[\"p_value\"] is not None else np.nan)\n321\t        perm_pval_rev.append(rev_perm[\"p_value\"] if rev_perm[\"p_value\"] is not None else np.nan)\n322\t        diff_pval_fwd.append(fwd_diff[\"p_value\"] if fwd_diff[\"p_value\"] is not None else np.nan)\n323\t        diff_pval_rev.append(rev_diff[\"p_value\"] if rev_diff[\"p_value\"] is not None else np.nan)\n324\t        pair_results.append(result)\n325\t\n326\t    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_pval_fwd)\n327\t    perm_adj_rev, perm_sig_rev = bh_fdr(perm_pval_rev)\n328\t    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_pval_fwd)\n329\t    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\n330\t\n331\t    for i, r in enumerate(pair_results):\n332\t        r[\"forward\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\n333\t        r[\"forward\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_fwd[i]\n334\t        r[\"reverse\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\n335\t        r[\"reverse\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_rev[i]\n336\t        r[\"forward\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\n337\t        r[\"forward\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_fwd[i]\n338\t        r[\"reverse\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\n339\t        r[\"reverse\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_rev[i]\n340\t\n341\t    print(\"=\" * 100)\n342\t    print(\"5-METHOD LEAD-LAG ANALYSIS | T=5 | alpha=0.50 | seed=42 | phase_diagram_t05_a050_s42_fp32\")\n343\t    print(\"=\" * 100)\n344\t    print(f\"Loaded {n_gens} generations (NOTE: T=5, only 6 data points)\\n\")\n345\t\n346\t    for direction in [\"forward\", \"reverse\"]:\n347\t        dir_label = \"FORWARD (canary -> downstream)\" if direction == \"forward\" else \"REVERSE (downstream -> canary)\"\n348\t        print(f\"\\n{'=' * 100}\")\n349\t        print(f\"  {dir_label}\")\n350\t        print(f\"{'=' * 100}\")\n351\t        print(f\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\")\n352\t        print(\"-\" * 130)\n353\t        for r in pair_results:\n354\t            label = f\"{r['canary']}<{r['downstream']}\"\n355\t            d = r[direction]\n356\t\n357\t            naive_str = f\"lag={d['naive_xcorr']['peak_lag']} r={d['naive_xcorr']['r']:.3f} {'*' if d['naive_xcorr']['significant'] else ''}\"\n358\t            diff_p = d['diff_xcorr'].get('p_value')\n359\t            diff_str = f\"lag={d['diff_xcorr']['peak_lag']} r={d['diff_xcorr']['r']:.3f} {'*' if d['diff_xcorr'].get('significant_fdr', False) else ''}\" if diff_p is not None else \"N/A (too few pts)\"\n360\t            onset_str = f\"c={d['threshold_onset']['canary_onset']} d={d['threshold_onset']['downstream_onset']} {'*' if d['threshold_onset']['significant'] else ''}\"\n361\t            perm_str = f\"F={d['perm_granger']['f_stat']:.2f} p={d['perm_granger']['p_value']:.4f} {'*' if d['perm_granger'].get('significant_fdr', False) else ''}\" if d['perm_granger']['f_stat'] else \"N/A\"\n362\t            ty_str = f\"F={d['ty_granger']['f_stat']:.2f} p={d['ty_granger']['p_value']:.4f} {'*' if d['ty_granger']['significant'] else ''}\" if d['ty_granger']['f_stat'] else \"N/A\"\n363\t            print(f\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\")\n364\t\n365\t    print(f\"\\n{'=' * 100}\")\n366\t    print(\"  CONSENSUS (forward, D111 direction filter: peak_lag < 0 for xcorr)\")\n367\t    print(f\"{'=' * 100}\")\n368\t    consensus = []\n369\t    for r in pair_results:\n370\t        f = r[\"forward\"]\n371\t        votes = 0\n372\t        methods_sig = []\n373\t        if f[\"naive_xcorr\"][\"significant\"] and f[\"naive_xcorr\"][\"peak_lag\"] < 0:\n374\t            votes += 1; methods_sig.append(\"naive\")\n375\t        if f[\"diff_xcorr\"].get(\"significant_fdr\", False) and f[\"diff_xcorr\"][\"peak_lag\"] < 0:\n376\t            votes += 1; methods_sig.append(\"diff\")\n377\t        if f[\"threshold_onset\"][\"significant\"]:\n378\t            votes += 1; methods_sig.append(\"threshold\")\n379\t        if f[\"perm_granger\"].get(\"significant_fdr\", False):\n380\t            votes += 1; methods_sig.append(\"perm\")\n381\t        if f[\"ty_granger\"][\"significant\"]:\n382\t            votes += 1; methods_sig.append(\"ty\")\n383\t        label = f\"{r['canary']}<{r['downstream']}\"\n384\t        consensus.append({\"pair\": label, \"votes\": votes, \"methods\": methods_sig})\n385\t        print(f\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\")\n386\t\n387\t    summary = {\n388\t        \"PermG_fwd\": f\"{sum(perm_sig_fwd)}/8\",\n389\t        \"PermG_rev\": f\"{sum(perm_sig_rev)}/8\",\n390\t        \"diff_xcorr_fdr_fwd\": f\"{sum(diff_sig_fwd)}/8\",\n391\t        \"diff_xcorr_fdr_rev\": f\"{sum(diff_sig_rev)}/8\",\n392\t        \"naive_xcorr_fwd_D111\": f\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\",\n393\t        \"threshold_onset_3sigma\": f\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\",\n394\t        \"TY_granger\": f\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\",\n395\t        \"K_ge_3\": f\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\",\n396\t        \"K_ge_4\": f\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\",\n397\t        \"robust_pairs\": f\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\",\n398\t    }\n399\t\n400\t    print(f\"\\n{'=' * 100}\")\n401\t    print(\"  SUMMARY\")\n402\t    print(f\"{'=' * 100}\")\n403\t    for k, v in summary.items():\n404\t        print(f\"  {k:<30} {v}\")\n405\t\n406\t    print(f\"\\n{'=' * 100}\")\n407\t    print(\"  DRIFT STATISTICS (gen0 -> gen5)\")\n408\t    print(f\"{'=' * 100}\")\n409\t    g0, gN = data[0], data[-1]\n410\t    for metric in [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\", \"effective_rank\"]:\n411\t        v0, vN = g0[metric], gN[metric]\n412\t        drift = (vN - v0) / abs(v0) * 100 if abs(v0) > 1e-12 else float('inf')\n413\t        print(f\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({drift:+.2f}%)\")\n414\t\n415\t    full_results = {\n416\t        \"meta\": {\n417\t            \"exp_id\": \"phase_diagram_t05_a050_s42_fp32\",\n418\t            \"alpha\": 0.50,\n419\t            \"seed\": 42,\n420\t            \"T\": 5,\n421\t            \"n_gens\": n_gens,\n422\t            \"n_perm\": N_PERM,\n423\t            \"canaries\": CANARIES,\n424\t            \"downstreams\": DOWNSTREAMS,\n425\t            \"threshold_criterion\": \"true_3sigma_d105\",\n426\t            \"D111_direction\": \"peak_lag < 0 (C009 corrected)\",\n427\t            \"D105_3sigma\": \"true 3sigma (std of full series)\",\n428\t            \"note\": \"T=5 only has 6 data points (gen 0-5). Statistical power is reduced compared to T=10 (11 points).\",\n429\t        },\n430\t        \"summary\": summary,\n431\t        \"consensus\": consensus,\n432\t        \"pairs\": [],\n433\t    }\n434\t\n435\t    def clean(obj):\n436\t        if isinstance(obj, (np.floating, np.float64)):\n437\t            return float(obj)\n438\t        if isinstance(obj, (np.integer,)):\n439\t            return int(obj)\n440\t        if isinstance(obj, np.bool_):\n441\t            return bool(obj)\n442\t        if isinstance(obj, dict):\n443\t            return {k: clean(v) for k, v in obj.items()}\n444\t        if isinstance(obj, list):\n445\t            return [clean(v) for v in obj]\n446\t        return obj\n447\t\n448\t    for r in pair_results:\n449\t        pr = clean(r)\n450\t        for d in [\"forward\", \"reverse\"]:\n451\t            for m in [\"naive_xcorr\", \"diff_xcorr\"]:\n452\t                if \"all_lags\" in pr[d][m]:\n453\t                    del pr[d][m][\"all_lags\"]\n454\t        full_results[\"pairs\"].append(pr)\n455\t\n456\t    out_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/data/5method_leadlag.json\"\n457\t    with open(out_path, \"w\") as f:\n458\t        json.dump(full_results, f, indent=2)\n459\t    print(f\"\\nSaved: {out_path}\")\n460\t\n461\t    out_path2 = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/5method_leadlag.json\"\n462\t    with open(out_path2, \"w\") as f:\n463\t        json.dump(full_results, f, indent=2)\n464\t    print(f\"Saved: {out_path2}\")\n465\t\n466\t\n467\tif __name__ == \"__main__\":\n468\t    main()\n469\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac801e02-47e9-4f4c-afb7-58a7a4216ae2",
+            "isSidechain": true,
+            "promptId": "5e94e1fa-2420-4e42-a515-6e94a895b576",
+            "agentId": "a735d0c2a40d0bc0c",
+            "type": "user",
+            "uuid": "8b32d35a-66fa-4739-b548-bd02fd014ec1",
+            "sourceToolAssistantUUID": "ac801e02-47e9-4f4c-afb7-58a7a4216ae2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T17:54:32.537Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019pYWMoq6kETLzTkyLtoFVQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a045_s42_fp32/run_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b32d35a-66fa-4739-b548-bd02fd014ec1",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EizhPxK92PgNrosAf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd128782-10c4-4d8d-b1cd-bbe530bf6fb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GRBTHbk5okjrMDnFRwZeFq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 17088,
+                "output_tokens": 240,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1406
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 240,
+                    "cache_read_input_tokens": 17088,
+                    "cache_creation_input_tokens": 1406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1406,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T17:54:32.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019pYWMoq6kETLzTkyLtoFVQ",
+              "type": "tool_result",
+              "content": "1\t\"\"\"5-method lead-lag analysis for phase_diagram_t05_a045_s42_fp32.\n2\tT=5 generations, alpha=0.45, seed=42, fp32, Pythia-410m.\n3\tAdapted from canonical run_analysis.py methodology.\n4\t\"\"\"\n5\timport json\n6\timport numpy as np\n7\tfrom scipy import stats\n8\tfrom statsmodels.tsa.stattools import adfuller\n9\tfrom statsmodels.tsa.vector_ar.var_model import VAR\n10\t\n11\tN_PERM = 5000\n12\tALPHA_SIG = 0.05\n13\t\n14\tCANARIES = [\"token_entropy\", \"ece\"]\n15\tDOWNSTREAMS = [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n16\t\n17\tHIGHER_IS_WORSE = {\"ece\"}\n18\tLOWER_IS_WORSE = {\"token_entropy\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"}\n19\t\n20\tALL_METRICS = [\n21\t  {\"token_entropy\": 3.23419483150593, \"self_bleu\": 0.011078699301381554, \"ece\": 0.010804557477709054, \"effective_rank\": 46.612774691899155, \"perplexity\": 26.948958972544652, \"distinct_1\": 0.0979600146585773, \"distinct_2\": 0.5141374985748489, \"distinct_3\": 0.8127010497341054, \"mauve\": 0.031110582626136873, \"generation\": 0, \"effective_alpha\": 0.45},\n22\t  {\"token_entropy\": 2.494058441616721, \"self_bleu\": 0.01181542928801186, \"ece\": 0.06666987054815446, \"effective_rank\": 58.30666526113631, \"perplexity\": 22.538010937788044, \"distinct_1\": 0.09759209446336131, \"distinct_2\": 0.5124500211292787, \"distinct_3\": 0.8121673127402459, \"mauve\": 0.0314065242440103, \"generation\": 1, \"effective_alpha\": 0.45},\n23\t  {\"token_entropy\": 2.534136101724104, \"self_bleu\": 0.012035022098091467, \"ece\": 0.0776851344230731, \"effective_rank\": 62.23149385795327, \"perplexity\": 25.144345507719237, \"distinct_1\": 0.0839296875, \"distinct_2\": 0.4432612754787147, \"distinct_3\": 0.7360505632900514, \"mauve\": 0.03256302608932375, \"generation\": 2, \"effective_alpha\": 0.45},\n24\t  {\"token_entropy\": 2.5901672458724554, \"self_bleu\": 0.01229421686114261, \"ece\": 0.07674335772304731, \"effective_rank\": 63.461815189636326, \"perplexity\": 26.117359098847647, \"distinct_1\": 0.0783828125, \"distinct_2\": 0.40030781490480394, \"distinct_3\": 0.671760496257754, \"mauve\": 0.03222753095848002, \"generation\": 3, \"effective_alpha\": 0.45},\n25\t  {\"token_entropy\": 2.5706613419304554, \"self_bleu\": 0.012043209085476533, \"ece\": 0.08360082054034103, \"effective_rank\": 63.453629462752325, \"perplexity\": 27.209104983248583, \"distinct_1\": 0.0730703125, \"distinct_2\": 0.36358096547629276, \"distinct_3\": 0.6132283316926826, \"mauve\": 0.0317127295809647, \"generation\": 4, \"effective_alpha\": 0.45},\n26\t  {\"token_entropy\": 2.5727669083072353, \"self_bleu\": 0.014117583793544781, \"ece\": 0.08865605692062944, \"effective_rank\": 62.76527409416098, \"perplexity\": 28.01640758040761, \"distinct_1\": 0.0698125, \"distinct_2\": 0.33251041023758, \"distinct_3\": 0.554649291395178, \"mauve\": 0.030588378386534935, \"generation\": 5, \"effective_alpha\": 0.45},\n27\t]\n28\t\n29\t\n30\tdef orient(series, name):\n31\t    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\n32\t\n33\t\n34\tdef _build_lag_matrix(y, x, max_lag):\n35\t    T = len(y)\n36\t    n = T - max_lag\n37\t    Y = y[max_lag:]\n38\t    cols_r = [np.ones(n)]\n39\t    for lag in range(1, max_lag + 1):\n40\t        cols_r.append(y[max_lag - lag: T - lag])\n41\t    cols_u = list(cols_r)\n42\t    for lag in range(1, max_lag + 1):\n43\t        cols_u.append(x[max_lag - lag: T - lag])\n44\t    return Y, np.column_stack(cols_r), np.column_stack(cols_u)\n45\t\n46\t\n47\tdef _granger_f_stat(y, x, max_lag):\n48\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n49\t    n = len(Y)\n50\t    q = max_lag\n51\t    try:\n52\t        beta_r = np.linalg.lstsq(X_r, Y, rcond=None)[0]\n53\t        beta_u = np.linalg.lstsq(X_u, Y, rcond=None)[0]\n54\t    except np.linalg.LinAlgError:\n55\t        return np.nan\n56\t    rss_r = np.sum((Y - X_r @ beta_r) ** 2)\n57\t    rss_u = np.sum((Y - X_u @ beta_u) ** 2)\n58\t    k_u = X_u.shape[1]\n59\t    df_resid = n - k_u\n60\t    if df_resid <= 0 or rss_u < 1e-15:\n61\t        return np.nan\n62\t    return ((rss_r - rss_u) / q) / (rss_u / df_resid)\n63\t\n64\t\n65\tdef permutation_granger_test(x, y, max_lag=1, n_perm=1000, seed=42, difference=True):\n66\t    x = np.asarray(x, dtype=float)\n67\t    y = np.asarray(y, dtype=float)\n68\t    if difference:\n69\t        x = np.diff(x)\n70\t        y = np.diff(y)\n71\t    f_obs = _granger_f_stat(y, x, max_lag)\n72\t    if np.isnan(f_obs):\n73\t        return {\"f_stat\": None, \"p_value\": None, \"significant\": False}\n74\t    rng = np.random.default_rng(seed)\n75\t    null_f = np.empty(n_perm)\n76\t    for i in range(n_perm):\n77\t        null_f[i] = _granger_f_stat(y, rng.permutation(x), max_lag)\n78\t    valid_null = null_f[~np.isnan(null_f)]\n79\t    if len(valid_null) == 0:\n80\t        return {\"f_stat\": round(float(f_obs), 4), \"p_value\": None, \"significant\": False}\n81\t    p_value = (np.sum(valid_null >= f_obs) + 1) / (len(valid_null) + 1)\n82\t    Y, X_r, X_u = _build_lag_matrix(y, x, max_lag)\n83\t    rss_r = np.sum((Y - X_r @ np.linalg.lstsq(X_r, Y, rcond=None)[0]) ** 2)\n84\t    rss_u = np.sum((Y - X_u @ np.linalg.lstsq(X_u, Y, rcond=None)[0]) ** 2)\n85\t    f2 = (rss_r - rss_u) / rss_u if rss_u > 1e-15 else None\n86\t    return {\n87\t        \"f_stat\": round(float(f_obs), 4),\n88\t        \"p_value\": round(float(p_value), 6),\n89\t        \"null_mean\": round(float(np.mean(valid_null)), 4),\n90\t        \"null_std\": round(float(np.std(valid_null)), 4),\n91\t        \"effect_size_f2\": round(float(f2), 4) if f2 is not None else None,\n92\t        \"significant\": bool(p_value < 0.05),\n93\t    }\n94\t\n95\t\n96\tdef bh_fdr(p_values, alpha=0.05):\n97\t    pv = np.array(p_values, dtype=float)\n98\t    n = len(pv)\n99\t    valid = ~np.isnan(pv)\n100\t    adjusted = np.full(n, np.nan)\n101\t    if valid.sum() == 0:\n102\t        return adjusted.tolist(), [False] * n\n103\t    idx = np.where(valid)[0]\n104\t    p_valid = pv[idx]\n105\t    sorted_idx = np.argsort(p_valid)\n106\t    ranks = np.empty_like(sorted_idx)\n107\t    ranks[sorted_idx] = np.arange(1, len(p_valid) + 1)\n108\t    m = len(p_valid)\n109\t    adj = p_valid * m / ranks\n110\t    adj_sorted = adj[sorted_idx].copy()\n111\t    for i in range(m - 2, -1, -1):\n112\t        adj_sorted[i] = min(adj_sorted[i], adj_sorted[i + 1])\n113\t    adj_sorted = np.minimum(adj_sorted, 1.0)\n114\t    adj_final = np.empty(m)\n115\t    adj_final[sorted_idx] = adj_sorted\n116\t    for i, ix in enumerate(idx):\n117\t        adjusted[ix] = adj_final[i]\n118\t    significant = [(adjusted[i] < alpha if not np.isnan(adjusted[i]) else False) for i in range(n)]\n119\t    return adjusted.tolist(), significant\n120\t\n121\t\n122\tdef naive_xcorr(c, d, cn, dn, max_lag=5):\n123\t    x, y = orient(c, cn), orient(d, dn)\n124\t    n = len(x)\n125\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n126\t    all_lags = []\n127\t    for lag in range(-max_lag, max_lag + 1):\n128\t        if lag >= 0:\n129\t            a, b = x[lag:], y[:n - lag]\n130\t        else:\n131\t            a, b = x[:n + lag], y[-lag:]\n132\t        if len(a) < 4:\n133\t            continue\n134\t        r, p = stats.pearsonr(a, b)\n135\t        all_lags.append({\"lag\": int(lag), \"r\": round(float(r), 4), \"p\": round(float(p), 6)})\n136\t        if abs(r) > abs(best_r):\n137\t            best_lag, best_r, best_p = lag, r, p\n138\t    return {\n139\t        \"method\": \"naive_xcorr\",\n140\t        \"peak_lag\": int(best_lag),\n141\t        \"r\": round(float(best_r), 4),\n142\t        \"p_value\": round(float(best_p), 6),\n143\t        \"significant\": bool(best_p < ALPHA_SIG),\n144\t        \"all_lags\": all_lags,\n145\t    }\n146\t\n147\t\n148\tdef diff_xcorr(c, d, cn, dn, max_lag=5):\n149\t    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\n150\t    n = len(dx)\n151\t    best_lag, best_r, best_p = 0, 0.0, 1.0\n152\t    all_lags = []\n153\t    for lag in range(-max_lag, max_lag + 1):\n154\t        if lag >= 0:\n155\t            a, b = dx[lag:], dy[:n - lag]\n156\t        else:\n157\t            a, b = dx[:n + lag], dy[-lag:]\n158\t        if len(a) < 4:\n159\t            continue\n160\t        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\n161\t            continue\n162\t        r, p = stats.pearsonr(a, b)\n163\t        all_lags.append({\"lag\": int(lag), \"r\": round(float(r), 4), \"p\": round(float(p), 6)})\n164\t        if abs(r) > abs(best_r):\n165\t            best_lag, best_r, best_p = lag, r, p\n166\t    return {\n167\t        \"method\": \"diff_xcorr\",\n168\t        \"peak_lag\": int(best_lag),\n169\t        \"r\": round(float(best_r), 4),\n170\t        \"p_value\": round(float(best_p), 6),\n171\t        \"significant\": bool(best_p < ALPHA_SIG),\n172\t        \"all_lags\": all_lags,\n173\t    }\n174\t\n175\t\n176\tdef _onset_gen(series, name):\n177\t    s = orient(series, name)\n178\t    base, sigma = s[0], np.std(s)\n179\t    if sigma < 1e-12:\n180\t        return None\n181\t    thresh = base + 3.0 * sigma\n182\t    for i in range(1, len(s)):\n183\t        if s[i] > thresh:\n184\t            return i\n185\t    return None\n186\t\n187\t\n188\tdef threshold_onset(c, d, cn, dn):\n189\t    c_onset = _onset_gen(c, cn)\n190\t    d_onset = _onset_gen(d, dn)\n191\t    if c_onset is not None and d_onset is not None:\n192\t        lead_time = d_onset - c_onset\n193\t        significant = lead_time > 0\n194\t    else:\n195\t        lead_time = None\n196\t        significant = False\n197\t    return {\n198\t        \"method\": \"threshold_onset\",\n199\t        \"canary_onset\": c_onset,\n200\t        \"downstream_onset\": d_onset,\n201\t        \"lead_time\": lead_time,\n202\t        \"significant\": significant,\n203\t        \"threshold\": \"true_3sigma_d105\",\n204\t    }\n205\t\n206\t\n207\tdef perm_granger(c, d, cn, dn, seed):\n208\t    x = orient(c, cn)\n209\t    y = orient(d, dn)\n210\t    result = permutation_granger_test(x, y, max_lag=1, n_perm=N_PERM, seed=seed, difference=True)\n211\t    return {\n212\t        \"method\": \"perm_granger\",\n213\t        \"f_stat\": result[\"f_stat\"],\n214\t        \"p_value\": result[\"p_value\"],\n215\t        \"null_mean\": result.get(\"null_mean\"),\n216\t        \"null_std\": result.get(\"null_std\"),\n217\t        \"effect_size_f2\": result.get(\"effect_size_f2\"),\n218\t        \"significant\": bool(result[\"p_value\"] < ALPHA_SIG) if result[\"p_value\"] is not None else False,\n219\t    }\n220\t\n221\t\n222\tdef ty_granger(c, d, cn, dn, max_order=2):\n223\t    x = orient(c, cn)\n224\t    y = orient(d, dn)\n225\t    n = len(x)\n226\t    d_max = 0\n227\t    for series in [x, y]:\n228\t        try:\n229\t            result = adfuller(series, maxlag=min(3, n // 3 - 1))\n230\t            if result[1] > 0.05:\n231\t                d_max = max(d_max, 1)\n232\t        except:\n233\t            d_max = max(d_max, 1)\n234\t    best_k, best_aic = 1, np.inf\n235\t    data = np.column_stack([x, y])\n236\t    for k in range(1, max_order + 1):\n237\t        try:\n238\t            model = VAR(data)\n239\t            result = model.fit(k)\n240\t            if result.aic < best_aic:\n241\t                best_k, best_aic = k, result.aic\n242\t        except:\n243\t            continue\n244\t    total_order = best_k + d_max\n245\t    if total_order >= n // 2:\n246\t        total_order = max(1, n // 2 - 1)\n247\t    try:\n248\t        model = VAR(data)\n249\t        result = model.fit(total_order)\n250\t        test_result = result.test_causality(causing=1, caused=0, kind=\"f\")\n251\t        f_stat = float(test_result.test_statistic)\n252\t        p_value = float(test_result.pvalue)\n253\t        return {\n254\t            \"method\": \"ty_granger\",\n255\t            \"f_stat\": round(f_stat, 4),\n256\t            \"p_value\": round(p_value, 4),\n257\t            \"significant\": bool(p_value < ALPHA_SIG),\n258\t            \"order\": total_order,\n259\t            \"k_opt\": best_k,\n260\t            \"d_max\": d_max,\n261\t        }\n262\t    except Exception as e:\n263\t        return {\n264\t            \"method\": \"ty_granger\",\n265\t            \"f_stat\": None,\n266\t            \"p_value\": None,\n267\t            \"significant\": False,\n268\t            \"error\": str(e),\n269\t            \"order\": total_order,\n270\t            \"k_opt\": best_k,\n271\t            \"d_max\": d_max,\n272\t        }\n273\t\n274\t\n275\tdef main():\n276\t    data = sorted(ALL_METRICS, key=lambda x: x[\"generation\"])\n277\t    series = {}\n278\t    for k in CANARIES + DOWNSTREAMS:\n279\t        series[k] = np.array([d[k] for d in data])\n280\t\n281\t    n_gens = len(data)\n282\t    seed = 42\n283\t\n284\t    pairs = [{\"canary\": c, \"downstream\": d} for c in CANARIES for d in DOWNSTREAMS]\n285\t\n286\t    pair_results = []\n287\t    perm_pval_fwd, perm_pval_rev = [], []\n288\t    diff_pval_fwd, diff_pval_rev = [], []\n289\t\n290\t    for pair in pairs:\n291\t        cn, dn = pair[\"canary\"], pair[\"downstream\"]\n292\t        c, d = series[cn], series[dn]\n293\t\n294\t        fwd_naive = naive_xcorr(c, d, cn, dn)\n295\t        fwd_diff = diff_xcorr(c, d, cn, dn)\n296\t        fwd_onset = threshold_onset(c, d, cn, dn)\n297\t        fwd_perm = perm_granger(c, d, cn, dn, seed)\n298\t        fwd_ty = ty_granger(c, d, cn, dn)\n299\t\n300\t        rev_naive = naive_xcorr(d, c, dn, cn)\n301\t        rev_diff = diff_xcorr(d, c, dn, cn)\n302\t        rev_onset = threshold_onset(d, c, dn, cn)\n303\t        rev_perm = perm_granger(d, c, dn, cn, seed)\n304\t        rev_ty = ty_granger(d, c, dn, cn)\n305\t\n306\t        result = {\n307\t            \"canary\": cn, \"downstream\": dn,\n308\t            \"forward\": {\n309\t                \"naive_xcorr\": fwd_naive, \"diff_xcorr\": fwd_diff,\n310\t                \"threshold_onset\": fwd_onset, \"perm_granger\": fwd_perm,\n311\t                \"ty_granger\": fwd_ty,\n312\t            },\n313\t            \"reverse\": {\n314\t                \"naive_xcorr\": rev_naive, \"diff_xcorr\": rev_diff,\n315\t                \"threshold_onset\": rev_onset, \"perm_granger\": rev_perm,\n316\t                \"ty_granger\": rev_ty,\n317\t            },\n318\t        }\n319\t\n320\t        perm_pval_fwd.append(fwd_perm[\"p_value\"] if fwd_perm[\"p_value\"] is not None else np.nan)\n321\t        perm_pval_rev.append(rev_perm[\"p_value\"] if rev_perm[\"p_value\"] is not None else np.nan)\n322\t        diff_pval_fwd.append(fwd_diff[\"p_value\"] if fwd_diff[\"p_value\"] is not None else np.nan)\n323\t        diff_pval_rev.append(rev_diff[\"p_value\"] if rev_diff[\"p_value\"] is not None else np.nan)\n324\t        pair_results.append(result)\n325\t\n326\t    perm_adj_fwd, perm_sig_fwd = bh_fdr(perm_pval_fwd)\n327\t    perm_adj_rev, perm_sig_rev = bh_fdr(perm_pval_rev)\n328\t    diff_adj_fwd, diff_sig_fwd = bh_fdr(diff_pval_fwd)\n329\t    diff_adj_rev, diff_sig_rev = bh_fdr(diff_pval_rev)\n330\t\n331\t    for i, r in enumerate(pair_results):\n332\t        r[\"forward\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_fwd[i], 6) if not np.isnan(perm_adj_fwd[i]) else None\n333\t        r[\"forward\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_fwd[i]\n334\t        r[\"reverse\"][\"perm_granger\"][\"p_fdr\"] = round(perm_adj_rev[i], 6) if not np.isnan(perm_adj_rev[i]) else None\n335\t        r[\"reverse\"][\"perm_granger\"][\"significant_fdr\"] = perm_sig_rev[i]\n336\t        r[\"forward\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_fwd[i], 6) if not np.isnan(diff_adj_fwd[i]) else None\n337\t        r[\"forward\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_fwd[i]\n338\t        r[\"reverse\"][\"diff_xcorr\"][\"p_fdr\"] = round(diff_adj_rev[i], 6) if not np.isnan(diff_adj_rev[i]) else None\n339\t        r[\"reverse\"][\"diff_xcorr\"][\"significant_fdr\"] = diff_sig_rev[i]\n340\t\n341\t    print(\"=\" * 100)\n342\t    print(\"5-METHOD LEAD-LAG ANALYSIS | T=5 | alpha=0.45 | seed=42 | phase_diagram_t05_a045_s42_fp32\")\n343\t    print(\"=\" * 100)\n344\t    print(f\"Loaded {n_gens} generations (NOTE: T=5, only 6 data points)\\n\")\n345\t\n346\t    for direction in [\"forward\", \"reverse\"]:\n347\t        dir_label = \"FORWARD (canary -> downstream)\" if direction == \"forward\" else \"REVERSE (downstream -> canary)\"\n348\t        print(f\"\\n{'=' * 100}\")\n349\t        print(f\"  {dir_label}\")\n350\t        print(f\"{'=' * 100}\")\n351\t        print(f\"  {'Pair':<30} {'Naive XCorr':<20} {'Diff XCorr(FDR)':<20} {'Threshold':<18} {'PermG(FDR)':<20} {'TY Granger':<15}\")\n352\t        print(\"-\" * 130)\n353\t        for r in pair_results:\n354\t            label = f\"{r['canary']}<{r['downstream']}\"\n355\t            d = r[direction]\n356\t\n357\t            naive_str = f\"lag={d['naive_xcorr']['peak_lag']} r={d['naive_xcorr']['r']:.3f} {'*' if d['naive_xcorr']['significant'] else ''}\"\n358\t            diff_p = d['diff_xcorr'].get('p_value')\n359\t            diff_str = f\"lag={d['diff_xcorr']['peak_lag']} r={d['diff_xcorr']['r']:.3f} {'*' if d['diff_xcorr'].get('significant_fdr', False) else ''}\" if diff_p is not None else \"N/A (too few pts)\"\n360\t            onset_str = f\"c={d['threshold_onset']['canary_onset']} d={d['threshold_onset']['downstream_onset']} {'*' if d['threshold_onset']['significant'] else ''}\"\n361\t            perm_str = f\"F={d['perm_granger']['f_stat']:.2f} p={d['perm_granger']['p_value']:.4f} {'*' if d['perm_granger'].get('significant_fdr', False) else ''}\" if d['perm_granger']['f_stat'] else \"N/A\"\n362\t            ty_str = f\"F={d['ty_granger']['f_stat']:.2f} p={d['ty_granger']['p_value']:.4f} {'*' if d['ty_granger']['significant'] else ''}\" if d['ty_granger']['f_stat'] else \"N/A\"\n363\t            print(f\"  {label:<30} {naive_str:<20} {diff_str:<20} {onset_str:<18} {perm_str:<20} {ty_str:<15}\")\n364\t\n365\t    print(f\"\\n{'=' * 100}\")\n366\t    print(\"  CONSENSUS (forward, D111 direction filter: peak_lag < 0 for xcorr)\")\n367\t    print(f\"{'=' * 100}\")\n368\t    consensus = []\n369\t    for r in pair_results:\n370\t        f = r[\"forward\"]\n371\t        votes = 0\n372\t        methods_sig = []\n373\t        if f[\"naive_xcorr\"][\"significant\"] and f[\"naive_xcorr\"][\"peak_lag\"] < 0:\n374\t            votes += 1; methods_sig.append(\"naive\")\n375\t        if f[\"diff_xcorr\"].get(\"significant_fdr\", False) and f[\"diff_xcorr\"][\"peak_lag\"] < 0:\n376\t            votes += 1; methods_sig.append(\"diff\")\n377\t        if f[\"threshold_onset\"][\"significant\"]:\n378\t            votes += 1; methods_sig.append(\"threshold\")\n379\t        if f[\"perm_granger\"].get(\"significant_fdr\", False):\n380\t            votes += 1; methods_sig.append(\"perm\")\n381\t        if f[\"ty_granger\"][\"significant\"]:\n382\t            votes += 1; methods_sig.append(\"ty\")\n383\t        label = f\"{r['canary']}<{r['downstream']}\"\n384\t        consensus.append({\"pair\": label, \"votes\": votes, \"methods\": methods_sig})\n385\t        print(f\"  {label:<30} {votes}/5  [{', '.join(methods_sig) if methods_sig else 'none'}]\")\n386\t\n387\t    summary = {\n388\t        \"PermG_fwd\": f\"{sum(perm_sig_fwd)}/8\",\n389\t        \"PermG_rev\": f\"{sum(perm_sig_rev)}/8\",\n390\t        \"diff_xcorr_fdr_fwd\": f\"{sum(diff_sig_fwd)}/8\",\n391\t        \"diff_xcorr_fdr_rev\": f\"{sum(diff_sig_rev)}/8\",\n392\t        \"naive_xcorr_fwd_D111\": f\"{sum(1 for r in pair_results if r['forward']['naive_xcorr']['significant'] and r['forward']['naive_xcorr']['peak_lag'] < 0)}/8\",\n393\t        \"threshold_onset_3sigma\": f\"{sum(1 for r in pair_results if r['forward']['threshold_onset']['significant'])}/8\",\n394\t        \"TY_granger\": f\"{sum(1 for r in pair_results if r['forward']['ty_granger']['significant'])}/8\",\n395\t        \"K_ge_3\": f\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\",\n396\t        \"K_ge_4\": f\"{sum(1 for c in consensus if c['votes'] >= 4)}/8\",\n397\t        \"robust_pairs\": f\"{sum(1 for c in consensus if c['votes'] >= 3)}/8\",\n398\t    }\n399\t\n400\t    print(f\"\\n{'=' * 100}\")\n401\t    print(\"  SUMMARY\")\n402\t    print(f\"{'=' * 100}\")\n403\t    for k, v in summary.items():\n404\t        print(f\"  {k:<30} {v}\")\n405\t\n406\t    print(f\"\\n{'=' * 100}\")\n407\t    print(\"  DRIFT STATISTICS (gen0 -> gen5)\")\n408\t    print(f\"{'=' * 100}\")\n409\t    g0, gN = data[0], data[-1]\n410\t    for metric in [\"token_entropy\", \"ece\", \"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\", \"effective_rank\"]:\n411\t        v0, vN = g0[metric], gN[metric]\n412\t        drift = (vN - v0) / abs(v0) * 100 if abs(v0) > 1e-12 else float('inf')\n413\t        print(f\"  {metric:<20} {v0:.4f} -> {vN:.4f}  ({drift:+.2f}%)\")\n414\t\n415\t    full_results = {\n416\t        \"meta\": {\n417\t            \"exp_id\": \"phase_diagram_t05_a045_s42_fp32\",\n418\t            \"alpha\": 0.45,\n419\t            \"seed\": 42,\n420\t            \"T\": 5,\n421\t            \"n_gens\": n_gens,\n422\t            \"n_perm\": N_PERM,\n423\t            \"canaries\": CANARIES,\n424\t            \"downstreams\": DOWNSTREAMS,\n425\t            \"threshold_criterion\": \"true_3sigma_d105\",\n426\t            \"D111_direction\": \"peak_lag < 0 (C009 corrected)\",\n427\t            \"D105_3sigma\": \"true 3sigma (std of full series)\",\n428\t            \"note\": \"T=5 only has 6 data points (gen 0-5). Statistical power is reduced compared to T=10 (11 points).\",\n429\t        },\n430\t        \"summary\": summary,\n431\t        \"consensus\": consensus,\n432\t        \"pairs\": [],\n433\t    }\n434\t\n435\t    def clean(obj):\n436\t        if isinstance(obj, (np.floating, np.float64)):\n437\t            return float(obj)\n438\t        if isinstance(obj, (np.integer,)):\n439\t            return int(obj)\n440\t        if isinstance(obj, np.bool_):\n441\t            return bool(obj)\n442\t        if isinstance(obj, dict):\n443\t            return {k: clean(v) for k, v in obj.items()}\n444\t        if isinstance(obj, list):\n445\t            return [clean(v) for v in obj]\n446\t        return obj\n447\t\n448\t    for r in pair_results:\n449\t        pr = clean(r)\n450\t        for d in [\"forward\", \"reverse\"]:\n451\t            for m in [\"naive_xcorr\", \"diff_xcorr\"]:\n452\t                if \"all_lags\" in pr[d][m]:\n453\t                    del pr[d][m][\"all_lags\"]\n454\t        full_results[\"pairs\"].append(pr)\n455\t\n456\t    out_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a045_s42_fp32/5method_leadlag.json\"\n457\t    with open(out_path, \"w\") as f:\n458\t        json.dump(full_results, f, indent=2)\n459\t    print(f\"\\nSaved: {out_path}\")\n460\t\n461\t\n462\tif __name__ == \"__main__\":\n463\t    main()\n464\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd128782-10c4-4d8d-b1cd-bbe530bf6fb7",
+            "isSidechain": true,
+            "promptId": "5e94e1fa-2420-4e42-a515-6e94a895b576",
+            "agentId": "a735d0c2a40d0bc0c",
+            "type": "user",
+            "uuid": "41302e8a-d520-4973-b0df-8952ed536cd9",
+            "sourceToolAssistantUUID": "dd128782-10c4-4d8d-b1cd-bbe530bf6fb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T17:54:37.589Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the 5-method lead-lag analysis scripts. Both files contain the exact same five analysis methods. Let me verify the completeness and provide you with the most relevant path.\n\nBased on my search, I've found the existing 5-method lead-lag analysis scripts in your project. Both phase_diagram experiments implement the identical methodology with these five analysis methods:\n\n1. **naive_xcorr** - Cross-correlation on raw series with lag detection\n2. **diff_xcorr** - Cross-correlation on differenced series with FDR adjustment\n3. **threshold_onset** - 3-sigma threshold-based onset detection\n4. **perm_granger** - Permutation-based Granger causality test\n5. **ty_granger** - Toda-Yamamoto VAR-based Granger causality\n\nThe most relevant template file is:\n\n**/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_diagram_t05_a050_s42_fp32/run_analysis.py**\n\nThis script:\n- Uses a 2x4 canary-downstream pair matrix (token_entropy + ece vs distinct_1/2/3 + mauve)\n- Implements bidirectional testing (forward and reverse)\n- Applies Benjamini-Hochberg FDR correction\n- Generates consensus voting across methods\n- Outputs detailed JSON results with metadata\n- Tests both individual p-values and FDR-adjusted significance\n- Handles edge cases (small sample size T=5, NaN values)\n\nAll four run_analysis.py files found follow this same pattern, with the main differences being the specific metric values from their respective experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41302e8a-d520-4973-b0df-8952ed536cd9",
+            "isSidechain": true,
+            "agentId": "a735d0c2a40d0bc0c",
+            "requestId": "req_011CbG9EuAPC3xfxyBBMjkFC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "58439d83-d150-4d37-9aab-5175ba075493",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "e3d8e78d-ae25-4f68-8205-22e3db9244b5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01WxwnSbtMeejGEJUq53nCi5",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 17884,
+                "cache_read_input_tokens": 18494,
+                "output_tokens": 401,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17884
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 401,
+                    "cache_read_input_tokens": 18494,
+                    "cache_creation_input_tokens": 17884,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17884,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-project-at-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distr-copy-22.md"
+}

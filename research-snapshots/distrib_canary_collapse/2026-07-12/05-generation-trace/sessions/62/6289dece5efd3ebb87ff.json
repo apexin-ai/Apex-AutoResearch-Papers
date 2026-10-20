@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "6289dece5efd3ebb87ff",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: phase_diagra",
+  "task_key": "98b79cf9-d7a9-4c12-9dfd-9928229d25ff",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/98b79cf9-d7a9-4c12-9dfd-9928229d25ff.jsonl",
+    "occurrence": 1,
+    "bytes": 585917,
+    "sha256": "b1003aa26ffb8d36d8958e797121cee6037149abc149e99768bfca0f1d505eb8"
+  },
+  "statistics": {
+    "messages": 133,
+    "user_turns": 3,
+    "tool_calls": 40,
+    "roles": {
+      "record": 21,
+      "user": 3,
+      "assistant": 29,
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6289dece5efd3ebb87ff-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "6289dece5efd3ebb87ff-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6289dece5efd3ebb87ff-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "6289dece5efd3ebb87ff-part-0001.json",
+          "message_count": 122
+        },
+        {
+          "path": "6289dece5efd3ebb87ff-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-analyzing-done-process-exited-cleanly-w-b-data-available-exp-id-phase-dia-copy-5.md"
+}

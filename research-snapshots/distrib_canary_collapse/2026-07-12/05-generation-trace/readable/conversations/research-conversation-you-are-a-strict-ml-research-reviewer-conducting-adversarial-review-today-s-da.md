@@ -1,0 +1,2382 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-15 (UTC).** Your job: indep
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-1/601ec25a-0fe5-41cc-a3fa-ae140ba693c3.jsonl`
+- **Structured JSON:** [`b42afb539538f2c2dd2a.json`](../../sessions/b4/b42afb539538f2c2dd2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T13:21:23.944Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T13:21:23.944Z",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-15 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: LLM Security.\n\nDirection: LLM safety robustness — defense methods against jailbreaking, adversarial prompt attacks, and safety alignment degradation. In-scope: robust safety training that resists adaptive attacks, automated red-teaming frameworks for systematic vulnerability discovery, safety-aware decoding or filtering at inference time, detecting and mitigating safety degradation when models are fine-tuned or distilled, multi-turn attack defense, tool-use and agentic safety. NOT limited to text — agentic tool-call safety and multi-modal attack surfaces welcome.\n\nContribution type: METHOD ONLY. Must propose a concrete defense algorithm, detection pipeline, or training recipe — not just a new attack or red-teaming dataset. Attack + defense paired contributions OK if defense is the primary contribution.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Safety research is mostly inference-heavy — budget for evaluation across multiple attack suites, not large-scale pretraining.\n2. Time: ≤11 days. Build on existing open safety benchmarks and models (Llama-3-Guard, ShieldGemma, Qwen3, DeepSeek-R1 distills). Use established attack libraries (HarmBench, JailbreakBench, StrongREJECT) for evaluation.\n3. Eval: Attack Success Rate (ASR) reduction on HarmBench, JailbreakBench, AdvBench; safety score on WildGuard/Aegis; utility preservation on MT-Bench/MMLU (defense must not kill helpfulness).\n\nThis is a NEW dedicated track at EMNLP 2026 — high visibility, growing fast, few established defense methods. 2026 research shows reasoning models can jailbreak other models at 97% success; defense lags far behind attack. Look for: inference-time safety filters that adapt to attack patterns, representation-level safety mechanisms (circuit-based), robust alignment under fine-tuning distribution shift, defense against multi-turn and agentic attacks. Avoid: yet another jailbreak attack without defense contribution, prompt-template-only defenses, safety classifiers without adversarial robustness guarantees.**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-15?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 1/10)\n{\n  \"title\": \"Adversarially Hardened Latent Safety Monitors Against Obfuscation\",\n  \"core_problem\": \"Latent-space safety probes are fundamentally brittle: obfuscation attacks reduce monitor recall from 100% to 0% while maintaining 90% jailbreak success, rendering all current activation-based defenses unreliable against adaptive adversaries.\",\n  \"opportunity\": \"The 'obfuscation tax' finding (ICLR 2026) shows evasion degrades attacker capability on complex tasks, and RL-Obfuscation (2025) shows attention-based probes resist learned evasion. No work combines adversarial training of safety probes themselves with architectural diversity (multi-layer, multi-head ensembles) to create certifiably robust latent monitors. The open-source obfuscated-activations codebase enables rapid prototyping within 11 days.\",\n  \"landscape\": \"Bailey et al. (ICLR 2026) demonstrated obfuscated activations bypass linear and MLP safety probes. Gupta & Jenner (NeurIPS Workshop 2025) showed RL-finetuned LLMs learn to evade token-level monitors but fail against holistic (attention/max-pooling) probes. Latent Adversarial Detection (Apr 2026) achieves 93.8% detection on synthetic multi-turn data via activation trajectory features but drops to 47-71% on real data and doesn't transfer across architectures. SafeTuning (EACL 2026) reinforces safety neurons but doesn't harden the monitoring probe itself. No existing work applies adversarial training to the probe to guarantee robustness under worst-case obfuscation — this is a defense gap explicitly left open by the ICLR 2026 paper. Concurrent work since March 2026 addresses related but distinct angles: Activation Watermarking (Aremu et al., Mar 2026) uses cryptographic key-based randomization to outperform guard baselines by up to 52% under adaptive attackers, but assumes the attacker lacks the secret key rather than training probe robustness directly; Segment-Level Coherence (He et al., Apr 2026) improves detection via multi-token aggregation achieving 98.85% AUROC against encoding-based attacks, but does not adversarially train probes against worst-case learned obfuscation; SALO (May 2026) exploits causal tracing of refusal trajectories for zero-shot jailbreak detection recovering >90% detection under forced-decoding attacks, but provides no certified guarantees. None combines adversarial minimax probe training with architectural ensemble diversity or provides certified robustness bounds against adaptive obfuscation.\",\n  \"approach\": \"Formulate robust latent safety monitoring as a minimax game: an inner adversary applies worst-case gradient-based activation perturbations (extending Bailey et al.'s obfuscation attacks as a differentiable PGD adversary over the residual stream) to evade the monitor, while an outer loop trains the probe to maximize detection under these perturbations — analogous to adversarial training in image classifiers but applied to the safety probe rather than the LLM itself. Deploy an architecturally diverse ensemble spanning multiple residual-stream layers (early/middle/late), aggregation strategies (per-token linear, max-pooling, learned-attention), and feature types (residual activations, attention patterns), fused via a confidence-weighted meta-classifier that is itself adversarially hardened. Derive certified robustness lower bounds on detection recall via randomized smoothing over bounded activation perturbations, providing the first formal guarantee that no obfuscation within an epsilon-ball can reduce ensemble recall below a provable threshold. Evaluate on current frontier open-source models (Qwen3-8B, Qwen3-14B, Llama 4 Scout-17B) using the open-source obfuscated-activations codebase against both gradient-based (PGD) and learned (RL-Obfuscation) evasion, differentiating from concurrent Activation Watermarking (cryptographic assumption) and Segment-Level Coherence (aggregation-only robustness) approaches.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~200h A100-80GB (activation extraction across 3 models: ~10h; gradient-based obfuscation attack generation: ~50h; iterative probe training across architectures: ~50h; RL-Obfuscation evaluation runs: ~40h; certification and ablations: ~50h)\",\n      \"gpu_utilization\": \"High idle rate (~70-80%): GPU sits unused while researchers design experiments, analyze intermediate results, debug obfuscation convergence issues, and iterate on probe architectures and adversary strength schedules between runs\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers with adversarial ML and mechanistic interpretability experience\",\n      \"estimated_gpu_cost\": \"$300-400 (at ~$1.50/h spot A100-80GB)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~300h A100-80GB (agent runs ~50% more experiments via automated hyperparameter sweeps and architecture search, reduced waste from human approval gates on adversary schedule and ensemble composition)\",\n      \"gpu_utilization\": \"Moderate idle (~40-50% vs ~75% manual): agent queues next experiment immediately upon completion, human approves key design decisions (adversary strength schedule, certification epsilon range, ensemble architecture) in daily check-ins\",\n      \"timeline\": \"4-8 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in for design approvals and certification theory review\",\n      \"claude_api_cost\": \"$150-300 (~1500-2000 turns for experiment orchestration, code generation, result analysis, and paper drafting at ~$0.10-0.15/turn Opus)\",\n      \"estimated_gpu_cost\": \"$450-500\",\n      \"risk_note\": \"Certified bound derivation via randomized smoothing may require human expertise in statistical certification theory; if certified bounds are vacuous at practical epsilon values, fallback to empirical worst-case guarantees weakens the contribution from 'certified' to 'empirically robust'\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~700h A100-80GB (3.5x manual: extensive sweeps over adversary PGD steps/epsilon, ensemble layer combinations, aggregation architectures, certification parameters; includes ~30% failed explorations and architecture dead-ends)\",\n      \"gpu_utilization\": \"Near-zero idle (<5%): agent continuously queues next experiment as each completes, parallelizes model-level experiments across GPUs, runs certification and ablation studies concurrently with probe training\",\n      \"timeline\": \"5-10 days with 4x A100; 3-5 days with 8x A100\",\n      \"team\": \"0 (initial setup only: clone obfuscated-activations repo, configure model access via HuggingFace, set API keys)\",\n      \"claude_api_cost\": \"$200-400 (~2000-3000 turns for fully autonomous experiment design, code generation, debugging, ablation planning, result analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$1,050-1,200\",\n      \"speed_bottleneck\": \"GPU count limits parallelism across 3 target models x multiple probe architectures x adversary configurations; RL-Obfuscation evaluation requires RL fine-tuning of 8-17B models (~30-50h per model per run), creating a serial bottleneck on individual GPUs\",\n      \"risk_note\": \"Randomized smoothing certification may produce vacuous bounds if activation perturbation geometry in residual streams differs fundamentally from Lp-ball assumptions; agent may over-explore architecture combinations without converging if adversarial training dynamics are unstable (oscillating inner/outer loss)\"\n    }\n  },\n  \"target_venues\": [\n    \"ICLR 2027 (abstract Sep 19, paper Sep 24, 2026 — estimated from prior year, official CFP not yet posted)\",\n    \"AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 — officially confirmed)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Obfuscated Activations Bypass LLM Latent-Space Defenses (ICLR 2026)\",\n    \"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? (NeurIPS Workshop 2025)\",\n    \"Targeted Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs (arXiv 2024)\",\n    \"Robust Safety Monitoring of Language Models via Activation Watermarking (arXiv 2026)\",\n    \"Segment-Level Coherence for Robust Harmful Intent Probing in LLMs (arXiv 2026)\",\n    \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv 2026)\",\n    \"Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection (arXiv 2026)\",\n    \"Unraveling LLM Jailbreaks Through Safety Knowledge Neurons (EACL 2026)\"\n  ],\n  \"description\": \"Current latent-space safety probes are fundamentally brittle: obfuscation attacks (Bailey et al., ICLR 2026) reduce monitor recall from 100% to 0% while maintaining 90% jailbreak success. No existing defense adversarially trains the monitoring probe itself against worst-case evasion. We propose a minimax adversarial training framework for safety probes: an inner loop generates worst-case obfuscated activations via gradient-based perturbations, while an outer loop hardens the probe to maximize detection under attack. We combine this with an ensemble of architecturally diverse probes spanning multiple residual-stream layers, aggregation strategies (linear, max-pooling, attention-based), and feature types, fused via learned confidence-weighted voting. Using randomized smoothing, we derive certified lower bounds on detection recall under bounded activation perturbations — the first formal robustness guarantee for latent safety monitors. Evaluated on Qwen3-8B/14B and Llama 4 Scout-17B using the open-source obfuscated-activations codebase, we benchmark against both gradient-based (PGD) and learned (RL-Obfuscation) evasion. This fills the explicit defense gap from ICLR 2026, differentiating from concurrent Activation Watermarking (cryptographic secrets) and Segment-Level Coherence (aggregation-only robustness). Target: ICLR 2027.\",\n  \"project_name\": \"adv_robust_safety_probes\",\n  \"source\": \"web_research\"\n}\n\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T13:21:23.958Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T13:21:23.958Z",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+## Round 1
+
+31 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T13:21:24.025Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-15 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (11 days from today 2026-05-14). Track: LLM Security.
+
+Direction: LLM safety robustness — defense methods against jailbreaking, adversarial prompt attacks, and safety alignment degradation. In-scope: robust safety training that resists adaptive attacks, automated red-teaming frameworks for systematic vulnerability discovery, safety-aware decoding or filtering at inference time, detecting and mitigating safety degradation when models are fine-tuned or distilled, multi-turn attack defense, tool-use and agentic safety. NOT limited to text — agentic tool-call safety and multi-modal attack surfaces welcome.
+
+Contribution type: METHOD ONLY. Must propose a concrete defense algorithm, detection pipeline, or training recipe — not just a new attack or red-teaming dataset. Attack + defense paired contributions OK if defense is the primary contribution.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Safety research is mostly inference-heavy — budget for evaluation across multiple attack suites, not large-scale pretraining.
+2. Time: ≤11 days. Build on existing open safety benchmarks and models (Llama-3-Guard, ShieldGemma, Qwen3, DeepSeek-R1 distills). Use established attack libraries (HarmBench, JailbreakBench, StrongREJECT) for evaluation.
+3. Eval: Attack Success Rate (ASR) reduction on HarmBench, JailbreakBench, AdvBench; safety score on WildGuard/Aegis; utility preservation on MT-Bench/MMLU (defense must not kill helpfulness).
+
+This is a NEW dedicated track at EMNLP 2026 — high visibility, growing fast, few established defense methods. 2026 research shows reasoning models can jailbreak other models at 97% success; defense lags far behind attack. Look for: inference-time safety filters that adapt to attack patterns, representation-level safety mechanisms (circuit-based), robust alignment under fine-tuning distribution shift, defense against multi-turn and agentic attacks. Avoid: yet another jailbreak attack without defense contribution, prompt-template-only defenses, safety classifiers without adversarial robustness guarantees.**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-15?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 1/10)
+{
+  "title": "Adversarially Hardened Latent Safety Monitors Against Obfuscation",
+  "core_problem": "Latent-space safety probes are fundamentally brittle: obfuscation attacks reduce monitor recall from 100% to 0% while maintaining 90% jailbreak success, rendering all current activation-based defenses unreliable against adaptive adversaries.",
+  "opportunity": "The 'obfuscation tax' finding (ICLR 2026) shows evasion degrades attacker capability on complex tasks, and RL-Obfuscation (2025) shows attention-based probes resist learned evasion. No work combines adversarial training of safety probes themselves with architectural diversity (multi-layer, multi-head ensembles) to create certifiably robust latent monitors. The open-source obfuscated-activations codebase enables rapid prototyping within 11 days.",
+  "landscape": "Bailey et al. (ICLR 2026) demonstrated obfuscated activations bypass linear and MLP safety probes. Gupta & Jenner (NeurIPS Workshop 2025) showed RL-finetuned LLMs learn to evade token-level monitors but fail against holistic (attention/max-pooling) probes. Latent Adversarial Detection (Apr 2026) achieves 93.8% detection on synthetic multi-turn data via activation trajectory features but drops to 47-71% on real data and doesn't transfer across architectures. SafeTuning (EACL 2026) reinforces safety neurons but doesn't harden the monitoring probe itself. No existing work applies adversarial training to the probe to guarantee robustness under worst-case obfuscation — this is a defense gap explicitly left open by the ICLR 2026 paper. Concurrent work since March 2026 addresses related but distinct angles: Activation Watermarking (Aremu et al., Mar 2026) uses cryptographic key-based randomization to outperform guard baselines by up to 52% under adaptive attackers, but assumes the attacker lacks the secret key rather than training probe robustness directly; Segment-Level Coherence (He et al., Apr 2026) improves detection via multi-token aggregation achieving 98.85% AUROC against encoding-based attacks, but does not adversarially train probes against worst-case learned obfuscation; SALO (May 2026) exploits causal tracing of refusal trajectories for zero-shot jailbreak detection recovering >90% detection under forced-decoding attacks, but provides no certified guarantees. None combines adversarial minimax probe training with architectural ensemble diversity or provides certified robustness bounds against adaptive obfuscation.",
+  "approach": "Formulate robust latent safety monitoring as a minimax game: an inner adversary applies worst-case gradient-based activation perturbations (extending Bailey et al.'s obfuscation attacks as a differentiable PGD adversary over the residual stream) to evade the monitor, while an outer loop trains the probe to maximize detection under these perturbations — analogous to adversarial training in image classifiers but applied to the safety probe rather than the LLM itself. Deploy an architecturally diverse ensemble spanning multiple residual-stream layers (early/middle/late), aggregation strategies (per-token linear, max-pooling, learned-attention), and feature types (residual activations, attention patterns), fused via a confidence-weighted meta-classifier that is itself adversarially hardened. Derive certified robustness lower bounds on detection recall via randomized smoothing over bounded activation perturbations, providing the first formal guarantee that no obfuscation within an epsilon-ball can reduce ensemble recall below a provable threshold. Evaluate on current frontier open-source models (Qwen3-8B, Qwen3-14B, Llama 4 Scout-17B) using the open-source obfuscated-activations codebase against both gradient-based (PGD) and learned (RL-Obfuscation) evasion, differentiating from concurrent Activation Watermarking (cryptographic assumption) and Segment-Level Coherence (aggregation-only robustness) approaches.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~200h A100-80GB (activation extraction across 3 models: ~10h; gradient-based obfuscation attack generation: ~50h; iterative probe training across architectures: ~50h; RL-Obfuscation evaluation runs: ~40h; certification and ablations: ~50h)",
+      "gpu_utilization": "High idle rate (~70-80%): GPU sits unused while researchers design experiments, analyze intermediate results, debug obfuscation convergence issues, and iterate on probe architectures and adversary strength schedules between runs",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers with adversarial ML and mechanistic interpretability experience",
+      "estimated_gpu_cost": "$300-400 (at ~$1.50/h spot A100-80GB)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~300h A100-80GB (agent runs ~50% more experiments via automated hyperparameter sweeps and architecture search, reduced waste from human approval gates on adversary schedule and ensemble composition)",
+      "gpu_utilization": "Moderate idle (~40-50% vs ~75% manual): agent queues next experiment immediately upon completion, human approves key design decisions (adversary strength schedule, certification epsilon range, ensemble architecture) in daily check-ins",
+      "timeline": "4-8 weeks",
+      "team": "1 researcher, ~30min/day check-in for design approvals and certification theory review",
+      "claude_api_cost": "$150-300 (~1500-2000 turns for experiment orchestration, code generation, result analysis, and paper drafting at ~$0.10-0.15/turn Opus)",
+      "estimated_gpu_cost": "$450-500",
+      "risk_note": "Certified bound derivation via randomized smoothing may require human expertise in statistical certification theory; if certified bounds are vacuous at practical epsilon values, fallback to empirical worst-case guarantees weakens the contribution from 'certified' to 'empirically robust'"
+    },
+    "auto_research": {
+      "gpu_hours": "~700h A100-80GB (3.5x manual: extensive sweeps over adversary PGD steps/epsilon, ensemble layer combinations, aggregation architectures, certification parameters; includes ~30% failed explorations and architecture dead-ends)",
+      "gpu_utilization": "Near-zero idle (<5%): agent continuously queues next experiment as each completes, parallelizes model-level experiments across GPUs, runs certification and ablation studies concurrently with probe training",
+      "timeline": "5-10 days with 4x A100; 3-5 days with 8x A100",
+      "team": "0 (initial setup only: clone obfuscated-activations repo, configure model access via HuggingFace, set API keys)",
+      "claude_api_cost": "$200-400 (~2000-3000 turns for fully autonomous experiment design, code generation, debugging, ablation planning, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$1,050-1,200",
+      "speed_bottleneck": "GPU count limits parallelism across 3 target models x multiple probe architectures x adversary configurations; RL-Obfuscation evaluation requires RL fine-tuning of 8-17B models (~30-50h per model per run), creating a serial bottleneck on individual GPUs",
+      "risk_note": "Randomized smoothing certification may produce vacuous bounds if activation perturbation geometry in residual streams differs fundamentally from Lp-ball assumptions; agent may over-explore architecture combinations without converging if adversarial training dynamics are unstable (oscillating inner/outer loss)"
+    }
+  },
+  "target_venues": [
+    "ICLR 2027 (abstract Sep 19, paper Sep 24, 2026 — estimated from prior year, official CFP not yet posted)",
+    "AAAI 2027 (abstract Jul 21, paper Jul 28, 2026 — officially confirmed)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Obfuscated Activations Bypass LLM Latent-Space Defenses (ICLR 2026)",
+    "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? (NeurIPS Workshop 2025)",
+    "Targeted Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs (arXiv 2024)",
+    "Robust Safety Monitoring of Language Models via Activation Watermarking (arXiv 2026)",
+    "Segment-Level Coherence for Robust Harmful Intent Probing in LLMs (arXiv 2026)",
+    "Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv 2026)",
+    "Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection (arXiv 2026)",
+    "Unraveling LLM Jailbreaks Through Safety Knowledge Neurons (EACL 2026)"
+  ],
+  "description": "Current latent-space safety probes are fundamentally brittle: obfuscation attacks (Bailey et al., ICLR 2026) reduce monitor recall from 100% to 0% while maintaining 90% jailbreak success. No existing defense adversarially trains the monitoring probe itself against worst-case evasion. We propose a minimax adversarial training framework for safety probes: an inner loop generates worst-case obfuscated activations via gradient-based perturbations, while an outer loop hardens the probe to maximize detection under attack. We combine this with an ensemble of architecturally diverse probes spanning multiple residual-stream layers, aggregation strategies (linear, max-pooling, attention-based), and feature types, fused via learned confidence-weighted voting. Using randomized smoothing, we derive certified lower bounds on detection recall under bounded activation perturbations — the first formal robustness guarantee for latent safety monitors. Evaluated on Qwen3-8B/14B and Llama 4 Scout-17B using the open-source obfuscated-activations codebase, we benchmark against both gradient-based (PGD) and learned (RL-Obfuscation) evasion. This fills the explicit defense gap from ICLR 2026, differentiating from concurrent Activation Watermarking (cryptographic secrets) and Segment-Level Coherence (aggregation-only robustness). Target: ICLR 2027.",
+  "project_name": "adv_robust_safety_probes",
+  "source": "web_research"
+}
+
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "773d84ca-b3d3-46b9-bd3e-104140513f6c",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T13:21:24.019Z_
+
+```json
+{
+  "parentUuid": "773d84ca-b3d3-46b9-bd3e-104140513f6c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "15dae0e9-435c-4a81-acb2-f04ae0b75070",
+  "timestamp": "2026-05-15T13:21:24.019Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T13:21:24.019Z_
+
+```json
+{
+  "parentUuid": "15dae0e9-435c-4a81-acb2-f04ae0b75070",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "96e03939-ec56-4040-a493-2e8aad43d1b1",
+  "timestamp": "2026-05-15T13:21:24.019Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "96e03939-ec56-4040-a493-2e8aad43d1b1",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adversarially hardened latent safety monitors",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T13:21:32.145Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea by independently verifying its claims through web searches. I need to check:
+
+1. SOTA freshness - Are the cited papers and baselines current?
+2. Reference verification - Do the cited papers exist?
+3. Gap validity - Does the claimed research gap still exist?
+4. Venue validity - Are the target venues' deadlines correct?
+5. Feasibility - Is the resource estimate realistic?
+6. Novelty - Is this sufficiently different from existing work?
+7. Whether this meets the user's requirements (EMNLP 2026, method contribution, compute constraints, etc.)
+
+
+8. There's an immediate problem: the user specifically requested EMNLP 2026 (ARR deadline 2026-05-25), but this idea targets ICLR 2027 and AAAI 2027 instead. I need to verify the claims through searches before proceeding.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96e03939-ec56-4040-a493-2e8aad43d1b1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZMH5pFJAXi2DTAAai",
+  "type": "assistant",
+  "uuid": "2e8130de-70bd-4cd2-aa52-b942a31d5d5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2sjGhPQaCfjPt1NhcDEn4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11936,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-15T13:21:32.148Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying the key claims, references, and searching for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e8130de-70bd-4cd2-aa52-b942a31d5d5e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZMH5pFJAXi2DTAAai",
+  "type": "assistant",
+  "uuid": "dde615e5-4276-41c3-a3c6-9119ed7b545f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2sjGhPQaCfjPt1NhcDEn4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11936,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T13:21:32.155Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012JWuiL9A7uk5rVFB44c121`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dde615e5-4276-41c3-a3c6-9119ed7b545f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZMH5pFJAXi2DTAAai",
+  "type": "assistant",
+  "uuid": "9d6e6760-5f9b-4d3b-b79a-92848ec499c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2sjGhPQaCfjPt1NhcDEn4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11936,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T13:21:32.161Z_
+
+<details><summary>↩ Tool result · `toolu_012JWuiL9A7uk5rVFB44c121`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d6e6760-5f9b-4d3b-b79a-92848ec499c6",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "bc0bed06-0344-4db9-bdbf-8f6e6b47fbf0",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "9d6e6760-5f9b-4d3b-b79a-92848ec499c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-15T13:21:36.865Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start my verification searches. I need to check:
+
+1. Whether the cited papers exist
+2. Whether the claimed gap is real
+3. Whether there's competing work the generator missed
+4. Venue deadline accuracy
+5. Feasibility concerns
+
+Let me also note the critical issue right away: The user asked for EMNLP 2026 with ARR deadline 2026-05-25, but the idea targets ICLR 2027 and AAAI 2027. This is a direct mismatch.
+
+Let me launch several parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc0bed06-0344-4db9-bdbf-8f6e6b47fbf0",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZwPvdrmTihAnF2mW3",
+  "type": "assistant",
+  "uuid": "e9c980bd-f94b-48d2-92f9-3a9ba9bac8b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSsxD3NRNC9vibXTtq311",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23777,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 23777,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-15T13:21:37.515Z_
+
+Starting my independent verification. Let me search for the key references and competing work in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9c980bd-f94b-48d2-92f9-3a9ba9bac8b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZwPvdrmTihAnF2mW3",
+  "type": "assistant",
+  "uuid": "a90f46c8-6cb0-4924-8a47-72011efd5924",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSsxD3NRNC9vibXTtq311",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23777,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 23777,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T13:21:37.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NjkYqLVrWgDLGY37WghP9y`</summary>
+
+```json
+{
+  "query": "Bailey et al. \"Obfuscated Activations Bypass LLM Latent-Space Defenses\" ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a90f46c8-6cb0-4924-8a47-72011efd5924",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RZwPvdrmTihAnF2mW3",
+  "type": "assistant",
+  "uuid": "db376b82-cc84-4997-a567-e3eee3fca23b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019PSsxD3NRNC9vibXTtq311",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 23777,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 23777,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T13:21:43.817Z_
+
+<details><summary>↩ Tool result · `toolu_01NjkYqLVrWgDLGY37WghP9y`</summary>
+
+```text
+Web search results for query: "Bailey et al. "Obfuscated Activations Bypass LLM Latent-Space Defenses" ICLR 2026"
+
+Links: [{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://arxiv.org/html/2412.09565v1"},{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses | OpenReview","url":"https://openreview.net/forum?id=ktGmDGoWnB"},{"title":"ICLR Poster Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://iclr.cc/virtual/2026/poster/10007739"},{"title":"[2412.09565] Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://arxiv.org/abs/2412.09565"},{"title":"[Literature Review] Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://www.themoonlight.io/en/review/obfuscated-activations-bypass-llm-latent-space-defenses"},{"title":"OBFUSCATED ACTIVATIONS BYPASS LLM LATENT-SPACE ...","url":"https://openreview.net/pdf/95d58be595dd2577a55a64006eb378a64e066c4d.pdf"},{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://www.researchgate.net/publication/387053265_Obfuscated_Activations_Bypass_LLM_Latent-Space_Defenses"},{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses - Consensus","url":"https://www.consensus.app/papers/details/f91d9ecedaf05181bebc5fb6b4dad741/"},{"title":"[2412.09565v1] Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://arxiv.org/abs/2412.09565v1"},{"title":"Obfuscated Activations - GitHub Pages","url":"https://obfuscated-activations.github.io/"}]
+
+I found the paper! Here are the search results for the Bailey et al. paper:
+
+**Paper Title:** "Obfuscated Activations Bypass LLM Latent-Space Defenses" by Luke Bailey, Alex Serrano, Abhay Sheshadri, Mikhail Seleznyov, Jordan Taylor, Erik Jenner, Jacob Hilton, Stephen Casper, Carlos Guestrin, and Scott Emmons
+
+**Key Findings:**
+State-of-the-art latent-space defenses—including sparse autoencoders, representation probing, and latent OOD detection—are all vulnerable to obfuscated activations. Against probes trained to classify harmfulness, their attacks can often reduce recall from 100% to 0% while retaining a 90% jailbreaking rate.
+
+**Limitations:** On a complex task (writing SQL code), obfuscation reduces model performance.
+
+**Availability:**
+- The paper appears as an ICLR 2026 poster presentation
+- The paper is available on arXiv (2412.09565)
+- It's also available on OpenReview
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "db376b82-cc84-4997-a567-e3eee3fca23b",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "80a71ddd-7901-498c-afd6-5679be29938f",
+  "toolUseResult": {
+    "query": "Bailey et al. \"Obfuscated Activations Bypass LLM Latent-Space Defenses\" ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YazVu38Xp7psboYfHG2uYb",
+        "content": [
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://arxiv.org/html/2412.09565v1"
+          },
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses | OpenReview",
+            "url": "https://openreview.net/forum?id=ktGmDGoWnB"
+          },
+          {
+            "title": "ICLR Poster Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://iclr.cc/virtual/2026/poster/10007739"
+          },
+          {
+            "title": "[2412.09565] Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://arxiv.org/abs/2412.09565"
+          },
+          {
+            "title": "[Literature Review] Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://www.themoonlight.io/en/review/obfuscated-activations-bypass-llm-latent-space-defenses"
+          },
+          {
+            "title": "OBFUSCATED ACTIVATIONS BYPASS LLM LATENT-SPACE ...",
+            "url": "https://openreview.net/pdf/95d58be595dd2577a55a64006eb378a64e066c4d.pdf"
+          },
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://www.researchgate.net/publication/387053265_Obfuscated_Activations_Bypass_LLM_Latent-Space_Defenses"
+          },
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses - Consensus",
+            "url": "https://www.consensus.app/papers/details/f91d9ecedaf05181bebc5fb6b4dad741/"
+          },
+          {
+            "title": "[2412.09565v1] Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://arxiv.org/abs/2412.09565v1"
+          },
+          {
+            "title": "Obfuscated Activations - GitHub Pages",
+            "url": "https://obfuscated-activations.github.io/"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for the Bailey et al. paper:\n\n**Paper Title:** \"Obfuscated Activations Bypass LLM Latent-Space Defenses\" by Luke Bailey, Alex Serrano, Abhay Sheshadri, Mikhail Seleznyov, Jordan Taylor, Erik Jenner, Jacob Hilton, Stephen Casper, Carlos Guestrin, and Scott Emmons\n\n**Key Findings:**\nState-of-the-art latent-space defenses—including sparse autoencoders, representation probing, and latent OOD detection—are all vulnerable to obfuscated activations. Against probes trained to classify harmfulness, their attacks can often reduce recall from 100% to 0% while retaining a 90% jailbreaking rate.\n\n**Limitations:** On a complex task (writing SQL code), obfuscation reduces model performance.\n\n**Availability:**\n- The paper appears as an ICLR 2026 poster presentation\n- The paper is available on arXiv (2412.09565)\n- It's also available on OpenReview"
+    ],
+    "durationSeconds": 5.889270889
+  },
+  "sourceToolAssistantUUID": "db376b82-cc84-4997-a567-e3eee3fca23b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T13:21:46.518Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LWQx1QiiTwpwcMhe1fDbXi`</summary>
+
+```json
+{
+  "query": "\"RL-Obfuscation\" language models evade latent-space monitors NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80a71ddd-7901-498c-afd6-5679be29938f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rao3A5kVb8vvnGKnwZ",
+  "type": "assistant",
+  "uuid": "4181331f-7499-4d3a-a1ed-8ec2dc758fef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SG8CxeS2EuUe98FYc3DTmM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 25155,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1130,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 25155,
+          "cache_creation_input_tokens": 1130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T13:21:52.926Z_
+
+<details><summary>↩ Tool result · `toolu_01LWQx1QiiTwpwcMhe1fDbXi`</summary>
+
+```text
+Web search results for query: ""RL-Obfuscation" language models evade latent-space monitors NeurIPS 2025"
+
+Links: [{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | OpenReview","url":"https://openreview.net/forum?id=YT97yOoD4x"},{"title":"[2506.14261] RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://arxiv.org/abs/2506.14261"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://arxiv.org/html/2506.14261v3"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250614261G/abstract"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://openreview.net/pdf?id=YT97yOoD4x"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - Paper Detail","url":"https://deeplearn.org/arxiv/620530/rl-obfuscation:-can-language-models-learn-to-evade-latent-space-monitors"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - MATS Research","url":"https://www.matsprogram.org/research/receWMx6ftg6mcyCh"},{"title":"RL Obfuscation tests whether a Language Model can evade a monitoring... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/RL-Obfuscation-tests-whether-a-Language-Model-can-evade-a-monitoring-method-without_fig1_392765939"},{"title":"(PDF) RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://www.researchgate.net/publication/392765939_RL-Obfuscation_Can_Language_Models_Learn_to_Evade_Latent-Space_Monitors"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | Papers With Code","url":"https://paperswithcode.com/paper/rl-obfuscation-can-language-models-learn-to"}]
+
+I found comprehensive information about the RL-Obfuscation research paper. Here are the key findings:
+
+## Overview
+
+RL-Obfuscation was presented as a spotlight paper at the Mechanistic Interpretability Workshop at NeurIPS 2025. The research introduces RL-Obfuscation, in which LLMs are finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations.
+
+## Key Research Question
+
+The critical open question explored is whether LLMs can learn to evade latent-space monitors, which aim to detect undesirable behaviors by leveraging internal model representations.
+
+## Methodology and Scale
+
+RL-Obfuscation was applied to LLMs ranging from 7B to 14B parameters and evaluated evasion success against a suite of monitors.
+
+## Main Findings
+
+Token-level latent-space monitors are highly vulnerable to this attack. However, more holistic monitors, such as max-pooling or attention-based probes, remain robust.
+
+Additional important findings include:
+- Models trained to evade a single static monitor can generalise to evade other unseen monitors.
+- The models can be trained to conditionally bypass latent-space monitors on only certain inputs.
+- The model can learn to repurpose tokens to have different internal representations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4181331f-7499-4d3a-a1ed-8ec2dc758fef",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "030be3bb-4368-4635-b15e-59a959d23977",
+  "toolUseResult": {
+    "query": "\"RL-Obfuscation\" language models evade latent-space monitors NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011Yw1Gh42vt8BGKG1a851rX",
+        "content": [
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | OpenReview",
+            "url": "https://openreview.net/forum?id=YT97yOoD4x"
+          },
+          {
+            "title": "[2506.14261] RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://arxiv.org/abs/2506.14261"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://arxiv.org/html/2506.14261v3"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250614261G/abstract"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://openreview.net/pdf?id=YT97yOoD4x"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/620530/rl-obfuscation:-can-language-models-learn-to-evade-latent-space-monitors"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? - MATS Research",
+            "url": "https://www.matsprogram.org/research/receWMx6ftg6mcyCh"
+          },
+          {
+            "title": "RL Obfuscation tests whether a Language Model can evade a monitoring... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/RL-Obfuscation-tests-whether-a-Language-Model-can-evade-a-monitoring-method-without_fig1_392765939"
+          },
+          {
+            "title": "(PDF) RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://www.researchgate.net/publication/392765939_RL-Obfuscation_Can_Language_Models_Learn_to_Evade_Latent-Space_Monitors"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors? | Papers With Code",
+            "url": "https://paperswithcode.com/paper/rl-obfuscation-can-language-models-learn-to"
+          }
+        ]
+      },
+      "I found comprehensive information about the RL-Obfuscation research paper. Here are the key findings:\n\n## Overview\n\nRL-Obfuscation was presented as a spotlight paper at the Mechanistic Interpretability Workshop at NeurIPS 2025. The research introduces RL-Obfuscation, in which LLMs are finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations.\n\n## Key Research Question\n\nThe critical open question explored is whether LLMs can learn to evade latent-space monitors, which aim to detect undesirable behaviors by leveraging internal model representations.\n\n## Methodology and Scale\n\nRL-Obfuscation was applied to LLMs ranging from 7B to 14B parameters and evaluated evasion success against a suite of monitors.\n\n## Main Findings\n\nToken-level latent-space monitors are highly vulnerable to this attack. However, more holistic monitors, such as max-pooling or attention-based probes, remain robust.\n\nAdditional important findings include:\n- Models trained to evade a single static monitor can generalise to evade other unseen monitors.\n- The models can be trained to conditionally bypass latent-space monitors on only certain inputs.\n- The model can learn to repurpose tokens to have different internal representations."
+    ],
+    "durationSeconds": 6.405190772999998
+  },
+  "sourceToolAssistantUUID": "4181331f-7499-4d3a-a1ed-8ec2dc758fef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T13:21:55.644Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014sRj963Ta51JCfFM4NJduy`</summary>
+
+```json
+{
+  "query": "adversarial training safety probes LLM latent space robustness 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "030be3bb-4368-4635-b15e-59a959d23977",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RbTzTqJr3CrSH1tLFx",
+  "type": "assistant",
+  "uuid": "5ad62649-527c-482c-b892-ebc9254275e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AWKytNKnL3UWz3qTPyi1S3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 26285,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1074,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 26285,
+          "cache_creation_input_tokens": 1074,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1074
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T13:22:04.461Z_
+
+<details><summary>↩ Tool result · `toolu_014sRj963Ta51JCfFM4NJduy`</summary>
+
+```text
+Web search results for query: "adversarial training safety probes LLM latent space robustness 2026"
+
+Links: [{"title":"Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs - MATS Research","url":"https://www.matsprogram.org/research/latent-adversarial-training-improves-robustness-to-persistent-harmful-behaviors-in-llms"},{"title":"Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425027186"},{"title":"Probing the Robustness of Large Language Models Safety to Latent Perturbations","url":"https://arxiv.org/html/2506.16078v1"},{"title":"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection","url":"https://arxiv.org/html/2604.28129"},{"title":"The Rogue Scalpel: Activation Steering Compromises LLM Safety","url":"https://arxiv.org/html/2509.22067v2"},{"title":"[2407.15549] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs","url":"https://arxiv.org/abs/2407.15549"},{"title":"[2503.09066] Probing Latent Subspaces in LLM for AI Security: Identifying and Manipulating Adversarial States","url":"https://arxiv.org/abs/2503.09066"},{"title":"Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs | OpenReview","url":"https://openreview.net/forum?id=6LxMeRlkWl"},{"title":"[PDF] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Latent-Adversarial-Training-Improves-Robustness-to-Sheshadri-Ewart/c5b9f501c01fec7afff1c5df862803f88f19236b"},{"title":"Robust LLM safeguarding via refusal feature adversarial training | OpenReview","url":"https://openreview.net/forum?id=s5orchdb33"}]
+
+I found several highly relevant research papers on adversarial training, safety probes, and LLM latent space robustness from 2025-2026. Here's a summary of the key findings:
+
+## Recent Research Highlights
+
+**Latent Adversarial Training (LAT) Approaches**
+
+Research by Aidan Ewart and colleagues from April 2026 on latent adversarial training improves robustness to persistent harmful behaviors in LLMs. Targeted LAT—where the adversary seeks to minimize loss on specific competing tasks—can augment state-of-the-art methods and improve robustness to jailbreaks, outperforming strong baselines with orders of magnitude less compute.
+
+**Safety-Critical Latent Dimensions**
+
+A two-stage defense framework called LATPC integrates latent-space adversarial training and post-aware calibration, systematically identifying safety-critical dimensions in the latent space to construct effective refusal features.
+
+**Probing Latent Space Vulnerabilities**
+
+Research identifies fundamental structural vulnerabilities in LLM safety alignment, demonstrating insufficient local robustness in latent representations, and proposes a systematic negative log-likelihood probing approach for detecting latent directions susceptible to adversarial perturbations. Layer-wise Adversarial Patch Training (LAPT) is introduced as a targeted fine-tuning technique that significantly enhances alignment robustness under latent perturbations.
+
+**Multi-Turn Attack Detection**
+
+Multi-turn attacks leave a consistent signature in the model's residual stream, and trajectory features capturing this signal improve detection from 76.2% to 93.8% on synthetic data.
+
+**Refusal Feature Analysis**
+
+Adversarial attacks share a universal mechanism for circumventing LLM safeguards by ablating a dimension called the refusal feature, leading to Refusal Feature Adversarial Training (ReFAT) as an efficient defense method.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ad62649-527c-482c-b892-ebc9254275e1",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "46a8b61b-b704-4081-bed3-2432a7ffa84e",
+  "toolUseResult": {
+    "query": "adversarial training safety probes LLM latent space robustness 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WcYVQWZYyQ42CfCRqB8Nm3",
+        "content": [
+          {
+            "title": "Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs - MATS Research",
+            "url": "https://www.matsprogram.org/research/latent-adversarial-training-improves-robustness-to-persistent-harmful-behaviors-in-llms"
+          },
+          {
+            "title": "Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425027186"
+          },
+          {
+            "title": "Probing the Robustness of Large Language Models Safety to Latent Perturbations",
+            "url": "https://arxiv.org/html/2506.16078v1"
+          },
+          {
+            "title": "Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection",
+            "url": "https://arxiv.org/html/2604.28129"
+          },
+          {
+            "title": "The Rogue Scalpel: Activation Steering Compromises LLM Safety",
+            "url": "https://arxiv.org/html/2509.22067v2"
+          },
+          {
+            "title": "[2407.15549] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs",
+            "url": "https://arxiv.org/abs/2407.15549"
+          },
+          {
+            "title": "[2503.09066] Probing Latent Subspaces in LLM for AI Security: Identifying and Manipulating Adversarial States",
+            "url": "https://arxiv.org/abs/2503.09066"
+          },
+          {
+            "title": "Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=6LxMeRlkWl"
+          },
+          {
+            "title": "[PDF] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Latent-Adversarial-Training-Improves-Robustness-to-Sheshadri-Ewart/c5b9f501c01fec7afff1c5df862803f88f19236b"
+          },
+          {
+            "title": "Robust LLM safeguarding via refusal feature adversarial training | OpenReview",
+            "url": "https://openreview.net/forum?id=s5orchdb33"
+          }
+        ]
+      },
+      "I found several highly relevant research papers on adversarial training, safety probes, and LLM latent space robustness from 2025-2026. Here's a summary of the key findings:\n\n## Recent Research Highlights\n\n**Latent Adversarial Training (LAT) Approaches**\n\nResearch by Aidan Ewart and colleagues from April 2026 on latent adversarial training improves robustness to persistent harmful behaviors in LLMs. Targeted LAT—where the adversary seeks to minimize loss on specific competing tasks—can augment state-of-the-art methods and improve robustness to jailbreaks, outperforming strong baselines with orders of magnitude less compute.\n\n**Safety-Critical Latent Dimensions**\n\nA two-stage defense framework called LATPC integrates latent-space adversarial training and post-aware calibration, systematically identifying safety-critical dimensions in the latent space to construct effective refusal features.\n\n**Probing Latent Space Vulnerabilities**\n\nResearch identifies fundamental structural vulnerabilities in LLM safety alignment, demonstrating insufficient local robustness in latent representations, and proposes a systematic negative log-likelihood probing approach for detecting latent directions susceptible to adversarial perturbations. Layer-wise Adversarial Patch Training (LAPT) is introduced as a targeted fine-tuning technique that significantly enhances alignment robustness under latent perturbations.\n\n**Multi-Turn Attack Detection**\n\nMulti-turn attacks leave a consistent signature in the model's residual stream, and trajectory features capturing this signal improve detection from 76.2% to 93.8% on synthetic data.\n\n**Refusal Feature Analysis**\n\nAdversarial attacks share a universal mechanism for circumventing LLM safeguards by ablating a dimension called the refusal feature, leading to Refusal Feature Adversarial Training (ReFAT) as an efficient defense method."
+    ],
+    "durationSeconds": 8.812605172000003
+  },
+  "sourceToolAssistantUUID": "5ad62649-527c-482c-b892-ebc9254275e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "46a8b61b-b704-4081-bed3-2432a7ffa84e",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adversarially hardened latent safety monitors",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T13:22:07.521Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BnduE54oGnWNzTjwDhf89a`</summary>
+
+```json
+{
+  "query": "\"Activation Watermarking\" robust safety monitoring LLM Aremu 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46a8b61b-b704-4081-bed3-2432a7ffa84e",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RcKJbupYbMZ8isKhse",
+  "type": "assistant",
+  "uuid": "00637f34-9cb5-4805-b28b-2dbf5f770850",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kf3zMBPDkrVAk51PoA3TSs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1172,
+      "cache_read_input_tokens": 27359,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1172,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 27359,
+          "cache_creation_input_tokens": 1172,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1172
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T13:22:14.514Z_
+
+<details><summary>↩ Tool result · `toolu_01BnduE54oGnWNzTjwDhf89a`</summary>
+
+```text
+Web search results for query: ""Activation Watermarking" robust safety monitoring LLM Aremu 2026 arxiv"
+
+Links: [{"title":"[2603.23171v1] Robust Safety Monitoring of Language Models via Activation Watermarking","url":"https://arxiv.org/abs/2603.23171v1"},{"title":"[2603.23171] Robust Safety Monitoring of Language Models via Activation Watermarking","url":"https://arxiv.org/abs/2603.23171"},{"title":"Robust Safety Monitoring of Language Models via Activation Watermarking","url":"https://arxiv.org/html/2603.23171v1"},{"title":"Overview of PAN 2026: Voight-Kampff Generative AI Detection, Text Watermarking, Multi-Author Writing Style Analysis, Generative Plagiarism Detection, and Reasoning Trajectory Detection","url":"https://arxiv.org/html/2602.09147"},{"title":"[2510.21053] A Reinforcement Learning Framework for Robust and Secure LLM Watermarking","url":"https://arxiv.org/abs/2510.21053"},{"title":"A Reinforcement Learning Framework for Robust and Secure LLM Watermarking","url":"https://arxiv.org/html/2510.21053"},{"title":"Character-Level Perturbations Disrupt LLM Watermarks","url":"https://arxiv.org/html/2509.09112v1"},{"title":"[2510.13829] A Linguistics-Aware LLM Watermarking via Syntactic Predictability","url":"https://arxiv.org/abs/2510.13829"},{"title":"[2306.17439] Provable Robust Watermarking for AI-Generated Text","url":"https://arxiv.org/abs/2306.17439"},{"title":"Defending LLM Watermarking Against Spoofing Attacks with Contrastive Representation Learning","url":"https://arxiv.org/html/2504.06575v1"}]
+
+I found the paper you're looking for! Here are the search results:
+
+## "Robust Safety Monitoring of Language Models via Activation Watermarking"
+
+This work shows that existing LLM monitors are vulnerable to adaptive attackers and designs improved defenses through activation watermarking by carefully introducing uncertainty for the attacker during inference.
+
+**Key Details:**
+- **Authors:** Toluwani Aremu and 3 other authors
+- **ArXiv ID:** 2603.23171
+- **Publication Date:** March 24, 2026
+
+**Main Contributions:**
+
+The work casts robust LLM monitoring as a security game, where adversaries who know about the monitor try to extract sensitive information, while a provider must accurately detect these adversarial queries at low false positive rates.
+
+Activation watermarking outperforms guard baselines by up to 52% under adaptive attackers who know the monitoring algorithm but not the secret key.
+
+**Technical Approach:**
+
+Activation watermarking fine-tunes the LLM to regularize its hidden activations to embed the watermark in the model's activation whenever it violates a policy, which a provider can efficiently detect at low computational cost during inference.
+
+The paper is available on arXiv at https://arxiv.org/abs/2603.23171
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00637f34-9cb5-4805-b28b-2dbf5f770850",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "2f3b3f91-e8a7-4b0a-b9b3-8666fd391ea3",
+  "toolUseResult": {
+    "query": "\"Activation Watermarking\" robust safety monitoring LLM Aremu 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RBUNkoaB4NcxpqbgSFcqDQ",
+        "content": [
+          {
+            "title": "[2603.23171v1] Robust Safety Monitoring of Language Models via Activation Watermarking",
+            "url": "https://arxiv.org/abs/2603.23171v1"
+          },
+          {
+            "title": "[2603.23171] Robust Safety Monitoring of Language Models via Activation Watermarking",
+            "url": "https://arxiv.org/abs/2603.23171"
+          },
+          {
+            "title": "Robust Safety Monitoring of Language Models via Activation Watermarking",
+            "url": "https://arxiv.org/html/2603.23171v1"
+          },
+          {
+            "title": "Overview of PAN 2026: Voight-Kampff Generative AI Detection, Text Watermarking, Multi-Author Writing Style Analysis, Generative Plagiarism Detection, and Reasoning Trajectory Detection",
+            "url": "https://arxiv.org/html/2602.09147"
+          },
+          {
+            "title": "[2510.21053] A Reinforcement Learning Framework for Robust and Secure LLM Watermarking",
+            "url": "https://arxiv.org/abs/2510.21053"
+          },
+          {
+            "title": "A Reinforcement Learning Framework for Robust and Secure LLM Watermarking",
+            "url": "https://arxiv.org/html/2510.21053"
+          },
+          {
+            "title": "Character-Level Perturbations Disrupt LLM Watermarks",
+            "url": "https://arxiv.org/html/2509.09112v1"
+          },
+          {
+            "title": "[2510.13829] A Linguistics-Aware LLM Watermarking via Syntactic Predictability",
+            "url": "https://arxiv.org/abs/2510.13829"
+          },
+          {
+            "title": "[2306.17439] Provable Robust Watermarking for AI-Generated Text",
+            "url": "https://arxiv.org/abs/2306.17439"
+          },
+          {
+            "title": "Defending LLM Watermarking Against Spoofing Attacks with Contrastive Representation Learning",
+            "url": "https://arxiv.org/html/2504.06575v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here are the search results:\n\n## \"Robust Safety Monitoring of Language Models via Activation Watermarking\"\n\nThis work shows that existing LLM monitors are vulnerable to adaptive attackers and designs improved defenses through activation watermarking by carefully introducing uncertainty for the attacker during inference.\n\n**Key Details:**\n- **Authors:** Toluwani Aremu and 3 other authors\n- **ArXiv ID:** 2603.23171\n- **Publication Date:** March 24, 2026\n\n**Main Contributions:**\n\nThe work casts robust LLM monitoring as a security game, where adversaries who know about the monitor try to extract sensitive information, while a provider must accurately detect these adversarial queries at low false positive rates.\n\nActivation watermarking outperforms guard baselines by up to 52% under adaptive attackers who know the monitoring algorithm but not the secret key.\n\n**Technical Approach:**\n\nActivation watermarking fine-tunes the LLM to regularize its hidden activations to embed the watermark in the model's activation whenever it violates a policy, which a provider can efficiently detect at low computational cost during inference.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2603.23171"
+    ],
+    "durationSeconds": 6.988632441999995
+  },
+  "sourceToolAssistantUUID": "00637f34-9cb5-4805-b28b-2dbf5f770850",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T13:22:17.355Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WAArkopoZE8BbJoyxVUyB2`</summary>
+
+```json
+{
+  "query": "\"Segment-Level Coherence\" harmful intent probing LLM He 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f3b3f91-e8a7-4b0a-b9b3-8666fd391ea3",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Rd4Hk9vhF5Mrq1b4r4",
+  "type": "assistant",
+  "uuid": "2d06284c-1fb8-4d68-b843-16ea445cb15c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VzYknaL4VoMS73vdMaLWv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 28531,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 891,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28531,
+          "cache_creation_input_tokens": 891,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 891
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T13:22:25.184Z_
+
+<details><summary>↩ Tool result · `toolu_01WAArkopoZE8BbJoyxVUyB2`</summary>
+
+```text
+Web search results for query: ""Segment-Level Coherence" harmful intent probing LLM He 2026 arxiv"
+
+Links: [{"title":"Segment-Level Coherence for Robust Harmful Intent Probing in LLMs","url":"https://arxiv.org/html/2604.14865v1"},{"title":"[2604.14865] Segment-Level Coherence for Robust Harmful Intent Probing in LLMs","url":"https://arxiv.org/abs/2604.14865"},{"title":"Segment-Level Coherence for Robust Harmful Intent Probing in ...","url":"https://www.researchgate.net/publication/403905786_Segment-Level_Coherence_for_Robust_Harmful_Intent_Probing_in_LLMs"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.27246"},{"title":"Security Concerns for Large Language Models: A Survey","url":"https://arxiv.org/html/2505.18889v3"},{"title":"Breaking Semantic-Aware Watermarks via LLM-Guided Coherence-Preserving Semantic Injection","url":"https://arxiv.org/html/2602.21593"},{"title":"Truth-value judgment in language models: ‘truth directions’ are context sensitive","url":"https://arxiv.org/html/2404.18865"},{"title":"[2603.27412] The Geometry of Harmful Intent: Training-Free Anomaly Detection via Angular Deviation in LLM Residual Streams","url":"https://arxiv.org/abs/2603.27412"},{"title":"PrivacyXray: Detecting Privacy Breaches in LLMs through Semantic Consistency and Probability Certainty","url":"https://arxiv.org/html/2506.19563v1"},{"title":"The Rogue Scalpel: Activation Steering Compromises LLM Safety","url":"https://arxiv.org/html/2509.22067v2"}]
+
+I found the paper you were searching for. Here are the key details:
+
+## "Segment-Level Coherence for Robust Harmful Intent Probing in LLMs"
+
+**Authors & Publication:** The paper is authored by Xuanli He and 5 other authors, submitted on April 16, 2026, with arxiv identifier 2604.14865.
+
+**Research Problem:** The paper addresses how Large Language Models are increasingly exposed to adaptive jailbreaking, particularly in high-stakes Chemical, Biological, Radiological, and Nuclear (CBRN) domains. Although streaming probes enable real-time monitoring, they still make systematic errors, often relying on a few high-scoring tokens, leading to false alarms when sensitive CBRN terms appear in benign contexts.
+
+**Proposed Solution:** The authors introduce a streaming probing objective that requires multiple evidence tokens to consistently support a prediction, rather than relying on isolated spikes. This encourages more robust detection based on aggregated signals instead of single-token cues.
+
+**Key Results:** At a fixed 1% false-positive rate, their method improves the true-positive rate by 35.55% relative to strong streaming baselines, with substantial gains in AUROC, even when starting from near-saturated baseline performance (AUROC = 97.40%).
+
+The paper can be accessed at https://arxiv.org/abs/2604.14865
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d06284c-1fb8-4d68-b843-16ea445cb15c",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "f9090515-6043-4e3e-92ed-736284c2413d",
+  "toolUseResult": {
+    "query": "\"Segment-Level Coherence\" harmful intent probing LLM He 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0122wXY4knsNjLXx4NqvWLy6",
+        "content": [
+          {
+            "title": "Segment-Level Coherence for Robust Harmful Intent Probing in LLMs",
+            "url": "https://arxiv.org/html/2604.14865v1"
+          },
+          {
+            "title": "[2604.14865] Segment-Level Coherence for Robust Harmful Intent Probing in LLMs",
+            "url": "https://arxiv.org/abs/2604.14865"
+          },
+          {
+            "title": "Segment-Level Coherence for Robust Harmful Intent Probing in ...",
+            "url": "https://www.researchgate.net/publication/403905786_Segment-Level_Coherence_for_Robust_Harmful_Intent_Probing_in_LLMs"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2510.27246"
+          },
+          {
+            "title": "Security Concerns for Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2505.18889v3"
+          },
+          {
+            "title": "Breaking Semantic-Aware Watermarks via LLM-Guided Coherence-Preserving Semantic Injection",
+            "url": "https://arxiv.org/html/2602.21593"
+          },
+          {
+            "title": "Truth-value judgment in language models: ‘truth directions’ are context sensitive",
+            "url": "https://arxiv.org/html/2404.18865"
+          },
+          {
+            "title": "[2603.27412] The Geometry of Harmful Intent: Training-Free Anomaly Detection via Angular Deviation in LLM Residual Streams",
+            "url": "https://arxiv.org/abs/2603.27412"
+          },
+          {
+            "title": "PrivacyXray: Detecting Privacy Breaches in LLMs through Semantic Consistency and Probability Certainty",
+            "url": "https://arxiv.org/html/2506.19563v1"
+          },
+          {
+            "title": "The Rogue Scalpel: Activation Steering Compromises LLM Safety",
+            "url": "https://arxiv.org/html/2509.22067v2"
+          }
+        ]
+      },
+      "I found the paper you were searching for. Here are the key details:\n\n## \"Segment-Level Coherence for Robust Harmful Intent Probing in LLMs\"\n\n**Authors & Publication:** The paper is authored by Xuanli He and 5 other authors, submitted on April 16, 2026, with arxiv identifier 2604.14865.\n\n**Research Problem:** The paper addresses how Large Language Models are increasingly exposed to adaptive jailbreaking, particularly in high-stakes Chemical, Biological, Radiological, and Nuclear (CBRN) domains. Although streaming probes enable real-time monitoring, they still make systematic errors, often relying on a few high-scoring tokens, leading to false alarms when sensitive CBRN terms appear in benign contexts.\n\n**Proposed Solution:** The authors introduce a streaming probing objective that requires multiple evidence tokens to consistently support a prediction, rather than relying on isolated spikes. This encourages more robust detection based on aggregated signals instead of single-token cues.\n\n**Key Results:** At a fixed 1% false-positive rate, their method improves the true-positive rate by 35.55% relative to strong streaming baselines, with substantial gains in AUROC, even when starting from near-saturated baseline performance (AUROC = 97.40%).\n\nThe paper can be accessed at https://arxiv.org/abs/2604.14865"
+    ],
+    "durationSeconds": 7.8258317779999995
+  },
+  "sourceToolAssistantUUID": "2d06284c-1fb8-4d68-b843-16ea445cb15c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T13:22:28.326Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GdL1Qr1MN8xKW9Ekdnt3bW`</summary>
+
+```json
+{
+  "query": "SALO \"refusal trajectories\" jailbreak detection latent causal tracing 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9090515-6043-4e3e-92ed-736284c2413d",
+  "isSidechain": false,
+  "requestId": "req_011Cb4RdqpvH9gcRhNksB9up",
+  "type": "assistant",
+  "uuid": "0b5d5c6e-f6ce-47da-b953-a1157cb89414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PV5dxQCHDaJdUaMENUjFkr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 919,
+      "cache_read_input_tokens": 29422,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 919,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 29422,
+          "cache_creation_input_tokens": 919,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 919
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T13:22:36.115Z_
+
+<details><summary>↩ Tool result · `toolu_01GdL1Qr1MN8xKW9Ekdnt3bW`</summary>
+
+```text
+Web search results for query: "SALO "refusal trajectories" jailbreak detection latent causal tracing 2026"
+
+Links: [{"title":"Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection","url":"https://arxiv.org/html/2605.02958"},{"title":"[2605.02958] Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection","url":"https://arxiv.org/abs/2605.02958"},{"title":"Why Do Different Aligned LLMs Exhibit Different Internal ...","url":"https://www.preprints.org/manuscript/202604.1776"},{"title":"(PDF) LatentBreak: Jailbreaking Large Language Models through Latent Space Feedback","url":"https://www.researchgate.net/publication/396458061_LatentBreak_Jailbreaking_Large_Language_Models_through_Latent_Space_Feedback"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.17305v1"},{"title":"Silencing the Guardrails: Inference-Time Jailbreaking via Dynamic Contextual Representation Ablation","url":"https://arxiv.org/html/2604.07835v1"},{"title":"Wei Yang Bryan Lim's Post - icml2026 #icml","url":"https://www.linkedin.com/posts/wei-yang-bryan-lim-5b4506187_icml2026-icml-activity-7455803364467998720-6l9Q"},{"title":"TADSOB: Enhancing Jailbreaking Attacks on LLMs via Trajectory-Aware Dynamic Suffix Optimization with Buffer by Xiaolong Li, Mingrui Lao, Chengsi Du, Yunhao Feng, Xiaohu Du, Liang Bai, Yanming Guo :: SSRN","url":"https://papers.ssrn.com/sol3/Delivery.cfm/63c54078-6868-498d-8a36-6d49fe69e045-MECA.pdf?abstractid=6431925&mirid=1"},{"title":"Defending Large Language Models Against Jailbreak Exploits ...","url":"https://www.sinaacademy.co.uk/media/books/Defending_LLMs_Against_Jailbreak_Exploits.pdf"},{"title":"Locking it down: A new technique to prevent LLM jailbreaks | SOPHOS","url":"https://www.sophos.com/en-us/blog/locking-it-down-a-new-technique-to-prevent-llm-jailbreaks"}]
+
+The search returned relevant results about SALO and refusal trajectories. Based on the search results, here's what I found:
+
+## SALO: Sparse Activation Localization Operator
+
+SALO identifies a "Refusal Trajectory"—a distinct spatiotemporal pattern of activation that manifests dynamically when the model processes malicious intent, and proposes SALO (Sparse Activation Localization Operator), a white-box detector.
+
+### Key Research Findings
+
+The research demonstrates that refusal is a dynamic and sparse process rather than a localized outcome. Using Causal Tracing, the researchers uncovered the Refusal Trajectory—a persistent upstream signature that remains intact even when adversarial attacks (e.g., GCG) suppress terminal signals.
+
+### Performance and Detection
+
+SALO is an inference-time detector designed to capture these latent patterns, and effectively recovers defense capabilities against forced-decoding attacks, improving detection rates from ~0% to >90% where methods relying on terminal states perform poorly.
+
+### Key Advantage
+
+While SALO utilizes a learned detector, it is trained exclusively on standard safety alignment data without ever seeing adversarial examples. This grants SALO zero-shot generalization capabilities to unseen attacks, allowing it to detect diverse attacks—from gradient optimization to semantic social engineering—without specific retraining.
+
+The paper was published on arXiv in May 2026 and uses causal tracing methodology to understand how refusal mechanisms work dynamically across model layers rather than treating them as static features.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b5d5c6e-f6ce-47da-b953-a1157cb89414",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "0b7e28dd-c35d-4145-a5d4-7bd5972098a9",
+  "toolUseResult": {
+    "query": "SALO \"refusal trajectories\" jailbreak detection latent causal tracing 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HhcVUfWZfhTQgHSHtJefhx",
+        "content": [
+          {
+            "title": "Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection",
+            "url": "https://arxiv.org/html/2605.02958"
+          },
+          {
+            "title": "[2605.02958] Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection",
+            "url": "https://arxiv.org/abs/2605.02958"
+          },
+          {
+            "title": "Why Do Different Aligned LLMs Exhibit Different Internal ...",
+            "url": "https://www.preprints.org/manuscript/202604.1776"
+          },
+          {
+            "title": "(PDF) LatentBreak: Jailbreaking Large Language Models through Latent Space Feedback",
+            "url": "https://www.researchgate.net/publication/396458061_LatentBreak_Jailbreaking_Large_Language_Models_through_Latent_Space_Feedback"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.17305v1"
+          },
+          {
+            "title": "Silencing the Guardrails: Inference-Time Jailbreaking via Dynamic Contextual Representation Ablation",
+            "url": "https://arxiv.org/html/2604.07835v1"
+          },
+          {
+            "title": "Wei Yang Bryan Lim's Post - icml2026 #icml",
+            "url": "https://www.linkedin.com/posts/wei-yang-bryan-lim-5b4506187_icml2026-icml-activity-7455803364467998720-6l9Q"
+          },
+          {
+            "title": "TADSOB: Enhancing Jailbreaking Attacks on LLMs via Trajectory-Aware Dynamic Suffix Optimization with Buffer by Xiaolong Li, Mingrui Lao, Chengsi Du, Yunhao Feng, Xiaohu Du, Liang Bai, Yanming Guo :: SSRN",
+            "url": "https://papers.ssrn.com/sol3/Delivery.cfm/63c54078-6868-498d-8a36-6d49fe69e045-MECA.pdf?abstractid=6431925&mirid=1"
+          },
+          {
+            "title": "Defending Large Language Models Against Jailbreak Exploits ...",
+            "url": "https://www.sinaacademy.co.uk/media/books/Defending_LLMs_Against_Jailbreak_Exploits.pdf"
+          },
+          {
+            "title": "Locking it down: A new technique to prevent LLM jailbreaks | SOPHOS",
+            "url": "https://www.sophos.com/en-us/blog/locking-it-down-a-new-technique-to-prevent-llm-jailbreaks"
+          }
+        ]
+      },
+      "The search returned relevant results about SALO and refusal trajectories. Based on the search results, here's what I found:\n\n## SALO: Sparse Activation Localization Operator\n\nSALO identifies a \"Refusal Trajectory\"—a distinct spatiotemporal pattern of activation that manifests dynamically when the model processes malicious intent, and proposes SALO (Sparse Activation Localization Operator), a white-box detector.\n\n### Key Research Findings\n\nThe research demonstrates that refusal is a dynamic and sparse process rather than a localized outcome. Using Causal Tracing, the researchers uncovered the Refusal Trajectory—a persistent upstream signature that remains intact even when adversarial attacks (e.g., GCG) suppress terminal signals.\n\n### Performance and Detection\n\nSALO is an inference-time detector designed to capture these latent patterns, and effectively recovers defense capabilities against forced-decoding attacks, improving detection rates from ~0% to >90% where methods relying on terminal states perform poorly.\n\n### Key Advantage\n\nWhile SALO utilizes a learned detector, it is trained exclusively on standard safety alignment data without ever seeing adversarial examples. This grants SALO zero-shot generalization capabilities to unseen attacks, allowing it to detect diverse attacks—from gradient optimization to semantic social engineering—without specific retraining.\n\nThe paper was published on arXiv in May 2026 and uses causal tracing methodology to understand how refusal mechanisms work dynamically across model layers rather than treating them as static features."
+    ],
+    "durationSeconds": 7.78475449800001
+  },
+  "sourceToolAssistantUUID": "0b5d5c6e-f6ce-47da-b953-a1157cb89414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-15T13:22:39.340Z_
+
+Good, the references check out. Now let me search for competing work and verify the gap claim more deeply.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b7e28dd-c35d-4145-a5d4-7bd5972098a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ReeeVtv8mddsBa9z3Y",
+  "type": "assistant",
+  "uuid": "a53ae17f-e4be-42ec-b07c-a36524336466",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018B2AvzqWdmtdJM59GTCnnE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 30341,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1130,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 30341,
+          "cache_creation_input_tokens": 1130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T13:22:39.704Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PXhTAWxeFPdFyjzHp7Ckao`</summary>
+
+```json
+{
+  "query": "adversarial training probes latent space defense obfuscation robust monitoring LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a53ae17f-e4be-42ec-b07c-a36524336466",
+  "isSidechain": false,
+  "requestId": "req_011Cb4ReeeVtv8mddsBa9z3Y",
+  "type": "assistant",
+  "uuid": "581134fd-067a-4aa6-8491-a5d60d412faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018B2AvzqWdmtdJM59GTCnnE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 30341,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1130,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 30341,
+          "cache_creation_input_tokens": 1130,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1130
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T13:22:47.496Z_
+
+<details><summary>↩ Tool result · `toolu_01PXhTAWxeFPdFyjzHp7Ckao`</summary>
+
+```text
+Web search results for query: "adversarial training probes latent space defense obfuscation robust monitoring LLM 2025 2026"
+
+Links: [{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses","url":"https://arxiv.org/html/2412.09565v2"},{"title":"STACK: Adversarial Attacks on LLM Safeguard Pipelines","url":"https://arxiv.org/html/2506.24068v2"},{"title":"RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?","url":"https://arxiv.org/html/2506.14261v1"},{"title":"OBFUSCATED ACTIVATIONS BYPASS LLM LATENT-SPACE ...","url":"https://openreview.net/pdf/95d58be595dd2577a55a64006eb378a64e066c4d.pdf"},{"title":"Obfuscated Activations Bypass LLM Latent-Space Defenses | OpenReview","url":"https://openreview.net/forum?id=ktGmDGoWnB"},{"title":"Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425027186"},{"title":"Adversarial Preference Learning for Robust LLM Alignment","url":"https://aclanthology.org/2025.findings-acl.1126.pdf"},{"title":"[2407.15549] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs","url":"https://arxiv.org/abs/2407.15549"},{"title":"Thought Filtering vs. Text Filtering: Empirical Evidence of Latent Space Defense Supremacy Against Adversarial Obfuscation - Research - Hugging Face Forums","url":"https://discuss.huggingface.co/t/thought-filtering-vs-text-filtering-empirical-evidence-of-latent-space-defense-supremacy-against-adversarial-obfuscation/172453"},{"title":"The Rogue Scalpel: Activation Steering Compromises LLM Safety","url":"https://arxiv.org/html/2509.22067v2"}]
+
+I've found relevant research on this topic. Here are the key findings from recent work in 2025-2026:
+
+## Key Research Areas
+
+**Obfuscated Activations and Latent-Space Defenses**
+
+Attackers can induce obfuscated activations in LLMs that produce undesired behavior while fooling latent-space monitors by creating adversarial suffixes that make activations appear benign to monitors, while still producing harmful outputs.
+
+Obfuscation attacks can bypass a wide range of monitors including sparse autoencoders, supervised probes, and latent OOD detectors, using different attack vectors such as adversarial suffixes, data poisoning, and model finetuning ranging from white-box to black-box settings.
+
+**Adversarial Training Methods**
+
+RL-Obfuscation allows LLMs to be finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations, with applications to models ranging from 7B to 14B parameters.
+
+The LATPC framework integrates latent-space adversarial training with post-aware calibration, selectively identifying safety-critical latent dimensions by contrasting harmful and benign queries, and uses an inference-time embedding-level calibration mechanism to mitigate over-defense.
+
+**Robustness Findings**
+
+Against probes trained to classify harmfulness, obfuscation attacks can reduce monitor recall from 100% down to 0% while still achieving a 90% jailbreaking success rate.
+
+Certain probe architectures are more robust than others, and there exists an obfuscation tax where on complex tasks, evading monitors reduces model performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "581134fd-067a-4aa6-8491-a5d60d412faf",
+  "isSidechain": false,
+  "promptId": "2d87c05d-fc5d-4cdf-8014-279e7297afa2",
+  "type": "user",
+  "uuid": "b7e3905b-57c5-4569-b5b8-2ae02ccc7d78",
+  "toolUseResult": {
+    "query": "adversarial training probes latent space defense obfuscation robust monitoring LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V5Y78sDBRyFn6mg1CEj4v2",
+        "content": [
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses",
+            "url": "https://arxiv.org/html/2412.09565v2"
+          },
+          {
+            "title": "STACK: Adversarial Attacks on LLM Safeguard Pipelines",
+            "url": "https://arxiv.org/html/2506.24068v2"
+          },
+          {
+            "title": "RL-Obfuscation: Can Language Models Learn to Evade Latent-Space Monitors?",
+            "url": "https://arxiv.org/html/2506.14261v1"
+          },
+          {
+            "title": "OBFUSCATED ACTIVATIONS BYPASS LLM LATENT-SPACE ...",
+            "url": "https://openreview.net/pdf/95d58be595dd2577a55a64006eb378a64e066c4d.pdf"
+          },
+          {
+            "title": "Obfuscated Activations Bypass LLM Latent-Space Defenses | OpenReview",
+            "url": "https://openreview.net/forum?id=ktGmDGoWnB"
+          },
+          {
+            "title": "Latent-space adversarial training with post-aware calibration for defending large language models against jailbreak attacks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425027186"
+          },
+          {
+            "title": "Adversarial Preference Learning for Robust LLM Alignment",
+            "url": "https://aclanthology.org/2025.findings-acl.1126.pdf"
+          },
+          {
+            "title": "[2407.15549] Latent Adversarial Training Improves Robustness to Persistent Harmful Behaviors in LLMs",
+            "url": "https://arxiv.org/abs/2407.15549"
+          },
+          {
+            "title": "Thought Filtering vs. Text Filtering: Empirical Evidence of Latent Space Defense Supremacy Against Adversarial Obfuscation - Research - Hugging Face Forums",
+            "url": "https://discuss.huggingface.co/t/thought-filtering-vs-text-filtering-empirical-evidence-of-latent-space-defense-supremacy-against-adversarial-obfuscation/172453"
+          },
+          {
+            "title": "The Rogue Scalpel: Activation Steering Compromises LLM Safety",
+            "url": "https://arxiv.org/html/2509.22067v2"
+          }
+        ]
+      },
+      "I've found relevant research on this topic. Here are the key findings from recent work in 2025-2026:\n\n## Key Research Areas\n\n**Obfuscated Activations and Latent-Space Defenses**\n\nAttackers can induce obfuscated activations in LLMs that produce undesired behavior while fooling latent-space monitors by creating adversarial suffixes that make activations appear benign to monitors, while still producing harmful outputs.\n\nObfuscation attacks can bypass a wide range of monitors including sparse autoencoders, supervised probes, and latent OOD detectors, using different attack vectors such as adversarial suffixes, data poisoning, and model finetuning ranging from white-box to black-box settings.\n\n**Adversarial Training Methods**\n\nRL-Obfuscation allows LLMs to be finetuned via reinforcement learning to bypass latent-space monitors while maintaining coherent generations, with applications to models ranging from 7B to 14B parameters.\n\nThe LATPC framework integrates latent-space adversarial training with post-aware calibration, selectively identifying safety-critical latent dimensions by contrasting harmful and benign queries, and uses an inference-time embedding-level calibration mechanism to mitigate over-defense.\n\n**Robustness Findings**\n\nAgainst probes trained to classify harmfulness, obfuscation attacks can reduce monitor recall from 100% down to 0% while still achieving a 90% jailbreaking success rate.\n\nCertain probe architectures are more robust than others, and there exists an obfuscation tax where on complex tasks, evading monitors reduces model performance."
+    ],
+    "durationSeconds": 7.789478379000007
+  },
+  "sourceToolAssistantUUID": "581134fd-067a-4aa6-8491-a5d60d412faf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-15T13:22:47.499Z_
+
+```json
+{
+  "parentUuid": "b7e3905b-57c5-4569-b5b8-2ae02ccc7d78",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3e66517a-ae4d-4e7f-a18d-8fe1576f59b5",
+  "timestamp": "2026-05-15T13:22:47.499Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-15 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3e66517a-ae4d-4e7f-a18d-8fe1576f59b5",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Adversarially hardened latent safety monitors",
+  "sessionId": "601ec25a-0fe5-41cc-a3fa-ae140ba693c3"
+}
+```
+
+---

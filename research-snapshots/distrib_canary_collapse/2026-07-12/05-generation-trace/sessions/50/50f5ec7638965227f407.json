@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0",
+  "id": "50f5ec7638965227f407",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex, find the MM",
+  "task_key": "agent-a8da0bb5ae83c9d55",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a8da0bb5ae83c9d55.jsonl",
+    "occurrence": 1,
+    "bytes": 52240,
+    "sha256": "af8900fabd337536e7508ba657c9a64ca30d4f10aa074519fbb29b999e78be4f"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 1,
+    "tool_calls": 1,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 1,
+      "tool_result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T21:08:02.384Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex, find the MMCT Algorithm pseudocode (Algorithm 1). Search for \"begin{algorithm}\" or \"MMCT\" or \"Algorithm\" in that file. Return the full algorithm environment with all surrounding text (the section header, any intro text, and the complete \\begin{algorithm}...\\end{algorithm} block). Also note the line numbers and the section label (e.g., \\label{app:mmct})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "28ed9fd7-28b9-4f8b-a3f7-ce466223640d",
+            "agentId": "a8da0bb5ae83c9d55",
+            "type": "user",
+            "uuid": "8beed188-7395-4a2c-b539-3b43663734fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T21:08:03.690Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for the MMCT Algorithm pseudocode in the appendix file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8beed188-7395-4a2c-b539-3b43663734fa",
+            "isSidechain": true,
+            "agentId": "a8da0bb5ae83c9d55",
+            "requestId": "req_011CbN5RTSBZ6o98FkjwZiVX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ff4a8b8a-f09d-4770-aeba-4502fdfd55a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GvRj88F3sevnKBhzg1gxak",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33365,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 33365,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T21:08:03.903Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0114nzqWmQEZ6PDHoBp3wVkt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff4a8b8a-f09d-4770-aeba-4502fdfd55a7",
+            "isSidechain": true,
+            "agentId": "a8da0bb5ae83c9d55",
+            "requestId": "req_011CbN5RTSBZ6o98FkjwZiVX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3043460f-68a2-4769-9d94-b84015bc657c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GvRj88F3sevnKBhzg1gxak",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 33365,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 33365
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 109,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 33365,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 33365,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T21:08:04.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114nzqWmQEZ6PDHoBp3wVkt",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\n3\t\\section{Training Details and Metric Drift}\n4\t\\label{app:training_details}\n5\t\\label{app:drift}\n6\t\n7\t\\paragraph{Hyperparameters.}\n8\tEach generation fine-tunes for 5{,}000 steps using AdamW (learning rate $5 \\times 10^{-5}$, 500 warmup steps, weight decay $0.01$, batch size 4 for Pythia-410M, 32 for GPT-2-medium).\n9\tGeneration uses temperature $1.0$, top-$k{=}50$, max length 512 tokens, producing 5{,}000 samples per generation from 5{,}000-sample subsets of WikiText-103.\n10\tCanary metrics: token entropy $H(p_\\theta | \\text{context})$ over 1{,}000 held-out samples; ECE with 15 bins.\n11\tAdditional downstream metrics (distinct-3, effective rank, Self-BLEU) appear in subsequent appendix sections.\n12\t\n13\t\\paragraph{Metric drift.}\n14\t\n15\t\\begin{table}[h]\n16\t\\centering\n17\t\\small\n18\t\\caption{Metric drift (\\%, generation~0$\\to$10) for Pythia-410M across contamination levels. Diversity collapse occurs at all $\\alpha$ levels, with the strongest decline at low-to-moderate contamination ($\\alpha{=}0.25$: distinct-1 $-40.3{\\pm}0.3\\%$) rather than full replacement ($\\alpha{=}1.0$: $-27.8{\\pm}1.6\\%$). $^\\dagger$$\\alpha{=}0.10$: single seed (seed~42, preliminary). $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.50$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std (seeds 42, 43, 44); $\\alpha{=}1.0$: 4-seed mean${\\pm}$std (seeds 42, 43, 44, 45).}\n19\t\\label{tab:drift_summary}\n20\t\\resizebox{\\columnwidth}{!}{%\n21\t\\begin{tabular}{lccccc}\n22\t\\toprule\n23\t$\\alpha$ & Entropy & ECE & Distinct-1 & Distinct-2 & Perplexity \\\\\n24\t\\midrule\n25\t0.00 & $-4.6{\\pm}0.4$ & $+37.6{\\pm}14$ & $-14.1{\\pm}0.4$ & $-9.6{\\pm}0.4$ & $-20.6{\\pm}1.0$ \\\\\n26\t0.10$^\\dagger$ & $-5.3$ & $+57$ & $-39.6$ & $-56.4$ & $-21.0$ \\\\\n27\t0.25 & $-4.7{\\pm}0.5$ & $+81.8{\\pm}15.9$ & $-40.3{\\pm}0.3$ & $-56.4{\\pm}0.7$ & $-18.1{\\pm}0.8$ \\\\\n28\t0.50 & $-18.0{\\pm}0.5$ & $+822.6{\\pm}18.3$ & $-37.1{\\pm}0.4$ & $-50.4{\\pm}1.0$ & $+21.0{\\pm}0.1$ \\\\\n29\t0.75 & $-27.6{\\pm}0.2$ & $+1791{\\pm}18$ & $-32.3{\\pm}0.5$ & $-41.0{\\pm}1.0$ & $+182.6{\\pm}0.7$ \\\\\n30\t1.00 & $-60.8{\\pm}1.2$ & $+3780{\\pm}30$ & $-27.8{\\pm}1.6$ & $-34.0{\\pm}3.3$ & $+3674{\\pm}45$ \\\\\n31\t\\bottomrule\n32\t\\end{tabular}}\n33\t\\end{table}\n34\t\n35\t\n36\t\\section{Distinct-3 Results}\n37\t\\label{app:distinct3}\n38\t\n39\tTable~\\ref{tab:distinct3_drift} reports distinct-3 drift across all contamination levels.\n40\tDistinct-3 exhibits the largest absolute decline among diversity metrics at low contamination ($-58.9{\\pm}0.9\\%$ at $\\alpha{=}0.25$) but attenuates at higher levels ($-30.5\\%$ at $\\alpha{=}1.0$), consistent with the diversity--calibration dissociation discussed in \\S\\ref{sec:discussion}.\n41\t\n42\t\\begin{table}[h]\n43\t\\centering\n44\t\\small\n45\t\\caption{Distinct-3 drift (\\%, generation~0$\\to$10) across contamination levels. $\\alpha{=}0.00$, $\\alpha{=}0.25$, $\\alpha{=}0.75$: 3-seed mean${\\pm}$std; $\\alpha{=}1.0$: 4-seed mean${\\pm}$std; $\\alpha{=}0.50$: single seed.}\n46\t\\label{tab:distinct3_drift}\n47\t\\begin{tabular}{lc}\n48\t\\toprule\n49\t$\\alpha$ & Distinct-3 drift (\\%) \\\\\n50\t\\midrule\n51\t0.00 & $-4.4{\\pm}0.5$ \\\\\n52\t0.25 & $-58.9{\\pm}0.9$ \\\\\n53\t0.50 & $-52.4$ \\\\\n54\t0.75 & $-38.6{\\pm}1.3$ \\\\\n55\t1.00 & $-30.5{\\pm}4.0$ \\\\\n56\t\\bottomrule\n57\t\\end{tabular}\n58\t\\end{table}\n59\t\n60\tDistinct-3 exhibits higher lag instability than distinct-1/2 (bimodal lag distribution, std${>}1.5$ vs.\\ ${<}0.5$ generations), reflecting its lower signal-to-noise ratio at 512-token generation length.\n61\t\n62\t\n63\t\\section{Observation Window Sensitivity}\n64\t\\label{app:window_sensitivity}\n65\t\n66\tConsensus classification stabilizes at $T_{\\min}{\\geq}5$ (Table~\\ref{tab:window_sensitivity}): all six effect-size reference pairs reach $K{\\geq}4/5$ agreement at every window from $T_{\\min}{=}5$ through $T_{\\min}{=}10$.\n67\t\n68\t\\begin{table}[h]\n69\t\\centering\n70\t\\small\n71\t\\caption{Observation window sensitivity for Tier~3 consensus ($K{\\geq}4/5$) at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Tier~3 pairs: number of canary$\\to$downstream pairs (out of 8 validated) reaching $K{\\geq}4/5$ method agreement. TY pairs: number of effect-size reference pairs (out of 6) reaching Toda--Yamamoto significance (moderate supplementary method; \\S\\ref{sec:method}). Consensus stabilizes at $T_{\\min}{\\geq}5$; TY stabilizes at $T_{\\min}{\\geq}6$.}\n72\t\\label{tab:window_sensitivity}\n73\t\\resizebox{\\columnwidth}{!}{%\n74\t\\begin{tabular}{lccccccccc}\n75\t\\toprule\n76\t& \\multicolumn{8}{c}{Minimum observation window $T_{\\min}$} \\\\\n77\t\\cmidrule(lr){2-9}\n78\t& 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\\\\n79\t\\midrule\n80\tTier~3 pairs (/8)    & $\\dagger$ & $\\dagger$ & 6 & 6 & 6 & 6 & 6 & 6 \\\\\n81\tTY pairs$^\\S$ (/6)   & $\\dagger$ & $\\dagger$ & 3--6 & 3--6 & 3--6 & 3--6 & 3--6 & 6 \\\\\n82\tStable               & ---       & ---       & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark \\\\\n83\t\\bottomrule\n84\t\\multicolumn{9}{l}{\\footnotesize $\\dagger$~Insufficient degrees of freedom for Granger-type tests ($<6$ data points).} \\\\\n85\t\\multicolumn{9}{l}{\\footnotesize $^\\S$~TY directional assignment under verification.}\n86\t\\end{tabular}}\n87\t\\end{table}\n88\t\n89\t\\section{Robustness Checks}\n90\t\\label{app:robustness}\n91\t\n92\t\\paragraph{Permutation count and FDR sensitivity.}\n93\tPermG $p$-values are stable between 5{,}000 and 10{,}000 permutations (max $|\\Delta p|{=}0.010$, 0/24 significance flips at $\\alpha{=}0.75$).\n94\tTreatment/null separation is robust to FDR threshold choice: at $q{=}0.05$, 4/36 null pairs vs.\\ 19/24 treatment pairs reach significance; at $q{=}0.10$, null rejections rise to 8/36.\n95\tAt the onset boundary ($\\alpha{=}0.45$), minimum FDR-corrected $p$-values ($0.059$--$0.091$) are consistent with a continuous power transition rather than binary absence of signal.\n96\t\n97\t\\section{Systematic Robustness Analysis}\n98\t\\label{app:spec_curve}\n99\t\n100\tWe construct 1{,}160 specifications from 13 contamination levels, 4~seeds, and 8 canary$\\to$downstream pairs (all PermG, $n_\\text{perm}{=}5{,}000$, BH FDR $q{=}0.05$).\n101\t\n102\t\\begin{table}[h]\n103\t\\centering\n104\t\\small\n105\t\\caption{Specification curve summary (1{,}160 specifications, D120-compliant). The blind$\\to$onset jump is robust across specifications: 0\\% significance rate through $\\alpha{=}0.45$, rising to 75\\% at $\\alpha{=}0.50$.}\n106\t\\label{tab:spec_curve}\n107\t\\begin{tabular}{lc}\n108\t\\toprule\n109\tMetric & Value \\\\\n110\t\\midrule\n111\tTotal specifications & 1{,}160 \\\\\n112\tSignificant (FDR $q{<}0.05$) & 536 (46.2\\%) \\\\\n113\t\\midrule\n114\t\\emph{By regime} & \\\\\n115\t\\quad Blind ($\\alpha \\leq 0.45$) & 0\\% \\\\\n116\t\\quad Onset ($\\alpha{=}0.50$) & 75\\% \\\\\n117\t\\quad Detection ($\\alpha \\geq 0.75$) & 62--75\\% \\\\\n118\t\\bottomrule\n119\t\\end{tabular}\n120\t\\end{table}\n121\t\n122\tThe blind$\\to$onset jump holds across the vast majority of specifications (Figure~\\ref{fig:spec_curve}).\n123\t\n124\t\n125\t\\section{Transfer Entropy Analysis}\n126\t\\label{app:transfer_entropy}\n127\t\\phantomsection\\label{app:te_mi}\n128\t\n129\tTransfer entropy (TE; \\citealp{schreiber2000measuring}; 3-bin discretization, $n{=}5{,}000$ permutations) yields 0/192 BH-corrected significant pairs across all conditions, confirming that nonparametric information-theoretic methods lack power at $T{=}11$.\n130\tA KNN-based TE estimator ($k{=}5$) shows forward-dominant TE fraction increasing monotonically with $\\alpha$ (4/8 at $\\alpha{=}0.25$ to 8/8 at $\\alpha{=}1.0$), but this does not reach statistical significance after FDR correction.\n131\t\n132\t\\section{Change-Point Detection Analysis}\n133\t\\label{app:change_point}\n134\t\n135\tMax-split change-point tests ($n{=}5{,}000$ bootstrap) yield 66.7\\% FPR under null control (12/18, $\\alpha{=}0.00$), precluding use as a standalone detector.\n136\tHowever, the temporal ordering of change-points reverses between null and treatment: under null, downstream metrics break first (gen~2) before canary (gen~4--8); under treatment ($\\alpha{\\geq}0.75$), canary breaks first (gen~1) before downstream (gen~2--4).\n137\tThis ordering reversal shifts monotonically with $\\alpha$, consistent with the Granger-precedence analysis.\n138\t\n139\t\n140\t\\section{Sequential Monitoring: CUSUM vs Calibrated Threshold}\n141\t\\label{app:csmp}\n142\t\n143\tCUSUM sequential testing~\\citep{page1954continuous} calibrated against $\\alpha{=}0.0$ null control (FAR${=}$0\\%) produces identical alarm times as a simple $2\\sigma$ threshold at all tested operating points: both trigger at generation~1 for $\\alpha{\\geq}0.50$.\n144\tThe equivalence arises because the generation-0$\\to$1 entropy drop ($|\\Delta x|{>}0.7$) greatly exceeds null variability ($\\sigma_0{\\approx}0.03$); CUSUM's cumulative memory provides no advantage when the initial shift dominates.\n145\t\n146\t\\section{Background and Notation}\n147\t\\label{app:background}\n148\t\\label{sec:background}\n149\t\n150\tThis section establishes the formal setup and notation used throughout the paper.\n151\t\n152\t\\paragraph{Iterative training loop.}\n153\tLet $M_0$ denote a pretrained language model and $\\mathcal{D}_\\text{real}$ a fixed corpus of human-written text.\n154\tAt each generation $t \\geq 1$, the model $M_{t-1}$ generates a synthetic corpus $\\mathcal{D}_\\text{synth}^{(t-1)}$, and the next-generation model $M_t$ is fine-tuned on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data:\n155\t\\begin{equation}\n156\t    \\mathcal{D}_\\text{train}^{(t)} = \\alpha \\cdot \\mathcal{D}_\\text{synth}^{(t-1)} \\;+\\; (1{-}\\alpha) \\cdot \\mathcal{D}_\\text{real}, \\quad \\alpha \\in [0, 1].\n157\t    \\label{eq:mixing}\n158\t\\end{equation}\n159\tAt $\\alpha{=}1.0$, this reduces to the full-replacement paradigm of \\citet{shumailov2024curse}.\n160\t\n161\t\\paragraph{Metric families.}\n162\t\\emph{Canary metrics}: token entropy ($H(p_\\theta | \\text{context})$ on held-out samples) and expected calibration error (ECE).\n163\t\\emph{Downstream metrics}: distinct-$n$ ($n \\in \\{1, 2, 3\\}$)~\\citep{li2016diversity} and perplexity.\n164\tEach metric produces a time series of $T{+}1$ observations.\n165\t\n166\t\\paragraph{Lead-lag testing.}\n167\tGiven canary series $X$ and downstream series $Y$, the central question is whether changes in $X$ temporally precede changes in $Y$, requiring directionality and confounder control beyond simple correlation.\n168\tWe employ five methods spanning permissive to conservative: naive cross-correlation, differenced cross-correlation, threshold onset detection, permutation Granger causality~\\citep{shojaie2022granger}, and Toda--Yamamoto Granger causality~\\citep{toda1995statistical}.\n169\t\n170\t\\section{MMCT Algorithm}\n171\t\\label{app:mmct}\n172\t\n173\tAlgorithm~\\ref{alg:mmct} describes the Multi-Method Consensus Test (MMCT) introduced in \\S\\ref{sec:mmct}.\n174\t\n175\t\\begin{algorithm}[h]\n176\t\\caption{Multi-Method Consensus Test (MMCT)}\n177\t\\label{alg:mmct}\n178\t\\begin{algorithmic}[1]\n179\t\\Require Time series pair $(X, Y)$; methods $\\{m_1, \\ldots, m_K\\}$ ($K{=}5$); null-control data $\\mathcal{N}$ (from $\\alpha{=}0.0$); tolerance $\\epsilon{=}0.01$\n180\t\\Ensure $p$-value, consensus level $\\hat{K}$\n181\t\\For{each method $m_k$}\n182\t    \\State Compute empirical FPR: $\\widehat{\\mathrm{FPR}}_k \\gets$ fraction of null-control pairs where $m_k$ rejects $H_0$\n183\t    \\State Compute weight: $w_k \\gets 1 / \\max(\\widehat{\\mathrm{FPR}}_k,\\; \\epsilon)$\n184\t    \\State Apply $m_k$ to $(X, Y)$: $d_k \\gets \\mathbf{1}[m_k \\text{ rejects } H_0]$\n185\t\\EndFor\n186\t\\State Weighted consensus: $W(X {\\to} Y) \\gets \\sum_{k} w_k \\, d_k \\;/\\; \\sum_{k} w_k$\n187\t\\State Build empirical null distribution of $W$ from all null-control pairs in $\\mathcal{N}$\n188\t\\State Compute $p$-value from empirical null: $p \\gets \\Pr_{\\mathcal{N}}(W \\geq W_{\\mathrm{obs}})$\n189\t\\State Consensus level: $\\hat{K} \\gets \\sum_{k} d_k$\n190\t\\State \\Return $p$, $\\hat{K}$\n191\t\\end{algorithmic}\n192\t\\end{algorithm}\n193\t\n194\t\\paragraph{Design rationale.}\n195\tFPR-inverse weighting penalizes methods with high false positive rates on null-control data: naive cross-correlation (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}7.4\\%$, the lowest among all five methods) receives $w{=}13.5$.\n196\tThe empirical null distribution avoids parametric assumptions that are unreliable for short ($T{=}5$--$20$), non-stationary series typical of iterative training.\n197\tMMCT is a consensus testing protocol, not a novel statistical method; its value lies in systematic method comparison and the identification of method-dependent conclusions.\n198\t\n199\t\n200\t\\section{Methodological Comparison Table}\n201\t\\label{app:method_comparison}\n202\t\n203\tTable~\\ref{tab:method-comparison} summarizes the methodological coverage of existing canary and monitoring analyses across the diagnostic dimensions identified in \\S\\ref{sec:method}.\n204\tNo prior work combines all six dimensions.\n205\t\n206\t\\begin{table}[h]\n207\t\\centering\n208\t\\small\n209\t\\caption{Methodological comparison of canary and monitoring analyses. \\checkmark\\ = present, $\\times$ = absent, $\\circ$ = partial (${\\leq}2$ levels or limited replication). Diff.\\ = differencing/stationarity controls. Multi-M.\\ = ${\\geq}2$ independent statistical methods. MTC = multiple testing correction. Regime = systematic variation of $\\alpha$. Seeds = ${\\geq}3$ independent seeds. Arch.\\ = ${\\geq}2$ architecturally distinct model families.}\n210\t\\label{tab:method-comparison}\n211\t\\resizebox{\\columnwidth}{!}{%\n212\t\\begin{tabular}{lccccccl}\n213\t\\toprule\n214\tWork & Diff. & Multi-M. & MTC & Regime & Seeds & Arch. & Metrics \\\\\n215\t\\midrule\n216\t\\citet{shumailov2024curse}     & $\\times$   & $\\times$   & $\\times$   & $\\circ$    & \\checkmark & \\checkmark & PPL \\\\\n217\t\\citet{du2025scales}           & $\\times$   & $\\times$   & \\checkmark & \\checkmark & \\checkmark & $\\times$   & ECE, Acc, Dist-$n$ \\\\\n218\t\\citet{gambetta2024surplexity} & $\\times$   & $\\times$   & $\\times$   & \\checkmark & \\checkmark & \\checkmark & Surplexity, Ent \\\\\n219\tSIGMA~\\citep{sigma2026spectral} & $\\times$   & $\\times$   & $\\times$   & $\\times$   & $\\times$   & $\\times$   & Spectral \\\\\n220\tDCES~\\citep{dces2026counter}    & $\\times$   & $\\times$   & $\\times$   & $\\times$   & $\\times$   & \\checkmark & ECE, Ent, PPL \\\\\n221\t\\midrule\n222\t\\textbf{Ours}                  & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark & \\checkmark & Ent, ECE, PPL, Dist-$n$ \\\\\n223\t\\bottomrule\n224\t\\end{tabular}%\n225\t}\n226\t\\end{table}\n227\t\n228\t\\section{Extended Discussion}\n229\t\\label{app:extended_discussion}\n230\t\n231\t\\paragraph{Calibration scope.}\n232\tAll calibration results are specific to our setup (Pythia-410M, WikiText-103, $T{=}10$).\n233\tOn C4 at $\\alpha{=}0.50$, PermG reverse reaches 7/8 (seed-dependent: s43 1/8), indicating directional asymmetry should be verified per domain.\n234\tToken entropy ($H(p_\\theta|\\text{context})$ on held-out data) and perplexity ($\\exp(H_\\text{cross})$ on generated text) co-move synchronously, explaining why first-differencing eliminates canary$\\to$perplexity but preserves canary$\\to$diversity.\n235\t\n236\t\\paragraph{Scale verification (Pythia-1.4B).}\n237\t\\label{app:scale_14b}\n238\t\n239\t\\begin{table}[h]\n240\t\\centering\n241\t\\small\n242\t\\caption{Pythia-1.4B phase-diagram cells (fp32, PermG forward, 6-pair basis excl.\\ MAUVE).}\n243\t\\label{tab:14b_phase}\n244\t\\begin{tabular}{lcccc}\n245\t\\toprule\n246\t$\\alpha$ & \\multicolumn{2}{c}{$T{=}10$} & \\multicolumn{2}{c}{$T{=}15$} \\\\\n247\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n248\t         & s42 & s44 & s42 & s43 \\\\\n249\t\\midrule\n250\t0.45 & 0/6 & 0/6 & 3/6 & 5/6 \\\\\n251\t0.50 & 4/6 & 6/6 & 3/6 & 3/6 \\\\\n252\t0.60 & 4/6 & 6/6 & 6/6 & 6/6 \\\\\n253\t0.75 & 5/6 & 6/6 & 6/6 & 6/6 \\\\\n254\t\\bottomrule\n255\t\\end{tabular}\n256\t\\end{table}\n257\t\n258\tPhase-diagram structure is qualitatively preserved at 1.4B (Table~\\ref{tab:14b_phase}; Figure~\\ref{fig:14b_phase}): detection boundary at $\\alpha_c{\\approx}0.50$, cross-$T$ improvement at 3/4 $\\alpha$ values ($\\alpha{=}0.45$: $0/6{\\to}5/6$).\n259\tThe 410M sync-dip does not reproduce at 1.4B (4/6 at $\\alpha{=}0.60$, $T{=}10$).\n260\tDirectional asymmetry is seed-specific (s42 reverse 0/6 across all conditions; s43 reverse 6/6 at $\\alpha{\\geq}0.60$).\n261\t\n262\t\\begin{figure}[h]\n263\t\\centering\n264\t\\includegraphics[width=\\columnwidth]{figures/fig_14b_phase.pdf}\n265\t\\caption{Pythia-1.4B phase diagram (PermG forward, 6-pair basis). Detection boundary ($\\alpha_c \\approx 0.50$) is consistent with 410M.}\n266\t\\label{fig:14b_phase}\n267\t\\end{figure}\n268\t\n269\t\n270\t\\section{Per-Method Dose-Response Profiles}\n271\t\\label{app:dose_response}\n272\t\n273\tTable~\\ref{tab:dose_response_full} reports FDR significance counts (/8 validated pairs) for all five detection methods across 12 contamination levels (seed~42, Pythia-410M, WikiText, fp32).\n274\tPermG exhibits a sharp 0$\\to$6 jump at $\\alpha{=}0.50$ with a return to 0 at $\\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.\n275\t\n276\t\\begin{table}[h]\n277\t\\centering\n278\t\\small\n279\t\\caption{Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\\alpha{=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision).}\n280\t\\label{tab:dose_response_full}\n281\t\\resizebox{\\columnwidth}{!}{%\n282\t\\begin{tabular}{lccccc}\n283\t\\toprule\n284\t$\\alpha$ & Naive & Diff.\\ XCorr & Threshold & PermG & TY$^\\S$ \\\\\n285\t\\midrule\n286\t0.00 & 8 & 4 & 3 & \\textbf{0} & 1 \\\\\n287\t0.10 & 7 & 6 & 0 & \\textbf{0} & 0 \\\\\n288\t0.25 & 8 & 3 & 0 & \\textbf{0} & 2 \\\\\n289\t0.30 & 8 & 4 & 0 & \\textbf{0} & 3 \\\\\n290\t0.35 & 8 & 4 & 0 & \\textbf{0} & 1 \\\\\n291\t0.40 & 8 & 3 & 0 & \\textbf{0} & 4 \\\\\n292\t0.45 & 8 & 6 & 0 & \\textbf{0} & 1 \\\\\n293\t0.50 & 8 & 7 & 4 & \\textbf{6} & 3 \\\\\n294\t0.55 & 8 & 8 & 0 & \\textbf{0} & 1 \\\\\n295\t0.60 & 8 & 6 & 0 & \\textbf{0} & 0 \\\\\n296\t0.75 & 7 & 6 & 0 & \\textbf{6} & 3 \\\\\n297\t1.00 & 8 & 6 & 2 & \\textbf{6} & 1 \\\\\n298\t\\bottomrule\n299\t\\multicolumn{6}{l}{\\footnotesize $^\\S$TY directional assignment under verification; column retained for completeness.} \\\\\n300\t\\end{tabular}}\n301\t\\end{table}\n302\t\n303\tPermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\\to$6 onset at $\\alpha{=}0.50$, non-monotonic dip at $\\alpha{=}0.55$--$0.60$.\n304\tNaive monitoring baselines (PPL-slope, variance-threshold) fire at $\\alpha{=}0.0$ (FPR 67--100\\%) because fine-tuning drift is indistinguishable from contamination without directional testing.\n305\t\n306\t\n307\t\\section{PermG Power Analysis}\n308\t\\label{app:power_analysis}\n309\t\n310\tWe simulate PermG power under a bivariate DGP with linear coupling $\\beta$ ($T \\in \\{6,\\ldots,20\\}$, 100 replications, 5{,}000 permutations, BH FDR $q{=}0.05$).\n311\tAt $T{=}10$, $\\beta_{50}{=}2.0$ (50\\% power requires strong coupling); at $T{=}20$, $\\beta_{50}$ drops to 0.9 (Table~\\ref{tab:beta50}).\n312\tPower grows faster than $\\sqrt{T}$, so the $\\sqrt{T}$ formula in \\S\\ref{sec:theory} is a conservative lower bound.\n313\tFPR under FDR correction remains ${\\leq}2\\%$ across all $T$.\n314\t\n315\t\\begin{table}[h]\n316\t\\centering\n317\t\\small\n318\t\\caption{PermG power analysis: $\\beta_{50}$ (coupling for 50\\% power) under BH-FDR correction ($q{=}0.05$, 8 pairs). Dashes: $<$50\\% power not reached within $\\beta \\leq 2.0$.}\n319\t\\label{tab:beta50}\n320\t\\begin{tabular}{lcccc}\n321\t\\toprule\n322\t$T$ & $\\beta_{50}$ & $\\beta_{50} \\cdot \\sqrt{T}$ & FPR (raw) & FPR (FDR) \\\\\n323\t\\midrule\n324\t6  & ---  & ---  & 1\\% & 0\\% \\\\\n325\t8  & ---  & ---  & 6\\% & 2\\% \\\\\n326\t10 & 2.0  & 6.32 & 9\\% & 2\\% \\\\\n327\t15 & 1.2  & 4.65 & 6\\% & 2\\% \\\\\n328\t20 & 0.9  & 4.02 & 5\\% & 1\\% \\\\\n329\t\\bottomrule\n330\t\\end{tabular}\n331\t\\end{table}\n332\t\n333\t\n334\t\\section{Non-Stationarity Robustness Analysis}\n335\t\\label{app:nonstationarity}\n336\t\n337\tMonte Carlo simulation (AR(1) DGP, $T{=}11$, 1{,}000 reps) shows PermG FPR inflates to ${\\sim}10\\%$ under strong non-stationarity ($\\varphi{\\geq}0.95$), while first-differencing maintains proper size ($4.2$--$6.6\\%$) at the cost of reduced power (Table~\\ref{tab:nonstationarity_sim}).\n338\tOur pipeline applies first-differencing before permutation testing, combining both advantages.\n339\tUnder null conditions ($\\alpha{=}0.0$), token entropy exhibits $\\varphi{=}-0.51$ (far from the danger zone); first-differencing reduces distinct-1's high raw $\\varphi$ ($0.81$--$0.97$, reflecting deterministic trend) to $-0.14$--$0.44$.\n340\tOur empirical FPR of 4/54 (7.4\\%) confirms adequate size control.\n341\t\n342\t\\begin{table}[h]\n343\t\\centering\n344\t\\small\n345\t\\caption{Size and power under AR(1) DGP ($T{=}11$, 1{,}000 reps). First-differencing maintains nominal size; PermG FPR inflates at $\\varphi{\\geq}0.95$.}\n346\t\\label{tab:nonstationarity_sim}\n347\t\\resizebox{\\columnwidth}{!}{%\n348\t\\begin{tabular}{lcccccc}\n349\t\\toprule\n350\t& \\multicolumn{3}{c}{Size (\\%, $\\beta{=}0$)} & \\multicolumn{3}{c}{Power (\\%, $\\beta{=}0.6$)} \\\\\n351\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n352\t$\\varphi$ & Raw GC & First-Diff & PermG & Raw GC & First-Diff & PermG \\\\\n353\t\\midrule\n354\t0.50 & 6.4 & 6.6 & 6.8 & 37.7 & 17.7 & 36.8 \\\\\n355\t0.95 & 10.0 & 5.9 & 9.5 & 44.3 & 28.7 & 41.5 \\\\\n356\t0.99 & 11.2 & 4.2 & 10.7 & 46.4 & 24.6 & 41.7 \\\\\n357\t\\bottomrule\n358\t\\end{tabular}}\n359\t\\end{table}\n360\t\n361\t\n362\t\\section{Shapley Value Analysis}\n363\t\\label{app:shapley}\n364\t\n365\tShapley values~\\citep{shapley1953value} computed over all $2^5{=}32$ coalitions quantify each method's marginal contribution to FPR and FNR (Table~\\ref{tab:shapley_6pair}).\n366\tDiffXCorr achieves the best combined Shapley ($-0.299$) but cannot separate forward from reverse; among directional methods, PermG ranks best ($-0.141$).\n367\tThe 8-pair variant (including MAUVE) yields identical rankings.\n368\t\n369\t\\begin{table}[h]\n370\t\\centering\n371\t\\small\n372\t\\caption{Shapley value decomposition (6-pair, MAUVE excluded). Combined = FPR + FNR (more negative = better).}\n373\t\\label{tab:shapley_6pair}\n374\t\\begin{tabular}{lccc}\n375\t\\toprule\n376\tMethod & $\\phi^{\\text{FPR}}$ & $\\phi^{\\text{FNR}}$ & $\\phi^{\\text{comb}}$ \\\\\n377\t\\midrule\n378\tNaive XCorr          & $+0.609$ & $-0.419$ & $+0.190$ \\\\\n379\t\\textbf{Diff.\\ XCorr}& $\\mathbf{+0.007}$ & $\\mathbf{-0.306}$ & $\\mathbf{-0.299}$ \\\\\n380\tThreshold ($3\\sigma$) & $+0.111$ & $-0.027$ & $+0.084$ \\\\\n381\tPerm.\\ Granger       & $+0.039$ & $-0.180$ & $-0.141$ \\\\\n382\tToda--Yamamoto       & $+0.150$ & $-0.069$ & $+0.082$ \\\\\n383\t\\bottomrule\n384\t\\end{tabular}\n385\t\\end{table}\n386\t\n387\t\n388\t\\section{MMCT Weight Robustness Ablation}\n389\t\\label{app:weight_robustness}\n390\t\n391\tPermG ranks first among directional methods under all four weighting schemes tested (equal, cap-5, cap-10, FPR-inverse cap-100), confirming the ranking is not an artifact of the weighting scheme.\n392\tCap-10 and cap-100 yield identical values (consensus threshold saturates), and equal weighting still gives PermG the best combined Shapley ($-0.152$) among directional methods.\n393\t\n394\t\n395\t\\section{PermG FPR Independence Analysis}\n396\t\\label{app:fpr_independence}\n397\t\n398\tTable~\\ref{tab:null_fpr_methods} reports null-control FPR across nine seeds (54 pairs, 6-pair basis).\n399\tPermG achieves the lowest FPR (4/54, 7.4\\%; CI $[2.1\\%, 17.9\\%]$); all four FP occur in te$\\to$distinct pairs in seeds~45/50 (7/9 seeds yield 0~FP).\n400\t$K{\\geq}3$ consensus produces 6/54 FP (11.1\\%), of which PermG contributes to only 2.\n401\tAt $T{=}15$, PermG FPR drops to 0/12 (0\\%).\n402\t\n403\t\\begin{table}[h]\n404\t\\centering\n405\t\\small\n406\t\\caption{Null-control FPR by method ($\\alpha{=}0.0$, 9~seeds, 6~pairs each, BH-FDR $q{=}0.05$).}\n407\t\\label{tab:null_fpr_methods}\n408\t\\resizebox{\\columnwidth}{!}{%\n409\t\\begin{tabular}{llrr}\n410\t\\toprule\n411\tMethod & Criterion & Rejections (/54) & FPR (\\%) \\\\\n412\t\\midrule\n413\t\\textbf{Perm.\\ Granger} & \\textbf{BH-FDR} & \\textbf{4} & \\textbf{7.4} \\\\\n414\tDiff.\\ XCorr$^\\dagger$ & BH-FDR & 8 & 14.8 \\\\\n415\tThreshold & $3\\sigma$ (det.) & 13 & 24.1 \\\\\n416\tToda--Yamamoto & BH-FDR & 18 & 33.3 \\\\\n417\tNaive XCorr & uncorr. & 51 & 94.4 \\\\\n418\t\\bottomrule\n419\t\\multicolumn{4}{l}{\\footnotesize $^\\dagger$Bidirectional; cannot separate forward from reverse.} \\\\\n420\t\\end{tabular}}\n421\t\\end{table}\n422\t\n423\t\\section{Sigmoid Transition Shape}\n424\t\\label{app:sigmoid_shape}\n425\t\n426\tSigmoid regression on the original 13-point $T{=}10$ grid yields $\\alpha_c = 0.483 \\pm 0.006$ but $k = 478 \\pm 475$ ($\\mathrm{SE}(k) \\approx k$), indicating that the coarse grid cannot constrain the transition shape.\n427\tDense $\\alpha$ sampling (17~values at $T{=}10$) resolves this ambiguity: formal likelihood-ratio testing strongly favors a smooth sigmoid over a literal step function ($\\Delta\\mathrm{AIC}{=}-110$), with fitted steepness $k{=}15.7$ (95\\% CI $[9.4, 28.2]$).\n428\tThe transition is steep but finite-width, not a literal discontinuity.\n429\tThis observed steepness exceeds what smooth signal models predict: VAR(1) simulations under H0 (linear, $k{=}6.1$) and H0$'$ (concave, $k{=}4.9$) produce onset sigmoids with $k{=}4.9$--$6.1$ (\\S\\ref{app:power_sim}), yielding steepness ratios $k_{\\mathrm{obs}} / k_{\\mathrm{H0}} \\approx 2.6$--$3.2$ (CI lower bound ratio ${\\approx}2$).\n430\tWe do not fit a combined $T{=}10 + T{=}20$ sigmoid because $\\alpha{=}0.45$ yields contradictory counts under the two sequence lengths (0/8 vs.\\ 5/8), reflecting genuine power dependence on $T$ rather than a single dose-response curve.\n431\t\n432\t\n433\t\\noindent\\emph{See Figure~\\ref{fig:detection_surface} in the main text for the detection surface visualization.}\n434\t\n435\t\\section{Intervention Threshold Sensitivity}\n436\t\\label{app:intervention_sensitivity}\n437\t\n438\tAt $\\alpha{=}1.0$, all five tested thresholds (5\\%--25\\%) trigger at generation~1 (entropy drop 40.7\\%$\\gg$threshold), producing identical outcomes (peak PPL 57.0, final PPL 21.3).\n439\tThe safe operating band is $[10\\%, 22\\%]$: below 7.5\\% triggers false alarms on $\\alpha{=}0.0$ drift; above 22.4\\% misses $\\alpha{=}0.50$.\n440\t\n441\t\n442\t\\section{Channel Effect Size Analysis}\n443\t\\label{app:channel_effect_size}\n444\t\n445\tFirst-differencing retains comparable $|r|$ for both diversity (0.952) and perplexity (1.00) channels, ruling out selective power loss.\n446\tThe Granger $F$-statistic asymmetry ($20$--$28{\\times}$ higher for diversity) reflects temporal structure: diversity channels peak at canary-leading lags (81\\% at lag${<}0$, median $-1$), while perplexity peaks at lag${=}0$ (contemporaneous co-movement).\n447\tGranger tests correctly assign low $F$ to contemporaneous relationships.\n448\t\n449\t\n450\t\\section{Mutual Information and Partial Correlation}\n451\t\\label{app:mi_analysis}\n452\t\n453\tGaussian MI lower bound ($\\hat{I}_G = -\\frac{1}{2}\\log_2(1{-}r^2)$) between token entropy and distinct-$n$ remains positive throughout the blind zone (0.010--0.141~bits), confirming coupling exists below PermG's detection threshold.\n454\tNo discontinuity at $\\alpha_c$: detection onset reflects power accumulation, not an information transition.\n455\t\n456\t\\subsection{Partial Correlation Analysis}\n457\t\\label{app:partial_corr}\n458\t\n459\tPartial correlations controlling for generation number (Table~\\ref{tab:partial_corr}) show that contemporaneous associations drop after trend removal ($\\bar{|r|}$: $0.590{\\to}0.381$ at $\\alpha{=}0.50$), while lagged correlations \\emph{strengthen} ($0.759{\\to}0.841$), with 35/36 detection-condition pairs retaining significance.\n460\t\n461\t\\begin{table}[h]\n462\t\\centering\n463\t\\small\n464\t\\caption{Partial correlation controlling for generation. Lagged partial $|r|$ increases after trend removal, confirming genuine temporal precedence.}\n465\t\\label{tab:partial_corr}\n466\t\\resizebox{\\columnwidth}{!}{%\n467\t\\begin{tabular}{@{}l cc cc cc cc@{}}\n468\t\\toprule\n469\t& \\multicolumn{4}{c}{Contemporaneous} & \\multicolumn{4}{c}{Lagged (canary$_{t-1}$)} \\\\\n470\t\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}\n471\t& \\multicolumn{2}{c}{Zero-order} & \\multicolumn{2}{c}{Partial} & \\multicolumn{2}{c}{Zero-order} & \\multicolumn{2}{c}{Partial} \\\\\n472\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5} \\cmidrule(lr){6-7} \\cmidrule(lr){8-9}\n473\t$\\alpha$ & $\\bar{|r|}$ & Sig. & $\\bar{|r|}$ & Sig. & $\\bar{|r|}$ & Sig. & $\\bar{|r|}$ & Sig. \\\\\n474\t\\midrule\n475\t0.00 & 0.414 & 3/18 & 0.323 & 0/18 & 0.563 & 8/18 & 0.524 & 9/18 \\\\\n476\t0.50 & 0.590 & 9/18 & 0.381 & 2/18 & 0.759 & 12/18 & 0.841 & 17/18 \\\\\n477\t0.75 & 0.636 & 9/18 & 0.521 & 3/18 & 0.831 & 17/18 & 0.913 & 18/18 \\\\\n478\t\\bottomrule\n479\t\\end{tabular}}\n480\t\\end{table}\n481\t\n482\t\n483\t\\section{Moment Cascade Analysis}\n484\t\\label{app:moment_cascade}\n485\t\n486\tOnset (5\\% threshold) occurs at generation~1 for entropy in all 6 conditions and at generation~2 for distinct-$n$ in all 18 pairwise comparisons (Table~\\ref{tab:moment_cascade}; Figure~\\ref{fig:cascade_onset}).\n487\t\n488\t\\begin{table}[h]\n489\t\\centering\n490\t\\small\n491\t\\caption{Degradation onset generation (5\\% threshold) by metric and condition (Pythia-410M, WikiText, fp32). Token entropy reaches onset at generation~1 in all non-null conditions; distinct-$n$ metrics follow at generation~2.}\n492\t\\label{tab:moment_cascade}\n493\t\\resizebox{\\columnwidth}{!}{%\n494\t\\begin{tabular}{llcccccc}\n495\t\\toprule\n496\tSeed & $\\alpha$ & Entropy & Dist-1 & Dist-2 & Dist-3 & ECE & PPL \\\\\n497\t\\midrule\n498\t42 & 0.10 & 1 & 2 & 2 & 2 & 2 & --- \\\\\n499\t42 & 0.50 & 1 & 2 & 2 & 2 & 1 & 4 \\\\\n500\t42 & 0.75 & 1 & 2 & 2 & 2 & 1 & 1 \\\\\n501\t43 & 0.25 & 1 & 2 & 2 & 2 & 4 & --- \\\\\n502\t43 & 0.50 & 1 & 2 & 2 & 2 & 1 & 4 \\\\\n503\t43 & 0.75 & 1 & 2 & 2 & 2 & 1 & 1 \\\\\n504\t\\bottomrule\n505\t\\multicolumn{8}{l}{\\footnotesize ---: onset not reached within $T{=}10$ generations.} \\\\\n506\t\\end{tabular}}\n507\t\\end{table}\n508\t\n509\t\n510\tECE shows onset at generation~1 at $\\alpha{\\geq}0.50$; perplexity never reaches 5\\% onset at low contamination ($\\alpha{\\leq}0.25$).\n511\t\n512\t\n513\t\\section{Cascade Ordering Theory: Derivations}\n514\t\\label{app:cascade_theory}\n515\t\n516\tThis section provides the full derivations for Design Principle~\\ref{thm:entropy_leads} and Design Principle~\\ref{prop:div_lag} from \\S\\ref{sec:cascade}, plus supporting results.\n517\t\n518\t\\begin{assumption}[Mode Amplification]\\label{ass:mode_amp}\n519\tThe training map $\\mathcal{T}$ redistributes probability mass from low-probability to high-probability tokens: there exists a threshold $\\bar{p}$ such that $\\mathcal{T}(p)_i > p_i \\Rightarrow p_i \\geq \\bar{p}$ and $\\mathcal{T}(p)_j < p_j \\Rightarrow p_j \\leq \\bar{p}$.\n520\t\\end{assumption}\n521\t\n522\tThis captures the standard finite-capacity approximation effect: MLE on finite samples from a peaked distribution amplifies modes and suppresses the tail~\\citep{shumailov2024curse,dohmatob2024tale}.\n523\t\n524\t\\begin{proposition}[Entropy is a first-order indicator]\\label{prop:entropy_first}\n525\tLet $p \\in \\Delta^{V-1}$ and $\\delta = \\alpha(\\mathcal{T}(p) - p)$ be a mode-amplifying perturbation with $\\sum_i \\delta_i = 0$. Then $\\Delta H = H(p+\\delta) - H(p) = -\\sum_i \\delta_i \\log p_i + O(\\|\\delta\\|^2) < 0$.\n526\t\\end{proposition}\n527\t\n528\t\\begin{proof}\n529\tTaylor-expanding $H$ around $p$:\n530\t$H(p+\\delta) = H(p) - \\sum_i \\delta_i \\log p_i - \\sum_i \\delta_i - \\frac{1}{2}\\sum_i \\delta_i^2/p_i + O(\\|\\delta\\|^3)$.\n531\tSince $\\sum_i \\delta_i = 0$: $\\Delta H = -\\sum_i \\delta_i \\log p_i - \\frac{1}{2}\\sum_i \\delta_i^2/p_i + O(\\|\\delta\\|^3)$.\n532\tUnder mode amplification, tokens gaining mass ($\\delta_i > 0$) have $p_i \\geq \\bar{p}$ (hence $\\log p_i \\geq \\log \\bar{p}$) and tokens losing mass ($\\delta_j < 0$) have $p_j \\leq \\bar{p}$ (hence $\\log p_j \\leq \\log \\bar{p}$).\n533\tWriting $m = \\sum_{i:\\delta_i > 0} \\delta_i$: $-\\sum_i \\delta_i \\log p_i = -m[\\overline{\\log p}^{+} - \\overline{\\log p}^{-}] < 0$, where $\\overline{\\log p}^{\\pm}$ are the $|\\delta|$-weighted means over gaining/losing tokens.\n534\tThe second-order Fisher information term $-\\frac{1}{2}\\sum_i \\delta_i^2/p_i$ is always negative, reinforcing the decrease.\n535\t\\end{proof}\n536\t\n537\t\\begin{proposition}[Diversity is a threshold indicator]\\label{prop:div_threshold}\n538\tDefine the $\\epsilon$-effective support $S_\\epsilon(p) = |\\{i \\in [V]: p_i > \\epsilon\\}|$, where $\\epsilon \\approx c/N$ is the generation threshold for sample size $N$.\n539\tUnder the same perturbation $\\delta$: $\\Delta S_\\epsilon = -|\\{i: p_i > \\epsilon \\text{ and } p_i + \\delta_i \\leq \\epsilon\\}|$.\n540\tThis equals zero whenever $\\|\\delta\\|_\\infty < \\gamma(p,\\epsilon) := \\min_{i: p_i > \\epsilon}(p_i - \\epsilon)$.\n541\t\\end{proposition}\n542\t\n543\t\\begin{proof}\n544\tToken $i$ exits the effective support iff $p_i > \\epsilon$ and $p_i + \\delta_i \\leq \\epsilon$, requiring $|\\delta_i| \\geq p_i - \\epsilon$.\n545\tIf $\\|\\delta\\|_\\infty < \\gamma$, no token satisfies this condition.\n546\t\\end{proof}\n547\t\n548\t\\paragraph{Derivation of Design Principle~\\ref{thm:entropy_leads}.}\n549\t\\emph{Part (a):} Take any mode-amplifying $\\delta$ with $\\|\\delta\\|_\\infty < \\gamma(p,\\epsilon)$.\n550\tBy Proposition~\\ref{prop:div_threshold}, $\\Delta S_\\epsilon = 0$.\n551\tBy Proposition~\\ref{prop:entropy_first}, $\\Delta H < 0$.\n552\tSuch $\\delta$ exists for all $\\alpha < \\gamma / \\max_i |\\mathcal{T}(p)_i - p_i|$.\n553\t\\emph{Part (b):} If $\\Delta S_\\epsilon < 0$, some token $k$ has $p_k > \\epsilon$ but $p_k + \\delta_k \\leq \\epsilon$, so $\\delta_k < 0$.\n554\tUnder mode amplification, this implies $p_k \\leq \\bar{p}$; the total mass transferred to high-probability tokens ensures $\\overline{\\log p}^+ > \\overline{\\log p}^-$.\n555\tBy Proposition~\\ref{prop:entropy_first}, $\\Delta H < 0$. $\\square$\n556\t\n557\t\\paragraph{Derivation of Design Principle~\\ref{prop:div_lag}.}\n558\tBy the margin condition, at every generation $s \\leq t_H$ the perturbation norm $\\alpha\\|\\mathcal{T}(p_s) - p_s\\|_\\infty$ is less than $\\gamma(p_s, \\epsilon)$.\n559\tBy Proposition~\\ref{prop:div_threshold}, no token exits the effective support at any $s \\leq t_H$, so $\\Delta S_\\epsilon = 0$ for all $s \\leq t_H$.\n560\tSince time is discrete, $t_D \\geq t_H + 1$. $\\square$\n561\t\n562\t\\paragraph{ECE co-movement (qualitative argument).}\n563\tUnder conditional mode amplification (peakier $q_\\theta(\\cdot|x)$ at each generation), per-token conditional entropy $h(x) = H(q_\\theta(\\cdot|x))$ decreases while confidence $c(x) = \\max_y q_\\theta(y|x) \\geq \\exp(-h(x))$ increases.\n564\tAveraging: $\\bar{H}_t$ decreases, $C_t$ increases.\n565\tWith accuracy approximately stationary in early collapse ($A_t \\approx A_0$), $\\Delta\\mathrm{ECE} \\approx \\Delta C_t > 0$ whenever $\\Delta\\bar{H}_t < 0$.\n566\tThis argument establishes the direction of co-movement; the quantitative relationship depends on distribution geometry.\n567\t$\\bar{H}_t$ denotes mean conditional entropy $\\mathbb{E}_{x \\sim p_{\\text{eval}}}[h(x)]$, which differs from the marginal entropy $H_t = -\\sum_i p_t(i)\\log p_t(i)$ used in Design Principle~\\ref{thm:entropy_leads}; under mode amplification, both decrease monotonically, so the cascade ordering is consistent across both formulations.\n568\t\n569\t\\paragraph{Empirical support.}\n570\tCascade ordering $t_H \\leq t_D$ holds in 14/15 experiments at $\\alpha \\geq 0.30$ (GPT-2-medium s43: bidirectional).\n571\tTable~\\ref{tab:cascade_onset} reports onset generations for representative conditions.\n572\t\n573\t\\begin{table}[h]\n574\t\\centering\n575\t\\small\n576\t\\caption{Cascade onset generations (5\\% threshold) for representative experiments (Pythia-410M, WikiText, fp32). Phase~1: entropy and ECE ($t_H$, $t_{\\mathrm{ECE}}$); Phase~2: diversity ($t_D$, min over distinct-$n$); Phase~3: MAUVE ($t_M$). All conditions confirm the predicted ordering $t_H = t_{\\mathrm{ECE}} \\leq t_D \\leq t_M$.}\n577\t\\label{tab:cascade_onset}\n578\t\\begin{tabular}{llcccc}\n579\t\\toprule\n580\tSeed & $\\alpha$ & $t_H$ & $t_{\\mathrm{ECE}}$ & $t_D$ & $t_M$ \\\\\n581\t\\midrule\n582\t42 & 0.50 & 1 & 1 & 2 & 3 \\\\\n583\t43 & 0.50 & 1 & 1 & 2 & 2 \\\\\n584\t42 & 0.75 & 1 & 1 & 2 & 3 \\\\\n585\t43 & 0.75 & 1 & 1 & 2 & 2 \\\\\n586\t\\bottomrule\n587\t\\end{tabular}\n588\t\\end{table}\n589\t\n590\t\n591\t\\phantomsection\\label{app:alpha_c_proof}\n592\t\\paragraph{Justification of the empirical boundary model.}\n593\tAt the detection threshold, $\\mathrm{Power}(\\alpha_c, T) = \\pi^*$.\n594\tSince $\\alpha_c$ lies below the non-monotonic dip region ($\\alpha_c < 0.55$), the signal model applies directly.\n595\tFrom the power function $\\mathrm{Power} = \\Phi(S(\\alpha) \\cdot \\sqrt{T} / \\sigma)$, setting $S(\\alpha_c) \\cdot \\sqrt{T} / \\sigma = z^*$ and substituting the signal model $S(\\alpha) = c\\,\\alpha^\\beta$ yields $c\\,\\alpha_c^\\beta = z^* \\sigma / \\sqrt{T}$.\n596\tSolving: $\\alpha_c(T) = (z^* \\sigma / c)^{1/\\beta} \\cdot T^{-1/(2\\beta)}$, giving the stated form with exponent $\\gamma = 1/(2\\beta)$.\n597\t\n598\t\\paragraph{Calibration and consistency.}\n599\tFitting $P(\\mathrm{det}|\\alpha,T) = \\Phi(A \\cdot \\alpha^\\beta \\cdot \\sqrt{T} - z_0)$ to $T \\in \\{10, 20\\}$ yields $\\beta{=}0.24$, $\\alpha_\\infty{=}0$.\n600\tHeld-out test ($T \\in \\{5, 15\\}$): MAE${=}0.106$, 95\\% CI coverage 6/6.\n601\tLeave-one-$T$-out CV (15 cells, sync-dip excluded): MAE${=}0.037$, coverage 15/15.\n602\tProfile likelihood yields $\\hat{\\beta}{=}0.66$ (CI $[0.24, 0.78]$); the wide interval reflects a flat surface.\n603\t\n604\t\\section{Power Simulation: Shape Comparison}\n605\t\\label{app:power_sim}\n606\t\n607\tSimulated PermG detection under linear (H0), concave (H0$'$), and step (H1) signal models (1{,}000 reps, $n_\\text{perm}{=}1{,}000$, BH-FDR $q{=}0.05$).\n608\tSmooth models produce onset steepness $k{=}4.9$--$6.1$; the observed $k{=}15.7$ is ${\\approx}3{\\times}$ higher.\n609\tThe scaling exponent alone cannot distinguish smooth from step boundaries (H0$'$ $\\gamma{=}1.87$ vs.\\ observed $\\gamma{=}2.08$).\n610\tThe 6/8 detection ceiling reflects MAUVE floor saturation, not signal limitations.\n611\t\n612\t\\section{T=20 Extension Results}\n613\t\\label{app:t20_comparison}\n614\t\n615\tAt $\\alpha{\\geq}0.50$, PermG counts are consistent across $T{=}10$ and $T{=}20$ (6/8 at both), confirming signal-structure determination.\n616\tAt $\\alpha{=}0.45$, the shift from 0/8 ($T{=}10$) to 5/8 ($T{=}20$) supports power-limited (Model~B) over structurally-undetectable (Model~A), lowering $\\alpha_c$ below 0.45.\n617\tThe $\\alpha{=}0.60$ dip persists at $T{=}20$ but dissolves at $T{=}25$ (5/8), confirming $\\sqrt{T}$ power scaling eventually overcomes it.\n618\tDirectional selectivity is consistent: forward 6/8, reverse 0/8 at $\\alpha \\in \\{0.50, 0.75, 1.0\\}$ across all tested $T$.\n619\t\n620\t\n621\t\\phantomsection\\label{app:task_degradation}\n622\t\\paragraph{Task degradation.}\n623\tEnd-of-training perplexity (gen~10, Pythia-410M, s42) improves at $\\alpha{=}0.05$ (20.8 vs.\\ 26.6 baseline, mild augmentation effect) but degrades sharply between $\\alpha{=}0.50$ (31.3) and $0.52$ (41.1), aligning with PermG detection onset.\n624\t\n625\t\\subsection{Cross-Architecture Detection Table}\n626\t\\label{app:cross_arch_table}\n627\t\n628\t\\begin{table}[h]\n629\t\\centering\n630\t\\small\n631\t\\caption{Cross-architecture PermG forward detection ($\\alpha{=}1.0$, 15 model-seed combinations across five families---Pythia, GPT-2, OPT, Qwen, SmolLM3---and two domains; Padding-410M is a Pythia variant). PermG fwd $=$ count of FDR-significant forward pairs out of 8.}\n632\t\\label{tab:generalization}\n633\t\\resizebox{\\columnwidth}{!}{%\n634\t\\begin{tabular}{lrcl}\n635\t\\toprule\n636\tModel & Params & Domain & PermG fwd \\\\\n637\t\\midrule\n638\tPythia-410M    & 410M & Wiki & \\textbf{6/8} \\\\\n639\tPythia-1.4B    & 1.4B & Wiki & 2--6/8$^\\dagger$ \\\\\n640\tPythia-6.9B    & 6.9B & Wiki & \\textbf{7/8}$^*$ \\\\\n641\t\\addlinespace\n642\tGPT-2-medium   & 345M & Wiki & \\textbf{6/8}$^\\S$ \\\\\n643\t\\addlinespace\n644\tOPT-1.3B       & 1.3B & Wiki & \\textbf{6/8} \\\\\n645\t\\addlinespace\n646\tQwen3.5-0.8B   & 0.8B & Wiki & \\textbf{8/8} \\\\\n647\tSmolLM3-3B     & 3.0B & Wiki & 3/8$^\\ddagger$ \\\\\n648\tPadding-410M   & 410M & Wiki & \\textbf{6/8} \\\\\n649\t\\addlinespace\n650\tPythia-1B      & 1.0B & C4   & \\textbf{8/8} \\\\\n651\tPythia-1.4B    & 1.4B & C4   & \\textbf{8/8} \\\\\n652\t\\bottomrule\n653\t\\multicolumn{4}{l}{\\footnotesize $^\\dagger$Seed-dep.\\ (s42: 2/8, s43: 6/8); 8-pair incl.\\ MAUVE} \\\\\n654\t\\multicolumn{4}{l}{\\footnotesize \\phantom{$^\\dagger$}(floor ${\\sim}0.033$ at 1.4B; 6-pair in Table~\\ref{tab:14b_phase}). $^*$bf16. $^\\ddagger$ECE-only (ent.\\ 0/4).} \\\\\n655\t\\multicolumn{4}{l}{\\footnotesize $^\\S$s42 fp32: 6/8 fwd, 0 rev; s43: 6/8 both; bf16: 0/8.} \\\\\n656\t\\multicolumn{4}{l}{\\footnotesize 2 seeds each for Pythia-410M/1.4B, GPT-2, OPT, Pythia-1B C4.} \\\\\n657\t\\end{tabular}%\n658\t}\n659\t\\end{table}\n660\t\n661\t\\subsection{Cross-Architecture FPR Sensitivity}\n662\t\\label{app:cross_arch_fpr}\n663\t\n664\tGPT-2-medium null-condition PermG FPR is 50\\% (6/12 pooled, 2~seeds), dramatically higher than Pythia-410M (7.4\\%), driven by ${\\sim}4{\\times}$ stronger null drift (entropy $-20.5\\%$ vs.\\ $-4.9\\%$; distinct-3 $-35.8\\%$ vs.\\ $-4.9\\%$).\n665\t$K{\\geq}3$ consensus maintains 0\\% FPR (0/12) on GPT-2-medium, providing some protection, but standalone PermG requires architecture-specific null calibration.\n666\t\n667\t\\section*{Use of AI Assistants}\n668\t\\label{app:ai-assistants}\n669\t\n670\tWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n671\t\\begin{itemize}\n672\t    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n673\t    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting LaTeX.\n674\t    \\item \\textbf{Literature:} summarizing related papers to inform related-work section.\n675\t\\end{itemize}\n676\t\n677\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3043460f-68a2-4769-9d94-b84015bc657c",
+            "isSidechain": true,
+            "promptId": "28ed9fd7-28b9-4f8b-a3f7-ce466223640d",
+            "agentId": "a8da0bb5ae83c9d55",
+            "type": "user",
+            "uuid": "1e4ef4f9-2cca-4817-a3a7-bc7f911b9302",
+            "sourceToolAssistantUUID": "3043460f-68a2-4769-9d94-b84015bc657c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T21:08:14.254Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the MMCT Algorithm pseudocode. Here are the complete details:\n\n## MMCT Algorithm Pseudocode\n\n**File:** `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex`\n\n**Section Location:** Lines 170-192\n\n**Section Label:** `\\label{app:mmct}` (line 171)\n\n**Section Header:** Section 6.12 \"MMCT Algorithm\" (line 170)\n\n### Complete Content (lines 170-192):\n\n```latex\n\\section{MMCT Algorithm}\n\\label{app:mmct}\n\nAlgorithm~\\ref{alg:mmct} describes the Multi-Method Consensus Test (MMCT) introduced in \\S\\ref{sec:mmct}.\n\n\\begin{algorithm}[h]\n\\caption{Multi-Method Consensus Test (MMCT)}\n\\label{alg:mmct}\n\\begin{algorithmic}[1]\n\\Require Time series pair $(X, Y)$; methods $\\{m_1, \\ldots, m_K\\}$ ($K{=}5$); null-control data $\\mathcal{N}$ (from $\\alpha{=}0.0$); tolerance $\\epsilon{=}0.01$\n\\Ensure $p$-value, consensus level $\\hat{K}$\n\\For{each method $m_k$}\n    \\State Compute empirical FPR: $\\widehat{\\mathrm{FPR}}_k \\gets$ fraction of null-control pairs where $m_k$ rejects $H_0$\n    \\State Compute weight: $w_k \\gets 1 / \\max(\\widehat{\\mathrm{FPR}}_k,\\; \\epsilon)$\n    \\State Apply $m_k$ to $(X, Y)$: $d_k \\gets \\mathbf{1}[m_k \\text{ rejects } H_0]$\n\\EndFor\n\\State Weighted consensus: $W(X {\\to} Y) \\gets \\sum_{k} w_k \\, d_k \\;/\\; \\sum_{k} w_k$\n\\State Build empirical null distribution of $W$ from all null-control pairs in $\\mathcal{N}$\n\\State Compute $p$-value from empirical null: $p \\gets \\Pr_{\\mathcal{N}}(W \\geq W_{\\mathrm{obs}})$\n\\State Consensus level: $\\hat{K} \\gets \\sum_{k} d_k$\n\\State \\Return $p$, $\\hat{K}$\n\\end{algorithmic}\n\\end{algorithm}\n```\n\n### Design Rationale Section (lines 194-197):\n\nFollowing the algorithm is an explanatory paragraph that describes the design rationale:\n\n```latex\n\\paragraph{Design rationale.}\nFPR-inverse weighting penalizes methods with high false positive rates on null-control data: naive cross-correlation (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}7.4\\%$, the lowest among all five methods) receives $w{=}13.5$.\nThe empirical null distribution avoids parametric assumptions that are unreliable for short ($T{=}5$--$20$), non-stationary series typical of iterative training.\nMMCT is a consensus testing protocol, not a novel statistical method; its value lies in systematic method comparison and the identification of method-dependent conclusions.\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e4ef4f9-2cca-4817-a3a7-bc7f911b9302",
+            "isSidechain": true,
+            "agentId": "a8da0bb5ae83c9d55",
+            "requestId": "req_011CbN5RbGDrT9gabPrrC6DW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35fe180f-77ae-4e0e-abde-c42e5b0f8b7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/agent_069782ef",
+            "sessionId": "2e2dd7aa-a3cc-4018-897b-841737c0e4e7",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "cached-giggling-dusk",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SZeCRsmpE494WswvfmXpVK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 18236,
+                "cache_read_input_tokens": 33365,
+                "output_tokens": 870,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18236
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 870,
+                    "cache_read_input_tokens": 33365,
+                    "cache_creation_input_tokens": 18236,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18236,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distrib-canary-colla-copy-12.md"
+}

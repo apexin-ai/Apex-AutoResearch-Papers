@@ -1,0 +1,2033 @@
+{
+  "schema_version": "1.0",
+  "id": "30a7113a32fc34e023a2",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify specific paper references and find baseline numbers for a research planning task on multi-turn jailbrea",
+  "task_key": "agent-ac9214d8313f40b97",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ac9214d8313f40b97.jsonl",
+    "occurrence": 1,
+    "bytes": 97871,
+    "sha256": "4493e0dea0e5fe09f4b7597aac00cfb5f11fbce7f9625caab613c0f2a66e675e"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 1,
+    "tool_calls": 19,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 19,
+      "tool_result": 19
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:09:14.312Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify specific paper references and find baseline numbers for a research planning task on multi-turn jailbreak defense. Do these searches and report ALL findings:\n\n1. WebSearch: \"DeepContext multi-turn jailbreak detection F1 2026 paper\"\n2. WebSearch: \"Latent Adversarial Detection activation trajectory jailbreak 2026\"\n3. WebSearch: \"ProAct jailbreak defense ICLR 2026\"\n4. WebSearch: \"reasoning models 97% attack success rate jailbreak Nature Communications 2026\"\n5. WebSearch: \"AutoDefense multi-agent jailbreak defense\"\n6. WebSearch: \"Crescendo multi-turn jailbreak attack paper\"\n7. WebSearch: \"MultiBreak dataset jailbreak\"\n8. WebSearch: \"ActorAttack dataset multi-turn jailbreak\"\n\nFor each paper found, report:\n- Exact title\n- Authors (if available)\n- Venue and year\n- Key metric numbers (F1, accuracy, ASR, etc.)\n- Whether the paper/dataset is publicly available (code/data on GitHub or HuggingFace)\n\nI need to confirm these are real published works. If you cannot verify a paper exists, say so explicitly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "efcec2e5-72e5-4d31-b019-e32b459e5ee0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:09:14.316Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "efcec2e5-72e5-4d31-b019-e32b459e5ee0",
+                "isSidechain": true,
+                "agentId": "ac9214d8313f40b97",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8df24d4d-54ff-4994-9d3e-fd0b7bf763e1",
+                "timestamp": "2026-05-15T13:09:14.316Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:09:16.910Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for all these papers in parallel. Let me first load the WebSearch tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8df24d4d-54ff-4994-9d3e-fd0b7bf763e1",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdYZyjmowcgX4wNVm5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "49e0580c-d070-4732-a812-11c4d19658ff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015HmzXNfqgDtoZJ6GRct8QW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 810,
+                "cache_read_input_tokens": 7304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 810,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:09:17.139Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015vPpu9VFptRCU6tVYrE6ZS",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49e0580c-d070-4732-a812-11c4d19658ff",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdYZyjmowcgX4wNVm5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b03b74d8-530e-49cd-ae72-1d996d246076",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015HmzXNfqgDtoZJ6GRct8QW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 810,
+                "cache_read_input_tokens": 7304,
+                "output_tokens": 96,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 810
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 96,
+                    "cache_read_input_tokens": 7304,
+                    "cache_creation_input_tokens": 810,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 810,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:09:17.142Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015vPpu9VFptRCU6tVYrE6ZS",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b03b74d8-530e-49cd-ae72-1d996d246076",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "023a8a5d-f97a-42a0-be1a-159af0dfcde0",
+            "sourceToolAssistantUUID": "b03b74d8-530e-49cd-ae72-1d996d246076",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:09:19.709Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me run all 8 searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "023a8a5d-f97a-42a0-be1a-159af0dfcde0",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "971a9076-4df4-4cc9-86b2-8a8086b10b99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:09:20.262Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RJhTg1ueN6tG8CGW9CFVM2",
+              "name": "WebSearch",
+              "input": {
+                "query": "DeepContext multi-turn jailbreak detection F1 2026 paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "971a9076-4df4-4cc9-86b2-8a8086b10b99",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea3bc1f4-d815-45b1-a295-2beb3898c5cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:09:20.783Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BAgkdRJTb4wPv4ysvXsaLv",
+              "name": "WebSearch",
+              "input": {
+                "query": "Latent Adversarial Detection activation trajectory jailbreak 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea3bc1f4-d815-45b1-a295-2beb3898c5cb",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "41d48b03-beea-46bc-a957-34eaccbaf248",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:09:21.204Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EkrX6u9kGAhN8hpkgEb4JC",
+              "name": "WebSearch",
+              "input": {
+                "query": "ProAct jailbreak defense ICLR 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41d48b03-beea-46bc-a957-34eaccbaf248",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "06a07a0e-6b04-480f-852d-36fe540cd037",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T13:09:21.694Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AjaRGMvF3SwHf6RgpeCCix",
+              "name": "WebSearch",
+              "input": {
+                "query": "reasoning models 97% attack success rate jailbreak Nature Communications 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06a07a0e-6b04-480f-852d-36fe540cd037",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6b1c82b9-e4b9-496b-a80a-90538e1e0c19",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T13:09:21.711Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DkSMzAkAWYj5ds8kG7SCS6",
+              "name": "WebSearch",
+              "input": {
+                "query": "AutoDefense multi-agent jailbreak defense"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b1c82b9-e4b9-496b-a80a-90538e1e0c19",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8caadd21-5b1e-431f-b628-18899642efff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T13:09:22.148Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pww6uQaYd4nFmCesyP4GYe",
+              "name": "WebSearch",
+              "input": {
+                "query": "Crescendo multi-turn jailbreak attack paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8caadd21-5b1e-431f-b628-18899642efff",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "39d501da-b408-47ad-8179-6c877e72a234",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T13:09:22.538Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ZwUkXfKKsqaJiqmwU8eJD",
+              "name": "WebSearch",
+              "input": {
+                "query": "MultiBreak dataset jailbreak"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39d501da-b408-47ad-8179-6c877e72a234",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "249332da-71c7-44da-8a53-af1217f62347",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1413,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T13:09:22.701Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YHXkNYSuFVqprEbunxSFN3",
+              "name": "WebSearch",
+              "input": {
+                "query": "ActorAttack dataset multi-turn jailbreak"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "249332da-71c7-44da-8a53-af1217f62347",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QdkrukmnS7A5crZdK5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "07317624-15c7-4f29-972c-a1da21efd216",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ACeaq9HWBKEuzoP3fUaAiN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1413,
+                "cache_read_input_tokens": 8114,
+                "output_tokens": 405,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1413
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 405,
+                    "cache_read_input_tokens": 8114,
+                    "cache_creation_input_tokens": 1413,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1413,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T13:09:26.117Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RJhTg1ueN6tG8CGW9CFVM2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DeepContext multi-turn jailbreak detection F1 2026 paper\"\n\nLinks: [{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/html/2602.16935v1\"},{\"title\":\"[2602.16935] DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/abs/2602.16935\"},{\"title\":\"[2602.16935v1] DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/abs/2602.16935v1\"},{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn ...\",\"url\":\"https://www.arxiv.org/pdf/2602.16935\"},{\"title\":\"Multi-Turn Context Jailbreak Attack on Large Language Models From First Principles WARNING: This paper contains context which is toxic in nature.\",\"url\":\"https://arxiv.org/html/2408.04686v1\"},{\"title\":\"Multi-Turn Jailbreaking of Aligned LLMs via Lexical Anchor Tree Search\",\"url\":\"https://arxiv.org/pdf/2601.02670\"},{\"title\":\"A Proxy-Level Scoring Formula for Multi-Turn LLM Attack ...\",\"url\":\"https://arxiv.org/pdf/2602.11247\"},{\"title\":\"[Literature Review] Multi-Turn Context Jailbreak Attack on Large Language Models From First Principles\",\"url\":\"https://www.themoonlight.io/en/review/multi-turn-context-jailbreak-attack-on-large-language-models-from-first-principles\"},{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn ...\",\"url\":\"https://www.researchgate.net/publication/400970384_DeepContext_Stateful_Real-Time_Detection_of_Multi-Turn_Adversarial_Intent_Drift_in_LLMs\"},{\"title\":\"Knowledge-Driven Multi-Turn Jailbreaking on Large Language Models\",\"url\":\"https://arxiv.org/html/2601.05445\"}]\n\nI found the paper you're looking for. DeepContext achieves a state-of-the-art F1 score of 0.84 in multi-turn jailbreak detection, which represents a substantial improvement over both hyperscaler cloud-provider guardrails and leading open-weight models such as Llama-Prompt-Guard-2 (0.67) and Granite-Guardian (0.67).\n\nThe paper, titled \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs,\" was published on arXiv in February 2026. DeepContext is a stateful monitoring framework designed to map the temporal trajectory of user intent, using a Recurrent Neural Network (RNN) architecture that ingests a sequence of fine-tuned turn-level embeddings and propagates a hidden state across the conversation to capture the incremental accumulation of risk that stateless models overlook.\n\nDeepContext maintains a sub-20ms inference overhead on a T4 GPU, ensuring viability for real-time applications.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea3bc1f4-d815-45b1-a295-2beb3898c5cb",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "0c5b946f-99d4-4750-939e-ba66c1edae14",
+            "sourceToolAssistantUUID": "ea3bc1f4-d815-45b1-a295-2beb3898c5cb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T13:09:27.618Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DkSMzAkAWYj5ds8kG7SCS6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AutoDefense multi-agent jailbreak defense\"\n\nLinks: [{\"title\":\"[2403.04783] AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://arxiv.org/abs/2403.04783\"},{\"title\":\"GitHub - XHMY/AutoDefense: AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://github.com/XHMY/AutoDefense\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | OpenReview\",\"url\":\"https://openreview.net/forum?id=WMwoSLAENS\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://arxiv.org/pdf/2403.04783\"},{\"title\":\"NeurIPS AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://neurips.cc/virtual/2024/106249\"},{\"title\":\"[PDF] AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/AutoDefense:-Multi-Agent-LLM-Defense-against-Zeng-Wu/8ba57771dd6345821a0cbe83c4c7eb50f66b7b65\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2403.04783\"},{\"title\":\"AutoDefense - Defend against jailbreak attacks with AutoGen | AutoGen 0.2\",\"url\":\"https://microsoft.github.io/autogen/0.2/blog/2024/03/11/AutoDefense/Defending%20LLMs%20Against%20Jailbreak%20Attacks%20with%20AutoDefense/\"},{\"title\":\"(PDF) Evaluating Multi-Agent Defences Against Jailbreaking Attacks on Large Language Models\",\"url\":\"https://www.researchgate.net/publication/393183353_Evaluating_Multi-Agent_Defences_Against_Jailbreaking_Attacks_on_Large_Language_Models\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240304783Z/abstract\"}]\n\nBased on the search results, here's information about AutoDefense:\n\n## Overview\n\nAutoDefense is a multi-agent defense framework that filters harmful responses from LLMs. With the response-filtering mechanism, the framework is robust against different jailbreak attack prompts, and can be used to defend different victim models.\n\n## How It Works\n\nAutoDefense assigns different roles to LLM agents and employs them to complete the defense task collaboratively. The division in tasks enhances the overall instruction-following of LLMs and enables the integration of other defense components as tools.\n\nThe framework operates with specialized agents. The three-agents defense agency consists of an intention analyzer, a prompt analyzer, and a judge. AutoDefense employs a response-filtering mechanism with specialized LLM agents collaborating to analyze potentially harmful responses.\n\n## Key Advantages\n\nSmall open-source LMs can serve as agents and defend larger models against jailbreak attacks. AutoDefense can effectively defense against different jailbreak attacks, while maintaining the performance at normal user request.\n\n## Performance\n\nUsing LLaMA-2-13b with a 3-agent system reduces the attack success rate on GPT-3.5 from 55.74% to 7.95%. Additionally, introducing Llama Guard as a custom agent significantly reduces the False Positive Rate from 37.32% to 6.80% for the LLaMA-2-7b based defense, while keeping the ASR at a competitive level of 11.08%.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8caadd21-5b1e-431f-b628-18899642efff",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "529bfedf-62f5-425b-9d16-d1d27890afa3",
+            "sourceToolAssistantUUID": "8caadd21-5b1e-431f-b628-18899642efff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T13:09:28.776Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EkrX6u9kGAhN8hpkgEb4JC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ProAct jailbreak defense ICLR 2026\"\n\nLinks: [{\"title\":\"A PROACTIVE DEFENSE FOR LLMS\",\"url\":\"https://openreview.net/pdf/da2b1c8d86a52f6a2cd2b42f1a1c754c77ddbeca.pdf\"},{\"title\":\"Jailbreaking Jailbreaks: A Proactive Defense for LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=pq6rx9r6Aj\"},{\"title\":\"[2510.05052] Proactive defense against LLM Jailbreak\",\"url\":\"https://arxiv.org/abs/2510.05052\"},{\"title\":\"Proactive Defense Against LLM Jailbreak\",\"url\":\"https://arxiv.org/html/2510.05052v2\"},{\"title\":\"Proactive defense against LLM Jailbreak\",\"url\":\"https://www.researchgate.net/publication/396250510_Proactive_defense_against_LLM_Jailbreak\"},{\"title\":\"Published as a conference paper at ICLR 2026\",\"url\":\"https://openreview.net/pdf/307b777ae80f0614490d83426e1b5a00ced6e1fe.pdf\"},{\"title\":\"Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation\",\"url\":\"https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf?inline=true\"},{\"title\":\"LLM Jailbreaking: Enterprise Attack Vectors and Defense Playbook | BeyondScale\",\"url\":\"https://beyondscale.tech/blog/llm-jailbreaking-enterprise-defense\"},{\"title\":\"ICLR 2026 Response to Security Incident – ICLR Blog\",\"url\":\"https://blog.iclr.cc/2025/12/03/iclr-2026-response-to-security-incident/\"},{\"title\":\"Accepted as a paper at ICLR 2026 AI for Peace workshop\",\"url\":\"https://arxiv.org/pdf/2603.01942\"}]\n\nBased on the search results, here's what I found about ProAct jailbreak defense for ICLR 2026:\n\n## Overview\n\nProAct is a novel proactive defense framework designed to disrupt and mislead autonomous jailbreaking processes.\n\n## How It Works\n\nThe core idea is to intentionally provide adversaries with \"spurious responses\" that appear to be results of successful jailbreak attacks but contain no actual harmful content. These misleading responses provide false signals to the attacker's internal optimization loop, causing the adversarial search to terminate prematurely and effectively jailbreaking the jailbreak.\n\n## Key Features\n\nCurrent defenses are primarily reactive and static and often fail to counter search-based attacks, which motivated the development of PROACT. ProAct is implemented as a three-step system: first, it monitors the target model's outputs for refusal due to safety concerns; then, if the model refuses to comply with a query, a defensive agent generates a spurious response that mimics a successful jailbreak outcome.\n\n## Effectiveness\n\nThe method consistently and significantly reduces attack success rates by up to 94% without affecting utility. When combined with other defense frameworks, it further reduces the success rate of the latest attack strategies to 0%.\n\nThe paper was submitted to ICLR 2026 and is marked as a withdrawn submission.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06a07a0e-6b04-480f-852d-36fe540cd037",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "ef929e60-c76a-4198-a433-f205a9498302",
+            "sourceToolAssistantUUID": "06a07a0e-6b04-480f-852d-36fe540cd037",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T13:09:29.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BAgkdRJTb4wPv4ysvXsaLv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Latent Adversarial Detection activation trajectory jailbreak 2026\"\n\nLinks: [{\"title\":\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\",\"url\":\"https://arxiv.org/html/2604.28129\"},{\"title\":\"Tracing the Dynamics of Refusal: Exploiting Latent Refusal Trajectories for Robust Jailbreak Detection\",\"url\":\"https://arxiv.org/html/2605.02958\"},{\"title\":\"[2604.28129] Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\",\"url\":\"https://arxiv.org/abs/2604.28129\"},{\"title\":\"AI Jailbreak Prompts: How They Work, Why They Work, and How to Stop Them | Repello AI\",\"url\":\"https://repello.ai/blog/understanding-ai-jailbreaking-techniques-and-safeguards-against-prompt-exploits\"},{\"title\":\"Adversarial Jailbreak Strategies\",\"url\":\"https://www.emergentmind.com/topics/adversarial-jailbreak-strategies\"},{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/html/2602.16935v1\"},{\"title\":\"Jailbreaking LLMs: A Survey of Attacks, Defenses and Evaluation | TechRxiv\",\"url\":\"https://www.techrxiv.org/users/1011181/articles/1373070/master/file/data/Jailbreaking_LLMs_2026/Jailbreaking_LLMs_2026.pdf\"},{\"title\":\"Under review as a conference paper at ICLR 2026 MICROSACCADE INSPIRED PROBING:\",\"url\":\"https://arxiv.org/pdf/2510.01288\"},{\"title\":\"[2602.11495] Jailbreaking Leaves a Trace: Understanding and Detecting Jailbreak Attacks from Internal Representations of Large Language Models\",\"url\":\"https://arxiv.org/abs/2602.11495\"},{\"title\":\"HiddenDetect: Detecting Jailbreak Attacks against Large Vision-Language Models via Monitoring Hidden States\",\"url\":\"https://arxiv.org/html/2502.14744v1\"}]\n\nI found relevant research on the topic you searched for. Here are the key findings:\n\n## Latent Adversarial Detection (LAD)\n\nLAD is the first to combine non-linear probes with novel-category evaluation, hard-negative methodology, multi-turn analysis, and cross-model comparison.\n\n### Key Concept: Adversarial Restlessness\n\nThe core insight of this research is the concept of \"adversarial restlessness.\" The attack path leaves an activation-level signature in the model's residual stream: each phase shift moves the activation, producing a total path length far exceeding benign conversations. This is called adversarial restlessness.\n\n### Activation Trajectory Features\n\nMulti-turn attacks leave a consistent signature—adversarial restlessness—in the model's residual stream: each phase shift moves the activation, producing elevated cumulative path length. Five scalar trajectory features capturing this signal lift detection from 76.2% to 93.8% on synthetic data, persist across four model families (24B–70B), and are robust to SAE ablation.\n\n### Multi-Turn Attack Detection\n\nMulti-turn prompt injection follows a known attack path -- trust-building, pivoting, escalation but text-level defenses miss covert attacks where individual turns appear benign.\n\n### Generalization Performance\n\nCombined three-source training achieves 89.4% detection at 2.4% false positive rate on a held-out mixed set.\n\nThis research represents a 2026 advancement in detecting sophisticated jailbreak attempts by analyzing internal activation patterns rather than relying solely on text-level defenses.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41d48b03-beea-46bc-a957-34eaccbaf248",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "11d43860-7a02-41ac-b52e-4d5cd77e6f80",
+            "sourceToolAssistantUUID": "41d48b03-beea-46bc-a957-34eaccbaf248",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T13:09:29.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AjaRGMvF3SwHf6RgpeCCix",
+              "type": "tool_result",
+              "content": "Web search results for query: \"reasoning models 97% attack success rate jailbreak Nature Communications 2026\"\n\nLinks: [{\"title\":\"Large reasoning models are autonomous jailbreak agents | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-026-69010-1\"},{\"title\":\"LLM Jailbreaking in 2026: 97% Success Rates, Autonomous Attacks, and the Arms Race That Isn't Working | redteams.ai\",\"url\":\"https://redteams.ai/blog/llm-jailbreaking-2026\"},{\"title\":\"AI Models Can Now Jailbreak Other AI Models Autonomously - 97% Success Rate, No Human Involved | Awesome Agents\",\"url\":\"https://awesomeagents.ai/news/reasoning-models-autonomous-jailbreak-agents/\"},{\"title\":\"LLM Jailbreaks 2024–2026: Techniques, Risks & Defense Strategies\",\"url\":\"https://startup-house.com/blog/llm-jailbreak-techniques\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents\",\"url\":\"https://www.nature.com/articles/s41467-026-69010-1_reference.pdf\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12881495/\"},{\"title\":\"AI's ability to 'think' makes it more vulnerable to new jailbreak attacks, new research suggests | Fortune\",\"url\":\"https://fortune.com/2025/11/07/ai-reasoning-models-more-vulnerable-jailbreak-attacks-study/\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents\",\"url\":\"https://ellisalicante.org/publications/hagendorff2026nature/\"},{\"title\":\"(PDF) Large reasoning models are autonomous jailbreak agents\",\"url\":\"https://www.researchgate.net/publication/400518460_Large_reasoning_models_are_autonomous_jailbreak_agents\"},{\"title\":\"AI Jailbreak Prompts: How They Work, Why They Work, and How to Stop Them | Repello AI\",\"url\":\"https://repello.ai/blog/understanding-ai-jailbreaking-techniques-and-safeguards-against-prompt-exploits\"}]\n\nBased on the search results, I found comprehensive information about the research you queried:\n\n## Overview\n\nA study titled \"Large reasoning models are autonomous jailbreak agents\" by Hagendorff, Derner & Oliver was published in Nature Communications in 2026. The study yielded an overall jailbreak success rate across all model combinations of 97.14%.\n\n## Study Design\n\nThe study shows that the persuasive capabilities of large reasoning models (LRMs) simplify and scale jailbreaking, converting it into an inexpensive activity accessible to non-experts. The researchers evaluated four LRMs (DeepSeek-R1, Gemini 2.5 Flash, Grok 3 Mini, Qwen3 235B) to act as autonomous adversaries conducting multi-turn conversations with nine widely used target models. LRMs received instructions via a system prompt, before proceeding to planning and executing jailbreaks with no further supervision.\n\n## Key Findings\n\nFour reasoning models autonomously jailbroke 9 target models with a 97.14% success rate. Claude 4 Sonnet was the most resistant target (2.86% max harm, 50.18% refusal rate), while DeepSeek-V3 was the most vulnerable (90% max harm).\n\n## Alignment Regression Concept\n\nThe paper introduces a concept called \"alignment regression\": \"A dynamic in which successive generations of increasingly capable models may, paradoxically, erode rather than strengthen alignment since their advanced reasoning abilities can be repurposed to undermine the safety mechanisms of earlier, less capable models\".\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b1c82b9-e4b9-496b-a80a-90538e1e0c19",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "5996949e-1a59-4fed-9919-214566108325",
+            "sourceToolAssistantUUID": "6b1c82b9-e4b9-496b-a80a-90538e1e0c19",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T13:09:30.085Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pww6uQaYd4nFmCesyP4GYe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Crescendo multi-turn jailbreak attack paper\"\n\nLinks: [{\"title\":\"Crescendo\",\"url\":\"https://crescendo-the-multiturn-jailbreak.github.io//\"},{\"title\":\"[2404.01833] Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://arxiv.org/abs/2404.01833\"},{\"title\":\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://arxiv.org/html/2404.01833v1\"},{\"title\":\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack | USENIX\",\"url\":\"https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich\"},{\"title\":\"[PDF] Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Great,-Now-Write-an-Article-About-That:-The-LLM-Russinovich-Salem/2c4d2d889a1f0ff9598de829a001df11a95d3294\"},{\"title\":\"The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://www.usenix.org/system/files/conference/usenixsecurity25/sec25cycle1-prepub-805-russinovich.pdf\"},{\"title\":\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack - Weizmann Institute of Science\",\"url\":\"https://weizmann.elsevierpure.com/en/publications/great-now-write-an-article-about-that-the-crescendo-multi-turn-ll/\"},{\"title\":\"How LLM jailbreaking can bypass AI security with multi-turn attacks\",\"url\":\"https://www.giskard.ai/knowledge/how-llm-jailbreaking-can-bypass-ai-security-with-multi-turn-attacks\"},{\"title\":\"The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://crescendo-the-multiturn-jailbreak.github.io/assets/pdf/CrescendoFullPaper.pdf\"},{\"title\":\"Crescendo: Multi-Turn LLM Jailbreak Tool | PDF | Art\",\"url\":\"https://www.scribd.com/document/722517781/Crescendo\"}]\n\nI've found information about the Crescendo multi-turn jailbreak attack paper. Here are the key details:\n\n## Overview\nThe paper introduces a novel jailbreak attack called Crescendo, a simple multi-turn jailbreak that interacts with the model in a seemingly benign manner.\n\n## How Crescendo Works\nUnlike previous techniques, Crescendo is a multi-turn attack that starts with harmless dialogue and progressively steers the conversation toward the intended, prohibited objective. Crescendo exploits the LLM's tendency to follow patterns and to focus on recent text, particularly text it has generated itself.\n\n## Key Characteristics\nCrescendo distinguishes itself apart from existing jailbreak attacks with its remarkable execution simplicity. The ease of deployment, combined with its high effectiveness, significantly reduces the barrier to carrying out jailbreak attacks. Crescendo can jailbreak a target model by progressively prompting it to generate related content until the model has produced enough material to essentially override its safety alignment. On average, Crescendo successfully jailbreaks the LLMs in fewer than 5 interactions.\n\n## Automation Tool and Results\nThe paper presents Crescendomation, a tool that automates the Crescendo attack. Crescendomation surpasses other state-of-the-art jailbreaking techniques on the AdvBench subset dataset, achieving 29-61% higher performance on GPT-4 and 49-71% on Gemini-Pro.\n\n## Authors and Publication\nThe paper is titled \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack,\" by Mark Russinovich, Ahmed Salem, and Ronen Eldan.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39d501da-b408-47ad-8179-6c877e72a234",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "7e5dd1d0-c31f-462c-9b87-e409c31a7e97",
+            "sourceToolAssistantUUID": "39d501da-b408-47ad-8179-6c877e72a234",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T13:09:31.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ZwUkXfKKsqaJiqmwU8eJD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MultiBreak dataset jailbreak\"\n\nLinks: [{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/html/2605.01687v1\"},{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Stress-testing LLM Safety | OpenReview\",\"url\":\"https://openreview.net/forum?id=uJgfj5EJ2W\"},{\"title\":\"[2605.01687v1] MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/abs/2605.01687v1\"},{\"title\":\"[2605.01687] MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/abs/2605.01687\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/49a02c4f68a8ab6fa3f6dca3f5f415dd8053a8fc.pdf\"},{\"title\":\"JailBreaKV-28K - Weidi(Eddy) Luo\",\"url\":\"https://eddyluo.com/JailBreakV28K/\"},{\"title\":\"JailbreakV-28K/JailBreakV-28k · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/JailbreakV-28K/JailBreakV-28k\"},{\"title\":\"JailbreakBench: LLM robustness benchmark\",\"url\":\"https://jailbreakbench.github.io/\"},{\"title\":\"JailBreakV: A Benchmark for Assessing the Robustness of MultiModal Large Language Models against Jailbreak Attacks\",\"url\":\"https://arxiv.org/html/2404.03027v4\"},{\"title\":\"allenai/wildjailbreak · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/allenai/wildjailbreak\"}]\n\nBased on the search results, here's what I found about the MultiBreak dataset:\n\n## MultiBreak: A Multi-turn Jailbreak Benchmark\n\nMultiBreak is a scalable and diverse multi-turn jailbreak benchmark to evaluate large language model (LLM) safety. \n\n### Dataset Scale and Scope\n\nThe dataset includes 10,389 multi-turn adversarial prompts, spans 2,665 distinct harmful intents, and covers the most diverse set of topics to date. MultiBreak spans a wide range of safety categories: 9 coarse and 26 fine-grained categories.\n\n### Methodology\n\nTo address existing limitations, the researchers unify a wide range of harmful jailbreak intents and introduce an active learning pipeline for expanding high-quality multi-turn adversarial prompts, where a generator is iteratively fine-tuned to produce stronger attack candidates, guided by uncertainty-based refinement.\n\n### Performance and Findings\n\nEmpirical evaluation shows that the benchmark achieves up to a 54.0 and 34.6 higher attack success rate (ASR) than the second-best dataset on DeepSeek-R1-7B and GPT-4.1-mini, respectively.\n\nSafety evaluations suggest that diverse attack categories uncover fine-grained LLM vulnerabilities, and categories that appear benign under single-turn can exhibit substantially higher adversarial effectiveness in multi-turn scenarios.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "249332da-71c7-44da-8a53-af1217f62347",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "c3ef88ef-57bb-4ed9-b9a3-70afdaae1c33",
+            "sourceToolAssistantUUID": "249332da-71c7-44da-8a53-af1217f62347",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T13:09:32.309Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YHXkNYSuFVqprEbunxSFN3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ActorAttack dataset multi-turn jailbreak\"\n\nLinks: [{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through self-discovered clues\",\"url\":\"https://arxiv.org/html/2410.10700v1\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through self-discovered clues | OpenReview\",\"url\":\"https://openreview.net/forum?id=kvvvUPDAPt\"},{\"title\":\"GitHub - AI45Lab/ActorAttack\",\"url\":\"https://github.com/renqibing/actorattack\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2410.10700v1\"},{\"title\":\"Paper page - Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\",\"url\":\"https://huggingface.co/papers/2410.10700\"},{\"title\":\"GitHub - AIM-Intelligence/Automated-Multi-Turn-Jailbreaks · GitHub\",\"url\":\"https://github.com/AIM-Intelligence/Automated-Multi-Turn-Jailbreaks\"},{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/html/2605.01687v1\"},{\"title\":\"Daily Papers - Hugging Face\",\"url\":\"https://huggingface.co/papers?q=Multi-turn+jailbreaks\"},{\"title\":\"Preprint. Under review. X-Teaming: Multi-Turn Jailbreaks and Defenses\",\"url\":\"https://salmanrahman.net/assets/pdf/multiagent_jailbreaking.pdf\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384929981_Derail_Yourself_Multi-turn_LLM_Jailbreak_Attack_through_Self-discovered_Clues\"}]\n\nBased on the search results, here's what I found about the ActorAttack dataset and multi-turn jailbreak:\n\n## ActorAttack Overview\n\nActorAttack is a method designed to expose safety vulnerabilities of LLMs in multi-turn interactions, modeling attack clues using a network and automating their discovery by leveraging LLMs' knowledge.\n\n## How It Works\n\nActorAttack is a novel multi-turn attack method inspired by actor-network theory, which models a network of semantically linked actors as attack clues to generate diverse and effective attack paths toward harmful targets. It addresses two main challenges in multi-turn attacks: concealing harmful intents by creating an innocuous conversation topic about the actor, and uncovering diverse attack paths towards the same harmful target by leveraging LLMs' knowledge to specify the correlated actors as various attack clues.\n\n## SafeMTData Dataset\n\nThe research team created SafeMTData, a dataset containing 2,000 multi-turn adversarial prompts generated using ActorAttack. This safety alignment dataset was constructed to greatly improve the robustness of models safety-tuned using this dataset against multi-turn attacks.\n\n## Effectiveness\n\nActorAttack proved effective for jailbreaking a wide variety of aligned LLMs, even for GPT-o1, whose advanced reasoning improves safety. It generated the SafeMTData dataset, which improved the robustness of Llama-3-8B-Instruct against such attacks by reducing its ActorAttack success rate from 78% to 24%.\n\nThe code and dataset are publicly available on GitHub and Hugging Face for research purposes.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07317624-15c7-4f29-972c-a1da21efd216",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "d3458fc2-35cc-4c8a-825d-22d9ea450918",
+            "sourceToolAssistantUUID": "07317624-15c7-4f29-972c-a1da21efd216",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T13:09:36.314Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get a few more details on some of the papers to fill in missing information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3458fc2-35cc-4c8a-825d-22d9ea450918",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "92122dfd-930e-4b62-a170-f1c6e24f429a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T13:09:37.390Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XPRAGe89Brz1v3P831o2Bf",
+              "name": "WebSearch",
+              "input": {
+                "query": "AutoDefense multi-agent jailbreak NeurIPS 2024 authors Yifan Zeng"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92122dfd-930e-4b62-a170-f1c6e24f429a",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "93f6c029-bd32-4cc7-9a15-d6bd5aad206c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T13:09:37.792Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DB5SVfR3eaP3j1V1KqVNPt",
+              "name": "WebSearch",
+              "input": {
+                "query": "Crescendo jailbreak Russinovich USENIX Security 2025 venue"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93f6c029-bd32-4cc7-9a15-d6bd5aad206c",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "371d5315-ca5f-41b2-955f-b0dd38bde461",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T13:09:38.330Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MaDLDHWACKuMuESp7NAHCM",
+              "name": "WebSearch",
+              "input": {
+                "query": "ActorAttack \"Derail Yourself\" authors venue ICLR 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "371d5315-ca5f-41b2-955f-b0dd38bde461",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "27bc707b-8e54-45ea-9c39-e7139624d780",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T13:09:39.467Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011uphcp7Lv7tEngB2rcvgTi",
+              "name": "WebSearch",
+              "input": {
+                "query": "MultiBreak jailbreak benchmark authors 2025 venue code github"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27bc707b-8e54-45ea-9c39-e7139624d780",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fc0deabe-91d5-4fe8-9fa2-94d989eee634",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T13:09:39.793Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBHUQB3NzarqN1qV7wuqJW",
+              "name": "WebSearch",
+              "input": {
+                "query": "Latent Adversarial Detection LAD arxiv 2604.28129 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc0deabe-91d5-4fe8-9fa2-94d989eee634",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7a5eaf61-554d-40e6-a63b-51856b6e17d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T13:09:40.737Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WeVbyBm4TREQYKNRqMkNGG",
+              "name": "WebSearch",
+              "input": {
+                "query": "DeepContext arxiv 2602.16935 authors venue code github"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a5eaf61-554d-40e6-a63b-51856b6e17d7",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5c4246d0-8735-4a9c-8b64-63bcd0c8e4d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T13:09:41.675Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NbXGQRuzFdprNWm7m2ERVY",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Large reasoning models are autonomous jailbreak agents\" Hagendorff Nature Communications 2026 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c4246d0-8735-4a9c-8b64-63bcd0c8e4d4",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "effcbe26-2bcf-410f-821d-965b6cc31a21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T13:09:41.937Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XPRAGe89Brz1v3P831o2Bf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AutoDefense multi-agent jailbreak NeurIPS 2024 authors Yifan Zeng\"\n\nLinks: [{\"title\":\"NeurIPS AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://neurips.cc/virtual/2024/106249\"},{\"title\":\"[2403.04783] AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://arxiv.org/abs/2403.04783\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://arxiv.org/pdf/2403.04783\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | Xiao Zhang's Homepage\",\"url\":\"https://xiao-zhang.net/publication/2024/zeng2024auto/\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\",\"url\":\"https://cispa.de/en/research/publications/84308-autodefense-multi-agent-llm-defense-against-jailbreak-attacks\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | OpenReview\",\"url\":\"https://openreview.net/forum?id=WMwoSLAENS\"},{\"title\":\"AutoDefense - Defend against jailbreak attacks with AutoGen | AutoGen 0.2\",\"url\":\"https://microsoft.github.io/autogen/0.2/blog/2024/03/11/AutoDefense/Defending%20LLMs%20Against%20Jailbreak%20Attacks%20with%20AutoDefense/\"},{\"title\":\"[PDF] AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/AutoDefense:-Multi-Agent-LLM-Defense-against-Zeng-Wu/8ba57771dd6345821a0cbe83c4c7eb50f66b7b65\"},{\"title\":\"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240304783Z/abstract\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=AutoDefense:+Multi-Agent+LLM+Defense+against+Jailbreak+Attacks&amp=&author=Yifan+Zeng&amp=&author=Yiran+Wu&amp=&author=Xiao+Zhang&amp=&author=Huazheng+Wang&amp=&author=Qingyun+Wu&amp=&publication_year=2024\"}]\n\nI found information about the AutoDefense research. Here are the key findings:\n\n## AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\n\nAutoDefense is a multi-agent defense framework that filters harmful responses from LLMs by assigning different roles to LLM agents and employing them to complete the defense task collaboratively.\n\n### Authors and Publication\n\nThe paper was authored by Yifan Zeng and 4 other authors, specifically Yifan Zeng, Yiran Wu, Xiao Zhang, Huazheng Wang, and Qingyun Wu in March 2024.\n\n### Key Features\n\nThe framework's response-filtering mechanism is robust against different jailbreak attack prompts and can be used to defend different victim models. With AutoDefense, small open-source LMs can serve as agents and defend larger models against jailbreak attacks.\n\n### Experimental Results\n\nThe researchers reduce the attack success rate on GPT-3.5 from 55.74% to 7.95% using LLaMA-2-13b with a 3-agent system. The work was published as a poster at the NeurIPS 2024 Workshop SafeGenAi.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93f6c029-bd32-4cc7-9a15-d6bd5aad206c",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "932144ff-16a7-4492-ae41-563173e695f0",
+            "sourceToolAssistantUUID": "93f6c029-bd32-4cc7-9a15-d6bd5aad206c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T13:09:42.086Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MaDLDHWACKuMuESp7NAHCM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ActorAttack \"Derail Yourself\" authors venue ICLR 2025\"\n\nNo links found.\n\nI searched for that query, but the search returned no results. This could mean that:\n\n1. The paper or work you're looking for may not be widely indexed online yet\n2. The exact title or author names might be slightly different\n3. The paper may be very recent and not yet available in search results\n4. It may be a preprint or work in progress that hasn't been published yet\n\nCould you provide more context, such as:\n- The full paper title (if \"Derail Yourself\" is a partial title)\n- Author names if you have them\n- Any other details about the paper or research?\n\nThis would help me conduct a more effective search.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27bc707b-8e54-45ea-9c39-e7139624d780",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "146047aa-e6a3-4259-beb8-d48aa4c8af29",
+            "sourceToolAssistantUUID": "27bc707b-8e54-45ea-9c39-e7139624d780",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T13:09:42.690Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LauzZKAP2rghKPXQfrur1X",
+              "name": "WebSearch",
+              "input": {
+                "query": "ProAct \"Jailbreaking Jailbreaks\" ICLR 2026 withdrawn authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "146047aa-e6a3-4259-beb8-d48aa4c8af29",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QesrsRmZDcpmnv7gZw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5a8c5a2f-8dd1-49b1-a048-71e8b2f7db44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M5JsehEoibYT2zDqG3NUBF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7950,
+                "cache_read_input_tokens": 9527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7950,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T13:09:43.602Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DB5SVfR3eaP3j1V1KqVNPt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Crescendo jailbreak Russinovich USENIX Security 2025 venue\"\n\nLinks: [{\"title\":\"The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://www.usenix.org/system/files/usenixsecurity25-russinovich.pdf\"},{\"title\":\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack | USENIX\",\"url\":\"https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich\"},{\"title\":\"Crescendo: A Quiet Crescendo in the Arms Race of LLM Jailbreaking | USENIX\",\"url\":\"https://www.usenix.org/publications/loginonline/crescendo-quiet-crescendo-arms-race-llm-jailbreaking\"},{\"title\":\"34th USENIX Security Symposium: Great, Now Write an Article About That:...\",\"url\":\"https://usenixsecurity25.sched.com/event/2897u/great-now-write-an-article-about-that-the-crescendo-multi-turn-llm-jailbreak-attack\"},{\"title\":\"[PDF] Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Great,-Now-Write-an-Article-About-That:-The-LLM-Russinovich-Salem/2c4d2d889a1f0ff9598de829a001df11a95d3294\"},{\"title\":\"Great, now write an article about that | Proceedings of the 34th USENIX Conference on Security Symposium\",\"url\":\"https://dl.acm.org/doi/10.5555/3766078.3766203\"},{\"title\":\"Multi-Turn Jailbreaks Are Simpler Than They Seem\",\"url\":\"https://www.researchgate.net/publication/394439487_Multi-Turn_Jailbreaks_Are_Simpler_Than_They_Seem\"},{\"title\":\"STRATEGIC DISHONESTY CAN UNDERMINE AI SAFETY EVALUATIONS OF FRONTIER LLMS\",\"url\":\"https://arxiv.org/pdf/2509.18058\"},{\"title\":\"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack - Weizmann Institute of Science\",\"url\":\"https://weizmann.elsevierpure.com/en/publications/great-now-write-an-article-about-that-the-crescendo-multi-turn-ll/\"},{\"title\":\"[2404.01833] Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\",\"url\":\"https://arxiv.org/abs/2404.01833\"}]\n\nBased on the search results, I can provide you with information about the Crescendo jailbreak research by Russinovich and colleagues at USENIX Security 2025:\n\nThe 34th USENIX Security Symposium took place August 13–15, 2025 in Seattle, WA, USA.\n\nThe paper is titled \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\" and was authored by Mark Russinovich from Microsoft Azure, along with Ahmed Salem and Ronen Eldan from Microsoft.\n\nRegarding the research itself, Crescendo is a multi-turn jailbreaking technique that uses benign inputs to compromise the target model, gradually steering it to generate harmful content in small, seemingly benign steps. Crescendomation surpasses other state-of-the-art jailbreaking techniques on the AdvBench subset dataset, achieving 29-61% higher performance on GPT-4 and 49-71% on Gemini-Pro.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "371d5315-ca5f-41b2-955f-b0dd38bde461",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "76d95360-2623-49d4-9dd1-734cf5034962",
+            "sourceToolAssistantUUID": "371d5315-ca5f-41b2-955f-b0dd38bde461",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T13:09:45.038Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MBHUQB3NzarqN1qV7wuqJW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Latent Adversarial Detection LAD arxiv 2604.28129 authors\"\n\nLinks: [{\"title\":\"[2604.28129] Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\",\"url\":\"https://arxiv.org/abs/2604.28129\"},{\"title\":\"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\",\"url\":\"https://arxiv.org/html/2604.28129\"},{\"title\":\"Effective and Efficient Adversarial Detection for Vision-Language Models via A Single Vector\",\"url\":\"https://arxiv.org/html/2410.22888v1\"},{\"title\":\"Latent Adversarial Defence with Boundary-guided ...\",\"url\":\"https://arxiv.org/pdf/1907.07001\"},{\"title\":\"LARGO: Latent Adversarial Reflection through Gradient ...\",\"url\":\"https://arxiv.org/pdf/2505.10838\"},{\"title\":\"Artificial Intelligence Jun 2025\",\"url\":\"https://arxiv.org/list/cs.AI/2025-06?skip=1800&show=2000\"},{\"title\":\"Computer Science Apr 2023\",\"url\":\"https://arxiv.org/list/cs/2023-04?skip=5525&show=2000\"},{\"title\":\"Machine Learning Jun 2024\",\"url\":\"https://web3.arxiv.org/list/cs.LG/2024-06?skip=1900&show=2000\"},{\"title\":\"Computer Science Jan 2024\",\"url\":\"https://arxiv.org/list/cs/2024-01?skip=2000&show=2000\"},{\"title\":\"Machine Learning Mar 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-03?skip=1900&show=2000\"}]\n\nBased on the search results, here is the information about the paper:\n\n**Paper:** Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection (arXiv:2604.28129)\n\n**Author:** Prashant Kulkarni\n\nThe paper was submitted on 30 Apr 2026. The paper shows that multi-turn prompt injection attack paths leave an activation-level signature in the model's residual stream, which the authors call \"adversarial restlessness.\"\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a5eaf61-554d-40e6-a63b-51856b6e17d7",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "aee30936-a85c-4773-bbde-4e3ad017298b",
+            "sourceToolAssistantUUID": "7a5eaf61-554d-40e6-a63b-51856b6e17d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T13:09:45.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011uphcp7Lv7tEngB2rcvgTi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"MultiBreak jailbreak benchmark authors 2025 venue code github\"\n\nLinks: [{\"title\":\"[2605.01687v1] MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/abs/2605.01687v1\"},{\"title\":\"[2605.01687] MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/abs/2605.01687\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/49a02c4f68a8ab6fa3f6dca3f5f415dd8053a8fc.pdf\"},{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Stress-testing LLM Safety | OpenReview\",\"url\":\"https://openreview.net/forum?id=uJgfj5EJ2W\"},{\"title\":\"JailbreakBench: LLM robustness benchmark\",\"url\":\"https://jailbreakbench.github.io/\"},{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/html/2605.01687v1\"},{\"title\":\"MTJ-Bench: Multi-Turn Jailbreak Evaluation\",\"url\":\"https://www.emergentmind.com/topics/multi-turn-jailbreak-benchmark-mtj-bench\"},{\"title\":\"[2508.06755] Many-Turn Jailbreaking\",\"url\":\"https://arxiv.org/abs/2508.06755\"},{\"title\":\"[2404.01318] JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models\",\"url\":\"https://arxiv.org/abs/2404.01318\"},{\"title\":\"AILuminate Security Introducing v0.5 of the Jailbreak Benchmark from MLCommons\",\"url\":\"https://mlcommons.org/wp-content/uploads/2025/12/MLCommons-Security-Jailbreak-0.5.1.pdf\"}]\n\nBased on my web search results, here is the information about the MultiBreak jailbreak benchmark:\n\n## Authors\n\nThe authors are Jialin Song, Xiaodong Liu, Weiwei Yang, Wuyang Chen, Mingqian Feng, Xuekai Zhu, and Jianfeng Gao.\n\n## 2025 Venue and Code\n\nMultiBreak was submitted to ICLR 2026. \n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=uJgfj5EJ2W\n\nThe arXiv identifier is: 2605.01687\n\nUnfortunately, I could not find specific information about a GitHub repository link in the search results. The search results don't provide a direct GitHub code repository for this benchmark. You may want to check the paper's supplementary materials or contact the authors directly for code availability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc0deabe-91d5-4fe8-9fa2-94d989eee634",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "e62b4739-5566-44fe-8e3d-a62474f5a944",
+            "sourceToolAssistantUUID": "fc0deabe-91d5-4fe8-9fa2-94d989eee634",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T13:09:47.693Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LauzZKAP2rghKPXQfrur1X",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ProAct \"Jailbreaking Jailbreaks\" ICLR 2026 withdrawn authors\"\n\nLinks: [{\"title\":\"Jailbreaking Jailbreaks: A Proactive Defense for LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=pq6rx9r6Aj\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/da2b1c8d86a52f6a2cd2b42f1a1c754c77ddbeca.pdf\"}]\n\nBased on the search results, I found information about the ProAct paper:\n\nThe paper \"Jailbreaking Jailbreaks\" was submitted to ICLR 2026 and was withdrawn on January 26, 2026. \n\nProAct is a novel proactive defense framework designed to disrupt and mislead autonomous jailbreaking processes by intentionally providing adversaries with \"spurious responses\" that appear to be results of successful jailbreak attacks but contain no actual harmful content.\n\nHowever, the search results show that the paper was submitted under \"anonymous authors\" during double-blind review, so the specific author names are not publicly disclosed in these search results. The OpenReview forum page does not list the author identities as the paper was withdrawn.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5a8c5a2f-8dd1-49b1-a048-71e8b2f7db44",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "5d121a68-227c-48b1-848c-4348ce8e57ee",
+            "sourceToolAssistantUUID": "5a8c5a2f-8dd1-49b1-a048-71e8b2f7db44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T13:09:47.902Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NbXGQRuzFdprNWm7m2ERVY",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Large reasoning models are autonomous jailbreak agents\" Hagendorff Nature Communications 2026 authors\"\n\nLinks: [{\"title\":\"Large reasoning models are autonomous jailbreak agents | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-026-69010-1\"},{\"title\":\"(PDF) Large reasoning models are autonomous jailbreak agents\",\"url\":\"https://www.researchgate.net/publication/400518460_Large_reasoning_models_are_autonomous_jailbreak_agents\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12881495/\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents\",\"url\":\"https://ellisalicante.org/publications/hagendorff2026nature/\"},{\"title\":\"LLM Jailbreaking in 2026: 97% Success Rates, Autonomous Attacks, and the Arms Race That Isn't Working | redteams.ai\",\"url\":\"https://redteams.ai/blog/llm-jailbreaking-2026\"},{\"title\":\"Large Reasoning Models Are Autonomous Jailbreak Agents | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394362380_Large_Reasoning_Models_Are_Autonomous_Jailbreak_Agents\"},{\"title\":\"[2508.04039] Large Reasoning Models Are Autonomous Jailbreak Agents\",\"url\":\"https://arxiv.org/abs/2508.04039\"},{\"title\":\"Large reasoning models are autonomous jailbreak agents | PUMA\",\"url\":\"https://puma.ub.uni-stuttgart.de/bibtex/2e27382447f62a8fb4125615584a67341/iris\"},{\"title\":\"Large Reasoning Models Are Autonomous Jailbreak Agents\",\"url\":\"https://www.semanticscholar.org/paper/Large-Reasoning-Models-Are-Autonomous-Jailbreak-Hagendorff-Derner/1dbcece943d227aad65c9cbc2157094c48ceb7d5\"},{\"title\":\"AI Models Can Now Jailbreak Other AI Models Autonomously - 97% Success Rate, No Human Involved | Awesome Agents\",\"url\":\"https://awesomeagents.ai/news/reasoning-models-autonomous-jailbreak-agents/\"}]\n\n## Search Results\n\nI found the paper you're looking for! Here's the information about the publication:\n\n**Title:** Large reasoning models are autonomous jailbreak agents\n\n**Authors:** Hagendorff, T., Derner, E. & Oliver, N.\n\n**Publication Details:** Nature Communications 17, 1435 (2026)\n\n**Key Findings:**\n\nThe study evaluated four large reasoning models (DeepSeek-R1, Gemini 2.5 Flash, Grok 3 Mini, Qwen3 235B) acting as autonomous adversaries conducting multi-turn conversations with nine widely used target models. LRMs received instructions via a system prompt, before proceeding to planning and executing jailbreaks with no further supervision. This setup yielded an overall jailbreak success rate across all model combinations of 97.14%.\n\n**DOI:** 10.1038/s41467-026-69010-1\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "effcbe26-2bcf-410f-821d-965b6cc31a21",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "5146559f-ebb5-4daa-bb51-d1542976bd2f",
+            "sourceToolAssistantUUID": "effcbe26-2bcf-410f-821d-965b6cc31a21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T13:09:49.266Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WeVbyBm4TREQYKNRqMkNGG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DeepContext arxiv 2602.16935 authors venue code github\"\n\nLinks: [{\"title\":\"[2602.16935] DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/abs/2602.16935\"},{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn ...\",\"url\":\"https://www.arxiv.org/pdf/2602.16935\"},{\"title\":\"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/html/2602.16935\"},{\"title\":\"[2602.16935v1] DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\",\"url\":\"https://arxiv.org/abs/2602.16935v1\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/pastweek?skip=1550&show=2000\"},{\"title\":\"[2411.02797] DeepContext: A Context-aware, Cross-platform, and Cross-framework Tool for Performance Profiling and Analysis of Deep Learning Workloads\",\"url\":\"https://arxiv.org/abs/2411.02797\"},{\"title\":\"DeepContext: A Context-aware, Cross-platform, and Cross-framework Tool for Performance Profiling and Analysis of Deep Learning Workloads\",\"url\":\"https://arxiv.org/html/2411.02797v1\"},{\"title\":\"Machine Learning\",\"url\":\"https://web3.arxiv.org/list/cs.LG/recent?skip=65&show=1000\"},{\"title\":\"<italic>DeepContext:</italic> Mobile Context Modeling and ...\",\"url\":\"https://ieeexplore.ieee.org/iel7/7755/4358975/09865200.pdf\"},{\"title\":\"Computer Science Sep 2023\",\"url\":\"https://arxiv.org/list/cs/2023-09?skip=6800\"}]\n\nBased on the search results for arxiv 2602.16935, here's the information about the DeepContext paper:\n\n**Authors:** Justin Albrethsen, Yash Datta, Kunal Kumar, Sharath Rajasekar\n\n**Paper Title:** DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\n\n**Submission Date:** 18 Feb 2026\n\n**Venue:** The paper was submitted to arXiv under the cs.AI category\n\n**GitHub/Code:** A live demonstration of DeepContext (powered by a GPT-3.5-Turbo backend) is available at https://huggingface.co/spaces/highflame/DeepContext-Demo\n\nThe paper describes a stateful monitoring framework using RNN architecture for detecting multi-turn jailbreak attempts in LLMs by tracking the temporal trajectory of user intent across conversation turns.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c4246d0-8735-4a9c-8b64-63bcd0c8e4d4",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "18f974e5-340a-43ae-9d2a-6e8c5cc01c73",
+            "sourceToolAssistantUUID": "5c4246d0-8735-4a9c-8b64-63bcd0c8e4d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T13:09:52.359Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me do one final search to fill in the remaining gaps on ActorAttack's publication venue."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18f974e5-340a-43ae-9d2a-6e8c5cc01c73",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4Qg7yi6wSKzGfY185Dz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e1ec4cbd-52e6-46d1-8913-e78a16df651d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D88kNxMAT4Yz1N2k7VDSkC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1221,
+                "cache_creation_input_tokens": 4862,
+                "cache_read_input_tokens": 17477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T13:09:53.366Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WRoeDRScUDbUnmDpcMxSsz",
+              "name": "WebSearch",
+              "input": {
+                "query": "ActorAttack \"Derail Yourself\" multi-turn jailbreak Qibing Ren authors ICLR NeurIPS venue 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1ec4cbd-52e6-46d1-8913-e78a16df651d",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4Qg7yi6wSKzGfY185Dz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0fc906b-ab30-42a4-b507-365baed6a0fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D88kNxMAT4Yz1N2k7VDSkC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1221,
+                "cache_creation_input_tokens": 4862,
+                "cache_read_input_tokens": 17477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T13:09:54.436Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MkSUYpT3rdGgrTSKdFgWpS",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"Proactive defense against LLM Jailbreak\" 2510.05052 authors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0fc906b-ab30-42a4-b507-365baed6a0fb",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4Qg7yi6wSKzGfY185Dz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d35fa9f7-51af-4fe2-831d-ad3871aeeffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D88kNxMAT4Yz1N2k7VDSkC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1221,
+                "cache_creation_input_tokens": 4862,
+                "cache_read_input_tokens": 17477,
+                "output_tokens": 172,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4862
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1221,
+                    "output_tokens": 172,
+                    "cache_read_input_tokens": 17477,
+                    "cache_creation_input_tokens": 4862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4862,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T13:09:59.457Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WRoeDRScUDbUnmDpcMxSsz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ActorAttack \"Derail Yourself\" multi-turn jailbreak Qibing Ren authors ICLR NeurIPS venue 2025\"\n\nLinks: [{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through self-discovered clues | OpenReview\",\"url\":\"https://openreview.net/forum?id=kvvvUPDAPt\"},{\"title\":\"[Literature Review] Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\",\"url\":\"https://www.themoonlight.io/en/review/derail-yourself-multi-turn-llm-jailbreak-attack-through-self-discovered-clues\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through self-discovered clues\",\"url\":\"https://arxiv.org/html/2410.10700v1\"},{\"title\":\"GitHub - AI45Lab/ActorAttack\",\"url\":\"https://github.com/renqibing/actorattack\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384929981_Derail_Yourself_Multi-turn_LLM_Jailbreak_Attack_through_Self-discovered_Clues\"},{\"title\":\"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2410.10700v1\"},{\"title\":\"[2410.10700] LLMs know their vulnerabilities: Uncover Safety Gaps through Natural Distribution Shifts\",\"url\":\"https://arxiv.org/abs/2410.10700\"},{\"title\":\"Paper page - Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\",\"url\":\"https://huggingface.co/papers/2410.10700\"},{\"title\":\"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\",\"url\":\"https://arxiv.org/html/2605.01687v1\"},{\"title\":\"Qibing Ren\",\"url\":\"https://www.catalyzex.com/author/Qibing%20Ren\"}]\n\nBased on the search results, here's what I found about ActorAttack and the \"Derail Yourself\" paper:\n\n## Paper Title and Authors\n\nThe paper is titled \"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\" by Qibing Ren et al.\n\n## Venue and Status\n\nThe paper was submitted to ICLR 2025 but was withdrawn, so it is not currently published at a major conference venue. The paper is on arXiv as 2410.10700.\n\n## Research Overview\n\nActorAttack is a novel multi-turn attack method inspired by actor-network theory, which models a network of semantically linked actors as attack clues to generate diverse and effective attack paths toward harmful targets.\n\nActorAttack outperforms existing single-turn and multi-turn attack methods across advanced aligned LLMs, even for GPT-o1.\n\n## Dataset and Code\n\nThe authors will publish a dataset called SafeMTData, which includes multi-turn adversarial prompts and safety alignment data generated by ActorAttack. Models safety-tuned using this dataset are more robust to multi-turn attacks. Code is available at https://github.com/renqibing/ActorAttack.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0fc906b-ab30-42a4-b507-365baed6a0fb",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "021b68f4-7828-4c7f-9687-0b697a429327",
+            "sourceToolAssistantUUID": "f0fc906b-ab30-42a4-b507-365baed6a0fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T13:09:59.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MkSUYpT3rdGgrTSKdFgWpS",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"Proactive defense against LLM Jailbreak\" 2510.05052 authors\"\n\nLinks: [{\"title\":\"[2510.05052] Proactive defense against LLM Jailbreak\",\"url\":\"https://arxiv.org/abs/2510.05052\"},{\"title\":\"PROACTIVE DEFENSE AGAINST LLM JAILBREAK\",\"url\":\"https://arxiv.org/pdf/2510.05052\"},{\"title\":\"[2510.05052v1] Proactive defense against LLM Jailbreak\",\"url\":\"https://arxiv.org/abs/2510.05052v1\"},{\"title\":\"Proactive defense against LLM Jailbreak - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv251005052Z/abstract\"},{\"title\":\"Proactive defense against LLM Jailbreak | AI Security Portal\",\"url\":\"https://aisecurity-portal.org/en/literature-database/proactive-defense-against-llm-jailbreak/\"},{\"title\":\"Proactive defense against LLM Jailbreak\",\"url\":\"https://www.researchgate.net/publication/396250510_Proactive_defense_against_LLM_Jailbreak\"},{\"title\":\"AISecHub on X: \\\"Proactive defense against LLM Jailbreak Our core idea is to intentionally provide adversaries with \\\"spurious responses\\\" that appear to be results of successful jailbreak attacks but contain no actual harmful content. These misleading responses provide false signals to the https://t.co/E5o7OU3KgV\\\" / X\",\"url\":\"https://x.com/AISecHub/status/1975623924575617081\"},{\"title\":\"Proactive defense against LLM Jailbreak - Paper Detail\",\"url\":\"https://deeplearn.org/arxiv/641958/proactive-defense-against-llm-jailbreak\"},{\"title\":\"A PROACTIVE DEFENSE FOR LLMS\",\"url\":\"https://openreview.net/pdf/da2b1c8d86a52f6a2cd2b42f1a1c754c77ddbeca.pdf\"},{\"title\":\"Defending Large Language Models Against Jailbreak Exploits with Responsible AI Considerations\",\"url\":\"https://arxiv.org/html/2511.18933v1\"}]\n\nBased on the search results, here's the information about the paper arXiv 2510.05052:\n\n**Title:** Proactive defense against LLM Jailbreak\n\n**Authors:** Weiliang Zhao, Jinjun Peng, Daniel Ben-Levi, Zhou Yu, Junfeng Yang\n\n**Summary:** The paper introduces ProAct, a novel proactive defense framework designed to disrupt and mislead iterative search jailbreak methods by intentionally misleading these jailbreak methods into thinking that the model has been jailbroken with \"spurious responses\". These misleading responses provide false signals to the attacker's internal optimization loop, causing the adversarial search to terminate prematurely and effectively jailbreaking the jailbreak.\n\nThe paper was submitted to arXiv on October 6, 2025, and addresses vulnerabilities in large language models to multi-turn jailbreak attacks by proposing a proactive rather than reactive defense mechanism.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d35fa9f7-51af-4fe2-831d-ad3871aeeffa",
+            "isSidechain": true,
+            "promptId": "e107a35d-684d-4d83-b267-ecf24af0cd65",
+            "agentId": "ac9214d8313f40b97",
+            "type": "user",
+            "uuid": "ff3b1b46-620e-4d78-a71f-546a93c6a097",
+            "sourceToolAssistantUUID": "d35fa9f7-51af-4fe2-831d-ad3871aeeffa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T13:10:53.386Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the consolidated findings for all 8 searches:\n\n---\n\n## 1. DeepContext -- VERIFIED, EXISTS\n\n- **Title:** \"DeepContext: Stateful Real-Time Detection of Multi-Turn Adversarial Intent Drift in LLMs\"\n- **Authors:** Justin Albrethsen, Yash Datta, Kunal Kumar, Sharath Rajasekar\n- **Venue/Year:** arXiv preprint (arXiv:2602.16935), February 2026. No peer-reviewed venue confirmed.\n- **Key Metrics:** F1 of 0.84 (vs. Llama-Prompt-Guard-2 at 0.67, Granite-Guardian at 0.67). Sub-20ms inference on T4 GPU.\n- **Availability:** A live demo on HuggingFace Spaces (highflame/DeepContext-Demo). No GitHub code repo found.\n\nSources:\n- [arXiv abs](https://arxiv.org/abs/2602.16935)\n- [arXiv HTML](https://arxiv.org/html/2602.16935v1)\n\n---\n\n## 2. Latent Adversarial Detection (LAD) -- VERIFIED, EXISTS\n\n- **Title:** \"Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection\"\n- **Authors:** Prashant Kulkarni\n- **Venue/Year:** arXiv preprint (arXiv:2604.28129), April 2026. No peer-reviewed venue confirmed.\n- **Key Metrics:** Detection improves from 76.2% to 93.8% on synthetic data using five trajectory features. Combined three-source training achieves 89.4% detection at 2.4% FPR. Tested across four model families (24B-70B). Core concept: \"adversarial restlessness\" -- elevated cumulative path length in activation residual stream during attacks.\n- **Availability:** No GitHub/HuggingFace links found.\n\nSources:\n- [arXiv abs](https://arxiv.org/abs/2604.28129)\n- [arXiv HTML](https://arxiv.org/html/2604.28129)\n\n---\n\n## 3. ProAct -- VERIFIED, EXISTS (two related papers)\n\nThere are **two distinct papers** using the \"ProAct\" / proactive defense concept:\n\n**Paper A (ICLR 2026 submission -- WITHDRAWN):**\n- **Title:** \"Jailbreaking Jailbreaks: A Proactive Defense for LLMs\"\n- **Authors:** Anonymous (double-blind; paper was withdrawn Jan 26, 2026)\n- **Venue:** Submitted to ICLR 2026, **withdrawn**. Not a published ICLR 2026 paper.\n- **Key Metrics:** Reduces ASR by up to 94%; combined with other defenses, reduces latest attack success to 0%.\n- **Availability:** OpenReview PDF available.\n\n**Paper B (arXiv preprint):**\n- **Title:** \"Proactive defense against LLM Jailbreak\"\n- **Authors:** Weiliang Zhao, Jinjun Peng, Daniel Ben-Levi, Zhou Yu, Junfeng Yang\n- **Venue:** arXiv preprint (arXiv:2510.05052), October 2025\n- **Key concept:** Same core idea of \"spurious responses\" to mislead adversarial search.\n\n**Important caveat:** The ICLR 2026 submission was **withdrawn**, so it cannot be cited as an ICLR 2026 paper. If you need a peer-reviewed reference, this does not qualify.\n\nSources:\n- [OpenReview (withdrawn)](https://openreview.net/forum?id=pq6rx9r6Aj)\n- [arXiv 2510.05052](https://arxiv.org/abs/2510.05052)\n\n---\n\n## 4. \"Large reasoning models are autonomous jailbreak agents\" -- VERIFIED, EXISTS\n\n- **Title:** \"Large reasoning models are autonomous jailbreak agents\"\n- **Authors:** Thilo Hagendorff, Erik Derner, Nuria Oliver\n- **Venue/Year:** Nature Communications 17, 1435 (2026). DOI: 10.1038/s41467-026-69010-1\n- **Key Metrics:** 97.14% overall jailbreak success rate across all model combinations. 4 LRMs (DeepSeek-R1, Gemini 2.5 Flash, Grok 3 Mini, Qwen3 235B) as attackers against 9 target models. Claude 4 Sonnet was most resistant (2.86% max harm, 50.18% refusal rate). DeepSeek-V3 most vulnerable (90% max harm). Introduces concept of \"alignment regression.\"\n- **Availability:** Published in Nature Communications (open access via PMC).\n\nSources:\n- [Nature Communications](https://www.nature.com/articles/s41467-026-69010-1)\n- [PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC12881495/)\n- [arXiv 2508.04039](https://arxiv.org/abs/2508.04039)\n\n---\n\n## 5. AutoDefense -- VERIFIED, EXISTS\n\n- **Title:** \"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks\"\n- **Authors:** Yifan Zeng, Yiran Wu, Xiao Zhang, Huazheng Wang, Qingyun Wu\n- **Venue/Year:** NeurIPS 2024 Workshop SafeGenAi (poster). arXiv:2403.04783.\n- **Key Metrics:** Reduces ASR on GPT-3.5 from 55.74% to 7.95% (3-agent LLaMA-2-13b system). Adding Llama Guard reduces FPR from 37.32% to 6.80% while keeping ASR at 11.08%.\n- **Availability:** Code on GitHub: [XHMY/AutoDefense](https://github.com/XHMY/AutoDefense). Also integrated with Microsoft AutoGen.\n\nSources:\n- [arXiv](https://arxiv.org/abs/2403.04783)\n- [GitHub](https://github.com/XHMY/AutoDefense)\n- [NeurIPS 2024](https://neurips.cc/virtual/2024/106249)\n\n---\n\n## 6. Crescendo -- VERIFIED, EXISTS\n\n- **Title:** \"Great, Now Write an Article About That: The Crescendo Multi-Turn LLM Jailbreak Attack\"\n- **Authors:** Mark Russinovich, Ahmed Salem, Ronen Eldan (all Microsoft)\n- **Venue/Year:** 34th USENIX Security Symposium (USENIX Security 2025), August 13-15, 2025, Seattle, WA. arXiv:2404.01833.\n- **Key Metrics:** Crescendomation achieves 29-61% higher ASR on GPT-4 and 49-71% higher on Gemini-Pro vs. SOTA jailbreaks on AdvBench subset. Average successful jailbreak in fewer than 5 interactions.\n- **Availability:** Project page at [crescendo-the-multiturn-jailbreak.github.io](https://crescendo-the-multiturn-jailbreak.github.io/). Full paper PDF available.\n\nSources:\n- [USENIX Security 2025](https://www.usenix.org/conference/usenixsecurity25/presentation/russinovich)\n- [arXiv](https://arxiv.org/abs/2404.01833)\n\n---\n\n## 7. MultiBreak -- VERIFIED, EXISTS\n\n- **Title:** \"MultiBreak: A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety\"\n- **Authors:** Jialin Song, Xiaodong Liu, Weiwei Yang, Wuyang Chen, Mingqian Feng, Xuekai Zhu, Jianfeng Gao\n- **Venue/Year:** arXiv preprint (arXiv:2605.01687), May 2026. Also submitted to ICLR 2026 under the title \"...for Stress-testing LLM Safety\" (OpenReview).\n- **Key Metrics:** 10,389 multi-turn adversarial prompts across 2,665 harmful intents, 9 coarse / 26 fine-grained safety categories. Up to 54.0 higher ASR than second-best dataset on DeepSeek-R1-7B; 34.6 higher on GPT-4.1-mini.\n- **Availability:** No public GitHub repo or HuggingFace dataset found at the time of search. Check the paper for links.\n\nSources:\n- [arXiv](https://arxiv.org/abs/2605.01687)\n- [OpenReview](https://openreview.net/forum?id=uJgfj5EJ2W)\n\n---\n\n## 8. ActorAttack -- VERIFIED, EXISTS\n\n- **Title:** \"Derail Yourself: Multi-turn LLM Jailbreak Attack through Self-discovered Clues\"\n- **Authors:** Qibing Ren et al.\n- **Venue/Year:** arXiv preprint (arXiv:2410.10700), October 2024. Was submitted to ICLR 2025 but **withdrawn**.\n- **Key Metrics:** Outperforms existing single-turn and multi-turn methods across advanced aligned LLMs including GPT-o1. Safety-tuning with SafeMTData reduces ActorAttack success rate on Llama-3-8B-Instruct from 78% to 24%. SafeMTData contains 2,000 multi-turn adversarial prompts.\n- **Availability:** Code on GitHub: [AI45Lab/ActorAttack](https://github.com/renqibing/actorattack). Dataset (SafeMTData) available on HuggingFace.\n\nSources:\n- [arXiv](https://arxiv.org/abs/2410.10700)\n- [OpenReview (withdrawn)](https://openreview.net/forum?id=kvvvUPDAPt)\n- [GitHub](https://github.com/renqibing/actorattack)\n- [HuggingFace](https://huggingface.co/papers/2410.10700)\n\n---\n\n## Summary of Verification Status\n\n| # | Paper | Real? | Peer-Reviewed? | Public Code/Data? |\n|---|-------|-------|----------------|-------------------|\n| 1 | DeepContext | Yes | No (arXiv preprint) | Demo only |\n| 2 | LAD | Yes | No (arXiv preprint) | No |\n| 3 | ProAct | Yes | **No** (ICLR 2026 withdrawn) | OpenReview PDF |\n| 4 | Reasoning Models 97% | Yes | **Yes** (Nature Comms 2026) | Yes (open access) |\n| 5 | AutoDefense | Yes | Yes (NeurIPS 2024 Workshop) | Yes (GitHub) |\n| 6 | Crescendo | Yes | **Yes** (USENIX Security 2025) | Yes (project page) |\n| 7 | MultiBreak | Yes | Under review (ICLR 2026) | Not found |\n| 8 | ActorAttack | Yes | **No** (ICLR 2025 withdrawn) | Yes (GitHub + HF) |\n\n**Key caveats for your planning:** Papers #1, #2, and #3 are preprints (with #3 explicitly withdrawn from ICLR 2026). Paper #7 is currently under review. Only #4, #5, and #6 are confirmed peer-reviewed published works. Paper #8 was withdrawn from ICLR 2025 but has public code/data available."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff3b1b46-620e-4d78-a71f-546a93c6a097",
+            "isSidechain": true,
+            "agentId": "ac9214d8313f40b97",
+            "requestId": "req_011Cb4QguUAQwEnQiciMdR4R",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "48d121e1-2286-4e1f-a3f6-28a94ee2167a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "6c0bcb86-30f4-43dd-b09b-310fbe17d7f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018WkRVVVwggd56jtmFWaBNQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3137,
+                "cache_read_input_tokens": 22339,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3137,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-specific-paper-references-and-find-baseline-numbers-for-a-res.md"
+}

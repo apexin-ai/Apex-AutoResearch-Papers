@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4ae2bc81b9d4f71365bb",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目路径（远程服务器）: /root/autodl-tmp/distrib_canary_collapse 项目路径（本地）: /home/ubuntu/.agent-ml-research-idea_gen",
+  "task_key": "307b3e19-b2e6-4481-8664-145b460d37f6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/307b3e19-b2e6-4481-8664-145b460d37f6.jsonl",
+    "occurrence": 1,
+    "bytes": 594723,
+    "sha256": "e4f106113b02a6793361a18c60089c78ec1d8f3b801b9ae5f58681385b80116e"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "record": 33,
+      "user": 1,
+      "assistant": 28,
+      "tool_call": 47,
+      "tool_result": 47
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4ae2bc81b9d4f71365bb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "4ae2bc81b9d4f71365bb-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "4ae2bc81b9d4f71365bb-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-root-autodl-tmp-distrib-canary-collapse-home-ubuntu-agent-ml-res.md"
+}

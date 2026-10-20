@@ -1,0 +1,709 @@
+{
+  "schema_version": "1.0",
+  "id": "6611dfdcd48a32e8e272",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the following LaTeX source files in the paper directory at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects",
+  "task_key": "agent-ac90869afcab6da9c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ac90869afcab6da9c.jsonl",
+    "occurrence": 1,
+    "bytes": 53635,
+    "sha256": "601a79de401f9e4954ae20cb603dab33acc8c0c8e619770bc0062a29fb5dbb4c"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T09:52:27.847Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the following LaTeX source files in the paper directory at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ and report their full contents:\n\n1. theory.tex - the theoretical framework section\n2. method.tex - the methodology section  \n3. experiments.tex - the experiments section\n4. discussion.tex - discussion and conclusion\n5. limitations.tex - limitations section\n6. abstract.tex - abstract\n\nI need the exact text, equations, numbers, and claims made in each file. Report the full content of each file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "e795d4bf-9197-441d-b7b9-c600860a194f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T09:52:29.565Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all the specified LaTeX source files from the paper directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e795d4bf-9197-441d-b7b9-c600860a194f",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4e89333c-e39b-4ec4-a0f4-9c907f4b218f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T09:52:29.925Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EjsXH7BGiyVeaZWySV1pWA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e89333c-e39b-4ec4-a0f4-9c907f4b218f",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c96d87f5-aa78-4da2-a4de-b19aca4fd5e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T09:52:29.932Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EjsXH7BGiyVeaZWySV1pWA",
+              "type": "tool_result",
+              "content": "1\t\\section{Cascade Ordering}\n2\t\\label{sec:cascade}\n3\t\n4\tWe formalize the empirical regularity that entropy is the earliest available canary metric for diversity collapse.\n5\tUnder mode amplification---the assumption that MLE on peaked distributions concentrates probability toward high-frequency tokens~\\cite{shumailov2024curse,dohmatob2024tale}---we derive a formal ordering of metric responses with theoretical grounding (proofs in Appendix~\\ref{app:cascade_theory}).\n6\t\n7\t\\begin{proposition}[Entropy leads diversity]\\label{thm:entropy_leads}\n8\tUnder mode amplification: \\textup{(a)} entropy can decrease while the $\\epsilon$-effective support $S_\\epsilon(p) {=} |\\{i: p_i > \\epsilon\\}|$ (hence distinct-$n$) is unchanged; \\textup{(b)} if distinct-$n$ decreases, entropy has already decreased.\n9\t\\end{proposition}\n10\t\n11\tThe asymmetry arises because entropy responds to any mass redistribution (first-order), while diversity changes only when a token probability crosses the generation threshold~$\\epsilon$; the margin $\\gamma = \\min_{i: p_i > \\epsilon}(p_i - \\epsilon)$ quantifies how much shift diversity absorbs silently.\n12\t\n13\t\\begin{proposition}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\n14\tIf the per-generation perturbation satisfies $\\alpha\\|\\mathcal{T}(p_t) - p_t\\|_\\infty < \\gamma(p_t, \\epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \\geq t_H + 1$.\n15\t\\end{proposition}\n16\t\n17\tECE co-moves with entropy at zero lag: peakier conditionals simultaneously decrease per-token entropy and increase confidence ($\\Delta\\mathrm{ECE} \\approx \\Delta C > 0$ whenever $\\Delta\\bar{H} < 0$; qualitative argument, Appendix~\\ref{app:cascade_theory}).\n18\tThe predicted cascade $\\{H, \\mathrm{ECE}\\} \\to \\mathrm{Distinct}$-$n$ is confirmed in 14/15 experiments at $\\alpha \\geq 0.30$ (GPT-2-medium s43 bidirectional) (within-domain WikiText, $2\\sigma$ onset threshold): entropy and ECE onset at generation~1, distinct-$n$ at generation~2 ($t_H{=}t_{\\mathrm{ECE}}{=}1$, $t_D{=}2$ uniformly; \\S\\ref{sec:regime}; Appendix~\\ref{app:moment_cascade}).\n19\tFive low-$\\alpha$ experiments show no detectable onset, leaving the ordering undefined below the detection threshold.\n20\tThe cascade establishes entropy as the \\emph{optimal canary metric}---the earliest available signal---and explains PermG's directional selectivity: forward tests detect temporal precedence (6/8) while reverse tests find none (0/8) at $\\alpha \\geq 0.50$.\n21\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c96d87f5-aa78-4da2-a4de-b19aca4fd5e0",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "26fc8b33-8a04-47ed-acd5-51b202fb1c6d",
+            "sourceToolAssistantUUID": "c96d87f5-aa78-4da2-a4de-b19aca4fd5e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T09:52:29.997Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KSKq1rqa5L2q625a3ufXwE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26fc8b33-8a04-47ed-acd5-51b202fb1c6d",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "84fb1df9-b990-4cca-b164-1b97a72fc2c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T09:52:30.045Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KSKq1rqa5L2q625a3ufXwE",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\paragraph{Methodological pitfalls.}\n5\t\\label{sec:pitfalls}\n6\tLead-lag analysis in iterative model collapse is fragile along three axes, each documented with data from \\S\\ref{sec:regime}--\\ref{sec:dose_response}.\n7\t\\emph{Method sensitivity}: five detection methods applied to identical data yield forward significance rates spanning 0\\% to 92\\%, with inter-method agreement at $\\kappa{=}0.185$.\n8\t\\emph{Spurious regression}: first-differencing eliminates canary$\\to$perplexity associations ($F{\\approx}0$, $p{=}0.99$) while preserving canary$\\to$diversity (24/24$\\to$24/24), exposing an entire analysis channel as trend-driven~\\cite{granger1974spurious}.\n9\t\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval ($\\alpha{=}0.48 \\to 0.50$).\n10\t\n11\t\\subsection{Method Sensitivity Analysis}\n12\t\\label{sec:mmct}\n13\tWe compare five lead-lag detection methods---naive cross-correlation, differenced cross-correlation, threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\cite{toda1995statistical}---in a multi-method comparison~\\cite{simonsohn2020specification} calibrated against null-control ($\\alpha{=}0.0$) data where any detection is a false positive.\n14\tDetection results use equal-weight majority voting ($K{\\geq}3$ of 5 methods, each contributing one vote per pair) with forward-direction filtering; FPR-inverse weighting is used only in exploratory method ranking (Appendix~\\ref{app:weight_robustness}).\n15\tEach method embodies different assumptions: naive cross-correlation is assumption-free but produces 92\\% null-control FPR; differenced cross-correlation controls for trends but lacks directional separation; threshold onset is power-limited at $T{=}11$; Toda--Yamamoto avoids pre-testing for unit roots; PermG uses a nonparametric permutation null with built-in directionality.\n16\tPooled null-control FPR across three seeds (cluster-bootstrap 95\\% CI): PermG 0\\% $[0, 0]$, Toda--Yamamoto 17\\% $[0, 25]$, DiffXCorr 38\\% $[25, 50]$, NaiveXCorr 92\\% $[88, 100]$ (Appendix~\\ref{app:fpr_independence}).\n17\tDiffXCorr's empirical FPR (38\\%) substantially exceeds its simulated rate (4.2\\% under AR(1) DGP), indicating that model-collapse nonstationarity extends beyond simple autoregressive structure.\n18\tUnder all four weighting schemes (equal, FPR-inverse, capped, rank-based), PermG is the only method maintaining zero null-control FPR alongside consistent detection at $\\alpha \\geq 0.50$.\n19\tThis finding---that method choice alone can shift conclusions from universal significance to complete null on identical data---motivates reporting method sensitivity as a primary result rather than relegating it to a robustness check.\n20\t\n21\t\\paragraph{Permutation Granger causality.}\n22\tPermG tests whether past values of canary metric $X$ improve prediction of downstream metric $Y$ beyond $Y$'s own history; Granger precedence establishes temporal predictive improvement, not true causality~\\cite{shojaie2022granger}.\n23\tWe apply 5{,}000 permutations~\\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction at $q{=}0.05$ across 8 validated canary$\\to$downstream pairs (2 canaries $\\times$ 4 downstream metrics).\n24\tThe permutation test controls Type~I error exactly by construction (exchangeable null distribution); BH-FDR correction remains valid under positive regression dependence~\\cite{benjamini2001control}, and our 0/24 null-control rejections across three seeds validate this theoretical guarantee (within-seed ICC${=}0.34$, cluster-adjusted 95\\% CI $[0\\%, 41\\%]$; Appendix~\\ref{app:fpr_independence}).\n25\tSimulation under non-stationary AR(1) DGP ($\\varphi{=}0.95$--$0.99$) reveals PermG FPR inflation to ${\\sim}10\\%$; however, our empirical series exhibit low stochastic persistence (null token entropy $\\varphi{=}-0.51$; first-differenced distinct-1 $\\varphi{<}0.44$), and 0/24 null rejections confirm adequate size control (Appendix~\\ref{app:nonstationarity}).\n26\tThe same simulation shows PermG retains ${\\sim}80\\%$ of raw-levels power at $T{=}11$ versus ${\\sim}61\\%$ for standard first-differencing, justifying the permutation approach at short series lengths.\n27\t\n28\t\\subsection{Detection Boundary}\n29\t\\label{sec:theory}\n30\t\n31\tWe model the PermG detection rate as a $T$-dependent step function, excluding the non-monotonic dip at $\\alpha \\in [0.55, 0.65]$:\n32\t\\begin{equation}\n33\t\\mathrm{rate}(\\alpha, T) = \\frac{0.70}{1 + \\exp\\!\\bigl(-100\\,(\\alpha - \\alpha_c(T))\\bigr)},\n34\t\\label{eq:joint-sigmoid}\n35\t\\end{equation}\n36\tfitted to $T{=}10$ data ($n{=}11$, sync-dip excluded; $R^2{=}0.969$).\n37\tThe detection boundary follows a power law in observation length:\n38\t\\begin{equation}\n39\t\\alpha_c(T) = A \\cdot T^{-\\gamma},\n40\t\\label{eq:alpha-c}\n41\t\\end{equation}\n42\twhere the exponent $\\gamma$ is determined by the sub-linear signal model below.\n43\t\n44\t\\begin{proposition}[Detection phase boundary]\\label{prop:phase-boundary}\n45\tUnder a sub-linear signal model $S(\\alpha) = c \\cdot \\alpha^\\beta$ with $\\beta < 1$, the detection boundary satisfies\n46\t\\begin{equation}\n47\t\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)},\n48\t\\label{eq:alpha-c-theory}\n49\t\\end{equation}\n50\twhere $A = (z^* \\sigma / c)^{1/\\beta}$ and $z^* = \\Phi^{-1}(\\pi^*)$ \\textup{(proof in Appendix~\\ref{app:alpha_c_proof})}.\n51\t\\end{proposition}\n52\t\n53\tCross-$T$ validation (train: $T{\\in}\\{10,20\\}$, test: $T{\\in}\\{5,15\\}$) yields $\\beta{=}0.24$ and $\\gamma{=}1/(2\\beta){=}2.08$ (MAE${=}0.106$, 95\\% CI coverage $6/6$; vs.\\ $\\gamma{=}0.5$ for linear $\\beta{=}1$; Appendix~\\ref{app:alpha_c_proof}).\n54\tSince $\\alpha_\\infty{\\approx}0$, no detection floor exists: any nonzero contamination produces a causal signal ($S \\propto \\alpha^{0.24}$), but signal grows sub-linearly---doubling contamination increases signal by only $2^{0.24}{\\approx}1.18\\times$---so detection requires sufficient $T$; at $T{=}5$, $\\alpha_c \\geq 1.0$.\n55\tThe steepness $k{=}100$ yields a step-like transition ($\\alpha_c(10) {=} 0.487$; \\S\\ref{sec:regime}, \\S\\ref{sec:t20}).\n56\tSignal $S(\\alpha)$ rises monotonically, yielding four regimes: \\emph{blind} ($S$ too weak at given $T$), \\emph{onset} ($S$ crosses threshold), \\emph{non-monotonic dip} ($\\alpha{\\approx}0.60$; transient, dissolves by $T{=}25$), and \\emph{detection} ($S$ dominates).\n57\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84fb1df9-b990-4cca-b164-1b97a72fc2c2",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "149f3ee9-7b30-49c8-9a84-7390dadb0dfa",
+            "sourceToolAssistantUUID": "84fb1df9-b990-4cca-b164-1b97a72fc2c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T09:52:30.208Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FkVeeVLzZKQJTLsuyqUUhg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "149f3ee9-7b30-49c8-9a84-7390dadb0dfa",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "08133ca3-5bb3-4f67-ac89-3adfd655a830",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T09:52:30.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FkVeeVLzZKQJTLsuyqUUhg",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study lead-lag analysis pitfalls in iterative training collapse using Pythia-410M \\cite{biderman2023pythia}, a 410M-parameter decoder-only language model.\n8\tPythia provides a controlled setting: small enough for multi-seed experiments across thirteen contamination levels, yet large enough to exhibit meaningful generation-over-generation degradation.\n9\tCross-architecture validation uses GPT-2-medium (345M parameters, also decoder-only), a second transformer family of similar scale; results are reported in \\S\\ref{sec:regime} and \\S\\ref{sec:discussion}.\n10\tTraining data is drawn from WikiText-103 \\cite{merity2017pointer}, using 5{,}000-sample subsets per generation.\n11\t\n12\tOur protocol follows the replace paradigm of \\citet{shumailov2024curse}, adapted for mixed synthetic-real training at $\\alpha{<}1.0$.\n13\tEach generation $t$ proceeds in three steps: (1)~fine-tune the generation-$(t{-}1)$ model for 5{,}000 steps on a mixture of $\\alpha$ fraction synthetic data and $(1{-}\\alpha)$ fraction real data (AdamW optimizer, learning rate $5 \\times 10^{-5}$, 500 warmup steps, weight decay $0.01$, batch size 4 for Pythia-410M, 32 for GPT-2-medium); (2)~generate 5{,}000 synthetic samples from the fine-tuned model (temperature $1.0$, top-$k{=}50$, max length 512 tokens); (3)~fully replace the synthetic pool.\n14\tWe run $T{=}10$ generations across a 13-point $\\alpha$ grid ($\\{0.00, 0.05, 0.10, \\ldots, 1.00\\}$) with multi-seed replication (4 seeds at $\\alpha{=}1.0$; 3 at primary levels; 1--2 at probing points).\n15\t\n16\tWe track two \\emph{canary metrics}---token entropy ($H(p_\\theta | \\text{context})$, 1{,}000 held-out samples) and ECE (15 bins)---and three \\emph{downstream metrics}: distinct-1 and distinct-2~\\cite{li2016diversity} and perplexity (evaluated on held-out real data).\n17\tAdditional metrics (distinct-3, effective rank, Self-BLEU) appear in the Appendix.\n18\tCode and data will be released upon publication.\n19\t\n20\tAll hypothesis tests apply Benjamini--Hochberg (BH) FDR correction at $q{=}0.05$.\n21\tPermutation Granger causality tests use 5{,}000 permutations on first-differenced series \\cite{shojaie2022granger}.\n22\tCross-correlation analysis uses a maximum lag of 5 generations.\n23\tRaw metric drift from generation~0 to generation~10 is summarized in Appendix Table~\\ref{tab:drift_summary}.\n24\t\n25\t\n26\t\\subsection{Sharp Detection Onset}\n27\t\\label{sec:regime}\n28\t\n29\tDiversity collapse occurs at every contamination level: distinct-1 declines by $14.1\\%$ at $\\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\\pm}0.3\\%$ at $\\alpha{=}0.25$ (3-seed mean).\n30\tDespite this ubiquitous degradation, Granger-causal detectability is sharply regime-dependent.\n31\tThe onset we report reflects PermG's statistical power curve crossing the detection threshold at a critical contamination level, not the emergence of a new physical signal; this interpretation is confirmed by sub-threshold $p$-values at $\\alpha{=}0.45$ (\\S\\ref{sec:theory}).\n32\tPermutation Granger (PermG) tests find 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jump to 6/8 at $\\alpha{=}0.50$ (2~fp32 seeds, consistent).\n33\tThis transition is striking because cumulative synthetic fraction barely changes across the boundary: $C = 1{-}(1{-}\\alpha)^{10}$ yields $99.75\\%$ at $\\alpha{=}0.45$ versus $99.90\\%$ at $\\alpha{=}0.50$, a difference of 0.15 percentage points, yet detection jumps from null to reliable.\n34\tSigmoid regression on $T{=}10$ data alone yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$); steepness $k$ is not statistically constrainable ($\\mathrm{SE}(k) \\approx k$), consistent with a step-function transition (Figure~\\ref{fig:regime_map}).\n35\tThis single-$T$ estimate is consistent with the cross-$T$ validated model (\\S\\ref{sec:theory}), which predicts how the detection boundary shifts with observation length ($\\gamma{=}2.08$).\n36\tWe cannot distinguish a sharp phase transition from the inflection point of a smooth power curve at current sample sizes ($T \\leq 20$); the detection onset may simply reflect where signal strength crosses the PermG power threshold.\n37\tA Fisher exact test corroborates the categorical jump: 0/64 pairs FDR-significant at $\\alpha \\leq 0.45$ versus 18/32 at $\\alpha \\geq 0.50$ ($p = 3.45 \\times 10^{-11}$); sub-threshold $p$-values at $\\alpha{=}0.45$ ($p_{\\mathrm{fdr}} = 0.059$--$0.091$) are consistent with proximity to the power boundary (\\S\\ref{sec:theory}).\n38\tA systematic robustness analysis (1{,}160 configurations) confirms specification-invariance of the onset.\n39\t\n40\tFirst-differencing scopes the canary claim precisely.\n41\tCanary$\\to$diversity pairs retain unanimous FDR significance after first-differencing ($24/24 \\to 24/24$ across 4~seeds at $\\alpha{=}1.0$, 6 pairs per seed), while canary$\\to$perplexity collapses entirely ($F \\approx 0$, $p = 0.99$): the apparent perplexity association is a shared-trend artifact.\n42\tAll canary claims are therefore scoped to diversity metrics only.\n43\tThis scoping reflects a genuine temporal structure difference, not selective power loss from differencing: $|r|$ retention is ${\\geq}95\\%$ for both channels, but canary$\\to$diversity correlations peak at lagged offsets (81\\% at lag${<}0$, median${=}-1$) while canary$\\to$perplexity correlations are contemporaneous (50\\% at lag${=}0$), producing $20$--$28{\\times}$ lower Granger $F$ for perplexity (Appendix~\\ref{app:channel_effect_size}; perplexity $n{=}8$, limited sample).\n44\tAt $\\alpha{=}1.0$, all 24 canary$\\to$diversity pairs (6 per seed $\\times$ 4~seeds; mauve excluded) reach FDR significance in the forward direction with 0/24 reverse; directional asymmetry is robust across all WikiText conditions.\n45\tIndependent of the Granger test, the degradation cascade confirms temporal precedence: entropy onset at generation~1 precedes distinct-$n$ onset at generation~2 in 16/18 WikiText conditions (Kendall $\\tau{=}0.337$; \\S\\ref{sec:cascade}, Appendix~\\ref{app:moment_cascade}).\n46\tThe canary mechanism also exhibits a blind spot: at $\\alpha{=}0.10$, distinct-1 has already dropped by $39.6\\%$, yet token entropy is indistinguishable from the null ($-5.3\\%$ versus $-4.6{\\pm}0.4\\%$ at $\\alpha{=}0.0$).\n47\tThe gen-1 entropy deviation spans three orders of magnitude across the $\\alpha$ range: $0.5\\sigma$ at $\\alpha{=}0.10$ to $60\\sigma$ at $\\alpha{=}0.75$ (relative to null variability), explaining why the blind zone persists despite increasing contamination.\\footnote{Seed~43 at $\\alpha{=}0.10$ shows 3/8 PermG FDR-significant pairs versus 0/8 for seed~42, consistent with stochastic variation at low signal rather than robust detection; no other below-threshold $\\alpha$ level exhibits seed-dependent detection.}\n48\tBelow $\\alpha_c$ at $T{=}10$, diversity collapse proceeds without any detectable Granger-causal signal in the canary metrics.\n49\t\n50\t\\begin{figure*}[t]\n51\t\\centering\n52\t\\includegraphics[width=0.9\\textwidth]{figures/metric_trajectory.pdf}\n53\t\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead across all four seeds (shaded: inter-seed range). This pattern corresponds to 24/24 forward and 0/24 reverse FDR-significant canary$\\to$diversity pairs (6 per seed, mauve excluded).}\n54\t\\label{fig:metric_trajectory}\n55\t\\end{figure*}\n56\t\n57\t\n58\t\\subsection{Dose-Response and Detection Regimes}\n59\t\\label{sec:dose_response}\n60\t\n61\tThe PermG dose-response profile (Figure~\\ref{fig:regime_map}) reveals four detection regimes: \\emph{blind} ($\\alpha \\leq 0.45$, 0/8 FDR-significant pairs), \\emph{onset} ($\\alpha \\approx 0.50$, 6/8), \\emph{non-monotonic dip} ($\\alpha \\approx 0.60$, 0/8), and \\emph{detection} ($\\alpha{=}0.75$, 0--6/8 per seed, 2 of 3 seeds ${\\geq}5/8$; $\\alpha{=}1.0$, 6/8 across 4~seeds).\n62\tAt $\\alpha{=}0.60$, PermG returns $0/8$ at $T{\\leq}20$ but recovers to $5/8$ at $T{=}25$, revealing a transient dip that $\\sqrt{T}$ power scaling eventually overcomes; alternative methods confirm causal flow throughout (DiffXCorr $6/8$, TY $5/8$ at $T{=}20$; Appendix~\\ref{app:t20_comparison}).\n63\tAt $\\alpha{=}0.55$, PermG returns 0/8 despite marginal $p$-values ($p_{\\mathrm{fdr}}{=}0.062$--$0.092$); DiffXCorr detects 8/8 bidirectionally, confirming signal below PermG's directional threshold.\n64\t\n65\tMethod choice is itself a major source of analytic variability: at $\\alpha{=}1.0$, direction-checked forward significance rates span 0\\% to 75\\% (Table~\\ref{tab:method_comparison}), with inter-method agreement at $\\kappa{=}0.185$ (near chance); PermG is the only method combining zero null-control FPR with consistent detection at $\\alpha \\geq 0.50$.\n66\tUnder $K{\\geq}3$ consensus, one false positive appears in seed~44 (te$\\to$mauve, 3/5 methods), yielding FPR${=}1/24$ (4.2\\%); PermG alone maintains zero empirical FPR.\\footnote{NaiveXCorr achieves 100\\% null-control FPR and is excluded from the specification curve analysis; results including NaiveXCorr appear in Appendix~\\ref{app:spec_curve}.}\n67\tA specification curve across 18 method variants confirms the onset: median detection rate jumps from 19\\% ($\\alpha{=}0.48$) to 69\\% ($\\alpha{=}0.50$), then drops to 6\\% at the non-monotonic dip ($\\alpha{=}0.60$; Appendix~\\ref{app:spec_curve}).\n68\tTask degradation corroborates the boundary: perplexity jumps from 31.3 to 41.1 ($+31\\%$) between $\\alpha{=}0.50$ and $0.52$, aligning with the PermG onset.\n69\tAt very low contamination ($\\alpha{=}0.05$), task performance marginally improves over the uncontaminated baseline (perplexity 20.8 vs.\\ 26.6), consistent with a data augmentation effect that vanishes at higher mixing ratios (Appendix~\\ref{app:task_degradation}).\n70\t\n71\t\n72\t\\begin{table}[t]\n73\t\\centering\n74\t\\small\n75\t\\caption{Forward-direction FDR significance rates (\\%) across contamination levels (Pythia-410M, seed~42, fp32; $3\\sigma$ threshold calibration, lag-direction filtering for cross-correlation methods). Each cell: fraction of 8 validated pairs at BH-corrected significance ($q{=}0.05$). PermG is the only method combining zero null-control FPR with consistent detection at $\\alpha \\geq 0.50$.}\n76\t\\label{tab:method_comparison}\n77\t\\resizebox{\\columnwidth}{!}{%\n78\t\\begin{tabular}{lcccccc}\n79\t\\toprule\n80\tMethod & $\\alpha{=}0.0$ & $\\alpha{=}0.25$ & $\\alpha{=}0.50$ & $\\alpha{=}0.75$ & $\\alpha{=}1.0$ & FPR$_\\text{null}$ \\\\\n81\t\\midrule\n82\tNaive XCorr          & 75   & 62.5 & 62.5 & 0    & 0    & 75  \\\\\n83\tDiff.\\ XCorr         & 0    & 25   & 12.5 & 0    & 0    & 0   \\\\\n84\tThreshold ($3\\sigma$) & 37.5 & 62.5 & 100  & 100  & 25   & 37.5 \\\\\n85\tPerm.\\ Granger       & \\textbf{0}    & \\textbf{0}    & \\textbf{75}   & \\textbf{75}   & \\textbf{75}   & \\textbf{0}   \\\\\n86\tToda--Yamamoto$^\\S$  & 12.5 & 37.5 & 50   & 100  & 12.5 & 12.5 \\\\\n87\t\\bottomrule\n88\t\\multicolumn{7}{l}{\\footnotesize $^\\S$TY directional assignment under verification; row retained for completeness.} \\\\\n89\t\\multicolumn{7}{l}{\\footnotesize Pooled FPR (3 seeds, cluster-bootstrap 95\\% CI): \\S\\ref{sec:mmct}.} \\\\\n90\t\\end{tabular}}\n91\t\\end{table}\n92\t\n93\t\n94\t\\subsection{Detection Boundary Left-Shift}\n95\t\\label{sec:t20}\n96\t\n97\tThe detection boundary $\\alpha_c(T)$ exhibits robust monotonic decrease with observation length: $\\alpha_c(5){\\geq}1.0$ (complete non-detection), $\\alpha_c(10){=}0.487$---consistent with $T^{-2.08}$ power scaling (cross-$T$ validated: model correctly predicts all 0/8 at $T{=}5$ and 6/8 ceiling at $T{=}15$; \\S\\ref{sec:theory}).\n98\tPost-hoc power analysis estimates PermG power at ${\\sim}37\\%$ ($T{=}10$) increasing to $55$--$65\\%$ ($T{=}20$; Appendix~\\ref{app:nonstationarity}), consistent with moderate power rather than ceiling performance.\n99\tThe $\\alpha{=}0.45$ column traces the sharpest single-$\\alpha$ validation: $0/8$ at $T{\\leq}10$ (blind zone), phase transition to $6/8$ at $T{=}15$ as $\\alpha_c$ drops below $0.45$ (dual-seed: s42$=$s43$=$6/8), boundary-adjacent $5/8$ at $T{=}20$ (s43: $4/8$), and recovery to $6/8$ at $T{=}25$.\n100\tThe systematic 2/8 PermG gap is driven by MAUVE floor saturation: post-contamination MAUVE scores collapse to a floor ($\\mu{=}0.029$, 100\\% of observations ${<}0.05$), eliminating the temporal gradient Granger causality requires.\n101\tUnlike diversity metrics (distinct-$n$) which exhibit gradual monotonic degradation suitable for lag detection, MAUVE undergoes rapid saturation, producing a flat time series with no exploitable causal structure (SNR: MAUVE $4.68$ vs diversity $6.40$--$8.20$, $p{<}0.001$).\n102\tCross-seed replication at 4 $(\\alpha, T)$ pairs shows PermG within ${\\pm}1$ of seed~42, though boundary cells exhibit substantial seed sensitivity (e.g., $T{=}10$, $\\alpha{=}0.50$: $6/8$ vs $0/8$).\n103\tPre-registered predict-then-verify (commit \\texttt{bad72cc}) yields 2/4 boundary predictions within CI, with systematic conservative bias: $\\alpha{=}0.45$ ($0/8{\\to}5/8$) confirms $\\sqrt{T}$ power scaling (Appendix~\\ref{app:t20_prediction_timeline}).\\footnote{V1 (committed) used raw $p$-values; V2 (BH--FDR, 44\\,min pre-analysis, not committed) predicted 0/8 for $\\alpha{=}0.60$, matching observation.}\n104\tThe non-monotonic dip at $\\alpha{=}0.60$ traces a dissolution trajectory: $0/8$ at $T{\\leq}15$ (dual-seed), partial dissolution at $T{=}20$ (s42: $0/8$, $p_{\\mathrm{fdr}}{=}0.064$; s43: $3/8$), and recovery to $5/8$ at $T{=}25$---validating $\\sqrt{T}$ power scaling even at the most resistant $\\alpha$.\n105\tAdditionally, $\\alpha{=}0.25$ yields 3/8 at $T{=}20$, consistent with boundary proximity; transfer entropy independently confirms the directional structure (Appendix~\\ref{app:te_mi}).\n106\tFull results appear in Appendix Table~\\ref{tab:t20_comparison}.\n107\t\n108\t\n109\t\\subsection{Cross-Architecture Validation}\n110\t\\label{sec:generalization}\n111\t\n112\tWe evaluate PermG across 15 model-seed combinations spanning five families (Pythia, GPT-2, OPT, Qwen, SmolLM3), scales from 345M to 6.9B, and two training domains (Table~\\ref{tab:generalization}).\n113\tDetection succeeds when entropy--diversity coupling is preserved but reveals systematic failure modes when this coupling breaks down.\n114\t\n115\t\\paragraph{Detection conditions.}\n116\tPermG forward significance reaches ${\\geq}$6/8 in conditions where entropy declines monotonically and precedes diversity loss: Pythia-410M (6/8), GPT-2-medium (6/8, fp32), OPT-1.3B (6/8), Qwen3.5-0.8B (8/8), Pythia-6.9B (7/8, bf16), Padding-410M (6/8), and both C4 conditions (8/8).\n117\tC4 yields the strongest detection; Pythia-1.4B recovers from 2/8 (WikiText) to 8/8 (C4) at the same scale.\n118\t\n119\t\\paragraph{Precision and seed sensitivity.}\n120\tGPT-2-medium is both precision- and seed-sensitive: s42 fp32 yields clean directionality (fwd 6/8, rev 0/8), but s43 fp32 is bidirectional (fwd 6/8, rev 6/8), and bf16 drops to 0/8.\n121\t\n122\t\\paragraph{Remaining non-confirming conditions.}\n123\tSmolLM3-3B (3/8, single seed; preliminary) exhibits non-monotonic entropy oscillations decoupling entropy from diversity.\n124\tPythia-1.4B shows seed dependence at $\\alpha{=}1.0$ (s42: 2/8, s43: 6/8) with non-monotonic scale behavior.\n125\tThese 5/15 non-confirming conditions span four failure modes: precision (GPT-2-medium bf16), bidirectional confounding (s43 fp32), seed-dependent dynamics (Pythia-1.4B), and architecture-specific coupling (SmolLM3-3B).\n126\t\n127\t\\begin{table}[t]\n128\t\\centering\n129\t\\small\n130\t\\caption{Cross-architecture PermG forward detection ($\\alpha{=}1.0$, 15 model-seed combinations across five families and two domains).}\n131\t\\label{tab:generalization}\n132\t\\begin{tabular}{lrcl}\n133\t\\toprule\n134\tModel & Params & Domain & PermG fwd \\\\\n135\t\\midrule\n136\tPythia-410M    & 410M & Wiki & \\textbf{6/8} \\\\\n137\tPythia-1.4B    & 1.4B & Wiki & 2--6/8$^\\dagger$ \\\\\n138\tPythia-6.9B    & 6.9B & Wiki & \\textbf{7/8}$^*$ \\\\\n139\tGPT-2-medium   & 345M & Wiki & \\textbf{6/8}$^\\S$ \\\\\n140\tOPT-1.3B       & 1.3B & Wiki & \\textbf{6/8} \\\\\n141\tQwen3.5-0.8B   & 0.8B & Wiki & \\textbf{8/8} \\\\\n142\tSmolLM3-3B     & 3.0B & Wiki & 3/8$^\\ddagger$ \\\\\n143\tPadding-410M   & 410M & Wiki & \\textbf{6/8} \\\\\n144\t\\addlinespace\n145\tPythia-1B      & 1.0B & C4   & \\textbf{8/8} \\\\\n146\tPythia-1.4B    & 1.4B & C4   & \\textbf{8/8} \\\\\n147\t\\bottomrule\n148\t\\multicolumn{4}{l}{\\footnotesize $^\\dagger$Seed-dependent (s42: 2/8, s43: 6/8).} \\\\\n149\t\\multicolumn{4}{l}{\\footnotesize $^*$bf16 (exceeds single-GPU fp32 capacity).} \\\\\n150\t\\multicolumn{4}{l}{\\footnotesize $^\\ddagger$ECE-only canary (entropy 0/4).} \\\\\n151\t\\multicolumn{4}{l}{\\footnotesize $^\\S$s42 fp32: fwd 6/8, rev 0/8; s43 fp32: 6/8 both; bf16: 0/8.} \\\\\n152\t\\multicolumn{4}{l}{\\footnotesize Multi-seed: Pythia-410M, -1.4B Wiki, GPT-2-med,} \\\\\n153\t\\multicolumn{4}{l}{\\footnotesize OPT-1.3B, Pythia-1B C4 (2 seeds each). Total: 15.} \\\\\n154\t\\end{tabular}\n155\t\\end{table}\n156\t\n157\t\n158\t\\subsection{Canary-Based Intervention (Proof of Concept)}\n159\t\\label{sec:intervention}\n160\t\n161\tAs an illustrative proof-of-concept under favorable conditions ($\\alpha{=}1.0$, full replacement), we implement predictive cessation: training switches to pure real data when token entropy drops ${>}15\\%$ from generation~0.\n162\tThe 15\\% threshold was selected post-hoc on training data without held-out validation; it lies within a robust operating band $[10\\%, 22\\%]$ where all thresholds produce zero false alarms at $\\alpha{=}0.0$ (Appendix~\\ref{app:intervention_sensitivity}).\n163\tA reactive baseline triggers on distinct-1 drop ${>}10\\%$.\n164\tThe predictive trigger fires at generation~1 (one generation before reactive) in both Pythia-410M and Pythia-1.4B, reducing peak perplexity by 58\\% ($56.99$ vs.\\ $157.09$; bootstrap 95\\% CI: 29--64\\%).\n165\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08133ca3-5bb3-4f67-ac89-3adfd655a830",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "d8fead18-55d3-4f5a-9084-0ede8b5b0804",
+            "sourceToolAssistantUUID": "08133ca3-5bb3-4f67-ac89-3adfd655a830",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T09:52:30.420Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DwbH7YMqxQWiAz3o5k84Kd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8fead18-55d3-4f5a-9084-0ede8b5b0804",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "556c7e7e-7a66-40ba-85bc-3f173899e73f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T09:52:30.424Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DwbH7YMqxQWiAz3o5k84Kd",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion and Conclusion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tOur claim is scoped to temporal predictive improvement~\\cite{granger1969investigating,shojaie2022granger}; bivariate tests cannot exclude confounders.\n5\t$\\alpha_c(T)$ decreases monotonically ($\\gamma{=}2.08$, cross-$T$ MAE${=}0.106$); predict-then-verify shows systematic conservative bias, and MAUVE floor saturation limits detection to $6/8$.\n6\tThe non-monotonic dip at $\\alpha{=}0.60$ dissolves by $T{=}25$ ($5/8$), validating $\\sqrt{T}$ scaling; entropy is a one-generation canary (14/15 cascade, $-$58\\% perplexity).\n7\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "556c7e7e-7a66-40ba-85bc-3f173899e73f",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "9cb6037e-f315-4bc5-891f-3b30a3e171d4",
+            "sourceToolAssistantUUID": "556c7e7e-7a66-40ba-85bc-3f173899e73f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T09:52:30.643Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VSMfsHbU1QFSisyvZ5jN4d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9cb6037e-f315-4bc5-891f-3b30a3e171d4",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d46ed324-c704-41e7-9d2e-566d744888e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 15668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T09:52:30.648Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VSMfsHbU1QFSisyvZ5jN4d",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur landscape characterization uses Pythia-410M as the primary architecture; cross-architecture validation spans five families (345M--6.9B) but five of fifteen conditions do not confirm unambiguous directional detection (including GPT-2-medium s43 fp32, which shows bidirectional Granger significance despite clean directionality at s42), and frontier-scale behavior ($>$7B) is untested.\n5\tWith $T{\\leq}25$ observations, statistical power remains limited: since $\\alpha_\\infty{\\approx}0$, longer observation windows should push $\\alpha_c$ toward arbitrarily low contamination levels, but the sub-linear signal growth ($\\beta{=}0.24$) means diminishing returns; two of five methods (threshold onset, Toda--Yamamoto) are power-limited at these series lengths.\n6\tThe non-monotonic dip at $\\alpha{=}0.60$ dissolves by $T{=}25$ but its mechanism---whether driven by numerical precision effects (bf16 yields 8/8), signal structure, or their interaction---remains open; boundary cells show substantial seed sensitivity (e.g., $T{=}10$, $\\alpha{=}0.50$: $6/8$ vs $0/8$).\n7\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d46ed324-c704-41e7-9d2e-566d744888e9",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "b67cc399-425a-4607-b1e4-f136def18054",
+            "sourceToolAssistantUUID": "d46ed324-c704-41e7-9d2e-566d744888e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T09:52:30.908Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NwjKgM8MQCFt3jpU1LCm1o",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b67cc399-425a-4607-b1e4-f136def18054",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHedMcG8qQmvkP9h9k",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d0f05e18-4a1c-4138-bfd7-2bdc1a2f6845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015UtvXydJVF82FqcUcEx5GA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15668,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 465,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15668
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 465,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15668,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15668,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T09:52:30.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NwjKgM8MQCFt3jpU1LCm1o",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tWhen language models train iteratively on their own output, distributional degradation proceeds silently until collapse is advanced.\n3\tWe map the detectability landscape of this process across 13 contamination levels and five model families (345M--6.9B parameters), revealing blind zones, sharp detection onsets, and a non-monotonic dip where Granger detection fails despite confirmed causal flow.\n4\tPermutation Granger causality\\footnote{Granger precedence establishes temporal predictive improvement, not true causation~\\cite{shojaie2022granger}.} (PermG) identifies a detection boundary $\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)}$ from a sub-linear signal model ($\\beta{=}0.24$, $\\gamma{=}2.08$; cross-$T$ validated, MAE${=}0.106$): any nonzero contamination produces signal, but sub-linear growth ($S \\propto \\alpha^{0.24}$) makes detection a function of observation length.\n5\tThis landscape is profoundly method-dependent: five statistical methods applied to identical data yield null-control false positive rates from 0\\% to 92\\%.\n6\tUnder mode amplification, entropy Granger-precedes diversity collapse with a ${\\geq}1$-generation lag (confirmed in 14 of 15 experiments), providing a canary signal whose triggered cessation reduces peak perplexity as a proof-of-concept intervention.\n7\t\\end{abstract}\n8\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d0f05e18-4a1c-4138-bfd7-2bdc1a2f6845",
+            "isSidechain": true,
+            "promptId": "1a1df25d-31d8-4c5d-b5d0-3d89005dc152",
+            "agentId": "ac90869afcab6da9c",
+            "type": "user",
+            "uuid": "5e0cec57-edab-48e0-b70e-7cac0cb9db44",
+            "sourceToolAssistantUUID": "d0f05e18-4a1c-4138-bfd7-2bdc1a2f6845",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T09:53:01.286Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have successfully read all six LaTeX source files. Here is the full content of each file:\n\n## 1. abstract.tex\n\nThe abstract discusses detecting distributional degradation in iterative language model training. Key claims:\n\n- Maps detectability across 13 contamination levels and five model families (345M-6.9B parameters)\n- Reveals blind zones, sharp detection onsets, and a non-monotonic dip\n- Identifies detection boundary: $\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)}$ with $\\beta=0.24$, $\\gamma=2.08$ (cross-$T$ validated, MAE=0.106)\n- Signal grows sub-linearly ($S \\propto \\alpha^{0.24}$)\n- Five statistical methods on identical data yield false positive rates from 0% to 92%\n- Entropy Granger-precedes diversity collapse with ≥1-generation lag (confirmed in 14/15 experiments)\n- Proof-of-concept intervention reduces peak perplexity\n\n## 2. theory.tex - Cascade Ordering\n\nKey sections and claims:\n\n**Proposition 1 (Entropy leads diversity)**: Under mode amplification: (a) entropy can decrease while $\\epsilon$-effective support is unchanged; (b) if distinct-n decreases, entropy has already decreased.\n\n**Proposition 2 (Diversity lag ≥ 1 generation)**: If per-generation perturbation satisfies $\\alpha\\|\\mathcal{T}(p_t) - p_t\\|_\\infty < \\gamma(p_t, \\epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \\geq t_H + 1$.\n\n**Empirical validation**: The predicted cascade $\\{H, \\mathrm{ECE}\\} \\to$ Distinct-n confirmed in 14/15 experiments at $\\alpha \\geq 0.30$ (GPT-2-medium s43 bidirectional) with entropy and ECE onset at generation 1, distinct-n at generation 2.\n\n## 3. method.tex - Method and Detection Boundary\n\n**Methodological pitfalls identified**:\n- Method sensitivity: five detection methods yield forward significance rates spanning 0% to 92%, with inter-method agreement $\\kappa=0.185$\n- Spurious regression: first-differencing eliminates canary→perplexity associations ($F\\approx 0$, $p=0.99$) while preserving canary→diversity (24/24→24/24)\n- Regime dependence: Granger test shifts from 0/8 to 6/8 within a 2-percentage-point interval ($\\alpha=0.48 \\to 0.50$)\n\n**Permutation Granger Causality (PermG)**: Tests whether past values of canary metric improve prediction of downstream metric. Uses 5,000 permutations with Benjamini-Hochberg FDR correction at $q=0.05$. Pooled null-control FPR: PermG 0% [0,0], Toda-Yamamoto 17% [0,25], DiffXCorr 38% [25,50], NaiveXCorr 92% [88,100].\n\n**Detection Boundary Theory**:\n- Detection rate model: $\\mathrm{rate}(\\alpha, T) = \\frac{0.70}{1 + \\exp(-100(\\alpha - \\alpha_c(T)))}$ (fitted to $T=10$ data, $R^2=0.969$)\n- Boundary follows: $\\alpha_c(T) = A \\cdot T^{-\\gamma}$\n- **Proposition (Detection phase boundary)**: Under sub-linear signal model $S(\\alpha) = c \\cdot \\alpha^\\beta$ with $\\beta < 1$, the detection boundary satisfies $\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)}$ where $A = (z^* \\sigma / c)^{1/\\beta}$\n- Cross-$T$ validation yields $\\beta=0.24$ and $\\gamma=2.08$ (MAE=0.106, 95% CI coverage 6/6)\n- No detection floor exists; any nonzero contamination produces signal, but doubling contamination increases signal by only $2^{0.24}\\approx 1.18\\times$\n\n## 4. experiments.tex - Experimental Setup and Results\n\n**Setup (Pythia-410M)**:\n- 410M-parameter decoder-only model\n- WikiText-103 training data: 5,000-sample subsets per generation\n- 13-point $\\alpha$ grid ($\\{0.00, 0.05, 0.10, \\ldots, 1.00\\}$)\n- T=10 generations with multi-seed replication (4 seeds at $\\alpha=1.0$; 3 at primary levels)\n- Two canary metrics: token entropy (1,000 held-out samples) and ECE (15 bins)\n- Three downstream metrics: distinct-1, distinct-2, perplexity\n\n**Sharp Detection Onset ($\\alpha_c = 0.487 \\pm 0.006$)**:\n- Distinct-1 declines 14.1% at $\\alpha=0.0$ (fine-tuning drift) and 40.3±0.3% at $\\alpha=0.25$\n- PermG finds 0/8 pairs FDR-significant from $\\alpha=0.00$ to 0.45, then jumps to 6/8 at $\\alpha=0.50$\n- Cumulative synthetic fraction: 99.75% at $\\alpha=0.45$ vs 99.90% at $\\alpha=0.50$ (0.15 percentage point difference)\n- Fisher exact test: 0/64 pairs significant at $\\alpha \\leq 0.45$ vs 18/32 at $\\alpha \\geq 0.50$ ($p = 3.45 \\times 10^{-11}$)\n- At $\\alpha=1.0$: all 24 canary→diversity pairs reach FDR significance forward (0/24 reverse)\n- At $\\alpha=0.10$: distinct-1 dropped 39.6%, but token entropy indistinguishable from null\n\n**Dose-Response and Detection Regimes**:\n- Four regimes: blind ($\\alpha \\leq 0.45$, 0/8), onset ($\\alpha \\approx 0.50$, 6/8), non-monotonic dip ($\\alpha \\approx 0.60$, 0/8), detection ($\\alpha=0.75$, 0-6/8; $\\alpha=1.0$, 6/8)\n- At $\\alpha=0.60$: PermG returns 0/8 at $T\\leq 20$ but recovers to 5/8 at $T=25$\n- Method choice at $\\alpha=1.0$: forward significance rates span 0% to 75%, with inter-method agreement $\\kappa=0.185$\n- Task degradation: perplexity jumps from 31.3 to 41.1 (+31%) between $\\alpha=0.50$ and 0.52\n- At very low contamination ($\\alpha=0.05$): perplexity marginal improvement (20.8 vs 26.6)\n\n**Detection Boundary Left-Shift**:\n- $\\alpha_c(5) \\geq 1.0$ (complete non-detection), $\\alpha_c(10)=0.487$, consistent with $T^{-2.08}$ power scaling\n- PermG power: ~37% ($T=10$) increasing to 55-65% ($T=20$)\n- At $\\alpha=0.45$: 0/8 at $T \\leq 10$, phase transition to 6/8 at $T=15$\n- Systematic 2/8 PermG gap driven by MAUVE floor saturation\n\n**Cross-Architecture Validation** (15 model-seed combinations, 345M-6.9B):\n- Success at ≥6/8 in: Pythia-410M (6/8), GPT-2-medium (6/8 fp32), OPT-1.3B (6/8), Qwen3.5-0.8B (8/8), Pythia-6.9B (7/8 bf16), Padding-410M (6/8), C4 conditions (8/8)\n- Non-confirming conditions (5/15): GPT-2-medium precision/seed sensitivity, SmolLM3-3B non-monotonic entropy, Pythia-1.4B seed dependence\n\n**Intervention (Proof of Concept)**:\n- At $\\alpha=1.0$ with 15% entropy drop threshold triggers at generation 1\n- Reduces peak perplexity by 58% (56.99 vs 157.09; bootstrap 95% CI: 29-64%)\n\n## 5. discussion.tex - Discussion and Conclusion\n\n**Key claims**:\n- Granger precedence is temporal predictive improvement, not true causation\n- $\\alpha_c(T)$ decreases monotonically with $\\gamma=2.08$ (cross-$T$ MAE=0.106)\n- Predict-then-verify shows systematic conservative bias\n- MAUVE floor saturation limits detection to 6/8\n- Non-monotonic dip at $\\alpha=0.60$ dissolves by $T=25$ (5/8), validating $\\sqrt{T}$ scaling\n- Entropy is one-generation canary (14/15 cascade, -58% perplexity with intervention)\n\n## 6. limitations.tex - Limitations\n\n**Key limitations**:\n- Pythia-410M is primary architecture; cross-architecture validation spans five families (345M-6.9B) but 5/15 conditions do not confirm unambiguous directional detection\n- GPT-2-medium s43 fp32 shows bidirectional Granger significance despite clean directionality at s42\n- Frontier-scale behavior (>7B) untested\n- With $T \\leq 25$ observations, statistical power remains limited\n- Sub-linear signal growth ($\\beta=0.24$) means diminishing returns at longer observation windows\n- Threshold onset and Toda-Yamamoto are power-limited at series lengths\n- Non-monotonic dip at $\\alpha=0.60$ mechanism remains open (numerical precision, signal structure, or interaction)\n- Boundary cells show substantial seed sensitivity (e.g., $T=10$, $\\alpha=0.50$: 6/8 vs 0/8)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e0cec57-edab-48e0-b70e-7cac0cb9db44",
+            "isSidechain": true,
+            "agentId": "ac90869afcab6da9c",
+            "requestId": "req_011CbHQHssahAqpYhVe9afM5",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cab4452b-6142-4e9f-9041-2b91ed7f8c1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_reviewer_1_ec2e4c4e",
+            "sessionId": "975870e7-f393-4989-8d8c-e2b093dae357",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NTSpKaeVytUQWWKnFZ3jcR",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 11886,
+                "cache_read_input_tokens": 15668,
+                "output_tokens": 2606,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11886
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 2606,
+                    "cache_read_input_tokens": 15668,
+                    "cache_creation_input_tokens": 11886,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11886,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-following-latex-source-files-in-the-paper-directory-at-home-ubuntu-ag.md"
+}

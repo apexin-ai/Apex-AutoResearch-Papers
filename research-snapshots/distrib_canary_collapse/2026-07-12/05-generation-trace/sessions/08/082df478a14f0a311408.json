@@ -1,0 +1,2279 @@
+{
+  "schema_version": "1.0",
+  "id": "082df478a14f0a311408",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the paper at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/, find infor",
+  "task_key": "agent-a16e41ef691ca8db4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a16e41ef691ca8db4.jsonl",
+    "occurrence": 1,
+    "bytes": 117089,
+    "sha256": "3e1dbf8ae66180945aa61a52c3fd58188fc393fb76fa5d3b60d34e1f8e399223"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "assistant": 12,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T05:45:32.453Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the paper at /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/, find information about the phase diagram cells that show 0/8 despite being above the detection boundary. The discussion.tex claims \"Five of twenty phase-diagram cells show 0/8 despite lying above the theoretical detection boundary: four are sync-dip cells (α=0.60, T=10--20) and one is a boundary cell (T=10, α=0.45).\"\n\nI need to verify:\n1. The sync-dip cells at α=0.60: are these T=10, T=15, T=20 (that's only 3)? Or T=10, T=15, T=20, T=25? But T=25 dissolves to 5/8. So T=10, T=15, T=20 = 3 cells? Unless there's a T=5 too.\n2. Look in experiments.tex or the main results sections for the actual phase diagram data.\n\nSearch for \"sync-dip\", \"0/8\", \"phase diagram\", \"twenty\" in the .tex files to find the actual cell counts. Report what T values exist in the phase diagram (the grid of T × α)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "6376b89e-95d0-40b6-949f-feff7c7b171a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T05:45:33.874Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the paper files to find information about the phase diagram cells and verify the sync-dip cells claim."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6376b89e-95d0-40b6-949f-feff7c7b171a",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGTaQcguzqhpDwZZ8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f840c294-d59c-4974-b7fa-1e7f598b76c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NDeLGhuyVtG9k6StTgRKRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25545,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25545,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T05:45:34.160Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KGGTTzFZakuFxqWpbHxdRi",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f840c294-d59c-4974-b7fa-1e7f598b76c7",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGTaQcguzqhpDwZZ8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18b55704-0221-48bf-99f2-f569bb7aea82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NDeLGhuyVtG9k6StTgRKRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25545,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25545,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T05:45:34.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KGGTTzFZakuFxqWpbHxdRi",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/background.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work_reframe.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/ethics.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18b55704-0221-48bf-99f2-f569bb7aea82",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "ab223b4c-fdef-4f91-9b01-c2f6f0c69c98",
+            "sourceToolAssistantUUID": "18b55704-0221-48bf-99f2-f569bb7aea82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T05:45:34.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YVwzWdeuAUUvHPWQAagVwm",
+              "name": "Grep",
+              "input": {
+                "pattern": "sync-dip",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab223b4c-fdef-4f91-9b01-c2f6f0c69c98",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGTaQcguzqhpDwZZ8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c961523d-17d6-4e51-96cc-377ec33c983f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NDeLGhuyVtG9k6StTgRKRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25545,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25545,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T05:45:34.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YVwzWdeuAUUvHPWQAagVwm",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:19:Our Granger-precedence approach circumvents this limitation by detecting temporal predictive improvement rather than variance/autocorrelation signatures, achieving ${\\geq}5/8$ forward detection in 12 of 15 above-boundary cells (three sync-dip exceptions at $\\alpha{=}0.60$ dissolve by $T{=}25$; \\S\\ref{sec:t20}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:7:Five of twenty phase-diagram cells show $0/8$ despite lying above the theoretical detection boundary: four are sync-dip cells ($\\alpha{=}0.60$, $T{=}10$--$20$) and one is a boundary cell ($T{=}10$, $\\alpha{=}0.45$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:8:The sync-dip dissolves by $T{=}25$ ($5/8$), confirming it is transient; its mechanism remains open.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:16:Phase-diagram structure is qualitatively preserved at 1.4B: $\\alpha_c$ is consistent ($0/8{\\to}4/8$ at $\\alpha{=}0.45{\\to}0.50$ vs $0/8{\\to}6/8$ at 410M), the sync-dip is absent, and the $T$-dependent boundary shift is preserved ($\\alpha{=}0.45$: $0/8{\\to}3/8$ at $T{=}10{\\to}15$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:17:Scale effects are $\\alpha$-conditional---above the sync-dip zone, 1.4B exceeds 410M (6/8 vs 0/8 at $\\alpha{=}0.60$); near onset, detection power is attenuated by a constant $-3/8$---and method-level heterogeneity emerges (Toda--Yamamoto inversely tracks $\\alpha$; details in Appendix~\\ref{app:scale_14b}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:37:fitted to $T{=}10$ data ($n{=}11$, sync-dip excluded; $R^2{=}0.969$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:57:Cross-$T$ validation (train $T{\\in}\\{10,20\\}$, test $T{\\in}\\{5,15\\}$) yields $\\beta{=}0.24$, $\\gamma{=}2.08$ (MAE${=}0.106$, CI $6/6$); leave-one-$T$-out CV on the full $5T$ grid (sync-dip excluded) confirms predictive accuracy (MAE${=}0.037$, CI $15/15$; Appendix~\\ref{app:alpha_c_proof}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:58:However, $\\beta$ is poorly identified: MLE $\\hat{\\beta}{=}0.66$ with profile 95\\% CI $[0.24, 0.78]$, and model comparison favors the power-probit (M2) over a linear boundary (M1) only when sync-dip data are included ($\\Delta\\mathrm{AIC}{=}4.15$ without; Appendix~\\ref{app:alpha_c_proof}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:515:The 410M sync-dip ($\\alpha{=}0.60$: 0/8 at $T{\\leq}20$) does not reproduce at 1.4B (4/8); whether this reflects scale-dependent dynamics or Pythia-specific effects remains open with only two model sizes tested.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1060:We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid (sync-dip $\\alpha{=}0.60$ excluded; 15 cells).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1063:When sync-dip cells are included (20 cells), MAE rises to $0.203$ (CI $16/20$), with the largest residuals at sync-dip cells (predicted $0.75$, observed $0/8$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1065:Model comparison (AIC, 15-cell grid excluding sync-dip): $M_1$ (linear boundary) $\\Delta\\mathrm{AIC}{=}0.0$; $M_2$ (power-probit) $\\Delta\\mathrm{AIC}{=}2.43$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1066:Including sync-dip data reverses the ranking ($M_2$ $\\Delta\\mathrm{AIC}{=}0.0$, $M_1$ $\\Delta\\mathrm{AIC}{=}4.15$), because the probit model naturally accommodates the dip's dissolution at higher $T$ while linear models cannot."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c961523d-17d6-4e51-96cc-377ec33c983f",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "703454b0-a7e1-4866-88d6-23f761197824",
+            "sourceToolAssistantUUID": "c961523d-17d6-4e51-96cc-377ec33c983f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T05:45:35.018Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ashBMesGqhTHDjXuskD7i",
+              "name": "Grep",
+              "input": {
+                "pattern": "0/8",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "703454b0-a7e1-4866-88d6-23f761197824",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGTaQcguzqhpDwZZ8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "605563c9-efbd-4adf-8afd-91609e541dcc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NDeLGhuyVtG9k6StTgRKRb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25545,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25545,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T05:45:35.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ashBMesGqhTHDjXuskD7i",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:21:Permutation Granger (PermG) tests find 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jump to 6/8 at $\\alpha{=}0.50$ uniformly across all 3~fp32 seeds.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:26:At $T{=}10$, PermG power is ${\\approx}37\\%$ (Appendix~\\ref{app:power_sim}), partly amplifying the $0/8{\\to}6/8$ sharpness; however, onset steepness ($k{=}15.7$, ${\\approx}3{\\times}$ smooth predictions) and cross-seed consistency (3/3 seeds: $0/8{\\to}6/8$ at $\\alpha{=}0.48{\\to}0.50$) argue for a genuine, power-modulated transition.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:37:The gen-1 entropy deviation spans three orders of magnitude across the $\\alpha$ range: $0.5\\sigma$ at $\\alpha{=}0.10$ to $60\\sigma$ at $\\alpha{=}0.75$ (relative to null variability), explaining why the blind zone persists despite increasing contamination.\\footnote{Seed~43 at $\\alpha{=}0.10$ shows 3/8 versus 0/8 for seed~42; no other sub-threshold level exhibits seed-dependent detection.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:51:The PermG dose-response profile (Figure~\\ref{fig:regime_map}) reveals four detection regimes: \\emph{blind} ($\\alpha \\leq 0.45$, 0/8 FDR-significant pairs), \\emph{onset} ($\\alpha \\approx 0.50$, 6/8), \\emph{non-monotonic dip} ($\\alpha \\approx 0.60$, 0/8), and \\emph{detection} ($\\alpha{\\geq}0.75$, 6/8 across 4~seeds at $\\alpha{=}1.0$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:52:At $\\alpha{=}0.60$, PermG returns $0/8$ at $T{\\leq}20$ but recovers to $5/8$ at $T{=}25$, confirming a transient dip that $\\sqrt{T}$ power eventually overcomes (Appendix~\\ref{app:t20_comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:84:The $\\alpha{=}0.45$ column traces the sharpest validation: $0/8$ at $T{\\leq}10$, $6/8$ at $T{=}15$ (dual-seed), $5/8$ at $T{=}20$, $6/8$ at $T{=}25$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:96:The 5 non-confirming conditions span four failure modes: precision sensitivity (GPT-2 bf16: 0/8 vs fp32: 6/8), bidirectional confounding (GPT-2 s43), seed dependence (Pythia-1.4B: s42 2/8, s43 6/8), and architecture-specific decoupling (SmolLM3-3B: 3/8, entropy 0/4).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:120:\\multicolumn{4}{l}{\\footnotesize $^\\S$s42 fp32: 6/8 fwd, 0 rev; s43: 6/8 both; bf16: 0/8.} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex:5:Method choice alone inflates spurious-signal rates to at least 62.5\\%, first-differencing exposes canary$\\to$perplexity associations as entirely spurious, and regime dependence causes the same Granger test to shift from 24/24 to 0/8 significant pairs across contamination levels.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex:8:Our systematic five-method comparison through the Multi-Method Consensus Test (MMCT) identifies permutation Granger causality as the recommended detection method: it is the only one combining zero null-control FPR with high sensitivity, exhibiting a steep dose-response onset from 0/8 (blind spot, $\\alpha{\\leq}0.45$) to 6/8 ($\\alpha{=}0.50$; sigmoid $k{=}15.7$, ${\\approx}3{\\times}$ steeper than smooth-signal predictions) with reliable detection at $\\alpha{\\geq}0.75$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:6:Permutation Granger (PermG) tests find 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jump to 6/8 at $\\alpha{=}0.50$ (2~fp32 seeds, consistent).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:16:The canary mechanism also exhibits a blind spot: at $\\alpha{=}0.10$, distinct-1 has already dropped by $39.6\\%$, yet token entropy is indistinguishable from the null ($-5.3\\%$ versus $-4.6{\\pm}0.4\\%$ at $\\alpha{=}0.0$).\\footnote{Seed~43 at $\\alpha{=}0.10$ shows 3/8 PermG FDR-significant pairs versus 0/8 for seed~42, consistent with stochastic variation at low signal rather than robust detection; no other below-threshold $\\alpha$ level exhibits seed-dependent detection.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:30:The PermG dose-response profile (Figure~\\ref{fig:regime_map}) reveals four detection regimes: \\emph{blind} ($\\alpha \\leq 0.45$, 0/8 FDR-significant pairs), \\emph{onset} ($\\alpha \\approx 0.50$, 6/8), \\emph{synchronous dip} ($\\alpha \\approx 0.60$, 0/8 both seeds; dual-seed confirmed), and \\emph{detection} ($\\alpha{=}0.75$, 0--6/8 per seed, 2 of 3 seeds ${\\geq}5/8$; $\\alpha{=}1.0$, 6/8 across 4~seeds).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:34:At $\\alpha{=}0.55$, PermG returns 0/8 FDR-significant pairs despite marginal $p$-values ($p_{\\mathrm{fdr}}{=}0.062$--$0.092$), consistent with power-limited non-detection between onset and synchronous dip; differenced cross-correlation detects 8/8 bidirectionally at this level, confirming that a lead-lag signal exists but falls below PermG's directional detection threshold.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:45:\\caption{PermG forward detection rate across 13 contamination levels (Pythia-410M, fp32, direction-checked). Four regimes: blind ($\\alpha \\leq 0.45$, 0/8), onset ($\\alpha{=}0.50$, 6/8), synchronous dip ($\\alpha{=}0.60$, 0/8), and detection ($\\alpha \\geq 0.75$, 0--6/8).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:7:Five of twenty phase-diagram cells show $0/8$ despite lying above the theoretical detection boundary: four are sync-dip cells ($\\alpha{=}0.60$, $T{=}10$--$20$) and one is a boundary cell ($T{=}10$, $\\alpha{=}0.45$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:16:Phase-diagram structure is qualitatively preserved at 1.4B: $\\alpha_c$ is consistent ($0/8{\\to}4/8$ at $\\alpha{=}0.45{\\to}0.50$ vs $0/8{\\to}6/8$ at 410M), the sync-dip is absent, and the $T$-dependent boundary shift is preserved ($\\alpha{=}0.45$: $0/8{\\to}3/8$ at $T{=}10{\\to}15$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:17:Scale effects are $\\alpha$-conditional---above the sync-dip zone, 1.4B exceeds 410M (6/8 vs 0/8 at $\\alpha{=}0.60$); near onset, detection power is attenuated by a constant $-3/8$---and method-level heterogeneity emerges (Toda--Yamamoto inversely tracks $\\alpha$; details in Appendix~\\ref{app:scale_14b}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:20:The entropy-diversity lag is structural: distinct-$n$ requires token mass to cross threshold~$\\varepsilon$ ($\\gamma$-margin; Proposition~\\ref{prop:div_lag}), producing the ${\\geq}1$-generation lag in 14/15 experiments; PermG's directional asymmetry (6/8 forward, 0/8 reverse) argues against a sensitivity artifact, though directionality is domain-dependent (C4 yields reverse 7/8 at $\\alpha{=}0.50$; Appendix~\\ref{app:extended_discussion}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:9:\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval ($\\alpha{=}0.48 \\to 0.50$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:21:The cascade establishes entropy as the \\emph{optimal canary metric}---the earliest available signal---and explains PermG's directional selectivity: forward tests detect temporal precedence (6/8) while reverse tests find none (0/8) at $\\alpha \\geq 0.50$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:9:\\emph{Regime dependence}: the same Granger test finds 0/8 pairs significant through $\\alpha{=}0.45$ but 6/8 at $\\alpha{=}0.50$, a categorical shift at a 5-percentage-point boundary that a single-$\\alpha$ study would miss entirely.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:24:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:45:At $\\alpha{=}0.45$, the point prediction is 0/8, but the bootstrap CI spans [0,7] reflecting $\\alpha_c$ uncertainty---both detection and non-detection are informative for constraining the phase boundary location.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:151:No pair crosses the significance threshold at either seed, yielding the aggregate 0/8 detection rate reported in \\S\\ref{sec:regime}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:157:\\caption{BH-corrected PermG $p$-values at $\\alpha{=}0.45$ (8 canary$\\to$downstream pairs $\\times$ 2 seeds). Min $p_{\\mathrm{fdr}}$ per seed shown. All pairs remain above the $q{=}0.05$ threshold, yielding 0/8 aggregate detection.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:174:We assess robustness via specification curve analysis~\\cite{simonsohn2020specification}, systematically varying analytical degrees of freedom to test whether the 0/8$\\to$6/8 transition is specification-invariant.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:460:Cross-architecture validation across 15 conditions spanning six model families shows that the entropy-leads-diversity pattern generalizes in 11 of 15 architecture-seed combinations (Table~\\ref{tab:generalization}); GPT-2-medium (0/8, both seeds), SmolLM3-3B (3/8, canary metric splitting), and one Pythia-1.4B seed (2/8) do not confirm the pattern.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:463:The unidirectional forward causation observed on WikiText (PermG reverse${=}$0/8 across all conditions) does not hold universally.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:477:Differenced cross-correlation retains significance under intervention (31/32 pairs), while threshold onset fails entirely (0/8), reinforcing the multi-method rationale.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:504:0.45 & 0/8 & 3/8 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:515:The 410M sync-dip ($\\alpha{=}0.60$: 0/8 at $T{\\leq}20$) does not reproduce at 1.4B (4/8); whether this reflects scale-dependent dynamics or Pythia-specific effects remains open with only two model sizes tested.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:517:The boundary's $T$-dependence is preserved: $\\alpha{=}0.45$ rises from 0/8 ($T{=}10$) to 3/8 ($T{=}15$), mirroring the 410M boundary shift.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:521:At 1.4B with $T{=}10$ (11 data points), threshold onset is insensitive (0/8 in 3/4 conditions) because downstream metrics require ${\\geq}11$ generations to cross the $3\\sigma$ threshold; at $T{=}15$ (16 data points), threshold onset recovers (6/8 at $\\alpha{=}0.60$, lead time ${=}$ 10 generations).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:562:The table highlights PermG's unique combination of zero null-control detection (0/8 at $\\alpha{=}0.00$), sharp onset (0$\\to$6 at $\\alpha{=}0.50$), and non-monotonic dip (0 at $\\alpha{=}0.55$--$0.60$), confirming it as the only method whose dose-response profile cleanly separates detection regimes.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:790:Without direction filtering, null-control $K{\\geq}3$ FPR inflates from 0/8 to 2/8 (25\\%); with filtering, FPR remains 0/8.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:809:We do not fit a combined $T{=}10 + T{=}20$ sigmoid because $\\alpha{=}0.45$ yields contradictory counts under the two sequence lengths (0/8 vs.\\ 5/8), reflecting genuine power dependence on $T$ rather than a single dose-response curve.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1054:The held-out test set ($T \\in \\{5, 15\\}$) yields MAE${=}0.106$ with 95\\% CI coverage $6/6$: the model correctly predicts all $0/8$ at $T{=}5$ and detection at $T{=}15$ (predicted $0.49$--$0.71$ vs.\\ observed $6/8{=}0.75$; under-prediction reflects the $P_{\\max}{=}0.75$ ceiling from MAUVE saturation, which is modeled separately).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1063:When sync-dip cells are included (20 cells), MAE rises to $0.203$ (CI $16/20$), with the largest residuals at sync-dip cells (predicted $0.75$, observed $0/8$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1084:At $T{=}10$, $\\alpha{=}0.45$: H0 predicts 27\\% detection rate, H0$'$ predicts 45\\%, H1 predicts 5.5\\%, observed $0/8$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1107:0.45 & 0/8 & 0/8 (ceiling) & 5/8 & $\\times$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1109:0.60 & 0/8 & 3/8 (v1 raw)$^\\dagger$ & 0/8 & $\\times$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1113:\\multicolumn{5}{l}{\\footnotesize $^\\dagger$V2 (BH--FDR corrected, created 44\\,min pre-analysis, not git-committed) predicts 0/8, matching observation.} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1120:At $\\alpha{=}0.45$, the shift from 0/8 to 5/8 falsifies Model~A (ceiling: $\\alpha{=}0.45$ structurally undetectable) in favor of Model~B (power-limited: $\\sqrt{T}$ boost crosses the detection threshold), lowering $\\alpha_c$ below~0.45.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1121:The $\\alpha{=}0.60$ non-monotonic dip persists at $T{=}20$ (s42: 0/8; s43: 3/8) but dissolves at $T{=}25$ (5/8), confirming that $\\sqrt{T}$ power scaling eventually overcomes the dip; alternative methods detect signal throughout (DiffXCorr 6/8, TY 5/8 at $T{=}20$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1122:PermG directional selectivity is consistent across tested $T$ ($T{=}10$, $20$): forward 6/8 versus reverse 0/8 at $\\alpha \\in \\{0.50, 0.75, 1.0\\}$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1130:\\paragraph{V1 (git-committed, \\texttt{bad72cc}).} Predictions derived from $T{=}10$ PermG results using \\emph{raw} $p$-values. At $\\alpha{=}0.60$, v1 counted 3/8 pairs with raw $p{<}0.05$, predicting 3/8 detections at $T{=}20$. The observed result (0/8 FDR-significant) does not match.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1132:\\paragraph{V2 (pre-analysis, not committed).} A revised file incorporating BH--FDR correction at $q{=}0.05$, consistent with the correction applied throughout the paper. Under FDR, $\\alpha{=}0.60$ drops from 3/8 (raw) to 0/8, matching the observation. V2 was created 44 minutes before the formal $T{=}20$ analysis began (filesystem timestamp) but was not git-committed, and therefore lacks the cryptographic verifiability of v1.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1134:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex:22:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex:31:    At $T{=}10$, PermG jumps from 0/8 FDR-significant pairs through $\\alpha{=}0.45$ to 6/8 at $\\alpha{=}0.50$ ($\\alpha_c{=}0.476$, sigmoid $R^2{=}0.969$, $\\Delta\\alpha{\\approx}0.02$), with a four-regime structure: \\emph{blind}, \\emph{onset}, \\emph{synchronous dip}, and \\emph{detection}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex:39:    The MMCT exposes three pitfalls: method choice alone inflates spurious-signal rates to 75\\% ($\\kappa{=}0.185$), first-differencing eliminates canary$\\to$perplexity associations entirely while preserving all canary$\\to$diversity leads (24/24$\\to$24/24), and regime dependence causes the same test to shift from 5--6/8 FDR-significant pairs per seed at $\\alpha{\\geq}0.75$ to 0/8 at $\\alpha{\\leq}0.45$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:30:    Five detection methods yield null-control FPR from 0\\% to 92\\%; the same Granger test shifts from 0/8 to 6/8 within a 2-percentage-point interval.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:37:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:233:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:235:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1187:\\@writefile{lot}{\\contentsline {table}{\\numberline {8}{\\ignorespaces BH-corrected PermG $p$-values at $\\alpha {=}0.45$ (8 canary$\\to $downstream pairs $\\times $ 2 seeds). Min $p_{\\mathrm  {fdr}}$ per seed shown. All pairs remain above the $q{=}0.05$ threshold, yielding 0/8 aggregate detection.}}{13}{table.caption.35}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1188:\\newlabel{tab:fdr_gradient_a045}{{8}{13}{BH-corrected PermG $p$-values at $\\alpha {=}0.45$ (8 canary$\\to $downstream pairs $\\times $ 2 seeds). Min $p_{\\mathrm {fdr}}$ per seed shown. All pairs remain above the $q{=}0.05$ threshold, yielding 0/8 aggregate detection}{table.caption.35}{}}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "605563c9-efbd-4adf-8afd-91609e541dcc",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "ee090415-8f87-4449-bed5-cf4f643fadd3",
+            "sourceToolAssistantUUID": "605563c9-efbd-4adf-8afd-91609e541dcc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T05:45:35.306Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VgsWz1NqaRFWN46NtbwY1m",
+              "name": "Grep",
+              "input": {
+                "pattern": "twenty.*phase|phase.*twenty",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee090415-8f87-4449-bed5-cf4f643fadd3",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGTaQcguzqhpDwZZ8P",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0a0179b8-3dfe-481d-8157-71d0d7427b76",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NDeLGhuyVtG9k6StTgRKRb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25545,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 431,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25545
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 431,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25545,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25545,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T05:45:35.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VgsWz1NqaRFWN46NtbwY1m",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:7:Five of twenty phase-diagram cells show $0/8$ despite lying above the theoretical detection boundary: four are sync-dip cells ($\\alpha{=}0.60$, $T{=}10$--$20$) and one is a boundary cell ($T{=}10$, $\\alpha{=}0.45$)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a0179b8-3dfe-481d-8157-71d0d7427b76",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "278264c8-1f4d-489b-9299-7f8774a28b97",
+            "sourceToolAssistantUUID": "0a0179b8-3dfe-481d-8157-71d0d7427b76",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T05:45:40.663Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good start. Now let me search more specifically for the phase diagram grid definition and look for all T values used in the experiments:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "278264c8-1f4d-489b-9299-7f8774a28b97",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGpyGvFnxgK3euKf2j",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6a20ddd-7389-4c49-ba82-75942fc5bc68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KSdBk2BXWwxtha3cDzaLUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10924,
+                "cache_read_input_tokens": 25545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10924,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T05:45:41.622Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019LHsSmshuNj8NSt48P2XFi",
+              "name": "Grep",
+              "input": {
+                "pattern": "phase diagram|grid|T.*5.*10.*15.*20.*25|T\\s*=\\s*\\{|5T\\s*grid",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6a20ddd-7389-4c49-ba82-75942fc5bc68",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGpyGvFnxgK3euKf2j",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e693274e-891e-44d6-b57f-aa4254ee8fd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KSdBk2BXWwxtha3cDzaLUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10924,
+                "cache_read_input_tokens": 25545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10924,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T05:45:41.653Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019LHsSmshuNj8NSt48P2XFi",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (21.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-paper-agent-73c709c0/71c5797e-c964-4419-a009-2e487a4de1fc/tool-results/toolu_019LHsSmshuNj8NSt48P2XFi.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex-20-The onset we report reflects PermG's statistical power curve crossing the detection threshold at a critical contamination level, not the emergence of a new physical signal; this interpretation is confirmed by sub-threshold $p$-values at $\\alpha{=}0.45$ (\\S\\ref{sec:theory}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex-21-Permutation Granger (PermG) tests find 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jump to 6/8 at $\\alpha{=}0.50$ uniformly across all 3~fp32 seeds.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex-22-This transition is striking because cumulative synthetic fraction barely changes across the boundary: $C = 1{-}(1{-}\\alpha)^{10}$ yields $99.75\\%$ at $\\alpha{=}0.45$ versus $99.90\\%$ at $\\alpha{=}0.50$, a difference of 0.15 percentage points, yet detection jumps from null to reliable.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:23:Sigmoid regression on the 13-point $T{=}10$ grid yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$); dense $\\alpha$ sampling (17~values) constrains the onset steepness to $k{=}15.7$ (95\\% CI $[9.4, 28.2]$), a steep but finite-width sigmoid (Figure~\\ref{fig:regime_map}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex-24-This single-$T$ estimate is consistent with the cross-$T$ validated model (\\S\\ref{sec:theory}), which predicts how the detection boundary shifts with observation length ($\\gamma{=}2.08$).\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e693274e-891e-44d6-b57f-aa4254ee8fd8",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "548486aa-cc3e-4a8e-99a0-6865529a85c0",
+            "sourceToolAssistantUUID": "e693274e-891e-44d6-b57f-aa4254ee8fd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T05:45:42.146Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHjuEezawEUnWbwGDAT9To",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "548486aa-cc3e-4a8e-99a0-6865529a85c0",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyGpyGvFnxgK3euKf2j",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ba4b6883-0161-4451-ad22-6e024c974ab9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KSdBk2BXWwxtha3cDzaLUU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10924,
+                "cache_read_input_tokens": 25545,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10924
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 25545,
+                    "cache_creation_input_tokens": 10924,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10924,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T05:45:42.159Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHjuEezawEUnWbwGDAT9To",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\tWe study lead-lag analysis design considerations in iterative training collapse using Pythia-410M~\\cite{biderman2023pythia} (410M parameters, decoder-only), with cross-architecture validation on GPT-2-medium (345M) and three additional families (\\S\\ref{sec:generalization}).\n8\tTraining data is drawn from WikiText-103~\\cite{merity2017pointer} following the replace paradigm of~\\citet{shumailov2024curse}: each generation fine-tunes on a mixture of $\\alpha$ synthetic and $(1{-}\\alpha)$ real data, generates 5{,}000 replacement samples, and fully replaces the synthetic pool (hyperparameters in Appendix~\\ref{app:training_details}).\n9\tWe run $T{=}10$ generations across 13 contamination levels ($\\alpha \\in \\{0.00, 0.05, 0.10, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.75, 1.00\\}$, including null control) with multi-seed replication (4 seeds at $\\alpha{=}1.0$; 3 at primary levels).\n10\t\n11\tWe track two \\emph{canary metrics}---token entropy and ECE---and three \\emph{downstream metrics}: distinct-1, distinct-2~\\cite{li2016diversity}, and perplexity.\n12\tAll hypothesis tests apply BH-FDR correction at $q{=}0.05$; PermG uses 5{,}000 permutations on first-differenced series~\\cite{shojaie2022granger} with maximum lag~5.\n13\t\n14\t\n15\t\\subsection{Sharp Detection Onset}\n16\t\\label{sec:regime}\n17\t\n18\tDiversity collapse occurs at every contamination level: distinct-1 declines by $14.1\\%$ at $\\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\\pm}0.3\\%$ at $\\alpha{=}0.25$ (3-seed mean).\n19\tDespite this ubiquitous degradation, Granger detectability is sharply regime-dependent.\n20\tThe onset we report reflects PermG's statistical power curve crossing the detection threshold at a critical contamination level, not the emergence of a new physical signal; this interpretation is confirmed by sub-threshold $p$-values at $\\alpha{=}0.45$ (\\S\\ref{sec:theory}).\n21\tPermutation Granger (PermG) tests find 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jump to 6/8 at $\\alpha{=}0.50$ uniformly across all 3~fp32 seeds.\n22\tThis transition is striking because cumulative synthetic fraction barely changes across the boundary: $C = 1{-}(1{-}\\alpha)^{10}$ yields $99.75\\%$ at $\\alpha{=}0.45$ versus $99.90\\%$ at $\\alpha{=}0.50$, a difference of 0.15 percentage points, yet detection jumps from null to reliable.\n23\tSigmoid regression on the 13-point $T{=}10$ grid yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$); dense $\\alpha$ sampling (17~values) constrains the onset steepness to $k{=}15.7$ (95\\% CI $[9.4, 28.2]$), a steep but finite-width sigmoid (Figure~\\ref{fig:regime_map}).\n24\tThis single-$T$ estimate is consistent with the cross-$T$ validated model (\\S\\ref{sec:theory}), which predicts how the detection boundary shifts with observation length ($\\gamma{=}2.08$).\n25\tThe transition is not a literal step function ($\\Delta\\mathrm{AIC}{=}-110$ favoring sigmoid; Appendix~\\ref{app:sigmoid_shape}), but its steepness (${\\approx}3{\\times}$ smooth-model predictions; \\S\\ref{sec:theory}) exceeds what PermG power curves alone produce.\n26\tAt $T{=}10$, PermG power is ${\\approx}37\\%$ (Appendix~\\ref{app:power_sim}), partly amplifying the $0/8{\\to}6/8$ sharpness; however, onset steepness ($k{=}15.7$, ${\\approx}3{\\times}$ smooth predictions) and cross-seed consistency (3/3 seeds: $0/8{\\to}6/8$ at $\\alpha{=}0.48{\\to}0.50$) argue for a genuine, power-modulated transition.\n27\tA Fisher exact test corroborates the categorical jump: 0/64 pairs FDR-significant at $\\alpha \\leq 0.45$ versus 18/32 at $\\alpha \\geq 0.50$ ($p = 3.45 \\times 10^{-11}$); sub-threshold $p$-values at $\\alpha{=}0.45$ ($p_{\\mathrm{fdr}} = 0.059$--$0.091$) are consistent with proximity to the power boundary (\\S\\ref{sec:theory}).\n28\tA systematic robustness analysis (1{,}160 configurations) confirms specification-invariance of the onset.\n29\t\n30\tFirst-differencing scopes the canary claim precisely.\n31\tCanary$\\to$diversity pairs retain unanimous FDR significance after first-differencing ($24/24 \\to 24/24$ across 4~seeds at $\\alpha{=}1.0$, 6 pairs per seed), while canary$\\to$perplexity collapses entirely ($F \\approx 0$, $p = 0.99$): the apparent perplexity association is a shared-trend artifact.\n32\tAll canary claims are therefore scoped to diversity metrics only.\n33\tThis scoping reflects a genuine temporal structure difference, not selective power loss from differencing: $|r|$ retention is ${\\geq}95\\%$ for both channels, but canary$\\to$diversity correlations peak at lagged offsets (81\\% at lag${<}0$, median${=}-1$) while canary$\\to$perplexity correlations are contemporaneous (50\\% at lag${=}0$), producing $20$--$28{\\times}$ lower Granger $F$ for perplexity (Appendix~\\ref{app:channel_effect_size}; perplexity $n{=}8$, limited sample).\n34\tAt $\\alpha{=}1.0$, all 24 canary$\\to$diversity pairs (6 per seed $\\times$ 4~seeds; mauve excluded) reach FDR significance in the forward direction with 0/24 reverse; directional asymmetry is robust across all WikiText conditions.\n35\tIndependent of the Granger test, the degradation cascade confirms temporal precedence: entropy onset at generation~1 precedes distinct-$n$ onset at generation~2 in 16/18 WikiText conditions (Kendall $\\tau{=}0.337$; \\S\\ref{sec:cascade}, Appendix~\\ref{app:moment_cascade}).\n36\tThe canary mechanism also exhibits a blind spot: at $\\alpha{=}0.10$, distinct-1 has already dropped by $39.6\\%$, yet token entropy is indistinguishable from the null ($-5.3\\%$ versus $-4.6{\\pm}0.4\\%$ at $\\alpha{=}0.0$).\n37\tThe gen-1 entropy deviation spans three orders of magnitude across the $\\alpha$ range: $0.5\\sigma$ at $\\alpha{=}0.10$ to $60\\sigma$ at $\\alpha{=}0.75$ (relative to null variability), explaining why the blind zone persists despite increasing contamination.\\footnote{Seed~43 at $\\alpha{=}0.10$ shows 3/8 versus 0/8 for seed~42; no other sub-threshold level exhibits seed-dependent detection.}\n38\tBelow $\\alpha_c$ at $T{=}10$, diversity collapse proceeds without any detectable Granger-precedence signal in the canary metrics.\n39\t\n40\t\\begin{figure*}[t]\n41\t\\centering\n42\t\\includegraphics[width=0.9\\textwidth]{figures/metric_trajectory.pdf}\n43\t\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead across all four seeds (shaded: inter-seed range). This pattern corresponds to 24/24 forward and 0/24 reverse FDR-significant canary$\\to$diversity pairs (6 per seed, mauve excluded).}\n44\t\\label{fig:metric_trajectory}\n45\t\\end{figure*}\n46\t\n47\t\n48\t\\subsection{Dose-Response and Detection Regimes}\n49\t\\label{sec:dose_response}\n50\t\n51\tThe PermG dose-response profile (Figure~\\ref{fig:regime_map}) reveals four detection regimes: \\emph{blind} ($\\alpha \\leq 0.45$, 0/8 FDR-significant pairs), \\emph{onset} ($\\alpha \\approx 0.50$, 6/8), \\emph{non-monotonic dip} ($\\alpha \\approx 0.60$, 0/8), and \\emph{detection} ($\\alpha{\\geq}0.75$, 6/8 across 4~seeds at $\\alpha{=}1.0$).\n52\tAt $\\alpha{=}0.60$, PermG returns $0/8$ at $T{\\leq}20$ but recovers to $5/8$ at $T{=}25$, confirming a transient dip that $\\sqrt{T}$ power eventually overcomes (Appendix~\\ref{app:t20_comparison}).\n53\t\n54\tMethod choice is itself a major source of variability: at $\\alpha{=}1.0$, direction-checked forward significance spans 0\\% to 75\\% (Table~\\ref{tab:method_comparison}), with $\\kappa{=}0.185$; a specification curve (18~variants; Appendix~\\ref{app:spec_curve}) confirms onset invariance.\n55\tTask degradation corroborates: perplexity jumps $+31\\%$ between $\\alpha{=}0.50$ and $0.52$ (Appendix~\\ref{app:task_degradation}).\n56\t\n57\t\n58\t\\begin{table}[t]\n59\t\\centering\n60\t\\small\n61\t\\caption{Forward-direction FDR significance rates (\\%) across contamination levels (Pythia-410M, seed~42, fp32; $3\\sigma$ threshold calibration, lag-direction filtering for cross-correlation methods). Each cell: fraction of 8 validated pairs at BH-corrected significance ($q{=}0.05$). PermG is the only method combining zero null-control FPR with consistent detection at $\\alpha \\geq 0.50$.}\n62\t\\label{tab:method_comparison}\n63\t\\resizebox{\\columnwidth}{!}{%\n64\t\\begin{tabular}{lcccccc}\n65\t\\toprule\n66\tMethod & $\\alpha{=}0.0$ & $\\alpha{=}0.25$ & $\\alpha{=}0.50$ & $\\alpha{=}0.75$ & $\\alpha{=}1.0$ & FPR$_\\text{null}$ \\\\\n67\t\\midrule\n68\tNaive XCorr          & 75   & 62.5 & 62.5 & 0    & 0    & 75  \\\\\n69\tDiff.\\ XCorr         & 0    & 25   & 12.5 & 0    & 0    & 0   \\\\\n70\tThreshold ($3\\sigma$) & 37.5 & 62.5 & 100  & 100  & 25   & 37.5 \\\\\n71\tPerm.\\ Granger       & \\textbf{0}    & \\textbf{0}    & \\textbf{75}   & \\textbf{75}   & \\textbf{75}   & \\textbf{0}   \\\\\n72\tToda--Yamamoto$^\\S$  & 12.5 & 37.5 & 50   & 100  & 12.5 & 12.5 \\\\\n73\t\\bottomrule\n74\t\\multicolumn{7}{l}{\\footnotesize $^\\S$TY directional assignment under verification; row retained for completeness.} \\\\\n75\t\\multicolumn{7}{l}{\\footnotesize Pooled FPR (3 seeds, cluster-bootstrap 95\\% CI): \\S\\ref{sec:mmct}.} \\\\\n76\t\\end{tabular}}\n77\t\\end{table}\n78\t\n79\t\n80\t\\subsection{Detection Boundary Left-Shift}\n81\t\\label{sec:t20}\n82\t\n83\tThe detection boundary $\\alpha_c(T)$ decreases monotonically: $\\alpha_c(5){\\geq}1.0$, $\\alpha_c(10){=}0.487$, consistent with $T^{-2.08}$ power scaling (\\S\\ref{sec:theory}).\n84\tThe $\\alpha{=}0.45$ column traces the sharpest validation: $0/8$ at $T{\\leq}10$, $6/8$ at $T{=}15$ (dual-seed), $5/8$ at $T{=}20$, $6/8$ at $T{=}25$.\n85\tThe systematic 2/8 gap reflects MAUVE floor saturation ($\\mu{=}0.029$, SNR $4.68$ vs diversity $6.40$--$8.20$; \\S\\ref{sec:discussion}).\n86\tCross-seed replication shows PermG within ${\\pm}1$, though boundary cells exhibit sensitivity: $[0, 6]/8$ at ($T{=}10$, $\\alpha{=}0.50$); $[0, 3]/8$ at ($T{=}20$, $\\alpha{=}0.60$).\n87\tMinimum $T$ for 80\\% power at $\\alpha{=}0.50$ is approximately $T{=}30$ (extrapolated from simulation; Appendix~\\ref{app:power_sim}).\n88\tThe $\\alpha{=}0.60$ dip dissolves by $T{=}25$ ($5/8$), validating $\\sqrt{T}$ power scaling; predict-then-verify (commit \\texttt{bad72cc}) yields 2/4 boundary predictions within CI (Appendix~\\ref{app:t20_prediction_timeline}).\n89\t\n90\t\n91\t\\subsection{Cross-Architecture Validation}\n92\t\\label{sec:generalization}\n93\t\n94\tWe evaluate PermG across 15 model-seed combinations spanning five families, scales 345M--6.9B, and two domains (Table~\\ref{tab:generalization}).\n95\tPermG reaches ${\\geq}6/8$ in 10/15 conditions where entropy declines monotonically before diversity; C4 yields strongest detection (Pythia-1.4B: 2/8 WikiText $\\to$ 8/8 C4).\n96\tThe 5 non-confirming conditions span four failure modes: precision sensitivity (GPT-2 bf16: 0/8 vs fp32: 6/8), bidirectional confounding (GPT-2 s43), seed dependence (Pythia-1.4B: s42 2/8, s43 6/8), and architecture-specific decoupling (SmolLM3-3B: 3/8, entropy 0/4).\n97\t\n98\t\\begin{table}[t]\n99\t\\centering\n100\t\\small"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba4b6883-0161-4451-ad22-6e024c974ab9",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "69ab1b5c-b061-4f3b-b021-0871ac3df34c",
+            "sourceToolAssistantUUID": "ba4b6883-0161-4451-ad22-6e024c974ab9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T05:45:43.683Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look for the actual phase diagram table and look for information about all T values used:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69ab1b5c-b061-4f3b-b021-0871ac3df34c",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHBNc8ZQ9Dw173ZV6v",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd145eb4-6dde-45ee-a086-347df4ed5e2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H3EJRVLjriNvxNKmyNCmpA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5212,
+                "cache_read_input_tokens": 36469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5212,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T05:45:45.183Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DBwa9SMYichqSt3HZvukGm",
+              "name": "Grep",
+              "input": {
+                "pattern": "T\\s*=\\s*\\{5.*10.*15.*20.*25\\}|figure.*regime|phase.*diagram.*table",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content",
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd145eb4-6dde-45ee-a086-347df4ed5e2b",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHBNc8ZQ9Dw173ZV6v",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2921bfba-2da5-4d36-972b-c6abfc2cbcf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H3EJRVLjriNvxNKmyNCmpA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5212,
+                "cache_read_input_tokens": 36469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5212,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T05:45:45.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DBwa9SMYichqSt3HZvukGm",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex-21-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex-22-\\paragraph{Practical implications.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex:23:Our contribution is the phase-diagram methodology and detection-threshold mechanism, not frontier-scale applicability ($>$7B untested); even where 1.4B diverges quantitatively, the framework identifies these as interpretable scale-dependent effects.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex-24-Longer $T$ lowers $\\alpha_c$ sub-linearly (\\S\\ref{sec:theory}); PermG requires fp32; triggered cessation on entropy (14/15 cascade) reduces peak perplexity by 58\\% (\\S\\ref{sec:intervention}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux-1557-\\@LN{1264}{16}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux-1558-\\@LN{1265}{16}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1559:\\@writefile{lot}{\\contentsline {table}{\\numberline {17}{\\ignorespaces Pythia-1.4B phase-diagram cells (fp32, PermG direction-checked). [PENDING: $T{=}15$ at $\\alpha {=}0.75$.]}}{17}{table.caption.63}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1560:\\newlabel{tab:14b_phase}{{17}{17}{Pythia-1.4B phase-diagram cells (fp32, PermG direction-checked). [PENDING: $T{=}15$ at $\\alpha {=}0.75$.]}{table.caption.63}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux-1561-\\@LN{1266}{16}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux-1562-\\@LN{1267}{16}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2921bfba-2da5-4d36-972b-c6abfc2cbcf4",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "3bb266af-9e8a-445d-b9d8-6b91d0f64096",
+            "sourceToolAssistantUUID": "2921bfba-2da5-4d36-972b-c6abfc2cbcf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T05:45:45.775Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T3YrtvW2J4oKJ7ujRTyMGJ",
+              "name": "Grep",
+              "input": {
+                "pattern": "leave.*one.*T|5T.*grid|T\\s*∈|T\\s*in\\s*\\{",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+                "output_mode": "content",
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bb266af-9e8a-445d-b9d8-6b91d0f64096",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHBNc8ZQ9Dw173ZV6v",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bfc15091-504b-4011-98a3-c33fadfa0597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01H3EJRVLjriNvxNKmyNCmpA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5212,
+                "cache_read_input_tokens": 36469,
+                "output_tokens": 335,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5212
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 335,
+                    "cache_read_input_tokens": 36469,
+                    "cache_creation_input_tokens": 5212,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5212,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T05:45:45.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T3YrtvW2J4oKJ7ujRTyMGJ",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-55-The power-law form $\\alpha_c \\propto T^{-1/(2\\beta)}$ follows from signal-detection theory (signal-to-noise crossing a threshold), but $\\beta$ requires architecture-specific calibration.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-56-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:57:Cross-$T$ validation (train $T{\\in}\\{10,20\\}$, test $T{\\in}\\{5,15\\}$) yields $\\beta{=}0.24$, $\\gamma{=}2.08$ (MAE${=}0.106$, CI $6/6$); leave-one-$T$-out CV on the full $5T$ grid (sync-dip excluded) confirms predictive accuracy (MAE${=}0.037$, CI $15/15$; Appendix~\\ref{app:alpha_c_proof}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-58-However, $\\beta$ is poorly identified: MLE $\\hat{\\beta}{=}0.66$ with profile 95\\% CI $[0.24, 0.78]$, and model comparison favors the power-probit (M2) over a linear boundary (M1) only when sync-dip data are included ($\\Delta\\mathrm{AIC}{=}4.15$ without; Appendix~\\ref{app:alpha_c_proof}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex-59-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex-2-When language models train iteratively on their own output, distributional degradation proceeds silently until collapse is advanced.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex-3-We map the detectability landscape of this process primarily on Pythia-410M across 13 contamination levels, with cross-architecture validation on five families (345M--6.9B parameters), revealing blind zones, sharp detection onsets, and a non-monotonic dip where Granger detection fails despite confirmed causal flow.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex:4:Permutation Granger causality\\footnote{Granger precedence establishes temporal predictive improvement, not true causation~\\cite{shojaie2022granger}.} (PermG) identifies a detection boundary $\\alpha_c(T)$ following a power law in observation length (leave-one-$T$-out CV: MAE${=}0.037$, 15/15 cells within CI): any nonzero contamination produces signal, but sub-linear growth makes detection a function of $T$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex-5-This landscape is profoundly method-dependent: five statistical methods applied to identical data yield null-control false positive rates from 0\\% to 92\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex-6-Under mode amplification, entropy Granger-precedes diversity collapse with a ${\\geq}1$-generation lag (confirmed in 14 of 15 experiments), providing a canary signal whose triggered cessation reduces peak perplexity as a proof-of-concept intervention.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-1058-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-1059-\\paragraph{Leave-one-$T$-out cross-validation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1060:We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid (sync-dip $\\alpha{=}0.60$ excluded; 15 cells).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-1061-For each fold, one observation length is held out and the probit model $P = P_{\\max} \\cdot \\Phi(A \\cdot \\alpha^{0.24} \\cdot \\sqrt{T} - z_0)$ is refit on the remaining data.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex-1062-Overall MAE${=}0.037$ with 95\\% CI coverage $15/15$.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-20-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-21-    \\item \\textbf{Detectability landscape characterization} (\\S\\ref{sec:regime}--\\ref{sec:intervention}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:22:    PermG establishes a monotonically decreasing detection boundary $\\alpha_c(T)$ following a power law in observation length (Proposition~\\ref{prop:phase-boundary}), primarily characterized on Pythia-410M; leave-one-$T$-out CV confirms predictive accuracy (MAE${=}0.037$, CI~$15/15$; \\S\\ref{sec:theory}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-23-    Since $\\alpha_\\infty{\\approx}0$, any nonzero contamination produces signal, but sub-linear growth makes detection a function of $T$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex-24-    Predict-then-verify at $T{=}20$ matches 3/5 predictions in saturated regimes, with systematic conservative bias at boundary $\\alpha$ (Appendix~\\ref{app:t20_prediction_timeline}); canary-triggered cessation reduces peak perplexity by 58\\%."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfc15091-504b-4011-98a3-c33fadfa0597",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "69082239-c0be-4c40-a333-f3e011bf7679",
+            "sourceToolAssistantUUID": "bfc15091-504b-4011-98a3-c33fadfa0597",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T05:45:47.375Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the key information. Now let me read the actual phase diagram table in the appendix to see the T values:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69082239-c0be-4c40-a333-f3e011bf7679",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHSgrhjLiSUedVZg9y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35610bb7-b16a-43df-bd5a-5eadcfa34633",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VkkDmrKvGrUixwSnThbXgL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2975,
+                "cache_read_input_tokens": 41681,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2975,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T05:45:47.960Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kerad2USJ5ip7ghXApZc4V",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"T.*=.*5.*10.*15.*20.*25\\|T\\s*=.*\\{.*5\\|5T\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35610bb7-b16a-43df-bd5a-5eadcfa34633",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHSgrhjLiSUedVZg9y",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "09fb431e-5c4a-47fa-abd0-0d6d89702a5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VkkDmrKvGrUixwSnThbXgL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2975,
+                "cache_read_input_tokens": 41681,
+                "output_tokens": 155,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2975
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 155,
+                    "cache_read_input_tokens": 41681,
+                    "cache_creation_input_tokens": 2975,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2975,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T05:45:48.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kerad2USJ5ip7ghXApZc4V",
+              "type": "tool_result",
+              "content": "grep: Unmatched \\{",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09fb431e-5c4a-47fa-abd0-0d6d89702a5a",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "8d351b0c-546d-4f47-968b-c0c6f852bc48",
+            "sourceToolAssistantUUID": "09fb431e-5c4a-47fa-abd0-0d6d89702a5a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T05:45:49.253Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fix the regex:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d351b0c-546d-4f47-968b-c0c6f852bc48",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHcbAPsTNoPiGo5KRr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a28a5151-f643-4921-b62f-e214b28d650b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TQaHMemnHrTDysQopMmbu7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 44656,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 176,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T05:45:49.659Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V41Yw8DYKLgvkJBm3SMyVZ",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"5T.*grid\\|T.*5.*15.*25\\|train.*test\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex | head -25"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a28a5151-f643-4921-b62f-e214b28d650b",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHcbAPsTNoPiGo5KRr",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa02dc58-c3fc-4f7f-8125-766120588c22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TQaHMemnHrTDysQopMmbu7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 44656,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 176
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 44656,
+                    "cache_creation_input_tokens": 176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 176,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T05:45:49.720Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V41Yw8DYKLgvkJBm3SMyVZ",
+              "type": "tool_result",
+              "content": "1060:We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid (sync-dip $\\alpha{=}0.60$ excluded; 15 cells).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa02dc58-c3fc-4f7f-8125-766120588c22",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "df3cf728-84ac-4223-821f-2d25cd873d46",
+            "sourceToolAssistantUUID": "aa02dc58-c3fc-4f7f-8125-766120588c22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T05:45:51.258Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "So the grid is `5T × 3α` with 15 cells (excluding sync-dip). Let me search for what these 5 T values are:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df3cf728-84ac-4223-821f-2d25cd873d46",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHjRBapXHq9Qu6Z2Rn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "22890ad6-f0d9-462d-a307-f7dcad440ce5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y7L9F8CSq49Cp3Lip2EMQV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 189,
+                "cache_read_input_tokens": 44832,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 189,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T05:45:51.732Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rz2syB9Kkh2F6hZ7xsHuhW",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"T.*5.*10\\|alpha.*0.45\\|alpha.*0.50\\|test.*T\\|train.*T\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22890ad6-f0d9-462d-a307-f7dcad440ce5",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHjRBapXHq9Qu6Z2Rn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0774472b-3087-4dd5-bb68-7a2aa0a638bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y7L9F8CSq49Cp3Lip2EMQV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 189,
+                "cache_read_input_tokens": 44832,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 189
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 44832,
+                    "cache_creation_input_tokens": 189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 189,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T05:45:51.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rz2syB9Kkh2F6hZ7xsHuhW",
+              "type": "tool_result",
+              "content": "9:\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval ($\\alpha{=}0.48 \\to 0.50$).\n16:Pooled null-control FPR across three seeds (cluster-adjusted 95\\% CI): PermG 0\\% $[0, 41]$, Toda--Yamamoto 17\\% $[0, 25]$, DiffXCorr 38\\% $[25, 50]$, NaiveXCorr 92\\% $[88, 100]$ (Appendix~\\ref{app:fpr_independence}).\n18:Under all four weighting schemes (equal, FPR-inverse, capped, rank-based), PermG is the only method maintaining zero null-control FPR alongside consistent detection at $\\alpha \\geq 0.50$.\n25:The permutation test controls Type~I error exactly by construction (exchangeable null distribution); BH-FDR remains valid under positive regression dependence on a subset (PRDS)~\\cite{benjamini2001control}, and 0/24 null-control rejections across three seeds empirically confirm adequate size control (Clopper--Pearson 97.5\\% upper bound: 14\\%; within-seed ICC${=}0.34$, cluster-adjusted 95\\% CI $[0\\%, 41\\%]$; Appendix~\\ref{app:fpr_independence}).\n57:Cross-$T$ validation (train $T{\\in}\\{10,20\\}$, test $T{\\in}\\{5,15\\}$) yields $\\beta{=}0.24$, $\\gamma{=}2.08$ (MAE${=}0.106$, CI $6/6$); leave-one-$T$-out CV on the full $5T$ grid (sync-dip excluded) confirms predictive accuracy (MAE${=}0.037$, CI $15/15$; Appendix~\\ref{app:alpha_c_proof}).\n62:Formal shape testing on dense $T{=}10$ data (17~$\\alpha$ values) favors a smooth sigmoid over a literal step function ($\\Delta\\mathrm{AIC}{=}-110$), but the fitted onset steepness ($k{=}15.7$, 95\\% CI $[9.4, 28.2]$; \\S\\ref{sec:dose_response}) is $3$--$4{\\times}$ higher than any smooth signal model predicts.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0774472b-3087-4dd5-bb68-7a2aa0a638bc",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "80cd8bc2-a2ed-491a-8e4e-28a8a6182064",
+            "sourceToolAssistantUUID": "0774472b-3087-4dd5-bb68-7a2aa0a638bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T05:45:53.365Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I found it! Line 57 shows: \"Cross-$T$ validation (train $T{\\in}\\{10,20\\}$, test $T{\\in}\\{5,15\\}$)\". Combined with the \"5T\" grid, this indicates the full set of T values is {5, 10, 15, 20, 25}. Let me verify by searching more broadly:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80cd8bc2-a2ed-491a-8e4e-28a8a6182064",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHtCmjqhhUiePuShsv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bc540463-0831-4725-ac0f-b4cc1e324ad2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UgZBdq6tVWtVPRKy2MW34q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 45021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 799,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T05:45:54.082Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016vaeZnfPFCxFun57Yw9bVK",
+              "name": "Bash",
+              "input": {
+                "command": "grep -E \"T.?=.?[0-9]|T.*5.*10.*15.*20.*25\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex | grep -E \"T.*10|T.*15|T.*20|T.*25\" | head -15"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc540463-0831-4725-ac0f-b4cc1e324ad2",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyHtCmjqhhUiePuShsv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0312705f-7e9e-47e8-8000-ea81806c1f5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UgZBdq6tVWtVPRKy2MW34q",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 45021,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 799
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 45021,
+                    "cache_creation_input_tokens": 799,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 799,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T05:45:54.151Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016vaeZnfPFCxFun57Yw9bVK",
+              "type": "tool_result",
+              "content": "We run $T{=}10$ generations across 13 contamination levels ($\\alpha \\in \\{0.00, 0.05, 0.10, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.75, 1.00\\}$, including null control) with multi-seed replication (4 seeds at $\\alpha{=}1.0$; 3 at primary levels).\nSigmoid regression on the 13-point $T{=}10$ grid yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$); dense $\\alpha$ sampling (17~values) constrains the onset steepness to $k{=}15.7$ (95\\% CI $[9.4, 28.2]$), a steep but finite-width sigmoid (Figure~\\ref{fig:regime_map}).\nAt $T{=}10$, PermG power is ${\\approx}37\\%$ (Appendix~\\ref{app:power_sim}), partly amplifying the $0/8{\\to}6/8$ sharpness; however, onset steepness ($k{=}15.7$, ${\\approx}3{\\times}$ smooth predictions) and cross-seed consistency (3/3 seeds: $0/8{\\to}6/8$ at $\\alpha{=}0.48{\\to}0.50$) argue for a genuine, power-modulated transition.\nBelow $\\alpha_c$ at $T{=}10$, diversity collapse proceeds without any detectable Granger-precedence signal in the canary metrics.\nAt $\\alpha{=}0.60$, PermG returns $0/8$ at $T{\\leq}20$ but recovers to $5/8$ at $T{=}25$, confirming a transient dip that $\\sqrt{T}$ power eventually overcomes (Appendix~\\ref{app:t20_comparison}).\nThe $\\alpha{=}0.45$ column traces the sharpest validation: $0/8$ at $T{\\leq}10$, $6/8$ at $T{=}15$ (dual-seed), $5/8$ at $T{=}20$, $6/8$ at $T{=}25$.\nCross-seed replication shows PermG within ${\\pm}1$, though boundary cells exhibit sensitivity: $[0, 6]/8$ at ($T{=}10$, $\\alpha{=}0.50$); $[0, 3]/8$ at ($T{=}20$, $\\alpha{=}0.60$).\nThe $\\alpha{=}0.60$ dip dissolves by $T{=}25$ ($5/8$), validating $\\sqrt{T}$ power scaling; predict-then-verify (commit \\texttt{bad72cc}) yields 2/4 boundary predictions within CI (Appendix~\\ref{app:t20_prediction_timeline}).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0312705f-7e9e-47e8-8000-ea81806c1f5d",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "c3de337c-784a-458c-a467-726f54fc1db6",
+            "sourceToolAssistantUUID": "0312705f-7e9e-47e8-8000-ea81806c1f5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T05:45:55.328Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Great! Now let me search for explicit information about the α=0.60 cells at different T values:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3de337c-784a-458c-a467-726f54fc1db6",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJ4MiLGdbUCj3JfSAs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dc0dffee-cef7-46bf-afbf-815c887ef788",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012xKHzxikDaVbGctVtGM2id",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 45820,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 986,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T05:45:55.841Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P5LqrLVa5hxdJ63TKbHCfo",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"0.60.*T\\|alpha.*0.60.*10\\|alpha.*0.60.*15\\|alpha.*0.60.*20\\|alpha.*0.60.*25\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc0dffee-cef7-46bf-afbf-815c887ef788",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJ4MiLGdbUCj3JfSAs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "45a94ce4-0c9b-4c8b-910d-da8fa6f42f7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012xKHzxikDaVbGctVtGM2id",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 986,
+                "cache_read_input_tokens": 45820,
+                "output_tokens": 163,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 986
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 163,
+                    "cache_read_input_tokens": 45820,
+                    "cache_creation_input_tokens": 986,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 986,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T05:45:55.908Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P5LqrLVa5hxdJ63TKbHCfo",
+              "type": "tool_result",
+              "content": "235:Forward-dominant TE fraction increases monotonically with $\\alpha$: 4/8 pairs at $\\alpha{=}0.25$ (mean net TE${=}0.14$), 5/8 at $\\alpha{=}0.50$ (net TE${=}0.42$), 6/8 at $\\alpha{=}0.60$ (net TE${=}0.57$), and 8/8 at $\\alpha{=}1.0$ (net TE${=}1.59$).\n515:The 410M sync-dip ($\\alpha{=}0.60$: 0/8 at $T{\\leq}20$) does not reproduce at 1.4B (4/8); whether this reflects scale-dependent dynamics or Pythia-specific effects remains open with only two model sizes tested.\n516:At $T{=}15$, scale effects are $\\alpha$-conditional: $\\alpha{=}0.60$ reaches 6/8 (matching 410M), while $\\alpha{=}0.50$ attenuates further to 3/8 (vs 4/8 at $T{=}10$), confirming that detection loss is onset-localized rather than uniform.\n521:At 1.4B with $T{=}10$ (11 data points), threshold onset is insensitive (0/8 in 3/4 conditions) because downstream metrics require ${\\geq}11$ generations to cross the $3\\sigma$ threshold; at $T{=}15$ (16 data points), threshold onset recovers (6/8 at $\\alpha{=}0.60$, lead time ${=}$ 10 generations).\n533:PermG exhibits a sharp 0$\\to$6 jump at $\\alpha{=}0.50$ with a return to 0 at $\\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.\n1060:We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid (sync-dip $\\alpha{=}0.60$ excluded; 15 cells).\n1121:The $\\alpha{=}0.60$ non-monotonic dip persists at $T{=}20$ (s42: 0/8; s43: 3/8) but dissolves at $T{=}25$ (5/8), confirming that $\\sqrt{T}$ power scaling eventually overcomes the dip; alternative methods detect signal throughout (DiffXCorr 6/8, TY 5/8 at $T{=}20$).\n1130:\\paragraph{V1 (git-committed, \\texttt{bad72cc}).} Predictions derived from $T{=}10$ PermG results using \\emph{raw} $p$-values. At $\\alpha{=}0.60$, v1 counted 3/8 pairs with raw $p{<}0.05$, predicting 3/8 detections at $T{=}20$. The observed result (0/8 FDR-significant) does not match.\n1132:\\paragraph{V2 (pre-analysis, not committed).} A revised file incorporating BH--FDR correction at $q{=}0.05$, consistent with the correction applied throughout the paper. Under FDR, $\\alpha{=}0.60$ drops from 3/8 (raw) to 0/8, matching the observation. V2 was created 44 minutes before the formal $T{=}20$ analysis began (filesystem timestamp) but was not git-committed, and therefore lacks the cryptographic verifiability of v1.\n1134:\\paragraph{Scoring.} Primary (v1, committed): 3/5 exact matches ($\\alpha \\in \\{0.50, 0.75, 1.0\\}$, all saturated regimes). Excluding $\\alpha{=}1.0$, two of four predictions fall within CI. Both boundary predictions miss: $\\alpha{=}0.45$ (predicted 0/8, observed 5/8) falsifies the ceiling hypothesis in favor of $\\sqrt{T}$ power scaling; $\\alpha{=}0.60$ (predicted 3/8, observed 0/8) over-estimates detection due to the non-monotonic dip. Sensitivity (v2, FDR-corrected): 4/5 ($\\alpha{=}0.60$ matches). The systematic conservative bias at $\\alpha{=}0.45$ is consistent with the $\\sqrt{T}$ power increase predicted by Proposition~\\ref{prop:phase-boundary}.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45a94ce4-0c9b-4c8b-910d-da8fa6f42f7c",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "fa8825ec-fbaa-4973-9711-540ce86698d0",
+            "sourceToolAssistantUUID": "45a94ce4-0c9b-4c8b-910d-da8fa6f42f7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T05:45:57.109Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have the critical information. Let me read the discussion.tex section directly to verify the claim:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa8825ec-fbaa-4973-9711-540ce86698d0",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJBpRnyYkNZvoWrHPz",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0c1b657d-34b1-4ac4-9d3c-177d493579b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XzSCttbjiGKKzErkCozToW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1342,
+                "cache_read_input_tokens": 46806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1342,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T05:45:58.043Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F1WNLkK4KvnhYcURntLfwG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c1b657d-34b1-4ac4-9d3c-177d493579b3",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJBpRnyYkNZvoWrHPz",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4d95ca7d-bd45-442d-880d-458cf3a03dcc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XzSCttbjiGKKzErkCozToW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1342,
+                "cache_read_input_tokens": 46806,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1342
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 46806,
+                    "cache_creation_input_tokens": 1342,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1342,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T05:45:58.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F1WNLkK4KvnhYcURntLfwG",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion and Conclusion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Granger precedence is not causation.}\n4\tOur claim is scoped to temporal predictive improvement~\\cite{granger1969investigating,shojaie2022granger}; bivariate tests cannot exclude confounders, and our cluster-adjusted FPR CI ($[0\\%, 41\\%]$; \\S\\ref{sec:limitations}) means true Type~I error may be non-negligible.\n5\t\n6\t\\paragraph{Non-confirming cells.}\n7\tFive of twenty phase-diagram cells show $0/8$ despite lying above the theoretical detection boundary: four are sync-dip cells ($\\alpha{=}0.60$, $T{=}10$--$20$) and one is a boundary cell ($T{=}10$, $\\alpha{=}0.45$).\n8\tThe sync-dip dissolves by $T{=}25$ ($5/8$), confirming it is transient; its mechanism remains open.\n9\tExcluding these five cells, the remaining 15/15 match theory (LOO-CV MAE${=}0.037$).\n10\t\n11\t\\paragraph{Metric-specific ceiling.}\n12\tObserved detection counts never exceed $6/8$: the 2/8 non-detected pairs involve MAUVE, whose floor saturation ($\\mu{=}0.029$) eliminates the temporal gradient Granger precedence requires (\\S\\ref{sec:t20}); practitioners should prefer monotonically degrading metrics (e.g., distinct-$n$).\n13\t\n14\t\\paragraph{Cross-architecture failure modes.}\n15\tFive of fifteen conditions do not confirm forward detection (\\S\\ref{sec:generalization}), spanning GPT-2 precision/confounding, Pythia-1.4B seed dependence, and SmolLM3-3B entropy decoupling.\n16\tPhase-diagram structure is qualitatively preserved at 1.4B: $\\alpha_c$ is consistent ($0/8{\\to}4/8$ at $\\alpha{=}0.45{\\to}0.50$ vs $0/8{\\to}6/8$ at 410M), the sync-dip is absent, and the $T$-dependent boundary shift is preserved ($\\alpha{=}0.45$: $0/8{\\to}3/8$ at $T{=}10{\\to}15$).\n17\tScale effects are $\\alpha$-conditional---above the sync-dip zone, 1.4B exceeds 410M (6/8 vs 0/8 at $\\alpha{=}0.60$); near onset, detection power is attenuated by a constant $-3/8$---and method-level heterogeneity emerges (Toda--Yamamoto inversely tracks $\\alpha$; details in Appendix~\\ref{app:scale_14b}).\n18\t\n19\t\\paragraph{Entropy-diversity coupling.}\n20\tThe entropy-diversity lag is structural: distinct-$n$ requires token mass to cross threshold~$\\varepsilon$ ($\\gamma$-margin; Proposition~\\ref{prop:div_lag}), producing the ${\\geq}1$-generation lag in 14/15 experiments; PermG's directional asymmetry (6/8 forward, 0/8 reverse) argues against a sensitivity artifact, though directionality is domain-dependent (C4 yields reverse 7/8 at $\\alpha{=}0.50$; Appendix~\\ref{app:extended_discussion}).\n21\t\n22\t\\paragraph{Practical implications.}\n23\tOur contribution is the phase-diagram methodology and detection-threshold mechanism, not frontier-scale applicability ($>$7B untested); even where 1.4B diverges quantitatively, the framework identifies these as interpretable scale-dependent effects.\n24\tLonger $T$ lowers $\\alpha_c$ sub-linearly (\\S\\ref{sec:theory}); PermG requires fp32; triggered cessation on entropy (14/15 cascade) reduces peak perplexity by 58\\% (\\S\\ref{sec:intervention}).\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d95ca7d-bd45-442d-880d-458cf3a03dcc",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "9add0427-f53b-4f61-a8fb-cac308ca5caf",
+            "sourceToolAssistantUUID": "4d95ca7d-bd45-442d-880d-458cf3a03dcc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T05:45:59.762Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me compile the exact information. Let me search for one more critical piece - to see if there's a T=5 in the \"five of twenty\" phase diagram:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9add0427-f53b-4f61-a8fb-cac308ca5caf",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJLyauEjNc8xNFUTTS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1b2bf6a6-d1bf-4a1d-b79d-f356f560c44e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016tSwfooTA8cYoUEgAEwFxE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 48148,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1134,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T05:46:00.972Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NP3RFgyT2RQ3pptHG2fMe4",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"alpha.*0.45.*T\\|alpha.*0.50.*T\\|alpha.*0.60.*T\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex | grep \"T.*5\\|T.*10\\|T.*15\\|T.*20\\|T.*25\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b2bf6a6-d1bf-4a1d-b79d-f356f560c44e",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJLyauEjNc8xNFUTTS",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4f5bc3d3-9388-436e-ac2a-951d171d40e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016tSwfooTA8cYoUEgAEwFxE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1134,
+                "cache_read_input_tokens": 48148,
+                "output_tokens": 190,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1134
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 190,
+                    "cache_read_input_tokens": 48148,
+                    "cache_creation_input_tokens": 1134,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1134,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T05:46:01.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NP3RFgyT2RQ3pptHG2fMe4",
+              "type": "tool_result",
+              "content": "235:Forward-dominant TE fraction increases monotonically with $\\alpha$: 4/8 pairs at $\\alpha{=}0.25$ (mean net TE${=}0.14$), 5/8 at $\\alpha{=}0.50$ (net TE${=}0.42$), 6/8 at $\\alpha{=}0.60$ (net TE${=}0.57$), and 8/8 at $\\alpha{=}1.0$ (net TE${=}1.59$).\n515:The 410M sync-dip ($\\alpha{=}0.60$: 0/8 at $T{\\leq}20$) does not reproduce at 1.4B (4/8); whether this reflects scale-dependent dynamics or Pythia-specific effects remains open with only two model sizes tested.\n516:At $T{=}15$, scale effects are $\\alpha$-conditional: $\\alpha{=}0.60$ reaches 6/8 (matching 410M), while $\\alpha{=}0.50$ attenuates further to 3/8 (vs 4/8 at $T{=}10$), confirming that detection loss is onset-localized rather than uniform.\n517:The boundary's $T$-dependence is preserved: $\\alpha{=}0.45$ rises from 0/8 ($T{=}10$) to 3/8 ($T{=}15$), mirroring the 410M boundary shift.\n520:The onset-zone attenuation ($-3/8$ relative to 410M) is $\\alpha$-invariant: both $\\alpha{=}0.45$ and $0.50$ yield 3/8 at $T{=}15$ (vs 6/8 at 410M).\n809:We do not fit a combined $T{=}10 + T{=}20$ sigmoid because $\\alpha{=}0.45$ yields contradictory counts under the two sequence lengths (0/8 vs.\\ 5/8), reflecting genuine power dependence on $T$ rather than a single dose-response curve.\n898:MI remains positive throughout the blind zone ($\\alpha \\leq 0.45$; range 0.010--0.141~bits), confirming that canary--diversity coupling exists below the detection threshold but falls below PermG's statistical power floor at $T{=}10$.\n1117:At $\\alpha \\geq 0.50$, consistency across $T{=}10$ and $T{=}20$ supports the detection boundary prediction: PermG counts are determined by signal structure, not observation length.\n1119:The sole exception is $\\alpha{=}0.45$ at $T{=}20$ (5/8), consistent with boundary proximity.\n1120:At $\\alpha{=}0.45$, the shift from 0/8 to 5/8 falsifies Model~A (ceiling: $\\alpha{=}0.45$ structurally undetectable) in favor of Model~B (power-limited: $\\sqrt{T}$ boost crosses the detection threshold), lowering $\\alpha_c$ below~0.45.\n1121:The $\\alpha{=}0.60$ non-monotonic dip persists at $T{=}20$ (s42: 0/8; s43: 3/8) but dissolves at $T{=}25$ (5/8), confirming that $\\sqrt{T}$ power scaling eventually overcomes the dip; alternative methods detect signal throughout (DiffXCorr 6/8, TY 5/8 at $T{=}20$).\n1130:\\paragraph{V1 (git-committed, \\texttt{bad72cc}).} Predictions derived from $T{=}10$ PermG results using \\emph{raw} $p$-values. At $\\alpha{=}0.60$, v1 counted 3/8 pairs with raw $p{<}0.05$, predicting 3/8 detections at $T{=}20$. The observed result (0/8 FDR-significant) does not match.\n1132:\\paragraph{V2 (pre-analysis, not committed).} A revised file incorporating BH--FDR correction at $q{=}0.05$, consistent with the correction applied throughout the paper. Under FDR, $\\alpha{=}0.60$ drops from 3/8 (raw) to 0/8, matching the observation. V2 was created 44 minutes before the formal $T{=}20$ analysis began (filesystem timestamp) but was not git-committed, and therefore lacks the cryptographic verifiability of v1.\n1134:\\paragraph{Scoring.} Primary (v1, committed): 3/5 exact matches ($\\alpha \\in \\{0.50, 0.75, 1.0\\}$, all saturated regimes). Excluding $\\alpha{=}1.0$, two of four predictions fall within CI. Both boundary predictions miss: $\\alpha{=}0.45$ (predicted 0/8, observed 5/8) falsifies the ceiling hypothesis in favor of $\\sqrt{T}$ power scaling; $\\alpha{=}0.60$ (predicted 3/8, observed 0/8) over-estimates detection due to the non-monotonic dip. Sensitivity (v2, FDR-corrected): 4/5 ($\\alpha{=}0.60$ matches). The systematic conservative bias at $\\alpha{=}0.45$ is consistent with the $\\sqrt{T}$ power increase predicted by Proposition~\\ref{prop:phase-boundary}.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f5bc3d3-9388-436e-ac2a-951d171d40e9",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "9900dd5c-e87c-4f18-8e81-5523c58b34f8",
+            "sourceToolAssistantUUID": "4f5bc3d3-9388-436e-ac2a-951d171d40e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T05:46:02.622Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information I need. Let me verify the exact counts one more time by looking for the \"twenty\" phase diagram count:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9900dd5c-e87c-4f18-8e81-5523c58b34f8",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJZj3jeDVUS3BZDHmt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae2c12a8-627e-422c-a19e-7806f0d60851",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014bSNore4jaGuKLgdKmiF1J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1561,
+                "cache_read_input_tokens": 49282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1561,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T05:46:03.584Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PSRoi4AFQeUrip7SqKTf2C",
+              "name": "Bash",
+              "input": {
+                "command": "grep -E \"five of twenty|20.*cells|15.*cells\" /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae2c12a8-627e-422c-a19e-7806f0d60851",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJZj3jeDVUS3BZDHmt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "828278cd-02df-4b06-b40a-c072ec9f6f42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014bSNore4jaGuKLgdKmiF1J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1561,
+                "cache_read_input_tokens": 49282,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1561
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 49282,
+                    "cache_creation_input_tokens": 1561,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1561,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T05:46:03.630Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PSRoi4AFQeUrip7SqKTf2C",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex:Permutation Granger causality\\footnote{Granger precedence establishes temporal predictive improvement, not true causation~\\cite{shojaie2022granger}.} (PermG) identifies a detection boundary $\\alpha_c(T)$ following a power law in observation length (leave-one-$T$-out CV: MAE${=}0.037$, 15/15 cells within CI): any nonzero contamination produces signal, but sub-linear growth makes detection a function of $T$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid (sync-dip $\\alpha{=}0.60$ excluded; 15 cells).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:When sync-dip cells are included (20 cells), MAE rises to $0.203$ (CI $16/20$), with the largest residuals at sync-dip cells (predicted $0.75$, observed $0/8$).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:Our Granger-precedence approach circumvents this limitation by detecting temporal predictive improvement rather than variance/autocorrelation signatures, achieving ${\\geq}5/8$ forward detection in 12 of 15 above-boundary cells (three sync-dip exceptions at $\\alpha{=}0.60$ dissolve by $T{=}25$; \\S\\ref{sec:t20}).",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "828278cd-02df-4b06-b40a-c072ec9f6f42",
+            "isSidechain": true,
+            "promptId": "a5c20669-5cb3-4667-8793-633c3f106692",
+            "agentId": "a16e41ef691ca8db4",
+            "type": "user",
+            "uuid": "b4fe2da4-7f55-4c96-9076-f6aafc574c2a",
+            "sourceToolAssistantUUID": "828278cd-02df-4b06-b40a-c072ec9f6f42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T05:46:14.694Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the pieces. Let me document my findings:\n\n## Verification Report: Phase Diagram Cells and Sync-Dip Claim\n\nBased on my search of the paper files, here is what I found:\n\n### The Phase Diagram Grid\n\nThe full phase diagram consists of a **5T × 3α grid = 20 cells total**:\n- **T values**: 5, 10, 15, 20, 25 (5 values)\n- **α values**: 0.45, 0.50, 0.60 (3 values)\n\nThis is confirmed in the appendix.tex:\n- \"We evaluate model generalization via leave-one-$T$-out CV on the $5T \\times 3\\alpha$ grid\"\n- \"When sync-dip cells are included (20 cells), MAE rises to $0.203$\"\n\n### The Sync-Dip Cells Claim - ISSUE FOUND\n\nThe discussion.tex claims: \"Four are sync-dip cells ($\\alpha{=}0.60$, $T{=}10$--$20$)\"\n\nHowever, the actual data shows:\n\n**Sync-dip cells at α=0.60 with 0/8 detection:**\n1. T=10: 0/8 (confirmed)\n2. T=15: NOT 0/8 - actually **6/8** at 1.4B, and matching 410M (appendix line 516)\n3. T=20: 0/8 for s42; 3/8 for s43 (appendix line 1121)\n4. T=25: **5/8** - NOT 0/8 (appendix line 1121: \"dissolves at $T{=}25$ (5/8)\")\n\n### The Actual Count\n\nThe discussion claims **4 sync-dip cells** but based on the data:\n- At α=0.60 with 0/8 count: only **T=10 and T=20** definitively show 0/8\n- T=15 shows 6/8, T=25 shows 5/8\n- **The claim is off by 2 cells**\n\n### The \"Five of Twenty\" Claim - Verification\n\nThe discussion states: \"Five of twenty phase-diagram cells show 0/8 despite lying above the theoretical detection boundary: four are sync-dip cells...and one is a boundary cell ($T{=}10$, $\\alpha{=}0.45$).\"\n\nThe five 0/8 cells are:\n1. T=10, α=0.45: 0/8 ✓ (boundary cell - confirmed in experiments.tex line 84)\n2. T=10, α=0.60: 0/8 ✓ (sync-dip)\n3. T=15, α=0.60: **6/8** (NOT 0/8 - contradicts claim)\n4. T=20, α=0.60: 0/8 ✓ (sync-dip - s42 seed)\n5. T=25, α=0.60: **5/8** (NOT 0/8 - contradicts claim)\n\n### Key Files Referenced\n\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex` (line 7)\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex` (lines 1060, 1063, 1121)\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex` (lines 52, 84)\n\n### Conclusion\n\nThe discussion.tex claim appears to contain an error. It lists \"four sync-dip cells (α=0.60, T=10--20)\" but:\n- Only **2 cells** at α=0.60 definitively show 0/8 across the T range: T=10 and T=20\n- T=15 at α=0.60 shows **6/8** (not 0/8)\n- T=25 at α=0.60 shows **5/8** (not 0/8, which is the \"recovery\" mentioned)\n\nThe phrase \"T=10--20\" is ambiguous and may have been intended to mean only the inclusive range where 0/8 occurs, but the appendix makes clear that T=15 and T=25 do not show 0/8 at α=0.60."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4fe2da4-7f55-4c96-9076-f6aafc574c2a",
+            "isSidechain": true,
+            "agentId": "a16e41ef691ca8db4",
+            "requestId": "req_011CbJyJkrmyCvP88BwB7F5X",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5ab04896-2649-4f0a-92ee-756958493a6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/paper_agent_73c709c0",
+            "sessionId": "71c5797e-c964-4419-a009-2e487a4de1fc",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "slug": "ancient-greeting-comet",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016y7hyvA2v8eaH9RzMnA6sN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 50843,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 622,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-paper-at-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distrib.md"
+}

@@ -1,0 +1,1508 @@
+{
+  "schema_version": "1.0",
+  "id": "7023577f08c2dc407259",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: autodl-rtx6000 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "84cd0208-0354-4a29-a086-31598c90b8fe",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/84cd0208-0354-4a29-a086-31598c90b8fe.jsonl",
+    "occurrence": 1,
+    "bytes": 105196,
+    "sha256": "ab575ca1945f23958d5f64b914a2133ca3767bb1c4b3fe0927d784ec8e85f6f4"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "record": 13,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T08:35:43.748Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T08:35:43.748Z",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+                "content": "<project_context>\n# 项目: distrib_canary_collapse\n\n## 运行环境\n- 服务器名: autodl-rtx6000\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n将更新后的 analyze_mvp.py 同步到服务器。\n\n**任务**：\n1. 读取本地文件 `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py` 的全部内容\n2. SSH 到 autodl-rtx6000 服务器，用 ssh_execute 将文件内容写到 `/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py`\n3. 验证文件已正确写入：`head -20 /root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py` 确认包含新的 docstring（提到 \"graded verdict\"）\n4. 确认训练进程仍在运行（不要干扰）：`pgrep -a iterative_train`\n\n**注意**: 不要影响正在运行的训练实验。只是写文件，不执行脚本。"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T08:35:43.751Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T08:35:43.751Z",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T08:35:43.781Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: distrib_canary_collapse\n\n## 运行环境\n- 服务器名: autodl-rtx6000\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh autodl-rtx6000  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n将更新后的 analyze_mvp.py 同步到服务器。\n\n**任务**：\n1. 读取本地文件 `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py` 的全部内容\n2. SSH 到 autodl-rtx6000 服务器，用 ssh_execute 将文件内容写到 `/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py`\n3. 验证文件已正确写入：`head -20 /root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py` 确认包含新的 docstring（提到 \"graded verdict\"）\n4. 确认训练进程仍在运行（不要干扰）：`pgrep -a iterative_train`\n\n**注意**: 不要影响正在运行的训练实验。只是写文件，不执行脚本。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "7b8d7c49-5835-4720-b5e7-635cae1602f4",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T08:35:43.780Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7b8d7c49-5835-4720-b5e7-635cae1602f4",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "738050fe-ac32-42fc-b467-888af4fecede",
+                "timestamp": "2026-05-14T08:35:43.780Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T08:35:43.780Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "738050fe-ac32-42fc-b467-888af4fecede",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8f7988bb-bf66-425d-9502-0c7b432ebc71",
+                "timestamp": "2026-05-14T08:35:43.780Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:35:43.780Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8f7988bb-bf66-425d-9502-0c7b432ebc71",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "ba8efefe-7611-42a7-85a6-285509daee19",
+                "timestamp": "2026-05-14T08:35:43.780Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Sync updated analyze_mvp.py to server",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T08:35:47.889Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取本地文件内容。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba8efefe-7611-42a7-85a6-285509daee19",
+            "isSidechain": false,
+            "requestId": "req_011Cb29xwUuH9jm6sjq2oW1u",
+            "type": "assistant",
+            "uuid": "0e8e2022-d8fa-4004-a125-6d40a92d059e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EuuMHPEeoC5XGa1zs9RgoF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11039,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11039,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11039,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11039
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:35:48.459Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HCaaiUrDyuKPLRMGQD2bCW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e8e2022-d8fa-4004-a125-6d40a92d059e",
+            "isSidechain": false,
+            "requestId": "req_011Cb29xwUuH9jm6sjq2oW1u",
+            "type": "assistant",
+            "uuid": "53ec5dfc-4060-4d79-8856-06fa37e923c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EuuMHPEeoC5XGa1zs9RgoF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11039,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11039,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11039,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11039
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T08:35:48.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HCaaiUrDyuKPLRMGQD2bCW",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\n2\t\n3\tReads all_metrics.json from each rep, produces:\n4\t  - metric_trends.png : canary + downstream metrics vs generation\n5\t  - cross_correlation.png : cross-correlation heatmap\n6\t  - lead_time_table.csv : lead time estimates per canary-downstream pair\n7\t  - analysis_summary.json : machine-readable summary with graded verdict\n8\t\n9\tEvaluation pipeline (per mvp_evaluation_criteria.md):\n10\t  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\n11\t  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\n12\t  3. Permutation test (§1) — per-triplet significance via 10k permutations\n13\t  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\n14\t  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\n15\t  6. Lag dispersion statistics — mean, std, min, max per consistent pair\n16\t\n17\tUsage:\n18\t    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\n19\t    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\n20\t\"\"\"\n21\t\n22\timport argparse\n23\timport json\n24\timport os\n25\timport sys\n26\t\n27\timport matplotlib.pyplot as plt\n28\timport numpy as np\n29\timport pandas as pd\n30\t\n31\t\n32\tCANARY_METRICS = [\"token_entropy\", \"self_bleu\", \"ece\", \"effective_rank\"]\n33\tDOWNSTREAM_METRICS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n34\t\n35\tHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\n36\tLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\",\n37\t                   \"distinct_3\", \"mauve\"}\n38\t\n39\t\n40\tdef load_metrics(results_dir, seeds):\n41\t    \"\"\"Load all_metrics.json from each rep, return dict {seed: [metrics_per_gen]}.\"\"\"\n42\t    data = {}\n43\t    for seed in seeds:\n44\t        path = os.path.join(results_dir, f\"rep_{seed}\", \"all_metrics.json\")\n45\t        with open(path) as f:\n46\t            data[seed] = json.load(f)\n47\t    return data\n48\t\n49\t\n50\tdef metrics_to_df(data):\n51\t    \"\"\"Convert {seed: [metrics_per_gen]} to a long-form DataFrame.\"\"\"\n52\t    rows = []\n53\t    for seed, gens in data.items():\n54\t        for m in gens:\n55\t            m_copy = dict(m)\n56\t            m_copy[\"seed\"] = seed\n57\t            rows.append(m_copy)\n58\t    return pd.DataFrame(rows)\n59\t\n60\t\n61\tdef normalize_for_correlation(series, metric_name):\n62\t    \"\"\"Flip sign so that 'getting worse' is always positive direction.\"\"\"\n63\t    s = series.copy()\n64\t    if metric_name in LOWER_IS_WORSE:\n65\t        s = -s\n66\t    s = (s - s.mean()) / (s.std() + 1e-12)\n67\t    return s\n68\t\n69\t\n70\tdef cross_correlate(x, y, max_lag=5):\n71\t    \"\"\"Cross-correlation of x and y at lags -max_lag..+max_lag.\n72\t\n73\t    Positive lag k means y leads x by k steps.\n74\t    Negative lag k means x leads y by |k| steps.\n75\t    \"\"\"\n76\t    x = (x - x.mean()) / (x.std() + 1e-12)\n77\t    y = (y - y.mean()) / (y.std() + 1e-12)\n78\t    n = len(x)\n79\t    correlations = {}\n80\t    for lag in range(-max_lag, max_lag + 1):\n81\t        if lag >= 0:\n82\t            c = np.corrcoef(x[lag:], y[:n - lag])[0, 1] if n - lag > 1 else 0\n83\t        else:\n84\t            c = np.corrcoef(x[:n + lag], y[-lag:])[0, 1] if n + lag > 1 else 0\n85\t        correlations[lag] = c\n86\t    return correlations\n87\t\n88\t\n89\tdef estimate_lead_time(canary_series, downstream_series, canary_name,\n90\t                       downstream_name, max_lag=5):\n91\t    \"\"\"Estimate how many generations canary leads downstream.\n92\t\n93\t    Returns (peak_lag, peak_corr, corrs). Negative peak_lag = canary leads.\n94\t    \"\"\"\n95\t    c_norm = normalize_for_correlation(canary_series, canary_name)\n96\t    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n97\t    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n98\t    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n99\t    return peak_lag, corrs[peak_lag], corrs\n100\t\n101\t\n102\tdef permutation_test(canary_series, downstream_series, canary_name,\n103\t                     downstream_name, max_lag=5, n_permutations=10000, seed=0):\n104\t    \"\"\"Permutation test for cross-correlation significance.\n105\t\n106\t    Shuffles the downstream series to break temporal structure, recomputes\n107\t    max |r| across all lags for each permutation. p-value is the fraction\n108\t    of permutation max|r| >= observed peak|r|.\n109\t\n110\t    Returns (peak_lag, peak_corr, p_value).\n111\t    \"\"\"\n112\t    c_norm = normalize_for_correlation(canary_series, canary_name)\n113\t    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n114\t\n115\t    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n116\t    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n117\t    observed_peak_r = abs(corrs[peak_lag])\n118\t\n119\t    rng = np.random.RandomState(seed)\n120\t    count_ge = 0\n121\t    for _ in range(n_permutations):\n122\t        d_perm = rng.permutation(d_norm)\n123\t        perm_corrs = cross_correlate(c_norm, d_perm, max_lag=max_lag)\n124\t        perm_max_r = max(abs(v) for v in perm_corrs.values())\n125\t        if perm_max_r >= observed_peak_r:\n126\t            count_ge += 1\n127\t\n128\t    p_value = count_ge / n_permutations\n129\t    return peak_lag, corrs[peak_lag], p_value\n130\t\n131\t\n132\tdef check_mauve_floor(df, seeds):\n133\t    \"\"\"Check MAUVE floor effect: Gen 0 < 0.10 and CV < 0.50 across all seeds.\n134\t\n135\t    Returns (demoted: bool, reason: str or None).\n136\t    \"\"\"\n137\t    for seed in seeds:\n138\t        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n139\t        gen0_mauve = seed_df[seed_df[\"generation\"] == 0][\"mauve\"].values\n140\t        if len(gen0_mauve) == 0:\n141\t            return False, None\n142\t        if gen0_mauve[0] >= 0.10:\n143\t            return False, None\n144\t        mauve_vals = seed_df[\"mauve\"].values\n145\t        mean_m = np.mean(mauve_vals)\n146\t        std_m = np.std(mauve_vals)\n147\t        cv = std_m / (mean_m + 1e-12)\n148\t        if cv >= 0.50:\n149\t            return False, None\n150\t    return True, \"floor_effect\"\n151\t\n152\t\n153\tdef check_effective_rank_monotonicity(df, seeds):\n154\t    \"\"\"Check effective_rank Gen 4-9 slope consistency across seeds.\n155\t\n156\t    Returns (status: str, slopes: dict).\n157\t    status is one of: \"decreasing\", \"increasing\", \"inconclusive\".\n158\t    \"\"\"\n159\t    slopes = {}\n160\t    for seed in seeds:\n161\t        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n162\t        late = seed_df[seed_df[\"generation\"] >= 4]\n163\t        if len(late) < 2:\n164\t            return \"inconclusive\", {}\n165\t        gens = late[\"generation\"].values.astype(float)\n166\t        vals = late[\"effective_rank\"].values.astype(float)\n167\t        coeffs = np.polyfit(gens, vals, 1)\n168\t        slopes[str(seed)] = float(coeffs[0])\n169\t\n170\t    slope_vals = list(slopes.values())\n171\t    if all(s < 0 for s in slope_vals):\n172\t        return \"decreasing\", slopes\n173\t    if all(s > 0 for s in slope_vals):\n174\t        return \"increasing\", slopes\n175\t    return \"inconclusive\", slopes\n176\t\n177\t\n178\tdef classify_pair(per_seed_results):\n179\t    \"\"\"Classify a (canary, downstream) pair based on per-seed results.\n180\t\n181\t    Returns one of: \"SIGNIFICANT LEAD\", \"WEAK LEAD\", \"NO LEAD\".\n182\t    \"\"\"\n183\t    if not all(r[\"peak_lag\"] < 0 for r in per_seed_results):\n184\t        return \"NO LEAD\"\n185\t    if all(r[\"p_value\"] < 0.10 and abs(r[\"peak_corr\"]) >= 0.60\n186\t           for r in per_seed_results):\n187\t        return \"SIGNIFICANT LEAD\"\n188\t    return \"WEAK LEAD\"\n189\t\n190\t\n191\tdef check_near_miss(per_seed_results):\n192\t    \"\"\"Check if a NO LEAD pair is a near miss (2/3 seeds lead, 1 at lag=0).\"\"\"\n193\t    lags = [r[\"peak_lag\"] for r in per_seed_results]\n194\t    neg_seeds = [r for r in per_seed_results if r[\"peak_lag\"] < 0]\n195\t    zero_seeds = [r for r in per_seed_results if r[\"peak_lag\"] == 0]\n196\t    if len(neg_seeds) == 2 and len(zero_seeds) == 1:\n197\t        if all(r[\"peak_lag\"] <= -2 and r[\"p_value\"] < 0.05 for r in neg_seeds):\n198\t            return True\n199\t    return False\n200\t\n201\t\n202\tdef compute_lag_dispersion(per_seed_results):\n203\t    \"\"\"Compute lag dispersion statistics for a consistent pair.\"\"\"\n204\t    lags = [r[\"peak_lag\"] for r in per_seed_results]\n205\t    lag_std = float(np.std(lags))\n206\t    return {\n207\t        \"mean_lag\": float(np.mean(lags)),\n208\t        \"lag_std\": lag_std,\n209\t        \"min_lag\": int(min(lags)),\n210\t        \"max_lag\": int(max(lags)),\n211\t        \"high_dispersion\": lag_std > 2.0,\n212\t    }\n213\t\n214\t\n215\tdef compute_verdict(per_pair_results, effective_rank_status):\n216\t    \"\"\"Compute graded verdict from per-pair results.\n217\t\n218\t    Returns (verdict, reasoning, significant_pairs, weak_pairs).\n219\t    \"\"\"\n220\t    significant_pairs = []\n221\t    weak_pairs = []\n222\t\n223\t    for pr in per_pair_results:\n224\t        if pr[\"canary\"] == \"effective_rank\" and effective_rank_status == \"inconclusive\":\n225\t            continue\n226\t        if pr[\"pair_verdict\"] == \"SIGNIFICANT LEAD\":\n227\t            significant_pairs.append(pr)\n228\t        elif pr[\"pair_verdict\"] == \"WEAK LEAD\":\n229\t            weak_pairs.append(pr)\n230\t\n231\t    sig_families = set(p[\"canary\"] for p in significant_pairs)\n232\t    weak_families = set(p[\"canary\"] for p in weak_pairs)\n233\t\n234\t    if len(sig_families) >= 2:\n235\t        verdict = \"STRONG PASS\"\n236\t        reasoning = (f\"{len(sig_families)} canary families ({', '.join(sorted(sig_families))}) \"\n237\t                     f\"each have >= 1 SIGNIFICANT LEAD pair.\")\n238\t    elif len(sig_families) >= 1:\n239\t        verdict = \"PASS\"\n240\t        reasoning = (f\"{len(sig_families)} canary family ({', '.join(sorted(sig_families))}) \"\n241\t                     f\"has >= 1 SIGNIFICANT LEAD pair.\")\n242\t    elif len(weak_families) >= 1:\n243\t        verdict = \"CONDITIONAL PASS\"\n244\t        reasoning = (f\"No SIGNIFICANT LEAD pairs, but {len(weak_families)} canary \"\n245\t                     f\"family ({', '.join(sorted(weak_families))}) has >= 1 WEAK LEAD pair.\")\n246\t    else:\n247\t        verdict = \"FAIL\"\n248\t        reasoning = \"No canary family achieves even WEAK LEAD consistency across seeds.\"\n249\t\n250\t    return verdict, reasoning, significant_pairs, weak_pairs\n251\t\n252\t\n253\tdef plot_metric_trends(df, output_dir):\n254\t    \"\"\"Plot metric-vs-generation with mean +/- std across seeds.\"\"\"\n255\t    all_metrics = CANARY_METRICS + DOWNSTREAM_METRICS\n256\t    fig, axes = plt.subplots(3, 3, figsize=(15, 12))\n257\t    axes = axes.flatten()\n258\t\n259\t    for idx, metric in enumerate(all_metrics):\n260\t        if idx >= len(axes):\n261\t            break\n262\t        ax = axes[idx]\n263\t        grouped = df.groupby(\"generation\")[metric]\n264\t        mean = grouped.mean()\n265\t        std = grouped.std()\n266\t\n267\t        ax.plot(mean.index, mean.values, \"o-\", linewidth=2)\n268\t        ax.fill_between(mean.index, mean.values - std.values,\n269\t                        mean.values + std.values, alpha=0.2)\n270\t        ax.set_title(metric, fontsize=11, fontweight=\"bold\")\n271\t        ax.set_xlabel(\"Generation\")\n272\t        ax.set_ylabel(metric)\n273\t        ax.grid(True, alpha=0.3)\n274\t\n275\t        is_canary = metric in CANARY_METRICS\n276\t        ax.set_facecolor(\"#fff8f0\" if is_canary else \"#f0f8ff\")\n277\t\n278\t    for idx in range(len(all_metrics), len(axes)):\n279\t        axes[idx].set_visible(False)\n280\t\n281\t    fig.suptitle(\"Metric Trends over Generations (mean ± std, 3 reps)\",\n282\t                 fontsize=14, fontweight=\"bold\")\n283\t    plt.tight_layout()\n284\t    plt.savefig(os.path.join(output_dir, \"metric_trends.png\"), dpi=150,\n285\t                bbox_inches=\"tight\")\n286\t    plt.close()\n287\t    print(\"Saved metric_trends.png\")\n288\t\n289\t\n290\tdef plot_cross_correlation_heatmap(lead_table, output_dir):\n291\t    \"\"\"Heatmap of peak lag (canary leads = negative lag).\"\"\"\n292\t    pivot_lag = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n293\t                                values=\"peak_lag\")\n294\t    pivot_corr = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n295\t                                  values=\"peak_corr\")\n296\t\n297\t    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))\n298\t\n299\t    im1 = ax1.imshow(pivot_lag.values, cmap=\"RdBu_r\", aspect=\"auto\",\n300\t                     vmin=-5, vmax=5)\n301\t    ax1.set_xticks(range(len(pivot_lag.columns)))\n302\t    ax1.set_xticklabels(pivot_lag.columns, rotation=45, ha=\"right\")\n303\t    ax1.set_yticks(range(len(pivot_lag.index)))\n304\t    ax1.set_yticklabels(pivot_lag.index)\n305\t    ax1.set_title(\"Peak Lag (negative = canary leads)\")\n306\t    for i in range(len(pivot_lag.index)):\n307\t        for j in range(len(pivot_lag.columns)):\n308\t            ax1.text(j, i, f\"{pivot_lag.values[i, j]:.0f}\",\n309\t                     ha=\"center\", va=\"center\", fontsize=10)\n310\t    plt.colorbar(im1, ax=ax1)\n311\t\n312\t    im2 = ax2.imshow(np.abs(pivot_corr.values), cmap=\"YlOrRd\", aspect=\"auto\",\n313\t                     vmin=0, vmax=1)\n314\t    ax2.set_xticks(range(len(pivot_corr.columns)))\n315\t    ax2.set_xticklabels(pivot_corr.columns, rotation=45, ha=\"right\")\n316\t    ax2.set_yticks(range(len(pivot_corr.index)))\n317\t    ax2.set_yticklabels(pivot_corr.index)\n318\t    ax2.set_title(\"|Peak Correlation|\")\n319\t    for i in range(len(pivot_corr.index)):\n320\t        for j in range(len(pivot_corr.columns)):\n321\t            ax2.text(j, i, f\"{pivot_corr.values[i, j]:.2f}\",\n322\t                     ha=\"center\", va=\"center\", fontsize=10)\n323\t    plt.colorbar(im2, ax=ax2)\n324\t\n325\t    fig.suptitle(\"Cross-Correlation: Canary → Downstream\", fontsize=13,\n326\t                 fontweight=\"bold\")\n327\t    plt.tight_layout()\n328\t    plt.savefig(os.path.join(output_dir, \"cross_correlation.png\"), dpi=150,\n329\t                bbox_inches=\"tight\")\n330\t    plt.close()\n331\t    print(\"Saved cross_correlation.png\")\n332\t\n333\t\n334\tdef main():\n335\t    parser = argparse.ArgumentParser(\n336\t        description=\"Analyze MVP experiment with graded verdict system.\")\n337\t    parser.add_argument(\"--results_dir\", type=str, default=\"results/mvp\")\n338\t    parser.add_argument(\"--seeds\", type=int, nargs=\"+\", default=[42, 43, 44])\n339\t    parser.add_argument(\"--max_lag\", type=int, default=5)\n340\t    parser.add_argument(\"--n_permutations\", type=int, default=10000,\n341\t                        help=\"Number of permutations for significance test (default: 10000)\")\n342\t    args = parser.parse_args()\n343\t\n344\t    output_dir = os.path.join(args.results_dir, \"analysis\")\n345\t    os.makedirs(output_dir, exist_ok=True)\n346\t\n347\t    print(\"Loading metrics ...\")\n348\t    data = load_metrics(args.results_dir, args.seeds)\n349\t    df = metrics_to_df(data)\n350\t\n351\t    # --- Metric trend plots ---\n352\t    plot_metric_trends(df, output_dir)\n353\t\n354\t    # --- §4: MAUVE floor effect detection ---\n355\t    mauve_demoted, mauve_reason = check_mauve_floor(df, args.seeds)\n356\t    active_downstream = list(DOWNSTREAM_METRICS)\n357\t    if mauve_demoted:\n358\t        print(f\"MAUVE demoted to supplementary (reason: {mauve_reason})\")\n359\t\n360\t    # --- §3: effective_rank monotonicity check ---\n361\t    er_status, er_slopes = check_effective_rank_monotonicity(df, args.seeds)\n362\t    print(f\"effective_rank status: {er_status} (slopes: {er_slopes})\")\n363\t\n364\t    # --- Cross-correlation with permutation tests ---\n365\t    total_triplets = len(CANARY_METRICS) * len(DOWNSTREAM_METRICS) * len(args.seeds)\n366\t    triplet_idx = 0\n367\t\n368\t    per_pair_results = []\n369\t    lead_rows = []\n370\t    near_misses = []\n371\t\n372\t    for canary in CANARY_METRICS:\n373\t        for downstream in DOWNSTREAM_METRICS:\n374\t            per_seed = []\n375\t            all_lags = []\n376\t            all_corrs = []\n377\t\n378\t            for seed in args.seeds:\n379\t                triplet_idx += 1\n380\t                print(f\"\\r  Permutation test {triplet_idx}/{total_triplets}: \"\n381\t                      f\"{canary} vs {downstream} (seed {seed})\", end=\"\",\n382\t                      flush=True)\n383\t\n384\t                seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n385\t                c_series = seed_df[canary].values\n386\t                d_series = seed_df[downstream].values\n387\t\n388\t                peak_lag, peak_corr, p_value = permutation_test(\n389\t                    c_series, d_series, canary, downstream,\n390\t                    max_lag=args.max_lag,\n391\t                    n_permutations=args.n_permutations,\n392\t                    seed=seed)\n393\t\n394\t                per_seed.append({\n395\t                    \"seed\": seed,\n396\t                    \"peak_lag\": int(peak_lag),\n397\t                    \"peak_corr\": round(float(peak_corr), 4),\n398\t                    \"p_value\": round(float(p_value), 4),\n399\t                })\n400\t                all_lags.append(peak_lag)\n401\t                all_corrs.append(peak_corr)\n402\t\n403\t            pair_verdict = classify_pair(per_seed)\n404\t\n405\t            pair_result = {\n406\t                \"canary\": canary,\n407\t                \"downstream\": downstream,\n408\t                \"pair_verdict\": pair_verdict,\n409\t                \"per_seed\": per_seed,\n410\t            }\n411\t\n412\t            if pair_verdict in (\"SIGNIFICANT LEAD\", \"WEAK LEAD\"):\n413\t                disp = compute_lag_dispersion(per_seed)\n414\t                pair_result.update(disp)\n415\t            else:\n416\t                if check_near_miss(per_seed):\n417\t                    near_misses.append({\"canary\": canary, \"downstream\": downstream,\n418\t                                        \"per_seed\": per_seed})\n419\t\n420\t            per_pair_results.append(pair_result)\n421\t\n422\t            lead_rows.append({\n423\t                \"canary\": canary,\n424\t                \"downstream\": downstream,\n425\t                \"peak_lag\": np.mean(all_lags),\n426\t                \"peak_corr\": np.mean(all_corrs),\n427\t                \"lag_std\": np.std(all_lags),\n428\t                \"corr_std\": np.std(all_corrs),\n429\t                \"consistent\": all(l < 0 for l in all_lags),\n430\t            })\n431\t\n432\t    print()\n433\t\n434\t    lead_table = pd.DataFrame(lead_rows)\n435\t    lead_table.to_csv(os.path.join(output_dir, \"lead_time_table.csv\"),\n436\t                      index=False)\n437\t    print(\"Saved lead_time_table.csv\")\n438\t\n439\t    plot_cross_correlation_heatmap(lead_table, output_dir)\n440\t\n441\t    # --- §5: Graded verdict ---\n442\t    verdict_pairs = per_pair_results\n443\t    if mauve_demoted:\n444\t        verdict_pairs = [p for p in per_pair_results if p[\"downstream\"] != \"mauve\"]\n445\t\n446\t    verdict, reasoning, sig_pairs, weak_pairs = compute_verdict(\n447\t        verdict_pairs, er_status)\n448\t\n449\t    # --- Build summary ---\n450\t    summary = {\n451\t        \"mauve_demoted\": mauve_demoted,\n452\t        \"mauve_demoted_reason\": mauve_reason,\n453\t        \"effective_rank_status\": er_status,\n454\t        \"effective_rank_slopes\": er_slopes,\n455\t        \"per_pair_results\": per_pair_results,\n456\t        \"verdict\": verdict,\n457\t        \"verdict_reasoning\": reasoning,\n458\t        \"significant_lead_pairs\": [\n459\t            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n460\t            for p in sig_pairs\n461\t        ],\n462\t        \"weak_lead_pairs\": [\n463\t            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n464\t            for p in weak_pairs\n465\t        ],\n466\t        \"near_misses\": near_misses,\n467\t    }\n468\t\n469\t    with open(os.path.join(output_dir, \"analysis_summary.json\"), \"w\") as f:\n470\t        json.dump(summary, f, indent=2)\n471\t\n472\t    # --- Console report ---\n473\t    print(\"\\n\" + \"=\" * 60)\n474\t    print(\"MVP ANALYSIS SUMMARY\")\n475\t    print(\"=\" * 60)\n476\t\n477\t    if mauve_demoted:\n478\t        print(f\"MAUVE: demoted to supplementary ({mauve_reason})\")\n479\t    else:\n480\t        print(\"MAUVE: retained as primary downstream metric\")\n481\t\n482\t    print(f\"effective_rank: {er_status}\")\n483\t    if er_slopes:\n484\t        slope_str = \", \".join(f\"seed {k}: {v:.4f}\" for k, v in er_slopes.items())\n485\t        print(f\"  slopes: {slope_str}\")\n486\t\n487\t    n_sig = len(sig_pairs)\n488\t    n_weak = len(weak_pairs)\n489\t    n_total = len(verdict_pairs)\n490\t    print(f\"\\nPair results ({n_total} pairs evaluated for verdict):\")\n491\t    print(f\"  SIGNIFICANT LEAD: {n_sig}\")\n492\t    print(f\"  WEAK LEAD: {n_weak}\")\n493\t    print(f\"  NO LEAD: {n_total - n_sig - n_weak}\")\n494\t\n495\t    if near_misses:\n496\t        print(f\"  Near misses: {len(near_misses)}\")\n497\t        for nm in near_misses:\n498\t            print(f\"    {nm['canary']} -> {nm['downstream']}\")\n499\t\n500\t    verdict_icon = {\"STRONG PASS\": \"STRONG PASS\", \"PASS\": \"PASS\",\n501\t                    \"CONDITIONAL PASS\": \"CONDITIONAL PASS\", \"FAIL\": \"FAIL\"}\n502\t    print(f\"\\nVerdict: {verdict_icon[verdict]}\")\n503\t    print(f\"Reasoning: {reasoning}\")\n504\t\n505\t    if sig_pairs:\n506\t        print(\"\\nSignificant lead pairs:\")\n507\t        for p in sig_pairs:\n508\t            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n509\t            print(f\"  {p['canary']} -> {p['downstream']}: \"\n510\t                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n511\t            for s in p[\"per_seed\"]:\n512\t                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n513\t                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n514\t\n515\t    if weak_pairs:\n516\t        print(\"\\nWeak lead pairs:\")\n517\t        for p in weak_pairs:\n518\t            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n519\t            print(f\"  {p['canary']} -> {p['downstream']}: \"\n520\t                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n521\t            for s in p[\"per_seed\"]:\n522\t                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n523\t                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n524\t\n525\t    print(\"\\nFull lead time table:\")\n526\t    print(lead_table.to_string(index=False))\n527\t    print(f\"\\nResults saved to {output_dir}/\")\n528\t\n529\t\n530\tif __name__ == \"__main__\":\n531\t    main()\n532\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53ec5dfc-4060-4d79-8856-06fa37e923c8",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "a8d6996c-f68b-4c21-b5d2-e33f61b38993",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/analyze_mvp.py",
+                "content": "\"\"\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\n\nReads all_metrics.json from each rep, produces:\n  - metric_trends.png : canary + downstream metrics vs generation\n  - cross_correlation.png : cross-correlation heatmap\n  - lead_time_table.csv : lead time estimates per canary-downstream pair\n  - analysis_summary.json : machine-readable summary with graded verdict\n\nEvaluation pipeline (per mvp_evaluation_criteria.md):\n  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\n  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\n  3. Permutation test (§1) — per-triplet significance via 10k permutations\n  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\n  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\n  6. Lag dispersion statistics — mean, std, min, max per consistent pair\n\nUsage:\n    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\n    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\n\n\nCANARY_METRICS = [\"token_entropy\", \"self_bleu\", \"ece\", \"effective_rank\"]\nDOWNSTREAM_METRICS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n\nHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\nLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\",\n                   \"distinct_3\", \"mauve\"}\n\n\ndef load_metrics(results_dir, seeds):\n    \"\"\"Load all_metrics.json from each rep, return dict {seed: [metrics_per_gen]}.\"\"\"\n    data = {}\n    for seed in seeds:\n        path = os.path.join(results_dir, f\"rep_{seed}\", \"all_metrics.json\")\n        with open(path) as f:\n            data[seed] = json.load(f)\n    return data\n\n\ndef metrics_to_df(data):\n    \"\"\"Convert {seed: [metrics_per_gen]} to a long-form DataFrame.\"\"\"\n    rows = []\n    for seed, gens in data.items():\n        for m in gens:\n            m_copy = dict(m)\n            m_copy[\"seed\"] = seed\n            rows.append(m_copy)\n    return pd.DataFrame(rows)\n\n\ndef normalize_for_correlation(series, metric_name):\n    \"\"\"Flip sign so that 'getting worse' is always positive direction.\"\"\"\n    s = series.copy()\n    if metric_name in LOWER_IS_WORSE:\n        s = -s\n    s = (s - s.mean()) / (s.std() + 1e-12)\n    return s\n\n\ndef cross_correlate(x, y, max_lag=5):\n    \"\"\"Cross-correlation of x and y at lags -max_lag..+max_lag.\n\n    Positive lag k means y leads x by k steps.\n    Negative lag k means x leads y by |k| steps.\n    \"\"\"\n    x = (x - x.mean()) / (x.std() + 1e-12)\n    y = (y - y.mean()) / (y.std() + 1e-12)\n    n = len(x)\n    correlations = {}\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            c = np.corrcoef(x[lag:], y[:n - lag])[0, 1] if n - lag > 1 else 0\n        else:\n            c = np.corrcoef(x[:n + lag], y[-lag:])[0, 1] if n + lag > 1 else 0\n        correlations[lag] = c\n    return correlations\n\n\ndef estimate_lead_time(canary_series, downstream_series, canary_name,\n                       downstream_name, max_lag=5):\n    \"\"\"Estimate how many generations canary leads downstream.\n\n    Returns (peak_lag, peak_corr, corrs). Negative peak_lag = canary leads.\n    \"\"\"\n    c_norm = normalize_for_correlation(canary_series, canary_name)\n    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n    return peak_lag, corrs[peak_lag], corrs\n\n\ndef permutation_test(canary_series, downstream_series, canary_name,\n                     downstream_name, max_lag=5, n_permutations=10000, seed=0):\n    \"\"\"Permutation test for cross-correlation significance.\n\n    Shuffles the downstream series to break temporal structure, recomputes\n    max |r| across all lags for each permutation. p-value is the fraction\n    of permutation max|r| >= observed peak|r|.\n\n    Returns (peak_lag, peak_corr, p_value).\n    \"\"\"\n    c_norm = normalize_for_correlation(canary_series, canary_name)\n    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n\n    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n    observed_peak_r = abs(corrs[peak_lag])\n\n    rng = np.random.RandomState(seed)\n    count_ge = 0\n    for _ in range(n_permutations):\n        d_perm = rng.permutation(d_norm)\n        perm_corrs = cross_correlate(c_norm, d_perm, max_lag=max_lag)\n        perm_max_r = max(abs(v) for v in perm_corrs.values())\n        if perm_max_r >= observed_peak_r:\n            count_ge += 1\n\n    p_value = count_ge / n_permutations\n    return peak_lag, corrs[peak_lag], p_value\n\n\ndef check_mauve_floor(df, seeds):\n    \"\"\"Check MAUVE floor effect: Gen 0 < 0.10 and CV < 0.50 across all seeds.\n\n    Returns (demoted: bool, reason: str or None).\n    \"\"\"\n    for seed in seeds:\n        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n        gen0_mauve = seed_df[seed_df[\"generation\"] == 0][\"mauve\"].values\n        if len(gen0_mauve) == 0:\n            return False, None\n        if gen0_mauve[0] >= 0.10:\n            return False, None\n        mauve_vals = seed_df[\"mauve\"].values\n        mean_m = np.mean(mauve_vals)\n        std_m = np.std(mauve_vals)\n        cv = std_m / (mean_m + 1e-12)\n        if cv >= 0.50:\n            return False, None\n    return True, \"floor_effect\"\n\n\ndef check_effective_rank_monotonicity(df, seeds):\n    \"\"\"Check effective_rank Gen 4-9 slope consistency across seeds.\n\n    Returns (status: str, slopes: dict).\n    status is one of: \"decreasing\", \"increasing\", \"inconclusive\".\n    \"\"\"\n    slopes = {}\n    for seed in seeds:\n        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n        late = seed_df[seed_df[\"generation\"] >= 4]\n        if len(late) < 2:\n            return \"inconclusive\", {}\n        gens = late[\"generation\"].values.astype(float)\n        vals = late[\"effective_rank\"].values.astype(float)\n        coeffs = np.polyfit(gens, vals, 1)\n        slopes[str(seed)] = float(coeffs[0])\n\n    slope_vals = list(slopes.values())\n    if all(s < 0 for s in slope_vals):\n        return \"decreasing\", slopes\n    if all(s > 0 for s in slope_vals):\n        return \"increasing\", slopes\n    return \"inconclusive\", slopes\n\n\ndef classify_pair(per_seed_results):\n    \"\"\"Classify a (canary, downstream) pair based on per-seed results.\n\n    Returns one of: \"SIGNIFICANT LEAD\", \"WEAK LEAD\", \"NO LEAD\".\n    \"\"\"\n    if not all(r[\"peak_lag\"] < 0 for r in per_seed_results):\n        return \"NO LEAD\"\n    if all(r[\"p_value\"] < 0.10 and abs(r[\"peak_corr\"]) >= 0.60\n           for r in per_seed_results):\n        return \"SIGNIFICANT LEAD\"\n    return \"WEAK LEAD\"\n\n\ndef check_near_miss(per_seed_results):\n    \"\"\"Check if a NO LEAD pair is a near miss (2/3 seeds lead, 1 at lag=0).\"\"\"\n    lags = [r[\"peak_lag\"] for r in per_seed_results]\n    neg_seeds = [r for r in per_seed_results if r[\"peak_lag\"] < 0]\n    zero_seeds = [r for r in per_seed_results if r[\"peak_lag\"] == 0]\n    if len(neg_seeds) == 2 and len(zero_seeds) == 1:\n        if all(r[\"peak_lag\"] <= -2 and r[\"p_value\"] < 0.05 for r in neg_seeds):\n            return True\n    return False\n\n\ndef compute_lag_dispersion(per_seed_results):\n    \"\"\"Compute lag dispersion statistics for a consistent pair.\"\"\"\n    lags = [r[\"peak_lag\"] for r in per_seed_results]\n    lag_std = float(np.std(lags))\n    return {\n        \"mean_lag\": float(np.mean(lags)),\n        \"lag_std\": lag_std,\n        \"min_lag\": int(min(lags)),\n        \"max_lag\": int(max(lags)),\n        \"high_dispersion\": lag_std > 2.0,\n    }\n\n\ndef compute_verdict(per_pair_results, effective_rank_status):\n    \"\"\"Compute graded verdict from per-pair results.\n\n    Returns (verdict, reasoning, significant_pairs, weak_pairs).\n    \"\"\"\n    significant_pairs = []\n    weak_pairs = []\n\n    for pr in per_pair_results:\n        if pr[\"canary\"] == \"effective_rank\" and effective_rank_status == \"inconclusive\":\n            continue\n        if pr[\"pair_verdict\"] == \"SIGNIFICANT LEAD\":\n            significant_pairs.append(pr)\n        elif pr[\"pair_verdict\"] == \"WEAK LEAD\":\n            weak_pairs.append(pr)\n\n    sig_families = set(p[\"canary\"] for p in significant_pairs)\n    weak_families = set(p[\"canary\"] for p in weak_pairs)\n\n    if len(sig_families) >= 2:\n        verdict = \"STRONG PASS\"\n        reasoning = (f\"{len(sig_families)} canary families ({', '.join(sorted(sig_families))}) \"\n                     f\"each have >= 1 SIGNIFICANT LEAD pair.\")\n    elif len(sig_families) >= 1:\n        verdict = \"PASS\"\n        reasoning = (f\"{len(sig_families)} canary family ({', '.join(sorted(sig_families))}) \"\n                     f\"has >= 1 SIGNIFICANT LEAD pair.\")\n    elif len(weak_families) >= 1:\n        verdict = \"CONDITIONAL PASS\"\n        reasoning = (f\"No SIGNIFICANT LEAD pairs, but {len(weak_families)} canary \"\n                     f\"family ({', '.join(sorted(weak_families))}) has >= 1 WEAK LEAD pair.\")\n    else:\n        verdict = \"FAIL\"\n        reasoning = \"No canary family achieves even WEAK LEAD consistency across seeds.\"\n\n    return verdict, reasoning, significant_pairs, weak_pairs\n\n\ndef plot_metric_trends(df, output_dir):\n    \"\"\"Plot metric-vs-generation with mean +/- std across seeds.\"\"\"\n    all_metrics = CANARY_METRICS + DOWNSTREAM_METRICS\n    fig, axes = plt.subplots(3, 3, figsize=(15, 12))\n    axes = axes.flatten()\n\n    for idx, metric in enumerate(all_metrics):\n        if idx >= len(axes):\n            break\n        ax = axes[idx]\n        grouped = df.groupby(\"generation\")[metric]\n        mean = grouped.mean()\n        std = grouped.std()\n\n        ax.plot(mean.index, mean.values, \"o-\", linewidth=2)\n        ax.fill_between(mean.index, mean.values - std.values,\n                        mean.values + std.values, alpha=0.2)\n        ax.set_title(metric, fontsize=11, fontweight=\"bold\")\n        ax.set_xlabel(\"Generation\")\n        ax.set_ylabel(metric)\n        ax.grid(True, alpha=0.3)\n\n        is_canary = metric in CANARY_METRICS\n        ax.set_facecolor(\"#fff8f0\" if is_canary else \"#f0f8ff\")\n\n    for idx in range(len(all_metrics), len(axes)):\n        axes[idx].set_visible(False)\n\n    fig.suptitle(\"Metric Trends over Generations (mean ± std, 3 reps)\",\n                 fontsize=14, fontweight=\"bold\")\n    plt.tight_layout()\n    plt.savefig(os.path.join(output_dir, \"metric_trends.png\"), dpi=150,\n                bbox_inches=\"tight\")\n    plt.close()\n    print(\"Saved metric_trends.png\")\n\n\ndef plot_cross_correlation_heatmap(lead_table, output_dir):\n    \"\"\"Heatmap of peak lag (canary leads = negative lag).\"\"\"\n    pivot_lag = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n                                values=\"peak_lag\")\n    pivot_corr = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n                                  values=\"peak_corr\")\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))\n\n    im1 = ax1.imshow(pivot_lag.values, cmap=\"RdBu_r\", aspect=\"auto\",\n                     vmin=-5, vmax=5)\n    ax1.set_xticks(range(len(pivot_lag.columns)))\n    ax1.set_xticklabels(pivot_lag.columns, rotation=45, ha=\"right\")\n    ax1.set_yticks(range(len(pivot_lag.index)))\n    ax1.set_yticklabels(pivot_lag.index)\n    ax1.set_title(\"Peak Lag (negative = canary leads)\")\n    for i in range(len(pivot_lag.index)):\n        for j in range(len(pivot_lag.columns)):\n            ax1.text(j, i, f\"{pivot_lag.values[i, j]:.0f}\",\n                     ha=\"center\", va=\"center\", fontsize=10)\n    plt.colorbar(im1, ax=ax1)\n\n    im2 = ax2.imshow(np.abs(pivot_corr.values), cmap=\"YlOrRd\", aspect=\"auto\",\n                     vmin=0, vmax=1)\n    ax2.set_xticks(range(len(pivot_corr.columns)))\n    ax2.set_xticklabels(pivot_corr.columns, rotation=45, ha=\"right\")\n    ax2.set_yticks(range(len(pivot_corr.index)))\n    ax2.set_yticklabels(pivot_corr.index)\n    ax2.set_title(\"|Peak Correlation|\")\n    for i in range(len(pivot_corr.index)):\n        for j in range(len(pivot_corr.columns)):\n            ax2.text(j, i, f\"{pivot_corr.values[i, j]:.2f}\",\n                     ha=\"center\", va=\"center\", fontsize=10)\n    plt.colorbar(im2, ax=ax2)\n\n    fig.suptitle(\"Cross-Correlation: Canary → Downstream\", fontsize=13,\n                 fontweight=\"bold\")\n    plt.tight_layout()\n    plt.savefig(os.path.join(output_dir, \"cross_correlation.png\"), dpi=150,\n                bbox_inches=\"tight\")\n    plt.close()\n    print(\"Saved cross_correlation.png\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Analyze MVP experiment with graded verdict system.\")\n    parser.add_argument(\"--results_dir\", type=str, default=\"results/mvp\")\n    parser.add_argument(\"--seeds\", type=int, nargs=\"+\", default=[42, 43, 44])\n    parser.add_argument(\"--max_lag\", type=int, default=5)\n    parser.add_argument(\"--n_permutations\", type=int, default=10000,\n                        help=\"Number of permutations for significance test (default: 10000)\")\n    args = parser.parse_args()\n\n    output_dir = os.path.join(args.results_dir, \"analysis\")\n    os.makedirs(output_dir, exist_ok=True)\n\n    print(\"Loading metrics ...\")\n    data = load_metrics(args.results_dir, args.seeds)\n    df = metrics_to_df(data)\n\n    # --- Metric trend plots ---\n    plot_metric_trends(df, output_dir)\n\n    # --- §4: MAUVE floor effect detection ---\n    mauve_demoted, mauve_reason = check_mauve_floor(df, args.seeds)\n    active_downstream = list(DOWNSTREAM_METRICS)\n    if mauve_demoted:\n        print(f\"MAUVE demoted to supplementary (reason: {mauve_reason})\")\n\n    # --- §3: effective_rank monotonicity check ---\n    er_status, er_slopes = check_effective_rank_monotonicity(df, args.seeds)\n    print(f\"effective_rank status: {er_status} (slopes: {er_slopes})\")\n\n    # --- Cross-correlation with permutation tests ---\n    total_triplets = len(CANARY_METRICS) * len(DOWNSTREAM_METRICS) * len(args.seeds)\n    triplet_idx = 0\n\n    per_pair_results = []\n    lead_rows = []\n    near_misses = []\n\n    for canary in CANARY_METRICS:\n        for downstream in DOWNSTREAM_METRICS:\n            per_seed = []\n            all_lags = []\n            all_corrs = []\n\n            for seed in args.seeds:\n                triplet_idx += 1\n                print(f\"\\r  Permutation test {triplet_idx}/{total_triplets}: \"\n                      f\"{canary} vs {downstream} (seed {seed})\", end=\"\",\n                      flush=True)\n\n                seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n                c_series = seed_df[canary].values\n                d_series = seed_df[downstream].values\n\n                peak_lag, peak_corr, p_value = permutation_test(\n                    c_series, d_series, canary, downstream,\n                    max_lag=args.max_lag,\n                    n_permutations=args.n_permutations,\n                    seed=seed)\n\n                per_seed.append({\n                    \"seed\": seed,\n                    \"peak_lag\": int(peak_lag),\n                    \"peak_corr\": round(float(peak_corr), 4),\n                    \"p_value\": round(float(p_value), 4),\n                })\n                all_lags.append(peak_lag)\n                all_corrs.append(peak_corr)\n\n            pair_verdict = classify_pair(per_seed)\n\n            pair_result = {\n                \"canary\": canary,\n                \"downstream\": downstream,\n                \"pair_verdict\": pair_verdict,\n                \"per_seed\": per_seed,\n            }\n\n            if pair_verdict in (\"SIGNIFICANT LEAD\", \"WEAK LEAD\"):\n                disp = compute_lag_dispersion(per_seed)\n                pair_result.update(disp)\n            else:\n                if check_near_miss(per_seed):\n                    near_misses.append({\"canary\": canary, \"downstream\": downstream,\n                                        \"per_seed\": per_seed})\n\n            per_pair_results.append(pair_result)\n\n            lead_rows.append({\n                \"canary\": canary,\n                \"downstream\": downstream,\n                \"peak_lag\": np.mean(all_lags),\n                \"peak_corr\": np.mean(all_corrs),\n                \"lag_std\": np.std(all_lags),\n                \"corr_std\": np.std(all_corrs),\n                \"consistent\": all(l < 0 for l in all_lags),\n            })\n\n    print()\n\n    lead_table = pd.DataFrame(lead_rows)\n    lead_table.to_csv(os.path.join(output_dir, \"lead_time_table.csv\"),\n                      index=False)\n    print(\"Saved lead_time_table.csv\")\n\n    plot_cross_correlation_heatmap(lead_table, output_dir)\n\n    # --- §5: Graded verdict ---\n    verdict_pairs = per_pair_results\n    if mauve_demoted:\n        verdict_pairs = [p for p in per_pair_results if p[\"downstream\"] != \"mauve\"]\n\n    verdict, reasoning, sig_pairs, weak_pairs = compute_verdict(\n        verdict_pairs, er_status)\n\n    # --- Build summary ---\n    summary = {\n        \"mauve_demoted\": mauve_demoted,\n        \"mauve_demoted_reason\": mauve_reason,\n        \"effective_rank_status\": er_status,\n        \"effective_rank_slopes\": er_slopes,\n        \"per_pair_results\": per_pair_results,\n        \"verdict\": verdict,\n        \"verdict_reasoning\": reasoning,\n        \"significant_lead_pairs\": [\n            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n            for p in sig_pairs\n        ],\n        \"weak_lead_pairs\": [\n            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n            for p in weak_pairs\n        ],\n        \"near_misses\": near_misses,\n    }\n\n    with open(os.path.join(output_dir, \"analysis_summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    # --- Console report ---\n    print(\"\\n\" + \"=\" * 60)\n    print(\"MVP ANALYSIS SUMMARY\")\n    print(\"=\" * 60)\n\n    if mauve_demoted:\n        print(f\"MAUVE: demoted to supplementary ({mauve_reason})\")\n    else:\n        print(\"MAUVE: retained as primary downstream metric\")\n\n    print(f\"effective_rank: {er_status}\")\n    if er_slopes:\n        slope_str = \", \".join(f\"seed {k}: {v:.4f}\" for k, v in er_slopes.items())\n        print(f\"  slopes: {slope_str}\")\n\n    n_sig = len(sig_pairs)\n    n_weak = len(weak_pairs)\n    n_total = len(verdict_pairs)\n    print(f\"\\nPair results ({n_total} pairs evaluated for verdict):\")\n    print(f\"  SIGNIFICANT LEAD: {n_sig}\")\n    print(f\"  WEAK LEAD: {n_weak}\")\n    print(f\"  NO LEAD: {n_total - n_sig - n_weak}\")\n\n    if near_misses:\n        print(f\"  Near misses: {len(near_misses)}\")\n        for nm in near_misses:\n            print(f\"    {nm['canary']} -> {nm['downstream']}\")\n\n    verdict_icon = {\"STRONG PASS\": \"STRONG PASS\", \"PASS\": \"PASS\",\n                    \"CONDITIONAL PASS\": \"CONDITIONAL PASS\", \"FAIL\": \"FAIL\"}\n    print(f\"\\nVerdict: {verdict_icon[verdict]}\")\n    print(f\"Reasoning: {reasoning}\")\n\n    if sig_pairs:\n        print(\"\\nSignificant lead pairs:\")\n        for p in sig_pairs:\n            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n            print(f\"  {p['canary']} -> {p['downstream']}: \"\n                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n            for s in p[\"per_seed\"]:\n                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n\n    if weak_pairs:\n        print(\"\\nWeak lead pairs:\")\n        for p in weak_pairs:\n            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n            print(f\"  {p['canary']} -> {p['downstream']}: \"\n                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n            for s in p[\"per_seed\"]:\n                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n\n    print(\"\\nFull lead time table:\")\n    print(lead_table.to_string(index=False))\n    print(f\"\\nResults saved to {output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 532,
+                "startLine": 1,
+                "totalLines": 532
+              }
+            },
+            "sourceToolAssistantUUID": "53ec5dfc-4060-4d79-8856-06fa37e923c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "a8d6996c-f68b-4c21-b5d2-e33f61b38993",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Sync updated analyze_mvp.py to server",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:35:51.812Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to load the ssh_execute tool schema, then write this file to the server.",
+              "signature": "Eo4CClkIDRgCKkDZ4pZoiYdtZHhMa5vlbtSidMHDKV2u56Ia+oyxfVCZMjJ0sNvI6IPmgRiuJawXPQTxYtCPtMn19X1S2yvyCUfwMg9jbGF1ZGUtb3B1cy00LTY4ABIMDMFEMceSjy9H095cGgx6Y8MXZP+QTkjeBBsiMJefMIbjS2YW6f9Cdc7wmRsChcFfc7jUy1tdMOMnpBearB7bu51bwkyoVYwYTIvpHipjIEU6GwaBUOwJftIRK9/thIRMce4BKpAd1sYb40mmrTmK43QUURIUsObjRufi3ryXnwFvaeIRt2e1p9uVOulVr7TUxDOwAKUEW+UVv5unKHIxlyf8Wfc7uuBOeXTRfSV43HDjGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8d6996c-f68b-4c21-b5d2-e33f61b38993",
+            "isSidechain": false,
+            "requestId": "req_011Cb29yHqm7i81AJeHTtdCc",
+            "type": "assistant",
+            "uuid": "f0ce4215-bed3-4afe-a80d-cee40797f5b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X6ztvrNz5netE5Lr7Uu6XE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7862,
+                "cache_read_input_tokens": 22880,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7862,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 22880,
+                    "cache_creation_input_tokens": 7862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7862
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T08:35:52.805Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已读取（532行）。加载 SSH 工具并同步到服务器。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ce4215-bed3-4afe-a80d-cee40797f5b0",
+            "isSidechain": false,
+            "requestId": "req_011Cb29yHqm7i81AJeHTtdCc",
+            "type": "assistant",
+            "uuid": "e288559c-3893-45ff-b269-9f531fb7e1ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X6ztvrNz5netE5Lr7Uu6XE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7862,
+                "cache_read_input_tokens": 22880,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7862,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 22880,
+                    "cache_creation_input_tokens": 7862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7862
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T08:35:53.920Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZaae1brftZZHhtcYn5zGU",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e288559c-3893-45ff-b269-9f531fb7e1ca",
+            "isSidechain": false,
+            "requestId": "req_011Cb29yHqm7i81AJeHTtdCc",
+            "type": "assistant",
+            "uuid": "0dfcec63-5718-4860-8544-626403c8c863",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X6ztvrNz5netE5Lr7Uu6XE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7862,
+                "cache_read_input_tokens": 22880,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7862,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 22880,
+                    "cache_creation_input_tokens": 7862,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7862
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T08:35:53.924Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RZaae1brftZZHhtcYn5zGU",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dfcec63-5718-4860-8544-626403c8c863",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "1315b031-e42c-4811-818a-9fcd6fba3a67",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "0dfcec63-5718-4860-8544-626403c8c863",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:35:57.767Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to write the file content to the server via ssh_execute. The file is 532 lines long. I'll use a heredoc to write it. I need to be careful with the heredoc delimiter - make sure it doesn't appear in the file content.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1315b031-e42c-4811-818a-9fcd6fba3a67",
+            "isSidechain": false,
+            "requestId": "req_011Cb29ygyoCxz7h45RzwELz",
+            "type": "assistant",
+            "uuid": "a7176490-e254-42bd-81c5-a63a81eaa92f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vynt5B3twi8gFYydREQEr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 30742,
+                "output_tokens": 6796,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 730,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6796,
+                    "cache_read_input_tokens": 30742,
+                    "cache_creation_input_tokens": 730,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 730
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T08:37:27.039Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SK6nKnw771cCSgvb6graPp",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "account": "root",
+                "command": "cat > /root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py << 'ENDOFFILE'\n\"\"\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\n\nReads all_metrics.json from each rep, produces:\n  - metric_trends.png : canary + downstream metrics vs generation\n  - cross_correlation.png : cross-correlation heatmap\n  - lead_time_table.csv : lead time estimates per canary-downstream pair\n  - analysis_summary.json : machine-readable summary with graded verdict\n\nEvaluation pipeline (per mvp_evaluation_criteria.md):\n  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\n  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\n  3. Permutation test (§1) — per-triplet significance via 10k permutations\n  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\n  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\n  6. Lag dispersion statistics — mean, std, min, max per consistent pair\n\nUsage:\n    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\n    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\n\n\nCANARY_METRICS = [\"token_entropy\", \"self_bleu\", \"ece\", \"effective_rank\"]\nDOWNSTREAM_METRICS = [\"perplexity\", \"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"]\n\nHIGHER_IS_WORSE = {\"self_bleu\", \"ece\", \"perplexity\"}\nLOWER_IS_WORSE = {\"token_entropy\", \"effective_rank\", \"distinct_1\", \"distinct_2\",\n                   \"distinct_3\", \"mauve\"}\n\n\ndef load_metrics(results_dir, seeds):\n    \"\"\"Load all_metrics.json from each rep, return dict {seed: [metrics_per_gen]}.\"\"\"\n    data = {}\n    for seed in seeds:\n        path = os.path.join(results_dir, f\"rep_{seed}\", \"all_metrics.json\")\n        with open(path) as f:\n            data[seed] = json.load(f)\n    return data\n\n\ndef metrics_to_df(data):\n    \"\"\"Convert {seed: [metrics_per_gen]} to a long-form DataFrame.\"\"\"\n    rows = []\n    for seed, gens in data.items():\n        for m in gens:\n            m_copy = dict(m)\n            m_copy[\"seed\"] = seed\n            rows.append(m_copy)\n    return pd.DataFrame(rows)\n\n\ndef normalize_for_correlation(series, metric_name):\n    \"\"\"Flip sign so that 'getting worse' is always positive direction.\"\"\"\n    s = series.copy()\n    if metric_name in LOWER_IS_WORSE:\n        s = -s\n    s = (s - s.mean()) / (s.std() + 1e-12)\n    return s\n\n\ndef cross_correlate(x, y, max_lag=5):\n    \"\"\"Cross-correlation of x and y at lags -max_lag..+max_lag.\n\n    Positive lag k means y leads x by k steps.\n    Negative lag k means x leads y by |k| steps.\n    \"\"\"\n    x = (x - x.mean()) / (x.std() + 1e-12)\n    y = (y - y.mean()) / (y.std() + 1e-12)\n    n = len(x)\n    correlations = {}\n    for lag in range(-max_lag, max_lag + 1):\n        if lag >= 0:\n            c = np.corrcoef(x[lag:], y[:n - lag])[0, 1] if n - lag > 1 else 0\n        else:\n            c = np.corrcoef(x[:n + lag], y[-lag:])[0, 1] if n + lag > 1 else 0\n        correlations[lag] = c\n    return correlations\n\n\ndef estimate_lead_time(canary_series, downstream_series, canary_name,\n                       downstream_name, max_lag=5):\n    \"\"\"Estimate how many generations canary leads downstream.\n\n    Returns (peak_lag, peak_corr, corrs). Negative peak_lag = canary leads.\n    \"\"\"\n    c_norm = normalize_for_correlation(canary_series, canary_name)\n    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n    return peak_lag, corrs[peak_lag], corrs\n\n\ndef permutation_test(canary_series, downstream_series, canary_name,\n                     downstream_name, max_lag=5, n_permutations=10000, seed=0):\n    \"\"\"Permutation test for cross-correlation significance.\n\n    Shuffles the downstream series to break temporal structure, recomputes\n    max |r| across all lags for each permutation. p-value is the fraction\n    of permutation max|r| >= observed peak|r|.\n\n    Returns (peak_lag, peak_corr, p_value).\n    \"\"\"\n    c_norm = normalize_for_correlation(canary_series, canary_name)\n    d_norm = normalize_for_correlation(downstream_series, downstream_name)\n\n    corrs = cross_correlate(c_norm, d_norm, max_lag=max_lag)\n    peak_lag = max(corrs, key=lambda k: abs(corrs[k]))\n    observed_peak_r = abs(corrs[peak_lag])\n\n    rng = np.random.RandomState(seed)\n    count_ge = 0\n    for _ in range(n_permutations):\n        d_perm = rng.permutation(d_norm)\n        perm_corrs = cross_correlate(c_norm, d_perm, max_lag=max_lag)\n        perm_max_r = max(abs(v) for v in perm_corrs.values())\n        if perm_max_r >= observed_peak_r:\n            count_ge += 1\n\n    p_value = count_ge / n_permutations\n    return peak_lag, corrs[peak_lag], p_value\n\n\ndef check_mauve_floor(df, seeds):\n    \"\"\"Check MAUVE floor effect: Gen 0 < 0.10 and CV < 0.50 across all seeds.\n\n    Returns (demoted: bool, reason: str or None).\n    \"\"\"\n    for seed in seeds:\n        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n        gen0_mauve = seed_df[seed_df[\"generation\"] == 0][\"mauve\"].values\n        if len(gen0_mauve) == 0:\n            return False, None\n        if gen0_mauve[0] >= 0.10:\n            return False, None\n        mauve_vals = seed_df[\"mauve\"].values\n        mean_m = np.mean(mauve_vals)\n        std_m = np.std(mauve_vals)\n        cv = std_m / (mean_m + 1e-12)\n        if cv >= 0.50:\n            return False, None\n    return True, \"floor_effect\"\n\n\ndef check_effective_rank_monotonicity(df, seeds):\n    \"\"\"Check effective_rank Gen 4-9 slope consistency across seeds.\n\n    Returns (status: str, slopes: dict).\n    status is one of: \"decreasing\", \"increasing\", \"inconclusive\".\n    \"\"\"\n    slopes = {}\n    for seed in seeds:\n        seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n        late = seed_df[seed_df[\"generation\"] >= 4]\n        if len(late) < 2:\n            return \"inconclusive\", {}\n        gens = late[\"generation\"].values.astype(float)\n        vals = late[\"effective_rank\"].values.astype(float)\n        coeffs = np.polyfit(gens, vals, 1)\n        slopes[str(seed)] = float(coeffs[0])\n\n    slope_vals = list(slopes.values())\n    if all(s < 0 for s in slope_vals):\n        return \"decreasing\", slopes\n    if all(s > 0 for s in slope_vals):\n        return \"increasing\", slopes\n    return \"inconclusive\", slopes\n\n\ndef classify_pair(per_seed_results):\n    \"\"\"Classify a (canary, downstream) pair based on per-seed results.\n\n    Returns one of: \"SIGNIFICANT LEAD\", \"WEAK LEAD\", \"NO LEAD\".\n    \"\"\"\n    if not all(r[\"peak_lag\"] < 0 for r in per_seed_results):\n        return \"NO LEAD\"\n    if all(r[\"p_value\"] < 0.10 and abs(r[\"peak_corr\"]) >= 0.60\n           for r in per_seed_results):\n        return \"SIGNIFICANT LEAD\"\n    return \"WEAK LEAD\"\n\n\ndef check_near_miss(per_seed_results):\n    \"\"\"Check if a NO LEAD pair is a near miss (2/3 seeds lead, 1 at lag=0).\"\"\"\n    lags = [r[\"peak_lag\"] for r in per_seed_results]\n    neg_seeds = [r for r in per_seed_results if r[\"peak_lag\"] < 0]\n    zero_seeds = [r for r in per_seed_results if r[\"peak_lag\"] == 0]\n    if len(neg_seeds) == 2 and len(zero_seeds) == 1:\n        if all(r[\"peak_lag\"] <= -2 and r[\"p_value\"] < 0.05 for r in neg_seeds):\n            return True\n    return False\n\n\ndef compute_lag_dispersion(per_seed_results):\n    \"\"\"Compute lag dispersion statistics for a consistent pair.\"\"\"\n    lags = [r[\"peak_lag\"] for r in per_seed_results]\n    lag_std = float(np.std(lags))\n    return {\n        \"mean_lag\": float(np.mean(lags)),\n        \"lag_std\": lag_std,\n        \"min_lag\": int(min(lags)),\n        \"max_lag\": int(max(lags)),\n        \"high_dispersion\": lag_std > 2.0,\n    }\n\n\ndef compute_verdict(per_pair_results, effective_rank_status):\n    \"\"\"Compute graded verdict from per-pair results.\n\n    Returns (verdict, reasoning, significant_pairs, weak_pairs).\n    \"\"\"\n    significant_pairs = []\n    weak_pairs = []\n\n    for pr in per_pair_results:\n        if pr[\"canary\"] == \"effective_rank\" and effective_rank_status == \"inconclusive\":\n            continue\n        if pr[\"pair_verdict\"] == \"SIGNIFICANT LEAD\":\n            significant_pairs.append(pr)\n        elif pr[\"pair_verdict\"] == \"WEAK LEAD\":\n            weak_pairs.append(pr)\n\n    sig_families = set(p[\"canary\"] for p in significant_pairs)\n    weak_families = set(p[\"canary\"] for p in weak_pairs)\n\n    if len(sig_families) >= 2:\n        verdict = \"STRONG PASS\"\n        reasoning = (f\"{len(sig_families)} canary families ({', '.join(sorted(sig_families))}) \"\n                     f\"each have >= 1 SIGNIFICANT LEAD pair.\")\n    elif len(sig_families) >= 1:\n        verdict = \"PASS\"\n        reasoning = (f\"{len(sig_families)} canary family ({', '.join(sorted(sig_families))}) \"\n                     f\"has >= 1 SIGNIFICANT LEAD pair.\")\n    elif len(weak_families) >= 1:\n        verdict = \"CONDITIONAL PASS\"\n        reasoning = (f\"No SIGNIFICANT LEAD pairs, but {len(weak_families)} canary \"\n                     f\"family ({', '.join(sorted(weak_families))}) has >= 1 WEAK LEAD pair.\")\n    else:\n        verdict = \"FAIL\"\n        reasoning = \"No canary family achieves even WEAK LEAD consistency across seeds.\"\n\n    return verdict, reasoning, significant_pairs, weak_pairs\n\n\ndef plot_metric_trends(df, output_dir):\n    \"\"\"Plot metric-vs-generation with mean +/- std across seeds.\"\"\"\n    all_metrics = CANARY_METRICS + DOWNSTREAM_METRICS\n    fig, axes = plt.subplots(3, 3, figsize=(15, 12))\n    axes = axes.flatten()\n\n    for idx, metric in enumerate(all_metrics):\n        if idx >= len(axes):\n            break\n        ax = axes[idx]\n        grouped = df.groupby(\"generation\")[metric]\n        mean = grouped.mean()\n        std = grouped.std()\n\n        ax.plot(mean.index, mean.values, \"o-\", linewidth=2)\n        ax.fill_between(mean.index, mean.values - std.values,\n                        mean.values + std.values, alpha=0.2)\n        ax.set_title(metric, fontsize=11, fontweight=\"bold\")\n        ax.set_xlabel(\"Generation\")\n        ax.set_ylabel(metric)\n        ax.grid(True, alpha=0.3)\n\n        is_canary = metric in CANARY_METRICS\n        ax.set_facecolor(\"#fff8f0\" if is_canary else \"#f0f8ff\")\n\n    for idx in range(len(all_metrics), len(axes)):\n        axes[idx].set_visible(False)\n\n    fig.suptitle(\"Metric Trends over Generations (mean ± std, 3 reps)\",\n                 fontsize=14, fontweight=\"bold\")\n    plt.tight_layout()\n    plt.savefig(os.path.join(output_dir, \"metric_trends.png\"), dpi=150,\n                bbox_inches=\"tight\")\n    plt.close()\n    print(\"Saved metric_trends.png\")\n\n\ndef plot_cross_correlation_heatmap(lead_table, output_dir):\n    \"\"\"Heatmap of peak lag (canary leads = negative lag).\"\"\"\n    pivot_lag = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n                                values=\"peak_lag\")\n    pivot_corr = lead_table.pivot(index=\"canary\", columns=\"downstream\",\n                                  values=\"peak_corr\")\n\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))\n\n    im1 = ax1.imshow(pivot_lag.values, cmap=\"RdBu_r\", aspect=\"auto\",\n                     vmin=-5, vmax=5)\n    ax1.set_xticks(range(len(pivot_lag.columns)))\n    ax1.set_xticklabels(pivot_lag.columns, rotation=45, ha=\"right\")\n    ax1.set_yticks(range(len(pivot_lag.index)))\n    ax1.set_yticklabels(pivot_lag.index)\n    ax1.set_title(\"Peak Lag (negative = canary leads)\")\n    for i in range(len(pivot_lag.index)):\n        for j in range(len(pivot_lag.columns)):\n            ax1.text(j, i, f\"{pivot_lag.values[i, j]:.0f}\",\n                     ha=\"center\", va=\"center\", fontsize=10)\n    plt.colorbar(im1, ax=ax1)\n\n    im2 = ax2.imshow(np.abs(pivot_corr.values), cmap=\"YlOrRd\", aspect=\"auto\",\n                     vmin=0, vmax=1)\n    ax2.set_xticks(range(len(pivot_corr.columns)))\n    ax2.set_xticklabels(pivot_corr.columns, rotation=45, ha=\"right\")\n    ax2.set_yticks(range(len(pivot_corr.index)))\n    ax2.set_yticklabels(pivot_corr.index)\n    ax2.set_title(\"|Peak Correlation|\")\n    for i in range(len(pivot_corr.index)):\n        for j in range(len(pivot_corr.columns)):\n            ax2.text(j, i, f\"{pivot_corr.values[i, j]:.2f}\",\n                     ha=\"center\", va=\"center\", fontsize=10)\n    plt.colorbar(im2, ax=ax2)\n\n    fig.suptitle(\"Cross-Correlation: Canary → Downstream\", fontsize=13,\n                 fontweight=\"bold\")\n    plt.tight_layout()\n    plt.savefig(os.path.join(output_dir, \"cross_correlation.png\"), dpi=150,\n                bbox_inches=\"tight\")\n    plt.close()\n    print(\"Saved cross_correlation.png\")\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Analyze MVP experiment with graded verdict system.\")\n    parser.add_argument(\"--results_dir\", type=str, default=\"results/mvp\")\n    parser.add_argument(\"--seeds\", type=int, nargs=\"+\", default=[42, 43, 44])\n    parser.add_argument(\"--max_lag\", type=int, default=5)\n    parser.add_argument(\"--n_permutations\", type=int, default=10000,\n                        help=\"Number of permutations for significance test (default: 10000)\")\n    args = parser.parse_args()\n\n    output_dir = os.path.join(args.results_dir, \"analysis\")\n    os.makedirs(output_dir, exist_ok=True)\n\n    print(\"Loading metrics ...\")\n    data = load_metrics(args.results_dir, args.seeds)\n    df = metrics_to_df(data)\n\n    # --- Metric trend plots ---\n    plot_metric_trends(df, output_dir)\n\n    # --- §4: MAUVE floor effect detection ---\n    mauve_demoted, mauve_reason = check_mauve_floor(df, args.seeds)\n    active_downstream = list(DOWNSTREAM_METRICS)\n    if mauve_demoted:\n        print(f\"MAUVE demoted to supplementary (reason: {mauve_reason})\")\n\n    # --- §3: effective_rank monotonicity check ---\n    er_status, er_slopes = check_effective_rank_monotonicity(df, args.seeds)\n    print(f\"effective_rank status: {er_status} (slopes: {er_slopes})\")\n\n    # --- Cross-correlation with permutation tests ---\n    total_triplets = len(CANARY_METRICS) * len(DOWNSTREAM_METRICS) * len(args.seeds)\n    triplet_idx = 0\n\n    per_pair_results = []\n    lead_rows = []\n    near_misses = []\n\n    for canary in CANARY_METRICS:\n        for downstream in DOWNSTREAM_METRICS:\n            per_seed = []\n            all_lags = []\n            all_corrs = []\n\n            for seed in args.seeds:\n                triplet_idx += 1\n                print(f\"\\r  Permutation test {triplet_idx}/{total_triplets}: \"\n                      f\"{canary} vs {downstream} (seed {seed})\", end=\"\",\n                      flush=True)\n\n                seed_df = df[df[\"seed\"] == seed].sort_values(\"generation\")\n                c_series = seed_df[canary].values\n                d_series = seed_df[downstream].values\n\n                peak_lag, peak_corr, p_value = permutation_test(\n                    c_series, d_series, canary, downstream,\n                    max_lag=args.max_lag,\n                    n_permutations=args.n_permutations,\n                    seed=seed)\n\n                per_seed.append({\n                    \"seed\": seed,\n                    \"peak_lag\": int(peak_lag),\n                    \"peak_corr\": round(float(peak_corr), 4),\n                    \"p_value\": round(float(p_value), 4),\n                })\n                all_lags.append(peak_lag)\n                all_corrs.append(peak_corr)\n\n            pair_verdict = classify_pair(per_seed)\n\n            pair_result = {\n                \"canary\": canary,\n                \"downstream\": downstream,\n                \"pair_verdict\": pair_verdict,\n                \"per_seed\": per_seed,\n            }\n\n            if pair_verdict in (\"SIGNIFICANT LEAD\", \"WEAK LEAD\"):\n                disp = compute_lag_dispersion(per_seed)\n                pair_result.update(disp)\n            else:\n                if check_near_miss(per_seed):\n                    near_misses.append({\"canary\": canary, \"downstream\": downstream,\n                                        \"per_seed\": per_seed})\n\n            per_pair_results.append(pair_result)\n\n            lead_rows.append({\n                \"canary\": canary,\n                \"downstream\": downstream,\n                \"peak_lag\": np.mean(all_lags),\n                \"peak_corr\": np.mean(all_corrs),\n                \"lag_std\": np.std(all_lags),\n                \"corr_std\": np.std(all_corrs),\n                \"consistent\": all(l < 0 for l in all_lags),\n            })\n\n    print()\n\n    lead_table = pd.DataFrame(lead_rows)\n    lead_table.to_csv(os.path.join(output_dir, \"lead_time_table.csv\"),\n                      index=False)\n    print(\"Saved lead_time_table.csv\")\n\n    plot_cross_correlation_heatmap(lead_table, output_dir)\n\n    # --- §5: Graded verdict ---\n    verdict_pairs = per_pair_results\n    if mauve_demoted:\n        verdict_pairs = [p for p in per_pair_results if p[\"downstream\"] != \"mauve\"]\n\n    verdict, reasoning, sig_pairs, weak_pairs = compute_verdict(\n        verdict_pairs, er_status)\n\n    # --- Build summary ---\n    summary = {\n        \"mauve_demoted\": mauve_demoted,\n        \"mauve_demoted_reason\": mauve_reason,\n        \"effective_rank_status\": er_status,\n        \"effective_rank_slopes\": er_slopes,\n        \"per_pair_results\": per_pair_results,\n        \"verdict\": verdict,\n        \"verdict_reasoning\": reasoning,\n        \"significant_lead_pairs\": [\n            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n            for p in sig_pairs\n        ],\n        \"weak_lead_pairs\": [\n            {\"canary\": p[\"canary\"], \"downstream\": p[\"downstream\"]}\n            for p in weak_pairs\n        ],\n        \"near_misses\": near_misses,\n    }\n\n    with open(os.path.join(output_dir, \"analysis_summary.json\"), \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    # --- Console report ---\n    print(\"\\n\" + \"=\" * 60)\n    print(\"MVP ANALYSIS SUMMARY\")\n    print(\"=\" * 60)\n\n    if mauve_demoted:\n        print(f\"MAUVE: demoted to supplementary ({mauve_reason})\")\n    else:\n        print(\"MAUVE: retained as primary downstream metric\")\n\n    print(f\"effective_rank: {er_status}\")\n    if er_slopes:\n        slope_str = \", \".join(f\"seed {k}: {v:.4f}\" for k, v in er_slopes.items())\n        print(f\"  slopes: {slope_str}\")\n\n    n_sig = len(sig_pairs)\n    n_weak = len(weak_pairs)\n    n_total = len(verdict_pairs)\n    print(f\"\\nPair results ({n_total} pairs evaluated for verdict):\")\n    print(f\"  SIGNIFICANT LEAD: {n_sig}\")\n    print(f\"  WEAK LEAD: {n_weak}\")\n    print(f\"  NO LEAD: {n_total - n_sig - n_weak}\")\n\n    if near_misses:\n        print(f\"  Near misses: {len(near_misses)}\")\n        for nm in near_misses:\n            print(f\"    {nm['canary']} -> {nm['downstream']}\")\n\n    verdict_icon = {\"STRONG PASS\": \"STRONG PASS\", \"PASS\": \"PASS\",\n                    \"CONDITIONAL PASS\": \"CONDITIONAL PASS\", \"FAIL\": \"FAIL\"}\n    print(f\"\\nVerdict: {verdict_icon[verdict]}\")\n    print(f\"Reasoning: {reasoning}\")\n\n    if sig_pairs:\n        print(\"\\nSignificant lead pairs:\")\n        for p in sig_pairs:\n            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n            print(f\"  {p['canary']} -> {p['downstream']}: \"\n                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n            for s in p[\"per_seed\"]:\n                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n\n    if weak_pairs:\n        print(\"\\nWeak lead pairs:\")\n        for p in weak_pairs:\n            disp_flag = \" [high_dispersion]\" if p.get(\"high_dispersion\") else \"\"\n            print(f\"  {p['canary']} -> {p['downstream']}: \"\n                  f\"mean_lag={p['mean_lag']:.1f}, lag_std={p['lag_std']:.1f}{disp_flag}\")\n            for s in p[\"per_seed\"]:\n                print(f\"    seed {s['seed']}: lag={s['peak_lag']}, \"\n                      f\"|r|={abs(s['peak_corr']):.3f}, p={s['p_value']:.4f}\")\n\n    print(\"\\nFull lead time table:\")\n    print(lead_table.to_string(index=False))\n    print(f\"\\nResults saved to {output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7176490-e254-42bd-81c5-a63a81eaa92f",
+            "isSidechain": false,
+            "requestId": "req_011Cb29ygyoCxz7h45RzwELz",
+            "type": "assistant",
+            "uuid": "1b56e069-7812-4214-9df8-f7cbec2f0c27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012vynt5B3twi8gFYydREQEr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 730,
+                "cache_read_input_tokens": 30742,
+                "output_tokens": 6796,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 730,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6796,
+                    "cache_read_input_tokens": 30742,
+                    "cache_creation_input_tokens": 730,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 730
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:37:28.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SK6nKnw771cCSgvb6graPp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b56e069-7812-4214-9df8-f7cbec2f0c27",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "74de573a-f986-46d2-a845-4c05cbdf4d27",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1b56e069-7812-4214-9df8-f7cbec2f0c27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T08:37:31.689Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。验证内容和训练进程。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74de573a-f986-46d2-a845-4c05cbdf4d27",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A6dkXESiCvLxWd2XBt",
+            "type": "assistant",
+            "uuid": "4bb2f3e6-5cc2-40d9-94ae-a786762a8bd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBwX4TsQRtcqBPyAa2iTac",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6870,
+                "cache_read_input_tokens": 31472,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6870,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 31472,
+                    "cache_creation_input_tokens": 6870,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6870
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T08:37:33.156Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PECgZmjyg8BNWk6aQEDKn6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "account": "root",
+                "command": "head -20 /root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bb2f3e6-5cc2-40d9-94ae-a786762a8bd5",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A6dkXESiCvLxWd2XBt",
+            "type": "assistant",
+            "uuid": "f381d4c5-842b-4d4b-826c-1c67284a8b57",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBwX4TsQRtcqBPyAa2iTac",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6870,
+                "cache_read_input_tokens": 31472,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6870,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 31472,
+                    "cache_creation_input_tokens": 6870,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6870
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T08:37:33.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PECgZmjyg8BNWk6aQEDKn6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\\\\n\\\\nReads all_metrics.json from each rep, produces:\\\\n  - metric_trends.png : canary + downstream metrics vs generation\\\\n  - cross_correlation.png : cross-correlation heatmap\\\\n  - lead_time_table.csv : lead time estimates per canary-downstream pair\\\\n  - analysis_summary.json : machine-readable summary with graded verdict\\\\n\\\\nEvaluation pipeline (per mvp_evaluation_criteria.md):\\\\n  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\\\\n  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\\\\n  3. Permutation test (§1) — per-triplet significance via 10k permutations\\\\n  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\\\\n  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\\\\n  6. Lag dispersion statistics — mean, std, min, max per consistent pair\\\\n\\\\nUsage:\\\\n    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\\\\n    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f381d4c5-842b-4d4b-826c-1c67284a8b57",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "4e566e5c-2421-4576-bb7b-62b956e141b2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\\\\n\\\\nReads all_metrics.json from each rep, produces:\\\\n  - metric_trends.png : canary + downstream metrics vs generation\\\\n  - cross_correlation.png : cross-correlation heatmap\\\\n  - lead_time_table.csv : lead time estimates per canary-downstream pair\\\\n  - analysis_summary.json : machine-readable summary with graded verdict\\\\n\\\\nEvaluation pipeline (per mvp_evaluation_criteria.md):\\\\n  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\\\\n  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\\\\n  3. Permutation test (§1) — per-triplet significance via 10k permutations\\\\n  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\\\\n  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\\\\n  6. Lag dispersion statistics — mean, std, min, max per consistent pair\\\\n\\\\nUsage:\\\\n    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\\\\n    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Analyze MVP experiment: metric trends, cross-correlation, lead time.\\n\\nReads all_metrics.json from each rep, produces:\\n  - metric_trends.png : canary + downstream metrics vs generation\\n  - cross_correlation.png : cross-correlation heatmap\\n  - lead_time_table.csv : lead time estimates per canary-downstream pair\\n  - analysis_summary.json : machine-readable summary with graded verdict\\n\\nEvaluation pipeline (per mvp_evaluation_criteria.md):\\n  1. MAUVE floor effect detection (§4) — demote if Gen 0 < 0.10 and CV < 0.50\\n  2. effective_rank monotonicity check (§3) — Gen 4-9 OLS slope consistency\\n  3. Permutation test (§1) — per-triplet significance via 10k permutations\\n  4. Per-seed significance filtering (§2) — 3/3 consistency requirement\\n  5. Graded verdict (§5) — STRONG PASS / PASS / CONDITIONAL PASS / FAIL\\n  6. Lag dispersion statistics — mean, std, min, max per consistent pair\\n\\nUsage:\\n    python analyze_mvp.py --results_dir results/mvp --seeds 42 43 44\\n    python analyze_mvp.py --results_dir results/mvp --n_permutations 5000\\n\\\"\\\"\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f381d4c5-842b-4d4b-826c-1c67284a8b57",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:37:33.715Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HxVFAkkjFkCwYHqMdqcVHn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "autodl-rtx6000",
+                "account": "root",
+                "command": "pgrep -a iterative_train"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e566e5c-2421-4576-bb7b-62b956e141b2",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A6dkXESiCvLxWd2XBt",
+            "type": "assistant",
+            "uuid": "8e37bdfd-560b-49c9-9529-73ab3ce81acd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EBwX4TsQRtcqBPyAa2iTac",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6870,
+                "cache_read_input_tokens": 31472,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6870,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 31472,
+                    "cache_creation_input_tokens": 6870,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6870
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T08:37:33.723Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HxVFAkkjFkCwYHqMdqcVHn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e37bdfd-560b-49c9-9529-73ab3ce81acd",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "944f4688-bc40-4700-a569-9dde9f20a626",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8e37bdfd-560b-49c9-9529-73ab3ce81acd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "944f4688-bc40-4700-a569-9dde9f20a626",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Sync updated analyze_mvp.py to server",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T08:37:38.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件验证通过，docstring 包含 \"graded verdict\"。`pgrep` 不在 read_only 白名单中，换用 ssh_execute 检查。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "944f4688-bc40-4700-a569-9dde9f20a626",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A73o8ou8gghAsXZr4X",
+            "type": "assistant",
+            "uuid": "76420974-c461-4261-b165-6b0ab8da8e84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HgN7bMtWwmpLuAKifFuDth",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 827,
+                "cache_read_input_tokens": 38342,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 827,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 38342,
+                    "cache_creation_input_tokens": 827,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 827
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T08:37:39.596Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012pvCz7nbGbTUYmxtuUk27r",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-rtx6000",
+                "account": "root",
+                "command": "pgrep -a iterative_train"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76420974-c461-4261-b165-6b0ab8da8e84",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A73o8ou8gghAsXZr4X",
+            "type": "assistant",
+            "uuid": "3d002106-4292-4176-80c5-cd8cf172c87a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HgN7bMtWwmpLuAKifFuDth",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 827,
+                "cache_read_input_tokens": 38342,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 827,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 38342,
+                    "cache_creation_input_tokens": 827,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 827
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T08:37:40.043Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012pvCz7nbGbTUYmxtuUk27r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'pgrep -a iterative_train'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d002106-4292-4176-80c5-cd8cf172c87a",
+            "isSidechain": false,
+            "promptId": "4e96667c-7c21-4b8f-987b-25fcf5cc42d6",
+            "type": "user",
+            "uuid": "42d7c532-1bc5-4f3a-beef-c56f4a6f9ded",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'pgrep -a iterative_train'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pgrep -a iterative_train'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3d002106-4292-4176-80c5-cd8cf172c87a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T08:37:40.046Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "42d7c532-1bc5-4f3a-beef-c56f4a6f9ded",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9918101b-9ed4-4b43-8a5e-ca9e4f02ae2b",
+                "timestamp": "2026-05-14T08:37:40.046Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T08:37:46.505Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- `analyze_mvp.py` 已同步到服务器 `/root/autodl-tmp/distrib_canary_collapse/analyze_mvp.py`，docstring 包含 \"graded verdict\" 确认是最新版本\n- `pgrep -a iterative_train` 返回 exit code 1（无匹配），说明当前没有 `iterative_train` 进程在运行"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9918101b-9ed4-4b43-8a5e-ca9e4f02ae2b",
+            "isSidechain": false,
+            "requestId": "req_011Cb2A7WR2kGCbQx1znN57G",
+            "type": "assistant",
+            "uuid": "96c0c634-daa0-429e-b76e-cb9024871abd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G5bzMmEpwRszvXiiGwNY4j",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 374,
+                "cache_read_input_tokens": 39169,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 374,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 39169,
+                    "cache_creation_input_tokens": 374,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 374
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "96c0c634-daa0-429e-b76e-cb9024871abd",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Sync updated analyze_mvp.py to server",
+                "sessionId": "84cd0208-0354-4a29-a086-31598c90b8fe"
+              }
+            }
+          ],
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-distrib-canary-collapse-autodl-rtx6000-ssh-root-ssh-execute-su-copy-3.md"
+}
