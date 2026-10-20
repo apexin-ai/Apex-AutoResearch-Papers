@@ -1,0 +1,1098 @@
+{
+  "schema_version": "1.0",
+  "id": "a11212ff942364c0eda1",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check which D102 JSON files in /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collaps",
+  "task_key": "agent-a7fa34cdba5fc90fc",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a7fa34cdba5fc90fc.jsonl",
+    "occurrence": 1,
+    "bytes": 63173,
+    "sha256": "9b4b7d085c6206a0ea92092446b4ea79b4e6d2add393a50a0a73133142ae026d"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T16:10:03.744Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check which D102 JSON files in /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/ contain a \"metrics_trajectory\" field. \n\nCheck these files specifically:\n1. D102_14b_t10_a050_s42_fp32_14b_6pair.json\n2. D102_14b_t10_a050_s44_fp32_d3.json  \n3. D102_14b_t10_a060_s42_fp32_14b_6pair.json\n4. D102_14b_t10_a060_s44_fp32_d3.json\n5. D102_14b_t10_a075_s42_fp32_14b_6pair.json\n6. D102_14b_t10_a075_s44_fp32_d3.json\n7. D102_14b_t10_a045_s42_fp32_d3.json\n\nFor each, report: does it have metrics_trajectory? If so, what are the gen keys (gen_0, gen_1, etc.) and what metrics are in each gen?\n\nAlso check:\n8. D102_14b_t15_a075_s42_fp32.json\n9. D102_14b_t15_a060_s43_fp32_d3.json\n10. D102_14b_t15_a050_s43_fp32_d3.json\n11. D102_14b_t15_a045_s43_fp32_d3.json\n\nReport concisely: which files have metrics_trajectory and the structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "5c30720e-66d7-409f-b04b-5e34cfa2929d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T16:10:05.068Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll check each of these JSON files for the metrics_trajectory field and report the structure. Let me read all of them in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c30720e-66d7-409f-b04b-5e34cfa2929d",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fefa3c3a-c72b-49ee-b1a7-e126ff2d4227",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T16:10:05.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012vKAfDZNfK8PNqCSymiigh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a050_s42_fp32_14b_6pair.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fefa3c3a-c72b-49ee-b1a7-e126ff2d4227",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5e1d9c45-76d3-4506-97a0-2acb0c4ba807",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T16:10:05.528Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012vKAfDZNfK8PNqCSymiigh",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.5,\n4\t    \"seed\": 42,\n5\t    \"T\": 10,\n6\t    \"n_gens\": 11,\n7\t    \"data_dir\": \"results/phase_diagram/t10_a050_s42_fp32_14b\",\n8\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n9\t    \"n_perm\": 5000,\n10\t    \"canaries\": [\"token_entropy\", \"ece\"],\n11\t    \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\"],\n12\t    \"threshold_criterion\": \"true_3sigma_d105\",\n13\t    \"note\": \"6-pair (distinct_1/2/3 only, mauve excluded)\"\n14\t  },\n15\t  \"summary\": {\n16\t    \"perm_granger_fdr_forward_sig\": 4,\n17\t    \"perm_granger_fdr_reverse_sig\": 0,\n18\t    \"robust_pairs\": 2,\n19\t    \"total_pairs\": 6\n20\t  },\n21\t  \"consensus\": [\n22\t    {\"pair\": \"token_entropy<distinct_1\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n23\t    {\"pair\": \"token_entropy<distinct_2\", \"votes\": 2, \"methods\": [\"naive\", \"ty\"]},\n24\t    {\"pair\": \"token_entropy<distinct_3\", \"votes\": 2, \"methods\": [\"naive\", \"ty\"]},\n25\t    {\"pair\": \"ece<distinct_1\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n26\t    {\"pair\": \"ece<distinct_2\", \"votes\": 3, \"methods\": [\"naive\", \"perm\", \"ty\"]},\n27\t    {\"pair\": \"ece<distinct_3\", \"votes\": 3, \"methods\": [\"naive\", \"perm\", \"ty\"]}\n28\t  ],\n29\t  \"metrics_trajectory\": {\n30\t    \"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_1\": 0.0992, \"distinct_2\": 0.5222, \"distinct_3\": 0.8211, \"perplexity\": 19.83, \"mauve\": null},\n31\t    \"gen_1\": {\"token_entropy\": 2.1767, \"ece\": 0.1002, \"distinct_1\": 0.099, \"distinct_2\": 0.5225, \"distinct_3\": 0.8212, \"perplexity\": 21.05, \"mauve\": null},\n32\t    \"gen_2\": {\"token_entropy\": 2.1911, \"ece\": 0.1231, \"distinct_1\": 0.0865, \"distinct_2\": 0.4553, \"distinct_3\": 0.7508, \"perplexity\": 25.54, \"mauve\": null},\n33\t    \"gen_3\": {\"token_entropy\": 2.2196, \"ece\": 0.1263, \"distinct_1\": 0.0786, \"distinct_2\": 0.3978, \"distinct_3\": 0.6681, \"perplexity\": 26.95, \"mauve\": null},\n34\t    \"gen_4\": {\"token_entropy\": 2.2075, \"ece\": 0.1337, \"distinct_1\": 0.075, \"distinct_2\": 0.365, \"distinct_3\": 0.612, \"perplexity\": 28.66, \"mauve\": null},\n35\t    \"gen_5\": {\"token_entropy\": 2.2218, \"ece\": 0.1392, \"distinct_1\": 0.0724, \"distinct_2\": 0.3434, \"distinct_3\": 0.5683, \"perplexity\": 30.24, \"mauve\": null},\n36\t    \"gen_6\": {\"token_entropy\": 2.1971, \"ece\": 0.146, \"distinct_1\": 0.071, \"distinct_2\": 0.3304, \"distinct_3\": 0.5416, \"perplexity\": 31.6, \"mauve\": null},\n37\t    \"gen_7\": {\"token_entropy\": 2.2495, \"ece\": 0.1407, \"distinct_1\": 0.0703, \"distinct_2\": 0.3231, \"distinct_3\": 0.5265, \"perplexity\": 31.96, \"mauve\": null},\n38\t    \"gen_8\": {\"token_entropy\": 2.2598, \"ece\": 0.1444, \"distinct_1\": 0.07, \"distinct_2\": 0.3208, \"distinct_3\": 0.5206, \"perplexity\": 32.92, \"mauve\": null},\n39\t    \"gen_9\": {\"token_entropy\": 2.27, \"ece\": 0.1496, \"distinct_1\": 0.0697, \"distinct_2\": 0.3187, \"distinct_3\": 0.5167, \"perplexity\": 34.8, \"mauve\": null},\n40\t    \"gen_10\": {\"token_entropy\": 2.2609, \"ece\": 0.1509, \"distinct_1\": 0.0694, \"distinct_2\": 0.3154, \"distinct_3\": 0.51, \"perplexity\": 35.06, \"mauve\": null}\n41\t  }\n42\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e1d9c45-76d3-4506-97a0-2acb0c4ba807",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "0111f29a-05f5-406f-99d1-49515f1d2af7",
+            "sourceToolAssistantUUID": "5e1d9c45-76d3-4506-97a0-2acb0c4ba807",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T16:10:05.725Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013nZCBxWxN3RwQp6n31s75c",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a050_s44_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0111f29a-05f5-406f-99d1-49515f1d2af7",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a4196314-4481-45b2-a123-cdc439fdf730",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T16:10:05.732Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013nZCBxWxN3RwQp6n31s75c",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.5,\n4\t    \"seed\": 44,\n5\t    \"n_gens\": 11,\n6\t    \"data_dir\": \"results/phase_diagram/t10_a050_s44_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_3\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 2,\n16\t    \"perm_granger_fdr_reverse_sig\": 0,\n17\t    \"diff_xcorr_fdr_forward_sig\": 2,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n19\t    \"threshold_forward_sig\": 0,\n20\t    \"ty_forward_sig\": 0,\n21\t    \"naive_xcorr_forward_sig\": 0,\n22\t    \"robust_pairs\": 0,\n23\t    \"total_pairs\": 2\n24\t  },\n25\t  \"consensus\": [\n26\t    {\n27\t      \"pair\": \"token_entropy<distinct_3\",\n28\t      \"votes\": 2,\n29\t      \"methods\": [\"diff\", \"perm\"]\n30\t    },\n31\t    {\n32\t      \"pair\": \"ece<distinct_3\",\n33\t      \"votes\": 2,\n34\t      \"methods\": [\"diff\", \"perm\"]\n35\t    }\n36\t  ],\n37\t  \"pair_details\": {\n38\t    \"token_entropy<distinct_3\": {\n39\t      \"naive_xcorr\": {\"peak_lag\": 2, \"r\": -0.9063, \"p\": 0.004758, \"sig\": false, \"note\": \"peak_lag>0 = reverse direction\"},\n40\t      \"diff_xcorr\":  {\"peak_lag\": -5, \"r\": 0.9207, \"p\": 0.026395, \"p_fdr\": 0.0353, \"sig_fdr\": true},\n41\t      \"threshold_onset\": {\"canary_onset\": 1, \"downstream_onset\": null, \"lead_time\": null, \"sig\": false},\n42\t      \"perm_granger\": {\"f_stat\": 48.831, \"p_fdr\": null, \"sig_fdr\": true},\n43\t      \"ty_granger\": {\"f_stat\": null, \"p\": 0.9845, \"sig\": false, \"dmax\": 0}\n44\t    },\n45\t    \"ece<distinct_3\": {\n46\t      \"naive_xcorr\": {\"peak_lag\": 4, \"r\": 0.9827, \"p\": 0.000306, \"sig\": false, \"note\": \"peak_lag>0 = reverse direction\"},\n47\t      \"diff_xcorr\":  {\"peak_lag\": -5, \"r\": 0.9674, \"p\": 0.007126, \"p_fdr\": 0.0193, \"sig_fdr\": true},\n48\t      \"threshold_onset\": {\"canary_onset\": 1, \"downstream_onset\": null, \"lead_time\": null, \"sig\": false},\n49\t      \"perm_granger\": {\"f_stat\": 124.327, \"p_fdr\": null, \"sig_fdr\": true},\n50\t      \"ty_granger\": {\"f_stat\": null, \"p\": 0.9133, \"sig\": false, \"dmax\": 0}\n51\t    }\n52\t  },\n53\t  \"metrics_trajectory\": {\n54\t    \"gen_0\":  {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8190, \"perplexity\": 19.83},\n55\t    \"gen_1\":  {\"token_entropy\": 2.1888, \"ece\": 0.0968, \"distinct_3\": 0.8208, \"perplexity\": 20.59},\n56\t    \"gen_2\":  {\"token_entropy\": 2.1701, \"ece\": 0.1188, \"distinct_3\": 0.7524, \"perplexity\": 24.53},\n57\t    \"gen_3\":  {\"token_entropy\": 2.1905, \"ece\": 0.1278, \"distinct_3\": 0.6774, \"perplexity\": 26.80},\n58\t    \"gen_4\":  {\"token_entropy\": 2.1784, \"ece\": 0.1335, \"distinct_3\": 0.6139, \"perplexity\": 28.22},\n59\t    \"gen_5\":  {\"token_entropy\": 2.2086, \"ece\": 0.1359, \"distinct_3\": 0.5705, \"perplexity\": 29.31},\n60\t    \"gen_6\":  {\"token_entropy\": 2.2213, \"ece\": 0.1393, \"distinct_3\": 0.5383, \"perplexity\": 30.57},\n61\t    \"gen_7\":  {\"token_entropy\": 2.2196, \"ece\": 0.1444, \"distinct_3\": 0.5211, \"perplexity\": 31.94},\n62\t    \"gen_8\":  {\"token_entropy\": 2.2104, \"ece\": 0.1493, \"distinct_3\": 0.5155, \"perplexity\": 33.11},\n63\t    \"gen_9\":  {\"token_entropy\": 2.2364, \"ece\": 0.1502, \"distinct_3\": 0.5079, \"perplexity\": 33.83},\n64\t    \"gen_10\": {\"token_entropy\": 2.2427, \"ece\": 0.1504, \"distinct_3\": 0.5031, \"perplexity\": 34.45}\n65\t  },\n66\t  \"comparison_seeds\": {\n67\t    \"s42_PermG\": 4,\n68\t    \"s43_PermG\": 6,\n69\t    \"s44_PermG\": 6,\n70\t    \"s42_K3_d3\": \"TBD\",\n71\t    \"s43_K3_d3\": \"TBD\",\n72\t    \"s44_K3_d3\": 0,\n73\t    \"note\": \"α=0.50 onset boundary: PermG moderate but K≥3 consensus weak across all seeds — threshold_onset=0, TY=0\"\n74\t  }\n75\t}\n76\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4196314-4481-45b2-a123-cdc439fdf730",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "5abfe7e0-9d0d-4857-8ac7-a7c31460b901",
+            "sourceToolAssistantUUID": "a4196314-4481-45b2-a123-cdc439fdf730",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T16:10:06.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0167n42sWnHuEsLcbna5RZFs",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a060_s42_fp32_14b_6pair.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5abfe7e0-9d0d-4857-8ac7-a7c31460b901",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "31a46f27-7fe4-43a8-9028-e348c2b76d29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T16:10:06.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0167n42sWnHuEsLcbna5RZFs",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.6,\n4\t    \"seed\": 42,\n5\t    \"T\": 10,\n6\t    \"n_gens\": 11,\n7\t    \"data_dir\": \"results/phase_diagram/t10_a060_s42_fp32_14b\",\n8\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n9\t    \"n_perm\": 5000,\n10\t    \"canaries\": [\"token_entropy\", \"ece\"],\n11\t    \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\"],\n12\t    \"threshold_criterion\": \"true_3sigma_d105\",\n13\t    \"note\": \"6-pair (distinct_1/2/3 only, mauve excluded)\"\n14\t  },\n15\t  \"summary\": {\n16\t    \"perm_granger_fdr_forward_sig\": 4,\n17\t    \"perm_granger_fdr_reverse_sig\": 0,\n18\t    \"robust_pairs\": 0,\n19\t    \"total_pairs\": 6\n20\t  },\n21\t  \"consensus\": [\n22\t    {\"pair\": \"token_entropy<distinct_1\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n23\t    {\"pair\": \"token_entropy<distinct_2\", \"votes\": 1, \"methods\": [\"ty\"]},\n24\t    {\"pair\": \"token_entropy<distinct_3\", \"votes\": 2, \"methods\": [\"naive\", \"ty\"]},\n25\t    {\"pair\": \"ece<distinct_1\", \"votes\": 1, \"methods\": [\"perm\"]},\n26\t    {\"pair\": \"ece<distinct_2\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n27\t    {\"pair\": \"ece<distinct_3\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]}\n28\t  ],\n29\t  \"metrics_trajectory\": {\n30\t    \"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_1\": 0.0992, \"distinct_2\": 0.5222, \"distinct_3\": 0.8211, \"perplexity\": 19.83, \"mauve\": null},\n31\t    \"gen_1\": {\"token_entropy\": 1.8246, \"ece\": 0.1782, \"distinct_1\": 0.099, \"distinct_2\": 0.5225, \"distinct_3\": 0.8212, \"perplexity\": 30.4, \"mauve\": null},\n32\t    \"gen_2\": {\"token_entropy\": 1.8172, \"ece\": 0.2091, \"distinct_1\": 0.0855, \"distinct_2\": 0.4432, \"distinct_3\": 0.7283, \"perplexity\": 40.61, \"mauve\": null},\n33\t    \"gen_3\": {\"token_entropy\": 1.8359, \"ece\": 0.2156, \"distinct_1\": 0.0795, \"distinct_2\": 0.3996, \"distinct_3\": 0.6634, \"perplexity\": 44.45, \"mauve\": null},\n34\t    \"gen_4\": {\"token_entropy\": 1.8272, \"ece\": 0.2271, \"distinct_1\": 0.077, \"distinct_2\": 0.3807, \"distinct_3\": 0.6301, \"perplexity\": 48.46, \"mauve\": null},\n35\t    \"gen_5\": {\"token_entropy\": 1.8382, \"ece\": 0.2316, \"distinct_1\": 0.076, \"distinct_2\": 0.3724, \"distinct_3\": 0.6152, \"perplexity\": 52.33, \"mauve\": null},\n36\t    \"gen_6\": {\"token_entropy\": 1.8634, \"ece\": 0.2335, \"distinct_1\": 0.0756, \"distinct_2\": 0.368, \"distinct_3\": 0.6064, \"perplexity\": 54.23, \"mauve\": null},\n37\t    \"gen_7\": {\"token_entropy\": 1.9131, \"ece\": 0.2339, \"distinct_1\": 0.0752, \"distinct_2\": 0.3651, \"distinct_3\": 0.6001, \"perplexity\": 56.44, \"mauve\": null},\n38\t    \"gen_8\": {\"token_entropy\": 1.9162, \"ece\": 0.2383, \"distinct_1\": 0.075, \"distinct_2\": 0.3633, \"distinct_3\": 0.5964, \"perplexity\": 59.76, \"mauve\": null},\n39\t    \"gen_9\": {\"token_entropy\": 1.9647, \"ece\": 0.2351, \"distinct_1\": 0.0748, \"distinct_2\": 0.3613, \"distinct_3\": 0.5928, \"perplexity\": 60.62, \"mauve\": null},\n40\t    \"gen_10\": {\"token_entropy\": 2.0219, \"ece\": 0.2319, \"distinct_1\": 0.0746, \"distinct_2\": 0.3597, \"distinct_3\": 0.589, \"perplexity\": 61.57, \"mauve\": null}\n41\t  }\n42\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31a46f27-7fe4-43a8-9028-e348c2b76d29",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "8ed39a5f-4a8e-491c-af6f-ccb15c1b3626",
+            "sourceToolAssistantUUID": "31a46f27-7fe4-43a8-9028-e348c2b76d29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T16:10:07.115Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013GkryEyvtF21gmWBqtWmtd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a060_s44_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ed39a5f-4a8e-491c-af6f-ccb15c1b3626",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "25b96d51-e5b5-40fd-aa7e-a8880da30781",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T16:10:07.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013GkryEyvtF21gmWBqtWmtd",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.6,\n4\t    \"seed\": 44,\n5\t    \"n_gens\": 11,\n6\t    \"data_dir\": \"results/phase_diagram/t10_a060_s44_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_3\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 2,\n16\t    \"perm_granger_fdr_reverse_sig\": 0,\n17\t    \"diff_xcorr_fdr_forward_sig\": 2,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n19\t    \"threshold_forward_sig\": 0,\n20\t    \"ty_forward_sig\": 2,\n21\t    \"naive_xcorr_forward_sig\": 0,\n22\t    \"robust_pairs\": 2,\n23\t    \"total_pairs\": 2\n24\t  },\n25\t  \"consensus\": [\n26\t    {\n27\t      \"pair\": \"token_entropy<distinct_3\",\n28\t      \"votes\": 3,\n29\t      \"methods\": [\"diff\", \"perm\", \"ty\"]\n30\t    },\n31\t    {\n32\t      \"pair\": \"ece<distinct_3\",\n33\t      \"votes\": 4,\n34\t      \"methods\": [\"naive\", \"diff\", \"perm\", \"ty\"]\n35\t    }\n36\t  ],\n37\t  \"metrics_trajectory\": {\n38\t    \"gen_0\":  {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8190, \"perplexity\": 19.83, \"mauve\": null},\n39\t    \"gen_1\":  {\"token_entropy\": 1.8445, \"ece\": 0.1747, \"distinct_3\": 0.8208, \"perplexity\": 29.76, \"mauve\": null},\n40\t    \"gen_2\":  {\"token_entropy\": 1.7924, \"ece\": 0.2064, \"distinct_3\": 0.7364, \"perplexity\": 38.53, \"mauve\": null},\n41\t    \"gen_3\":  {\"token_entropy\": 1.7995, \"ece\": 0.2170, \"distinct_3\": 0.6761, \"perplexity\": 43.33, \"mauve\": null},\n42\t    \"gen_4\":  {\"token_entropy\": 1.7978, \"ece\": 0.2250, \"distinct_3\": 0.6434, \"perplexity\": 47.22, \"mauve\": null},\n43\t    \"gen_5\":  {\"token_entropy\": 1.8132, \"ece\": 0.2336, \"distinct_3\": 0.6272, \"perplexity\": 52.00, \"mauve\": null},\n44\t    \"gen_6\":  {\"token_entropy\": 1.8390, \"ece\": 0.2336, \"distinct_3\": 0.6174, \"perplexity\": 53.71, \"mauve\": null},\n45\t    \"gen_7\":  {\"token_entropy\": 1.8806, \"ece\": 0.2357, \"distinct_3\": 0.6093, \"perplexity\": 56.82, \"mauve\": null},\n46\t    \"gen_8\":  {\"token_entropy\": 1.9263, \"ece\": 0.2345, \"distinct_3\": 0.6041, \"perplexity\": 58.57, \"mauve\": null},\n47\t    \"gen_9\":  {\"token_entropy\": 1.9189, \"ece\": 0.2381, \"distinct_3\": 0.6005, \"perplexity\": 61.33, \"mauve\": null},\n48\t    \"gen_10\": {\"token_entropy\": 2.0126, \"ece\": 0.2366, \"distinct_3\": 0.5980, \"perplexity\": 63.79, \"mauve\": null}\n49\t  }\n50\t}\n51\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25b96d51-e5b5-40fd-aa7e-a8880da30781",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "958b9817-2916-4d80-8dbd-8b7dee116dbb",
+            "sourceToolAssistantUUID": "25b96d51-e5b5-40fd-aa7e-a8880da30781",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T16:10:07.185Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01354G4jVGUTAnxWv4ekC4jP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a075_s42_fp32_14b_6pair.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "958b9817-2916-4d80-8dbd-8b7dee116dbb",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c302b85e-0c0e-47d5-bd53-bc54ee7ca2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T16:10:07.214Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01354G4jVGUTAnxWv4ekC4jP",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.75,\n4\t    \"seed\": 42,\n5\t    \"T\": 10,\n6\t    \"n_gens\": 11,\n7\t    \"data_dir\": \"results/phase_diagram/t10_a075_s42_fp32_14b\",\n8\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n9\t    \"n_perm\": 5000,\n10\t    \"canaries\": [\"token_entropy\", \"ece\"],\n11\t    \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\"],\n12\t    \"threshold_criterion\": \"true_3sigma_d105\",\n13\t    \"note\": \"6-pair (distinct_1/2/3 only, mauve excluded)\"\n14\t  },\n15\t  \"summary\": {\n16\t    \"perm_granger_fdr_forward_sig\": 5,\n17\t    \"perm_granger_fdr_reverse_sig\": 0,\n18\t    \"robust_pairs\": 0,\n19\t    \"total_pairs\": 6\n20\t  },\n21\t  \"consensus\": [\n22\t    {\"pair\": \"token_entropy<distinct_1\", \"votes\": 1, \"methods\": [\"perm\"]},\n23\t    {\"pair\": \"token_entropy<distinct_2\", \"votes\": 1, \"methods\": [\"perm\"]},\n24\t    {\"pair\": \"token_entropy<distinct_3\", \"votes\": 0, \"methods\": []},\n25\t    {\"pair\": \"ece<distinct_1\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n26\t    {\"pair\": \"ece<distinct_2\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]},\n27\t    {\"pair\": \"ece<distinct_3\", \"votes\": 2, \"methods\": [\"perm\", \"ty\"]}\n28\t  ],\n29\t  \"metrics_trajectory\": {\n30\t    \"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_1\": 0.0992, \"distinct_2\": 0.5222, \"distinct_3\": 0.8211, \"perplexity\": 19.83, \"mauve\": null},\n31\t    \"gen_1\": {\"token_entropy\": 1.7979, \"ece\": 0.1888, \"distinct_1\": 0.099, \"distinct_2\": 0.5225, \"distinct_3\": 0.8212, \"perplexity\": 33.44, \"mauve\": null},\n32\t    \"gen_2\": {\"token_entropy\": 1.7649, \"ece\": 0.231, \"distinct_1\": 0.0853, \"distinct_2\": 0.4458, \"distinct_3\": 0.7362, \"perplexity\": 49.82, \"mauve\": null},\n33\t    \"gen_3\": {\"token_entropy\": 1.7286, \"ece\": 0.2456, \"distinct_1\": 0.0823, \"distinct_2\": 0.4207, \"distinct_3\": 0.6943, \"perplexity\": 57.43, \"mauve\": null},\n34\t    \"gen_4\": {\"token_entropy\": 1.7555, \"ece\": 0.2536, \"distinct_1\": 0.0815, \"distinct_2\": 0.4137, \"distinct_3\": 0.6819, \"perplexity\": 63.8, \"mauve\": null},\n35\t    \"gen_5\": {\"token_entropy\": 1.7645, \"ece\": 0.2611, \"distinct_1\": 0.0813, \"distinct_2\": 0.4119, \"distinct_3\": 0.6792, \"perplexity\": 70.32, \"mauve\": null},\n36\t    \"gen_6\": {\"token_entropy\": 1.7896, \"ece\": 0.2645, \"distinct_1\": 0.0809, \"distinct_2\": 0.4093, \"distinct_3\": 0.6742, \"perplexity\": 73.95, \"mauve\": null},\n37\t    \"gen_7\": {\"token_entropy\": 1.8255, \"ece\": 0.2659, \"distinct_1\": 0.0807, \"distinct_2\": 0.4075, \"distinct_3\": 0.6716, \"perplexity\": 78.8, \"mauve\": null},\n38\t    \"gen_8\": {\"token_entropy\": 1.8948, \"ece\": 0.2653, \"distinct_1\": 0.0807, \"distinct_2\": 0.4079, \"distinct_3\": 0.6718, \"perplexity\": 83.86, \"mauve\": null},\n39\t    \"gen_9\": {\"token_entropy\": 1.9053, \"ece\": 0.266, \"distinct_1\": 0.0806, \"distinct_2\": 0.4072, \"distinct_3\": 0.6704, \"perplexity\": 86.73, \"mauve\": null},\n40\t    \"gen_10\": {\"token_entropy\": 1.9681, \"ece\": 0.2656, \"distinct_1\": 0.0806, \"distinct_2\": 0.407, \"distinct_3\": 0.6697, \"perplexity\": 89.37, \"mauve\": null}\n41\t  }\n42\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c302b85e-0c0e-47d5-bd53-bc54ee7ca2d1",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "d7442898-9686-4eee-991a-a529cbe11bca",
+            "sourceToolAssistantUUID": "c302b85e-0c0e-47d5-bd53-bc54ee7ca2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T16:10:07.272Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ZN9TXj7EGcULEmmGpkhbq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a075_s44_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7442898-9686-4eee-991a-a529cbe11bca",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7bf65968-35b8-4e3a-8e20-b6e4ea47d4f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T16:10:07.283Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BMANJXmL9zW6phq2zoiC4d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t10_a045_s42_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bf65968-35b8-4e3a-8e20-b6e4ea47d4f3",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7426b375-efae-4634-8ff8-4b1e92083725",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T16:10:07.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ZN9TXj7EGcULEmmGpkhbq",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.75,\n4\t    \"seed\": 44,\n5\t    \"n_gens\": 11,\n6\t    \"data_dir\": \"results/phase_diagram/t10_a075_s44_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_3\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 2,\n16\t    \"perm_granger_fdr_reverse_sig\": 0,\n17\t    \"diff_xcorr_fdr_forward_sig\": 2,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n19\t    \"threshold_forward_sig\": 0,\n20\t    \"ty_forward_sig\": 1,\n21\t    \"naive_xcorr_forward_sig\": 1,\n22\t    \"robust_pairs\": 2,\n23\t    \"total_pairs\": 2\n24\t  },\n25\t  \"consensus\": [\n26\t    {\n27\t      \"pair\": \"token_entropy<distinct_3\",\n28\t      \"votes\": 3,\n29\t      \"methods\": [\"diff\", \"perm\", \"ty\"]\n30\t    },\n31\t    {\n32\t      \"pair\": \"ece<distinct_3\",\n33\t      \"votes\": 3,\n34\t      \"methods\": [\"naive\", \"diff\", \"perm\"]\n35\t    }\n36\t  ],\n37\t  \"metrics_trajectory\": {\n38\t    \"gen_0\":  {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8190, \"perplexity\": 19.83, \"mauve\": null},\n39\t    \"gen_1\":  {\"token_entropy\": 1.8071, \"ece\": 0.1897, \"distinct_3\": 0.8208, \"perplexity\": 33.30, \"mauve\": null},\n40\t    \"gen_2\":  {\"token_entropy\": 1.7171, \"ece\": 0.2329, \"distinct_3\": 0.7407, \"perplexity\": 47.42, \"mauve\": null},\n41\t    \"gen_3\":  {\"token_entropy\": 1.7188, \"ece\": 0.2426, \"distinct_3\": 0.6919, \"perplexity\": 54.88, \"mauve\": null},\n42\t    \"gen_4\":  {\"token_entropy\": 1.7066, \"ece\": 0.2553, \"distinct_3\": 0.6789, \"perplexity\": 61.58, \"mauve\": null},\n43\t    \"gen_5\":  {\"token_entropy\": 1.7294, \"ece\": 0.2625, \"distinct_3\": 0.6758, \"perplexity\": 68.86, \"mauve\": null},\n44\t    \"gen_6\":  {\"token_entropy\": 1.8007, \"ece\": 0.2625, \"distinct_3\": 0.6729, \"perplexity\": 73.88, \"mauve\": null},\n45\t    \"gen_7\":  {\"token_entropy\": 1.8034, \"ece\": 0.2661, \"distinct_3\": 0.6698, \"perplexity\": 78.15, \"mauve\": null},\n46\t    \"gen_8\":  {\"token_entropy\": 1.8703, \"ece\": 0.2644, \"distinct_3\": 0.6672, \"perplexity\": 81.11, \"mauve\": null},\n47\t    \"gen_9\":  {\"token_entropy\": 1.9050, \"ece\": 0.2651, \"distinct_3\": 0.6652, \"perplexity\": 83.34, \"mauve\": null},\n48\t    \"gen_10\": {\"token_entropy\": 1.9102, \"ece\": 0.2677, \"distinct_3\": 0.6636, \"perplexity\": 89.59, \"mauve\": null}\n49\t  }\n50\t}\n51\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bf65968-35b8-4e3a-8e20-b6e4ea47d4f3",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "412a753b-20f4-49f3-92a4-ae6365a2f91a",
+            "sourceToolAssistantUUID": "7bf65968-35b8-4e3a-8e20-b6e4ea47d4f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T16:10:07.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BMANJXmL9zW6phq2zoiC4d",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.45,\n4\t    \"seed\": 42,\n5\t    \"n_gens\": 11,\n6\t    \"data_dir\": \"results/phase_diagram/t10_a045_s42_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"FDR-corrected reanalysis for Reviewer #154. DiffXCorr 8/8 survives FDR but is bidirectional (8/8 reverse too), PermG=0/8, robust_pairs=0/8.\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 0,\n16\t    \"perm_granger_fdr_reverse_sig\": 0,\n17\t    \"diff_xcorr_fdr_forward_sig\": 8,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 8,\n19\t    \"threshold_forward_sig\": 0,\n20\t    \"ty_forward_sig\": 2,\n21\t    \"naive_xcorr_forward_sig\": 2,\n22\t    \"robust_pairs\": 0,\n23\t    \"total_pairs\": 8\n24\t  },\n25\t  \"consensus\": [\n26\t    {\"pair\": \"token_entropy<distinct_1\", \"votes\": 1, \"methods\": [\"diff\"]},\n27\t    {\"pair\": \"token_entropy<distinct_2\", \"votes\": 1, \"methods\": [\"diff\"]},\n28\t    {\"pair\": \"token_entropy<distinct_3\", \"votes\": 2, \"methods\": [\"diff\", \"ty\"]},\n29\t    {\"pair\": \"token_entropy<mauve\", \"votes\": 2, \"methods\": [\"naive\", \"diff\"]},\n30\t    {\"pair\": \"ece<distinct_1\", \"votes\": 1, \"methods\": [\"diff\"]},\n31\t    {\"pair\": \"ece<distinct_2\", \"votes\": 1, \"methods\": [\"diff\"]},\n32\t    {\"pair\": \"ece<distinct_3\", \"votes\": 2, \"methods\": [\"diff\", \"ty\"]},\n33\t    {\"pair\": \"ece<mauve\", \"votes\": 2, \"methods\": [\"naive\", \"diff\"]}\n34\t  ],\n35\t  \"metrics_trajectory\": {\n36\t    \"gen_0\":  {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8211, \"perplexity\": 19.83, \"mauve\": 0.0349},\n37\t    \"gen_1\":  {\"token_entropy\": 2.1616, \"ece\": 0.1013, \"distinct_3\": 0.8212, \"perplexity\": 20.62, \"mauve\": 0.0330},\n38\t    \"gen_2\":  {\"token_entropy\": 2.1620, \"ece\": 0.1197, \"distinct_3\": 0.7421, \"perplexity\": 24.10, \"mauve\": 0.0339},\n39\t    \"gen_3\":  {\"token_entropy\": 2.2020, \"ece\": 0.1195, \"distinct_3\": 0.6750, \"perplexity\": 25.19, \"mauve\": 0.0335},\n40\t    \"gen_4\":  {\"token_entropy\": 2.1788, \"ece\": 0.1288, \"distinct_3\": 0.6127, \"perplexity\": 26.86, \"mauve\": 0.0301},\n41\t    \"gen_5\":  {\"token_entropy\": 2.1838, \"ece\": 0.1362, \"distinct_3\": 0.5618, \"perplexity\": 28.60, \"mauve\": 0.0326},\n42\t    \"gen_6\":  {\"token_entropy\": 2.1753, \"ece\": 0.1403, \"distinct_3\": 0.5249, \"perplexity\": 28.83, \"mauve\": 0.0285},\n43\t    \"gen_7\":  {\"token_entropy\": 2.1930, \"ece\": 0.1410, \"distinct_3\": 0.5029, \"perplexity\": 29.73, \"mauve\": 0.0288},\n44\t    \"gen_8\":  {\"token_entropy\": 2.2112, \"ece\": 0.1387, \"distinct_3\": 0.4907, \"perplexity\": 29.93, \"mauve\": 0.0279},\n45\t    \"gen_9\":  {\"token_entropy\": 2.2413, \"ece\": 0.1405, \"distinct_3\": 0.4789, \"perplexity\": 30.95, \"mauve\": 0.0271},\n46\t    \"gen_10\": {\"token_entropy\": 2.2410, \"ece\": 0.1421, \"distinct_3\": 0.4704, \"perplexity\": 31.33, \"mauve\": 0.0266}\n47\t  }\n48\t}\n49\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7426b375-efae-4634-8ff8-4b1e92083725",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "cd4f4d2d-3b25-49a5-b1eb-e7d34da7cbb0",
+            "sourceToolAssistantUUID": "7426b375-efae-4634-8ff8-4b1e92083725",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T16:10:07.703Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ph5g2yteFWggsag9cUMiZ2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t15_a075_s42_fp32.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd4f4d2d-3b25-49a5-b1eb-e7d34da7cbb0",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2ef151e0-05ef-4394-a964-b722a54547b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T16:10:07.727Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ph5g2yteFWggsag9cUMiZ2",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"exp_id\": \"scale_14b_t15_a075_s42_fp32\",\n3\t  \"model\": \"pythia-1.4b-deduped\",\n4\t  \"T\": 15,\n5\t  \"alpha\": 0.75,\n6\t  \"seed\": 42,\n7\t  \"n_gens\": 16,\n8\t  \"d102_summary\": {\n9\t    \"perm_granger_fdr_forward_sig\": 6,\n10\t    \"perm_granger_fdr_reverse_sig\": 0,\n11\t    \"diff_xcorr_fdr_forward_sig\": 8,\n12\t    \"diff_xcorr_fdr_reverse_sig\": 8,\n13\t    \"threshold_forward_sig\": 7,\n14\t    \"ty_forward_sig\": 5,\n15\t    \"robust_pairs_K3\": 6,\n16\t    \"robust_pairs_K4\": 6\n17\t  },\n18\t  \"drift\": {\n19\t    \"perplexity\": {\"gen0\": 19.83, \"gen15\": 97.26, \"pct\": \"+390.5%\"},\n20\t    \"mauve\": {\"gen0\": 0.0349, \"gen15\": 0.0337, \"pct\": \"-3.6%\"},\n21\t    \"token_entropy\": {\"gen0\": 2.9731, \"gen15\": 2.0972, \"pct\": \"-29.5%\"},\n22\t    \"ece\": {\"gen0\": 0.0081, \"gen15\": 0.2584, \"pct\": \"+3091.2%\"},\n23\t    \"distinct_1\": {\"gen0\": 0.0992, \"gen15\": 0.0800, \"pct\": \"-19.4%\"},\n24\t    \"distinct_2\": {\"gen0\": 0.5222, \"gen15\": 0.4005, \"pct\": \"-23.3%\"},\n25\t    \"distinct_3\": {\"gen0\": 0.8211, \"gen15\": 0.6576, \"pct\": \"-19.9%\"}\n26\t  },\n27\t  \"consensus_detail\": {\n28\t    \"token_entropy→distinct_1\": \"5/5 [naive, diff, threshold, perm, ty]\",\n29\t    \"token_entropy→distinct_2\": \"4/5 [diff, threshold, perm, ty]\",\n30\t    \"token_entropy→distinct_3\": \"4/5 [diff, threshold, perm, ty]\",\n31\t    \"token_entropy→mauve\": \"1/5 [threshold]\",\n32\t    \"ece→distinct_1\": \"4/5 [naive, diff, threshold, perm]\",\n33\t    \"ece→distinct_2\": \"5/5 [naive, diff, threshold, perm, ty]\",\n34\t    \"ece→distinct_3\": \"5/5 [naive, diff, threshold, perm, ty]\",\n35\t    \"ece→mauve\": \"0/5 [none]\"\n36\t  }\n37\t}\n38\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2ef151e0-05ef-4394-a964-b722a54547b1",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "940d9f56-4a6e-4e02-b699-43c74af2f39f",
+            "sourceToolAssistantUUID": "2ef151e0-05ef-4394-a964-b722a54547b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T16:10:08.724Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AYgtQw8Qq7THTRDhTSuMsZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t15_a060_s43_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "940d9f56-4a6e-4e02-b699-43c74af2f39f",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f975fafe-63eb-4a15-a8d1-e23c485cd39f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T16:10:08.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AYgtQw8Qq7THTRDhTSuMsZ",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.6,\n4\t    \"seed\": 43,\n5\t    \"n_gens\": 16,\n6\t    \"data_dir\": \"results/phase_diagram/t15_a060_s43_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_3\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 2,\n16\t    \"perm_granger_fdr_reverse_sig\": 1,\n17\t    \"diff_xcorr_fdr_forward_sig\": 2,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n19\t    \"threshold_forward_sig\": 2,\n20\t    \"ty_forward_sig\": 1,\n21\t    \"naive_xcorr_forward_sig\": 2,\n22\t    \"robust_pairs\": 2,\n23\t    \"total_pairs\": 2\n24\t  },\n25\t  \"consensus\": [\n26\t    {\n27\t      \"pair\": \"token_entropy<distinct_3\",\n28\t      \"votes\": 4,\n29\t      \"methods\": [\"diff\", \"threshold\", \"perm\", \"ty\"]\n30\t    },\n31\t    {\n32\t      \"pair\": \"ece<distinct_3\",\n33\t      \"votes\": 4,\n34\t      \"methods\": [\"naive\", \"diff\", \"threshold\", \"perm\"]\n35\t    }\n36\t  ],\n37\t  \"metrics_trajectory\": {\n38\t    \"gen_0\":  {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8167, \"perplexity\": 19.83, \"mauve\": 0.0329},\n39\t    \"gen_1\":  {\"token_entropy\": 1.8419, \"ece\": 0.1785, \"distinct_3\": 0.8183, \"perplexity\": 30.39, \"mauve\": 0.0324},\n40\t    \"gen_2\":  {\"token_entropy\": 1.8143, \"ece\": 0.2058, \"distinct_3\": 0.7337, \"perplexity\": 38.93, \"mauve\": 0.0325},\n41\t    \"gen_3\":  {\"token_entropy\": 1.7966, \"ece\": 0.2192, \"distinct_3\": 0.6572, \"perplexity\": 43.00, \"mauve\": 0.0312},\n42\t    \"gen_4\":  {\"token_entropy\": 1.8014, \"ece\": 0.2264, \"distinct_3\": 0.6285, \"perplexity\": 47.90, \"mauve\": 0.0320},\n43\t    \"gen_5\":  {\"token_entropy\": 1.8135, \"ece\": 0.2323, \"distinct_3\": 0.6114, \"perplexity\": 51.05, \"mauve\": 0.0320},\n44\t    \"gen_6\":  {\"token_entropy\": 1.8525, \"ece\": 0.2342, \"distinct_3\": 0.6032, \"perplexity\": 54.27, \"mauve\": 0.0318},\n45\t    \"gen_7\":  {\"token_entropy\": 1.8904, \"ece\": 0.2338, \"distinct_3\": 0.5942, \"perplexity\": 56.62, \"mauve\": 0.0307},\n46\t    \"gen_8\":  {\"token_entropy\": 1.923,  \"ece\": 0.234,  \"distinct_3\": 0.5882, \"perplexity\": 57.73, \"mauve\": 0.0321},\n47\t    \"gen_9\":  {\"token_entropy\": 1.9542, \"ece\": 0.2348, \"distinct_3\": 0.5832, \"perplexity\": 60.26, \"mauve\": 0.0335},\n48\t    \"gen_10\": {\"token_entropy\": 1.9552, \"ece\": 0.2373, \"distinct_3\": 0.5787, \"perplexity\": 61.50, \"mauve\": 0.0334},\n49\t    \"gen_11\": {\"token_entropy\": 2.0228, \"ece\": 0.2365, \"distinct_3\": 0.5746, \"perplexity\": 64.37, \"mauve\": 0.0341},\n50\t    \"gen_12\": {\"token_entropy\": 2.0812, \"ece\": 0.2323, \"distinct_3\": 0.5717, \"perplexity\": 63.80, \"mauve\": 0.0308},\n51\t    \"gen_13\": {\"token_entropy\": 2.0411, \"ece\": 0.2363, \"distinct_3\": 0.5704, \"perplexity\": 65.44, \"mauve\": 0.0314},\n52\t    \"gen_14\": {\"token_entropy\": 2.0884, \"ece\": 0.2343, \"distinct_3\": 0.5677, \"perplexity\": 66.77, \"mauve\": 0.0306},\n53\t    \"gen_15\": {\"token_entropy\": 2.1014, \"ece\": 0.2369, \"distinct_3\": 0.5661, \"perplexity\": 68.88, \"mauve\": 0.0290}\n54\t  }\n55\t}\n56\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f975fafe-63eb-4a15-a8d1-e23c485cd39f",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "3468b562-a864-4877-9dcc-a7543a861b8b",
+            "sourceToolAssistantUUID": "f975fafe-63eb-4a15-a8d1-e23c485cd39f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T16:10:08.785Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0197upXTcZUN7hyaERmn3gGi",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t15_a050_s43_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3468b562-a864-4877-9dcc-a7543a861b8b",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "85a86662-b89b-4009-8ae0-0493c8ee40d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T16:10:08.792Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0197upXTcZUN7hyaERmn3gGi",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.5,\n4\t    \"seed\": 43,\n5\t    \"n_gens\": 16,\n6\t    \"data_dir\": \"results/phase_diagram/t15_a050_s43_fp32_14b\",\n7\t    \"methods\": [\"naive_xcorr\", \"diff_xcorr\", \"threshold_onset\", \"perm_granger\", \"ty_granger\"],\n8\t    \"n_perm\": 5000,\n9\t    \"canaries\": [\"token_entropy\", \"ece\"],\n10\t    \"downstreams\": [\"distinct_3\"],\n11\t    \"threshold_criterion\": \"true_3sigma_d105\",\n12\t    \"note\": \"distinct_3 only (mauve all null due to network unreachable on server)\"\n13\t  },\n14\t  \"summary\": {\n15\t    \"perm_granger_fdr_forward_sig\": 1,\n16\t    \"perm_granger_fdr_reverse_sig\": 0,\n17\t    \"diff_xcorr_fdr_forward_sig\": 2,\n18\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n19\t    \"threshold_forward_sig\": 0,\n20\t    \"ty_forward_sig\": 2,\n21\t    \"naive_xcorr_forward_sig\": 1,\n22\t    \"robust_pairs\": 1,\n23\t    \"total_pairs\": 2,\n24\t    \"note\": \"Only ece->distinct_3 is robust (4/5); token_entropy->distinct_3 is marginal (2/5)\"\n25\t  },\n26\t  \"consensus\": [\n27\t    {\n28\t      \"pair\": \"token_entropy<distinct_3\",\n29\t      \"votes\": 2,\n30\t      \"methods\": [\"diff\", \"ty\"]\n31\t    },\n32\t    {\n33\t      \"pair\": \"ece<distinct_3\",\n34\t      \"votes\": 4,\n35\t      \"methods\": [\"naive\", \"diff\", \"perm\", \"ty\"]\n36\t    }\n37\t  ],\n38\t  \"pairs\": [\n39\t    {\n40\t      \"canary\": \"token_entropy\",\n41\t      \"downstream\": \"distinct_3\",\n42\t      \"forward\": {\n43\t        \"naive_xcorr\": {\"peak_lag\": 4, \"r\": -0.959, \"significant\": true, \"note\": \"peak_lag>0 = reverse direction, not forward\"},\n44\t        \"diff_xcorr\": {\"peak_lag\": -4, \"r\": 0.881, \"p_fdr\": 0.0004, \"significant_fdr\": true},\n45\t        \"threshold_onset\": {\"canary_onset\": 1, \"downstream_onset\": 2, \"lead_time\": null, \"significant\": false},\n46\t        \"perm_granger\": {\"f_stat\": 57.111, \"p_fdr\": null, \"significant_fdr\": false},\n47\t        \"ty_granger\": {\"f_stat\": null, \"p_value\": 0.0125, \"significant\": true, \"d_max\": 0}\n48\t      },\n49\t      \"reverse\": {\n50\t        \"perm_granger\": {\"f_stat\": 0.002, \"significant_fdr\": false}\n51\t      }\n52\t    },\n53\t    {\n54\t      \"canary\": \"ece\",\n55\t      \"downstream\": \"distinct_3\",\n56\t      \"forward\": {\n57\t        \"naive_xcorr\": {\"peak_lag\": -3, \"r\": 0.960, \"significant\": true, \"note\": \"peak_lag<0 = forward direction\"},\n58\t        \"diff_xcorr\": {\"peak_lag\": -4, \"r\": 0.939, \"p_fdr\": 0.0000, \"significant_fdr\": true},\n59\t        \"threshold_onset\": {\"canary_onset\": null, \"downstream_onset\": 2, \"lead_time\": null, \"significant\": false},\n60\t        \"perm_granger\": {\"f_stat\": 75.869, \"p_fdr\": null, \"significant_fdr\": true},\n61\t        \"ty_granger\": {\"f_stat\": null, \"p_value\": 0.0000, \"significant\": true, \"d_max\": 1}\n62\t      },\n63\t      \"reverse\": {\n64\t        \"perm_granger\": {\"f_stat\": 2.241, \"significant_fdr\": false}\n65\t      }\n66\t    }\n67\t  ],\n68\t  \"metrics_trajectory\": {\n69\t    \"entropy\": [2.973, 2.172, 2.170, 2.194, 2.191, 2.165, 2.215, 2.222, 2.241, 2.236, 2.251, 2.274, 2.277, 2.271, 2.281, 2.271],\n70\t    \"distinct_3\": [0.817, 0.818, 0.750, 0.677, 0.610, 0.567, 0.547, 0.532, 0.521, 0.516, 0.513, 0.510, 0.506, 0.503, 0.501, 0.500],\n71\t    \"ppl\": [19.83, 21.05, 24.65, 26.39, 28.60, 29.70, 30.67, 31.85, 32.97, 33.49, 34.31, 34.92, 35.27, 36.22, 36.78, 37.09],\n72\t    \"ece\": [0.008, 0.103, 0.121, 0.125, 0.135, 0.142, 0.140, 0.144, 0.146, 0.148, 0.149, 0.150, 0.151, 0.155, 0.153, 0.157]\n73\t  }\n74\t}\n75\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85a86662-b89b-4009-8ae0-0493c8ee40d1",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "313447ba-4868-444e-abe9-ca2bacc6fe82",
+            "sourceToolAssistantUUID": "85a86662-b89b-4009-8ae0-0493c8ee40d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T16:10:08.800Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012rMk7k2eTNrov45UWjLzgc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/D102_14b_t15_a045_s43_fp32_d3.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "313447ba-4868-444e-abe9-ca2bacc6fe82",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghYiCcpvrq9nwP2fgg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1673e878-3b56-4709-ac8f-1531d59d6bae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01AZ7bD1b7WcPaX7GHqBstmQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18901,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18901,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T16:10:08.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012rMk7k2eTNrov45UWjLzgc",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"alpha\": 0.45,\n4\t    \"seed\": 43,\n5\t    \"n_gens\": 16,\n6\t    \"data_dir\": \"results/phase_diagram/t15_a045_s43_fp32_14b\",\n7\t    \"methods\": [\n8\t      \"naive_xcorr\",\n9\t      \"diff_xcorr\",\n10\t      \"threshold_onset\",\n11\t      \"perm_granger\",\n12\t      \"ty_granger\"\n13\t    ],\n14\t    \"n_perm\": 5000,\n15\t    \"canaries\": [\n16\t      \"token_entropy\",\n17\t      \"ece\"\n18\t    ],\n19\t    \"downstreams\": [\n20\t      \"distinct_3\"\n21\t    ],\n22\t    \"threshold_criterion\": \"true_3sigma_d105\",\n23\t    \"note\": \"distinct_3 only (mauve dropped for 1.4B due to systematic near-zero range)\"\n24\t  },\n25\t  \"summary\": {\n26\t    \"perm_granger_fdr_forward_sig\": 2,\n27\t    \"perm_granger_fdr_reverse_sig\": 1,\n28\t    \"diff_xcorr_fdr_forward_sig\": 2,\n29\t    \"diff_xcorr_fdr_reverse_sig\": 2,\n30\t    \"threshold_forward_sig\": 0,\n31\t    \"ty_forward_sig\": 2,\n32\t    \"naive_xcorr_forward_sig\": 0,\n33\t    \"robust_pairs\": 2,\n34\t    \"total_pairs\": 2\n35\t  },\n36\t  \"consensus\": [\n37\t    {\n38\t      \"pair\": \"token_entropy<distinct_3\",\n39\t      \"votes\": 3,\n40\t      \"methods\": [\n41\t        \"diff\",\n42\t        \"perm\",\n43\t        \"ty\"\n44\t      ]\n45\t    },\n46\t    {\n47\t      \"pair\": \"ece<distinct_3\",\n48\t      \"votes\": 3,\n49\t      \"methods\": [\n50\t        \"diff\",\n51\t        \"perm\",\n52\t        \"ty\"\n53\t      ]\n54\t    }\n55\t  ],\n56\t  \"metrics_trajectory\": {\n57\t    \"gen_0\": {\n58\t      \"token_entropy\": 2.9731,\n59\t      \"ece\": 0.0081,\n60\t      \"distinct_3\": 0.8167,\n61\t      \"perplexity\": 19.8299,\n62\t      \"mauve\": null\n63\t    },\n64\t    \"gen_1\": {\n65\t      \"token_entropy\": 2.1775,\n66\t      \"ece\": 0.1005,\n67\t      \"distinct_3\": 0.8183,\n68\t      \"perplexity\": 20.9263,\n69\t      \"mauve\": null\n70\t    },\n71\t    \"gen_2\": {\n72\t      \"token_entropy\": 2.1873,\n73\t      \"ece\": 0.1139,\n74\t      \"distinct_3\": 0.7498,\n75\t      \"perplexity\": 23.9234,\n76\t      \"mauve\": null\n77\t    },\n78\t    \"gen_3\": {\n79\t      \"token_entropy\": 2.1837,\n80\t      \"ece\": 0.1242,\n81\t      \"distinct_3\": 0.6809,\n82\t      \"perplexity\": 25.4113,\n83\t      \"mauve\": null\n84\t    },\n85\t    \"gen_4\": {\n86\t      \"token_entropy\": 2.1856,\n87\t      \"ece\": 0.1294,\n88\t      \"distinct_3\": 0.6247,\n89\t      \"perplexity\": 27.0463,\n90\t      \"mauve\": null\n91\t    },\n92\t    \"gen_5\": {\n93\t      \"token_entropy\": 2.1745,\n94\t      \"ece\": 0.1354,\n95\t      \"distinct_3\": 0.5636,\n96\t      \"perplexity\": 28.1826,\n97\t      \"mauve\": null\n98\t    },\n99\t    \"gen_6\": {\n100\t      \"token_entropy\": 2.1803,\n101\t      \"ece\": 0.1395,\n102\t      \"distinct_3\": 0.5357,\n103\t      \"perplexity\": 28.9933,\n104\t      \"mauve\": null\n105\t    },\n106\t    \"gen_7\": {\n107\t      \"token_entropy\": 2.1861,\n108\t      \"ece\": 0.14,\n109\t      \"distinct_3\": 0.5163,\n110\t      \"perplexity\": 29.7264,\n111\t      \"mauve\": null\n112\t    },\n113\t    \"gen_8\": {\n114\t      \"token_entropy\": 2.2296,\n115\t      \"ece\": 0.141,\n116\t      \"distinct_3\": 0.5016,\n117\t      \"perplexity\": 30.4742,\n118\t      \"mauve\": null\n119\t    },\n120\t    \"gen_9\": {\n121\t      \"token_entropy\": 2.2442,\n122\t      \"ece\": 0.1385,\n123\t      \"distinct_3\": 0.4925,\n124\t      \"perplexity\": 30.7581,\n125\t      \"mauve\": null\n126\t    },\n127\t    \"gen_10\": {\n128\t      \"token_entropy\": 2.2337,\n129\t      \"ece\": 0.1432,\n130\t      \"distinct_3\": 0.4877,\n131\t      \"perplexity\": 31.3661,\n132\t      \"mauve\": null\n133\t    },\n134\t    \"gen_11\": {\n135\t      \"token_entropy\": 2.2544,\n136\t      \"ece\": 0.1426,\n137\t      \"distinct_3\": 0.4792,\n138\t      \"perplexity\": 31.9402,\n139\t      \"mauve\": null\n140\t    },\n141\t    \"gen_12\": {\n142\t      \"token_entropy\": 2.2726,\n143\t      \"ece\": 0.1433,\n144\t      \"distinct_3\": 0.4744,\n145\t      \"perplexity\": 32.4349,\n146\t      \"mauve\": null\n147\t    },\n148\t    \"gen_13\": {\n149\t      \"token_entropy\": 2.2709,\n150\t      \"ece\": 0.1463,\n151\t      \"distinct_3\": 0.4708,\n152\t      \"perplexity\": 32.9385,\n153\t      \"mauve\": null\n154\t    },\n155\t    \"gen_14\": {\n156\t      \"token_entropy\": 2.2733,\n157\t      \"ece\": 0.1467,\n158\t      \"distinct_3\": 0.4678,\n159\t      \"perplexity\": 33.3014,\n160\t      \"mauve\": null\n161\t    },\n162\t    \"gen_15\": {\n163\t      \"token_entropy\": 2.2626,\n164\t      \"ece\": 0.1494,\n165\t      \"distinct_3\": 0.4643,\n166\t      \"perplexity\": 34.1775,\n167\t      \"mauve\": null\n168\t    }\n169\t  }\n170\t}\n171\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1673e878-3b56-4709-ac8f-1531d59d6bae",
+            "isSidechain": true,
+            "promptId": "8abbf100-195b-4823-9960-e57482b503a9",
+            "agentId": "a7fa34cdba5fc90fc",
+            "type": "user",
+            "uuid": "2f30f3eb-663f-4742-92de-7bd96d249351",
+            "sourceToolAssistantUUID": "1673e878-3b56-4709-ac8f-1531d59d6bae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T16:10:16.327Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's a concise summary of the metrics_trajectory field status for all 11 files:\n\n## Files WITH metrics_trajectory (ALL 11 FILES)\n\nAll 11 files contain a `metrics_trajectory` field. Here's the structure breakdown:\n\n**T=10 files (gen_0 through gen_10):**\n1. **D102_14b_t10_a050_s42_fp32_14b_6pair.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_1, distinct_2, distinct_3, perplexity, mauve\n\n2. **D102_14b_t10_a050_s44_fp32_d3.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_3, perplexity\n\n3. **D102_14b_t10_a060_s42_fp32_14b_6pair.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_1, distinct_2, distinct_3, perplexity, mauve\n\n4. **D102_14b_t10_a060_s44_fp32_d3.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_3, perplexity, mauve\n\n5. **D102_14b_t10_a075_s42_fp32_14b_6pair.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_1, distinct_2, distinct_3, perplexity, mauve\n\n6. **D102_14b_t10_a075_s44_fp32_d3.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_3, perplexity, mauve\n\n7. **D102_14b_t10_a045_s42_fp32_d3.json** - 11 gens\n   - Metrics: token_entropy, ece, distinct_3, perplexity, mauve\n\n**T=15 files (gen_0 through gen_15):**\n8. **D102_14b_t15_a075_s42_fp32.json** - No traditional gen_0...gen_15 structure\n   - Has \"d102_summary\" and \"drift\" sections (summary metrics only, not trajectory)\n\n9. **D102_14b_t15_a060_s43_fp32_d3.json** - 16 gens\n   - Metrics: token_entropy, ece, distinct_3, perplexity, mauve\n\n10. **D102_14b_t15_a050_s43_fp32_d3.json** - Non-standard trajectory format\n    - Uses arrays: entropy, distinct_3, ppl, ece (instead of gen_N objects)\n\n11. **D102_14b_t15_a045_s43_fp32_d3.json** - 16 gens\n    - Metrics: token_entropy, ece, distinct_3, perplexity, mauve\n\n**Key differences:**\n- Files 1-6 (T=10) contain 11 generations (gen_0...gen_10)\n- Files 9, 11 (T=15) contain 16 generations (gen_0...gen_15)\n- File 8 is a summary-only format (no trajectory gen structure)\n- File 10 uses list-based trajectory format instead of gen_N objects\n- s42 files with 6-pair have distinct_1 and distinct_2; s44 and s43 files have only distinct_3\n- All files include token_entropy and ece; perplexity is always present"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f30f3eb-663f-4742-92de-7bd96d249351",
+            "isSidechain": true,
+            "agentId": "a7fa34cdba5fc90fc",
+            "requestId": "req_011CbMghvTu2HMJFCCmLqYV1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "535e05b2-22f1-4cd4-9acf-b46793a1a984",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "4eb99c9a-6f40-4caa-a83f-7b7f05bec223",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016FW7b82QuEibR8iFdKNVG1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 18535,
+                "cache_read_input_tokens": 18077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18535,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-which-d102-json-files-in-home-ubuntu-agent-ml-research-idea-ge.md"
+}

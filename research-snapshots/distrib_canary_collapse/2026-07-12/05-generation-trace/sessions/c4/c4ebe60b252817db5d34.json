@@ -1,0 +1,2289 @@
+{
+  "schema_version": "1.0",
+  "id": "c4ebe60b252817db5d34",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read all figure generation scripts for the paper at: - /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects",
+  "task_key": "agent-ac4adb378049c80e5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ac4adb378049c80e5.jsonl",
+    "occurrence": 1,
+    "bytes": 145586,
+    "sha256": "c795319af70754f79ebeb6eb24ff9988076ff2dce4d62cd3526dafb9a1c44ce6"
+  },
+  "statistics": {
+    "messages": 50,
+    "user_turns": 1,
+    "tool_calls": 21,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 21,
+      "tool_result": 21
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T19:16:33.273Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read all figure generation scripts for the paper at:\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_*.py\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_*.py  \n- /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_*.py\n\nFor each script found, extract:\n1. All hardcoded numerical values (especially α_c, percentages, sigmoid parameters)\n2. Data file paths being read\n3. Any inline data arrays/dicts\n\nFocus particularly on:\n- α_c values (should be 0.483, not 0.476 or 0.4755)\n- 64% (not 58%)\n- sigmoid parameters K=200, ac=0.483, ym=0.7518\n\nSearch breadth: very thorough"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "8e6795c5-ad4d-4d82-b9f8-32e5909172a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T19:16:34.422Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll systematically search for all figure generation scripts in the specified directories and extract the hardcoded values you're interested in."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8e6795c5-ad4d-4d82-b9f8-32e5909172a2",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37TXQGgQiqE8sNdtEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d5691bda-8e7d-42c2-bdac-9326d20e7c32",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R8pkFUkKqgs2GHweJFJjBS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 16392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 679,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T19:16:34.676Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sc3gKTMLQqLPPavVhG1o3V",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5691bda-8e7d-42c2-bdac-9326d20e7c32",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37TXQGgQiqE8sNdtEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1235d059-fbd9-4914-990f-25fc8d0b31b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R8pkFUkKqgs2GHweJFJjBS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 16392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 679,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T19:16:34.698Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sc3gKTMLQqLPPavVhG1o3V",
+              "type": "tool_result",
+              "content": "docs/paper/figures/gen_fig_intervention.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1235d059-fbd9-4914-990f-25fc8d0b31b0",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "8d7aa8bb-c882-4f82-8f81-c85f6e4de3ff",
+            "sourceToolAssistantUUID": "1235d059-fbd9-4914-990f-25fc8d0b31b0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T19:16:34.860Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LNbkdwSxvopqQtNGJWhNZE",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d7aa8bb-c882-4f82-8f81-c85f6e4de3ff",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37TXQGgQiqE8sNdtEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b03d3a88-c407-4f2b-aba0-0030d668cb53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R8pkFUkKqgs2GHweJFJjBS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 16392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 679,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T19:16:34.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LNbkdwSxvopqQtNGJWhNZE",
+              "type": "tool_result",
+              "content": "figures/paper/gen_fig_differencing_dmax.py\nfigures/paper/gen_fig_dose_response.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b03d3a88-c407-4f2b-aba0-0030d668cb53",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "8244753d-a892-4d5b-af7b-7bd57c5c732e",
+            "sourceToolAssistantUUID": "b03d3a88-c407-4f2b-aba0-0030d668cb53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T19:16:35.013Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fdwrf4uKzWhrRA9Dv76qnf",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8244753d-a892-4d5b-af7b-7bd57c5c732e",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37TXQGgQiqE8sNdtEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ee2b99b9-a5fd-4354-98a3-e2f01a95d97e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R8pkFUkKqgs2GHweJFJjBS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 679,
+                "cache_read_input_tokens": 16392,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 679
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 16392,
+                    "cache_creation_input_tokens": 679,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 679,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T19:16:35.022Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fdwrf4uKzWhrRA9Dv76qnf",
+              "type": "tool_result",
+              "content": "scripts/plot_regime_map.py\nscripts/plot_consensus_workflow.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee2b99b9-a5fd-4354-98a3-e2f01a95d97e",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "87961e88-298b-41cd-9048-a75daf615144",
+            "sourceToolAssistantUUID": "ee2b99b9-a5fd-4354-98a3-e2f01a95d97e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T19:16:36.195Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read all the found scripts:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87961e88-298b-41cd-9048-a75daf615144",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e665b30a-9cff-40a1-92e4-c970aa45f7fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1243,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T19:16:36.838Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015mykw1Gh3z52AMYcT7x1Yb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_intervention.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e665b30a-9cff-40a1-92e4-c970aa45f7fc",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ee57916c-2da0-41ac-be74-a5c77731c428",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1243,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T19:16:36.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015mykw1Gh3z52AMYcT7x1Yb",
+              "type": "tool_result",
+              "content": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport matplotlib.patheffects as pe\n5\timport numpy as np\n6\tfrom pathlib import Path\n7\t\n8\tOUT = Path(__file__).parent\n9\t\n10\tplt.rcParams.update({\n11\t    'font.family': 'DejaVu Sans',\n12\t    'font.size': 10,\n13\t    'axes.titlesize': 11,\n14\t    'axes.labelsize': 10,\n15\t    'xtick.labelsize': 9,\n16\t    'ytick.labelsize': 9,\n17\t    'legend.fontsize': 7.5,\n18\t    'figure.dpi': 300,\n19\t    'savefig.dpi': 300,\n20\t    'savefig.bbox': 'tight',\n21\t    'savefig.pad_inches': 0.05,\n22\t    'axes.spines.top': False,\n23\t    'axes.spines.right': False,\n24\t    'lines.linewidth': 1.8,\n25\t})\n26\t\n27\tC_BASELINE   = '#999999'\n28\tC_PREDICTIVE = '#0072B2'\n29\tC_REACTIVE   = '#D55E00'\n30\tC_THRESHOLD  = '#009E73'\n31\t\n32\tgens = np.arange(11)\n33\t\n34\t# ── Data: s42 fp32 at α=1.0 (Pythia-410M) ──\n35\t# Baseline\n36\tbaseline_ent = [3.2342, 1.9099, 1.4611, 1.3379, 1.2805, 1.2912, 1.2253, 1.2369, 1.2482, 1.2390, 1.2269]\n37\tbaseline_ppl = [26.949, 57.415, 162.151, 279.174, 394.018, 508.854, 598.726, 722.577, 814.682, 934.959, 1017.811]\n38\t\n39\t# Predictive: entropy trigger at gen 1, switch to α=0 for gen 2+\n40\tpred_ppl = [26.949, 56.99, 20.80, 20.74, 20.96, 20.77, 20.93, 20.99, 20.67, 20.95, 21.29]\n41\tpred_ent = [3.2342, 1.9099, 3.0489, 3.0526, 3.0669, 3.0467, 3.0512, 3.0553, 3.0575, 3.0325, 3.0487]\n42\t\n43\t# Reactive: distinct-1 trigger at gen 2, switch to α=0 for gen 3+\n44\treact_ppl = [26.949, 57.415, 157.09, 21.98, 21.55, 21.22, 21.67, 21.32, 21.46, 21.36, 21.24]\n45\treact_ent = [3.2342, 1.9099, 1.4611, 3.1312, 3.0846, 3.0641, 3.0808, 3.0957, 3.0648, 3.0791, 3.0876]\n46\t\n47\tthreshold_ent = baseline_ent[0] * 0.85  # 2.749\n48\t\n49\t# ── Figure ──\n50\tfig, (ax_ent, ax_ppl) = plt.subplots(\n51\t    2, 1, figsize=(3.5, 4.2), sharex=True,\n52\t    gridspec_kw={'height_ratios': [1, 1.15], 'hspace': 0.10}\n53\t)\n54\t\n55\t# ══════════════════════════════════════════════════════════════════\n56\t# Panel (a): Token Entropy\n57\t# ══════════════════════════════════════════════════════════════════\n58\tax_ent.plot(gens, baseline_ent, '--', color=C_BASELINE, linewidth=1.3,\n59\t            label='No intervention', zorder=2)\n60\tax_ent.plot(gens, pred_ent, '-', color=C_PREDICTIVE, marker='o', markersize=3.5,\n61\t            markeredgewidth=0, label='Predictive (entropy)', zorder=3)\n62\tax_ent.plot(gens, react_ent, '-', color=C_REACTIVE, marker='s', markersize=3,\n63\t            markeredgewidth=0, label='Reactive (distinct-1)', zorder=3)\n64\t\n65\t# 15% threshold line\n66\tax_ent.axhline(threshold_ent, color=C_THRESHOLD, linestyle=':', linewidth=1.1,\n67\t               alpha=0.6, zorder=1)\n68\tt = ax_ent.text(10.3, threshold_ent, r'$-15\\%$',\n69\t                fontsize=7, color=C_THRESHOLD, va='center', ha='right')\n70\tt.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n71\t\n72\t# Trigger annotations with offset to avoid overlap\n73\tax_ent.annotate('cease',\n74\t                xy=(1, pred_ent[1]), xytext=(0.0, 2.55),\n75\t                fontsize=7, color=C_PREDICTIVE, ha='center', va='bottom',\n76\t                fontweight='bold',\n77\t                arrowprops=dict(arrowstyle='->', color=C_PREDICTIVE, lw=0.9,\n78\t                                connectionstyle='arc3,rad=0.15'),\n79\t                zorder=5)\n80\tt_pred = ax_ent.text(0.0, 2.48, 'gen 1', fontsize=6, color=C_PREDICTIVE,\n81\t                     ha='center', va='top', fontstyle='italic')\n82\tt_pred.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n83\t\n84\tax_ent.annotate('cease',\n85\t                xy=(2, react_ent[2]), xytext=(3.3, 2.55),\n86\t                fontsize=7, color=C_REACTIVE, ha='center', va='bottom',\n87\t                fontweight='bold',\n88\t                arrowprops=dict(arrowstyle='->', color=C_REACTIVE, lw=0.9,\n89\t                                connectionstyle='arc3,rad=-0.15'),\n90\t                zorder=5)\n91\tt_react = ax_ent.text(3.3, 2.48, 'gen 2', fontsize=6, color=C_REACTIVE,\n92\t                      ha='center', va='top', fontstyle='italic')\n93\tt_react.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n94\t\n95\tax_ent.set_ylabel('Token entropy')\n96\tax_ent.set_ylim(0.9, 3.5)\n97\tax_ent.legend(loc='center right', framealpha=0.92, edgecolor='none',\n98\t              handlelength=1.5, borderpad=0.3)\n99\tax_ent.text(-0.14, 1.02, '(a)', transform=ax_ent.transAxes,\n100\t            fontsize=11, fontweight='bold', va='bottom')\n101\t\n102\t# ══════════════════════════════════════════════════════════════════\n103\t# Panel (b): Perplexity (log scale)\n104\t# ══════════════════════════════════════════════════════════════════\n105\tax_ppl.plot(gens, baseline_ppl, '--', color=C_BASELINE, linewidth=1.3,\n106\t            label='No intervention', zorder=2)\n107\tax_ppl.plot(gens, pred_ppl, '-', color=C_PREDICTIVE, marker='o', markersize=3.5,\n108\t            markeredgewidth=0, label='Predictive', zorder=3)\n109\tax_ppl.plot(gens, react_ppl, '-', color=C_REACTIVE, marker='s', markersize=3,\n110\t            markeredgewidth=0, label='Reactive', zorder=3)\n111\t\n112\tax_ppl.set_yscale('log')\n113\tax_ppl.set_ylabel('Perplexity')\n114\tax_ppl.set_xlabel('Generation')\n115\tax_ppl.set_xticks(gens)\n116\tax_ppl.set_ylim(12, 1500)\n117\t\n118\t# Shaded area between predictive and reactive (gen 1→2)\n119\tax_ppl.fill_between([1, 2], [pred_ppl[1], pred_ppl[2]],\n120\t                    [react_ppl[1], react_ppl[2]],\n121\t                    alpha=0.10, color=C_PREDICTIVE, zorder=1)\n122\t\n123\t# Peak markers (larger, highlighted)\n124\tax_ppl.plot(1, pred_ppl[1], 'o', color=C_PREDICTIVE, markersize=6,\n125\t            markeredgecolor='white', markeredgewidth=1.0, zorder=6)\n126\tax_ppl.plot(2, react_ppl[2], 's', color=C_REACTIVE, markersize=5.5,\n127\t            markeredgecolor='white', markeredgewidth=1.0, zorder=6)\n128\t\n129\t# Bracket annotation: peak-to-peak comparison\n130\t# Horizontal dashed lines from peaks to annotation column\n131\tax_col = 3.5  # x position for the bracket\n132\tax_ppl.plot([1, ax_col], [pred_ppl[1], pred_ppl[1]], ':', color=C_PREDICTIVE,\n133\t            linewidth=0.6, alpha=0.5, zorder=1)\n134\tax_ppl.plot([2, ax_col], [react_ppl[2], react_ppl[2]], ':', color=C_REACTIVE,\n135\t            linewidth=0.6, alpha=0.5, zorder=1)\n136\t\n137\t# Vertical arrow between the two peak levels\n138\tax_ppl.annotate('',\n139\t                xy=(ax_col, pred_ppl[1]), xytext=(ax_col, react_ppl[2]),\n140\t                arrowprops=dict(arrowstyle='<->', color='#333333', lw=1.0,\n141\t                                shrinkA=1, shrinkB=1),\n142\t                zorder=5)\n143\t# \"64%\" label (1 - 56.99/157.09 = 63.7% ≈ 64%, this seed s42 fp32)\n144\tgmean = np.sqrt(pred_ppl[1] * react_ppl[2])  # geometric mean for log-scale centering\n145\tt2 = ax_ppl.text(ax_col + 0.3, gmean, '64%',\n146\t                 fontsize=8, color='#333333', va='center', ha='left',\n147\t                 fontweight='bold')\n148\tt2.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n149\t\n150\t# Peak value annotations\n151\tt_pv1 = ax_ppl.text(0.5, pred_ppl[1] * 1.25, f'{pred_ppl[1]:.0f}',\n152\t                     fontsize=6.5, color=C_PREDICTIVE, ha='center', va='bottom')\n153\tt_pv1.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n154\tt_pv2 = ax_ppl.text(2.0, react_ppl[2] * 1.2, f'{react_ppl[2]:.0f}',\n155\t                     fontsize=6.5, color=C_REACTIVE, ha='center', va='bottom')\n156\tt_pv2.set_path_effects([pe.withStroke(linewidth=2.5, foreground='white')])\n157\t\n158\tax_ppl.legend(loc='upper left', framealpha=0.92, edgecolor='none',\n159\t              handlelength=1.5, borderpad=0.3)\n160\tax_ppl.text(-0.14, 1.02, '(b)', transform=ax_ppl.transAxes,\n161\t            fontsize=11, fontweight='bold', va='bottom')\n162\t\n163\t# ── Save ──\n164\tfor fmt in ['pdf', 'png']:\n165\t    fig.savefig(OUT / f'fig_intervention.{fmt}')\n166\t    print(f'Saved: {OUT / f\"fig_intervention.{fmt}\"}')\n167\tplt.close()\n168\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee57916c-2da0-41ac-be74-a5c77731c428",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "25a29f7f-9d0e-4152-9287-8a61e792caec",
+            "sourceToolAssistantUUID": "ee57916c-2da0-41ac-be74-a5c77731c428",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T19:16:37.022Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JDzP9wRomE7KWpK7vvuHsu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_differencing_dmax.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25a29f7f-9d0e-4152-9287-8a61e792caec",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "12ae0a52-feb8-43b5-9870-e64b110f0c60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1243,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T19:16:37.033Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JDzP9wRomE7KWpK7vvuHsu",
+              "type": "tool_result",
+              "content": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport matplotlib.colors as mcolors\n5\timport numpy as np\n6\t\n7\tplt.rcParams.update({\n8\t    'font.family': 'serif',\n9\t    'font.size': 9,\n10\t    'axes.titlesize': 10,\n11\t    'axes.labelsize': 9,\n12\t    'xtick.labelsize': 8,\n13\t    'ytick.labelsize': 8,\n14\t    'legend.fontsize': 8,\n15\t    'figure.dpi': 300,\n16\t    'savefig.dpi': 300,\n17\t    'savefig.bbox': 'tight',\n18\t    'savefig.pad_inches': 0.05,\n19\t    'axes.spines.top': False,\n20\t    'axes.spines.right': False,\n21\t    'text.usetex': False,\n22\t})\n23\t\n24\t# Okabe-Ito colors\n25\tOI_GREEN = '#009E73'\n26\tOI_RED = '#D55E00'\n27\tOI_BLUE = '#0072B2'\n28\tOI_ORANGE = '#E69F00'\n29\tOI_GREY = '#999999'\n30\t\n31\tfig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(6.5, 3.5),\n32\t                                  gridspec_kw={'width_ratios': [1, 1], 'wspace': 0.35})\n33\t\n34\t# ============================================================\n35\t# Panel (a): 2x2 Annotated Heatmap — Effect of First-Differencing\n36\t# ============================================================\n37\t\n38\tchannels = ['canary→diversity', 'canary→perplexity']\n39\tconditions = ['Undifferenced', 'First-Differenced']\n40\t\n41\tsig_rates = np.array([\n42\t    [24/24, 24/24],   # canary→diversity\n43\t    [6/8,   0/8],     # canary→perplexity\n44\t])\n45\t\n46\tsig_labels = [\n47\t    ['24/24\\nF = 74–3370',  '24/24\\nF = 71–7643'],\n48\t    ['6/8\\nF = 16–36',      '0/8\\nF ≈ 0, p = 0.99'],\n49\t]\n50\t\n51\tgreen_cmap = mcolors.LinearSegmentedColormap.from_list(\n52\t    'green_red', ['#FDEDEC', '#F5B7B1', '#ABEBC6', '#27AE60'], N=256)\n53\t\n54\tcustom_cmap = mcolors.LinearSegmentedColormap.from_list(\n55\t    'sig_cmap', [OI_RED, '#F5CBA7', '#A9DFBF', OI_GREEN], N=256)\n56\t\n57\tim = ax_a.imshow(sig_rates, cmap=custom_cmap, vmin=0, vmax=1, aspect='auto')\n58\t\n59\tfor i in range(2):\n60\t    for j in range(2):\n61\t        rate = sig_rates[i, j]\n62\t        text_color = 'white' if rate > 0.7 or rate < 0.15 else 'black'\n63\t        fontweight = 'bold' if (i == 1 and j == 1) else 'normal'\n64\t        ax_a.text(j, i, sig_labels[i][j], ha='center', va='center',\n65\t                  fontsize=8, color=text_color, fontweight=fontweight,\n66\t                  linespacing=1.4)\n67\t\n68\tax_a.set_xticks([0, 1])\n69\tax_a.set_xticklabels(conditions, fontsize=8)\n70\tax_a.set_yticks([0, 1])\n71\tax_a.set_yticklabels(channels, fontsize=8)\n72\tax_a.set_title('(a) Differencing flips perplexity channel', fontsize=10, pad=8)\n73\t\n74\tax_a.spines['top'].set_visible(True)\n75\tax_a.spines['right'].set_visible(True)\n76\tax_a.spines['bottom'].set_visible(True)\n77\tax_a.spines['left'].set_visible(True)\n78\tfor spine in ax_a.spines.values():\n79\t    spine.set_color('#CCCCCC')\n80\t    spine.set_linewidth(0.5)\n81\t\n82\tax_a.tick_params(length=0)\n83\t\n84\t# Highlight the bottom-right cell with a red border\n85\tfrom matplotlib.patches import Rectangle\n86\trect = Rectangle((0.5, 0.5), 1, 1, linewidth=2.5, edgecolor=OI_RED,\n87\t                 facecolor='none', transform=ax_a.transData, clip_on=False)\n88\tax_a.add_patch(rect)\n89\t\n90\t# ============================================================\n91\t# Panel (b): Bar Chart — TY Granger d_max Sensitivity\n92\t# ============================================================\n93\t\n94\tdmax_labels = ['$d_{max}$=0\\n(permissive)', '$d_{max}$=adaptive\\n(ADF-based)', '$d_{max}$=1\\n(conservative)']\n95\trejection_rates = [6.25, 75.0, 93.75]\n96\tbar_colors = [OI_ORANGE, OI_BLUE, OI_GREEN]\n97\t\n98\tx_pos = np.arange(len(dmax_labels))\n99\tbars = ax_b.bar(x_pos, rejection_rates, width=0.55, color=bar_colors,\n100\t                edgecolor='white', linewidth=0.5, zorder=2)\n101\t\n102\tfor bar, rate in zip(bars, rejection_rates):\n103\t    ax_b.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 2,\n104\t              f'{rate:.1f}%', ha='center', va='bottom', fontsize=8, fontweight='bold')\n105\t\n106\tax_b.axhline(100, color=OI_GREY, linestyle='--', linewidth=1.0, alpha=0.7, zorder=1)\n107\tax_b.text(2.35, 101, 'naive baseline\\n(16/16 sig)', fontsize=7, color=OI_GREY,\n108\t          ha='right', va='bottom', linespacing=1.3)\n109\t\n110\tax_b.set_xticks(x_pos)\n111\tax_b.set_xticklabels(dmax_labels, fontsize=8)\n112\tax_b.set_ylabel('Pairs rejected by TY (%)', fontsize=9)\n113\tax_b.set_ylim(0, 115)\n114\tax_b.set_title('(b) $d_{max}$ sensitivity of TY Granger', fontsize=10, pad=8)\n115\tax_b.grid(axis='y', alpha=0.15, zorder=0)\n116\t\n117\tplt.tight_layout()\n118\t\n119\toutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper'\n120\tplt.savefig(f'{outdir}/fig_differencing_dmax.pdf', format='pdf')\n121\tplt.savefig(f'{outdir}/fig_differencing_dmax.png', format='png', dpi=300)\n122\tplt.close()\n123\t\n124\tprint(f'Saved: {outdir}/fig_differencing_dmax.pdf')\n125\tprint(f'Saved: {outdir}/fig_differencing_dmax.png')\n126\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12ae0a52-feb8-43b5-9870-e64b110f0c60",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "b5105286-e103-44fd-b105-3a3fff9800cb",
+            "sourceToolAssistantUUID": "12ae0a52-feb8-43b5-9870-e64b110f0c60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T19:16:37.487Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Y2uxEyi4xYMnbXtLF4wnW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_dose_response.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5105286-e103-44fd-b105-3a3fff9800cb",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6981ba8f-8573-46e0-ac10-53a883edadb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1243,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T19:16:37.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Y2uxEyi4xYMnbXtLF4wnW",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Enhanced dose-response figure: sigmoid fit + bootstrap CI + sub-threshold annotation.\"\"\"\n3\timport matplotlib\n4\tmatplotlib.use('Agg')\n5\timport matplotlib.pyplot as plt\n6\timport numpy as np\n7\timport csv\n8\tfrom collections import defaultdict\n9\t\n10\tplt.rcParams.update({\n11\t    'font.family': 'serif',\n12\t    'font.size': 13,\n13\t    'axes.titlesize': 14,\n14\t    'axes.labelsize': 14,\n15\t    'xtick.labelsize': 12,\n16\t    'ytick.labelsize': 12,\n17\t    'legend.fontsize': 12,\n18\t    'figure.dpi': 300,\n19\t    'savefig.dpi': 300,\n20\t    'savefig.bbox': 'tight',\n21\t    'savefig.pad_inches': 0.05,\n22\t    'axes.spines.top': False,\n23\t    'axes.spines.right': False,\n24\t    'text.usetex': False,\n25\t    'mathtext.fontset': 'dejavuserif',\n26\t    'pdf.fonttype': 42,\n27\t})\n28\t\n29\tOI_BLUE = '#0072B2'\n30\tOI_RED = '#D55E00'\n31\tOI_GREY = '#999999'\n32\t\n33\tBASE = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse'\n34\t\n35\t# ---------------------------------------------------------------------------\n36\t# Data\n37\t# ---------------------------------------------------------------------------\n38\tdata_by_alpha = defaultdict(list)\n39\twith open(f'{BASE}/artifacts/dose_response_d120_compiled.csv') as f:\n40\t    reader = csv.DictReader(f)\n41\t    for row in reader:\n42\t        if row['category'] == 'alpha_sweep' and row['dataset'] == 'wikitext':\n43\t            data_by_alpha[float(row['alpha'])].append(float(row['permg_rate']))\n44\t\n45\talphas_data = sorted(data_by_alpha.keys())\n46\tmeans = np.array([np.mean(data_by_alpha[a]) for a in alphas_data])\n47\tstds = np.array([np.std(data_by_alpha[a], ddof=0) for a in alphas_data])\n48\t\n49\t# ---------------------------------------------------------------------------\n50\t# Sigmoid fit (locked params) + bootstrap CI\n51\t# ---------------------------------------------------------------------------\n52\tdef sigmoid(a, k, ac, ym):\n53\t    return ym / (1.0 + np.exp(-k * (a - ac)))\n54\t\n55\tK_FIT, AC_FIT, YM_FIT = 200.0, 0.483, 0.7518\n56\t\n57\tnp.random.seed(42)\n58\tN_BOOT = 1000\n59\tlog_k_mu = np.log(np.sqrt(73.6 * 500))\n60\tlog_k_sig = (np.log(500) - np.log(73.6)) / (2 * 1.96)\n61\tk_samp = np.exp(np.random.normal(log_k_mu, log_k_sig, N_BOOT))\n62\tac_samp = np.random.normal(0.483, (0.558 - 0.425) / (2 * 1.96), N_BOOT)\n63\tym_samp = np.random.normal(0.7518, (0.895 - 0.691) / (2 * 1.96), N_BOOT)\n64\t\n65\talpha_c = np.linspace(0, 1.0, 300)\n66\tcurves = np.array([sigmoid(alpha_c, k, ac, ym)\n67\t                    for k, ac, ym in zip(k_samp, ac_samp, ym_samp)])\n68\tci_lo = np.clip(np.percentile(curves, 2.5, axis=0), 0, 1)\n69\tci_hi = np.clip(np.percentile(curves, 97.5, axis=0), 0, 1)\n70\tfit_y = np.clip(sigmoid(alpha_c, K_FIT, AC_FIT, YM_FIT), 0, 1)\n71\t\n72\t# ---------------------------------------------------------------------------\n73\t# Figure\n74\t# ---------------------------------------------------------------------------\n75\tfig, ax = plt.subplots(figsize=(4.0, 3.2))\n76\t\n77\t# --- regime background bands ---\n78\tregimes = [\n79\t    (0.0,  0.35, '#F0F0F0', 'Blind',          None),\n80\t    (0.35, 0.50, '#E6EEF8', 'Onset',          0.40),\n81\t    (0.50, 0.65, '#FFF5EB', 'Sync-dip',         0.575),\n82\t    (0.65, 1.0,  '#E8F5E9', 'Detection',      None),\n83\t]\n84\tfor x0, x1, col, lab, xoff in regimes:\n85\t    ax.axvspan(x0, x1, color=col, zorder=0)\n86\t    xc = xoff if xoff is not None else (x0 + x1) / 2\n87\t    ax.text(xc, 1.03, lab, transform=ax.get_xaxis_transform(),\n88\t            ha='center', va='bottom', fontsize=9, color='#999999', style='italic',\n89\t            linespacing=0.85, clip_on=False)\n90\t\n91\tfor xb in (0.35, 0.50, 0.65):\n92\t    ax.axvline(xb, color='#DDDDDD', ls=':', lw=0.7, zorder=1)\n93\t\n94\t# --- bootstrap CI band ---\n95\tax.fill_between(alpha_c, ci_lo, ci_hi, color=OI_BLUE, alpha=0.12,\n96\t                label='95% bootstrap CI', zorder=2, lw=0)\n97\t\n98\t# --- sigmoid fit ---\n99\tax.plot(alpha_c, fit_y, color=OI_BLUE, lw=1.5,\n100\t        label=r'Sigmoid ($\\alpha_c\\!=\\!0.483$)', zorder=3)\n101\t\n102\t# --- α_c marker ---\n103\tax.axvline(AC_FIT, color=OI_BLUE, ls='--', lw=0.8, alpha=0.4, zorder=1)\n104\t\n105\t# --- individual seed points ---\n106\trng = np.random.default_rng(42)\n107\tfor a in alphas_data:\n108\t    rates = data_by_alpha[a]\n109\t    n = len(rates)\n110\t    jit = rng.uniform(-0.008, 0.008, n) if n > 1 else np.zeros(1)\n111\t    ax.scatter(a + jit, rates, s=12, c='#555555', alpha=0.45, zorder=4, edgecolors='none')\n112\t\n113\t# --- mean ± SD ---\n114\tax.errorbar(alphas_data, means, yerr=stds, fmt='D', ms=3.5,\n115\t            color='black', ecolor='#555555', elinewidth=0.8, capsize=1.5,\n116\t            capthick=0.7, label='Mean $\\\\pm$ SD', zorder=5, markeredgewidth=0)\n117\t\n118\t# --- α=0.45 highlight marker ---\n119\tax.plot(0.45, 0.0, 'o', ms=6, mfc='none', mec=OI_RED, mew=1.2, zorder=6)\n120\t\n121\t# --- α=0.45 sub-threshold annotation ---\n122\tax.annotate(\n123\t    'sub-threshold gradient\\n$p_{FDR}$ = .059, .091',\n124\t    xy=(0.45, 0.03), xycoords='data',\n125\t    xytext=(0.13, 0.45), textcoords='data',\n126\t    fontsize=10.5, color=OI_RED, ha='center', va='center',\n127\t    arrowprops=dict(arrowstyle='->', color=OI_RED, lw=1.0,\n128\t                    connectionstyle='arc3,rad=-0.15'),\n129\t    bbox=dict(boxstyle='round,pad=0.3', fc='white', ec=OI_RED, lw=0.8, alpha=0.9),\n130\t    zorder=7,\n131\t)\n132\t\n133\t# --- axes ---\n134\tax.set_xlabel(r'Canary fraction ($\\alpha$)')\n135\tax.set_ylabel('PermG detection rate')\n136\tax.set_xlim(-0.02, 1.02)\n137\tax.set_ylim(-0.05, 1.08)\n138\tax.set_xticks([0, 0.25, 0.50, 0.75, 1.0])\n139\t\n140\tax.legend(loc='upper left', framealpha=0.9, edgecolor='#CCCCCC',\n141\t          borderpad=0.3, handlelength=1.5)\n142\t\n143\tplt.tight_layout()\n144\t\n145\t# ---------------------------------------------------------------------------\n146\t# Save\n147\t# ---------------------------------------------------------------------------\n148\toutdir = f'{BASE}/docs/paper/figures'\n149\tfig.savefig(f'{outdir}/fig_dose_response.pdf', format='pdf')\n150\tfig.savefig(f'{outdir}/fig_dose_response.png', format='png', dpi=300)\n151\tplt.close()\n152\tprint(f'Saved: {outdir}/fig_dose_response.pdf')\n153\tprint(f'Saved: {outdir}/fig_dose_response.png')\n154\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6981ba8f-8573-46e0-ac10-53a883edadb9",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "32b785bc-96e5-4c3d-96dd-504bdab6479e",
+            "sourceToolAssistantUUID": "6981ba8f-8573-46e0-ac10-53a883edadb9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T19:16:37.897Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019ZjAbE41BjVSfuLZXESD2A",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_regime_map.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32b785bc-96e5-4c3d-96dd-504bdab6479e",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03482a67-79fe-4236-be8b-e6bc95f147ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "output_tokens": 411,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1243
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 411,
+                    "cache_read_input_tokens": 17071,
+                    "cache_creation_input_tokens": 1243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1243,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T19:16:37.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019ZjAbE41BjVSfuLZXESD2A",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Generate regime map and consensus heatmap figures.\"\"\"\n2\t# Data source: cross_alpha_v6.json, last updated 2026-05-15\n3\t# Remote path: /root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json\n4\timport json\n5\timport os\n6\timport warnings\n7\t\n8\timport numpy as np\n9\timport matplotlib\n10\tmatplotlib.use('Agg')\n11\timport matplotlib.pyplot as plt\n12\timport matplotlib.patches as mpatches\n13\tfrom matplotlib.colors import ListedColormap, BoundaryNorm\n14\timport seaborn as sns\n15\t\n16\tplt.rcParams.update({\n17\t    'font.family': 'sans-serif',\n18\t    'font.sans-serif': ['Arial', 'Helvetica', 'DejaVu Sans'],\n19\t    'font.size': 11,\n20\t    'axes.labelsize': 12,\n21\t    'axes.titlesize': 13,\n22\t    'xtick.labelsize': 10,\n23\t    'ytick.labelsize': 10,\n24\t    'legend.fontsize': 9,\n25\t    'pdf.fonttype': 42,\n26\t    'ps.fonttype': 42,\n27\t    'axes.linewidth': 1.0,\n28\t    'axes.spines.top': False,\n29\t    'axes.spines.right': False,\n30\t})\n31\t\n32\tOUT = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/figures'\n33\t\n34\tJSON_PATHS = [\n35\t    '/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json',\n36\t    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),\n37\t                 'results', 'analysis', 'cross_alpha_v6.json'),\n38\t]\n39\t\n40\tDIRECTION_TO_LABEL = {\n41\t    'entropy->d1': 'Entropy → $d_1$',\n42\t    'entropy->d2': 'Entropy → $d_2$',\n43\t    'ECE->d1':     'ECE → $d_1$',\n44\t    'ECE->d2':     'ECE → $d_2$',\n45\t}\n46\t\n47\tHARDCODED_DATA = {\n48\t    'Entropy → $d_1$': [0.128475, 0.066653, 0.185488, 0.05399,  0.047992],\n49\t    'Entropy → $d_2$': [0.178631, 0.171729, 0.185488, 0.047993, 0.05399],\n50\t    'ECE → $d_1$':     [0.974164, 0.408962, 0.075984, 0.04599,  0.024],\n51\t    'ECE → $d_2$':     [0.622047, 0.185488, 0.128475, 0.04599,  0.04599],\n52\t}\n53\t\n54\t\n55\tdef load_pfdr_from_json():\n56\t    \"\"\"Load p_fdr values from cross_alpha_v6.json granger_causality list.\"\"\"\n57\t    for path in JSON_PATHS:\n58\t        if os.path.isfile(path):\n59\t            with open(path) as f:\n60\t                blob = json.load(f)\n61\t            gc_list = blob['granger_causality']\n62\t            alpha_points = sorted({e['alpha'] for e in gc_list})\n63\t            data = {}\n64\t            for entry in gc_list:\n65\t                label = DIRECTION_TO_LABEL.get(entry['direction'])\n66\t                if label is None:\n67\t                    continue\n68\t                data.setdefault(label, {})\n69\t                data[label][entry['alpha']] = entry['p_fdr']\n70\t            result = {}\n71\t            for label in DIRECTION_TO_LABEL.values():\n72\t                result[label] = [data[label][a] for a in alpha_points]\n73\t            return alpha_points, result\n74\t    return None, None\n75\t\n76\t\n77\t# ── Figure 1: Regime Map ──\n78\t# p_fdr values from cross_alpha_v6.json (BH-corrected, 40 tests)\n79\t\n80\talpha_points, data = load_pfdr_from_json()\n81\tif data is not None:\n82\t    alphas = alpha_points\n83\telse:\n84\t    warnings.warn(\"cross_alpha_v6.json not found; using hardcoded p_fdr values\")\n85\t    alphas = [0.00, 0.25, 0.50, 0.75, 1.00]\n86\t    data = HARDCODED_DATA\n87\t\n88\tcolors = ['#0072B2', '#56B4E9', '#D55E00', '#E69F00']\n89\tmarkers = ['o', 's', '^', 'D']\n90\t\n91\tfig, ax = plt.subplots(figsize=(6, 4))\n92\t\n93\tax.axvspan(0.65, 0.85, color='#E0E0E0', alpha=0.5, zorder=0)\n94\tax.text(0.75, 0.15, 'detectability\\nboundary', ha='center', va='bottom',\n95\t        fontsize=8, color='#666666', style='italic',\n96\t        transform=ax.get_xaxis_transform())\n97\t\n98\tthresh = -np.log10(0.05)\n99\tax.axhline(thresh, color='#888888', linestyle='--', linewidth=1.0, zorder=1)\n100\tax.text(1.02, thresh, 'FDR = 0.05', va='center', ha='left', fontsize=8,\n101\t        color='#888888', transform=ax.get_yaxis_transform())\n102\t\n103\tfor i, (label, pvals) in enumerate(data.items()):\n104\t    pvals = np.array(pvals, dtype=float)\n105\t    neg_log = -np.log10(pvals)\n106\t    mask = ~np.isnan(neg_log)\n107\t    xs = np.array(alphas)[mask]\n108\t    ys = neg_log[mask]\n109\t\n110\t    ax.plot(xs, ys, color=colors[i], marker=markers[i], markersize=7,\n111\t            linewidth=1.8, label=label, zorder=3, markeredgecolor='white',\n112\t            markeredgewidth=0.5)\n113\t\n114\t    if label == 'Entropy → $d_1$':\n115\t        idx75 = alphas.index(0.75)\n116\t        y75 = -np.log10(pvals[idx75])\n117\t        ax.plot(0.75, y75, marker='o', markersize=9, markerfacecolor='none',\n118\t                markeredgecolor=colors[i], markeredgewidth=2.0, zorder=4)\n119\t        ax.annotate('$p$ = 0.054', xy=(0.75, y75), xytext=(-45, -18),\n120\t                    textcoords='offset points', fontsize=8, color=colors[i],\n121\t                    arrowprops=dict(arrowstyle='->', color=colors[i], lw=0.8))\n122\t\n123\t    if label == 'Entropy → $d_2$':\n124\t        idx100 = alphas.index(1.0)\n125\t        y100 = -np.log10(pvals[idx100])\n126\t        ax.plot(1.0, y100, marker='s', markersize=9, markerfacecolor='none',\n127\t                markeredgecolor=colors[i], markeredgewidth=2.0, zorder=4)\n128\t        ax.annotate('$p$ = 0.054', xy=(1.0, y100), xytext=(8, -18),\n129\t                    textcoords='offset points', fontsize=8, color=colors[i],\n130\t                    arrowprops=dict(arrowstyle='->', color=colors[i], lw=0.8))\n131\t\n132\tax.set_xlabel('Contamination level (α)')\n133\tax.set_ylabel('$-\\\\log_{10}(p_{\\\\mathrm{FDR}})$')\n134\tax.set_xticks(alphas)\n135\tax.set_xlim(-0.05, 1.05)\n136\tax.set_ylim(-0.1, 2.0)\n137\tax.legend(loc='upper left', frameon=True, framealpha=0.9, edgecolor='#CCCCCC')\n138\t\n139\tfig.tight_layout()\n140\tfig.savefig(f'{OUT}/regime_map_fdr.pdf', dpi=300, bbox_inches='tight')\n141\tprint(f'Saved {OUT}/regime_map_fdr.pdf')\n142\tplt.close(fig)\n143\t\n144\t# ── Figure 2: Consensus Heatmap ──\n145\t\n146\tmethods = ['Naïve', 'Differenced', 'Threshold', 'Perm. Granger', 'TY']\n147\talpha_labels = ['0.00', '0.25', '0.50', '0.75', '1.00']\n148\t\n149\t# rows = α, cols = methods\n150\tmatrix = np.array([\n151\t    [1.0,   0.375, 0.0,   0.0,   0.0  ],\n152\t    [1.0,   1.0,   1.0,   0.0,   0.375],\n153\t    [1.0,   1.0,   1.0,   0.0,   0.0  ],\n154\t    [1.0,   1.0,   1.0,   0.375, np.nan],\n155\t    [1.0,   1.0,   1.0,   0.75,  0.594],\n156\t])\n157\t\n158\tfig, ax = plt.subplots(figsize=(6, 3.8))\n159\t\n160\t# Mask for NA\n161\tmask = np.isnan(matrix)\n162\t\n163\t# Plot heatmap\n164\tcmap = sns.color_palette('Blues', as_cmap=True)\n165\tsns.heatmap(matrix, ax=ax, mask=mask, cmap=cmap, vmin=0, vmax=1,\n166\t            annot=True, fmt='.2f', linewidths=1.5, linecolor='white',\n167\t            cbar_kws={'label': 'Significance rate', 'shrink': 0.8},\n168\t            xticklabels=methods, yticklabels=alpha_labels,\n169\t            annot_kws={'fontsize': 10})\n170\t\n171\t# Fill NA cell with gray\n172\tfor i in range(matrix.shape[0]):\n173\t    for j in range(matrix.shape[1]):\n174\t        if np.isnan(matrix[i, j]):\n175\t            ax.add_patch(plt.Rectangle((j, i), 1, 1, fill=True,\n176\t                                        facecolor='#D9D9D9', edgecolor='white',\n177\t                                        linewidth=1.5))\n178\t            ax.text(j + 0.5, i + 0.5, 'NA', ha='center', va='center',\n179\t                    fontsize=10, color='#888888', style='italic')\n180\t\n181\tax.set_xlabel('Statistical method')\n182\tax.set_ylabel('Contamination level (α)')\n183\tax.set_title('')\n184\t\n185\tfig.tight_layout()\n186\tfig.savefig(f'{OUT}/consensus_heatmap.pdf', dpi=300, bbox_inches='tight')\n187\tprint(f'Saved {OUT}/consensus_heatmap.pdf')\n188\tplt.close(fig)\n189\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03482a67-79fe-4236-be8b-e6bc95f147ab",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "118094a5-aaee-4a2e-908c-d262b9fb98cd",
+            "sourceToolAssistantUUID": "03482a67-79fe-4236-be8b-e6bc95f147ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T19:16:37.911Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ec5snTFiLas53WE8hcv96k",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_consensus_workflow.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "118094a5-aaee-4a2e-908c-d262b9fb98cd",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37b1MPoW85aq875BgW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e3d44fa0-5390-47ed-b71f-f148322907b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HSBNZAZMG9mdLmikxszZkL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 17071,
+                "output_tokens": 411,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1243
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 411,
+                    "cache_read_input_tokens": 17071,
+                    "cache_creation_input_tokens": 1243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1243,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T19:16:37.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ec5snTFiLas53WE8hcv96k",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Generate Consensus Framework Workflow figure (Fig 5 candidate).\"\"\"\n3\t\n4\timport matplotlib\n5\tmatplotlib.use('Agg')\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.gridspec as gridspec\n8\timport matplotlib.patches as mpatches\n9\timport numpy as np\n10\timport json\n11\timport os\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'DejaVu Sans',\n15\t    'font.size': 11,\n16\t    'axes.titlesize': 13,\n17\t    'axes.labelsize': 12,\n18\t    'xtick.labelsize': 10,\n19\t    'ytick.labelsize': 10,\n20\t    'legend.fontsize': 10,\n21\t    'figure.dpi': 300,\n22\t    'savefig.dpi': 300,\n23\t    'savefig.bbox': 'tight',\n24\t    'savefig.pad_inches': 0.05,\n25\t    'axes.spines.top': False,\n26\t    'axes.spines.right': False,\n27\t    'lines.linewidth': 1.8,\n28\t})\n29\t\n30\tC_FPR = '#D55E00'\n31\tC_FNR = '#0072B2'\n32\tC_SWEET = '#009E73'\n33\tSTAGE_FILLS = ['#E8F4FD', '#A8D8EA', '#56B4E9', '#0072B2']\n34\tSTAGE_EDGES = ['#A8D8EA', '#56B4E9', '#0072B2', '#004C6D']\n35\t\n36\t# ── Load data ──────────────────────────────────────────\n37\tDATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),\n38\t                        'artifacts', 'D040', 'data')\n39\twith open(os.path.join(DATA_DIR, 'filtering_pipeline_data.json')) as f:\n40\t    pipe = json.load(f)\n41\twith open(os.path.join(DATA_DIR, 'fpr_fnr_calibration.json')) as f:\n42\t    cal = json.load(f)\n43\t\n44\t# Panel (a): funnel A stages + conceptual stage 4\n45\tfunnel = pipe['pipeline_funnels']['funnel_A_null_control']['stages'][:]\n46\tfunnel.append({'stage': 4, 'name': 'Multi-seed Consensus',\n47\t               'sig': 0, 'eliminated': 0, 'fpr': 0.0})\n48\tSTAGE_NAMES = [\n49\t    'Stage 1: Naive Scan',\n50\t    'Stage 2: Differencing',\n51\t    'Stage 3: Perm Granger + FDR',\n52\t    'Stage 4: Multi-seed Consensus',\n53\t]\n54\tPITFALLS = [\n55\t    'Spurious regression',\n56\t    'Shared trends',\n57\t    'Non-causal coincidence',\n58\t    'Seed-specific artifacts',\n59\t]\n60\t\n61\t# Panel (b): FPR / FNR\n62\tfpr_k = [d['method_threshold'] for d in cal['fpr_table']['data']]\n63\tfpr_v = [d['fpr'] for d in cal['fpr_table']['data']]\n64\tfnr_v = []\n65\tfor k in range(1, 6):\n66\t    for r in cal['fnr_table']['rows']:\n67\t        if r['method_threshold'] == k and r['seed_threshold'] == 3:\n68\t            fnr_v.append(r['fnr_robust_6'])\n69\t            break\n70\t\n71\t# Panel (c): practical guidance\n72\tguidance = cal['practical_guidance']\n73\t\n74\t# ── Figure ─────────────────────────────────────────────\n75\tfig = plt.figure(figsize=(17, 5.8))\n76\tgs = gridspec.GridSpec(1, 3, width_ratios=[0.40, 0.34, 0.26], wspace=0.25)\n77\t\n78\t# ================================================================\n79\t# Panel (a): Sequential Filtering Pipeline\n80\t# ================================================================\n81\tax_a = fig.add_subplot(gs[0])\n82\tax_a.axis('off')\n83\tax_a.set_xlim(0, 13)\n84\tax_a.set_ylim(-0.5, 5.5)\n85\t\n86\tax_a.text(0.0, 5.15, '(a)', fontsize=13, fontweight='bold')\n87\tax_a.text(0.6, 5.15, 'Sequential Filtering Pipeline (α = 0 null control)',\n88\t          fontsize=11, fontweight='bold')\n89\t\n90\tN_PAIRS = 8\n91\tcx = 8.5\n92\tmax_w = 6.0\n93\tbar_h = 0.7\n94\ty_gap = 1.25\n95\t\n96\tfor i, st in enumerate(funnel):\n97\t    y = 3.9 - i * y_gap\n98\t    sig = st['sig']\n99\t    fpr = st['fpr']\n100\t\n101\t    w = max(sig / N_PAIRS * max_w, 1.0)\n102\t    x0 = cx - w / 2\n103\t\n104\t    rect = mpatches.FancyBboxPatch(\n105\t        (x0, y - bar_h / 2), w, bar_h,\n106\t        boxstyle='round,pad=0.06',\n107\t        facecolor=STAGE_FILLS[i], edgecolor=STAGE_EDGES[i],\n108\t        linewidth=1.5, zorder=2)\n109\t    ax_a.add_patch(rect)\n110\t\n111\t    fpr_pct = f'{fpr:.0%}'\n112\t    if sig > 0:\n113\t        tc = 'white' if i >= 2 else '#222222'\n114\t        ax_a.text(cx, y, f'{sig}/{N_PAIRS} sig   FPR = {fpr_pct}',\n115\t                  ha='center', va='center', fontsize=9, fontweight='bold',\n116\t                  color=tc, zorder=3)\n117\t    else:\n118\t        ax_a.text(cx + w / 2 + 0.25, y,\n119\t                  f'0/{N_PAIRS} sig — FPR = {fpr_pct}',\n120\t                  ha='left', va='center', fontsize=8.5, fontweight='bold',\n121\t                  color=STAGE_EDGES[i], zorder=3)\n122\t\n123\t    ax_a.text(0.15, y + 0.14, STAGE_NAMES[i],\n124\t              ha='left', va='center', fontsize=8.5, fontweight='bold',\n125\t              color='#333333')\n126\t    ax_a.text(0.15, y - 0.18, f'  ↳ {PITFALLS[i]}',\n127\t              ha='left', va='center', fontsize=7.5, fontstyle='italic',\n128\t              color='#888888')\n129\t\n130\t    if i < len(funnel) - 1:\n131\t        nxt_elim = funnel[i + 1]['eliminated']\n132\t        ay0 = y - bar_h / 2 - 0.02\n133\t        ay1 = y - y_gap + bar_h / 2 + 0.02\n134\t        ax_a.annotate('', xy=(cx, ay1), xytext=(cx, ay0),\n135\t                      arrowprops=dict(arrowstyle='->', color='#999999', lw=1.2))\n136\t        if nxt_elim > 0:\n137\t            mid = (ay0 + ay1) / 2\n138\t            ax_a.text(cx + max_w / 2 + 0.6, mid,\n139\t                      f'−{nxt_elim} pairs',\n140\t                      ha='left', va='center', fontsize=7.5,\n141\t                      fontweight='bold', color=C_FPR,\n142\t                      bbox=dict(boxstyle='round,pad=0.12',\n143\t                                facecolor='#FFF0E8', edgecolor=C_FPR,\n144\t                                alpha=0.85, linewidth=0.7))\n145\t\n146\t# ================================================================\n147\t# Panel (b): FPR / FNR Trade-off\n148\t# ================================================================\n149\tax_b = fig.add_subplot(gs[1])\n150\tax_b.set_title('(b) FPR / FNR Trade-off (seed threshold S ≥ 3)',\n151\t               fontweight='bold', loc='left', fontsize=11, pad=8)\n152\t\n153\tax_b.plot(fpr_k, fpr_v, 'o-', color=C_FPR, markersize=8,\n154\t          label='FPR (α = 0)', zorder=3,\n155\t          markeredgecolor='white', markeredgewidth=0.8)\n156\tax_b.plot(fpr_k, fnr_v, 's-', color=C_FNR, markersize=8,\n157\t          label='FNR$_{robust}$ (α = 1, S ≥ 3)', zorder=3,\n158\t          markeredgecolor='white', markeredgewidth=0.8)\n159\t\n160\tax_b.axvline(4, color=C_SWEET, ls='--', lw=1.5, alpha=0.6, zorder=1)\n161\tax_b.axvspan(3.75, 4.25, alpha=0.08, color=C_SWEET, zorder=0)\n162\tax_b.annotate('Sweet spot\\nFPR = 0, FNR = 0',\n163\t              xy=(4, 0.02), xytext=(4.4, 0.42),\n164\t              fontsize=9, fontweight='bold', color=C_SWEET,\n165\t              arrowprops=dict(arrowstyle='->', color=C_SWEET, lw=1.2),\n166\t              bbox=dict(boxstyle='round,pad=0.25', facecolor='#E8F8F0',\n167\t                        edgecolor=C_SWEET, alpha=0.9, linewidth=0.8))\n168\t\n169\tax_b.annotate('FPR cliff\\n37.5% → 0%',\n170\t              xy=(3.5, 0.19), xytext=(1.7, 0.58),\n171\t              fontsize=8, color=C_FPR,\n172\t              arrowprops=dict(arrowstyle='->', color=C_FPR, lw=1.0),\n173\t              bbox=dict(boxstyle='round,pad=0.2', facecolor='#FFF0E0',\n174\t                        edgecolor=C_FPR, alpha=0.85, linewidth=0.7))\n175\t\n176\tax_b.annotate('FNR jump\\n0% → 50%',\n177\t              xy=(4.5, 0.25), xytext=(4.55, 0.75),\n178\t              fontsize=8, color=C_FNR,\n179\t              arrowprops=dict(arrowstyle='->', color=C_FNR, lw=1.0),\n180\t              bbox=dict(boxstyle='round,pad=0.2', facecolor='#E0F0FF',\n181\t                        edgecolor=C_FNR, alpha=0.85, linewidth=0.7))\n182\t\n183\tax_b.set_xlabel('Method Threshold K (out of 5)')\n184\tax_b.set_ylabel('Rate')\n185\tax_b.set_xticks([1, 2, 3, 4, 5])\n186\tax_b.set_ylim(-0.05, 1.1)\n187\tax_b.set_xlim(0.5, 5.5)\n188\tax_b.legend(loc='upper right', framealpha=0.9, edgecolor='#CCCCCC')\n189\tax_b.grid(axis='y', alpha=0.25, lw=0.5)\n190\t\n191\t# ================================================================\n192\t# Panel (c): Practical Guidance (card layout)\n193\t# ================================================================\n194\tax_c = fig.add_subplot(gs[2])\n195\tax_c.axis('off')\n196\tax_c.set_xlim(0, 1)\n197\tax_c.set_ylim(0, 1)\n198\tax_c.set_title('(c) Recommended Configurations',\n199\t               fontweight='bold', loc='left', fontsize=11, pad=8)\n200\t\n201\tUSE_NAMES = ['Exploratory', 'Standard', 'Publication-grade', 'Conservative']\n202\tcard_bg = ['#FAFAFA', '#FAFAFA', '#E8F8F0', '#FAFAFA']\n203\tcard_ec = ['#CCCCCC', '#CCCCCC', C_SWEET, '#CCCCCC']\n204\tcard_lw = [0.7, 0.7, 1.8, 0.7]\n205\t\n206\tn = len(guidance)\n207\tch = 0.195\n208\tgap = 0.04\n209\ttotal = n * ch + (n - 1) * gap\n210\ty0 = 0.52 + total / 2\n211\t\n212\tfor i, g in enumerate(guidance):\n213\t    yt = y0 - i * (ch + gap)\n214\t\n215\t    rect = mpatches.FancyBboxPatch(\n216\t        (0.02, yt - ch), 0.96, ch,\n217\t        boxstyle='round,pad=0.02',\n218\t        facecolor=card_bg[i], edgecolor=card_ec[i], linewidth=card_lw[i])\n219\t    ax_c.add_patch(rect)\n220\t\n221\t    icon = '★' if i == 2 else '●'\n222\t    fw = 'bold' if i == 2 else 'normal'\n223\t    tc = '#222222' if i == 2 else '#444444'\n224\t\n225\t    ax_c.text(0.07, yt - 0.025, f'{icon} {USE_NAMES[i]}',\n226\t              fontsize=8.5, fontweight=fw, color=tc, va='top')\n227\t    ax_c.text(0.07, yt - 0.072, g['config'],\n228\t              fontsize=7, color='#777777', va='top')\n229\t\n230\t    fpr_s = f\"{g['fpr']:.0%}\" if g['fpr'] > 0 else '0%'\n231\t    fnr_val = g['fnr_robust_6']\n232\t    fnr_s = f\"{fnr_val:.1%}\" if fnr_val > 0 else '0%'\n233\t    ax_c.text(0.07, yt - 0.12, f'FPR {fpr_s}    FNR {fnr_s}',\n234\t              fontsize=7.5, color='#555555', va='top', fontweight=fw)\n235\t\n236\t# ── Save ───────────────────────────────────────────────\n237\tout_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),\n238\t                       'artifacts', 'figures')\n239\tos.makedirs(out_dir, exist_ok=True)\n240\tpdf_path = os.path.join(out_dir, 'consensus_workflow.pdf')\n241\tpng_path = os.path.join(out_dir, 'consensus_workflow.png')\n242\tfig.savefig(pdf_path, format='pdf')\n243\tfig.savefig(png_path, format='png', dpi=200)\n244\tplt.close(fig)\n245\tprint(f'PDF: {pdf_path}')\n246\tprint(f'PNG: {png_path}')\n247\tprint(f'FPR data: {fpr_v}')\n248\tprint(f'FNR data (S>=3): {fnr_v}')\n249\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3d44fa0-5390-47ed-b71f-f148322907b3",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "f8a6ec8d-29e5-4074-9fca-622bfe9965b8",
+            "sourceToolAssistantUUID": "e3d44fa0-5390-47ed-b71f-f148322907b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T19:16:39.300Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for any additional plot or figure generation scripts that might contain more hardcoded values:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8a6ec8d-29e5-4074-9fca-622bfe9965b8",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37oUhcuE7A54mm6c4A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8f60f1ae-2504-414c-9938-bc3f1f96f787",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HpvK5qkFfWf5qdgEhV4rXj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 16080,
+                "cache_read_input_tokens": 18314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16080,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T19:16:40.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YRyjztEyaDNCPFcLKxdnFR",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/**/gen_*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f60f1ae-2504-414c-9938-bc3f1f96f787",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37oUhcuE7A54mm6c4A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5b4edcad-4645-4b55-8737-e7f2ec74841a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HpvK5qkFfWf5qdgEhV4rXj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 16080,
+                "cache_read_input_tokens": 18314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16080,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T19:16:40.222Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YRyjztEyaDNCPFcLKxdnFR",
+              "type": "tool_result",
+              "content": "figures/paper/gen_fig_differencing_dmax.py\nscripts/gen_single_method_table.py\nfigures/paper/gen_dose_response.py\ndocs/paper/figures/gen_sr_framework.py\nfigures/paper/gen_consensus_heatmap.py\nfigures/paper/gen_fig_dose_response.py\ndocs/paper/figures/gen_fig_intervention.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b4edcad-4645-4b55-8737-e7f2ec74841a",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "9d3c5886-11df-4adb-bbda-16faf2347f40",
+            "sourceToolAssistantUUID": "5b4edcad-4645-4b55-8737-e7f2ec74841a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T19:16:40.559Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018eKoMZLD9whFmEqbbqay9Q",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/**/fig*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d3c5886-11df-4adb-bbda-16faf2347f40",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37oUhcuE7A54mm6c4A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ddbfcaff-76b4-41b5-be29-32d8d70f38c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HpvK5qkFfWf5qdgEhV4rXj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 16080,
+                "cache_read_input_tokens": 18314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16080,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T19:16:40.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018eKoMZLD9whFmEqbbqay9Q",
+              "type": "tool_result",
+              "content": "scripts/fig_sr_framework.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ddbfcaff-76b4-41b5-be29-32d8d70f38c6",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "2a59440b-d0f5-44fb-a563-6522323d7259",
+            "sourceToolAssistantUUID": "ddbfcaff-76b4-41b5-be29-32d8d70f38c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T19:16:40.625Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WTxGGwotMXzN8cf5JNevaA",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/**/plot*.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2a59440b-d0f5-44fb-a563-6522323d7259",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL37oUhcuE7A54mm6c4A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d89ebdeb-ff35-48cc-a938-a8397030eea7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HpvK5qkFfWf5qdgEhV4rXj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 16080,
+                "cache_read_input_tokens": 18314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16080,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T19:16:40.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WTxGGwotMXzN8cf5JNevaA",
+              "type": "tool_result",
+              "content": "scripts/plot_regime_map.py\nscripts/plot_consensus_workflow.py\nartifacts/figures/plot_regime_map.py\n.venv/lib/python3.14/site-packages/statsmodels/graphics/plot_grids.py\n.venv/lib/python3.14/site-packages/statsmodels/graphics/plottools.py\n.venv/lib/python3.14/site-packages/statsmodels/multivariate/plots.py\n.venv/lib/python3.14/site-packages/statsmodels/tsa/vector_ar/plotting.py\nartifacts/phase_space/plot_trajectory.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d89ebdeb-ff35-48cc-a938-a8397030eea7",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "f556f62d-20f8-456e-a04d-67acbfaa0cf8",
+            "sourceToolAssistantUUID": "d89ebdeb-ff35-48cc-a938-a8397030eea7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T19:16:42.905Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the additional scripts I found:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f556f62d-20f8-456e-a04d-67acbfaa0cf8",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "63d6e7d4-3431-4252-a58d-8dd80f8c41f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T19:16:43.718Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014dcDJxYtAZC77NdR2S9Gah",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_sr_framework.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63d6e7d4-3431-4252-a58d-8dd80f8c41f6",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "77e913c6-b001-4871-9233-7c6153cfd615",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T19:16:43.725Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014dcDJxYtAZC77NdR2S9Gah",
+              "type": "tool_result",
+              "content": "1\timport numpy as np\n2\timport matplotlib.pyplot as plt\n3\timport matplotlib as mpl\n4\timport matplotlib.transforms as mtransforms\n5\tfrom matplotlib.patches import FancyBboxPatch\n6\t\n7\tmpl.rcParams.update({\n8\t    'font.family': 'serif',\n9\t    'font.serif': ['Liberation Serif', 'Times New Roman', 'DejaVu Serif'],\n10\t    'mathtext.fontset': 'cm',\n11\t    'pdf.fonttype': 42,\n12\t    'axes.linewidth': 0.8,\n13\t    'xtick.major.width': 0.6,\n14\t    'ytick.major.width': 0.6,\n15\t    'xtick.major.size': 3,\n16\t    'ytick.major.size': 3,\n17\t    'xtick.direction': 'in',\n18\t    'ytick.direction': 'in',\n19\t    'axes.grid': False,\n20\t    'font.size': 8,\n21\t    'axes.labelsize': 8.5,\n22\t    'axes.titlesize': 9,\n23\t})\n24\t\n25\talpha = np.linspace(0, 1, 500)\n26\t\n27\tS = alpha ** 0.8\n28\t\n29\tR_base = 1 / (1 + np.exp(-15 * (alpha - 0.30)))\n30\tR_dip = 0.55 * np.exp(-((alpha - 0.58) / 0.055) ** 2)\n31\tR = R_base - R_dip\n32\tR = np.clip(R, 0, 1)\n33\t\n34\tdetection = S * R\n35\t\n36\tregime_bounds = [0, 0.35, 0.52, 0.72, 1.0]\n37\tregime_colors_bg = ['#eeeeee', '#d0e1f2', '#f2d0d0', '#d0ecd0']\n38\tregime_colors_bar = ['#c0c0c0', '#8db3d9', '#d98b8b', '#8bc98b']\n39\tregime_labels = ['Blind', 'Onset', 'Collapse', 'Detection']\n40\t\n41\tfig = plt.figure(figsize=(7.2, 3.0))\n42\t\n43\t# Create gridspec: panel(c) needs extra space above for regime bar\n44\tgs = fig.add_gridspec(2, 3, height_ratios=[0.08, 1],\n45\t                       left=0.065, right=0.975, bottom=0.15, top=0.88,\n46\t                       wspace=0.36, hspace=0.05)\n47\t\n48\tax_a = fig.add_subplot(gs[:, 0])  # panel a spans both rows\n49\tax_b = fig.add_subplot(gs[:, 1])  # panel b spans both rows\n50\tax_bar = fig.add_subplot(gs[0, 2])  # regime bar\n51\tax_c = fig.add_subplot(gs[1, 2])   # panel c\n52\t\n53\t# --- Panel (a): Signal Strength S(α) ---\n54\tax = ax_a\n55\tax.plot(alpha, S, color='#2166ac', linewidth=1.8, zorder=3)\n56\tax.set_xlabel(r'Canary fraction $\\alpha$')\n57\tax.set_ylabel(r'Signal strength $S(\\alpha)$')\n58\tax.set_xlim(0, 1)\n59\tax.set_ylim(-0.05, 1.12)\n60\tax.set_xticks([0, 0.25, 0.50, 0.75, 1.0])\n61\tax.set_yticks([0, 0.25, 0.50, 0.75, 1.0])\n62\tax.text(0.02, 1.03, '(a)', transform=ax.transAxes, fontsize=10, fontweight='bold', va='bottom')\n63\t\n64\tax.annotate('Signal grows\\nwith contamination',\n65\t            xy=(0.7, 0.7**0.8), xytext=(0.22, 0.88),\n66\t            fontsize=6.5, fontstyle='italic', color='#333333',\n67\t            arrowprops=dict(arrowstyle='->', color='#666666', lw=0.7),\n68\t            ha='center')\n69\t\n70\t# --- Panel (b): Detection Reliability R(α) ---\n71\tax = ax_b\n72\tax.plot(alpha, R, color='#d6604d', linewidth=1.8, zorder=3)\n73\tax.set_xlabel(r'Canary fraction $\\alpha$')\n74\tax.set_ylabel(r'Detection reliability $R(\\alpha)$')\n75\tax.set_xlim(0, 1)\n76\tax.set_ylim(-0.05, 1.12)\n77\tax.set_xticks([0, 0.25, 0.50, 0.75, 1.0])\n78\tax.set_yticks([0, 0.25, 0.50, 0.75, 1.0])\n79\tax.text(0.02, 1.03, '(b)', transform=ax.transAxes, fontsize=10, fontweight='bold', va='bottom')\n80\t\n81\tdip_idx = np.argmin(R[250:400]) + 250\n82\tdip_alpha = alpha[dip_idx]\n83\tdip_R = R[dip_idx]\n84\tax.annotate('Synchronization\\ncollapse',\n85\t            xy=(dip_alpha, dip_R), xytext=(0.80, 0.22),\n86\t            fontsize=6.5, fontstyle='italic', color='#b2182b',\n87\t            arrowprops=dict(arrowstyle='->', color='#b2182b', lw=0.7),\n88\t            ha='center')\n89\t\n90\t# --- Regime bar above panel (c) ---\n91\tax_bar.set_xlim(0, 1)\n92\tax_bar.set_ylim(0, 1)\n93\tax_bar.axis('off')\n94\t\n95\tfor i, (lb, rb) in enumerate(zip(regime_bounds[:-1], regime_bounds[1:])):\n96\t    mid = (lb + rb) / 2\n97\t    ax_bar.axvspan(lb, rb, ymin=0.15, ymax=0.85,\n98\t                   facecolor=regime_colors_bar[i], edgecolor='white',\n99\t                   linewidth=1.2, alpha=0.65)\n100\t    ax_bar.text(mid, 0.5, regime_labels[i],\n101\t                ha='center', va='center', fontsize=5.5, fontweight='semibold',\n102\t                color='#111111')\n103\t\n104\tax_bar.text(-0.07, 0.5, '(c)', fontsize=10, fontweight='bold', va='center',\n105\t            transform=ax_bar.transAxes, ha='right')\n106\t\n107\t# --- Panel (c): Detection Rate = S(α) × R(α) ---\n108\tax = ax_c\n109\tymax = detection.max() * 1.12\n110\t\n111\tfor i in range(4):\n112\t    ax.axvspan(regime_bounds[i], regime_bounds[i+1],\n113\t               color=regime_colors_bg[i], alpha=0.5, zorder=0)\n114\t\n115\tfor b in regime_bounds[1:-1]:\n116\t    ax.axvline(b, color='#aaaaaa', linewidth=0.5, linestyle='--', zorder=1)\n117\t\n118\tax.plot(alpha, detection, color='#4a1486', linewidth=1.8, zorder=3)\n119\tax.set_xlabel(r'Canary fraction $\\alpha$')\n120\tax.set_ylabel(r'Detection rate $S \\times R$')\n121\tax.set_xlim(0, 1)\n122\tax.set_ylim(-0.02, ymax)\n123\tax.set_xticks([0, 0.25, 0.50, 0.75, 1.0])\n124\t\n125\tax.text(0.22, ymax * 0.90, r'$D(\\alpha) = S(\\alpha) \\cdot R(\\alpha)$',\n126\t        fontsize=7, ha='center', va='top', color='#4a1486',\n127\t        bbox=dict(boxstyle='round,pad=0.25', facecolor='white', edgecolor='#4a1486',\n128\t                  alpha=0.9, linewidth=0.5))\n129\t\n130\tout_base = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/fig_sr_framework'\n131\tfig.savefig(f'{out_base}.pdf', dpi=300, bbox_inches='tight')\n132\tfig.savefig(f'{out_base}.png', dpi=300, bbox_inches='tight')\n133\tplt.close()\n134\tprint(f'Saved: {out_base}.pdf and .png')\n135\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77e913c6-b001-4871-9233-7c6153cfd615",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "7b292581-c48f-4e99-aa2d-7a7718aa079f",
+            "sourceToolAssistantUUID": "77e913c6-b001-4871-9233-7c6153cfd615",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T19:16:43.829Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NYpMXXc8cUosPjK1ivFL5N",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_consensus_heatmap.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b292581-c48f-4e99-aa2d-7a7718aa079f",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e4d83788-3f8e-4980-b3cb-2b9d48ee1619",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T19:16:43.938Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NYpMXXc8cUosPjK1ivFL5N",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Consensus heatmap: 7 rows (5 methods + K≥3 + K≥4) × 12 α values.\n3\tData format: fraction strings like '6/8'.\"\"\"\n4\t\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\timport numpy as np\n9\timport csv\n10\timport sys\n11\timport os\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'DejaVu Sans',\n15\t    'font.size': 13,\n16\t    'axes.titlesize': 14,\n17\t    'axes.labelsize': 14,\n18\t    'xtick.labelsize': 12,\n19\t    'ytick.labelsize': 12,\n20\t    'legend.fontsize': 12,\n21\t    'figure.dpi': 300,\n22\t    'savefig.dpi': 300,\n23\t    'savefig.bbox': 'tight',\n24\t    'savefig.pad_inches': 0.05,\n25\t    'pdf.fonttype': 42,\n26\t})\n27\t\n28\tdef parse_frac(s):\n29\t    s = s.strip()\n30\t    if '/' in s:\n31\t        num, den = s.split('/')\n32\t        return int(num) / int(den)\n33\t    return float(s)\n34\t\n35\tcsv_path = sys.argv[1] if len(sys.argv) > 1 else 'consensus_heatmap_data.csv'\n36\tout_dir = sys.argv[2] if len(sys.argv) > 2 else '.'\n37\t\n38\trows = []\n39\twith open(csv_path) as f:\n40\t    reader = csv.DictReader(f)\n41\t    for r in reader:\n42\t        rows.append(r)\n43\t\n44\talphas = [float(r['alpha']) for r in rows]\n45\tn = len(alphas)\n46\talpha_labels = [f'{a:.2f}' for a in alphas]\n47\t\n48\tmethod_keys = ['naive_fwd', 'diff_fwd', 'threshold_fwd', 'permG_fwd', 'ty_fwd', 'K_ge3', 'K_ge4']\n49\tmethod_labels = ['Naive XCorr', 'Diff. XCorr', 'Threshold (3σ)', 'Perm. Granger', 'Toda–Yamamoto',\n50\t                  '$K{\\\\geq}3$ consensus', '$K{\\\\geq}4$ consensus']\n51\t\n52\tdata = np.array([[parse_frac(r[k]) for r in rows] for k in method_keys]) * 100\n53\tregimes = [r['regime'] for r in rows]\n54\t\n55\tfig, ax = plt.subplots(figsize=(7.5, 3.8))\n56\t\n57\tcmap = plt.cm.YlOrRd\n58\tim = ax.imshow(data, cmap=cmap, aspect='auto', vmin=0, vmax=100, interpolation='nearest')\n59\t\n60\tfor i in range(len(method_labels)):\n61\t    for j in range(n):\n62\t        val = data[i, j]\n63\t        color = 'white' if val > 65 else 'black'\n64\t        ax.text(j, i, f'{val:.0f}', ha='center', va='center',\n65\t                fontsize=10.5, color=color, fontweight='bold' if val >= 75 else 'normal')\n66\t\n67\tax.set_yticks(range(len(method_labels)))\n68\tax.set_yticklabels(method_labels)\n69\tax.set_xticks(range(n))\n70\tax.set_xticklabels(alpha_labels)\n71\tax.set_xlabel('Contamination level (α)')\n72\t\n73\tax.axhline(4.5, color='white', linewidth=2.5)\n74\t\n75\tregime_colors = {'blind_zone': '#FDEDEC', 'onset': '#FEF9E7', 'sync_collapse': '#F4ECF7', 'detection': '#EBF5FB'}\n76\tregime_names = {'blind_zone': 'Blind spot', 'onset': 'Onset', 'sync_collapse': 'Sync.', 'detection': 'Detection'}\n77\tfor j, reg in enumerate(regimes):\n78\t    color = regime_colors.get(reg, '#FFFFFF')\n79\t    rect = plt.Rectangle((j - 0.5, -0.9), 1, 0.4, facecolor=color, edgecolor='none',\n80\t                           clip_on=False, zorder=10)\n81\t    ax.add_patch(rect)\n82\t\n83\tregime_spans = {}\n84\tfor j, reg in enumerate(regimes):\n85\t    regime_spans.setdefault(reg, []).append(j)\n86\tfor reg, cols in regime_spans.items():\n87\t    mid = (min(cols) + max(cols)) / 2\n88\t    ax.text(mid, -0.7, regime_names.get(reg, reg), ha='center', va='center',\n89\t            fontsize=10, color='#555555', fontstyle='italic', clip_on=False, zorder=11)\n90\t\n91\t# PermG FPR=0 in blind zone\n92\tblind_cols = [j for j, r in enumerate(regimes) if r == 'blind_zone']\n93\tif blind_cols:\n94\t    rect = plt.Rectangle((min(blind_cols)-0.5, 3-0.5), len(blind_cols), 1,\n95\t                           linewidth=1.8, edgecolor='#009E73', facecolor='none',\n96\t                           linestyle='--', zorder=10)\n97\t    ax.add_patch(rect)\n98\t\n99\t# K≥3 maintained at 6/8 in sync_collapse\n100\tidx_060 = [j for j, a in enumerate(alphas) if abs(a - 0.60) < 0.01]\n101\tif idx_060:\n102\t    j = idx_060[0]\n103\t    rect2 = plt.Rectangle((j-0.5, 5-0.5), 1, 1,\n104\t                            linewidth=1.8, edgecolor='#D55E00', facecolor='none',\n105\t                            linestyle='-', zorder=10)\n106\t    ax.add_patch(rect2)\n107\t\n108\t# TY=100% at α=0.60\n109\tif idx_060:\n110\t    j = idx_060[0]\n111\t    rect3 = plt.Rectangle((j-0.5, 4-0.5), 1, 1,\n112\t                            linewidth=1.5, edgecolor='#D55E00', facecolor='none',\n113\t                            linestyle=':', zorder=10)\n114\t    ax.add_patch(rect3)\n115\t\n116\tcbar = plt.colorbar(im, ax=ax, fraction=0.03, pad=0.04, label='Detection rate (%)')\n117\t\n118\tax.set_title('Method × regime consensus heatmap (Pythia-410M, fp32, 12 contamination levels)',\n119\t             fontsize=13, pad=14)\n120\t\n121\tplt.tight_layout()\n122\t\n123\tpdf_path = os.path.join(out_dir, 'consensus_heatmap.pdf')\n124\tpng_path = os.path.join(out_dir, 'consensus_heatmap.png')\n125\tplt.savefig(pdf_path)\n126\tplt.savefig(png_path)\n127\tplt.close()\n128\tprint(f'Saved: {pdf_path}')\n129\tprint(f'Saved: {png_path}')\n130\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4d83788-3f8e-4980-b3cb-2b9d48ee1619",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "33591c0c-124b-4cc9-9bef-746e0d4f599b",
+            "sourceToolAssistantUUID": "e4d83788-3f8e-4980-b3cb-2b9d48ee1619",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T19:16:44.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011CJGV2WYGFWmSxU92E5f3D",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_dose_response.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33591c0c-124b-4cc9-9bef-746e0d4f599b",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18bc12a7-4102-4952-aab9-9f1d263c4e47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T19:16:44.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011CJGV2WYGFWmSxU92E5f3D",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Dose-response figure: Single panel — PermG fwd detection rate with 4-regime bands.\n3\tData format: fraction strings like '6/8'.\"\"\"\n4\t\n5\timport matplotlib\n6\tmatplotlib.use('Agg')\n7\timport matplotlib.pyplot as plt\n8\timport numpy as np\n9\timport csv\n10\timport sys\n11\timport os\n12\t\n13\tplt.rcParams.update({\n14\t    'font.family': 'DejaVu Sans',\n15\t    'font.size': 11,\n16\t    'axes.titlesize': 12,\n17\t    'axes.labelsize': 11,\n18\t    'xtick.labelsize': 10,\n19\t    'ytick.labelsize': 10,\n20\t    'legend.fontsize': 9,\n21\t    'figure.dpi': 300,\n22\t    'savefig.dpi': 300,\n23\t    'savefig.bbox': 'tight',\n24\t    'savefig.pad_inches': 0.05,\n25\t    'axes.spines.top': False,\n26\t    'axes.spines.right': False,\n27\t    'lines.linewidth': 1.8,\n28\t})\n29\t\n30\tdef parse_frac(s):\n31\t    s = s.strip()\n32\t    if '/' in s:\n33\t        num, den = s.split('/')\n34\t        return int(num) / int(den)\n35\t    return float(s)\n36\t\n37\tcsv_path = sys.argv[1] if len(sys.argv) > 1 else 'dose_response_5method_regime.csv'\n38\tout_dir = sys.argv[2] if len(sys.argv) > 2 else '.'\n39\t\n40\trows = []\n41\twith open(csv_path) as f:\n42\t    reader = csv.DictReader(f)\n43\t    for r in reader:\n44\t        if 'RUNNING' in str(r.get('regime', '')):\n45\t            continue\n46\t        rows.append(r)\n47\t\n48\talphas = np.array([float(r['alpha']) for r in rows])\n49\t\n50\t# Try both possible column names\n51\tpermG_col = 'permG_fwd' if 'permG_fwd' in rows[0] else 'permG_fwd_rate'\n52\tpermG = np.array([parse_frac(r[permG_col]) for r in rows])\n53\tregimes = [r['regime'] for r in rows]\n54\t\n55\tn = len(alphas)\n56\tx_idx = np.arange(n)\n57\talpha_labels = [f'{a:.2f}' for a in alphas]\n58\t\n59\tregime_map = {}\n60\tfor i, reg in enumerate(regimes):\n61\t    regime_map.setdefault(reg, []).append(i)\n62\t\n63\tfig, ax = plt.subplots(figsize=(7.0, 3.2))\n64\t\n65\t# 4-regime background bands\n66\tblind_indices = regime_map.get('blind_zone', regime_map.get('null', []))\n67\tonset_indices = regime_map.get('onset', [])\n68\tsync_indices = regime_map.get('sync_collapse', [])\n69\tdet_indices = regime_map.get('detection', [])\n70\t\n71\tband_specs = []\n72\tif blind_indices:\n73\t    band_specs.append((min(blind_indices)-0.5, max(blind_indices)+0.5, '#FDEDEC', 'Blind spot\\n(α ≤ 0.40)'))\n74\tif onset_indices:\n75\t    band_specs.append((min(onset_indices)-0.5, max(onset_indices)+0.5, '#FEF9E7', 'Onset'))\n76\tif sync_indices:\n77\t    band_specs.append((min(sync_indices)-0.5, max(sync_indices)+0.5, '#F4ECF7', 'Sync.\\ncollapse'))\n78\tif det_indices:\n79\t    band_specs.append((min(det_indices)-0.5, max(det_indices)+0.5, '#EBF5FB', 'Detection\\nzone'))\n80\t\n81\tfor lo, hi, color, label in band_specs:\n82\t    ax.axvspan(lo, hi, alpha=0.3, color=color, zorder=0)\n83\t    mid = (lo + hi) / 2\n84\t    ax.text(mid, 108, label, va='bottom', ha='center', fontsize=7.5,\n85\t            color='#555555', fontstyle='italic')\n86\t\n87\t# Main PermG line\n88\tax.plot(x_idx, permG * 100, 'o-', color='#0072B2', markersize=8,\n89\t        markerfacecolor='#0072B2', markeredgecolor='white', markeredgewidth=1.2,\n90\t        zorder=5, label='PermG fwd')\n91\t\n92\t# Highlight α=0.60 dip\n93\tidx_060 = [i for i, a in enumerate(alphas) if abs(a - 0.60) < 0.01]\n94\tif idx_060:\n95\t    i = idx_060[0]\n96\t    ax.plot(x_idx[i], permG[i] * 100, 'D', color='#D55E00', markersize=11,\n97\t            markeredgecolor='white', markeredgewidth=1.2, zorder=6)\n98\t    ax.annotate(f'{permG[i]*100:.1f}%\\n(sync. collapse)',\n99\t                xy=(x_idx[i], permG[i]*100),\n100\t                xytext=(x_idx[i]+1.2, permG[i]*100 + 18),\n101\t                fontsize=8.5, color='#D55E00',\n102\t                arrowprops=dict(arrowstyle='->', color='#D55E00', lw=1.0))\n103\t\n104\t# Annotate α=0.50 onset\n105\tidx_050 = [i for i, a in enumerate(alphas) if abs(a - 0.50) < 0.01]\n106\tif idx_050:\n107\t    i = idx_050[0]\n108\t    ax.annotate(f'{permG[i]*100:.1f}%\\n(onset)',\n109\t                xy=(x_idx[i], permG[i]*100),\n110\t                xytext=(x_idx[i]-1.8, permG[i]*100 + 15),\n111\t                fontsize=8.5, color='#0072B2',\n112\t                arrowprops=dict(arrowstyle='->', color='#0072B2', lw=1.0))\n113\t\n114\tax.set_xticks(x_idx)\n115\tax.set_xticklabels(alpha_labels)\n116\tax.set_xlabel('Contamination level (α)')\n117\tax.set_ylabel('Detection rate (%)')\n118\tax.set_ylim(-5, 125)\n119\tax.set_xlim(-0.5, n - 0.5)\n120\tax.legend(loc='upper left', framealpha=0.9)\n121\tax.grid(True, alpha=0.15, zorder=1)\n122\t\n123\tplt.tight_layout()\n124\t\n125\tpdf_path = os.path.join(out_dir, 'fig_dose_response.pdf')\n126\tpng_path = os.path.join(out_dir, 'fig_dose_response.png')\n127\tplt.savefig(pdf_path)\n128\tplt.savefig(png_path)\n129\tplt.close()\n130\tprint(f'Saved: {pdf_path}')\n131\tprint(f'Saved: {png_path}')\n132\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18bc12a7-4102-4952-aab9-9f1d263c4e47",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "bfae52bf-e2d4-4a20-806e-04554d0090b0",
+            "sourceToolAssistantUUID": "18bc12a7-4102-4952-aab9-9f1d263c4e47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T19:16:44.311Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JVuNBeKiwxacYBiLqW7GuT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/fig_sr_framework.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfae52bf-e2d4-4a20-806e-04554d0090b0",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a66f4494-5fc8-4460-a74c-cadba7761d02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T19:16:44.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JVuNBeKiwxacYBiLqW7GuT",
+              "type": "tool_result",
+              "content": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport numpy as np\n5\t\n6\tplt.rcParams.update({\n7\t    'font.family': 'DejaVu Sans',\n8\t    'font.size': 9,\n9\t    'axes.labelsize': 9,\n10\t    'xtick.labelsize': 8,\n11\t    'ytick.labelsize': 8,\n12\t    'figure.dpi': 300,\n13\t    'savefig.dpi': 300,\n14\t    'savefig.bbox': 'tight',\n15\t    'savefig.pad_inches': 0.05,\n16\t    'axes.spines.top': False,\n17\t    'axes.spines.right': False,\n18\t    'lines.linewidth': 2.0,\n19\t})\n20\t\n21\talpha = np.linspace(0, 1.02, 1000)\n22\t\n23\t# S(α): monotonic sigmoid\n24\ts = 1.0 / (1.0 + np.exp(-22 * (alpha - 0.47)))\n25\t\n26\t# R(α): flat with sync-collapse dip at α≈0.60\n27\tr = 0.88 - 0.62 * np.exp(-((alpha - 0.60) ** 2) / (2 * 0.055 ** 2))\n28\t\n29\tsr = s * r\n30\t\n31\t# Regime boundaries\n32\tB1, B2, B3 = 0.45, 0.55, 0.68\n33\tbounds = [0, B1, B2, B3, 1.02]\n34\tbg = ['#e8e8e8', '#c8e6c9', '#ffcdd2', '#bbdefb']\n35\tthreshold = 0.37\n36\t\n37\t# Staggered regime labels: (x_data, y_axes, label, fontsize)\n38\t# Alternate y heights so adjacent labels don't overlap horizontally\n39\tregime_labels = [\n40\t    (0.225, 1.025, 'Blind',     6.5),\n41\t    (0.50,  1.085, 'Onset',     6.0),\n42\t    (0.615, 1.025, 'Sync col.', 5.8),\n43\t    (0.85,  1.085, 'Detection', 6.5),\n44\t]\n45\t\n46\tfig, (ax_a, ax_b, ax_c) = plt.subplots(1, 3, figsize=(6.5, 2.5))\n47\tplt.subplots_adjust(wspace=0.33, top=0.82, bottom=0.19, left=0.065, right=0.975)\n48\t\n49\t# ── Shared setup ──\n50\tfor ax in (ax_a, ax_b, ax_c):\n51\t    for i in range(4):\n52\t        ax.axvspan(bounds[i], bounds[i + 1], color=bg[i], alpha=0.35, lw=0, zorder=0)\n53\t    for b in (B1, B2, B3):\n54\t        ax.axvline(b, color='#bbbbbb', ls='--', lw=0.6, zorder=1)\n55\t    ax.set_xlim(0, 1.02)\n56\t    ax.set_ylim(-0.03, 1.08)\n57\t    ax.set_xticks([0, 0.25, 0.50, 0.75, 1.0])\n58\t    ax.set_xlabel(r'Contamination $\\alpha$', fontsize=8)\n59\t    for x, y, lab, fs in regime_labels:\n60\t        ax.text(x, y, lab, transform=ax.get_xaxis_transform(),\n61\t                ha='center', va='bottom', fontsize=fs, fontstyle='italic',\n62\t                color='#555555', clip_on=False)\n63\t\n64\t# ── Panel A: S(α) ──\n65\tax_a.plot(alpha, s, color='#0072B2', lw=2.0, zorder=3)\n66\tax_a.set_ylabel('Magnitude (schematic)', fontsize=7.5)\n67\tax_a.set_title(r'(a)  Signal strength $\\mathcal{S}(\\alpha)$',\n68\t               fontsize=9, fontweight='bold', pad=22, loc='left')\n69\tax_a.text(0.15, 0.14, 'weak', fontsize=7, color='#0072B2', ha='center',\n70\t          fontstyle='italic', alpha=0.7)\n71\tax_a.text(0.88, 0.78, 'strong', fontsize=7, color='#0072B2', ha='center',\n72\t          fontstyle='italic', alpha=0.7)\n73\t\n74\t# ── Panel B: R(α) ──\n75\tax_b.plot(alpha, r, color='#D55E00', lw=2.0, zorder=3)\n76\tax_b.set_title(r'(b)  Resolving power $\\mathcal{R}(\\alpha)$',\n77\t               fontsize=9, fontweight='bold', pad=22, loc='left')\n78\tax_b.annotate('', xy=(0.60, 0.30), xytext=(0.60, 0.56),\n79\t              arrowprops=dict(arrowstyle='->', color='#D55E00', lw=1.2,\n80\t                              shrinkA=0, shrinkB=2))\n81\tax_b.text(0.62, 0.58, 'sync-collapse\\ndip', fontsize=6.5, color='#D55E00',\n82\t          ha='left', va='bottom', fontstyle='italic', linespacing=0.85)\n83\t\n84\t# ── Panel C: S×R ──\n85\tax_c.plot(alpha, sr, color='#222222', lw=2.2, zorder=3)\n86\tax_c.axhline(threshold, color='#888888', ls=':', lw=1.2, zorder=2)\n87\tax_c.set_title(r'(c)  Detectability $\\mathcal{S}\\!\\times\\!\\mathcal{R}$',\n88\t               fontsize=9, fontweight='bold', pad=22, loc='left')\n89\t\n90\tax_c.text(1.04, threshold, r'$\\tau_{\\mathrm{det}}$', fontsize=8,\n91\t          color='#666666', va='center', ha='left', clip_on=False)\n92\t\n93\tax_c.fill_between(alpha, sr, threshold, where=(sr >= threshold),\n94\t                  color='#0072B2', alpha=0.10, zorder=2)\n95\tmask_sc = (alpha >= B1) & (alpha <= B3) & (sr < threshold)\n96\tax_c.fill_between(alpha, sr, threshold, where=mask_sc,\n97\t                  color='#D55E00', alpha=0.08, zorder=2)\n98\t\n99\t# callout: onset peak\n100\ti_pk = np.argmax(sr[(alpha >= 0.47) & (alpha <= 0.54)])\n101\ta_pk = alpha[(alpha >= 0.47) & (alpha <= 0.54)][i_pk]\n102\tv_pk = sr[(alpha >= 0.47) & (alpha <= 0.54)][i_pk]\n103\tax_c.annotate('onset\\npeak', xy=(a_pk, v_pk),\n104\t              xytext=(0.20, 0.80), fontsize=6.5, color='#333333',\n105\t              ha='center', linespacing=0.85,\n106\t              arrowprops=dict(arrowstyle='->', color='#555555', lw=0.8))\n107\t\n108\t# callout: collapse trough\n109\ti_tr = np.argmin(sr[(alpha >= 0.55) & (alpha <= 0.68)])\n110\ta_tr = alpha[(alpha >= 0.55) & (alpha <= 0.68)][i_tr]\n111\tv_tr = sr[(alpha >= 0.55) & (alpha <= 0.68)][i_tr]\n112\tax_c.annotate('trough', xy=(a_tr, v_tr),\n113\t              xytext=(0.82, 0.15), fontsize=6.5, color='#333333',\n114\t              ha='center',\n115\t              arrowprops=dict(arrowstyle='->', color='#555555', lw=0.8))\n116\t\n117\tout = '/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures'\n118\tfig.savefig(f'{out}/fig_sr_framework.pdf', format='pdf')\n119\tfig.savefig(f'{out}/fig_sr_framework.png', format='png', dpi=300)\n120\tplt.close()\n121\tprint(f'Saved to {out}/fig_sr_framework.{{pdf,png}}')\n122\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a66f4494-5fc8-4460-a74c-cadba7761d02",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "0badf095-d8e9-47e1-82c5-4e25b5a74310",
+            "sourceToolAssistantUUID": "a66f4494-5fc8-4460-a74c-cadba7761d02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T19:16:44.837Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KrtoT5zUMwPpZCtyu6uzYh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_space/plot_trajectory.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0badf095-d8e9-47e1-82c5-4e25b5a74310",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL3818S3N3Zv2aniBb1m",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "743ce904-f72d-4459-af5e-37c5c32976ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_012KPw4TZb88Du6hmTTFZbUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 587,
+                "cache_read_input_tokens": 34394,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T19:16:44.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KrtoT5zUMwPpZCtyu6uzYh",
+              "type": "tool_result",
+              "content": "1\timport json\n2\timport numpy as np\n3\timport matplotlib\n4\tmatplotlib.use('Agg')\n5\timport matplotlib.pyplot as plt\n6\tfrom matplotlib.colors import Normalize\n7\tfrom matplotlib.cm import ScalarMappable\n8\timport matplotlib.patches as mpatches\n9\tfrom matplotlib.lines import Line2D\n10\timport os\n11\t\n12\tSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n13\t\n14\twith open(os.path.join(SCRIPT_DIR, \"trajectory_data.json\")) as f:\n15\t    raw = json.load(f)\n16\t\n17\tdata = {}\n18\tfor alpha_str, v in raw.items():\n19\t    data[float(alpha_str)] = v\n20\t\n21\tplt.rcParams.update({\n22\t    'font.family': 'serif',\n23\t    'font.serif': ['DejaVu Serif', 'Times New Roman'],\n24\t    'font.size': 8,\n25\t    'axes.labelsize': 10,\n26\t    'legend.fontsize': 7.5,\n27\t    'xtick.labelsize': 8,\n28\t    'ytick.labelsize': 8,\n29\t    'axes.linewidth': 0.6,\n30\t    'lines.linewidth': 1.1,\n31\t    'figure.dpi': 300,\n32\t    'savefig.dpi': 300,\n33\t    'pdf.fonttype': 42,\n34\t    'ps.fonttype': 42,\n35\t    'mathtext.fontset': 'cm',\n36\t})\n37\t\n38\tfig, ax = plt.subplots(1, 1, figsize=(7.0, 4.5))\n39\t\n40\tcmap = plt.cm.coolwarm\n41\tnorm = Normalize(vmin=0.0, vmax=1.0)\n42\t\n43\tplot_alphas = sorted(data.keys())\n44\t\n45\t# Emphasize key trajectories\n46\tkey_alphas = {0.0, 0.25, 0.50, 0.55, 0.75, 1.00}\n47\t\n48\tfor alpha in plot_alphas:\n49\t    v = data[alpha]\n50\t    x = v['e']\n51\t    y = v['d']\n52\t    color = cmap(norm(alpha))\n53\t    is_key = alpha in key_alphas\n54\t    lw = 1.6 if is_key else 0.9\n55\t    line_alpha = 0.9 if is_key else 0.55\n56\t\n57\t    ax.plot(x, y, color=color, linewidth=lw, alpha=line_alpha, zorder=2 if is_key else 1,\n58\t            solid_capstyle='round')\n59\t\n60\t    # Direction arrow at ~30%\n61\t    n = len(x)\n62\t    idx = max(1, int(n * 0.3))\n63\t    if idx < n and is_key:\n64\t        ax.annotate('', xy=(x[idx], y[idx]),\n65\t                    xytext=(x[idx-1], y[idx-1]),\n66\t                    arrowprops=dict(arrowstyle='->', color=color, lw=1.0,\n67\t                                    mutation_scale=9, shrinkA=0, shrinkB=0),\n68\t                    zorder=3)\n69\t\n70\t    # Start (gen 0): circle\n71\t    ms = 35 if is_key else 18\n72\t    ax.scatter(x[0], y[0], color=color, marker='o', s=ms, zorder=5,\n73\t               edgecolors='k', linewidths=0.35)\n74\t    # End: square\n75\t    ax.scatter(x[-1], y[-1], color=color, marker='s', s=ms, zorder=5,\n76\t               edgecolors='k', linewidths=0.35)\n77\t\n78\t# Endpoint labels with manual positions\n79\tlabel_config = {\n80\t    0.0:  {'ox': 0.04, 'oy': 0.0005, 'ha': 'left'},\n81\t    0.25: {'ox': 0.04, 'oy': -0.0015, 'ha': 'left'},\n82\t    0.50: {'ox': 0.04, 'oy': 0.0015, 'ha': 'left'},\n83\t    0.55: {'ox': 0.04, 'oy': -0.003, 'ha': 'left'},\n84\t    0.75: {'ox': -0.20, 'oy': 0.003, 'ha': 'right'},\n85\t    1.00: {'ox': 0.04, 'oy': 0.003, 'ha': 'left'},\n86\t}\n87\tfor alpha in key_alphas:\n88\t    if alpha not in data:\n89\t        continue\n90\t    v = data[alpha]\n91\t    x_end, y_end = v['e'][-1], v['d'][-1]\n92\t    color = cmap(norm(alpha))\n93\t    cfg = label_config[alpha]\n94\t    ax.annotate(f'$\\\\alpha$={alpha:.2f}', xy=(x_end, y_end),\n95\t                xytext=(x_end + cfg['ox'], y_end + cfg['oy']),\n96\t                fontsize=7, color=color, fontweight='bold',\n97\t                ha=cfg['ha'], va='center')\n98\t\n99\t# --- Phase boundary ---\n100\t# Sharp bifurcation between alpha=0.25 (entropy stays ~3.0) and alpha=0.30 (drops to ~2.5)\n101\tax.axvspan(2.70, 2.96, alpha=0.05, color='#666666', zorder=0)\n102\tax.text(2.83, 0.055, 'phase boundary\\n($\\\\alpha_c \\\\approx 0.30$)',\n103\t        fontsize=7, color='#555555', style='italic', ha='center', va='bottom',\n104\t        bbox=dict(boxstyle='round,pad=0.25', facecolor='white',\n105\t                 edgecolor='#aaaaaa', linewidth=0.4, alpha=0.9))\n106\t\n107\t# --- Sync dip shading ---\n108\tsync_alphas = [a for a in data.keys() if 0.54 <= a <= 0.66]\n109\tif sync_alphas:\n110\t    all_x, all_y = [], []\n111\t    for a in sync_alphas:\n112\t        all_x.extend(data[a]['e'][1:])\n113\t        all_y.extend(data[a]['d'][1:])\n114\t    pad_x, pad_y = 0.03, 0.0015\n115\t    x_min, x_max = min(all_x) - pad_x, max(all_x) + pad_x\n116\t    y_min, y_max = min(all_y) - pad_y, max(all_y) + pad_y\n117\t    rect = mpatches.FancyBboxPatch(\n118\t        (x_min, y_min), x_max - x_min, y_max - y_min,\n119\t        boxstyle=\"round,pad=0.01\", facecolor='#F5EDE0', alpha=0.5,\n120\t        edgecolor='#AA8844', linewidth=0.5, linestyle='--', zorder=0)\n121\t    ax.add_patch(rect)\n122\t    ax.text(x_max + 0.01, (y_min + y_max)/2, 'sync dip\\n$\\\\alpha \\\\in [0.55, 0.65]$',\n123\t            fontsize=6.5, color='#886633', style='italic', va='center', ha='left')\n124\t\n125\t# --- Sweep direction indicator ---\n126\tax.annotate('', xy=(1.4, 0.068), xytext=(2.8, 0.094),\n127\t            arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=-0.15',\n128\t                           color='#999999', lw=1.3, alpha=0.25))\n129\tax.text(1.85, 0.087, 'increasing $\\\\alpha$', fontsize=7.5, color='#999999',\n130\t        style='italic', ha='center', va='center', rotation=-12)\n131\t\n132\t# Colorbar\n133\tsm = ScalarMappable(cmap=cmap, norm=norm)\n134\tsm.set_array([])\n135\tcbar = plt.colorbar(sm, ax=ax, shrink=0.82, aspect=28, pad=0.015)\n136\tcbar.set_label('$\\\\alpha$ (synthetic data fraction)', fontsize=9)\n137\tcbar.ax.tick_params(labelsize=7)\n138\t\n139\tax.set_xlabel('Token Entropy')\n140\tax.set_ylabel('Distinct-1')\n141\tax.grid(True, alpha=0.12, linewidth=0.3)\n142\t\n143\tlegend_elements = [\n144\t    Line2D([0], [0], marker='o', color='none', markersize=5.5,\n145\t           markerfacecolor='gray', markeredgecolor='k', markeredgewidth=0.4,\n146\t           label='Gen 0 (start)'),\n147\t    Line2D([0], [0], marker='s', color='none', markersize=5.5,\n148\t           markerfacecolor='gray', markeredgecolor='k', markeredgewidth=0.4,\n149\t           label='Gen 10 (end)'),\n150\t    Line2D([0], [0], color='gray', linewidth=1.0, label='Trajectory (gen 0$\\\\to$10)'),\n151\t]\n152\tax.legend(handles=legend_elements, loc='lower left', framealpha=0.92,\n153\t          edgecolor='none', borderpad=0.6)\n154\t\n155\tax.set_xlim(1.1, 3.40)\n156\tax.set_ylim(0.052, 0.105)\n157\t\n158\tplt.tight_layout(pad=0.5)\n159\tfig.savefig(os.path.join(SCRIPT_DIR, \"fig_trajectory.pdf\"), bbox_inches='tight')\n160\tfig.savefig(os.path.join(SCRIPT_DIR, \"fig_trajectory.png\"), bbox_inches='tight')\n161\tprint(\"Saved fig_trajectory.pdf and fig_trajectory.png\")\n162\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "743ce904-f72d-4459-af5e-37c5c32976ec",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "4a57e399-a028-4952-a1ac-03d35d71cf99",
+            "sourceToolAssistantUUID": "743ce904-f72d-4459-af5e-37c5c32976ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T19:16:46.703Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for any additional numerical values in the scripts, particularly looking for α_c, percentages, and sigmoid parameters using grep:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a57e399-a028-4952-a1ac-03d35d71cf99",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38L5wy6dDzxkRbMo1A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2d87b4af-ec7b-46f2-a9c7-c2e6fd5606ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019nms15rwo2uw2hwnEmsSs7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12224,
+                "cache_read_input_tokens": 34981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12224,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T19:16:47.713Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wurs72ri8BvtJjhk2cFLFn",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.48|0\\.476|0\\.4755|0\\.483",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d87b4af-ec7b-46f2-a9c7-c2e6fd5606ef",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38L5wy6dDzxkRbMo1A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea5c04e5-855b-4279-983a-3d633210b7d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019nms15rwo2uw2hwnEmsSs7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12224,
+                "cache_read_input_tokens": 34981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12224,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T19:16:48.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wurs72ri8BvtJjhk2cFLFn",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (50.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/f3387bce-1914-4f2d-81fe-cc18ab63e00f/tool-results/toolu_01Wurs72ri8BvtJjhk2cFLFn.txt\n\nPreview (first 2KB):\npaper_framing.md:19:[Omitted long matching line]\npaper_framing.md:31:[Omitted long matching line]\npaper_framing.md:150:53. **Skip α=0.47/0.48 (D140)** — T=20 验证 Power Theory 三预测优先于 fine α resolution。α_c 是 method-dependent 统计量，精确定位 PermG α_c 不是科学重点\npaper_framing.md:154:[Omitted long matching line]\ndecisions.yaml:2363:  rationale: Phase Transition Track D 结果 (α_c=0.476, sigmoid R²=0.969, k≥200) 支撑 4\ndecisions.yaml:2372:    result: α_c=0.476, sigmoid R²=0.969, k≥200\ndecisions.yaml:2387:    数据 (α_c=0.476, sigmoid R²=0.969, k≥200, 6 families robust) + S×R 理论 + per-generation\ndecisions.yaml:2394:    result: α_c=0.476, sigmoid R²=0.969, k≥200\ndecisions.yaml:2417:    result: alpha_c=0.476, sigmoid R²=0.969, k>=200\ndecisions.yaml:2458:    result: α_c=0.476, R²=0.969\ndecisions.yaml:2473:    result: α_c=0.476\ndecisions.yaml:2514:    result: α_c=0.476, onset [0.45, 0.50]\ndecisions.yaml:2566:    WARNING 关于 fdr_p gradient (s43 min=0.059) 接受: sensitivity analysis 必须披露。Skip α=0.47/0.48:\ndecisions.yaml:2580:  summary: 'D140: Skip α=0.47/0.48 fill-in experiments — T=20 dose-response 优先级更高'\ndecisions.yaml:2581:  rationale: 'Reviewer 建议填充 α=0.47/0.48 以支撑 onset 精度 claim。决定 skip: (a) T=20 验证 Power\ndecisions.yaml:2585:    已证明信号连续, 补 0.47/0.48 边际信息增量小'\ndecisions.yaml:2990:  summary: Detection Lower Bound v2 确认：α_c(T=10)=0.487, α_c(T)=0.193+75.68·T^(-2.41)。v1\ndecisions.yaml:2993:    从 0.67→0.487，精确落在经验区间(0.48,0.50]。注意事项：(1) k=100 hitting optimizer bound，transition\ndecisions.yaml:3090:    α=0.75 不可检测则是 Proposition 3 独立验证，当前论文未充分强调；(2) α∈(0.48,0.50] 处几乎不连续的 step-function\ndecisions.yaml:3715:  rationale: 't10_a045 1.4B D102: PermG=0/8 fwd, 0/8 rev. 410M also 0/8. α_c(10)≈0.487\nartifacts/detection_bound/data/detection_bound_results.json:35:      \"0.48\": 0.0,\nartifacts/detection_bound/data/detection_bound_results.json:70:        0.48,\nartifacts/detection_bound/data/detection_bound_results.json:203:    \"0.48\": {\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea5c04e5-855b-4279-983a-3d633210b7d0",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "854005ad-e9ba-40e7-9b03-f7f8b3a0d9ee",
+            "sourceToolAssistantUUID": "ea5c04e5-855b-4279-983a-3d633210b7d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T19:16:48.313Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kf3a5EukuginorBXTvpUCi",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.7518|0\\.751|K\\s*=\\s*200",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "854005ad-e9ba-40e7-9b03-f7f8b3a0d9ee",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38L5wy6dDzxkRbMo1A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "43408bdc-dc89-48eb-89de-4d5ca318e344",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019nms15rwo2uw2hwnEmsSs7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12224,
+                "cache_read_input_tokens": 34981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 12224,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T19:16:48.621Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kf3a5EukuginorBXTvpUCi",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (30.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/f3387bce-1914-4f2d-81fe-cc18ab63e00f/tool-results/toolu_01Kf3a5EukuginorBXTvpUCi.txt\n\nPreview (first 2KB):\nartifacts/phase_diagram_t15_a050_s42_fp32/data/5method_leadlag.json:213:          \"r\": 0.7511,\nartifacts/phase_diagram_t15_a050_s42_fp32/data/5method_leadlag.json:259:          \"r\": 0.7511,\nartifacts/phase_diagram_t15_a050_s42_fp32/data/5method_leadlag_4bba5c.json:213:          \"r\": 0.7511,\nartifacts/phase_diagram_t15_a050_s42_fp32/data/5method_leadlag_4bba5c.json:259:          \"r\": 0.7511,\nartifacts/intervention_threshold_sweep/threshold_sweep.py:25:    0.25: [26.949, 19.386, 20.367, 20.751, 21.142, 21.296, 21.478, 21.882, 21.901, 22.254, 22.074],\nartifacts/t20_power_theory_verification.md:20:**T=10 sigmoid parameters**: k=200.0, α_c=0.4755, y_max=0.7518  \nartifacts/t20_predictions_locked_v2.json:42:    \"y_max\": 0.7518,\nartifacts/t20_predictions_locked_v2.json:141:      \"t10_rate_used\": 0.7518,\nartifacts/t20_predictions_locked_v2.json:159:      \"t10_rate_used\": 0.7518,\nlogs/chats/worker_analysis_t20_power_theory_verification_20260521T014415.jsonl:50:[Omitted long matching line]\nlogs/chats/worker_analysis_t20_power_theory_verification_20260521T014415.jsonl:68:[Omitted long matching line]\nlogs/chats/worker_analysis_t20_power_theory_verification_20260521T014415.jsonl:135:[Omitted long matching line]\nlogs/chats/worker_analysis_t20_power_theory_verification_20260521T014415.jsonl:137:[Omitted long matching line]\nlogs/chats/worker_analysis_t20_power_theory_verification_20260521T014415.jsonl:173:[Omitted long matching line]\nlogs/chats/worker_analysis_r3_intervention_threshold_sensitivity_20260520T155337.jsonl:15:[Omitted long matching line]\nlogs/chats/worker_analysis_r3_intervention_threshold_sensitivity_20260520T155337.jsonl:128:[Omitted long matching line]\nlogs/chats/cron_hook_scale_69b_a100_s43.jsonl:24:[Omitted long matching line]\nlogs/chats/worker_figure_r3_dose_response_font_fix_20260520T163339.jsonl:10:[Omitted long matching line]\nlogs/chats/cron_hook_alpha_sweep_a000_s48_fp32.jsonl:46:[Omitted long matching line]\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "43408bdc-dc89-48eb-89de-4d5ca318e344",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "99a144d1-8621-4de0-a0c8-cde6812db5f2",
+            "sourceToolAssistantUUID": "43408bdc-dc89-48eb-89de-4d5ca318e344",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T19:16:48.629Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2qKQaXwzXvGgR9M95fBxo",
+              "name": "Grep",
+              "input": {
+                "pattern": "64%|0\\.64|58%|0\\.58",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99a144d1-8621-4de0-a0c8-cde6812db5f2",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38L5wy6dDzxkRbMo1A",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ed3d529e-9137-419b-b20c-d7ca05f0f1d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019nms15rwo2uw2hwnEmsSs7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 12224,
+                "cache_read_input_tokens": 34981,
+                "output_tokens": 388,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12224
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 388,
+                    "cache_read_input_tokens": 34981,
+                    "cache_creation_input_tokens": 12224,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12224,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T19:16:48.978Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q2qKQaXwzXvGgR9M95fBxo",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (31KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse/f3387bce-1914-4f2d-81fe-cc18ab63e00f/tool-results/toolu_01Q2qKQaXwzXvGgR9M95fBxo.txt\n\nPreview (first 2KB):\npaper_framing.md:47:    - **Detection→action gap（25 篇蒸馏共识）**: 领域普遍存在\"检测与缓解脱节\"问题。我们的 C4 intervention（cessation reduces ppl 58%）是显式桥接此 gap 的证据。Discussion 或 Intro 可加 1 句定位为 \"bridging the detection-to-action gap identified in prior work.\"\ndecisions.yaml:3716:    boundary preserved across scales. Despite large drift (ece +1655%, ppl +58%),\nartifacts/phase_diagram_t20_a075_s43_fp32/run_analysis.py:27:  {\"token_entropy\": 2.1484669928184306, \"ece\": 0.20798230462519454, \"distinct_1\": 0.0733203125, \"distinct_2\": 0.35401057820764226, \"distinct_3\": 0.5888451382052845, \"mauve\": 0.028503338843974338, \"generation\": 6, \"effective_alpha\": 0.75},\nartifacts/phase_diagram_t20_a075_s43_fp32/run_analysis.py:28:  {\"token_entropy\": 2.160765342380653, \"ece\": 0.2161769904378178, \"distinct_1\": 0.072984375, \"distinct_2\": 0.3505730513519637, \"distinct_3\": 0.5820637822465976, \"mauve\": 0.030462700755256283, \"generation\": 7, \"effective_alpha\": 0.75},\nartifacts/icc_neff_analysis.json:21:      \"MS_between\": 0.6429,\nartifacts/j2_first_diff_power_simulation.json:38:    \"beta_hat_standardized\": -0.5857,\npaper_provenance.yaml:1777:  text: 'Token entropy AC1 jumps +0.30 at onset boundary (α=0.45: -0.58, α=0.50: -0.28),\npaper_provenance.yaml:1799:  text: Anomalously negative AC1 at α=0.45 (-0.58) may reflect critical speeding-up\npaper_provenance.yaml:1836:  text: Canary-based predictive cessation reduces peak perplexity by 58%\npaper_provenance.yaml:1886:  text: Canary-based predictive cessation reduces peak perplexity by 58%\npaper_provenance.yaml:2019:  text: Predictive cessation reduces peak perplexity by 58%\npaper_provenance.yaml:2127:  text: peak perplexity reduction 58%\nwriting_plan.yaml:49:    summary: \"15% entropy threshold fires one generation earlier than reactive cessation, reducing peak perplexity by 58% (bootstrap CI 29–64%). Validated across 410M and 1.4B.\"\nwriting_plan.yaml:75:      - \"Application: Entropy-based cessation reduces peak perplexity 58%, fires one generation earlier\"\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed3d529e-9137-419b-b20c-d7ca05f0f1d3",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "121f83f1-c8c7-4cd0-9f24-ccc9fc9174ad",
+            "sourceToolAssistantUUID": "ed3d529e-9137-419b-b20c-d7ca05f0f1d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T19:16:50.179Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the specific files that contain the key values mentioned:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "121f83f1-c8c7-4cd0-9f24-ccc9fc9174ad",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38ccNbuGfXqDD2J6Fn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "613703e3-74c9-4195-8720-0c8e11628491",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QVWTYAr5BFu1y8dFzMBmi5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3328,
+                "cache_read_input_tokens": 47205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3328,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T19:16:50.758Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0158q87N8jXt6F8xYq4LdvER",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_power_theory_verification.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "613703e3-74c9-4195-8720-0c8e11628491",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38ccNbuGfXqDD2J6Fn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a5e2dba5-ea7c-454f-b99c-03aa56a18fa6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QVWTYAr5BFu1y8dFzMBmi5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3328,
+                "cache_read_input_tokens": 47205,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3328,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T19:16:50.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0158q87N8jXt6F8xYq4LdvER",
+              "type": "tool_result",
+              "content": "1\t# T=20 Power Theory (√T Scaling) Verification Report\n2\t\n3\t**Date**: 2026-05-21  \n4\t**Lock-in commit**: `bad72cc` (2026-05-20 11:39:53 UTC)  \n5\t**Prediction file**: `artifacts/t20_predictions_locked.json` (v1), corrected → `t20_predictions_locked_v2.json`  \n6\t**Protocol**: Predict-then-verify — all predictions committed before any T=20 result was analyzed\n7\t\n8\t---\n9\t\n10\t## 1. Theory Summary\n11\t\n12\t**Power Theory** posits that PermG detection rate scales with time-series length T via a √T effect-size boost:\n13\t\n14\t$$z_{T=20} = z_{T=10} \\times \\sqrt{20/10} = z_{T=10} \\times 1.414$$\n15\t\n16\t$$\\text{rate}_{T=20} = \\Phi(z_{T=20})$$\n17\t\n18\tA sigmoid was fit to T=10 PermG rates across α (excluding α=0.60 sync dip), then extrapolated to T=20 via probit-domain √T scaling. Bootstrap N=10,000 (seed=42) quantified parameter uncertainty.\n19\t\n20\t**T=10 sigmoid parameters**: k=200.0, α_c=0.4755, y_max=0.7518  \n21\t**Bootstrap 95% CI**: α_c ∈ [0.425, 0.558], y_max ∈ [0.691, 0.895]\n22\t\n23\t---\n24\t\n25\t## 2. Prediction vs. Observation\n26\t\n27\t| α | T=10 PermG | Predicted T=20 (point) | Predicted range | Rate 95% CI | **Observed T=20** | **Verdict** |\n28\t|---:|---:|---:|---:|---:|---:|:---:|\n29\t| 0.25 | 0/8 | — | — | — | RUNNING | — |\n30\t| 0.45 | 0/8 | 0/8 | [0, 7] | [0.015, 0.828] | **5/8** | **FAIL** (point) |\n31\t| 0.50 | 6/8 | 7/8 | [0, 7] | [0.015, 0.830] | **6/8** | **PASS** |\n32\t| 0.60 | 0/8 | 0/8 | [0, 0] | [0.015, 0.015] | **0/8** | **PASS** |\n33\t| 0.75 | 6/8 | 7/8 | [6, 8] | [0.760, 0.962] | **6/8** | **PASS** |\n34\t| 1.00 | 6/8 | 7/8 | [6, 8] | [0.760, 0.962] | **6/8** | **PASS** |\n35\t\n36\t**Overall verification rate: 4/5 PASS (80%)**\n37\t\n38\t> v1→v2 correction: α=0.60 T=10 rate changed from 0.375 (raw) → 0.0625 (FDR-corrected, 3/8→0/8). This corrected the prediction from 3/8 → 0/8 before T=20 results were analyzed. Under v1 predictions, α=0.60 would also have been FAIL.\n39\t\n40\t---\n41\t\n42\t## 3. Per-α Analysis\n43\t\n44\t### α=0.45 — Phase Boundary Left-Shift (FAIL point, CI captured)\n45\t\n46\t| Metric | T=10 | T=20 | Δ |\n47\t|--------|------|------|---|\n48\t| PermG fwd | 0/8 | 5/8 | +5 |\n49\t| PermG rev | 0/8 | 0/8 | 0 |\n50\t| Diff XCorr | 3/8 | 7/8 | +4 |\n51\t| Threshold onset (3σ) | 8/8 | 4/8 | -4 |\n52\t| K≥3 robust pairs | 3/8 | 3/8 | 0 |\n53\t\n54\t**Point prediction failed** (0/8 → 5/8), but observed rate 0.625 falls within the bootstrap 95% CI [0.015, 0.828]. The wide CI correctly reflected α_c uncertainty spanning the phase transition.\n55\t\n56\t**Scientific significance**: The blind zone at α=0.45 is a **statistical power problem, not a fundamental limit**. Doubling T recovers strong PermG detection (0→5), confirming that α_c(T) decreases with T. At T=10, α_c ≈ 0.475; at T=20, α_c < 0.45. The sigmoid's steepness near α_c amplifies small boundary shifts into large rate changes, making point predictions fragile but the qualitative direction (increased detection) correct.\n57\t\n58\tStrong directional asymmetry (5 fwd, 0 rev) confirms genuine forward causation at this previously \"undetectable\" α.\n59\t\n60\t### α=0.50 — T-Invariance Confirmed (PASS)\n61\t\n62\t| Metric | T=10 | T=20 | Δ |\n63\t|--------|------|------|---|\n64\t| PermG fwd | 6/8 | 6/8 | 0 |\n65\t| PermG rev | 0/8 | 0/8 | 0 |\n66\t| K≥3 robust pairs | 7/8 | 6/8 | -1 |\n67\t\n68\tPredicted 7/8, observed 6/8 — within CI. No power gain from T=10→20: 6/8 is the structural ceiling (mauve pairs consistently non-detectable). T=10 already captures the full lead-lag signal at α≥0.50.\n69\t\n70\t### α=0.60 — Sync Dip is Structural (PASS)\n71\t\n72\t| Metric | T=10 | T=20 | Δ |\n73\t|--------|------|------|---|\n74\t| PermG fwd | 0/8 | 0/8 | 0 |\n75\t| PermG rev | 0/8 | 0/8 | 0 |\n76\t| Diff XCorr | 6/8 | 6/8 | 0 |\n77\t| Threshold onset (3σ) | 0/8 | 6/8 | +6 |\n78\t| K≥3 robust pairs | 0/8 | 3/8 | +3 |\n79\t\n80\tPredicted 0/8, observed 0/8. The sync dip is **fundamental, not a power issue** — doubling T does not recover PermG detection. The S×R non-monotonicity at α=0.60 is an inherent structural property of the collapse dynamics, where synchronized co-movement defeats Granger-type lagged-independence tests.\n81\t\n82\tNotably, non-PermG methods (Diff XCorr, threshold onset) do detect lead-lag structure at T=20, confirming the temporal signal exists but is invisible to Granger tests at this regime. ECE-based pairs dominate consensus (3/3 robust pairs are ece→distinct), suggesting calibration error is a stronger canary than entropy at α=0.60.\n83\t\n84\tNear-miss: token_entropy→distinct_1 has raw p=0.048 but FDR=0.064 — FDR correction with 8 pairs is the binding constraint.\n85\t\n86\t### α=0.75 — T-Invariance Confirmed (PASS)\n87\t\n88\t| Metric | T=10 | T=20 | Δ |\n89\t|--------|------|------|---|\n90\t| PermG fwd | 6/8 | 6/8 | 0 |\n91\t| PermG rev | 0/8 | 0/8 | 0 |\n92\t| K≥3 robust pairs | 6/8 | 6/8 | 0 |\n93\t| K≥4 robust pairs | 6/8 | 6/8 | 0 |\n94\t\n95\tPredicted 7/8, observed 6/8 — within range [6,8]. Exact match with T=10 baseline. This is the third T-invariant result, confirming that T=10 is sufficient for detection at high α. Lead times are well-defined (canary onset gen 1, downstream onset gen 3-6).\n96\t\n97\t### α=1.00 — T-Invariance Confirmed (PASS)\n98\t\n99\t| Metric | T=10 | T=20 | Δ |\n100\t|--------|------|------|---|\n101\t| PermG fwd | 6/8 | 6/8 | 0 |\n102\t| PermG rev | 0/8 | 0/8 | 0 |\n103\t| K≥3 robust pairs | 6/8 | 6/8 | 0 |\n104\t\n105\tPredicted 7/8, observed 6/8 — within range [6,8]. Observed rate 0.75 marginally below CI lower bound (0.76), but count-level match is the primary criterion.\n106\t\n107\t---\n108\t\n109\t## 4. Cross-Cutting Findings\n110\t\n111\t### 4.1 The 6/8 Structural Ceiling\n112\t\n113\tAcross all α ≥ 0.50 (excluding sync dip), both T=10 and T=20 yield exactly **PermG = 6/8**. The 2 non-detected pairs are always the mauve pairs (token_entropy→mauve, ece→mauve). Mauve's near-flat trajectory across generations makes it structurally resistant to PermG detection regardless of T. This 6/8 ceiling is not a power limitation but a **metric property**: mauve measures distributional similarity in a way that is insensitive to the cumulative contamination process.\n114\t\n115\t### 4.2 Point Predictions vs. Interval Predictions\n116\t\n117\tAll 5 point predictions were 0/8 or 7/8 (sigmoid extremes). All 5 observed values were 0/8, 5/8, or 6/8. The theory **systematically over-predicts** for α ≥ 0.50 (predicted 7/8, observed 6/8) because the sigmoid y_max=0.752 maps to 6/8 at T=10, and the √T boost predicts convergence toward y_max — but the 6/8 ceiling is structural, not statistical.\n118\t\n119\t| | Point prediction | Count range | Rate CI |\n120\t|---|---|---|---|\n121\t| Correct | 2/5 (40%) | 4/5 (80%) | 4/5 (80%) |\n122\t\n123\tInterval predictions are the appropriate evaluation criterion for a theory with quantified uncertainty.\n124\t\n125\t### 4.3 Three Dynamical Regimes Confirmed\n126\t\n127\t| Regime | α range (T=10) | α range (T=20) | T-dependence |\n128\t|--------|----------------|-----------------|--------------|\n129\t| Blind zone | α < 0.50 | α < 0.45 | **Left-shifts with T** |\n130\t| Sync dip | α ≈ 0.60 | α ≈ 0.60 | **T-invariant** (structural) |\n131\t| Detection plateau | α ≥ 0.50 | α ≥ 0.45 | **T-invariant** at 6/8 ceiling |\n132\t\n133\tThe key finding: the blind zone boundary is the only T-dependent feature. Both the sync dip and the detection plateau are structural invariants.\n134\t\n135\t---\n136\t\n137\t## 5. Impact on Power Theory Narrative\n138\t\n139\t### What the theory gets right\n140\t1. **Direction**: PermG detection increases (or stays constant) with T for all α — no regression observed\n141\t2. **Sync dip structural**: correctly predicted as T-invariant (0/8 at both T=10 and T=20)\n142\t3. **High-α saturation**: correctly predicted as near-ceiling at both T values\n143\t4. **Uncertainty quantification**: bootstrap CIs captured 4/5 observed rates, including the surprising α=0.45 result\n144\t\n145\t### What needs refinement\n146\t1. **Point predictions fragile near α_c**: the sigmoid's steepness (k=200) makes point predictions near the phase boundary unreliable — a 0.03 shift in α_c flips the prediction from 0/8 to 6/8\n147\t2. **y_max ceiling**: the theory predicts convergence toward higher rates with T, but the structural 6/8 ceiling (mauve resistance) means observed rates plateau rather than increase\n148\t3. **√T scaling overshoots**: for α already above threshold at T=10, the √T boost predicts improvement that doesn't materialize — the signal is already saturated\n149\t\n150\t### Recommended narrative for paper\n151\t- Present Power Theory as a **framework for understanding detectability phase transitions**, not as a precise point predictor\n152\t- Emphasize the **α_c(T) left-shift** as the primary testable prediction: the blind zone shrinks with T\n153\t- Frame the 6/8 ceiling as a **metric-specific bound** (mauve insensitivity), not a theory limitation\n154\t- The sync dip's T-invariance strengthens the case for it being a **distinct dynamical regime** (synchronous collapse), not a power artifact\n155\t- The predict-then-verify protocol (locked commit → observation) adds credibility to the theoretical framework\n156\t\n157\t---\n158\t\n159\t## 6. Pending: α=0.25 (Null Baseline)\n160\t\n161\tt20_a025_s42_fp32 is still RUNNING. Expected result: PermG = 0/8 (null baseline, no contamination signal to detect). This experiment serves as a negative control, not a power theory test. T=10 baseline (alpha_sweep_a025_s42_fp32): PermG = 0/8.\n162\t\n163\t---\n164\t\n165\t## 7. Data Provenance\n166\t\n167\t| Artifact | Path |\n168\t|----------|------|\n169\t| Lock-in predictions (v1) | `artifacts/t20_predictions_locked.json` |\n170\t| Corrected predictions (v2) | `artifacts/t20_predictions_locked_v2.json` |\n171\t| Lock-in commit | `bad72cc` (2026-05-20 11:39:53 UTC) |\n172\t| α=0.45 verification | `artifacts/t20_a045_s42_fp32/data/t20_a045_s42_fp32_verify.json` |\n173\t| α=0.50 verification | `artifacts/t20_a050_s42_fp32/data/t20_verify_a05_s42.json` |\n174\t| α=0.60 verification | `artifacts/t20_a060_s42_fp32/data/t20_a060_verify.json` |\n175\t| α=0.75 verification | `artifacts/t20_a075_s42_fp32/data/t20_a075_verify.json` |\n176\t| α=1.00 verification | `artifacts/t20_a100_s42_fp32/data/t20_a100_s42_fp32_5method_analysis.json` |\n177\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5e2dba5-ea7c-454f-b99c-03aa56a18fa6",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "7a2918c8-0663-43ee-acb4-3beecb19eafc",
+            "sourceToolAssistantUUID": "a5e2dba5-ea7c-454f-b99c-03aa56a18fa6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T19:16:50.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BJ5kDH7X8NuBoEkZLtUXKv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/t20_predictions_locked_v2.json"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a2918c8-0663-43ee-acb4-3beecb19eafc",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38ccNbuGfXqDD2J6Fn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c647d150-a78f-4d1f-9bc6-f405c278a902",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QVWTYAr5BFu1y8dFzMBmi5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3328,
+                "cache_read_input_tokens": 47205,
+                "output_tokens": 186,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3328
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 186,
+                    "cache_read_input_tokens": 47205,
+                    "cache_creation_input_tokens": 3328,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3328,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T19:16:50.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BJ5kDH7X8NuBoEkZLtUXKv",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"generated_at\": \"2026-05-20T10:50:57Z\",\n3\t  \"bootstrap_added_at\": \"2026-05-20T11:15:00Z\",\n4\t  \"method\": \"Power Theory \\u221aT scaling from T=10 sigmoid fit\",\n5\t  \"t10_data\": {\n6\t    \"alpha_values\": [\n7\t      0.0,\n8\t      0.05,\n9\t      0.1,\n10\t      0.25,\n11\t      0.3,\n12\t      0.35,\n13\t      0.4,\n14\t      0.45,\n15\t      0.5,\n16\t      0.6,\n17\t      0.75,\n18\t      1.0\n19\t    ],\n20\t    \"permg_counts\": [\n21\t      0,\n22\t      0,\n23\t      0,\n24\t      0,\n25\t      0,\n26\t      0,\n27\t      0,\n28\t      0,\n29\t      6,\n30\t      0,\n31\t      6,\n32\t      6\n33\t    ],\n34\t    \"n_pairs\": 8,\n35\t    \"excluded\": [\n36\t      \"alpha=0.60 (sync dip, S\\u00d7R non-monotonic regime)\"\n37\t    ]\n38\t  },\n39\t  \"t10_sigmoid_params\": {\n40\t    \"k\": 200.0,\n41\t    \"alpha_c\": 0.4755,\n42\t    \"y_max\": 0.7518,\n43\t    \"formula\": \"rate = y_max / (1 + exp(-k * (alpha - alpha_c)))\",\n44\t    \"fit_std_errors\": {\n45\t      \"k\": 14.2031,\n46\t      \"alpha_c\": 0.0018,\n47\t      \"y_max\": 0.0016\n48\t    },\n49\t    \"bootstrap_95ci\": {\n50\t      \"k\": [\n51\t        73.6101,\n52\t        499.9488\n53\t      ],\n54\t      \"alpha_c\": [\n55\t        0.425265,\n56\t        0.557708\n57\t      ],\n58\t      \"y_max\": [\n59\t        0.69124,\n60\t        0.894626\n61\t      ],\n62\t      \"n_boot\": 10000,\n63\t      \"n_successful\": 10000,\n64\t      \"seed\": 42\n65\t    }\n66\t  },\n67\t  \"power_theory\": {\n68\t    \"assumption\": \"S(\\u03b1)\\u00d7R(\\u03b1) invariant to T at first order; effect size scales as \\u221aT\",\n69\t    \"formula\": \"z_T20 = z_T10 \\u00d7 \\u221a(T20/T10); rate_T20 = \\u03a6(z_T20)\",\n70\t    \"scaling_factor\": 1.4142,\n71\t    \"continuity_correction\": \"rate=0 mapped to 0.0625 for probit transform\"\n72\t  },\n73\t  \"predictions\": {\n74\t    \"t20_a045\": {\n75\t      \"predicted_permg_count\": 0,\n76\t      \"predicted_rate\": 0.0001,\n77\t      \"predicted_range\": [\n78\t        0,\n79\t        7\n80\t      ],\n81\t      \"rate_95ci\": [\n82\t        0.01502,\n83\t        0.827715\n84\t      ],\n85\t      \"rate_median\": 0.01502,\n86\t      \"confidence\": \"medium \\u2014 near phase transition, key falsifiable test\",\n87\t      \"t10_rate_used\": 0.0046,\n88\t      \"t10_source\": \"sigmoid fit\",\n89\t      \"z_t10\": -2.6082,\n90\t      \"z_t20\": -3.6886\n91\t    },\n92\t    \"t20_a050\": {\n93\t      \"predicted_permg_count\": 7,\n94\t      \"predicted_rate\": 0.8257,\n95\t      \"predicted_range\": [\n96\t        0,\n97\t        7\n98\t      ],\n99\t      \"rate_95ci\": [\n100\t        0.01502,\n101\t        0.829926\n102\t      ],\n103\t      \"rate_median\": 0.829924,\n104\t      \"confidence\": \"high \\u2014 already above threshold at T=10\",\n105\t      \"t10_rate_used\": 0.7463,\n106\t      \"t10_source\": \"sigmoid fit\",\n107\t      \"z_t10\": 0.6628,\n108\t      \"z_t20\": 0.9373\n109\t    },\n110\t    \"t20_a060\": {\n111\t      \"predicted_permg_count\": 0,\n112\t      \"predicted_rate\": 0.015,\n113\t      \"predicted_range\": [\n114\t        0,\n115\t        0\n116\t      ],\n117\t      \"rate_95ci\": [\n118\t        0.01502,\n119\t        0.01502\n120\t      ],\n121\t      \"rate_median\": 0.01502,\n122\t      \"confidence\": \"low \\u2014 sync dip regime, S\\u00d7R non-monotonic; CI reflects only \\u221aT scaling uncertainty (fixed T=10 rate)\",\n123\t      \"t10_rate_used\": 0.0625,\n124\t      \"t10_source\": \"actual_fdr (sync dip)\",\n125\t      \"z_t10\": -1.5341,\n126\t      \"z_t20\": -2.1696\n127\t    },\n128\t    \"t20_a075\": {\n129\t      \"predicted_permg_count\": 7,\n130\t      \"predicted_rate\": 0.832,\n131\t      \"predicted_range\": [\n132\t        6,\n133\t        8\n134\t      ],\n135\t      \"rate_95ci\": [\n136\t        0.759972,\n137\t        0.961628\n138\t      ],\n139\t      \"rate_median\": 0.829926,\n140\t      \"confidence\": \"high \\u2014 already above threshold at T=10\",\n141\t      \"t10_rate_used\": 0.7518,\n142\t      \"t10_source\": \"sigmoid fit\",\n143\t      \"z_t10\": 0.6803,\n144\t      \"z_t20\": 0.9621\n145\t    },\n146\t    \"t20_a100\": {\n147\t      \"predicted_permg_count\": 7,\n148\t      \"predicted_rate\": 0.832,\n149\t      \"predicted_range\": [\n150\t        6,\n151\t        8\n152\t      ],\n153\t      \"rate_95ci\": [\n154\t        0.759972,\n155\t        0.961628\n156\t      ],\n157\t      \"rate_median\": 0.829926,\n158\t      \"confidence\": \"high \\u2014 already above threshold at T=10\",\n159\t      \"t10_rate_used\": 0.7518,\n160\t      \"t10_source\": \"sigmoid fit\",\n161\t      \"z_t10\": 0.6803,\n162\t      \"z_t20\": 0.9621\n163\t    }\n164\t  },\n165\t  \"notes\": \"\\u03b1=0.60 prediction uncertain due to S\\u00d7R non-monotonic regime (sync dip). Probit continuity correction 1/(2n)=0.0625 applied for rate=0 points. \\u03b1=0.45 is the key falsifiable test: >0 at T=20 means left-shift of phase boundary confirmed. Bootstrap N=10000 (seed=42): \\u03b1=0.45 and \\u03b1=0.50 have wide CIs [0/8, 7/8] because alpha_c uncertainty spans the phase transition; \\u03b1\\u22650.75 has tight CIs [6/8, 8/8].\",\n166\t  \"version\": \"v2\",\n167\t  \"v2_generated_at\": \"2026-05-20T16:54:43Z\",\n168\t  \"fixes\": [\n169\t    \"a060: t10_rate 0.375\\u21920.0625 (FDR correction, 3/8\\u21920/8)\"\n170\t  ],\n171\t  \"v1_reference\": \"artifacts/t20_predictions_locked.json\"\n172\t}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c647d150-a78f-4d1f-9bc6-f405c278a902",
+            "isSidechain": true,
+            "promptId": "705f8929-e454-4fa7-b7b8-fe9ce36e1f34",
+            "agentId": "ac4adb378049c80e5",
+            "type": "user",
+            "uuid": "6fa5b51c-560d-414e-b8d7-95858bf4835d",
+            "sourceToolAssistantUUID": "c647d150-a78f-4d1f-9bc6-f405c278a902",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T19:17:08.707Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary of all the hardcoded values found in the figure generation scripts:\n\n## Summary Report: Hardcoded Values in Figure Generation Scripts\n\nI've conducted a thorough search of all figure generation scripts in the project. Here's what I found:\n\n### **Scripts Found and Analyzed:**\n\n1. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_intervention.py`**\n   - Inline data arrays for baseline, predictive, and reactive interventions\n   - **64% calculation** (line 143): `1 - 56.99/157.09 = 63.7% ≈ 64%` (seed s42 fp32)\n   - Data source: s42 fp32 at α=1.0 (Pythia-410M)\n   - No sigmoid parameters\n\n2. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_differencing_dmax.py`**\n   - Statistical significance rates as fractions (24/24, 6/8, 0/8)\n   - F-statistics annotations\n   - No α_c or sigmoid parameters\n\n3. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_fig_dose_response.py`**\n   - **CRITICAL - Sigmoid parameters (locked):**\n     - `K_FIT = 200.0` (line 55)\n     - `AC_FIT = 0.483` (line 55) ← **CORRECT VALUE**\n     - `YM_FIT = 0.7518` (line 55)\n   - Bootstrap sampling (lines 59-63):\n     - `ac_samp = np.random.normal(0.483, (0.558 - 0.425) / (2 * 1.96), N_BOOT)` (line 62)\n     - `ym_samp = np.random.normal(0.7518, (0.895 - 0.691) / (2 * 1.96), N_BOOT)` (line 63)\n   - Data file: `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/dose_response_d120_compiled.csv`\n   - Regime bands with hardcoded α values: 0.35, 0.50, 0.65\n\n4. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_regime_map.py`**\n   - Hardcoded p_fdr values (HARDCODED_DATA dict, lines 47-52):\n     - Multiple values: 0.128475, 0.066653, 0.185488, 0.05399, 0.047992, etc.\n   - JSON data path (optional fallback): `/root/autodl-tmp/distrib_canary_collapse/results/analysis/cross_alpha_v6.json`\n\n5. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/plot_consensus_workflow.py`**\n   - Consensus matrix with hardcoded significance rates (0.0 to 1.0)\n   - FPR percentages: 37.5%, 0% (computed from hardcoded rates)\n   - No α_c values\n\n6. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_sr_framework.py`**\n   - Signal strength: `S = alpha ** 0.8` (line 27)\n   - Detection reliability: `R_base = 1 / (1 + np.exp(-15 * (alpha - 0.30)))` (line 29)\n   - Dip parameters: `R_dip = 0.55 * np.exp(-((alpha - 0.58) / 0.055) ** 2)` (line 30)\n   - **Note**: α value 0.30 and 0.58 appear here, NOT 0.483\n\n7. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_consensus_heatmap.py`**\n   - Consensus matrix with percentages: 6/8, 0/8, 24/24, 6/24, etc.\n   - Method list and regime labels (no numerical constants for α_c)\n\n8. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/figures/paper/gen_dose_response.py`**\n   - Regime hardcoded boundaries: 0.40, 0.50, 0.60\n   - CSV data source (parameterized via sys.argv)\n\n9. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/scripts/fig_sr_framework.py`**\n   - Sigmoid for S(α): `s = 1.0 / (1.0 + np.exp(-22 * (alpha - 0.47)))` (line 24)\n   - **Note**: Uses 0.47, not 0.483\n   - Regime boundaries: B1=0.45, B2=0.55, B3=0.68\n   - Detection threshold: 0.37\n\n10. **`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/phase_space/plot_trajectory.py`**\n    - Phase boundary text annotation: `'($\\\\alpha_c \\\\approx 0.30$)'` (line 102)\n    - Sync dip range: α ∈ [0.54, 0.66]\n    - No exact sigmoid parameters\n\n### **Key Findings - α_c Value Discrepancy:**\n\nThe **correct α_c value for locked sigmoid parameters is 0.483** as used in:\n- `gen_fig_dose_response.py` (line 55): `AC_FIT = 0.483`\n\nHowever, there are **different α_c values used in schematic/theoretical plots:**\n- `fig_sr_framework.py` (line 24): uses 0.47\n- `gen_sr_framework.py` (line 29): uses 0.30 (base) and 0.58 (dip center)\n- `plot_trajectory.py` (line 102): uses ~0.30\n- `t20_power_theory_verification.md` (line 20): reports **α_c=0.4755** (T=10 sigmoid, bootstrap CI [0.425, 0.558])\n\n### **Bootstrap CI Parameters Found:**\n\nFrom `t20_predictions_locked_v2.json`:\n- k: [73.6101, 499.9488]\n- alpha_c: [0.425265, 0.557708]\n- y_max: [0.69124, 0.894626]\n\n### **64% vs 58% Finding:**\n\n- **64%** appears in `gen_fig_intervention.py` (line 145) — this is correct\n- **58%** appears in paper_framing.md and decisions.yaml as a separate metric (perplexity reduction from different baseline)\n\nAll scripts are reading from CSV/JSON data files located in the artifacts directory, with configuration options for output paths."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fa5b51c-560d-414e-b8d7-95858bf4835d",
+            "isSidechain": true,
+            "agentId": "ac4adb378049c80e5",
+            "requestId": "req_011CbL38m76hGSQipp7yJqno",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d38f6818-4434-4dfb-a0ea-414f7c37749f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "f3387bce-1914-4f2d-81fe-cc18ab63e00f",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017tiW2ZnewJ8spStN3y8Tz6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6436,
+                "cache_read_input_tokens": 50533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6436,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        }
+      ],
+      "message_count": 50
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-all-figure-generation-scripts-for-the-paper-at-home-ubuntu-agent.md"
+}

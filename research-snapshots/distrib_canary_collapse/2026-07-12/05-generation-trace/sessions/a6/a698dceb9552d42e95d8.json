@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "id": "a698dceb9552d42e95d8",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: westd-19828 - SSH 账户: root（调用 ssh_execute / submit_train",
+  "task_key": "3a3574ba-3b45-489f-b006-cf1e8aa906cb",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/3a3574ba-3b45-489f-b006-cf1e8aa906cb.jsonl",
+    "occurrence": 1,
+    "bytes": 1790666,
+    "sha256": "5b5c8af1b0b9b54628e5a25c1398ec5661ae9b310221127d75888f7a82a78568"
+  },
+  "statistics": {
+    "messages": 395,
+    "user_turns": 2,
+    "tool_calls": 108,
+    "roles": {
+      "record": 91,
+      "user": 2,
+      "assistant": 85,
+      "tool_call": 108,
+      "tool_result": 108,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a698dceb9552d42e95d8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 226,
+      "chunks": [
+        {
+          "path": "a698dceb9552d42e95d8-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "a698dceb9552d42e95d8-part-0002.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "a698dceb9552d42e95d8-part-0002.json",
+          "message_count": 58
+        },
+        {
+          "path": "a698dceb9552d42e95d8-part-0003.json",
+          "message_count": 92
+        },
+        {
+          "path": "a698dceb9552d42e95d8-part-0004.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-distrib-canary-collapse-westd-19828-ssh-root-ssh-execute-submi-copy-71.md"
+}

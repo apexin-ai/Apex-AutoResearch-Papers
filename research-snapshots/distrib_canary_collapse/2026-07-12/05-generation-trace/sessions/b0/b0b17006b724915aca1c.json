@@ -1,0 +1,537 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b17006b724915aca1c",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml, find ALL exp",
+  "task_key": "agent-ae0545680b43593da",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-ae0545680b43593da.jsonl",
+    "occurrence": 1,
+    "bytes": 84261,
+    "sha256": "aec7f1e2398a26a791a398824a2a39781b534d75877526e369b266253968421d"
+  },
+  "statistics": {
+    "messages": 10,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T06:11:27.377Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the file /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml, find ALL experiments with synthetic_ratio 0.50 or \"a050\" in the exp_id. For each, report the exp_id, status, conclusion, and seed. I need to know how many valid (status=DONE, conclusion=success) seeds exist at α=0.50.\n\nAlso check: are there any experiments with alpha/synthetic_ratio 0.0 besides seed=42? Search for \"a000\" or synthetic_ratio 0.0 in the registry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "bfd10638-11d5-4fd5-a51c-fdbcd38a9e94",
+            "agentId": "ae0545680b43593da",
+            "type": "user",
+            "uuid": "f97c2b81-da99-4c1e-be15-799f8898f0dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T06:11:28.629Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find these experiments in the registry file. Let me start by reading the registry and searching for the specific conditions you mentioned."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f97c2b81-da99-4c1e-be15-799f8898f0dc",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kafs2YXq9Zzm9jeLx6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8502f1c4-183f-49c9-89be-5f730337a637",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Df1G5foiGekeVVk76GsXBk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20747,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20747,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T06:11:28.801Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MvUpMiHhfU6QFBC31bVSiF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8502f1c4-183f-49c9-89be-5f730337a637",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kafs2YXq9Zzm9jeLx6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a5a540b8-44e8-4698-b7d9-d147e4670bd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Df1G5foiGekeVVk76GsXBk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20747,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 114,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20747
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 114,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20747,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20747,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T06:11:29.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MvUpMiHhfU6QFBC31bVSiF",
+              "type": "tool_result",
+              "content": "1\tbaseline: null\n2\texperiments:\n3\t  mvp_rep42:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-14T05:12:13.930Z'\n7\t    updated_at: '2026-05-14T05:37:17.438Z'\n8\t    spec:\n9\t      command: python iterative_train.py --seed 42 --output_dir results/mvp/rep_42\n10\t        --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen\n11\t        10000\n12\t      server: autodl-rtx6000\n13\t      gpu: cuda:0\n14\t      pid: '3878'\n15\t      log_path: ~/runs/distrib_canary_collapse/mvp_rep42.log\n16\t      submitted_at: '2026-05-14T05:34:46.013Z'\n17\t      submitted_via: submit_training_job\n18\t      backend: tmux\n19\t      account: root\n20\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103\n21\t      data_count: 716506\n22\t      model_name: EleutherAI/pythia-410m\n23\t      seed: 42\n24\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n25\t      tmux_session: mvp_rep42\n26\t      checkpoint_path: N/A\n27\t      kill_reason: '参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000'\n28\t      wall_clock_seconds: 151.4\n29\t      gpu_hours: 0.04\n30\t    conclusion: killed\n31\t    completed_at: '2026-05-14T05:37:17.438Z'\n32\t  mvp_rep43:\n33\t    status: DONE\n34\t    retry_count: 0\n35\t    created_at: '2026-05-14T05:12:14.237Z'\n36\t    updated_at: '2026-05-14T05:37:18.575Z'\n37\t    spec:\n38\t      command: python iterative_train.py --seed 43 --output_dir results/mvp/rep_43\n39\t        --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen\n40\t        10000\n41\t      server: autodl-rtx6000\n42\t      gpu: cuda:1\n43\t      pid: '3956'\n44\t      log_path: ~/runs/distrib_canary_collapse/mvp_rep43.log\n45\t      submitted_at: '2026-05-14T05:34:47.702Z'\n46\t      submitted_via: submit_training_job\n47\t      backend: tmux\n48\t      account: root\n49\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103\n50\t      data_count: 716506\n51\t      model_name: EleutherAI/pythia-410m\n52\t      seed: 43\n53\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n54\t      tmux_session: mvp_rep43\n55\t      checkpoint_path: N/A\n56\t      kill_reason: '参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000'\n57\t      wall_clock_seconds: 150.9\n58\t      gpu_hours: 0.04\n59\t    conclusion: killed\n60\t    completed_at: '2026-05-14T05:37:18.575Z'\n61\t  mvp_rep44:\n62\t    status: DONE\n63\t    retry_count: 0\n64\t    created_at: '2026-05-14T05:12:15.033Z'\n65\t    updated_at: '2026-05-16T00:10:25.605Z'\n66\t    spec:\n67\t      hypothesis: 至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\n68\t      model_name: EleutherAI/pythia-410m\n69\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103\n70\t      seed: 44\n71\t      server: autodl-rtx6000\n72\t      gpu: pending\n73\t      synthetic_ratio: 1\n74\t      num_generations: 10\n75\t      steps_per_gen: 10000\n76\t    metrics:\n77\t      gen10_token_entropy: 1.2205\n78\t      gen10_ece: 0.4237\n79\t      gen10_perplexity: 1033.16\n80\t      gen10_distinct_1: 0.0731\n81\t      gen10_distinct_2: 0.3637\n82\t      gen10_distinct_3: 0.6075\n83\t    conclusion: killed\n84\t    completed_at: '2026-05-16T00:10:25.605Z'\n85\t  mvp_v2_rep42:\n86\t    status: DONE\n87\t    retry_count: 0\n88\t    created_at: '2026-05-14T05:38:05.054Z'\n89\t    updated_at: '2026-05-14T06:25:27.286Z'\n90\t    spec:\n91\t      command: python iterative_train.py --seed 42 --output_dir results/mvp/rep_42\n92\t        --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10\n93\t        --steps_per_gen 5000\n94\t      server: autodl-rtx6000\n95\t      gpu: cuda:0\n96\t      pid: '5286'\n97\t      log_path: ~/runs/distrib_canary_collapse/mvp_v2_rep42.log\n98\t      submitted_at: '2026-05-14T05:42:37.404Z'\n99\t      submitted_via: submit_training_job\n100\t      backend: tmux\n101\t      account: root\n102\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n103\t      data_count: 5000\n104\t      model_name: EleutherAI/pythia-410m\n105\t      seed: 42\n106\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n107\t      tmux_session: mvp_v2_rep42\n108\t      checkpoint_path: N/A\n109\t      kill_reason: v1旧进程未死导致输出目录冲突，v2死锁\n110\t      wall_clock_seconds: 2569.9\n111\t      gpu_hours: 0.71\n112\t    conclusion: killed\n113\t    completed_at: '2026-05-14T06:25:27.286Z'\n114\t  mvp_v2_rep43:\n115\t    status: DONE\n116\t    retry_count: 0\n117\t    created_at: '2026-05-14T05:38:10.434Z'\n118\t    updated_at: '2026-05-14T06:25:28.345Z'\n119\t    spec:\n120\t      command: python iterative_train.py --seed 43 --output_dir results/mvp/rep_43\n121\t        --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10\n122\t        --steps_per_gen 5000\n123\t      server: autodl-rtx6000\n124\t      gpu: cuda:1\n125\t      pid: '5364'\n126\t      log_path: ~/runs/distrib_canary_collapse/mvp_v2_rep43.log\n127\t      submitted_at: '2026-05-14T05:42:39.039Z'\n128\t      submitted_via: submit_training_job\n129\t      backend: tmux\n130\t      account: root\n131\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n132\t      data_count: 5000\n133\t      model_name: EleutherAI/pythia-410m\n134\t      seed: 43\n135\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n136\t      tmux_session: mvp_v2_rep43\n137\t      checkpoint_path: N/A\n138\t      kill_reason: v1旧进程未死导致输出目录冲突，v2死锁\n139\t      wall_clock_seconds: 2569.3\n140\t      gpu_hours: 0.71\n141\t    conclusion: killed\n142\t    completed_at: '2026-05-14T06:25:28.345Z'\n143\t  mvp_v2_rep44:\n144\t    status: DONE\n145\t    retry_count: 0\n146\t    created_at: '2026-05-14T05:38:10.762Z'\n147\t    updated_at: '2026-05-16T00:10:26.251Z'\n148\t    spec:\n149\t      hypothesis: 至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\n150\t      model_name: EleutherAI/pythia-410m\n151\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103\n152\t      data_count: 5000\n153\t      seed: 44\n154\t      server: autodl-rtx6000\n155\t      gpu: pending\n156\t      synthetic_ratio: 1\n157\t      num_generations: 10\n158\t      steps_per_gen: 5000\n159\t      n_prompts: 5000\n160\t      fix_note: n_prompts 1000→5000, steps_per_gen 10000→5000, 避免过拟合\n161\t    conclusion: killed\n162\t    completed_at: '2026-05-16T00:10:26.251Z'\n163\t  mvp_v3_rep42:\n164\t    status: DONE\n165\t    retry_count: 0\n166\t    created_at: '2026-05-14T06:25:39.728Z'\n167\t    updated_at: '2026-05-14T06:47:59.908Z'\n168\t    spec:\n169\t      command: python iterative_train.py --seed 42 --output_dir results/mvp/rep_42\n170\t        --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10\n171\t        --steps_per_gen 5000\n172\t      server: autodl-rtx6000\n173\t      gpu: cuda:0\n174\t      pid: '7909'\n175\t      log_path: ~/runs/distrib_canary_collapse/mvp_v3_rep42.log\n176\t      submitted_at: '2026-05-14T06:26:16.939Z'\n177\t      submitted_via: submit_training_job\n178\t      backend: tmux\n179\t      account: root\n180\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n181\t      data_count: 5000\n182\t      model_name: EleutherAI/pythia-410m\n183\t      seed: 42\n184\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n185\t      tmux_session: mvp_v3_rep42\n186\t      checkpoint_path: N/A\n187\t      failure_reason: 'MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required;\n188\t        无 PYTHONUNBUFFERED 导致日志丢失'\n189\t      wall_clock_seconds: 1303.0\n190\t      gpu_hours: 0.36\n191\t    conclusion: failed\n192\t    completed_at: '2026-05-14T06:47:59.908Z'\n193\t  mvp_v3_rep43:\n194\t    status: DONE\n195\t    retry_count: 0\n196\t    created_at: '2026-05-14T06:25:42.195Z'\n197\t    updated_at: '2026-05-14T06:48:01.316Z'\n198\t    spec:\n199\t      command: python iterative_train.py --seed 43 --output_dir results/mvp/rep_43\n200\t        --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10\n201\t        --steps_per_gen 5000\n202\t      server: autodl-rtx6000\n203\t      gpu: cuda:1\n204\t      pid: '7987'\n205\t      log_path: ~/runs/distrib_canary_collapse/mvp_v3_rep43.log\n206\t      submitted_at: '2026-05-14T06:26:18.477Z'\n207\t      submitted_via: submit_training_job\n208\t      backend: tmux\n209\t      account: root\n210\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n211\t      data_count: 5000\n212\t      model_name: EleutherAI/pythia-410m\n213\t      seed: 43\n214\t      gpu_model: RTX PRO 6000 Blackwell 96GB\n215\t      tmux_session: mvp_v3_rep43\n216\t      checkpoint_path: N/A\n217\t      failure_reason: 'MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required;\n218\t        无 PYTHONUNBUFFERED 导致日志丢失'\n219\t      wall_clock_seconds: 1302.8\n220\t      gpu_hours: 0.36\n221\t    conclusion: failed\n222\t    completed_at: '2026-05-14T06:48:01.316Z'\n223\t  mvp_v4_rep42:\n224\t    status: DONE\n225\t    retry_count: 0\n226\t    created_at: '2026-05-14T07:29:48.857Z'\n227\t    updated_at: '2026-05-15T21:29:47.171Z'\n228\t    spec:\n229\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n230\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n231\t        && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export\n232\t        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n233\t        && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py\n234\t        --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n235\t        10 --output_dir results/mvp/rep_42\"\n236\t      server: westd-19828\n237\t      gpu:\n238\t      - cuda:0\n239\t      pid: '13678'\n240\t      log_path: ~/runs/distrib_canary_collapse/mvp_v4_rep42.log\n241\t      submitted_at: '2026-05-14T07:51:34.806Z'\n242\t      submitted_via: submit_training_job\n243\t      backend: tmux\n244\t      account: root\n245\t      checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint\n246\t      metrics_summary:\n247\t        gen0_ppl: 26.9\n248\t        gen10_ppl: 1003.7\n249\t        gen0_entropy: 3.234\n250\t        gen10_entropy: 1.276\n251\t        gen0_ece: 0.011\n252\t        gen10_ece: 0.417\n253\t      wall_clock_seconds: 20898.3\n254\t      gpu_hours: 5.81\n255\t    conclusion: success\n256\t    completed_at: '2026-05-14T13:39:53.073Z'\n257\t    metrics:\n258\t      gen0_token_entropy: 3.234195\n259\t      gen0_ece: 0.010805\n260\t      gen0_perplexity: 26.948959\n261\t      gen0_distinct_1: 0.098216\n262\t      gen0_distinct_2: 0.517803\n263\t      gen0_distinct_3: 0.812728\n264\t      gen10_token_entropy: 1.27592\n265\t      gen10_ece: 0.41734\n266\t      gen10_perplexity: 1003.73\n267\t      gen10_distinct_1: 0.070383\n268\t      gen10_distinct_2: 0.335471\n269\t      gen10_distinct_3: 0.555579\n270\t      token_entropy_drift_pct: -60.5491\n271\t      ece_drift_pct: 3762.4711\n272\t      perplexity_drift_pct: 3624.5595\n273\t      distinct_1_drift_pct: -28.3386\n274\t      distinct_2_drift_pct: -35.2126\n275\t      distinct_3_drift_pct: -31.6402\n276\t  mvp_v4_rep43:\n277\t    status: DONE\n278\t    retry_count: 0\n279\t    created_at: '2026-05-14T07:48:50.161Z'\n280\t    updated_at: '2026-05-15T21:29:49.565Z'\n281\t    spec:\n282\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n283\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n284\t        && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export\n285\t        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n286\t        && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py\n287\t        --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n288\t        10 --output_dir results/mvp/rep_43\"\n289\t      server: westd-19828\n290\t      gpu:\n291\t      - cuda:1\n292\t      pid: '13758'\n293\t      log_path: ~/runs/distrib_canary_collapse/mvp_v4_rep43.log\n294\t      submitted_at: '2026-05-14T07:51:36.759Z'\n295\t      submitted_via: submit_training_job\n296\t      backend: tmux\n297\t      account: root\n298\t      checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint\n299\t      metrics_summary:\n300\t        gen0_ppl: 26.9\n301\t        gen10_ppl: 1014.7\n302\t        gen0_entropy: 3.234\n303\t        gen10_entropy: 1.26\n304\t        gen0_ece: 0.011\n305\t        gen10_ece: 0.42\n306\t      wall_clock_seconds: 20897.7\n307\t      gpu_hours: 5.8\n308\t    conclusion: success\n309\t    completed_at: '2026-05-14T13:39:54.495Z'\n310\t    metrics:\n311\t      gen0_token_entropy: 3.234195\n312\t      gen0_ece: 0.010805\n313\t      gen0_perplexity: 26.948959\n314\t      gen0_distinct_1: 0.098334\n315\t      gen0_distinct_2: 0.513178\n316\t      gen0_distinct_3: 0.805669\n317\t      gen10_token_entropy: 1.25961\n318\t      gen10_ece: 0.41951\n319\t      gen10_perplexity: 1014.66\n320\t      gen10_distinct_1: 0.070383\n321\t      gen10_distinct_2: 0.329651\n322\t      gen10_distinct_3: 0.539571\n323\t      token_entropy_drift_pct: -61.0534\n324\t      ece_drift_pct: 3782.5544\n325\t      perplexity_drift_pct: 3665.1176\n326\t      distinct_1_drift_pct: -28.4246\n327\t      distinct_2_drift_pct: -35.7628\n328\t      distinct_3_drift_pct: -33.0282\n329\t  mvp_v4_rep44:\n330\t    status: DONE\n331\t    retry_count: 0\n332\t    created_at: '2026-05-14T07:48:52.613Z'\n333\t    updated_at: '2026-05-15T21:29:52.398Z'\n334\t    spec:\n335\t      hypothesis: 至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\n336\t      model_name: EleutherAI/pythia-410m\n337\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n338\t      data_count: 5000\n339\t      seed: 44\n340\t      server: westd-19828\n341\t      gpu: cuda:0\n342\t      synthetic_ratio: 1\n343\t      num_generations: 10\n344\t      steps_per_gen: 5000\n345\t      n_prompts: 5000\n346\t      command: PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py\n347\t        --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n348\t        10 --output_dir results/mvp/rep_44\n349\t      pid: '30672'\n350\t      log_path: ~/runs/distrib_canary_collapse/mvp_v4_rep44.log\n351\t    reproduce:\n352\t      finished_at: '2026-05-14T17:56:00.578Z'\n353\t    failure_reason: ''\n354\t    conclusion: success\n355\t    completed_at: '2026-05-14T17:56:00.717Z'\n356\t    extra:\n357\t      hook_events:\n358\t      - event: on_failed\n359\t        action: agent\n360\t        ts: '2026-05-14T17:56:03.546926+00:00'\n361\t    metrics_summary:\n362\t      gen0_ppl: 26.9\n363\t      gen10_ppl: 1033.16\n364\t      gen0_entropy: 3.234\n365\t      gen10_entropy: 1.2205\n366\t      gen0_ece: 0.011\n367\t      gen10_ece: 0.424\n368\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint\n369\t    wall_clock_seconds: 15134\n370\t    gpu_hours: 4.2\n371\t    metrics:\n372\t      gen0_token_entropy: 3.234195\n373\t      gen0_ece: 0.010805\n374\t      gen0_perplexity: 26.948959\n375\t      gen0_distinct_1: 0.098088\n376\t      gen0_distinct_2: 0.513235\n377\t      gen0_distinct_3: 0.805767\n378\t      gen10_token_entropy: 1.22049\n379\t      gen10_ece: 0.42369\n380\t      gen10_perplexity: 1033.16\n381\t      gen10_distinct_1: 0.073102\n382\t      gen10_distinct_2: 0.363737\n383\t      gen10_distinct_3: 0.607502\n384\t      token_entropy_drift_pct: -62.2629\n385\t      ece_drift_pct: 3821.2402\n386\t      perplexity_drift_pct: 3733.7659\n387\t      distinct_1_drift_pct: -25.473\n388\t      distinct_2_drift_pct: -29.1286\n389\t      distinct_3_drift_pct: -24.6057\n390\t  mvp_v4_rep45:\n391\t    status: DONE\n392\t    retry_count: 0\n393\t    created_at: '2026-05-14T13:41:26.286Z'\n394\t    updated_at: '2026-05-15T21:29:54.928Z'\n395\t    spec:\n396\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n397\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n398\t        && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export\n399\t        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n400\t        && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py\n401\t        --seed 45 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n402\t        10 --output_dir results/mvp/rep_45\"\n403\t      server: westd-19828\n404\t      gpu:\n405\t      - cuda:1\n406\t      pid: '31425'\n407\t      log_path: ~/runs/distrib_canary_collapse/mvp_v4_rep45.log\n408\t      submitted_at: '2026-05-14T13:42:10.455Z'\n409\t      submitted_via: submit_training_job\n410\t      backend: tmux\n411\t      account: root\n412\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n413\t      data_count: 5000\n414\t      model_name: EleutherAI/pythia-410m\n415\t      seed: 45\n416\t      wall_clock_seconds: 15350.2\n417\t      gpu_hours: 4.26\n418\t    reproduce:\n419\t      finished_at: '2026-05-14T17:55:42.230Z'\n420\t    extra:\n421\t      hook_events:\n422\t      - event: on_complete\n423\t        action: agent\n424\t        ts: '2026-05-14T17:55:42.934182+00:00'\n425\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_10/checkpoint\n426\t    metrics_summary:\n427\t      gen0_ppl: 26.9\n428\t      gen10_ppl: 1016.2\n429\t      gen0_entropy: 3.234\n430\t      gen10_entropy: 1.315\n431\t      gen0_ece: 0.011\n432\t      gen10_ece: 0.417\n433\t    wall_clock_seconds: 15212\n434\t    gpu_hours: 4.23\n435\t    conclusion: success\n436\t    metrics:\n437\t      gen0_token_entropy: 3.234195\n438\t      gen0_ece: 0.010805\n439\t      gen0_perplexity: 26.948959\n440\t      gen0_distinct_1: 0.098574\n441\t      gen0_distinct_2: 0.51463\n442\t      gen0_distinct_3: 0.808362\n443\t      gen10_token_entropy: 1.31536\n444\t      gen10_ece: 0.41654\n445\t      gen10_perplexity: 1016.22\n446\t      gen10_distinct_1: 0.069859\n447\t      gen10_distinct_2: 0.329549\n448\t      gen10_distinct_3: 0.543743\n449\t      token_entropy_drift_pct: -59.3296\n450\t      ece_drift_pct: 3755.0671\n451\t      perplexity_drift_pct: 3670.9063\n452\t      distinct_1_drift_pct: -29.1304\n453\t      distinct_2_drift_pct: -35.9639\n454\t      distinct_3_drift_pct: -32.7352\n455\t    completed_at: '2026-05-14T17:58:00.661Z'\n456\t  alpha_sweep_a000_s42:\n457\t    status: DONE\n458\t    retry_count: 0\n459\t    created_at: '2026-05-14T19:01:37.470Z'\n460\t    updated_at: '2026-05-14T23:42:18.748Z'\n461\t    spec:\n462\t      hypothesis: 'α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染'\n463\t      model_name: EleutherAI/pythia-410m\n464\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n465\t      data_count: 5000\n466\t      seed: 42\n467\t      synthetic_ratio: 0\n468\t      num_generations: 10\n469\t      steps_per_gen: 5000\n470\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n471\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n472\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n473\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n474\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir\n475\t        results/alpha_sweep/a000_s42\"\n476\t      server: westd-19828\n477\t      gpu:\n478\t      - cuda:0\n479\t      pid: '46716'\n480\t      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\n481\t    reproduce:\n482\t      finished_at: '2026-05-14T23:36:35.414Z'\n483\t    extra:\n484\t      hook_events:\n485\t      - event: on_complete\n486\t        action: agent\n487\t        ts: '2026-05-14T23:36:36.221435+00:00'\n488\t    conclusion: success\n489\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\n490\t    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\n491\t    metrics:\n492\t      gen0_token_entropy: 3.2342\n493\t      gen10_token_entropy: 3.0693\n494\t      gen0_ece: 0.0108\n495\t      gen10_ece: 0.0164\n496\t      gen0_perplexity: 26.95\n497\t      gen10_perplexity: 21.11\n498\t      gen0_distinct_1: 0.0982\n499\t      gen10_distinct_1: 0.0847\n500\t      token_entropy_drift_pct: -5.1\n501\t      ece_drift_pct: 51.7\n502\t      perplexity_drift_pct: -21.7\n503\t      distinct_1_drift_pct: -13.8\n504\t      distinct_2_drift_pct: -9.8\n505\t      distinct_3_drift_pct: -4.5\n506\t      gen1_10_perplexity_drift_pct: 9.4\n507\t      gen1_10_distinct_1_drift_pct: -13.1\n508\t      gen1_10_entropy_drift_pct: 2.6\n509\t    completed_at: '2026-05-14T23:39:04.310Z'\n510\t  alpha_sweep_a025_s42:\n511\t    status: DONE\n512\t    retry_count: 0\n513\t    created_at: '2026-05-14T19:01:39.527Z'\n514\t    updated_at: '2026-05-16T00:10:24.973Z'\n515\t    spec:\n516\t      hypothesis: 'α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity\n517\t        lead 是否出现'\n518\t      model_name: EleutherAI/pythia-410m\n519\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n520\t      data_count: 5000\n521\t      seed: 42\n522\t      synthetic_ratio: 0.25\n523\t      num_generations: 10\n524\t      steps_per_gen: 5000\n525\t    conclusion: killed\n526\t    completed_at: '2026-05-16T00:10:24.973Z'\n527\t  alpha_sweep_a025_s42_v2:\n528\t    status: DONE\n529\t    retry_count: 0\n530\t    created_at: '2026-05-14T19:25:52.094Z'\n531\t    updated_at: '2026-05-16T00:10:24.568Z'\n532\t    spec:\n533\t      hypothesis: 'α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity\n534\t        lead 是否出现'\n535\t      model_name: EleutherAI/pythia-410m\n536\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n537\t      data_count: 5000\n538\t      seed: 42\n539\t      synthetic_ratio: 0.25\n540\t      num_generations: 10\n541\t      steps_per_gen: 5000\n542\t      parent: alpha_sweep_a025_s42 (killed, subsample bias fix)\n543\t    conclusion: killed\n544\t    failure_reason: 'data corruption: unkilled old process PID 46802 wrote concurrently\n545\t      with new PID 48454'\n546\t    completed_at: '2026-05-16T00:10:24.568Z'\n547\t  alpha_sweep_a025_s42_v3:\n548\t    status: DONE\n549\t    retry_count: 0\n550\t    created_at: '2026-05-14T21:04:05.726Z'\n551\t    updated_at: '2026-05-15T05:13:22.207Z'\n552\t    spec:\n553\t      hypothesis: 'α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持'\n554\t      model_name: EleutherAI/pythia-410m\n555\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n556\t      data_count: 5000\n557\t      seed: 42\n558\t      synthetic_ratio: 0.25\n559\t      num_generations: 10\n560\t      steps_per_gen: 5000\n561\t      parent: alpha_sweep_a025_s42_v2 (failed, data corruption)\n562\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n563\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n564\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n565\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n566\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir\n567\t        results/alpha_sweep/a025_s42\"\n568\t      server: westd-19828\n569\t      gpu:\n570\t      - cuda:1\n571\t      pid: '53069'\n572\t      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\n573\t    reproduce:\n574\t      finished_at: '2026-05-15T01:18:42.377Z'\n575\t    extra:\n576\t      hook_events:\n577\t      - event: on_complete\n578\t        action: agent\n579\t        ts: '2026-05-15T01:18:43.329069+00:00'\n580\t    conclusion: success\n581\t    metrics:\n582\t      gen0_token_entropy: 3.2342\n583\t      gen10_token_entropy: 3.1017\n584\t      gen0_ece: 0.0108\n585\t      gen10_ece: 0.01942\n586\t      gen0_perplexity: 26.95\n587\t      gen10_perplexity: 22.32\n588\t      gen0_distinct_1: 0.0982\n589\t      gen10_distinct_1: 0.0586\n590\t      gen0_distinct_2: 0.5178\n591\t      gen10_distinct_2: 0.2219\n592\t      gen0_distinct_3: 0.8127\n593\t      gen10_distinct_3: 0.3263\n594\t      token_entropy_drift_pct: -4.1\n595\t      ece_drift_pct: 79.7\n596\t      perplexity_drift_pct: -17.2\n597\t      distinct_1_drift_pct: -40.3\n598\t      distinct_2_drift_pct: -57.1\n599\t      distinct_3_drift_pct: -59.9\n600\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\n601\t    completed_at: '2026-05-15T01:26:19.292Z'\n602\t    notes: 实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\n603\t  plan_009_bootstrap_ty:\n604\t    status: DONE\n605\t    retry_count: 0\n606\t    created_at: '2026-05-14T21:33:04.665Z'\n607\t    updated_at: '2026-05-14T21:33:27.106Z'\n608\t    spec:\n609\t      hypothesis: Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error\n610\t        和 statistical power\n611\t      command: python bootstrap_ty_validation.py (N_sim=1000)\n612\t      server: westd-19828\n613\t      data_path: synthetic DGP (AR(1) for H0, VAR(2) for H1)\n614\t      data_count: 1000\n615\t      model_name: N/A (statistical simulation)\n616\t      seed: multiple\n617\t      log_path: results/bootstrap_ty_results.json\n618\t      checkpoint_path: N/A\n619\t    conclusion: success\n620\t    completed_at: '2026-05-14T21:33:24.769Z'\n621\t    metrics:\n622\t      T10_d0_type1: 0.081\n623\t      T10_d0_power: 0.205\n624\t      T10_d1_type1: 0.047\n625\t      T10_d1_power: 0.09\n626\t      T10_dadapt_type1: 0.052\n627\t      T10_dadapt_power: 0.05\n628\t      T20_d0_power: 0.409\n629\t      T20_d1_power: 0.172\n630\t      T30_d0_power: 0.606\n631\t      T30_d1_power: 0.283\n632\t  alpha_sweep_a050_s42:\n633\t    status: DONE\n634\t    retry_count: 0\n635\t    created_at: '2026-05-14T21:52:15.427Z'\n636\t    updated_at: '2026-05-15T13:17:48.134Z'\n637\t    spec:\n638\t      hypothesis: 'α=0.50 moderate contamination: test canary→diversity lead at mid-range\n639\t        synthetic ratio, key data point for non-monotonic dose-response'\n640\t      seed: 42\n641\t      model_name: EleutherAI/pythia-410m\n642\t      data_path: data/wikitext103_5k\n643\t      data_count: 5000\n644\t      synthetic_ratio: 0.5\n645\t      num_generations: 10\n646\t      steps_per_gen: 5000\n647\t    server: westd-19828\n648\t    gpu: cuda:1\n649\t    account: root\n650\t    reproduce:\n651\t      server: westd-19828\n652\t      gpu: cuda:1\n653\t      started_at: '2026-05-15T01:15:14.747Z'\n654\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n655\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n656\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n657\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n658\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n659\t        results/alpha_sweep/a050_s42\"\n660\t      finished_at: '2026-05-15T05:42:25.788Z'\n661\t      training_hours: 4.45\n662\t    pid: '73737'\n663\t    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\n664\t    metrics:\n665\t      progress: 11/11 gen (complete)\n666\t      gen0_token_entropy: 3.234\n667\t      gen10_token_entropy: 2.632\n668\t      gen0_ece: 0.011\n669\t      gen10_ece: 0.102\n670\t      gen0_perplexity: 26.95\n671\t      gen10_perplexity: 32.64\n672\t      gen0_distinct_1: 0.098\n673\t      gen10_distinct_1: 0.062\n674\t      gen0_distinct_2: 0.518\n675\t      gen10_distinct_2: 0.251\n676\t      gen0_distinct_3: 0.813\n677\t      gen10_distinct_3: 0.387\n678\t      token_entropy_drift_pct: -18.6\n679\t      ece_drift_pct: 842.8\n680\t      perplexity_drift_pct: 21.1\n681\t      distinct_1_drift_pct: -37.3\n682\t      distinct_2_drift_pct: -51.5\n683\t      distinct_3_drift_pct: -52.4\n684\t      granger_entropy_to_d1_p_raw: 0.095\n685\t      granger_entropy_to_d2_p_raw: 0.097\n686\t      granger_ece_to_d1_p_raw: 0.019\n687\t      granger_ece_to_d2_p_raw: 0.039\n688\t      granger_fdr_note: 4 tests within alpha=0.50; BH FDR threshold rank1=0.0125,\n689\t        rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative\n690\t        signal only.\n691\t      d024_non_monotonic: true\n692\t      d024_ece_vs_entropy_note: ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095\n693\t        at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\n694\t    extra:\n695\t      hook_events:\n696\t      - event: on_complete\n697\t        action: agent\n698\t        ts: '2026-05-15T05:42:26.715028+00:00'\n699\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\n700\t    conclusion: success\n701\t    completed_at: '2026-05-15T05:46:48.692Z'\n702\t  alpha_sweep_a075_s42:\n703\t    status: DONE\n704\t    retry_count: 0\n705\t    created_at: '2026-05-14T21:52:17.315Z'\n706\t    updated_at: '2026-05-15T13:29:46.421Z'\n707\t    spec:\n708\t      hypothesis: 'α=0.75 high contamination: critical boundary point for Granger-causal\n709\t        detectability — determines Claim 1 scope (α≥0.75 vs α=1.0 only)'\n710\t      seed: 42\n711\t      model_name: EleutherAI/pythia-410m\n712\t      data_path: data/wikitext103_5k\n713\t      data_count: 5000\n714\t      synthetic_ratio: 0.75\n715\t      num_generations: 10\n716\t      steps_per_gen: 5000\n717\t    server: westd-19828\n718\t    gpu: cuda:1\n719\t    account: root\n720\t    reproduce:\n721\t      server: westd-19828\n722\t      gpu: cuda:1\n723\t      started_at: '2026-05-15T05:44:46.271Z'\n724\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n725\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n726\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n727\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n728\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir\n729\t        results/alpha_sweep/a075_s42\"\n730\t      finished_at: '2026-05-15T13:13:06.477Z'\n731\t      training_hours: 7.47\n732\t    pid: '89753'\n733\t    log_path: results/analysis/cross_alpha_v6_report.md\n734\t    metrics:\n735\t      progress: 11/11 gen (complete)\n736\t      gen0_token_entropy: 3.234\n737\t      gen10_token_entropy: 2.337\n738\t      gen0_ece: 0.0108\n739\t      gen10_ece: 0.2063\n740\t      gen0_perplexity: 26.95\n741\t      gen10_perplexity: 76.03\n742\t      gen0_distinct_1: 0.0982\n743\t      gen10_distinct_1: 0.0661\n744\t      gen0_distinct_2: 0.5178\n745\t      gen10_distinct_2: 0.3037\n746\t      gen0_distinct_3: 0.8127\n747\t      gen10_distinct_3: 0.5011\n748\t      token_entropy_drift_pct: -27.7\n749\t      ece_drift_pct: 1809.5\n750\t      perplexity_drift_pct: 182.1\n751\t      distinct_1_drift_pct: -32.7\n752\t      distinct_2_drift_pct: -41.3\n753\t      distinct_3_drift_pct: -38.4\n754\t      granger_ece_to_d1_p_fdr: 0.046\n755\t      granger_ece_to_d2_p_fdr: 0.046\n756\t      granger_entropy_to_d2_p_fdr: 0.048\n757\t      granger_entropy_to_d1_p_fdr: 0.054\n758\t      granger_fdr_sig_count: 3/8\n759\t      consensus_robust_pairs: 11/16\n760\t      xcorr_entropy_d1_lag: 2\n761\t      xcorr_entropy_d1_r: 0.973\n762\t    extra:\n763\t      hook_events:\n764\t      - event: on_complete\n765\t        action: agent\n766\t        ts: '2026-05-15T13:13:07.582542+00:00'\n767\t    conclusion: success\n768\t    checkpoint_path: results/alpha_sweep/a075_s42/\n769\t    completed_at: '2026-05-15T13:29:46.421Z'\n770\t  alpha_sweep_a010_s42:\n771\t    status: DONE\n772\t    retry_count: 0\n773\t    created_at: '2026-05-14T21:52:19.712Z'\n774\t    updated_at: '2026-05-16T00:03:53.018Z'\n775\t    spec:\n776\t      hypothesis: 'α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测'\n777\t      model_name: EleutherAI/pythia-410m\n778\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n779\t      data_count: 5000\n780\t      seed: 42\n781\t      synthetic_ratio: 0.1\n782\t      num_generations: 10\n783\t      steps_per_gen: 5000\n784\t    conclusion: killed\n785\t    completed_at: '2026-05-16T00:03:53.018Z'\n786\t  alpha_sweep_a060_s42:\n787\t    status: DONE\n788\t    retry_count: 0\n789\t    created_at: '2026-05-14T21:52:22.516Z'\n790\t    updated_at: '2026-05-16T00:04:01.429Z'\n791\t    spec:\n792\t      hypothesis: 'α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化'\n793\t      model_name: EleutherAI/pythia-410m\n794\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n795\t      data_count: 5000\n796\t      seed: 42\n797\t      synthetic_ratio: 0.6\n798\t      num_generations: 10\n799\t      steps_per_gen: 5000\n800\t    conclusion: killed\n801\t    completed_at: '2026-05-16T00:04:01.429Z'\n802\t  plan_006_s42:\n803\t    status: DONE\n804\t    retry_count: 0\n805\t    created_at: '2026-05-14T23:31:35.454Z'\n806\t    updated_at: '2026-05-15T12:17:14.093Z'\n807\t    spec:\n808\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh\n809\t        && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export\n810\t        HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1\n811\t        python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42\n812\t        --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\"\n813\t      server: westd-19828\n814\t      gpu:\n815\t      - cuda:0\n816\t      pid: '68368'\n817\t      log_path: ~/runs/distrib_canary_collapse/plan_006_s42.log\n818\t      submitted_at: '2026-05-14T23:41:30.666Z'\n819\t      submitted_via: submit_training_job\n820\t      backend: tmux\n821\t      account: root\n822\t      wall_clock_seconds: 43212.6\n823\t      gpu_hours: 12.0\n824\t    server: westd-19828\n825\t    gpu: cuda:0\n826\t    account: root\n827\t    reproduce:\n828\t      server: westd-19828\n829\t      gpu: cuda:0\n830\t      started_at: '2026-05-14T23:41:29.125Z'\n831\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh\n832\t        && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export\n833\t        HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1\n834\t        python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42\n835\t        --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\"\n836\t      finished_at: '2026-05-15T11:41:42.336Z'\n837\t      training_hours: 12.0\n838\t    pid: '68368'\n839\t    log_path: ~/runs/distrib_canary_collapse/plan_006_s42.log\n840\t    metrics:\n841\t      progress: 18/20 gen (gen_0-17 complete, gen_18-20 timeout)\n842\t      gen0_token_entropy: 3.2342\n843\t      gen17_token_entropy: 1.1819\n844\t      gen0_ece: 0.0108\n845\t      gen17_ece: 0.4454\n846\t      gen0_perplexity: 26.95\n847\t      gen17_perplexity: 3367.66\n848\t      gen0_distinct_1: 0.0982\n849\t      gen17_distinct_1: 0.0756\n850\t      gen0_distinct_2: 0.5178\n851\t      gen17_distinct_2: 0.3617\n852\t      gen0_distinct_3: 0.8127\n853\t      gen17_distinct_3: 0.5865\n854\t      token_entropy_drift_pct_gen0_17: -63.4\n855\t      distinct_1_drift_pct_gen0_17: -23\n856\t      distinct_2_drift_pct_gen0_17: -30.1\n857\t      distinct_3_drift_pct_gen0_17: -27.8\n858\t      ece_drift_pct_gen0_17: 4024\n859\t      ppl_drift_pct_gen0_17: 12395\n860\t      phase1_rapid_collapse: gen0-5\n861\t      phase2_apparent_plateau: gen5-12\n862\t      phase3_secondary_decline: gen13-17\n863\t      phase3_d2_decline_pct: -5.8\n864\t      phase3_d3_decline_pct: -6.9\n865\t      diversity_saturated_at_gen: 5\n866\t      diversity_secondary_decline_at_gen: 13\n867\t      perplexity_saturated: false\n868\t    failure_reason: EXIT_CODE=124 (timeout — exceeded timeout_hours)\n869\t    conclusion: failed\n870\t    completed_at: '2026-05-15T11:41:43.235Z'\n871\t    extra:\n872\t      hook_events:\n873\t      - event: on_failed\n874\t        action: agent\n875\t        ts: '2026-05-15T11:41:44.300301+00:00'\n876\t    notes: 'gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%,\n877\t      entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%),\n878\t      Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%).\n879\t      T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs\n880\t      T=10 的 0.05-0.21).'\n881\t  plan_006_s43:\n882\t    status: DONE\n883\t    retry_count: 0\n884\t    created_at: '2026-05-14T23:31:37.257Z'\n885\t    updated_at: '2026-05-16T00:03:51.617Z'\n886\t    spec:\n887\t      plan_id: plan_006\n888\t      hypothesis: 'Multi-seed replication of three-phase collapse dynamics: verify\n889\t        Phase 3 secondary decline (gen 13+) reproduces with seed=43, confirming it\n890\t        is not a single-seed artifact'\n891\t      model_name: EleutherAI/pythia-410m\n892\t      seed: 43\n893\t      data_path: data/wikitext103_5k\n894\t      num_generations: 18\n895\t      synthetic_ratio: 1\n896\t      max_lag: 10\n897\t      data_count: 5000\n898\t      steps_per_gen: 5000\n899\t      parent: plan_006_s42\n900\t      claim: 1\n901\t      priority: P0\n902\t    conclusion: killed\n903\t    completed_at: '2026-05-16T00:03:51.617Z'\n904\t  method_ablation_phase1:\n905\t    status: DONE\n906\t    retry_count: 0\n907\t    created_at: '2026-05-14T23:49:16.519Z'\n908\t    updated_at: '2026-05-14T23:49:40.162Z'\n909\t    spec:\n910\t      plan_id: plan_002\n911\t      hypothesis: lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变\n912\t        75% 的结论\n913\t      command: python method_ablation.py + python permutation_granger.py (差分版)\n914\t      server: westd-19828\n915\t      data_path: results/mvp/rep_{42,43,44,45}/all_metrics.json\n916\t      data_count: 4\n917\t      model_name: N/A (analysis on MVP data)\n918\t      seed: 42,43,44,45\n919\t      checkpoint_path: N/A\n920\t      log_path: results/mvp/analysis/method_ablation.json\n921\t    conclusion: success\n922\t    completed_at: '2026-05-14T23:49:37.295Z'\n923\t    metrics:\n924\t      spurious_rate_5method: 0.75\n925\t      spurious_rate_4method: 0.625\n926\t      naive_sig: 16/16\n927\t      differenced_sig: 14/16\n928\t      threshold_sig: 9/16\n929\t      permutation_granger_sig: 6/16\n930\t      ty_sig: 4/16\n931\t      ty_power_T10: 0.05-0.20\n932\t      bh_fdr_flips: 0\n933\t  alpha_sweep_a025_s43:\n934\t    status: DONE\n935\t    retry_count: 0\n936\t    created_at: '2026-05-15T06:58:43.090Z'\n937\t    updated_at: '2026-05-15T17:39:43.623Z'\n938\t    spec:\n939\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n940\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n941\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n942\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n943\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir\n944\t        results/alpha_sweep/a025_s43\"\n945\t      server: westd-19828\n946\t      gpu:\n947\t      - cuda:1\n948\t      pid: '121635'\n949\t      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\n950\t      submitted_at: '2026-05-15T13:16:31.189Z'\n951\t      submitted_via: submit_training_job\n952\t      backend: tmux\n953\t      account: root\n954\t      wall_clock_seconds: 15792.4\n955\t      gpu_hours: 4.39\n956\t    server: westd-19828\n957\t    gpu: cuda:1\n958\t    pid: '121635'\n959\t    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\n960\t    reproduce:\n961\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n962\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n963\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n964\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n965\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir\n966\t        results/alpha_sweep/a025_s43\"\n967\t      finished_at: '2026-05-15T17:36:20.945Z'\n968\t    metrics:\n969\t      gen0:\n970\t        token_entropy: 3.2342\n971\t        ece: 0.0108\n972\t        perplexity: 26.949\n973\t        distinct_1: 0.09833\n974\t        distinct_2: 0.5132\n975\t        distinct_3: 0.8057\n976\t        effective_rank: 46.61\n977\t        mauve: 0.03351\n978\t      gen10:\n979\t        token_entropy: 3.0723\n980\t        ece: 0.02146\n981\t        perplexity: 21.899\n982\t        distinct_1: 0.05849\n983\t        distinct_2: 0.2236\n984\t        distinct_3: 0.333\n985\t        effective_rank: 45.37\n986\t        mauve: 0.01871\n987\t      drift_pct:\n988\t        token_entropy: -5\n989\t        ece: 98.6\n990\t        perplexity: -18.7\n991\t        distinct_1: -40.5\n992\t        distinct_2: -56.4\n993\t        distinct_3: -58.7\n994\t        effective_rank: -2.7\n995\t        mauve: -44.2\n996\t    extra:\n997\t      hook_events:\n998\t      - event: on_complete\n999\t        action: agent\n1000\t        ts: '2026-05-15T17:36:22.072334+00:00'\n1001\t    conclusion: success\n1002\t    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint\n1003\t    completed_at: '2026-05-15T17:39:43.624Z'\n1004\t  alpha_sweep_a050_s43:\n1005\t    status: DONE\n1006\t    retry_count: 0\n1007\t    created_at: '2026-05-15T06:58:45.880Z'\n1008\t    updated_at: '2026-05-15T22:15:50.290Z'\n1009\t    spec:\n1010\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n1011\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1012\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n1013\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n1014\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n1015\t        results/alpha_sweep/a050_s43\"\n1016\t      server: westd-19828\n1017\t      gpu:\n1018\t      - cuda:1\n1019\t      pid: '134860'\n1020\t      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\n1021\t      submitted_at: '2026-05-15T17:40:27.060Z'\n1022\t      submitted_via: submit_training_job\n1023\t      backend: tmux\n1024\t      account: root\n1025\t      wall_clock_seconds: 16523.2\n1026\t      gpu_hours: 4.59\n1027\t    server: westd-19828\n1028\t    gpu: cuda:1\n1029\t    pid: '134860'\n1030\t    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\n1031\t    reproduce:\n1032\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n1033\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1034\t        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n1035\t        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n1036\t        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n1037\t        results/alpha_sweep/a050_s43\"\n1038\t      finished_at: '2026-05-15T22:00:14.725Z'\n1039\t    extra:\n1040\t      hook_events:\n1041\t      - event: on_complete\n1042\t        action: agent\n1043\t        ts: '2026-05-15T22:00:15.908424+00:00'\n1044\t    conclusion: success\n1045\t    checkpoint_path: results/alpha_sweep/a050_s43/gen_10/checkpoint/\n1046\t    metrics:\n1047\t      gen0_token_entropy: 3.234195\n1048\t      gen0_ece: 0.010805\n1049\t      gen0_perplexity: 26.948959\n1050\t      gen10_token_entropy: 2.672\n1051\t      gen10_ece: 0.097\n1052\t      gen10_perplexity: 32.633\n1053\t      gen0_distinct_1: 0.09833\n1054\t      gen0_distinct_2: 0.5132\n1055\t      gen0_distinct_3: 0.8057\n1056\t      gen10_distinct_1: 0.0624\n1057\t      gen10_distinct_2: 0.2617\n1058\t      gen10_distinct_3: 0.4126\n1059\t      token_entropy_drift_pct: -17.4\n1060\t      ece_drift_pct: 799\n1061\t      perplexity_drift_pct: 21.1\n1062\t      distinct_1_drift_pct: -36.5\n1063\t      distinct_2_drift_pct: -49\n1064\t      distinct_3_drift_pct: -48.8\n1065\t      cross_seed_note: 'vs s42: drift direction identical, magnitude <7% deviation,\n1066\t        ppl near-identical (32.633 vs 32.64)'\n1067\t    completed_at: '2026-05-15T22:00:14Z'\n1068\t  alpha_sweep_a025_s44:\n1069\t    status: DONE\n1070\t    retry_count: 0\n1071\t    created_at: '2026-05-15T06:58:48.224Z'\n1072\t    updated_at: '2026-05-16T02:49:46.894Z'\n1073\t    spec:\n1074\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n1075\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1076\t        && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export\n1077\t        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n1078\t        && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py\n1079\t        --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n1080\t        10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"\n1081\t      server: westd-19828\n1082\t      gpu:\n1083\t      - cuda:1\n1084\t      pid: '147811'\n1085\t      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\n1086\t      submitted_at: '2026-05-15T22:04:28.318Z'\n1087\t      submitted_via: submit_training_job\n1088\t      backend: tmux\n1089\t      account: root\n1090\t      wall_clock_seconds: 17118.6\n1091\t      gpu_hours: 4.76\n1092\t    server: westd-19828\n1093\t    gpu: cuda:1\n1094\t    account: root\n1095\t    reproduce:\n1096\t      server: westd-19828\n1097\t      gpu: cuda:1\n1098\t      started_at: '2026-05-15T22:04:26.677Z'\n1099\t      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n1100\t        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1101\t        && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export\n1102\t        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh\n1103\t        && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py\n1104\t        --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations\n1105\t        10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\"\n1106\t      finished_at: '2026-05-16T02:24:25.056Z'\n1107\t      training_hours: 4.33\n1108\t    pid: '147811'\n1109\t    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\n1110\t    extra:\n1111\t      hook_events:\n1112\t      - event: on_complete\n1113\t        action: agent\n1114\t        ts: '2026-05-16T02:24:26.614491+00:00'\n1115\t    metrics: \"{\\n  \\\"gen0\\\": {\\n    \\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.01080, \\\"\\\n1116\t      perplexity\\\": 26.949,\\n    \\\"distinct_1\\\": 0.09809, \\\"distinct_2\\\": 0.51324,\\\n1117\t      \\ \\\"distinct_3\\\": 0.80577,\\n    \\\"effective_rank\\\": 46.613, \\\"mauve\\\": 0.02954\\n\\\n1118\t      \\  },\\n  \\\"gen10\\\": {\\n    \\\"token_entropy\\\": 3.0721, \\\"ece\\\": 0.01804, \\\"perplexity\\\"\\\n1119\t      : 21.984,\\n    \\\"distinct_1\\\": 0.05884, \\\"distinct_2\\\": 0.22703, \\\"distinct_3\\\"\\\n1120\t      : 0.33644,\\n    \\\"effective_rank\\\": 44.354, \\\"mauve\\\": 0.01753\\n  },\\n  \\\"drift_pct\\\"\\\n1121\t      : {\\n    \\\"token_entropy\\\": -5.01, \\\"ece\\\": +67.0, \\\"perplexity\\\": -18.42,\\n\\\n1122\t      \\    \\\"distinct_1\\\": -40.01, \\\"distinct_2\\\": -55.77, \\\"distinct_3\\\": -58.24,\\n\\\n1123\t      \\    \\\"effective_rank\\\": -4.85, \\\"mauve\\\": -40.65\\n  }\\n}\"\n1124\t    conclusion: success\n1125\t    checkpoint_path: results/alpha_sweep/a025_s44/gen_10/checkpoint\n1126\t    completed_at: '2026-05-16T02:49:46.894Z'\n1127\t  alpha_sweep_a050_s44:\n1128\t    status: DONE\n1129\t    retry_count: 0\n1130\t    created_at: '2026-05-15T06:58:50.550Z'\n1131\t    updated_at: '2026-05-16T00:03:52.118Z'\n1132\t    spec:\n1133\t      hypothesis: 'α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力'\n1134\t      model_name: EleutherAI/pythia-410m\n1135\t      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n1136\t      data_count: 5000\n1137\t      seed: 44\n1138\t      synthetic_ratio: 0.5\n1139\t      num_generations: 10\n1140\t      steps_per_gen: 5000\n1141\t      parent: alpha_sweep_a050_s42\n1142\t      priority: D026-4\n1143\t    conclusion: killed\n1144\t    completed_at: '2026-05-16T00:03:52.118Z'\n1145\t  method_ablation_phase2:\n1146\t    status: DONE\n1147\t    retry_count: 0\n1148\t    created_at: '2026-05-15T08:58:35.270Z'\n1149\t    updated_at: '2026-05-15T11:07:42.688Z'\n1150\t    spec:\n1151\t      hypothesis: Method sensitivity is compounded by regime dependence — method x\n1152\t        alpha interaction is the headline Claim 3 evidence\n1153\t      command: python method_ablation_phase2.py\n1154\t      server: westd-19828\n1155\t      data_path: results/alpha_sweep + results/mvp\n1156\t      data_count: 56\n1157\t      model_name: N/A (analysis)\n1158\t      seed: 42,43,44,45\n1159\t      checkpoint_path: N/A\n1160\t      log_path: results/method_ablation_phase2_panel.json\n1161\t    conclusion: success\n1162\t    metrics:\n1163\t      n_panel_rows: 56\n1164\t      n_alphas: 4\n1165\t      alphas:\n1166\t      - 0\n1167\t      - 0.25\n1168\t      - 0.5\n1169\t      - 1\n1170\t      naive_sig_rate_overall: 1\n1171\t      perm_granger_sig_rate_a000_raw: 0\n1172\t      perm_granger_sig_rate_a000_fdr: 0\n1173\t      perm_granger_sig_rate_a025_raw: 0.25\n1174\t      perm_granger_sig_rate_a025_fdr: 0\n1175\t      perm_granger_sig_rate_a050_raw: 0.25\n1176\t      perm_granger_sig_rate_a050_fdr: 0\n1177\t      perm_granger_sig_rate_a100_raw: 0.75\n1178\t      perm_granger_sig_rate_a100_fdr: 0.75\n1179\t      TY_sig_rate_a000_raw: 0\n1180\t      TY_sig_rate_a000_fdr: 0\n1181\t      TY_sig_rate_a025_raw: 0.625\n1182\t      TY_sig_rate_a025_fdr: 0.375\n1183\t      TY_sig_rate_a050_raw: 0\n1184\t      TY_sig_rate_a050_fdr: 0\n1185\t      TY_sig_rate_a100_raw: 0.5938\n1186\t      TY_sig_rate_a100_fdr: 0.5938\n1187\t      diff_sig_rate_a000_raw: 0.5\n1188\t      diff_sig_rate_a000_fdr: 0.375\n1189\t      mean_inter_method_kappa: 0.185\n1190\t      naive_vs_perm_granger_flip_rate: 0.5\n1191\t      naive_vs_TY_flip_rate: 0.57\n1192\t      fdr_flips_perm_granger: 4\n1193\t      pair_verdict_a100_perm_granger: 6/8\n1194\t      pair_verdict_a100_TY: 6/8\n1195\t      entropy_to_diversity_a100_all_5methods_sig: true\n1196\t      fdr_correction: BH q=0.05\n1197\t    completed_at: '2026-05-15T08:58:54.741Z'\n1198\t  gen_wiki_gpt2m_a025_s42:\n1199\t    status: RUNNING\n1200\t    retry_count: 0\n1201\t    created_at: '2026-05-15T10:35:16.032Z'\n1202\t    updated_at: '2026-05-15T22:22:52.921Z'\n1203\t    spec:\n1204\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1205\t        base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1206\t        TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py\n1207\t        --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio\n1208\t        0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir\n1209\t        results/gen_wiki_gpt2m_a025_s42\"\n1210\t      server: westd-19828\n1211\t      gpu:\n1212\t      - cuda:0\n1213\t      pid: '149202'\n1214\t      log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\n1215\t      submitted_at: '2026-05-15T22:22:52.615Z'\n1216\t      submitted_via: submit_training_job\n1217\t      backend: tmux\n1218\t      account: root\n1219\t    server: westd-19828\n1220\t    gpu: cuda:0\n1221\t    account: root\n1222\t    reproduce:\n1223\t      server: westd-19828\n1224\t      gpu: cuda:0\n1225\t      started_at: '2026-05-15T22:22:51.021Z'\n1226\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1227\t        base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1228\t        TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py\n1229\t        --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio\n1230\t        0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir\n1231\t        results/gen_wiki_gpt2m_a025_s42\"\n1232\t    pid: '149202'\n1233\t    log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\n1234\t  gen_wiki_gpt2m_a100_s42:\n1235\t    status: DONE\n1236\t    retry_count: 0\n1237\t    created_at: '2026-05-15T10:35:18.700Z'\n1238\t    updated_at: '2026-05-15T12:01:58.523Z'\n1239\t    spec:\n1240\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1241\t        base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1242\t        HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name\n1243\t        gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations\n1244\t        10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"\n1245\t      server: westd-19828\n1246\t      gpu:\n1247\t      - cuda:0\n1248\t      pid: '115532'\n1249\t      log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\n1250\t      submitted_at: '2026-05-15T11:57:48.767Z'\n1251\t      submitted_via: submit_training_job\n1252\t      backend: tmux\n1253\t      account: root\n1254\t      wall_clock_seconds: 249.8\n1255\t      gpu_hours: 0.07\n1256\t    server: westd-19828\n1257\t    gpu: cuda:0\n1258\t    account: root\n1259\t    reproduce:\n1260\t      server: westd-19828\n1261\t      gpu: cuda:0\n1262\t      started_at: '2026-05-15T11:57:47.340Z'\n1263\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1264\t        base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1265\t        HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name\n1266\t        gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations\n1267\t        10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"\n1268\t    pid: '115532'\n1269\t    log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\n1270\t    conclusion: killed\n1271\t    completed_at: '2026-05-15T12:01:58.523Z'\n1272\t  plan_006_s42_resume:\n1273\t    status: DONE\n1274\t    retry_count: 0\n1275\t    created_at: '2026-05-15T11:55:26.236Z'\n1276\t    updated_at: '2026-05-15T12:10:54.859Z'\n1277\t    spec:\n1278\t      command: python -u resume_plan006_s42.py\n1279\t      server: westd-19828\n1280\t      gpu:\n1281\t      - cuda:0\n1282\t      pid: '114844'\n1283\t      log_path: ~/runs/distrib_canary_collapse/plan_006_s42_resume.log\n1284\t      submitted_at: '2026-05-15T11:55:31.984Z'\n1285\t      submitted_via: submit_training_job\n1286\t      backend: tmux\n1287\t      account: root\n1288\t      hypothesis: 恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen,\n1289\t        s42）\n1290\t      seed: 42\n1291\t      model_name: EleutherAI/pythia-410m\n1292\t      data_path: data/wikitext103\n1293\t      data_count: 0\n1294\t      checkpoint_path: N/A\n1295\t      notes: D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\n1296\t      wall_clock_seconds: 921.5\n1297\t      gpu_hours: 0.26\n1298\t    conclusion: killed\n1299\t    completed_at: '2026-05-15T12:10:53.514Z'\n1300\t    notes: D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis\n1301\t      + supplementary。\n1302\t  gen_wiki_gpt2m_a100_s42_v2:\n1303\t    status: DONE\n1304\t    retry_count: 0\n1305\t    created_at: '2026-05-15T12:02:06.478Z'\n1306\t    updated_at: '2026-05-15T12:04:50.741Z'\n1307\t    spec:\n1308\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1309\t        base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1310\t        TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py\n1311\t        --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k\n1312\t        --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size\n1313\t        32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"\n1314\t      server: westd-19828\n1315\t      gpu:\n1316\t      - cuda:0\n1317\t      pid: '116204'\n1318\t      log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\n1319\t      submitted_at: '2026-05-15T12:02:14.440Z'\n1320\t      submitted_via: submit_training_job\n1321\t      backend: tmux\n1322\t      account: root\n1323\t      wall_clock_seconds: 18.0\n1324\t      gpu_hours: 0.01\n1325\t    server: westd-19828\n1326\t    gpu: cuda:0\n1327\t    account: root\n1328\t    reproduce:\n1329\t      server: westd-19828\n1330\t      gpu: cuda:0\n1331\t      started_at: '2026-05-15T12:02:13.557Z'\n1332\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1333\t        base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1334\t        TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py\n1335\t        --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k\n1336\t        --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size\n1337\t        32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\"\n1338\t      finished_at: '2026-05-15T12:02:31.643Z'\n1339\t      training_hours: 0.01\n1340\t    pid: '116204'\n1341\t    log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\n1342\t    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n1343\t    conclusion: killed\n1344\t    completed_at: '2026-05-15T12:02:32.472Z'\n1345\t    extra:\n1346\t      hook_events:\n1347\t      - event: on_failed\n1348\t        action: agent\n1349\t        ts: '2026-05-15T12:02:33.931882+00:00'\n1350\t  gen_wiki_gpt2m_a100_s42_v3:\n1351\t    status: DONE\n1352\t    retry_count: 0\n1353\t    created_at: '2026-05-15T12:07:20.050Z'\n1354\t    updated_at: '2026-05-15T22:30:21.573Z'\n1355\t    spec:\n1356\t      hypothesis: Method sensitivity patterns (Granger FDR collapse, cross-correlation\n1357\t        dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture\n1358\t        universality of methodological pitfalls\n1359\t      seed: 42\n1360\t      model_name: gpt2-medium\n1361\t      data_path: data/wikitext103_5k\n1362\t      data_count: 5000\n1363\t    server: westd-19828\n1364\t    gpu: cuda:0\n1365\t    account: root\n1366\t    reproduce:\n1367\t      server: westd-19828\n1368\t      gpu: cuda:0\n1369\t      started_at: '2026-05-15T12:07:30.366Z'\n1370\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n1371\t        base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache\n1372\t        TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py\n1373\t        --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio\n1374\t        1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir\n1375\t        results/gen_wiki_gpt2m_a100_s42\"\n1376\t      finished_at: '2026-05-15T22:14:43.852Z'\n1377\t      training_hours: 10.12\n1378\t    pid: '117632'\n1379\t    log_path: ~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\n1380\t    metrics:\n1381\t      token_entropy_drift_pct: -86.5\n1382\t      ece_drift_pct: 4543\n1383\t      perplexity_drift_pct: 44703\n1384\t      distinct_1_drift_pct: -12.4\n1385\t      distinct_2_drift_pct: -14.7\n1386\t      distinct_3_drift_pct: -12.7\n1387\t      five_method_forward_consensus: 6/6 pairs at 4/5 methods (Tier 3)\n1388\t      five_method_reverse_consensus: 0/6 pairs\n1389\t      naive_xcorr_forward: '|r|>0.98, all sig'\n1390\t      diff_xcorr_forward: all p_fdr<0.001\n1391\t      diff_xcorr_reverse: all p>0.18 (clean directional separation)\n1392\t      threshold_onset_entropy: gen 1 (earliest canary)\n1393\t      threshold_onset_ece: gen 1-2\n1394\t      threshold_onset_diversity: gen 3\n1395\t      perm_granger_forward: p_fdr=0.003, BH corrected\n1396\t      ty_granger_forward: 0/6 sig (df_resid=1-4, underpowered, consistent with Pythia\n1397\t        C001)\n1398\t      entropy_leads_diversity_lag: 1-2 gen\n1399\t      ece_leads_diversity_lag: 1 gen\n1400\t      diversity_plateau_from: gen5\n1401\t      cross_arch_note: Replicates Pythia entropy-leads-diversity pattern at Tier 3\n1402\t        consensus. TY underpowered as expected.\n1403\t    extra:\n1404\t      hook_events:\n1405\t      - event: on_complete\n1406\t        action: agent\n1407\t        ts: '2026-05-15T22:14:45.029003+00:00'\n1408\t    conclusion: success\n1409\t    checkpoint_path: results/gen_wiki_gpt2m_a100_s42/\n1410\t    completed_at: '2026-05-15T22:18:22.762Z'\n1411\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5a540b8-44e8-4698-b7d9-d147e4670bd4",
+            "isSidechain": true,
+            "promptId": "bfd10638-11d5-4fd5-a51c-fdbcd38a9e94",
+            "agentId": "ae0545680b43593da",
+            "type": "user",
+            "uuid": "5d12181a-b7e6-4b30-98ec-f046a0e8e481",
+            "sourceToolAssistantUUID": "a5a540b8-44e8-4698-b7d9-d147e4670bd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T06:11:31.408Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for all experiments with synthetic_ratio 0.50 or \"a050\" in the exp_id:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d12181a-b7e6-4b30-98ec-f046a0e8e481",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kao5bvP16GzVUQMwYi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "30f187a1-c8d1-404b-a73a-a17af96be10f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019f7igZsUK1wToQLr3nsZWh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 26597,
+                "cache_read_input_tokens": 20747,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 26597,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T06:11:32.462Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QEN1xVSUBkSJc4B2BQuN5H",
+              "name": "Grep",
+              "input": {
+                "pattern": "a050|synthetic_ratio.*0\\.5",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30f187a1-c8d1-404b-a73a-a17af96be10f",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kao5bvP16GzVUQMwYi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "67824fcf-7798-4d9b-a211-a7e0d1be7671",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019f7igZsUK1wToQLr3nsZWh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 26597,
+                "cache_read_input_tokens": 20747,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 26597,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T06:11:32.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QEN1xVSUBkSJc4B2BQuN5H",
+              "type": "tool_result",
+              "content": "629-      T20_d1_power: 0.172\n630-      T30_d0_power: 0.606\n631-      T30_d1_power: 0.283\n632:  alpha_sweep_a050_s42:\n633-    status: DONE\n634-    retry_count: 0\n635-    created_at: '2026-05-14T21:52:15.427Z'\n--\n641-      model_name: EleutherAI/pythia-410m\n642-      data_path: data/wikitext103_5k\n643-      data_count: 5000\n644:      synthetic_ratio: 0.5\n645-      num_generations: 10\n646-      steps_per_gen: 5000\n647-    server: westd-19828\n--\n655-        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n656-        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n657-        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n658:        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n659:        results/alpha_sweep/a050_s42\"\n660-      finished_at: '2026-05-15T05:42:25.788Z'\n661-      training_hours: 4.45\n662-    pid: '73737'\n663:    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\n664-    metrics:\n665-      progress: 11/11 gen (complete)\n666-      gen0_token_entropy: 3.234\n--\n696-      - event: on_complete\n697-        action: agent\n698-        ts: '2026-05-15T05:42:26.715028+00:00'\n699:    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\n700-    conclusion: success\n701-    completed_at: '2026-05-15T05:46:48.692Z'\n702-  alpha_sweep_a075_s42:\n--\n1001-    conclusion: success\n1002-    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint\n1003-    completed_at: '2026-05-15T17:39:43.624Z'\n1004:  alpha_sweep_a050_s43:\n1005-    status: DONE\n1006-    retry_count: 0\n1007-    created_at: '2026-05-15T06:58:45.880Z'\n--\n1011-        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1012-        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n1013-        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n1014:        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n1015:        results/alpha_sweep/a050_s43\"\n1016-      server: westd-19828\n1017-      gpu:\n1018-      - cuda:1\n1019-      pid: '134860'\n1020:      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\n1021-      submitted_at: '2026-05-15T17:40:27.060Z'\n1022-      submitted_via: submit_training_job\n1023-      backend: tmux\n--\n1027-    server: westd-19828\n1028-    gpu: cuda:1\n1029-    pid: '134860'\n1030:    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\n1031-    reproduce:\n1032-      command: bash -c \"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache\n1033-        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n1034-        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n1035-        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k\n1036:        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir\n1037:        results/alpha_sweep/a050_s43\"\n1038-      finished_at: '2026-05-15T22:00:14.725Z'\n1039-    extra:\n1040-      hook_events:\n--\n1042-        action: agent\n1043-        ts: '2026-05-15T22:00:15.908424+00:00'\n1044-    conclusion: success\n1045:    checkpoint_path: results/alpha_sweep/a050_s43/gen_10/checkpoint/\n1046-    metrics:\n1047-      gen0_token_entropy: 3.234195\n1048-      gen0_ece: 0.010805\n--\n1124-    conclusion: success\n1125-    checkpoint_path: results/alpha_sweep/a025_s44/gen_10/checkpoint\n1126-    completed_at: '2026-05-16T02:49:46.894Z'\n1127:  alpha_sweep_a050_s44:\n1128-    status: DONE\n1129-    retry_count: 0\n1130-    created_at: '2026-05-15T06:58:50.550Z'\n--\n1135-      data_path: /root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\n1136-      data_count: 5000\n1137-      seed: 44\n1138:      synthetic_ratio: 0.5\n1139-      num_generations: 10\n1140-      steps_per_gen: 5000\n1141:      parent: alpha_sweep_a050_s42\n1142-      priority: D026-4\n1143-    conclusion: killed\n1144-    completed_at: '2026-05-16T00:03:52.118Z'\n--\n1172-      perm_granger_sig_rate_a000_fdr: 0\n1173-      perm_granger_sig_rate_a025_raw: 0.25\n1174-      perm_granger_sig_rate_a025_fdr: 0\n1175:      perm_granger_sig_rate_a050_raw: 0.25\n1176:      perm_granger_sig_rate_a050_fdr: 0\n1177-      perm_granger_sig_rate_a100_raw: 0.75\n1178-      perm_granger_sig_rate_a100_fdr: 0.75\n1179-      TY_sig_rate_a000_raw: 0\n1180-      TY_sig_rate_a000_fdr: 0\n1181-      TY_sig_rate_a025_raw: 0.625\n1182-      TY_sig_rate_a025_fdr: 0.375\n1183:      TY_sig_rate_a050_raw: 0\n1184:      TY_sig_rate_a050_fdr: 0\n1185-      TY_sig_rate_a100_raw: 0.5938\n1186-      TY_sig_rate_a100_fdr: 0.5938\n1187-      diff_sig_rate_a000_raw: 0.5"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67824fcf-7798-4d9b-a211-a7e0d1be7671",
+            "isSidechain": true,
+            "promptId": "bfd10638-11d5-4fd5-a51c-fdbcd38a9e94",
+            "agentId": "ae0545680b43593da",
+            "type": "user",
+            "uuid": "cb3b7c66-3522-4a4a-bbef-2c8669713e97",
+            "sourceToolAssistantUUID": "67824fcf-7798-4d9b-a211-a7e0d1be7671",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T06:11:32.866Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JV4H5jC913XqAZQ6NbQwe7",
+              "name": "Grep",
+              "input": {
+                "pattern": "a000|synthetic_ratio.*0\\.0",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/registry.yaml",
+                "output_mode": "content",
+                "context": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb3b7c66-3522-4a4a-bbef-2c8669713e97",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kao5bvP16GzVUQMwYi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a2b8d996-8dc3-4f63-8fc3-3992c50216ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019f7igZsUK1wToQLr3nsZWh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 26597,
+                "cache_read_input_tokens": 20747,
+                "output_tokens": 303,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 26597
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 303,
+                    "cache_read_input_tokens": 20747,
+                    "cache_creation_input_tokens": 26597,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 26597,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T06:11:32.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JV4H5jC913XqAZQ6NbQwe7",
+              "type": "tool_result",
+              "content": "453-      distinct_2_drift_pct: -35.9639\n454-      distinct_3_drift_pct: -32.7352\n455-    completed_at: '2026-05-14T17:58:00.661Z'\n456:  alpha_sweep_a000_s42:\n457-    status: DONE\n458-    retry_count: 0\n459-    created_at: '2026-05-14T19:01:37.470Z'\n--\n471-        && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com\n472-        && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&\n473-        PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k\n474:        --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir\n475:        results/alpha_sweep/a000_s42\"\n476-      server: westd-19828\n477-      gpu:\n478-      - cuda:0\n479-      pid: '46716'\n480:      log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\n481-    reproduce:\n482-      finished_at: '2026-05-14T23:36:35.414Z'\n483-    extra:\n--\n486-        action: agent\n487-        ts: '2026-05-14T23:36:36.221435+00:00'\n488-    conclusion: success\n489:    checkpoint_path: /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\n490:    log_path: ~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\n491-    metrics:\n492-      gen0_token_entropy: 3.2342\n493-      gen10_token_entropy: 3.0693\n--\n1168-      - 0.5\n1169-      - 1\n1170-      naive_sig_rate_overall: 1\n1171:      perm_granger_sig_rate_a000_raw: 0\n1172:      perm_granger_sig_rate_a000_fdr: 0\n1173-      perm_granger_sig_rate_a025_raw: 0.25\n1174-      perm_granger_sig_rate_a025_fdr: 0\n1175-      perm_granger_sig_rate_a050_raw: 0.25\n1176-      perm_granger_sig_rate_a050_fdr: 0\n1177-      perm_granger_sig_rate_a100_raw: 0.75\n1178-      perm_granger_sig_rate_a100_fdr: 0.75\n1179:      TY_sig_rate_a000_raw: 0\n1180:      TY_sig_rate_a000_fdr: 0\n1181-      TY_sig_rate_a025_raw: 0.625\n1182-      TY_sig_rate_a025_fdr: 0.375\n1183-      TY_sig_rate_a050_raw: 0\n1184-      TY_sig_rate_a050_fdr: 0\n1185-      TY_sig_rate_a100_raw: 0.5938\n1186-      TY_sig_rate_a100_fdr: 0.5938\n1187:      diff_sig_rate_a000_raw: 0.5\n1188:      diff_sig_rate_a000_fdr: 0.375\n1189-      mean_inter_method_kappa: 0.185\n1190-      naive_vs_perm_granger_flip_rate: 0.5\n1191-      naive_vs_TY_flip_rate: 0.57"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a2b8d996-8dc3-4f63-8fc3-3992c50216ea",
+            "isSidechain": true,
+            "promptId": "bfd10638-11d5-4fd5-a51c-fdbcd38a9e94",
+            "agentId": "ae0545680b43593da",
+            "type": "user",
+            "uuid": "afb6e5be-a888-4925-8b82-17bc1c571298",
+            "sourceToolAssistantUUID": "a2b8d996-8dc3-4f63-8fc3-3992c50216ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T06:11:38.474Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the experiments. Let me now extract the complete details for all α=0.50 experiments and verify the α=0.0 experiments:\n\n## Summary of Findings\n\n### Experiments with synthetic_ratio 0.50 (α=0.50):\n\n**1. alpha_sweep_a050_s42**\n- exp_id: alpha_sweep_a050_s42\n- seed: 42\n- status: DONE\n- conclusion: success\n- synthetic_ratio: 0.5\n\n**2. alpha_sweep_a050_s43**\n- exp_id: alpha_sweep_a050_s43\n- seed: 43\n- status: DONE\n- conclusion: success\n- synthetic_ratio: 0.5\n\n**3. alpha_sweep_a050_s44**\n- exp_id: alpha_sweep_a050_s44\n- seed: 44\n- status: DONE\n- conclusion: killed\n- synthetic_ratio: 0.5\n\n**Valid experiments at α=0.50 (status=DONE, conclusion=success): 2 seeds**\n- Seed 42: VALID\n- Seed 43: VALID\n- Seed 44: KILLED (not valid)\n\n### Experiments with synthetic_ratio 0.0 (α=0.0):\n\n**1. alpha_sweep_a000_s42**\n- exp_id: alpha_sweep_a000_s42\n- seed: 42\n- status: DONE\n- conclusion: success\n- synthetic_ratio: 0.0\n\n**Finding: There is only ONE experiment at α=0.0 in the registry: seed=42**\n\nNo other α=0.0 experiments exist besides seed=42.\n\n### Summary Table:\n\n| Alpha | Seed | Exp_ID | Status | Conclusion | Valid? |\n|-------|------|--------|--------|-----------|--------|\n| 0.50 | 42 | alpha_sweep_a050_s42 | DONE | success | YES |\n| 0.50 | 43 | alpha_sweep_a050_s43 | DONE | success | YES |\n| 0.50 | 44 | alpha_sweep_a050_s44 | DONE | killed | NO |\n| 0.0 | 42 | alpha_sweep_a000_s42 | DONE | success | YES |\n\n**Key finding: You have 2 valid seeds at α=0.50 (seeds 42 and 43 with successful completions). Seed 44 was killed, so it doesn't count as valid.**"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afb6e5be-a888-4925-8b82-17bc1c571298",
+            "isSidechain": true,
+            "agentId": "ae0545680b43593da",
+            "requestId": "req_011Cb5kb5NeBnJssEAabWTe6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eec2ca13-e7f7-408c-bab0-161299b85ba9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+            "sessionId": "2c3e5d83-b422-4bac-ad82-a671bb5f4094",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "graceful-baking-micali",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ULgWKL5Wz8oasaHGoDTYy9",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 3474,
+                "cache_read_input_tokens": 47344,
+                "output_tokens": 612,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3474
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 612,
+                    "cache_read_input_tokens": 47344,
+                    "cache_creation_input_tokens": 3474,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3474,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        }
+      ],
+      "message_count": 10
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-file-home-ubuntu-agent-ml-research-idea-gen-0514-4-projects-distrib-can.md"
+}

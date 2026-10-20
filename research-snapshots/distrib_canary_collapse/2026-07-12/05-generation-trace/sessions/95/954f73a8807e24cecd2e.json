@@ -1,0 +1,2147 @@
+{
+  "schema_version": "1.0",
+  "id": "954f73a8807e24cecd2e",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You need to update the experiment registry for the project \"distrib_canary_collapse\". Read the file /tmp/registry_update",
+  "task_key": "agent-ae3490821e043367d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ae3490821e043367d.jsonl",
+    "occurrence": 1,
+    "bytes": 101115,
+    "sha256": "e4265487029d86049ab990ce4cb923730b5d50e4dba43782a92362674136739a"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 15,
+      "tool_result": 15
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T20:34:25.449Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You need to update the experiment registry for the project \"distrib_canary_collapse\". \n\nRead the file /tmp/registry_update_plan.json. It contains a list of 62 experiment update entries. You need to process entries at indices 0-9 (the first 10).\n\nFor each entry, call update_registry with:\n- exp_id = entry[\"reg_eid\"]\n- field = \"metrics\"  \n- value = entry[\"new_metrics\"]\n- project = \"distrib_canary_collapse\"\n\nYou need to first load the tool schemas by calling ToolSearch with query \"select:mcp__agent-ml-research__update_registry\".\n\nMake all 10 update_registry calls in parallel for efficiency.\n\nAfter all updates complete, report which experiments were updated successfully and any failures."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "a9c45590-d327-47a7-9bfe-4e65780abb1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T20:34:25.458Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a9c45590-d327-47a7-9bfe-4e65780abb1d",
+                "isSidechain": true,
+                "agentId": "ae3490821e043367d",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "065a55b1-e5ef-4b27-8f34-f90ddd45defb",
+                "timestamp": "2026-05-20T20:34:25.458Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+                "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T20:34:27.851Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by loading the tool schema and reading the update plan file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "065a55b1-e5ef-4b27-8f34-f90ddd45defb",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETd7itN26cGdjiueyMc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "794bcb24-07b9-4f48-ba3a-6c94b747f838",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpKeoL4RpMpffqFczVtX2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14738,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14738,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T20:34:28.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S3LQhCrJw3GA6ab1orkm3R",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__update_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "794bcb24-07b9-4f48-ba3a-6c94b747f838",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETd7itN26cGdjiueyMc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "26364cf1-374b-477b-bf87-776249b49097",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpKeoL4RpMpffqFczVtX2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14738,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14738,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T20:34:28.838Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01S3LQhCrJw3GA6ab1orkm3R",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26364cf1-374b-477b-bf87-776249b49097",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "1f71079f-e594-474c-ba85-e18abec8068c",
+            "sourceToolAssistantUUID": "26364cf1-374b-477b-bf87-776249b49097",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T20:34:28.914Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019WUcmW4Rvs5E1eHBqM84x3",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/registry_update_plan.json",
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f71079f-e594-474c-ba85-e18abec8068c",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETd7itN26cGdjiueyMc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50c15caa-925f-4791-8d72-464b2c1a9778",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VpKeoL4RpMpffqFczVtX2j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14738,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14738,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T20:34:28.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019WUcmW4Rvs5E1eHBqM84x3",
+              "type": "tool_result",
+              "content": "1\t[\n2\t  {\n3\t    \"reg_eid\": \"alpha_sweep_a000_s42\",\n4\t    \"new_metrics\": {\n5\t      \"gen0_token_entropy\": 3.2342,\n6\t      \"gen10_token_entropy\": 3.0693,\n7\t      \"gen0_ece\": 0.0108,\n8\t      \"gen10_ece\": 0.0164,\n9\t      \"gen0_perplexity\": 26.95,\n10\t      \"gen10_perplexity\": 21.11,\n11\t      \"gen0_distinct_1\": 0.0982,\n12\t      \"gen10_distinct_1\": 0.0847,\n13\t      \"token_entropy_drift_pct\": -5.1,\n14\t      \"ece_drift_pct\": 51.7,\n15\t      \"perplexity_drift_pct\": -21.7,\n16\t      \"distinct_1_drift_pct\": -13.8,\n17\t      \"distinct_2_drift_pct\": -9.8,\n18\t      \"distinct_3_drift_pct\": -4.5,\n19\t      \"gen1_10_perplexity_drift_pct\": 9.4,\n20\t      \"gen1_10_distinct_1_drift_pct\": -13.1,\n21\t      \"gen1_10_entropy_drift_pct\": 2.6,\n22\t      \"ty_forward_sig\": 2,\n23\t      \"perm_granger_fdr_forward_sig\": 0,\n24\t      \"perm_granger_fdr_reverse_sig\": 0,\n25\t      \"diff_xcorr_fdr_forward_sig\": 4,\n26\t      \"diff_xcorr_fdr_reverse_sig\": 4,\n27\t      \"threshold_onset_forward_sig\": 3,\n28\t      \"robust_pairs_K3\": 0,\n29\t      \"robust_pairs_K4\": 0\n30\t    },\n31\t    \"old_K3\": null,\n32\t    \"new_K3\": 0,\n33\t    \"old_ty\": null,\n34\t    \"new_ty\": 2\n35\t  },\n36\t  {\n37\t    \"reg_eid\": \"alpha_sweep_a000_s43\",\n38\t    \"new_metrics\": {\n39\t      \"gen0\": {\n40\t        \"token_entropy\": 3.2342,\n41\t        \"ece\": 0.0108,\n42\t        \"perplexity\": 26.949,\n43\t        \"distinct_1\": 0.0983,\n44\t        \"distinct_2\": 0.5132,\n45\t        \"distinct_3\": 0.8057,\n46\t        \"effective_rank\": 46.613\n47\t      },\n48\t      \"gen10\": {\n49\t        \"token_entropy\": 3.0907,\n50\t        \"ece\": 0.0148,\n51\t        \"perplexity\": 21.469,\n52\t        \"distinct_1\": 0.0847,\n53\t        \"distinct_2\": 0.4631,\n54\t        \"distinct_3\": 0.7672,\n55\t        \"effective_rank\": 43.72\n56\t      },\n57\t      \"drift_pct\": {\n58\t        \"token_entropy\": -4.4,\n59\t        \"ece\": 37.2,\n60\t        \"perplexity\": -20.3,\n61\t        \"distinct_1\": -13.9,\n62\t        \"distinct_2\": -9.8,\n63\t        \"distinct_3\": -4.8,\n64\t        \"effective_rank\": -6.2\n65\t      },\n66\t      \"five_method\": {\n67\t        \"perm_granger_fdr_sig\": \"0/8\",\n68\t        \"ty_sig\": \"1/8 (df_resid=1 unreliable)\",\n69\t        \"robust_pairs_ge3\": \"0/8\",\n70\t        \"fpr_controlled\": true\n71\t      },\n72\t      \"ty_forward_sig\": 2,\n73\t      \"perm_granger_fdr_forward_sig\": 0,\n74\t      \"perm_granger_fdr_reverse_sig\": 0,\n75\t      \"diff_xcorr_fdr_forward_sig\": 2,\n76\t      \"diff_xcorr_fdr_reverse_sig\": 2,\n77\t      \"threshold_onset_forward_sig\": 1,\n78\t      \"robust_pairs_K3\": 0,\n79\t      \"robust_pairs_K4\": 0\n80\t    },\n81\t    \"old_K3\": null,\n82\t    \"new_K3\": 0,\n83\t    \"old_ty\": null,\n84\t    \"new_ty\": 2\n85\t  },\n86\t  {\n87\t    \"reg_eid\": \"alpha_sweep_a000_s44\",\n88\t    \"new_metrics\": {\n89\t      \"gen0\": {\n90\t        \"token_entropy\": 3.2342,\n91\t        \"ece\": 0.0108,\n92\t        \"perplexity\": 26.949,\n93\t        \"distinct_1\": 0.0981,\n94\t        \"distinct_2\": 0.5132,\n95\t        \"distinct_3\": 0.8058,\n96\t        \"effective_rank\": 46.613\n97\t      },\n98\t      \"gen10\": {\n99\t        \"token_entropy\": 3.0957,\n100\t        \"ece\": 0.0134,\n101\t        \"perplexity\": 21.616,\n102\t        \"distinct_1\": 0.0838,\n103\t        \"distinct_2\": 0.4665,\n104\t        \"distinct_3\": 0.7749,\n105\t        \"effective_rank\": 44.498\n106\t      },\n107\t      \"drift_pct\": {\n108\t        \"token_entropy\": -4.3,\n109\t        \"ece\": 24,\n110\t        \"perplexity\": -19.8,\n111\t        \"distinct_1\": -14.6,\n112\t        \"distinct_2\": -9.1,\n113\t        \"distinct_3\": -3.8,\n114\t        \"effective_rank\": -4.5\n115\t      },\n116\t      \"five_method\": {\n117\t        \"perm_granger_fdr_sig\": \"0/8\",\n118\t        \"ty_sig\": \"0/8\",\n119\t        \"robust_pairs_ge3\": \"0/8\",\n120\t        \"fpr_controlled\": true\n121\t      },\n122\t      \"ty_forward_sig\": 0,\n123\t      \"perm_granger_fdr_forward_sig\": 0,\n124\t      \"perm_granger_fdr_reverse_sig\": 0,\n125\t      \"diff_xcorr_fdr_forward_sig\": 3,\n126\t      \"diff_xcorr_fdr_reverse_sig\": 3,\n127\t      \"threshold_onset_forward_sig\": 2,\n128\t      \"robust_pairs_K3\": 1,\n129\t      \"robust_pairs_K4\": 0\n130\t    },\n131\t    \"old_K3\": null,\n132\t    \"new_K3\": 1,\n133\t    \"old_ty\": null,\n134\t    \"new_ty\": 0\n135\t  },\n136\t  {\n137\t    \"reg_eid\": \"alpha_sweep_a005_s42_v3\",\n138\t    \"new_metrics\": {\n139\t      \"final_ppl\": 20.81,\n140\t      \"final_entropy\": 3.04,\n141\t      \"final_eff_rank\": 45.3,\n142\t      \"final_mauve\": 0.023,\n143\t      \"precision\": \"fp32\",\n144\t      \"token_entropy_drift\": -5.96,\n145\t      \"ece_drift\": 55.41,\n146\t      \"perplexity_drift\": -22.78,\n147\t      \"distinct_1_drift\": -24.86,\n148\t      \"distinct_2_drift\": -28.42,\n149\t      \"distinct_3_drift\": -19.54,\n150\t      \"perm_granger_fwd\": \"0/8\",\n151\t      \"perm_granger_rev\": \"0/8\",\n152\t      \"ty_granger_fwd\": \"3/8\",\n153\t      \"threshold_onset_fwd\": \"5/8\",\n154\t      \"consensus_k4\": \"0/8\",\n155\t      \"mmct_wpair_fwd\": 0,\n156\t      \"ty_forward_sig\": 2,\n157\t      \"perm_granger_fdr_forward_sig\": 0,\n158\t      \"perm_granger_fdr_reverse_sig\": 0,\n159\t      \"diff_xcorr_fdr_forward_sig\": 3,\n160\t      \"diff_xcorr_fdr_reverse_sig\": 3,\n161\t      \"threshold_onset_forward_sig\": 0,\n162\t      \"robust_pairs_K3\": 2,\n163\t      \"robust_pairs_K4\": 0\n164\t    },\n165\t    \"old_K3\": null,\n166\t    \"new_K3\": 2,\n167\t    \"old_ty\": null,\n168\t    \"new_ty\": 2\n169\t  },\n170\t  {\n171\t    \"reg_eid\": \"alpha_sweep_a010_s42\",\n172\t    \"new_metrics\": {\n173\t      \"ty_forward_sig\": 1,\n174\t      \"perm_granger_fdr_forward_sig\": 0,\n175\t      \"perm_granger_fdr_reverse_sig\": 0,\n176\t      \"diff_xcorr_fdr_forward_sig\": 5,\n177\t      \"diff_xcorr_fdr_reverse_sig\": 5,\n178\t      \"threshold_onset_forward_sig\": 0,\n179\t      \"robust_pairs_K3\": 0,\n180\t      \"robust_pairs_K4\": 0\n181\t    },\n182\t    \"old_K3\": null,\n183\t    \"new_K3\": 0,\n184\t    \"old_ty\": null,\n185\t    \"new_ty\": 1\n186\t  },\n187\t  {\n188\t    \"reg_eid\": \"alpha_sweep_a010_s42_fp32\",\n189\t    \"new_metrics\": {\n190\t      \"token_entropy_drift_pct\": -4.59,\n191\t      \"distinct_1_drift_pct\": -23.8,\n192\t      \"distinct_2_drift_pct\": -27.15,\n193\t      \"distinct_3_drift_pct\": -19.36,\n194\t      \"perplexity_drift_pct\": -18.94,\n195\t      \"perm_granger_fwd\": \"0/8\",\n196\t      \"perm_granger_rev\": \"0/8\",\n197\t      \"ty_granger_fwd\": \"3/8\",\n198\t      \"threshold_onset_fwd\": \"5/8\",\n199\t      \"consensus_k4\": \"2/8\",\n200\t      \"mmct_wpair_fwd\": \"2/8\","
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50c15caa-925f-4791-8d72-464b2c1a9778",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "34251603-cba8-4a6d-85dc-51274ed16df6",
+            "sourceToolAssistantUUID": "50c15caa-925f-4791-8d72-464b2c1a9778",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T20:34:31.510Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me read the rest of the first 10 entries to get the complete data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34251603-cba8-4a6d-85dc-51274ed16df6",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETdNi37Tgg3rLkaXuf3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dc2010fd-c6a6-47b5-bdf5-093e1cf4be39",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0134yYYFyqnQJg1KfbUari18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4430,
+                "cache_read_input_tokens": 14738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4430,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T20:34:32.396Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LsRKGpBGpw6mTBKsiGpns2",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/registry_update_plan.json",
+                "offset": 200,
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc2010fd-c6a6-47b5-bdf5-093e1cf4be39",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETdNi37Tgg3rLkaXuf3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ecb91e1b-36f4-45ee-8c73-e0ee5f8cce88",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0134yYYFyqnQJg1KfbUari18",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4430,
+                "cache_read_input_tokens": 14738,
+                "output_tokens": 117,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4430
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 117,
+                    "cache_read_input_tokens": 14738,
+                    "cache_creation_input_tokens": 4430,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4430,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T20:34:32.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LsRKGpBGpw6mTBKsiGpns2",
+              "type": "tool_result",
+              "content": "200\t      \"mmct_wpair_fwd\": \"2/8\",\n201\t      \"mmct_detection_rate\": 0.25,\n202\t      \"precision\": \"fp32\",\n203\t      \"padding_side_fix\": \"D093 applied\",\n204\t      \"blind_zone_confirmed\": true,\n205\t      \"cross_seed_permg_stable\": true,\n206\t      \"ty_forward_sig\": 4,\n207\t      \"perm_granger_fdr_forward_sig\": 0,\n208\t      \"perm_granger_fdr_reverse_sig\": 0,\n209\t      \"diff_xcorr_fdr_forward_sig\": 6,\n210\t      \"diff_xcorr_fdr_reverse_sig\": 6,\n211\t      \"threshold_onset_forward_sig\": 0,\n212\t      \"robust_pairs_K3\": 0,\n213\t      \"robust_pairs_K4\": 0\n214\t    },\n215\t    \"old_K3\": null,\n216\t    \"new_K3\": 0,\n217\t    \"old_ty\": null,\n218\t    \"new_ty\": 4\n219\t  },\n220\t  {\n221\t    \"reg_eid\": \"alpha_sweep_a010_s43\",\n222\t    \"new_metrics\": {\n223\t      \"token_entropy_drift\": -13.1,\n224\t      \"ece_drift\": -61.1,\n225\t      \"perplexity_drift\": -38.9,\n226\t      \"distinct_1_drift\": -29.1,\n227\t      \"distinct_2_drift\": -40.3,\n228\t      \"distinct_3_drift\": -31.9,\n229\t      \"effective_rank_drift\": 23.5,\n230\t      \"mauve_drift\": -46.3,\n231\t      \"naive_xcorr_fwd\": \"7/8\",\n232\t      \"diff_xcorr_fwd\": \"8/8\",\n233\t      \"threshold_onset_fwd\": \"3/8\",\n234\t      \"perm_granger_fwd\": \"0/8\",\n235\t      \"perm_granger_rev\": \"0/8\",\n236\t      \"ty_granger_fwd\": \"0/8\",\n237\t      \"k_gte4\": \"0/8\",\n238\t      \"ty_forward_sig\": 0,\n239\t      \"perm_granger_fdr_forward_sig\": 0,\n240\t      \"perm_granger_fdr_reverse_sig\": 0,\n241\t      \"diff_xcorr_fdr_forward_sig\": 8,\n242\t      \"diff_xcorr_fdr_reverse_sig\": 8,\n243\t      \"threshold_onset_forward_sig\": 0,\n244\t      \"robust_pairs_K3\": 0,\n245\t      \"robust_pairs_K4\": 0\n246\t    },\n247\t    \"old_K3\": null,\n248\t    \"new_K3\": 0,\n249\t    \"old_ty\": null,\n250\t    \"new_ty\": 0\n251\t  },\n252\t  {\n253\t    \"reg_eid\": \"alpha_sweep_a010_s43_fp32\",\n254\t    \"new_metrics\": {\n255\t      \"token_entropy_drift\": -4.49,\n256\t      \"distinct_1_drift\": -22.08,\n257\t      \"distinct_2_drift\": -23.47,\n258\t      \"distinct_3_drift\": -16.39,\n259\t      \"perplexity_drift\": -18.04,\n260\t      \"perm_granger_fwd\": \"0/8\",\n261\t      \"perm_granger_rev\": \"0/8\",\n262\t      \"ty_granger_fwd\": \"6/8\",\n263\t      \"threshold_onset_fwd\": \"4/8\",\n264\t      \"consensus_k4\": \"0/8 (C003 corrected)\",\n265\t      \"precision\": \"fp32\",\n266\t      \"blind_zone_confirmed_fp32\": true,\n267\t      \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\",\n268\t      \"ty_forward_sig\": 1,\n269\t      \"perm_granger_fdr_forward_sig\": 3,\n270\t      \"perm_granger_fdr_reverse_sig\": 0,\n271\t      \"diff_xcorr_fdr_forward_sig\": 7,\n272\t      \"diff_xcorr_fdr_reverse_sig\": 7,\n273\t      \"threshold_onset_forward_sig\": 2,\n274\t      \"robust_pairs_K3\": 4,\n275\t      \"robust_pairs_K4\": 2\n276\t    },\n277\t    \"old_K3\": null,\n278\t    \"new_K3\": 4,\n279\t    \"old_ty\": null,\n280\t    \"new_ty\": 1\n281\t  },\n282\t  {\n283\t    \"reg_eid\": \"alpha_sweep_a025_s42_fp32\",\n284\t    \"new_metrics\": {\n285\t      \"PermG_fwd\": \"0/8\",\n286\t      \"PermG_rev\": \"0/8\",\n287\t      \"K_ge_4\": \"0/8\",\n288\t      \"MMCT\": \"0/8\",\n289\t      \"MMCT_detection_rate\": 0,\n290\t      \"d1_drift_pct\": -39.15,\n291\t      \"d2_drift_pct\": -54.75,\n292\t      \"d3_drift_pct\": -56.98,\n293\t      \"mauve_drift_pct\": -41.86,\n294\t      \"entropy_drift_pct\": -4.79,\n295\t      \"ece_drift_pct\": 79.17,\n296\t      \"ppl_drift_pct\": -18.09,\n297\t      \"eff_rank_drift_pct\": -3.78,\n298\t      \"ppl_by_gen\": [\n299\t        26.95,\n300\t        19.39,\n301\t        20.37,\n302\t        20.75,\n303\t        21.14,\n304\t        21.3,\n305\t        21.48,\n306\t        21.88,\n307\t        21.9,\n308\t        22.25,\n309\t        22.07\n310\t      ],\n311\t      \"entropy_by_gen\": [\n312\t        3.234,\n313\t        2.983,\n314\t        3.015,\n315\t        3.039,\n316\t        3.051,\n317\t        3.034,\n318\t        3.049,\n319\t        3.067,\n320\t        3.063,\n321\t        3.104,\n322\t        3.079\n323\t      ],\n324\t      \"d1_by_gen\": [\n325\t        0.098,\n326\t        0.0976,\n327\t        0.0815,\n328\t        0.0737,\n329\t        0.0688,\n330\t        0.0657,\n331\t        0.0635,\n332\t        0.0614,\n333\t        0.061,\n334\t        0.0601,\n335\t        0.0596\n336\t      ],\n337\t      \"mauve_by_gen\": [\n338\t        0.0311,\n339\t        0.0314,\n340\t        0.0326,\n341\t        0.0318,\n342\t        0.0314,\n343\t        0.0272,\n344\t        0.0242,\n345\t        0.0221,\n346\t        0.0207,\n347\t        0.0207,\n348\t        0.0181\n349\t      ],\n350\t      \"naive_xcorr_fwd\": \"8/8\",\n351\t      \"diff_xcorr_fwd\": \"3/8\",\n352\t      \"threshold_onset_fwd\": \"5/8\",\n353\t      \"ty_granger_sig\": \"3/8\",\n354\t      \"consensus_detail_max_votes\": 3,\n355\t      \"hypothesis_validated\": true,\n356\t      \"note\": \"PermG=0/8 confirms \\u03b1=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> \\u03b1=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this \\u03b1. token_entropy\\u2192distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\",\n357\t      \"ty_forward_sig\": 1,\n358\t      \"perm_granger_fdr_forward_sig\": 0,\n359\t      \"perm_granger_fdr_reverse_sig\": 0,\n360\t      \"diff_xcorr_fdr_forward_sig\": 3,\n361\t      \"diff_xcorr_fdr_reverse_sig\": 3,\n362\t      \"threshold_onset_forward_sig\": 0,\n363\t      \"robust_pairs_K3\": 0,\n364\t      \"robust_pairs_K4\": 0\n365\t    },\n366\t    \"old_K3\": null,\n367\t    \"new_K3\": 0,\n368\t    \"old_ty\": null,\n369\t    \"new_ty\": 1\n370\t  },\n371\t  {\n372\t    \"reg_eid\": \"alpha_sweep_a025_s43\",\n373\t    \"new_metrics\": {\n374\t      \"gen0\": {\n375\t        \"token_entropy\": 3.2342,\n376\t        \"ece\": 0.0108,\n377\t        \"perplexity\": 26.949,\n378\t        \"distinct_1\": 0.09833,\n379\t        \"distinct_2\": 0.5132,\n380\t        \"distinct_3\": 0.8057,\n381\t        \"effective_rank\": 46.61,\n382\t        \"mauve\": 0.03351\n383\t      },\n384\t      \"gen10\": {\n385\t        \"token_entropy\": 3.0723,\n386\t        \"ece\": 0.02146,\n387\t        \"perplexity\": 21.899,\n388\t        \"distinct_1\": 0.05849,\n389\t        \"distinct_2\": 0.2236,\n390\t        \"distinct_3\": 0.333,\n391\t        \"effective_rank\": 45.37,\n392\t        \"mauve\": 0.01871\n393\t      },\n394\t      \"drift_pct\": {\n395\t        \"token_entropy\": -5,\n396\t        \"ece\": 98.6,\n397\t        \"perplexity\": -18.7,\n398\t        \"distinct_1\": -40.5,\n399\t        \"distinct_2\": -56.4,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ecb91e1b-36f4-45ee-8c73-e0ee5f8cce88",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "6cfab66f-314a-4116-997c-cefe4a3d9d50",
+            "sourceToolAssistantUUID": "ecb91e1b-36f4-45ee-8c73-e0ee5f8cce88",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T20:34:35.810Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have enough data now. Let me parse the entries using a quick bash command to extract exactly what I need for entries 0-9."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cfab66f-314a-4116-997c-cefe4a3d9d50",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETddaVVJjGPp48voNcP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "686e4547-be31-4d1a-82b0-ae8c28411821",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EgqXNkYqBqhz3HCuM2M3pH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2900,
+                "cache_read_input_tokens": 19168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2900,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T20:34:37.393Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BNWW78oPsLfrPsD6rM34Ss",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/tmp/registry_update_plan.json') as f:\n    data = json.load(f)\nprint(f'Total entries: {len(data)}')\nfor i in range(10):\n    print(f'  [{i}] reg_eid={data[i][\\\"reg_eid\\\"]}')\n\"",
+                "description": "Extract the 10 experiment IDs from the update plan"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "686e4547-be31-4d1a-82b0-ae8c28411821",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETddaVVJjGPp48voNcP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a7451b6e-e7db-4e31-8c7f-34b0b2ac6627",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EgqXNkYqBqhz3HCuM2M3pH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2900,
+                "cache_read_input_tokens": 19168,
+                "output_tokens": 197,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2900
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 197,
+                    "cache_read_input_tokens": 19168,
+                    "cache_creation_input_tokens": 2900,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2900,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T20:34:37.475Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BNWW78oPsLfrPsD6rM34Ss",
+              "type": "tool_result",
+              "content": "Total entries: 62\n  [0] reg_eid=alpha_sweep_a000_s42\n  [1] reg_eid=alpha_sweep_a000_s43\n  [2] reg_eid=alpha_sweep_a000_s44\n  [3] reg_eid=alpha_sweep_a005_s42_v3\n  [4] reg_eid=alpha_sweep_a010_s42\n  [5] reg_eid=alpha_sweep_a010_s42_fp32\n  [6] reg_eid=alpha_sweep_a010_s43\n  [7] reg_eid=alpha_sweep_a010_s43_fp32\n  [8] reg_eid=alpha_sweep_a025_s42_fp32\n  [9] reg_eid=alpha_sweep_a025_s43",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7451b6e-e7db-4e31-8c7f-34b0b2ac6627",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "8810c35e-13f8-454f-8344-1605b6d8366c",
+            "sourceToolAssistantUUID": "a7451b6e-e7db-4e31-8c7f-34b0b2ac6627",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T20:34:41.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the full metrics for entry 9 (alpha_sweep_a025_s43) since it was cut off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8810c35e-13f8-454f-8344-1605b6d8366c",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETe17YmcEnYy1Vk9sGC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "11fad13f-fce4-4b8e-95dd-56ce88fb5e81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019SjdErK4Y6mBDu4oH7SZNe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 416,
+                "cache_read_input_tokens": 22068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 416,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T20:34:43.182Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NWz9gtqMhC4TbjMKUawx8f",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/tmp/registry_update_plan.json') as f:\n    data = json.load(f)\nfor i in range(10):\n    print(f'=== Entry {i}: {data[i][\\\"reg_eid\\\"]} ===')\n    print(json.dumps(data[i]['new_metrics']))\n    print()\n\"",
+                "description": "Extract full new_metrics for all 10 entries"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "11fad13f-fce4-4b8e-95dd-56ce88fb5e81",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETe17YmcEnYy1Vk9sGC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50eafbca-6012-47f9-8a95-d9770a14626c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019SjdErK4Y6mBDu4oH7SZNe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 416,
+                "cache_read_input_tokens": 22068,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 416,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T20:34:43.263Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NWz9gtqMhC4TbjMKUawx8f",
+              "type": "tool_result",
+              "content": "=== Entry 0: alpha_sweep_a000_s42 ===\n{\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 3, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 1: alpha_sweep_a000_s43 ===\n{\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 1, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 2: alpha_sweep_a000_s44 ===\n{\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}\n\n=== Entry 3: alpha_sweep_a005_s42_v3 ===\n{\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}\n\n=== Entry 4: alpha_sweep_a010_s42 ===\n{\"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 5, \"diff_xcorr_fdr_reverse_sig\": 5, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 5: alpha_sweep_a010_s42_fp32 ===\n{\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 6: alpha_sweep_a010_s43 ===\n{\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"0/8\", \"k_gte4\": \"0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 7: alpha_sweep_a010_s43_fp32 ===\n{\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"ty_granger_fwd\": \"6/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}\n\n=== Entry 8: alpha_sweep_a025_s42_fp32 ===\n{\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"ty_granger_sig\": \"3/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms \\u03b1=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> \\u03b1=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this \\u03b1. token_entropy\\u2192distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}\n\n=== Entry 9: alpha_sweep_a025_s43 ===\n{\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50eafbca-6012-47f9-8a95-d9770a14626c",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "3345f4e8-1f49-4ead-9dda-f1f451b3461f",
+            "sourceToolAssistantUUID": "50eafbca-6012-47f9-8a95-d9770a14626c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T20:34:47.174Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all 10 entries. Now I'll make all 10 `update_registry` calls in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3345f4e8-1f49-4ead-9dda-f1f451b3461f",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7af65982-8ac4-4ea5-8a57-80c66a0830a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T20:34:52.842Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NiRyPSVfQSWCT4t5FMZ9Gb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a000_s42",
+                "field": "metrics",
+                "value": {
+                  "gen0_token_entropy": 3.2342,
+                  "gen10_token_entropy": 3.0693,
+                  "gen0_ece": 0.0108,
+                  "gen10_ece": 0.0164,
+                  "gen0_perplexity": 26.95,
+                  "gen10_perplexity": 21.11,
+                  "gen0_distinct_1": 0.0982,
+                  "gen10_distinct_1": 0.0847,
+                  "token_entropy_drift_pct": -5.1,
+                  "ece_drift_pct": 51.7,
+                  "perplexity_drift_pct": -21.7,
+                  "distinct_1_drift_pct": -13.8,
+                  "distinct_2_drift_pct": -9.8,
+                  "distinct_3_drift_pct": -4.5,
+                  "gen1_10_perplexity_drift_pct": 9.4,
+                  "gen1_10_distinct_1_drift_pct": -13.1,
+                  "gen1_10_entropy_drift_pct": 2.6,
+                  "ty_forward_sig": 2,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 4,
+                  "diff_xcorr_fdr_reverse_sig": 4,
+                  "threshold_onset_forward_sig": 3,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7af65982-8ac4-4ea5-8a57-80c66a0830a7",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c62cab24-89e9-4e12-87f0-d3dd5cd96485",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T20:34:53.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NiRyPSVfQSWCT4t5FMZ9Gb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a000_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:34:53.356Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46716\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T23:36:35.414Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T23:36:36.221435+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6, \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 4, \\\"diff_xcorr_fdr_reverse_sig\\\": 4, \\\"threshold_onset_forward_sig\\\": 3, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"completed_at\\\": \\\"2026-05-14T23:39:04.310Z\\\", \\\"notes\\\": \\\"D111 direction-checked. AUTHORITATIVE analysis dir: analysis/ (5method_leadlag.json). analysis_mauve/ is DEPRECATED — uses different threshold logic (canary_onset vs onset_canary field names), TY p-values diverge, results inconsistent with analysis/. All CSV artifacts and paper figures must source from analysis/ only. FPR: naive=6/8(0.750), diff=0/8, threshold=3/8(0.375), PermG=0/8, TY=1/8(0.125), K≥3=1/8(0.125).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8964}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c62cab24-89e9-4e12-87f0-d3dd5cd96485",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "023fa437-541f-41aa-bfbc-f708847275a5",
+            "sourceToolAssistantUUID": "c62cab24-89e9-4e12-87f0-d3dd5cd96485",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T20:34:58.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NEm6vSecMaVLFi9VRh9poj",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a000_s43",
+                "field": "metrics",
+                "value": {
+                  "gen0": {
+                    "token_entropy": 3.2342,
+                    "ece": 0.0108,
+                    "perplexity": 26.949,
+                    "distinct_1": 0.0983,
+                    "distinct_2": 0.5132,
+                    "distinct_3": 0.8057,
+                    "effective_rank": 46.613
+                  },
+                  "gen10": {
+                    "token_entropy": 3.0907,
+                    "ece": 0.0148,
+                    "perplexity": 21.469,
+                    "distinct_1": 0.0847,
+                    "distinct_2": 0.4631,
+                    "distinct_3": 0.7672,
+                    "effective_rank": 43.72
+                  },
+                  "drift_pct": {
+                    "token_entropy": -4.4,
+                    "ece": 37.2,
+                    "perplexity": -20.3,
+                    "distinct_1": -13.9,
+                    "distinct_2": -9.8,
+                    "distinct_3": -4.8,
+                    "effective_rank": -6.2
+                  },
+                  "five_method": {
+                    "perm_granger_fdr_sig": "0/8",
+                    "ty_sig": "1/8 (df_resid=1 unreliable)",
+                    "robust_pairs_ge3": "0/8",
+                    "fpr_controlled": true
+                  },
+                  "ty_forward_sig": 2,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 2,
+                  "diff_xcorr_fdr_reverse_sig": 2,
+                  "threshold_onset_forward_sig": 1,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "023fa437-541f-41aa-bfbc-f708847275a5",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ae0b4d4d-cd2a-41b1-926a-d51c41369e4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T20:34:59.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NEm6vSecMaVLFi9VRh9poj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a000_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:29:13.444Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:34:59.067Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"198833\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:31:15.017Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15486.6, \\\"gpu_hours\\\": 4.3}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"198833\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-16T18:44:57.867Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T18:44:59.745869+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.0983, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.613}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0907, \\\"ece\\\": 0.0148, \\\"perplexity\\\": 21.469, \\\"distinct_1\\\": 0.0847, \\\"distinct_2\\\": 0.4631, \\\"distinct_3\\\": 0.7672, \\\"effective_rank\\\": 43.72}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -4.4, \\\"ece\\\": 37.2, \\\"perplexity\\\": -20.3, \\\"distinct_1\\\": -13.9, \\\"distinct_2\\\": -9.8, \\\"distinct_3\\\": -4.8, \\\"effective_rank\\\": -6.2}, \\\"five_method\\\": {\\\"perm_granger_fdr_sig\\\": \\\"0/8\\\", \\\"ty_sig\\\": \\\"1/8 (df_resid=1 unreliable)\\\", \\\"robust_pairs_ge3\\\": \\\"0/8\\\", \\\"fpr_controlled\\\": true}, \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 2, \\\"diff_xcorr_fdr_reverse_sig\\\": 2, \\\"threshold_onset_forward_sig\\\": 1, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/\\\", \\\"completed_at\\\": \\\"2026-05-16T18:49:21.663Z\\\", \\\"hypothesis\\\": \\\"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\\\", \\\"parent\\\": \\\"alpha_sweep_a000_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7309}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae0b4d4d-cd2a-41b1-926a-d51c41369e4a",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "332ba9f1-2be2-45dd-a78e-5ae8f29bcddb",
+            "sourceToolAssistantUUID": "ae0b4d4d-cd2a-41b1-926a-d51c41369e4a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T20:35:03.241Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JMRyULjKdfuufoCQ58PFoh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a000_s44",
+                "field": "metrics",
+                "value": {
+                  "gen0": {
+                    "token_entropy": 3.2342,
+                    "ece": 0.0108,
+                    "perplexity": 26.949,
+                    "distinct_1": 0.0981,
+                    "distinct_2": 0.5132,
+                    "distinct_3": 0.8058,
+                    "effective_rank": 46.613
+                  },
+                  "gen10": {
+                    "token_entropy": 3.0957,
+                    "ece": 0.0134,
+                    "perplexity": 21.616,
+                    "distinct_1": 0.0838,
+                    "distinct_2": 0.4665,
+                    "distinct_3": 0.7749,
+                    "effective_rank": 44.498
+                  },
+                  "drift_pct": {
+                    "token_entropy": -4.3,
+                    "ece": 24,
+                    "perplexity": -19.8,
+                    "distinct_1": -14.6,
+                    "distinct_2": -9.1,
+                    "distinct_3": -3.8,
+                    "effective_rank": -4.5
+                  },
+                  "five_method": {
+                    "perm_granger_fdr_sig": "0/8",
+                    "ty_sig": "0/8",
+                    "robust_pairs_ge3": "0/8",
+                    "fpr_controlled": true
+                  },
+                  "ty_forward_sig": 0,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 3,
+                  "diff_xcorr_fdr_reverse_sig": 3,
+                  "threshold_onset_forward_sig": 2,
+                  "robust_pairs_K3": 1,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "332ba9f1-2be2-45dd-a78e-5ae8f29bcddb",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3e79a9a9-79a3-4d66-aa7b-2d23ef873c7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T20:35:04.879Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JMRyULjKdfuufoCQ58PFoh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a000_s44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:29:15.357Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:03.722Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"198916\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:31:17.785Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15749.3, \\\"gpu_hours\\\": 4.37}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"198916\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-16T18:49:31.023Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T18:49:32.632808+00:00\\\"}]}, \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.0981, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8058, \\\"effective_rank\\\": 46.613}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0957, \\\"ece\\\": 0.0134, \\\"perplexity\\\": 21.616, \\\"distinct_1\\\": 0.0838, \\\"distinct_2\\\": 0.4665, \\\"distinct_3\\\": 0.7749, \\\"effective_rank\\\": 44.498}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -4.3, \\\"ece\\\": 24, \\\"perplexity\\\": -19.8, \\\"distinct_1\\\": -14.6, \\\"distinct_2\\\": -9.1, \\\"distinct_3\\\": -3.8, \\\"effective_rank\\\": -4.5}, \\\"five_method\\\": {\\\"perm_granger_fdr_sig\\\": \\\"0/8\\\", \\\"ty_sig\\\": \\\"0/8\\\", \\\"robust_pairs_ge3\\\": \\\"0/8\\\", \\\"fpr_controlled\\\": true}, \\\"ty_forward_sig\\\": 0, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 3, \\\"diff_xcorr_fdr_reverse_sig\\\": 3, \\\"threshold_onset_forward_sig\\\": 2, \\\"robust_pairs_K3\\\": 1, \\\"robust_pairs_K4\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\", \\\"completed_at\\\": \\\"2026-05-16T18:53:47.121Z\\\", \\\"hypothesis\\\": \\\"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\\\", \\\"parent\\\": \\\"alpha_sweep_a000_s42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8021}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e79a9a9-79a3-4d66-aa7b-2d23ef873c7e",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "30602a1c-0425-440a-aba4-a0a9c5d072a1",
+            "sourceToolAssistantUUID": "3e79a9a9-79a3-4d66-aa7b-2d23ef873c7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T20:35:08.349Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReGAxbyKMqM2RsRD6NrYVF",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a005_s42_v3",
+                "field": "metrics",
+                "value": {
+                  "final_ppl": 20.81,
+                  "final_entropy": 3.04,
+                  "final_eff_rank": 45.3,
+                  "final_mauve": 0.023,
+                  "precision": "fp32",
+                  "token_entropy_drift": -5.96,
+                  "ece_drift": 55.41,
+                  "perplexity_drift": -22.78,
+                  "distinct_1_drift": -24.86,
+                  "distinct_2_drift": -28.42,
+                  "distinct_3_drift": -19.54,
+                  "perm_granger_fwd": "0/8",
+                  "perm_granger_rev": "0/8",
+                  "ty_granger_fwd": "3/8",
+                  "threshold_onset_fwd": "5/8",
+                  "consensus_k4": "0/8",
+                  "mmct_wpair_fwd": 0,
+                  "ty_forward_sig": 2,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 3,
+                  "diff_xcorr_fdr_reverse_sig": 3,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 2,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30602a1c-0425-440a-aba4-a0a9c5d072a1",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "80899d56-be24-4c6c-8d52-c8dc31c9bb71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T20:35:09.819Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B7v5b7b6mtNi3iEm1RMnAN",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a010_s42",
+                "field": "metrics",
+                "value": {
+                  "ty_forward_sig": 1,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 5,
+                  "diff_xcorr_fdr_reverse_sig": 5,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80899d56-be24-4c6c-8d52-c8dc31c9bb71",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "99cdf8d6-7046-4bb1-975d-7bc4d8fffdc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T20:35:10.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReGAxbyKMqM2RsRD6NrYVF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a005_s42_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:22:50.997Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:09.130Z\\\", \\\"hypothesis\\\": \\\"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\\\", \\\"parent\\\": \\\"alpha_sweep_a005_s42\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.05\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"71245\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T00:23:39.620Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\", \\\"wall_clock_seconds\\\": 17717.1, \\\"gpu_hours\\\": 4.92}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"final_ppl\\\": 20.81, \\\"final_entropy\\\": 3.04, \\\"final_eff_rank\\\": 45.3, \\\"final_mauve\\\": 0.023, \\\"precision\\\": \\\"fp32\\\", \\\"token_entropy_drift\\\": -5.96, \\\"ece_drift\\\": 55.41, \\\"perplexity_drift\\\": -22.78, \\\"distinct_1_drift\\\": -24.86, \\\"distinct_2_drift\\\": -28.42, \\\"distinct_3_drift\\\": -19.54, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"0/8\\\", \\\"mmct_wpair_fwd\\\": 0, \\\"ty_forward_sig\\\": 2, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 3, \\\"diff_xcorr_fdr_reverse_sig\\\": 3, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 2, \\\"robust_pairs_K4\\\": 0}, \\\"checkpoint_path\\\": \\\"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/\\\", \\\"log_path\\\": \\\"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\\\", \\\"completed_at\\\": \\\"2026-05-19T05:18:56.721Z\\\", \\\"note\\\": \\\"D111 direction-checked: naive 7/8→3/8, diff 3/8→0/8, K≥3 3/8→0/8, K≥4 0/8→0/8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8416}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80899d56-be24-4c6c-8d52-c8dc31c9bb71",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "4ec5ff30-d9e8-46c3-9594-4717442a5209",
+            "sourceToolAssistantUUID": "80899d56-be24-4c6c-8d52-c8dc31c9bb71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T20:35:11.618Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B7v5b7b6mtNi3iEm1RMnAN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a010_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:11.331Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.1, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T00:03:53.018Z\\\", \\\"metrics\\\": {\\\"ty_forward_sig\\\": 1, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 5, \\\"diff_xcorr_fdr_reverse_sig\\\": 5, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6889}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99cdf8d6-7046-4bb1-975d-7bc4d8fffdc3",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "c073c1f2-3107-4502-91f4-0fe6d145db30",
+            "sourceToolAssistantUUID": "99cdf8d6-7046-4bb1-975d-7bc4d8fffdc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T20:35:14.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rf6mDfCeWSKnGnzu2hZp7N",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a010_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "token_entropy_drift_pct": -4.59,
+                  "distinct_1_drift_pct": -23.8,
+                  "distinct_2_drift_pct": -27.15,
+                  "distinct_3_drift_pct": -19.36,
+                  "perplexity_drift_pct": -18.94,
+                  "perm_granger_fwd": "0/8",
+                  "perm_granger_rev": "0/8",
+                  "ty_granger_fwd": "3/8",
+                  "threshold_onset_fwd": "5/8",
+                  "consensus_k4": "2/8",
+                  "mmct_wpair_fwd": "2/8",
+                  "mmct_detection_rate": 0.25,
+                  "precision": "fp32",
+                  "padding_side_fix": "D093 applied",
+                  "blind_zone_confirmed": true,
+                  "cross_seed_permg_stable": true,
+                  "ty_forward_sig": 4,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 6,
+                  "diff_xcorr_fdr_reverse_sig": 6,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c073c1f2-3107-4502-91f4-0fe6d145db30",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "32fc20fc-476e-45a4-807a-e7d5a4f2130c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T20:35:16.169Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rf6mDfCeWSKnGnzu2hZp7N",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a010_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:20:18.646Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:15.874Z\\\", \\\"hypothesis\\\": \\\"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\\\", \\\"parent\\\": \\\"alpha_sweep_a010_s42_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42_fp32\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"95313\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:20:39.341Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m\\\", \\\"eval_data\\\": \\\"data/wikitext103_5k\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42_fp32/gen_10/checkpoint/\\\", \\\"wall_clock_seconds\\\": 16615.2, \\\"gpu_hours\\\": 4.62}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T09:31:36.376Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T09:31:40.240029+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift_pct\\\": -4.59, \\\"distinct_1_drift_pct\\\": -23.8, \\\"distinct_2_drift_pct\\\": -27.15, \\\"distinct_3_drift_pct\\\": -19.36, \\\"perplexity_drift_pct\\\": -18.94, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"consensus_k4\\\": \\\"2/8\\\", \\\"mmct_wpair_fwd\\\": \\\"2/8\\\", \\\"mmct_detection_rate\\\": 0.25, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"blind_zone_confirmed\\\": true, \\\"cross_seed_permg_stable\\\": true, \\\"ty_forward_sig\\\": 4, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 6, \\\"diff_xcorr_fdr_reverse_sig\\\": 6, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"completed_at\\\": \\\"2026-05-19T09:57:34.538Z\\\", \\\"note\\\": \\\"D111 direction-checked: naive 7/8→4/8, diff 6/8→1/8, K≥3 4/8→2/8, K≥4 2/8→0/8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7617}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32fc20fc-476e-45a4-807a-e7d5a4f2130c",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "72d40500-3397-4aca-b2c9-39132e735e15",
+            "sourceToolAssistantUUID": "32fc20fc-476e-45a4-807a-e7d5a4f2130c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T20:35:19.405Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Py1n7orMX3fVVi3qTrVnRL",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a010_s43",
+                "field": "metrics",
+                "value": {
+                  "token_entropy_drift": -13.1,
+                  "ece_drift": -61.1,
+                  "perplexity_drift": -38.9,
+                  "distinct_1_drift": -29.1,
+                  "distinct_2_drift": -40.3,
+                  "distinct_3_drift": -31.9,
+                  "effective_rank_drift": 23.5,
+                  "mauve_drift": -46.3,
+                  "naive_xcorr_fwd": "7/8",
+                  "diff_xcorr_fwd": "8/8",
+                  "threshold_onset_fwd": "3/8",
+                  "perm_granger_fwd": "0/8",
+                  "perm_granger_rev": "0/8",
+                  "ty_granger_fwd": "0/8",
+                  "k_gte4": "0/8",
+                  "ty_forward_sig": 0,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 8,
+                  "diff_xcorr_fdr_reverse_sig": 8,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72d40500-3397-4aca-b2c9-39132e735e15",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b056d8d0-f0aa-46a8-b936-e9030b43cba8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T20:35:21.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Py1n7orMX3fVVi3qTrVnRL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a010_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T20:31:10.893Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:20.387Z\\\", \\\"hypothesis\\\": \\\"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"results/alpha_sweep/a010_s43_bf16/\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T00:36:00.765Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T00:36:04.103044+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -13.1, \\\"ece_drift\\\": -61.1, \\\"perplexity_drift\\\": -38.9, \\\"distinct_1_drift\\\": -29.1, \\\"distinct_2_drift\\\": -40.3, \\\"distinct_3_drift\\\": -31.9, \\\"effective_rank_drift\\\": 23.5, \\\"mauve_drift\\\": -46.3, \\\"naive_xcorr_fwd\\\": \\\"7/8\\\", \\\"diff_xcorr_fwd\\\": \\\"8/8\\\", \\\"threshold_onset_fwd\\\": \\\"3/8\\\", \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"0/8\\\", \\\"k_gte4\\\": \\\"0/8\\\", \\\"ty_forward_sig\\\": 0, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 8, \\\"diff_xcorr_fdr_reverse_sig\\\": 8, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"completed_at\\\": \\\"2026-05-19T00:45:43.701Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7667}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b056d8d0-f0aa-46a8-b936-e9030b43cba8",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "618cf628-28e5-466b-a410-c5914eb5d759",
+            "sourceToolAssistantUUID": "b056d8d0-f0aa-46a8-b936-e9030b43cba8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T20:35:24.637Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KGZB4txKYQ3V1efRfmu1Qk",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a010_s43_fp32",
+                "field": "metrics",
+                "value": {
+                  "token_entropy_drift": -4.49,
+                  "distinct_1_drift": -22.08,
+                  "distinct_2_drift": -23.47,
+                  "distinct_3_drift": -16.39,
+                  "perplexity_drift": -18.04,
+                  "perm_granger_fwd": "0/8",
+                  "perm_granger_rev": "0/8",
+                  "ty_granger_fwd": "6/8",
+                  "threshold_onset_fwd": "4/8",
+                  "consensus_k4": "0/8 (C003 corrected)",
+                  "precision": "fp32",
+                  "blind_zone_confirmed_fp32": true,
+                  "vs_bf16_note": "fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)",
+                  "ty_forward_sig": 1,
+                  "perm_granger_fdr_forward_sig": 3,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 7,
+                  "diff_xcorr_fdr_reverse_sig": 7,
+                  "threshold_onset_forward_sig": 2,
+                  "robust_pairs_K3": 4,
+                  "robust_pairs_K4": 2
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "618cf628-28e5-466b-a410-c5914eb5d759",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "10b8c4d5-c161-45c4-a234-c06f351fe4f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T20:35:26.878Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KGZB4txKYQ3V1efRfmu1Qk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a010_s43_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T00:39:09.725Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:25.808Z\\\", \\\"hypothesis\\\": \\\"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\\\", \\\"parent\\\": \\\"alpha_sweep_a010_s43\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"started_at\\\": \\\"2026-05-19T00:40:20.251Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-19T05:01:02.210Z\\\", \\\"training_hours\\\": 4.34}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"76404\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\\\", \\\"submitted_at\\\": \\\"2026-05-19T00:46:36.088Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\\\", \\\"wall_clock_seconds\\\": 15641.2, \\\"gpu_hours\\\": 4.34}, \\\"pid\\\": \\\"76404\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43_fp32.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T05:01:06.027649+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"token_entropy_drift\\\": -4.49, \\\"distinct_1_drift\\\": -22.08, \\\"distinct_2_drift\\\": -23.47, \\\"distinct_3_drift\\\": -16.39, \\\"perplexity_drift\\\": -18.04, \\\"perm_granger_fwd\\\": \\\"0/8\\\", \\\"perm_granger_rev\\\": \\\"0/8\\\", \\\"ty_granger_fwd\\\": \\\"6/8\\\", \\\"threshold_onset_fwd\\\": \\\"4/8\\\", \\\"consensus_k4\\\": \\\"0/8 (C003 corrected)\\\", \\\"precision\\\": \\\"fp32\\\", \\\"blind_zone_confirmed_fp32\\\": true, \\\"vs_bf16_note\\\": \\\"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\\\", \\\"ty_forward_sig\\\": 1, \\\"perm_granger_fdr_forward_sig\\\": 3, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 7, \\\"diff_xcorr_fdr_reverse_sig\\\": 7, \\\"threshold_onset_forward_sig\\\": 2, \\\"robust_pairs_K3\\\": 4, \\\"robust_pairs_K4\\\": 2}, \\\"completed_at\\\": \\\"2026-05-19T05:07:17.324Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7648}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10b8c4d5-c161-45c4-a234-c06f351fe4f1",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "93a1b180-874a-4d26-ba67-991a5d598d29",
+            "sourceToolAssistantUUID": "10b8c4d5-c161-45c4-a234-c06f351fe4f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T20:35:32.702Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018qLS4vL2owAVWgoYt8VRNt",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a025_s42_fp32",
+                "field": "metrics",
+                "value": {
+                  "PermG_fwd": "0/8",
+                  "PermG_rev": "0/8",
+                  "K_ge_4": "0/8",
+                  "MMCT": "0/8",
+                  "MMCT_detection_rate": 0,
+                  "d1_drift_pct": -39.15,
+                  "d2_drift_pct": -54.75,
+                  "d3_drift_pct": -56.98,
+                  "mauve_drift_pct": -41.86,
+                  "entropy_drift_pct": -4.79,
+                  "ece_drift_pct": 79.17,
+                  "ppl_drift_pct": -18.09,
+                  "eff_rank_drift_pct": -3.78,
+                  "ppl_by_gen": [
+                    26.95,
+                    19.39,
+                    20.37,
+                    20.75,
+                    21.14,
+                    21.3,
+                    21.48,
+                    21.88,
+                    21.9,
+                    22.25,
+                    22.07
+                  ],
+                  "entropy_by_gen": [
+                    3.234,
+                    2.983,
+                    3.015,
+                    3.039,
+                    3.051,
+                    3.034,
+                    3.049,
+                    3.067,
+                    3.063,
+                    3.104,
+                    3.079
+                  ],
+                  "d1_by_gen": [
+                    0.098,
+                    0.0976,
+                    0.0815,
+                    0.0737,
+                    0.0688,
+                    0.0657,
+                    0.0635,
+                    0.0614,
+                    0.061,
+                    0.0601,
+                    0.0596
+                  ],
+                  "mauve_by_gen": [
+                    0.0311,
+                    0.0314,
+                    0.0326,
+                    0.0318,
+                    0.0314,
+                    0.0272,
+                    0.0242,
+                    0.0221,
+                    0.0207,
+                    0.0207,
+                    0.0181
+                  ],
+                  "naive_xcorr_fwd": "8/8",
+                  "diff_xcorr_fwd": "3/8",
+                  "threshold_onset_fwd": "5/8",
+                  "ty_granger_sig": "3/8",
+                  "consensus_detail_max_votes": 3,
+                  "hypothesis_validated": true,
+                  "note": "PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).",
+                  "ty_forward_sig": 1,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 3,
+                  "diff_xcorr_fdr_reverse_sig": 3,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93a1b180-874a-4d26-ba67-991a5d598d29",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f86ff98e-844e-45eb-9017-fd88b7bd172a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4089,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T20:35:36.598Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R5VafUjjtcyeyVp43L2agG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "alpha_sweep_a025_s43",
+                "field": "metrics",
+                "value": {
+                  "gen0": {
+                    "token_entropy": 3.2342,
+                    "ece": 0.0108,
+                    "perplexity": 26.949,
+                    "distinct_1": 0.09833,
+                    "distinct_2": 0.5132,
+                    "distinct_3": 0.8057,
+                    "effective_rank": 46.61,
+                    "mauve": 0.03351
+                  },
+                  "gen10": {
+                    "token_entropy": 3.0723,
+                    "ece": 0.02146,
+                    "perplexity": 21.899,
+                    "distinct_1": 0.05849,
+                    "distinct_2": 0.2236,
+                    "distinct_3": 0.333,
+                    "effective_rank": 45.37,
+                    "mauve": 0.01871
+                  },
+                  "drift_pct": {
+                    "token_entropy": -5,
+                    "ece": 98.6,
+                    "perplexity": -18.7,
+                    "distinct_1": -40.5,
+                    "distinct_2": -56.4,
+                    "distinct_3": -58.7,
+                    "effective_rank": -2.7,
+                    "mauve": -44.2
+                  },
+                  "ty_forward_sig": 0,
+                  "perm_granger_fdr_forward_sig": 0,
+                  "perm_granger_fdr_reverse_sig": 0,
+                  "diff_xcorr_fdr_forward_sig": 2,
+                  "diff_xcorr_fdr_reverse_sig": 2,
+                  "threshold_onset_forward_sig": 0,
+                  "robust_pairs_K3": 0,
+                  "robust_pairs_K4": 0
+                },
+                "project": "distrib_canary_collapse"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f86ff98e-844e-45eb-9017-fd88b7bd172a",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETeRpqfYY93C7NUwuMy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "681c3646-b2a4-4e16-bcb5-2b939668b31b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5axZVnVUsZDeKfBTZYbCT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4089,
+                "cache_read_input_tokens": 22484,
+                "output_tokens": 4822,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4089
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4822,
+                    "cache_read_input_tokens": 22484,
+                    "cache_creation_input_tokens": 4089,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4089,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T20:35:40.447Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018qLS4vL2owAVWgoYt8VRNt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a025_s42_fp32\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T06:18:27.981Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:35.222Z\\\", \\\"hypothesis\\\": \\\"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-17855\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"109870\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T07:37:07.771Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"seed\\\": 42, \\\"precision\\\": \\\"fp32\\\", \\\"padding_side_fix\\\": \\\"D093 applied\\\", \\\"conda_activate\\\": \\\"source conda.sh && conda activate base\\\", \\\"wall_clock_seconds\\\": 16971.3, \\\"gpu_hours\\\": 4.71}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:15:47.782Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:15:51.822301+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\", \\\"metrics\\\": {\\\"PermG_fwd\\\": \\\"0/8\\\", \\\"PermG_rev\\\": \\\"0/8\\\", \\\"K_ge_4\\\": \\\"0/8\\\", \\\"MMCT\\\": \\\"0/8\\\", \\\"MMCT_detection_rate\\\": 0, \\\"d1_drift_pct\\\": -39.15, \\\"d2_drift_pct\\\": -54.75, \\\"d3_drift_pct\\\": -56.98, \\\"mauve_drift_pct\\\": -41.86, \\\"entropy_drift_pct\\\": -4.79, \\\"ece_drift_pct\\\": 79.17, \\\"ppl_drift_pct\\\": -18.09, \\\"eff_rank_drift_pct\\\": -3.78, \\\"ppl_by_gen\\\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \\\"entropy_by_gen\\\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \\\"d1_by_gen\\\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \\\"mauve_by_gen\\\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \\\"naive_xcorr_fwd\\\": \\\"8/8\\\", \\\"diff_xcorr_fwd\\\": \\\"3/8\\\", \\\"threshold_onset_fwd\\\": \\\"5/8\\\", \\\"ty_granger_sig\\\": \\\"3/8\\\", \\\"consensus_detail_max_votes\\\": 3, \\\"hypothesis_validated\\\": true, \\\"note\\\": \\\"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\\\", \\\"ty_forward_sig\\\": 1, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 3, \\\"diff_xcorr_fdr_reverse_sig\\\": 3, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:19:59.103Z\\\", \\\"note\\\": \\\"D111 direction-checked: naive 8/8→5/8, diff 3/8→2/8, K≥3 4/8→2/8, K≥4 0/8→0/8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5716}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f86ff98e-844e-45eb-9017-fd88b7bd172a",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "7710f422-9a9a-4286-84a5-68cc2870b6e3",
+            "sourceToolAssistantUUID": "f86ff98e-844e-45eb-9017-fd88b7bd172a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T20:35:43.584Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R5VafUjjtcyeyVp43L2agG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"alpha_sweep_a025_s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-20T20:35:41.697Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"121635\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:16:31.189Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 15792.4, \\\"gpu_hours\\\": 4.39}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"121635\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T17:36:20.945Z\\\"}, \\\"metrics\\\": {\\\"gen0\\\": {\\\"token_entropy\\\": 3.2342, \\\"ece\\\": 0.0108, \\\"perplexity\\\": 26.949, \\\"distinct_1\\\": 0.09833, \\\"distinct_2\\\": 0.5132, \\\"distinct_3\\\": 0.8057, \\\"effective_rank\\\": 46.61, \\\"mauve\\\": 0.03351}, \\\"gen10\\\": {\\\"token_entropy\\\": 3.0723, \\\"ece\\\": 0.02146, \\\"perplexity\\\": 21.899, \\\"distinct_1\\\": 0.05849, \\\"distinct_2\\\": 0.2236, \\\"distinct_3\\\": 0.333, \\\"effective_rank\\\": 45.37, \\\"mauve\\\": 0.01871}, \\\"drift_pct\\\": {\\\"token_entropy\\\": -5, \\\"ece\\\": 98.6, \\\"perplexity\\\": -18.7, \\\"distinct_1\\\": -40.5, \\\"distinct_2\\\": -56.4, \\\"distinct_3\\\": -58.7, \\\"effective_rank\\\": -2.7, \\\"mauve\\\": -44.2}, \\\"ty_forward_sig\\\": 0, \\\"perm_granger_fdr_forward_sig\\\": 0, \\\"perm_granger_fdr_reverse_sig\\\": 0, \\\"diff_xcorr_fdr_forward_sig\\\": 2, \\\"diff_xcorr_fdr_reverse_sig\\\": 2, \\\"threshold_onset_forward_sig\\\": 0, \\\"robust_pairs_K3\\\": 0, \\\"robust_pairs_K4\\\": 0}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:36:22.072334+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint\\\", \\\"completed_at\\\": \\\"2026-05-15T17:39:43.624Z\\\", \\\"hypothesis\\\": \\\"α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\\\", \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.767}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "681c3646-b2a4-4e16-bcb5-2b939668b31b",
+            "isSidechain": true,
+            "promptId": "b6e3dc94-e470-4b71-8d23-97fe064cebb0",
+            "agentId": "ae3490821e043367d",
+            "type": "user",
+            "uuid": "e83174d1-6770-45d8-a1e7-93762f67f83b",
+            "sourceToolAssistantUUID": "681c3646-b2a4-4e16-bcb5-2b939668b31b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T20:35:50.294Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 updates completed successfully. Here is the summary:\n\n| Index | Experiment ID | Status |\n|-------|--------------|--------|\n| 0 | `alpha_sweep_a000_s42` | Updated |\n| 1 | `alpha_sweep_a000_s43` | Updated |\n| 2 | `alpha_sweep_a000_s44` | Updated |\n| 3 | `alpha_sweep_a005_s42_v3` | Updated |\n| 4 | `alpha_sweep_a010_s42` | Updated |\n| 5 | `alpha_sweep_a010_s42_fp32` | Updated |\n| 6 | `alpha_sweep_a010_s43` | Updated |\n| 7 | `alpha_sweep_a010_s43_fp32` | Updated |\n| 8 | `alpha_sweep_a025_s42_fp32` | Updated |\n| 9 | `alpha_sweep_a025_s43` | Updated |\n\nAll 10/10 `metrics` field updates succeeded with no failures. Each call returned `\"success\": true`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e83174d1-6770-45d8-a1e7-93762f67f83b",
+            "isSidechain": true,
+            "agentId": "ae3490821e043367d",
+            "requestId": "req_011CbETiss7qKbZv4YbiDxhx",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "68a99816-a26e-44bb-a526-a2f09493956f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+            "sessionId": "852969a6-240b-46a4-b146-5dc8030843db",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDC67DmUETgVXUUTza9zwB",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17397,
+                "cache_read_input_tokens": 26573,
+                "output_tokens": 272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17397
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 272,
+                    "cache_read_input_tokens": 26573,
+                    "cache_creation_input_tokens": 17397,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17397,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-need-to-update-the-experiment-registry-for-the-project-distrib-canary-coll-copy-4.md"
+}

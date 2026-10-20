@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9121a9fc5b797de7ba90",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: westd-19828 - SSH 账户: root（调用 ssh_execute / submit_train",
+  "task_key": "45786b8c-b651-4d49-961d-97bc30afd472",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/45786b8c-b651-4d49-961d-97bc30afd472.jsonl",
+    "occurrence": 1,
+    "bytes": 580270,
+    "sha256": "87ab269a39dc8c76124781ef474f9b29117827438d659a96f01c0f1e39b32663"
+  },
+  "statistics": {
+    "messages": 167,
+    "user_turns": 1,
+    "tool_calls": 41,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 42,
+      "tool_call": 41,
+      "tool_result": 41
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9121a9fc5b797de7ba90-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "9121a9fc5b797de7ba90-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "9121a9fc5b797de7ba90-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-distrib-canary-collapse-westd-19828-ssh-root-ssh-execute-submi-copy-642.md"
+}

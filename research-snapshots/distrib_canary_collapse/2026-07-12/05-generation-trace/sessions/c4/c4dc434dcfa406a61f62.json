@@ -1,0 +1,769 @@
+{
+  "schema_version": "1.0",
+  "id": "c4dc434dcfa406a61f62",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Write 6 YAML files to the directory `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/di",
+  "task_key": "agent-af891c80d33320aa8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af891c80d33320aa8.jsonl",
+    "occurrence": 1,
+    "bytes": 33353,
+    "sha256": "4210486e4bf8d83905648d5cf1912e141e1bfa1ba87a516bbdd88db58770f1fa"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T15:04:03.700Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Write 6 YAML files to the directory `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/`. These are abstract-only papers - only fill the research section, mark narrative/figures/tables as N/A.\n\n1. File: `dey2024breaking.yaml`\n```yaml\npaper_key: \"dey2024breaking\"\ntitle: \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\nvenue: \"ICML 2024\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"data replacement loop\", \"data accumulation loop\"]\n  metrics:\n    - {name: \"cross-entropy validation loss\", direction: \"lower_better\"}\n    - {name: \"test loss/MSE\", direction: \"lower_better\"}\n  datasets:\n    - {name: \"TinyStories\", size: \"470M tokens\"}\n    - {name: \"GEOM-Drugs\", size: \"40k molecular conformations\"}\n    - {name: \"CelebA\", size: \"200k face images\"}\n  ablation_dimensions:\n    - data_regime (replacement vs accumulation)\n    - model_family (GPT-2, Llama2, GeoDiff, VAE)\n    - model_scale (12M/42M/125M)\n  training_recipe: {models: \"GPT-2, Llama2 (12M/42M/125M), GeoDiff, VAE\"}\n  method_family: \"data_accumulation_for_collapse_prevention\"\n\npositioning:\n  core_claim: \"Model collapse is NOT inevitable — accumulating synthetic data alongside real data (instead of replacing) avoids collapse. Proven theoretically for linear models and empirically across LMs, diffusion models, and VAEs.\"\n  key_results: \"Accumulation regime: bounded test error; Replacement regime: collapse\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"competitor\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n2. File: `fu2025selfconsuming.yaml`\n```yaml\npaper_key: \"fu2025selfconsuming\"\ntitle: \"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops\"\nvenue: \"ICLR 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"Self-consuming Training Loop (STL)\"]\n  metrics:\n    - {name: \"Total Variation distance\", direction: \"lower_better\"}\n    - {name: \"KL divergence\", direction: \"lower_better\"}\n    - {name: \"population/empirical risk\", direction: \"lower_better\"}\n  datasets: []\n  ablation_dimensions:\n    - real_synthetic_ratio\n    - model_architecture\n    - synthetic_data_sizing\n  training_recipe: {focus: \"theoretical, transformer ICL analysis\"}\n  method_family: \"recursive_stability_theory\"\n\npositioning:\n  core_claim: \"Introduces 'recursive stability' concept; shows both model architecture and real/synthetic data proportion influence STL success. Even constant-sized real data proportion ensures transformer ICL convergence.\"\n  key_results: \"Convergence bound O(n^{-1}log^2(n) + n^{-1/2}log(n) + n^{-1/4}) for transformer ICL\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n3. File: `feng2025escaping.yaml`\n```yaml\npaper_key: \"feng2025escaping\"\ntitle: \"Escaping Model Collapse via Synthetic Data Verification\"\nvenue: \"NeurIPS 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"unguided self-consuming loop\"]\n  metrics:\n    - {name: \"model collapse rate\", direction: \"lower_better\"}\n    - {name: \"improvement/convergence bounds\", direction: \"N/A\"}\n  datasets:\n    - {name: \"MNIST\", size: \"60K\", task: \"VAE experiments\"}\n    - {name: \"XSUM\", size: \"N/A\", task: \"LM fine-tuning\"}\n  ablation_dimensions:\n    - verifier_reliability\n    - training_iteration\n  training_recipe: {models: \"linear regression (theory), VAE, SmolLM2-135M\"}\n  method_family: \"verifier_guided_retraining\"\n\npositioning:\n  core_claim: \"External verification (human/superior model) prevents collapse short-term, but unless verifier is perfectly reliable, gains plateau and converge toward verifier's 'knowledge center'.\"\n  key_results: \"Near-term improvement with verifier; long-term convergence to verifier limit\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"complementary\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n4. File: `barzilai2025consistency.yaml`\n```yaml\npaper_key: \"barzilai2025consistency\"\ntitle: \"When Models Don't Collapse: On the Consistency of Iterative MLE\"\nvenue: \"ICML 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"iterative MLE with data accumulation\"]\n  metrics:\n    - {name: \"non-asymptotic error bounds\", direction: \"lower_better\"}\n    - {name: \"collapse rate\", direction: \"lower_better\"}\n  datasets: []\n  ablation_dimensions:\n    - real_data_fraction_decay_rate\n    - statistical_regularity_conditions\n  training_recipe: {focus: \"theoretical, MLE consistency analysis\"}\n  method_family: \"iterative_MLE_theory\"\n\npositioning:\n  core_claim: \"Under standard MLE consistency assumptions, collapse can be avoided even as real data fraction vanishes. But without these assumptions, collapse can occur arbitrarily quickly even with real data present.\"\n  key_results: \"Non-asymptotic bounds on iterative MLE; first rigorous collapse-with-accumulation counterexamples\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n5. File: `gu2025datamixing.yaml`\n```yaml\npaper_key: \"gu2025datamixing\"\ntitle: \"Data Mixing Can Induce Phase Transitions in Knowledge Acquisition\"\nvenue: \"ICLR 2025 Spotlight\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"smooth scaling law assumption\"]\n  metrics:\n    - {name: \"biography memorization rate\", direction: \"higher_better\"}\n    - {name: \"critical mixing ratio threshold\", direction: \"N/A\"}\n  datasets:\n    - {name: \"synthetic biography dataset\", size: \"N/A\"}\n    - {name: \"web-scraped data\", size: \"N/A\"}\n  ablation_dimensions:\n    - mixing_ratio\n    - model_size\n    - training_duration\n  training_recipe: {focus: \"controlled experiments on data mixing\"}\n  method_family: \"phase_transition_analysis\"\n\npositioning:\n  core_claim: \"Knowledge acquisition from mixed data exhibits phase transitions (not smooth scaling) w.r.t. mixing ratio and model size. Modeled as knapsack capacity allocation with power-law phase transition.\"\n  key_results: \"Critical threshold in mixing ratio and model size for knowledge memorization; power-law relationship\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"complementary\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\n6. File: `briesch2024selfconsuming.yaml`\n```yaml\npaper_key: \"briesch2024selfconsuming\"\ntitle: \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\"\nvenue: \"arXiv 2024\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"Full Synthetic cycle\", \"Balanced cycle\", \"Incremental cycle\", \"Expanding cycle\"]\n  metrics:\n    - {name: \"syntactic correctness\", direction: \"higher_better\"}\n    - {name: \"semantic correctness\", direction: \"higher_better\"}\n    - {name: \"Levenshtein diversity\", direction: \"higher_better\"}\n    - {name: \"unique expression count\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"Logic expression dataset\", size: \"10K unique Boolean expressions\"}\n  ablation_dimensions:\n    - data_cycle_regime (full_synthetic, balanced, incremental, expanding)\n    - synthetic_data_proportion\n    - generation_count\n  training_recipe: {model: \"GPT-style transformer (6L, 6H, 384d, ~10.6M params)\", training: \"from scratch\"}\n  method_family: \"self_consuming_loop_analysis\"\n\npositioning:\n  core_claim: \"LLM diversity collapse confirmed: correctness may improve initially but diversity declines depending on synthetic data proportion. Full synthetic loop collapses within <10 generations.\"\n  key_results: \"Full synthetic: collapse <10 gens; fresh human data slows but cannot halt decline\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n```\n\nWrite each file using the Write tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "1db26488-625e-4c00-a8ad-c2bd1bab05d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T15:04:03.705Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1db26488-625e-4c00-a8ad-c2bd1bab05d4",
+                "isSidechain": true,
+                "agentId": "af891c80d33320aa8",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "80bda2ed-c910-4fd7-b97e-ef30859ce380",
+                "timestamp": "2026-05-20T15:04:03.705Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+                "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T15:04:06.697Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll write all 6 YAML files in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80bda2ed-c910-4fd7-b97e-ef30859ce380",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfb03139-7b56-4558-bf19-1c49ae17090a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T15:04:14.623Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2U42xc8P8ezjycLg4hj5E",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/dey2024breaking.yaml",
+                "content": "paper_key: \"dey2024breaking\"\ntitle: \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\nvenue: \"ICML 2024\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"data replacement loop\", \"data accumulation loop\"]\n  metrics:\n    - {name: \"cross-entropy validation loss\", direction: \"lower_better\"}\n    - {name: \"test loss/MSE\", direction: \"lower_better\"}\n  datasets:\n    - {name: \"TinyStories\", size: \"470M tokens\"}\n    - {name: \"GEOM-Drugs\", size: \"40k molecular conformations\"}\n    - {name: \"CelebA\", size: \"200k face images\"}\n  ablation_dimensions:\n    - data_regime (replacement vs accumulation)\n    - model_family (GPT-2, Llama2, GeoDiff, VAE)\n    - model_scale (12M/42M/125M)\n  training_recipe: {models: \"GPT-2, Llama2 (12M/42M/125M), GeoDiff, VAE\"}\n  method_family: \"data_accumulation_for_collapse_prevention\"\n\npositioning:\n  core_claim: \"Model collapse is NOT inevitable — accumulating synthetic data alongside real data (instead of replacing) avoids collapse. Proven theoretically for linear models and empirically across LMs, diffusion models, and VAEs.\"\n  key_results: \"Accumulation regime: bounded test error; Replacement regime: collapse\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"competitor\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfb03139-7b56-4558-bf19-1c49ae17090a",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "da35b2f4-8089-4b53-863e-257c9b3d0542",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T15:04:14.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2U42xc8P8ezjycLg4hj5E",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/dey2024breaking.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da35b2f4-8089-4b53-863e-257c9b3d0542",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "28208677-7390-47ef-be0a-706a9e8c75ae",
+            "sourceToolAssistantUUID": "da35b2f4-8089-4b53-863e-257c9b3d0542",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T15:04:18.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GjHiEvwF9xQStLpJm2EC16",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/fu2025selfconsuming.yaml",
+                "content": "paper_key: \"fu2025selfconsuming\"\ntitle: \"A Theoretical Perspective: How to Prevent Model Collapse in Self-consuming Training Loops\"\nvenue: \"ICLR 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"Self-consuming Training Loop (STL)\"]\n  metrics:\n    - {name: \"Total Variation distance\", direction: \"lower_better\"}\n    - {name: \"KL divergence\", direction: \"lower_better\"}\n    - {name: \"population/empirical risk\", direction: \"lower_better\"}\n  datasets: []\n  ablation_dimensions:\n    - real_synthetic_ratio\n    - model_architecture\n    - synthetic_data_sizing\n  training_recipe: {focus: \"theoretical, transformer ICL analysis\"}\n  method_family: \"recursive_stability_theory\"\n\npositioning:\n  core_claim: \"Introduces 'recursive stability' concept; shows both model architecture and real/synthetic data proportion influence STL success. Even constant-sized real data proportion ensures transformer ICL convergence.\"\n  key_results: \"Convergence bound O(n^{-1}log^2(n) + n^{-1/2}log(n) + n^{-1/4}) for transformer ICL\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28208677-7390-47ef-be0a-706a9e8c75ae",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e4665167-9aa0-4646-8d2e-ef5cfe1c02d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T15:04:18.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GjHiEvwF9xQStLpJm2EC16",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/fu2025selfconsuming.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4665167-9aa0-4646-8d2e-ef5cfe1c02d9",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "f7081436-dc08-48b1-9def-5f24c7ccc746",
+            "sourceToolAssistantUUID": "e4665167-9aa0-4646-8d2e-ef5cfe1c02d9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T15:04:22.498Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QYVnTRHiry9bP62cJ8WtES",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/feng2025escaping.yaml",
+                "content": "paper_key: \"feng2025escaping\"\ntitle: \"Escaping Model Collapse via Synthetic Data Verification\"\nvenue: \"NeurIPS 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"unguided self-consuming loop\"]\n  metrics:\n    - {name: \"model collapse rate\", direction: \"lower_better\"}\n    - {name: \"improvement/convergence bounds\", direction: \"N/A\"}\n  datasets:\n    - {name: \"MNIST\", size: \"60K\", task: \"VAE experiments\"}\n    - {name: \"XSUM\", size: \"N/A\", task: \"LM fine-tuning\"}\n  ablation_dimensions:\n    - verifier_reliability\n    - training_iteration\n  training_recipe: {models: \"linear regression (theory), VAE, SmolLM2-135M\"}\n  method_family: \"verifier_guided_retraining\"\n\npositioning:\n  core_claim: \"External verification (human/superior model) prevents collapse short-term, but unless verifier is perfectly reliable, gains plateau and converge toward verifier's 'knowledge center'.\"\n  key_results: \"Near-term improvement with verifier; long-term convergence to verifier limit\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"complementary\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7081436-dc08-48b1-9def-5f24c7ccc746",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0d853a83-365c-4d1f-bb9e-a4fef18c174a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T15:04:22.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QYVnTRHiry9bP62cJ8WtES",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/feng2025escaping.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d853a83-365c-4d1f-bb9e-a4fef18c174a",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "285c2374-3351-47d3-a8be-3d777e4a5a89",
+            "sourceToolAssistantUUID": "0d853a83-365c-4d1f-bb9e-a4fef18c174a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T15:04:24.661Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019yCB4sAezziXBWaiULJK9b",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/barzilai2025consistency.yaml",
+                "content": "paper_key: \"barzilai2025consistency\"\ntitle: \"When Models Don't Collapse: On the Consistency of Iterative MLE\"\nvenue: \"ICML 2025\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"iterative MLE with data accumulation\"]\n  metrics:\n    - {name: \"non-asymptotic error bounds\", direction: \"lower_better\"}\n    - {name: \"collapse rate\", direction: \"lower_better\"}\n  datasets: []\n  ablation_dimensions:\n    - real_data_fraction_decay_rate\n    - statistical_regularity_conditions\n  training_recipe: {focus: \"theoretical, MLE consistency analysis\"}\n  method_family: \"iterative_MLE_theory\"\n\npositioning:\n  core_claim: \"Under standard MLE consistency assumptions, collapse can be avoided even as real data fraction vanishes. But without these assumptions, collapse can occur arbitrarily quickly even with real data present.\"\n  key_results: \"Non-asymptotic bounds on iterative MLE; first rigorous collapse-with-accumulation counterexamples\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "285c2374-3351-47d3-a8be-3d777e4a5a89",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4ffbfa5b-4033-4b38-9daf-efa6419d3fb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T15:04:24.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019yCB4sAezziXBWaiULJK9b",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/barzilai2025consistency.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ffbfa5b-4033-4b38-9daf-efa6419d3fb8",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "44dacd3f-570f-4bd1-b4c7-793a3d71b9cf",
+            "sourceToolAssistantUUID": "4ffbfa5b-4033-4b38-9daf-efa6419d3fb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T15:04:28.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJ1c4EKS4Fznkz2u2b1ocQ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/gu2025datamixing.yaml",
+                "content": "paper_key: \"gu2025datamixing\"\ntitle: \"Data Mixing Can Induce Phase Transitions in Knowledge Acquisition\"\nvenue: \"ICLR 2025 Spotlight\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"smooth scaling law assumption\"]\n  metrics:\n    - {name: \"biography memorization rate\", direction: \"higher_better\"}\n    - {name: \"critical mixing ratio threshold\", direction: \"N/A\"}\n  datasets:\n    - {name: \"synthetic biography dataset\", size: \"N/A\"}\n    - {name: \"web-scraped data\", size: \"N/A\"}\n  ablation_dimensions:\n    - mixing_ratio\n    - model_size\n    - training_duration\n  training_recipe: {focus: \"controlled experiments on data mixing\"}\n  method_family: \"phase_transition_analysis\"\n\npositioning:\n  core_claim: \"Knowledge acquisition from mixed data exhibits phase transitions (not smooth scaling) w.r.t. mixing ratio and model size. Modeled as knapsack capacity allocation with power-law phase transition.\"\n  key_results: \"Critical threshold in mixing ratio and model size for knowledge memorization; power-law relationship\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"complementary\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44dacd3f-570f-4bd1-b4c7-793a3d71b9cf",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b39145c0-1f6b-4f66-96ff-53f84a982fa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 11150,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T15:04:28.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJ1c4EKS4Fznkz2u2b1ocQ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/gu2025datamixing.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b39145c0-1f6b-4f66-96ff-53f84a982fa3",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "68c787ac-32c3-472a-b8d2-4e8a315993bb",
+            "sourceToolAssistantUUID": "b39145c0-1f6b-4f66-96ff-53f84a982fa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T15:04:31.843Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015s373ZnfviLGv8RxC2i7Sd",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/briesch2024selfconsuming.yaml",
+                "content": "paper_key: \"briesch2024selfconsuming\"\ntitle: \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\"\nvenue: \"arXiv 2024\"\nfull_text_available: false\n\nresearch:\n  baselines: [\"Full Synthetic cycle\", \"Balanced cycle\", \"Incremental cycle\", \"Expanding cycle\"]\n  metrics:\n    - {name: \"syntactic correctness\", direction: \"higher_better\"}\n    - {name: \"semantic correctness\", direction: \"higher_better\"}\n    - {name: \"Levenshtein diversity\", direction: \"higher_better\"}\n    - {name: \"unique expression count\", direction: \"higher_better\"}\n  datasets:\n    - {name: \"Logic expression dataset\", size: \"10K unique Boolean expressions\"}\n  ablation_dimensions:\n    - data_cycle_regime (full_synthetic, balanced, incremental, expanding)\n    - synthetic_data_proportion\n    - generation_count\n  training_recipe: {model: \"GPT-style transformer (6L, 6H, 384d, ~10.6M params)\", training: \"from scratch\"}\n  method_family: \"self_consuming_loop_analysis\"\n\npositioning:\n  core_claim: \"LLM diversity collapse confirmed: correctness may improve initially but diversity declines depending on synthetic data proportion. Full synthetic loop collapses within <10 generations.\"\n  key_results: \"Full synthetic: collapse <10 gens; fresh human data slows but cannot halt decline\"\n  limitations: [\"abstract-only extraction\"]\n  relation_to_us: \"foundation\"\n\nnarrative: \"N/A\"\nfigures: \"N/A\"\ntables: \"N/A\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c787ac-32c3-472a-b8d2-4e8a315993bb",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2RyDhEixKyGcJphTma",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fc1347fe-8ff4-4d7f-9a96-201a347a1ee3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01U4QEpoiPPctMNKwx33ZxwY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11150,
+                "cache_read_input_tokens": 8155,
+                "output_tokens": 2759,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11150
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2759,
+                    "cache_read_input_tokens": 8155,
+                    "cache_creation_input_tokens": 11150,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11150,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T15:04:31.868Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015s373ZnfviLGv8RxC2i7Sd",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/briesch2024selfconsuming.yaml"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc1347fe-8ff4-4d7f-9a96-201a347a1ee3",
+            "isSidechain": true,
+            "promptId": "641fe7b7-cbeb-41b8-a211-9837bbca15e6",
+            "agentId": "af891c80d33320aa8",
+            "type": "user",
+            "uuid": "929a2cca-9877-499e-8af4-2bef9c87640a",
+            "sourceToolAssistantUUID": "fc1347fe-8ff4-4d7f-9a96-201a347a1ee3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T15:04:37.250Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 files written to `/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/distill_tmp/`:\n\n- `dey2024breaking.yaml` — ICML 2024, accumulation vs replacement regime\n- `fu2025selfconsuming.yaml` — ICLR 2025, recursive stability theory\n- `feng2025escaping.yaml` — NeurIPS 2025, verifier-guided retraining\n- `barzilai2025consistency.yaml` — ICML 2025, iterative MLE theory\n- `gu2025datamixing.yaml` — ICLR 2025 Spotlight, phase transition analysis\n- `briesch2024selfconsuming.yaml` — arXiv 2024, self-consuming loop analysis\n\nAll abstract-only: `research` section populated, `narrative`/`figures`/`tables` set to `N/A`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "929a2cca-9877-499e-8af4-2bef9c87640a",
+            "isSidechain": true,
+            "agentId": "af891c80d33320aa8",
+            "requestId": "req_011CbE2U3gtWaMpTrZtqPmWy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "23ee2b96-2cb5-4c21-bd93-419473778103",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/distiller_3275b75a",
+            "sessionId": "e1199c41-0624-4bbe-a3c3-3e8c7b3fc1ae",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01JtwZwp4qSsYzo1DFszXZip",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4042,
+                "cache_read_input_tokens": 19305,
+                "output_tokens": 233,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4042
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 233,
+                    "cache_read_input_tokens": 19305,
+                    "cache_creation_input_tokens": 4042,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4042,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-write-6-yaml-files-to-the-directory-home-ubuntu-agent-ml-research-idea-gen-051.md"
+}

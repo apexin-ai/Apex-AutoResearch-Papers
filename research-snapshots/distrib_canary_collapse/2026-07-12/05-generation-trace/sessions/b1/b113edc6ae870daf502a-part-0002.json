@@ -1,0 +1,762 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b113edc6ae870daf502a",
+  "rounds": [
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-20T13:01:35.543Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XgK5q8o2Jb8Hu1FNzkPcMp",
+              "type": "tool_result",
+              "content": "1\tissues:\n2\t- id: \"R1-N1\"\n3\t  summary: \"Ground-truth pairs 定义存在循环论证——differenced cross-correlation 同时参与 ground truth 定义和 consensus 投票\"\n4\t  category: method\n5\t  severity: critical\n6\t  status: resolved\n7\t  first_raised_round: 1\n8\t  last_seen_round: 1\n9\t  mentions:\n10\t    - round: 1\n11\t      reviewers: [1, 2]\n12\t      note: \"R2 补充：pipeline filtering 叙事和 calibration 边界模糊\"\n13\t  action_items:\n14\t    - round: 1\n15\t      action: \"Agent: 用 α=0.0 baseline 校准的 effect-size 标准重定义 GT (drift ratio ≥3× + temporal precedence)，排除 diffXCorr 做 K≥3/4 consensus，重算 FNR，做 2×/3×/5× 阈值敏感性分析\"\n16\t      assigned_to: agent\n17\t      status: done\n18\t    - round: 1\n19\t      action: \"Paper Agent: §3.3 重写 GT 定义，删除 'independently validated'，改为 'effect-size-defined reference pairs'\"\n20\t      assigned_to: paper_agent\n21\t      status: done\n22\t  resolution: \"Effect-size GT 重定义完成：drift ratio ≥3× α=0.0 + strict temporal precedence (< not ≤)，6 pairs，FNR=0%。DiffXCorr 排除出 consensus (K≥3/4)。阈值敏感性 2×/3×/5× 均产生相同 6 pairs。§3.3 重写 + FNR cascade 全链路 Reviewer 验证通过。\"\n23\t  resolution_round: 1\n24\t\n25\t- id: \"R1-N2\"\n26\t  summary: \"FPR=0% 标定仅基于单 seed（α=0.0, seed=42），不确定性未量化，但 abstract/conclusion 未加限定\"\n27\t  category: method\n28\t  severity: critical\n29\t  status: resolved\n30\t  first_raised_round: 1\n31\t  last_seen_round: 1\n32\t  mentions:\n33\t    - round: 1\n34\t      reviewers: [1, 2]\n35\t      note: \"双方一致认为对'方法论严谨性'论文而言，自身标定的 rigor gap 严重\"\n36\t  action_items:\n37\t    - round: 1\n38\t      action: \"Agent: 跑 α=0.0 seed=43/44 实验补充 FPR 验证\"\n39\t      assigned_to: agent\n40\t      status: done\n41\t    - round: 1\n42\t      action: \"Paper Agent: abstract/conclusion 加 'single-seed' 限定（实验完成后更新为 N-seed）\"\n43\t      assigned_to: paper_agent\n44\t      status: done\n45\t  resolution: \"α=0.0 三 seed (s42/s43/s44) FPR 验证完成。5-method consensus FPR=0/24 (Perm Granger 0/24, TY 1/24 退化 df_resid=1 per C003 不可靠, Robust 0/24)。跨 seed 漂移一致性极高 (std < 1%)。单调 dose-response 确认：0% → 0% → 79% → ~100%。Abstract/conclusion 可升级为 '3-seed FPR=0/24'。\"\n46\t  resolution_round: 1\n47\t\n48\t- id: \"R1-N3\"\n49\t  summary: \"α=0.50 和 α=0.75 仅 1 seed，regime-dependence 核心结论可靠性不足\"\n50\t  category: experiment\n51\t  severity: critical\n52\t  status: resolved\n53\t  first_raised_round: 1\n54\t  last_seen_round: 1\n55\t  mentions:\n56\t    - round: 1\n57\t      reviewers: [1, 2]\n58\t      note: \"R2 纠正：α=0.25 实际有 3 seeds。但 α=0.50/0.75 的 regime boundary 仍依赖单 seed\"\n59\t  action_items:\n60\t    - round: 1\n61\t      action: \"Agent: 跑 α=0.75 seed=43/44 (P0)；α=0.50 已有 2 seed 配 caveat 可接受\"\n62\t      assigned_to: agent\n63\t      status: done\n64\t  resolution: \"α=0.75 三 seed (s42/s43/s44) 完成。方向性不对称确认 (PermG 19/24 forward FDR-sig, 0/24 reverse)。方法共识为 Tier 2-3 transitional (seed-dependent: 4/3/1 pairs Tier 3)。α=0.50 有 2 seeds deviation <7%。D051 记录：reframe 为 detectability boundary 证据。\"\n65\t  resolution_round: 1\n66\t\n67\t- id: \"R2-N2\"\n68\t  summary: \"α=0.75 multi-seed 实验未完成 + Appendix A（distinct-3）缺失，30% ground truth 不可验证\"\n69\t  category: experiment\n70\t  severity: critical\n71\t  status: resolved\n72\t  first_raised_round: 1\n73\t  last_seen_round: 1\n74\t  mentions:\n75\t    - round: 1\n76\t      reviewers: [1, 2]\n77\t      note: \"R1 补充：Appendix A 缺失加剧 ground-truth 循环论证问题\"\n78\t  action_items:\n79\t    - round: 1\n80\t      action: \"Agent: α=0.75 multi-seed 同 R1-N3\"\n81\t      assigned_to: agent\n82\t      status: done\n83\t    - round: 1\n84\t      action: \"Paper Agent: 创建 Appendix A（distinct-3 完整结果 + lag instability 讨论）\"\n85\t      assigned_to: paper_agent\n86\t      status: done\n87\t  resolution: \"α=0.75 三 seed 实验完成 + 5-method 分析完成。Appendix A (distinct-3) + Appendix B (window sensitivity) 已创建。Paper 更新 dispatched (D051)。\"\n88\t  resolution_round: 1\n89\t\n90\t- id: \"R2-N1\"\n91\t  summary: \"核心方法论（三 pitfalls + consensus framework）为计量经济学已有知识的直接迁移，新颖性有限\"\n92\t  category: framing\n93\t  severity: critical\n94\t  status: resolved\n95\t  first_raised_round: 1\n96\t  last_seen_round: 1\n97\t  mentions:\n98\t    - round: 1\n99\t      reviewers: [1, 2]\n100\t      note: \"R1 部分反驳：empirical exposure 对 NLP 社区有价值，但需调整 framing\"\n101\t  action_items:\n102\t    - round: 1\n103\t      action: \"Paper Agent: 三层定位 reframe（exposure + propose pipeline + case study）；加 NLP-specific 适配讨论；Contribution 2 改为 'propose a framework that instantiates...'\"\n104\t      assigned_to: paper_agent\n105\t      status: done\n106\t  resolution: \"三层定位 reframe 完成：(1) exposure of pitfalls to NLP, (2) propose sequential filtering pipeline instantiating known methods, (3) case study on iterative training collapse。NLP-specific 适配讨论已加入（short T, non-stationary, high-dimensional proxies）。Contribution 2 改为 'instantiates known econometric safeguards in a novel sequential pipeline'。\"\n107\t  resolution_round: 1\n108\t\n109\t- id: \"R2-N3\"\n110\t  summary: \"实验规模过窄：单模型（Pythia-410M）、单数据集（WikiText-103）、单训练范式（replace-only）\"\n111\t  category: experiment\n112\t  severity: critical\n113\t  status: resolved\n114\t  first_raised_round: 1\n115\t  last_seen_round: 1\n116\t  mentions:\n117\t    - round: 1\n118\t      reviewers: [1, 2]\n119\t      note: \"GPT-2-medium 仅 single-seed/single-α 且有 batch size 混淆变量\"\n120\t  action_items:\n121\t    - round: 1\n122\t      action: \"GPT-2m α=1.0 Tier 3 cross-arch done; α=0.25 regime map done; writeup in paper\"\n123\t      assigned_to: director\n124\t      status: done\n125\t  resolution: \"GPT-2m 跨架构验证完成：α=1.0 Tier 3 (6/6 forward, 0/6 reverse) + α=0.25 null regime (1/8 Tier 3, 0/8 PermG sig)。两 α 水平跨架构一致性确认。batch size 差异在 discussion + limitations 中注明。\"\n126\t  resolution_round: 1\n127\t\n128\t- id: \"R1-W1\"\n129\t  summary: \"Abstract 'Granger-causes' vs Discussion 'Granger-precedes' 措辞不一致\"\n130\t  category: writing\n131\t  severity: warning\n132\t  status: resolved\n133\t  first_raised_round: 1\n134\t  last_seen_round: 1\n135\t  mentions:\n136\t    - round: 1\n137\t      reviewers: [1, 2]\n138\t      note: \"双方一致同意应统一为 Granger-precedes\"\n139\t  action_items:\n140\t    - round: 1\n141\t      action: \"Paper Agent: 全文替换 Granger-causes → Granger-precedes\"\n142\t      assigned_to: paper_agent\n143\t      status: done\n144\t  resolution: \"全文统一为 Granger-precedes。\"\n145\t  resolution_round: 1\n146\t\n147\t- id: \"R1-W2\"\n148\t  summary: \"Permutation Granger（linchpin method）缺少 power analysis，T-Y 有但它没有\"\n149\t  category: method\n150\t  severity: warning\n151\t  status: resolved\n152\t  first_raised_round: 1\n153\t  last_seen_round: 1\n154\t  mentions:\n155\t    - round: 1\n156\t      reviewers: [1, 2]\n157\t      note: \"T=10 差分后仅 9 个数据点，power 值得怀疑\"\n158\t  action_items:\n159\t    - round: 1\n160\t      action: \"Agent: bootstrap power analysis for permutation Granger (CPU task)\"\n161\t      assigned_to: agent\n162\t      status: done\n163\t  resolution: \"PermG power analysis 完成：power=1.0 (5000 permutations, T=10)。Reviewer 验证通过。与 TY power 0.05-0.20 形成鲜明对比，证实 PermG 作为 linchpin method 的可靠性。\"\n164\t  resolution_round: 1\n165\t\n166\t- id: \"R1-W3\"\n167\t  summary: \"75% spurious-signal rate headline 依赖 underpowered T-Y，排除后为 62.5%\"\n168\t  category: writing\n169\t  severity: warning\n170\t  status: resolved\n171\t  first_raised_round: 1\n172\t  last_seen_round: 1\n173\t  mentions:\n174\t    - round: 1\n175\t      reviewers: [1, 2]\n176\t      note: \"62.5% 仍足以支撑 claim，但 75% 在修辞上不诚实\"\n177\t  action_items:\n178\t    - round: 1\n179\t      action: \"Paper Agent: headline 改为 62.5%，正文双版本报告\"\n180\t      assigned_to: paper_agent\n181\t      status: done\n182\t  resolution: \"Headline 改为 62.5%（排除 underpowered TY 后），正文保留双版本报告。\"\n183\t  resolution_round: 1\n184\t\n185\t- id: \"R1-W4\"\n186\t  summary: \"α=0.75 单 seed borderline 结果（p=0.046-0.054）不应出现在 abstract/conclusion\"\n187\t  category: writing\n188\t  severity: warning\n189\t  status: resolved\n190\t  first_raised_round: 1\n191\t  last_seen_round: 1\n192\t  mentions:\n193\t    - round: 1\n194\t      reviewers: [1, 2]\n195\t      note: \"对批评他人 rigor 的论文，自身 abstract 放入 borderline 单 seed 结果自相矛盾\"\n196\t  action_items:\n197\t    - round: 1\n198\t      action: \"Paper Agent: α=0.75 具体数字标注 preliminary；待 a075 multi-seed 后更新\"\n199\t      assigned_to: paper_agent\n200\t      status: done\n201\t  resolution: \"α=0.75 三 seed 数据已获得。'preliminary' 移除，改为基于 3-seed 方向性确认 (19/24 forward, 0/24 reverse) + transitional Tier 2-3 的完整表述。不再是 borderline single-seed。\"\n202\t  resolution_round: 1\n203\t\n204\t- id: \"R1-W5\"\n205\t  summary: \"Toda-Yamamoto 纳入理由（'methodological diversity'）表述不充分\"\n206\t  category: method\n207\t  severity: warning\n208\t  status: resolved\n209\t  first_raised_round: 1\n210\t  last_seen_round: 1\n211\t  mentions:\n212\t    - round: 1\n213\t      reviewers: [1, 2]\n214\t      note: \"R2 部分反驳：T-Y 覆盖 unknown integration order 的方法论理由成立，但应 frame 为'保险策略'\"\n215\t  action_items:\n216\t    - round: 1\n217\t      action: \"Paper Agent: reframe TY 为 'insurance against unknown integration order' + 注明 power limitations\"\n218\t      assigned_to: paper_agent\n219\t      status: done\n220\t  resolution: \"TY reframed 为 insurance against unknown integration order，power limitations (0.05-0.20 at T=10) 明确注明。\"\n221\t  resolution_round: 1\n222\t\n223\t- id: \"R1-W6\"\n224\t  summary: \"可重复性信息不足：缺 lr/optimizer/warmup、generation params、metric 计算细节、代码\"\n225\t  category: experiment\n226\t  severity: warning\n227\t  status: resolved\n228\t  first_raised_round: 1\n229\t  last_seen_round: 1\n230\t  mentions:\n231\t    - round: 1\n232\t      reviewers: [1, 2]\n233\t      note: \"双方完全同意\"\n234\t  action_items:\n235\t    - round: 1\n236\t      action: \"Paper Agent: 补充所有训练/生成/metric 参数 + 代码开源声明\"\n237\t      assigned_to: paper_agent\n238\t      status: done\n239\t  resolution: \"全部训练参数（lr=5e-5, AdamW, linear warmup 500 steps）、生成参数（top-k=50, T=1.0, 5000 tokens/gen）、metric 计算细节已补充。代码开源声明已加。\"\n240\t  resolution_round: 1\n241\t\n242\t- id: \"R2-W3\"\n243\t  summary: \"Token entropy canary 仅在 α=1.0 验证——'the canary works where it's least needed'\"\n244\t  category: method\n245\t  severity: warning\n246\t  status: resolved\n247\t  first_raised_round: 1\n248\t  last_seen_round: 1\n249\t  mentions:\n250\t    - round: 1\n251\t      reviewers: [1, 2]\n252\t      note: \"在最接近实际场景的低 α regime 下 canary 完全失效（0/8），实际效用悖论未讨论\"\n253\t  action_items:\n254\t    - round: 1\n255\t      action: \"Paper Agent: Discussion 加 practical utility paradox 讨论段\"\n256\t      assigned_to: paper_agent\n257\t      status: done\n258\t  resolution: \"Practical utility paradox 讨论段已加入 Discussion：canary 在 α=1.0（least realistic）表现最佳，α≤0.50（most realistic）完全失效。这恰好支持 Claim 2 (regime-dependent validity) 而非削弱论文。\"\n259\t  resolution_round: 1\n260\t\n261\t- id: \"R2-W4\"\n262\t  summary: \"缺少独立 Limitations section（ARR 格式要求）\"\n263\t  category: format\n264\t  severity: warning\n265\t  status: resolved\n266\t  first_raised_round: 1\n267\t  last_seen_round: 1\n268\t  mentions:\n269\t    - round: 1\n270\t      reviewers: [1, 2]\n271\t      note: \"应提取为 \\\\section*{Limitations} 放在 Conclusion 之后\"\n272\t  action_items:\n273\t    - round: 1\n274\t      action: \"Paper Agent: 从 Discussion 提取为独立 Limitations section\"\n275\t      assigned_to: paper_agent\n276\t      status: done\n277\t  resolution: \"独立 Limitations section 已创建（8 段：model scale, data domain, short T, bivariate, regime boundary, no intervention, replace-only, diversity scope）。\"\n278\t  resolution_round: 1\n279\t\n280\t- id: \"R2-W5\"\n281\t  summary: \"缺少 AI Writing Disclosure 和 Responsible NLP Checklist（ARR 2025+ 要求）\"\n282\t  category: format\n283\t  severity: warning\n284\t  status: resolved\n285\t  first_raised_round: 1\n286\t  last_seen_round: 1\n287\t  mentions:\n288\t    - round: 1\n289\t      reviewers: [1, 2]\n290\t      note: \"格式合规问题，必须补充\"\n291\t  action_items:\n292\t    - round: 1\n293\t      action: \"Paper Agent: 添加 AI Writing Disclosure + Responsible NLP Checklist\"\n294\t      assigned_to: paper_agent\n295\t      status: done\n296\t  resolution: \"AI Writing Disclosure + Responsible NLP Checklist 已创建为 ethics.tex。\"\n297\t  resolution_round: 1\n298\t\n299\t- id: \"R2-W6\"\n300\t  summary: \"缺少 canary→perplexity 为何 spurious 的深入解释（entropy 与 perplexity 的数学关系未讨论）\"\n301\t  category: writing\n302\t  severity: warning\n303\t  status: resolved\n304\t  first_raised_round: 1\n305\t  last_seen_round: 1\n306\t  mentions:\n307\t    - round: 1\n308\t      reviewers: [1, 2]\n309\t      note: \"R1 部分反驳：有一定解释但不深入；perplexity=exp(entropy) 若成立则结论 trivial\"\n310\t  action_items:\n311\t    - round: 1\n312\t      action: \"Paper Agent: Discussion 加段精确区分 token entropy (held-out real data) vs perplexity (generated text)，论证非 trivially spurious\"\n313\t      assigned_to: paper_agent\n314\t      status: done\n315\t  resolution: \"Discussion 加入数学关系讨论：token entropy (held-out, real corpus) vs perplexity (generated text) 在计算域不同，非 trivial ppl=exp(H) 关系。共享 confound (vocabulary narrowing) 是 spurious 根因。\"\n316\t  resolution_round: 1\n317\t\n318\t- id: \"R2-REF1\"\n319\t  summary: \"遗漏 Granger & Newbold (1974) spurious regression 奠基文献\"\n320\t  category: writing\n321\t  severity: warning\n322\t  status: resolved\n323\t  first_raised_round: 1\n324\t  last_seen_round: 1\n325\t  mentions:\n326\t    - round: 1\n327\t      reviewers: [1, 2]\n328\t      note: \"论文将 spurious regression 列为三大 pitfall 之一却未引用原始文献\"\n329\t  action_items:\n330\t    - round: 1\n331\t      action: \"Paper Agent: 补引 Granger & Newbold 1974 + Hataya 2023 + Seddik 2024 + 修复 TY 引用\"\n332\t      assigned_to: paper_agent\n333\t      status: done\n334\t  resolution: \"4 篇引用已加入 references.bib：granger1974spurious, toda1995statistical, hataya2023will, seddik2024bad。TY 引用从 granger1969 修正为 toda1995。\"\n335\t  resolution_round: 1\n336\t\n337\t- id: \"R2-REF2\"\n338\t  summary: \"遗漏 Hataya et al. (2023) 和 Seddik et al. (2024)\"\n339\t  category: writing\n340\t  severity: warning\n341\t  status: resolved\n342\t  first_raised_round: 1\n343\t  last_seen_round: 1\n344\t  mentions:\n345\t    - round: 1\n346\t      reviewers: [1, 2]\n347\t      note: \"与 model collapse 主题直接相关\"\n348\t  action_items:\n349\t    - round: 1\n350\t      action: \"合并到 R2-REF1 一起处理\"\n351\t      assigned_to: paper_agent\n352\t      status: done\n353\t  resolution: \"已与 R2-REF1 合并处理，Hataya 2023 + Seddik 2024 均已加入。\"\n354\t  resolution_round: 1\n355\t\n356\t- id: \"R2-W1\"\n357\t  summary: \"Citation key chen2025scales 与实际作者 Du et al. 不匹配\"\n358\t  category: writing\n359\t  severity: info\n360\t  status: resolved\n361\t  first_raised_round: 1\n362\t  last_seen_round: 1\n363\t  mentions:\n364\t    - round: 1\n365\t      reviewers: [2]\n366\t      note: \"R1 认为证据不足需作者确认；R2 有 OpenAlex 验证\"\n367\t  action_items:\n368\t    - round: 1\n369\t      action: \"Paper Agent: 验证 citation key 并修正\"\n370\t      assigned_to: paper_agent\n371\t      status: done\n372\t  resolution: \"Citation key 从 chen2025scales 修正为 du2025scales。\"\n373\t  resolution_round: 1"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9532bc83-5639-4cdd-b35e-184208cdfd06",
+            "isSidechain": false,
+            "promptId": "39273f10-85d7-433b-90bc-990d8babdb68",
+            "type": "user",
+            "uuid": "5f72d979-3855-47f3-a793-5a6c8f35f61d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/review_issues.yaml",
+                "content": "issues:\n- id: \"R1-N1\"\n  summary: \"Ground-truth pairs 定义存在循环论证——differenced cross-correlation 同时参与 ground truth 定义和 consensus 投票\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R2 补充：pipeline filtering 叙事和 calibration 边界模糊\"\n  action_items:\n    - round: 1\n      action: \"Agent: 用 α=0.0 baseline 校准的 effect-size 标准重定义 GT (drift ratio ≥3× + temporal precedence)，排除 diffXCorr 做 K≥3/4 consensus，重算 FNR，做 2×/3×/5× 阈值敏感性分析\"\n      assigned_to: agent\n      status: done\n    - round: 1\n      action: \"Paper Agent: §3.3 重写 GT 定义，删除 'independently validated'，改为 'effect-size-defined reference pairs'\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Effect-size GT 重定义完成：drift ratio ≥3× α=0.0 + strict temporal precedence (< not ≤)，6 pairs，FNR=0%。DiffXCorr 排除出 consensus (K≥3/4)。阈值敏感性 2×/3×/5× 均产生相同 6 pairs。§3.3 重写 + FNR cascade 全链路 Reviewer 验证通过。\"\n  resolution_round: 1\n\n- id: \"R1-N2\"\n  summary: \"FPR=0% 标定仅基于单 seed（α=0.0, seed=42），不确定性未量化，但 abstract/conclusion 未加限定\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"双方一致认为对'方法论严谨性'论文而言，自身标定的 rigor gap 严重\"\n  action_items:\n    - round: 1\n      action: \"Agent: 跑 α=0.0 seed=43/44 实验补充 FPR 验证\"\n      assigned_to: agent\n      status: done\n    - round: 1\n      action: \"Paper Agent: abstract/conclusion 加 'single-seed' 限定（实验完成后更新为 N-seed）\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"α=0.0 三 seed (s42/s43/s44) FPR 验证完成。5-method consensus FPR=0/24 (Perm Granger 0/24, TY 1/24 退化 df_resid=1 per C003 不可靠, Robust 0/24)。跨 seed 漂移一致性极高 (std < 1%)。单调 dose-response 确认：0% → 0% → 79% → ~100%。Abstract/conclusion 可升级为 '3-seed FPR=0/24'。\"\n  resolution_round: 1\n\n- id: \"R1-N3\"\n  summary: \"α=0.50 和 α=0.75 仅 1 seed，regime-dependence 核心结论可靠性不足\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R2 纠正：α=0.25 实际有 3 seeds。但 α=0.50/0.75 的 regime boundary 仍依赖单 seed\"\n  action_items:\n    - round: 1\n      action: \"Agent: 跑 α=0.75 seed=43/44 (P0)；α=0.50 已有 2 seed 配 caveat 可接受\"\n      assigned_to: agent\n      status: done\n  resolution: \"α=0.75 三 seed (s42/s43/s44) 完成。方向性不对称确认 (PermG 19/24 forward FDR-sig, 0/24 reverse)。方法共识为 Tier 2-3 transitional (seed-dependent: 4/3/1 pairs Tier 3)。α=0.50 有 2 seeds deviation <7%。D051 记录：reframe 为 detectability boundary 证据。\"\n  resolution_round: 1\n\n- id: \"R2-N2\"\n  summary: \"α=0.75 multi-seed 实验未完成 + Appendix A（distinct-3）缺失，30% ground truth 不可验证\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R1 补充：Appendix A 缺失加剧 ground-truth 循环论证问题\"\n  action_items:\n    - round: 1\n      action: \"Agent: α=0.75 multi-seed 同 R1-N3\"\n      assigned_to: agent\n      status: done\n    - round: 1\n      action: \"Paper Agent: 创建 Appendix A（distinct-3 完整结果 + lag instability 讨论）\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"α=0.75 三 seed 实验完成 + 5-method 分析完成。Appendix A (distinct-3) + Appendix B (window sensitivity) 已创建。Paper 更新 dispatched (D051)。\"\n  resolution_round: 1\n\n- id: \"R2-N1\"\n  summary: \"核心方法论（三 pitfalls + consensus framework）为计量经济学已有知识的直接迁移，新颖性有限\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R1 部分反驳：empirical exposure 对 NLP 社区有价值，但需调整 framing\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 三层定位 reframe（exposure + propose pipeline + case study）；加 NLP-specific 适配讨论；Contribution 2 改为 'propose a framework that instantiates...'\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"三层定位 reframe 完成：(1) exposure of pitfalls to NLP, (2) propose sequential filtering pipeline instantiating known methods, (3) case study on iterative training collapse。NLP-specific 适配讨论已加入（short T, non-stationary, high-dimensional proxies）。Contribution 2 改为 'instantiates known econometric safeguards in a novel sequential pipeline'。\"\n  resolution_round: 1\n\n- id: \"R2-N3\"\n  summary: \"实验规模过窄：单模型（Pythia-410M）、单数据集（WikiText-103）、单训练范式（replace-only）\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"GPT-2-medium 仅 single-seed/single-α 且有 batch size 混淆变量\"\n  action_items:\n    - round: 1\n      action: \"GPT-2m α=1.0 Tier 3 cross-arch done; α=0.25 regime map done; writeup in paper\"\n      assigned_to: director\n      status: done\n  resolution: \"GPT-2m 跨架构验证完成：α=1.0 Tier 3 (6/6 forward, 0/6 reverse) + α=0.25 null regime (1/8 Tier 3, 0/8 PermG sig)。两 α 水平跨架构一致性确认。batch size 差异在 discussion + limitations 中注明。\"\n  resolution_round: 1\n\n- id: \"R1-W1\"\n  summary: \"Abstract 'Granger-causes' vs Discussion 'Granger-precedes' 措辞不一致\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"双方一致同意应统一为 Granger-precedes\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 全文替换 Granger-causes → Granger-precedes\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"全文统一为 Granger-precedes。\"\n  resolution_round: 1\n\n- id: \"R1-W2\"\n  summary: \"Permutation Granger（linchpin method）缺少 power analysis，T-Y 有但它没有\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"T=10 差分后仅 9 个数据点，power 值得怀疑\"\n  action_items:\n    - round: 1\n      action: \"Agent: bootstrap power analysis for permutation Granger (CPU task)\"\n      assigned_to: agent\n      status: done\n  resolution: \"PermG power analysis 完成：power=1.0 (5000 permutations, T=10)。Reviewer 验证通过。与 TY power 0.05-0.20 形成鲜明对比，证实 PermG 作为 linchpin method 的可靠性。\"\n  resolution_round: 1\n\n- id: \"R1-W3\"\n  summary: \"75% spurious-signal rate headline 依赖 underpowered T-Y，排除后为 62.5%\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"62.5% 仍足以支撑 claim，但 75% 在修辞上不诚实\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: headline 改为 62.5%，正文双版本报告\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Headline 改为 62.5%（排除 underpowered TY 后），正文保留双版本报告。\"\n  resolution_round: 1\n\n- id: \"R1-W4\"\n  summary: \"α=0.75 单 seed borderline 结果（p=0.046-0.054）不应出现在 abstract/conclusion\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"对批评他人 rigor 的论文，自身 abstract 放入 borderline 单 seed 结果自相矛盾\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: α=0.75 具体数字标注 preliminary；待 a075 multi-seed 后更新\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"α=0.75 三 seed 数据已获得。'preliminary' 移除，改为基于 3-seed 方向性确认 (19/24 forward, 0/24 reverse) + transitional Tier 2-3 的完整表述。不再是 borderline single-seed。\"\n  resolution_round: 1\n\n- id: \"R1-W5\"\n  summary: \"Toda-Yamamoto 纳入理由（'methodological diversity'）表述不充分\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R2 部分反驳：T-Y 覆盖 unknown integration order 的方法论理由成立，但应 frame 为'保险策略'\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: reframe TY 为 'insurance against unknown integration order' + 注明 power limitations\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"TY reframed 为 insurance against unknown integration order，power limitations (0.05-0.20 at T=10) 明确注明。\"\n  resolution_round: 1\n\n- id: \"R1-W6\"\n  summary: \"可重复性信息不足：缺 lr/optimizer/warmup、generation params、metric 计算细节、代码\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"双方完全同意\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 补充所有训练/生成/metric 参数 + 代码开源声明\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"全部训练参数（lr=5e-5, AdamW, linear warmup 500 steps）、生成参数（top-k=50, T=1.0, 5000 tokens/gen）、metric 计算细节已补充。代码开源声明已加。\"\n  resolution_round: 1\n\n- id: \"R2-W3\"\n  summary: \"Token entropy canary 仅在 α=1.0 验证——'the canary works where it's least needed'\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"在最接近实际场景的低 α regime 下 canary 完全失效（0/8），实际效用悖论未讨论\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: Discussion 加 practical utility paradox 讨论段\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Practical utility paradox 讨论段已加入 Discussion：canary 在 α=1.0（least realistic）表现最佳，α≤0.50（most realistic）完全失效。这恰好支持 Claim 2 (regime-dependent validity) 而非削弱论文。\"\n  resolution_round: 1\n\n- id: \"R2-W4\"\n  summary: \"缺少独立 Limitations section（ARR 格式要求）\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"应提取为 \\\\section*{Limitations} 放在 Conclusion 之后\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 从 Discussion 提取为独立 Limitations section\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"独立 Limitations section 已创建（8 段：model scale, data domain, short T, bivariate, regime boundary, no intervention, replace-only, diversity scope）。\"\n  resolution_round: 1\n\n- id: \"R2-W5\"\n  summary: \"缺少 AI Writing Disclosure 和 Responsible NLP Checklist（ARR 2025+ 要求）\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"格式合规问题，必须补充\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 添加 AI Writing Disclosure + Responsible NLP Checklist\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"AI Writing Disclosure + Responsible NLP Checklist 已创建为 ethics.tex。\"\n  resolution_round: 1\n\n- id: \"R2-W6\"\n  summary: \"缺少 canary→perplexity 为何 spurious 的深入解释（entropy 与 perplexity 的数学关系未讨论）\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R1 部分反驳：有一定解释但不深入；perplexity=exp(entropy) 若成立则结论 trivial\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: Discussion 加段精确区分 token entropy (held-out real data) vs perplexity (generated text)，论证非 trivially spurious\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Discussion 加入数学关系讨论：token entropy (held-out, real corpus) vs perplexity (generated text) 在计算域不同，非 trivial ppl=exp(H) 关系。共享 confound (vocabulary narrowing) 是 spurious 根因。\"\n  resolution_round: 1\n\n- id: \"R2-REF1\"\n  summary: \"遗漏 Granger & Newbold (1974) spurious regression 奠基文献\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"论文将 spurious regression 列为三大 pitfall 之一却未引用原始文献\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 补引 Granger & Newbold 1974 + Hataya 2023 + Seddik 2024 + 修复 TY 引用\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"4 篇引用已加入 references.bib：granger1974spurious, toda1995statistical, hataya2023will, seddik2024bad。TY 引用从 granger1969 修正为 toda1995。\"\n  resolution_round: 1\n\n- id: \"R2-REF2\"\n  summary: \"遗漏 Hataya et al. (2023) 和 Seddik et al. (2024)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"与 model collapse 主题直接相关\"\n  action_items:\n    - round: 1\n      action: \"合并到 R2-REF1 一起处理\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"已与 R2-REF1 合并处理，Hataya 2023 + Seddik 2024 均已加入。\"\n  resolution_round: 1\n\n- id: \"R2-W1\"\n  summary: \"Citation key chen2025scales 与实际作者 Du et al. 不匹配\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [2]\n      note: \"R1 认为证据不足需作者确认；R2 有 OpenAlex 验证\"\n  action_items:\n    - round: 1\n      action: \"Paper Agent: 验证 citation key 并修正\"\n      assigned_to: paper_agent\n      status: done\n  resolution: \"Citation key 从 chen2025scales 修正为 du2025scales。\"\n  resolution_round: 1",
+                "numLines": 373,
+                "startLine": 1,
+                "totalLines": 373
+              }
+            },
+            "sourceToolAssistantUUID": "9532bc83-5639-4cdd-b35e-184208cdfd06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]:  # Reviewer 1 交叉回应 — 对 Reviewer 2 Round 1 审稿意见  ---  ## 对 Weaknesses 的逐条回应  **[AGREE] R2-W1: 格式不合规** 同意，与我的 W8 一致。这是客观事实（main.tex: `\\documentclass[11pt,a4paper,twocolumn]{article}`…",
+                "leafUuid": "5f72d979-3855-47f3-a793-5a6c8f35f61d",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review distrib_canary_collapse paper for EMNLP",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-20T13:02:34.820Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. All previous round 1 issues are marked \"resolved\". This is a fresh review (Round 2 effectively), so I need to:\n\n1. For existing issues that were resolved in the previous round, check if any are re-raised this round\n2. Create new issue entries for new findings\n3. Update the tracker\n4. Compile the final report\n5. Submit it\n\nLet me map the current round's findings to the issue tracker:\n\n**New issues from this round (Round 2 fresh):**\n\nCRITICAL:\n1. α=0.60 internal contradiction (dual-seed vs single-seed) - NEW\n\n\n2. Specification curve analysis (1,160 specs) claimed but missing - NEW\n3. Promised appendix content missing (Shapley, MMCT algorithm, dose-response profiles) - NEW\n4. Format non-compliance (not ACL template, numbered citations) - NEW\n\nMAJOR:\n5. \"Phase transition\" novelty = power curve crossing (R1 says CRITICAL, R2 says MAJOR → compromise MAJOR)\n6. T=20 predictions unverified + non-falsifiable \n7. S×R framework = standard power analysis repackaged\n\nNow looking at the additional issues: formal power analysis gaps after first-differencing, mechanical coupling between entropy and distinct-n, weak comparison with recent Gu work, the straw-man framing of four deficiencies in the intro, and the intervention experiment with its small sample and wide confidence intervals. There's also inconsistent terminology around causal detection versus Granger precedence, the 87% headline obscuring architectural dependence, bootstrap confidence intervals spanning different regimes, non-uniform seed coverage with conflicting seed counts, abstract density problems, and orphaned bibliography entries. I should check whether any previously resolved issues from R1 are resurfacing.\n\nLooking back at the old Granger-causes versus Granger-precedes distinction—that core issue was addressed by switching terminology, but some \"causal detection\" language remains scattered through R1-W9 and R2 notes. The real regression appears in the spurious-signal rate claim: the old version cited 75%, and the current paper still reports 75% as a range in the methods, but when I look at the actual experimental results in Table 1, the naive and differenced cross-correlation methods fail completely after lag-direction filtering while PermG recovers 6 out of 8 cases.\n\nLet me step back and treat this as a fresh review rather than trying to track what changed between rounds. The abstract claims \"method choice alone inflates spurious-signal rates to 75%,\" which appears to refer to naive cross-correlation's false positive rate under null conditions. I should document any recurring issues with fresh IDs for this review cycle rather than assuming previous resolutions carried through. I'll organize the new issues for round 2, starting with the critical findings around the internal contradictions, missing analyses, and format violations, then moving into the major issues about oversold claims. BOTH-W6: T=20 predictions unverified + non-falsifiable\n- F2-R2-W4: S×R framework = standard power analysis repackaging\n- F2-R1-W4: PermG formal power analysis missing\n- F2-R1-W5: Mechanical coupling confound undiscussed\n- F2-R2-W5: Insufficient Gu et al. comparison\n- F2-R2-W6: Straw-man \"four deficiencies\"\n- F2-R1-W7: Intervention experiment weak\n\nMINOR:\n- F2-R1-W9: \"Causal\" wording inconsistency (partially old R1-W1 recurrence)\n- F2-R1-W10: 87% masks architectural dependence\n- F2-R1-W11: α_c CI spans two regimes\n- F2-R1-W12: Non-uniform seed coverage + α=0.45 seed count inconsistency\n- F2-R2-W7: Abstract too dense\n- F2-R2-W9: Orphan bib entries\n\nAlso checking for recurrences: the \"causal detection\" language in the abstract is a new nuance beyond the old Granger-causes issue. The 75% headline in the abstract needs verification against the actual method.tex value—it should be 62.5% based on the previous resolution. cleaned up. This is a new variant of the old issue.\n\nNow I'm organizing the work ahead: I'll update the YAML file with historical records intact, add entries for this review round, note which old issues remain resolved, flag any recurring variants, and document completely new findings. Then I'll compose the final report and submit it.\n\nFor the aggregate scores, I'm weighing the two reviewers' assessments—both gave 3.0 on Findings overall, but their individual dimension scores varied, so I'm settling on 3.0 for Soundness (favoring the more detailed analysis), 3.0 for Excitement (splitting the difference), and 3.0 for Reproducibility.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f72d979-3855-47f3-a793-5a6c8f35f61d",
+            "isSidechain": false,
+            "requestId": "req_011CbDs6JwkXPtffLwHESHz8",
+            "type": "assistant",
+            "uuid": "ed91465e-44c9-45e0-af00-520e6b07c62d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhCeRjcKBCQDW2CQLptEJt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6436,
+                "cache_read_input_tokens": 108983,
+                "output_tokens": 11421,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6436,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11421,
+                    "cache_read_input_tokens": 108983,
+                    "cache_creation_input_tokens": 6436,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6436
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-20T13:02:34.822Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在合成最终报告。先更新 Issue Tracker，再投递报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed91465e-44c9-45e0-af00-520e6b07c62d",
+            "isSidechain": false,
+            "requestId": "req_011CbDs6JwkXPtffLwHESHz8",
+            "type": "assistant",
+            "uuid": "66c8451a-4082-41f2-8c1a-a9674d7d22ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhCeRjcKBCQDW2CQLptEJt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6436,
+                "cache_read_input_tokens": 108983,
+                "output_tokens": 11421,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6436,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11421,
+                    "cache_read_input_tokens": 108983,
+                    "cache_creation_input_tokens": 6436,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6436
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-20T13:05:03.344Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U3pnTZ7YFcygavEqr5Akiw",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "distrib_canary_collapse",
+                "issues_yaml": "issues:\n# ============================================================\n# Round 1 (历史) — 全部 resolved，保留为跨轮次记录\n# ============================================================\n- id: \"R1-N1\"\n  summary: \"Ground-truth pairs 定义存在循环论证——differenced cross-correlation 同时参与 ground truth 定义和 consensus 投票\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n      note: \"R2 补充：pipeline filtering 叙事和 calibration 边界模糊\"\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。Ground-truth 现已基于 effect-size 定义，DiffXCorr 排除出 consensus。\"\n  resolution: \"Effect-size GT 重定义完成。\"\n  resolution_round: 1\n\n- id: \"R1-N2\"\n  summary: \"FPR=0% 标定仅基于单 seed\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。论文现报告 3-seed FPR=0/24。\"\n  resolution: \"α=0.0 三 seed FPR 验证完成。\"\n  resolution_round: 1\n\n- id: \"R1-N3\"\n  summary: \"α=0.50 和 α=0.75 仅 1 seed\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。α=0.75 已有 3 seeds，α=0.50 有 2 seeds。\"\n  resolution: \"Multi-seed 补充完成。\"\n  resolution_round: 1\n\n- id: \"R2-N1\"\n  summary: \"核心方法论为计量经济学已有知识的直接迁移，新颖性有限\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: [1, 2]\n      note: \"本轮以不同形式复发：R2-W2 指出 'phase transition' 实为 power curve crossing，R2-W4 指出 S×R 是标准 power analysis 重述。R1 rebut 认为实证量化有独立价值但同意术语需降级。新颖性问题的核心从'方法论迁移'转为'发现的 framing 是否 oversell'。\"\n  resolution: \"Round 1 三层定位 reframe 完成，但本轮揭示 framing 仍需进一步调整。\"\n  resolution_round: 1\n\n- id: \"R2-N2\"\n  summary: \"α=0.75 multi-seed 实验未完成 + Appendix A 缺失\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。α=0.75 三 seed 完成，Appendix A (distinct-3) 已创建。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-N3\"\n  summary: \"实验规模过窄\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。跨架构验证已扩展至 15 model-seed 组合、6 架构家族。\"\n  resolution: \"GPT-2m 跨架构验证完成。\"\n  resolution_round: 1\n\n- id: \"R1-W1\"\n  summary: \"Abstract 'Granger-causes' vs Discussion 'Granger-precedes' 措辞不一致\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: [1, 2]\n      note: \"核心修复保留（Granger-causes→Granger-precedes），但'causal detection'等措辞仍残留在 abstract 和 Section 4.2。新变体记录为 F2-W9。\"\n  resolution: \"Round 1 核心修复完成，但残留问题在本轮被再次识别。\"\n  resolution_round: 1\n\n- id: \"R1-W2\"\n  summary: \"PermG 缺少 power analysis\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 2\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: [1, 2]\n      note: \"Round 1 的 bootstrap power analysis (power=1.0) 验证了 α=1.0 下的功效，但本轮 R1-W4 指出 first-differencing 后在 T=11 短序列上的 formal power analysis 仍缺失——不同于 Round 1 的原始问题。新变体记录为 F2-W4。\"\n  resolution: \"Round 1 power analysis 完成，新维度在本轮提出。\"\n  resolution_round: 1\n\n- id: \"R1-W3\"\n  summary: \"75% spurious-signal rate headline 依赖 underpowered T-Y\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未直接提及。当前论文中 75% 指 naive XCorr 的 null-control FPR（Table 1），属事实陈述。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R1-W4\"\n  summary: \"α=0.75 单 seed borderline 结果不应出现在 abstract\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。α=0.75 现有 3-seed 数据。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R1-W5\"\n  summary: \"Toda-Yamamoto 纳入理由表述不充分\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未提及。TY 已 reframed 为 insurance + power limitations 注明。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R1-W6\"\n  summary: \"可重复性信息不足\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"实验超参已补充完整。但本轮发现方法框架 (MMCT) 的可复现性仍有缺口——见 F2-W3。\"\n  resolution: \"超参补充完成。MMCT 定义缺失为本轮新问题。\"\n  resolution_round: 1\n\n- id: \"R2-W3\"\n  summary: \"Token entropy canary 仅在 α=1.0 验证\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮未直接提及。Practical utility paradox 已在 Discussion 中讨论。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-W4\"\n  summary: \"缺少独立 Limitations section\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮确认 Limitations section 存在且内容充实。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-W5\"\n  summary: \"缺少 AI Writing Disclosure\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮确认 Ethics Statement 存在。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-W6\"\n  summary: \"缺少 canary→perplexity 为何 spurious 的深入解释\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮确认 Discussion 中含 token entropy vs perplexity 数学关系讨论。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-REF1\"\n  summary: \"遗漏 Granger & Newbold (1974)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"本轮确认 granger1974spurious 已在 references.bib 和正文中引用。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-REF2\"\n  summary: \"遗漏 Hataya et al. (2023) 和 Seddik et al. (2024)\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [1, 2]\n    - round: 2\n      reviewers: []\n      note: \"已在 bib 中确认。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n- id: \"R2-W1-old\"\n  summary: \"Citation key chen2025scales 与实际作者 Du et al. 不匹配\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 1\n  mentions:\n    - round: 1\n      reviewers: [2]\n    - round: 2\n      reviewers: []\n      note: \"已修正为 du2025scales。\"\n  resolution: \"完成。\"\n  resolution_round: 1\n\n# ============================================================\n# Round 2 (本轮 Fresh Review) — 新发现\n# ============================================================\n\n# --- CRITICAL ---\n\n- id: \"F2-W1\"\n  summary: \"α=0.60 同步凹陷：Section 4.3 声称 'dual-seed confirmed' 但 Section 4.1 和 Limitations 说是 single-seed bf16，内部矛盾\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [CRITICAL]，R2 交叉 [AGREE]。四 regime 结构的 synchronous dip 是最弱环节——一个 single-seed bf16 数据点支撑一个 fundamental regime。Section 4.1 'single-seed probing point' vs Section 4.3 'dual-seed confirmed' vs Limitations 'single seed; fp32 multi-seed confirmation needed' 三处不可能同时为真。\"\n  action_items:\n    - round: 2\n      action: \"澄清 dual-seed 来源或更正为 single-seed；补充 α=0.60 fp32 multi-seed 数据（至少 2 seeds）；如 fp32 下 dip 不可复现，将四 regime 降级为三 regime\"\n      assigned_to: agent\n      status: open\n\n- id: \"F2-W2\"\n  summary: \"Specification curve analysis (1,160 specs) 在 Section 4.2 声称但全文（正文+附录）无任何图表或数据\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [CRITICAL]，R2 交叉 [AGREE]。Unsubstantiated claim 严重损害以 'analytical robustness' 为核心定位的论文可信度。\"\n  action_items:\n    - round: 2\n      action: \"在附录中完整呈现 specification curve 分析（维度、分布图、与 Simonsohn 2020 框架对接），或删除该声明\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W3\"\n  summary: \"Section 3 承诺的三项附录内容缺失：per-method dose-response profiles、Shapley value analysis、full MMCT algorithm\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [CRITICAL]，R2 交叉 [AGREE] 并修正 Reproducibility 评分从 4.0 降至 3.0。MMCT 是论文的核心方法论框架（Contribution 3），但读者无法获得完整定义——权重公式有但完整流程（weighted score → formal p-value、empirical null distribution 构建）不完整。\"\n  action_items:\n    - round: 2\n      action: \"补充所有 promised appendix content：(1) MMCT algorithm pseudocode + 完整流程描述；(2) Shapley value analysis；(3) per-method dose-response profiles 图表。或修改正文引用\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W8\"\n  summary: \"格式不合规：未使用 ACL 官方模板，使用 numbered citations 而非 author-year，面临 desk rejection\"\n  category: format\n  severity: critical\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 列 [MAJOR]，R2 列 [CRITICAL]。共识：至少 MAJOR，R2 认为 desk rejection 风险使其为 CRITICAL。main.tex 使用 \\\\documentclass[article] + \\\\usepackage[numbers]{natbib} + \\\\usepackage[margin=2.5cm]{geometry}，非 ACL template。引用显示为 [1] 而非 (Author, Year)。\"\n  action_items:\n    - round: 2\n      action: \"迁移至 ACL 2023/2024 official template（acl2023.sty + [review] option），切换 natbib 为 author-year，删除自定义 geometry，重新编译检查页数\"\n      assigned_to: paper_agent\n      status: open\n\n# --- MAJOR ---\n\n- id: \"F2-W2b\"\n  summary: \"'Phase transition' framing oversells power curve crossing——论文自身承认 onset 反映 power curve crossing 而非新物理信号\"\n  category: framing\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R2 列 [CRITICAL]，R1 rebut 降为 [MAJOR]。R1 论证：实证发现（sigmoid k≥200, Δα≈0.02, 非单调 dose-response, 方法敏感性 κ=0.185）在 model collapse 领域有独立价值，类比 Boettiger 2012。R2 坚持核心是教科书级 power analysis。Director 判定 MAJOR：framing 需调整但不否定贡献。\"\n  action_items:\n    - round: 2\n      action: \"将 'phase transition' 降级为 'detection threshold/onset' 或 'power-driven detectability threshold'；突出真正新颖的部分（非单调 dose-response、method-dependent threshold）\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W6\"\n  summary: \"T=20 预测未验证 + 大部分不可证伪：三个 testable predictions 无实验数据，α=0.45/0.50 CI=[0,7] 几乎任何结果都 consistent\"\n  category: experiment\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R2 侧重'不完整'（声称 falsifiable 却无 falsification attempt），R1 侧重'不可证伪'（CI 太宽）。唯一有约束力的预测是 α≥0.75 predicted 7/8 [6,8]。两者叠加削弱 S×R 作为 testable theory 的定位。\"\n  action_items:\n    - round: 2\n      action: \"提交前至少完成 α=0.75 T=20 验证（当前实验 t20_a075_s42_fp32 已在运行中），或将 T=20 预测降格为 future work/conjectures 而非核心贡献\"\n      assigned_to: agent\n      status: open\n\n- id: \"F2-W4b\"\n  summary: \"S×R 框架是标准 power analysis 的重新包装：Power=Φ(S·R·√T/σ) 即 z-test power formula，R(α) 非单调性从数据回推非第一性原理推导\"\n  category: framing\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R2 首发 [MAJOR]，R1 partial rebut：Section 3.1 提供了 R(α) 非单调的定性机制论证（relaxation time matching），不是纯数据拟合。但 R(α) 没有独立于 PermG 检测率的可操作化定义，'relaxation time matching' 没有独立测量。\"\n  action_items:\n    - round: 2\n      action: \"明确定位为 'interpretive framework/decomposition' 而非 'theory'；如可能，从 iterative training 数学结构推导 R(α) 非单调性\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W4\"\n  summary: \"First-differencing 后 PermG 在 T=11 短序列上的 formal power analysis 缺失\"\n  category: method\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [MAJOR]，R2 同意但认为严重性略低于 MAJOR（empirical null-control 校准提供了部分辩护）。T=11 差分后 10 点、lag-1 仅 ~9 有效观测。5000 permutation 验证采样稳定性而非检验功效。\"\n  action_items:\n    - round: 2\n      action: \"用 simulation study 量化 PermG 在 T=11 first-differenced 给定 effect size 下的功效曲线，报告 minimum detectable effect size\"\n      assigned_to: agent\n      status: open\n\n- id: \"F2-W5\"\n  summary: \"Token entropy → distinct-n 机械耦合 confound 未讨论：entropy 下降→生成分布集中→n-gram 多样性机械降低\"\n  category: method\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [MAJOR]，R2 partial agree：one-generation lag 和 first-differencing 存活可部分排除纯机械耦合（同步耦合不应产生 temporal lag），但论文应显式讨论此 confound 并给出辩护。\"\n  action_items:\n    - round: 2\n      action: \"Discussion 增加机械耦合讨论段，解释为何 one-generation temporal offset 和 first-differencing 存活排除纯机械耦合；考虑使用不同评估集/温度的实验来进一步排除\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W5b\"\n  summary: \"与 Gu et al. (2024 CMR, 2025 data mixing phase transitions) 关系分析不充分——α_c≈0.50 与 CMR critical ratio 可能是同一现象\"\n  category: framing\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R2 首发 [MAJOR]，R1 交叉 [AGREE]。Related Work 和 Extended Discussion 仅有 'invites connection' 一句 forward-looking 声明，无定量对比。如两者是同一 mixing threshold 的不同观察角度，novelty 进一步降低。\"\n  action_items:\n    - round: 2\n      action: \"对比 CMR 预测的 critical ratio 和本文 α_c=0.476，讨论是 coincidental 还是 mechanistically linked\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W6b\"\n  summary: \"Introduction 'four deficiencies' 存在 straw-man 倾向——大多数 model collapse 论文的目标是描述现象而非严格 lead-lag 分析\"\n  category: framing\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R2 首发 [MAJOR]，R1 partial rebut：对描述性工作（Shumailov, Alemohammad）不公平，但对做了 temporal precedence claims 的工作（Du 2025/2026, Gambetta 2024）合理。建议收窄适用范围。\"\n  action_items:\n    - round: 2\n      action: \"将 'four deficiencies' 的适用范围限定在做出 temporal precedence claims 的先行工作，区分描述性和因果性工作\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W7\"\n  summary: \"Intervention 实验薄弱：15% entropy threshold 无理论依据无 sensitivity analysis，仅 n=2 模型，bootstrap CI [29%,64%] 极宽\"\n  category: experiment\n  severity: major\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"R1 首发 [MAJOR]，R2 交叉 [AGREE] 补充：15% 在两个 model scale 都恰好 gen 1 触发可能是 overfitted；未测试 partial contamination (α=0.50/0.75) 下效果。\"\n  action_items:\n    - round: 2\n      action: \"添加 threshold sensitivity analysis（扫描 5%-25%）；在更多模型上测试；测试 partial contamination 场景；或降低 intervention claim 强度\"\n      assigned_to: agent\n      status: open\n\n# --- MINOR ---\n\n- id: \"F2-W9\"\n  summary: \"'Causal detection/detectability' 措辞在 abstract 和 Section 4.2 残留，与 Discussion 中 'Granger precedence ≠ causation' 声明不一致\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"Round 1 修复了 Granger-causes→Granger-precedes，但 'causal detection' 等更广泛的 causal 措辞未清理。Front-load strong claim + back-load qualification 的写法易误导快速浏览的读者。\"\n  action_items:\n    - round: 2\n      action: \"全文将 'causal detection/detectability' 替换为 'Granger-causal detection' 或 'predictive detection'\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W10\"\n  summary: \"87% (13/15) headline 掩盖系统性架构依赖：SmolLM3-3B 失败是架构特性（entropy 非单调），Pythia-1.4B 是 seed-dependent，两种失败模式性质不同\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"建议区分两类失败并在 Discussion 中讨论含义。更诚实的表述可能是 '11/15 robust detection; 2 partial/seed-dependent; 2 failure'。\"\n  action_items:\n    - round: 2\n      action: \"Discussion 中区分 SmolLM3 架构失败和 Pythia-1.4B seed 变异两类模式\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W11\"\n  summary: \"α_c bootstrap CI [0.43, 0.56] 跨越 blind 和 onset 两个 regime，限制定量声明实用价值\"\n  category: method\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"CI 下端 0.43 意味着 phase boundary 可能在 blind zone 内——α=0.45 的 sub-threshold signal (p=0.059) 与此一致。\"\n  action_items:\n    - round: 2\n      action: \"讨论 CI 宽度对四 regime 分类边界的影响\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W12\"\n  summary: \"非均匀 seed 覆盖 + α=0.45 seed 数量在 Section 4.1（single-seed）和 Appendix Table 5（2 seeds）间不一致\"\n  category: experiment\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"与 F2-W1 (α=0.60 矛盾) 属同类问题：Section 4.1 的 seed 分配描述与实际实验可能不匹配。\"\n  action_items:\n    - round: 2\n      action: \"核实并统一 Section 4.1 的 seed 分配描述与实际实验数据\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W7b\"\n  summary: \"Abstract 信息密度过高：≥20 个数值，可读性差\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1, 2]\n      note: \"建议保留 3-5 个关键数字，其余移至正文。\"\n  action_items:\n    - round: 2\n      action: \"精简 Abstract 数值密度\"\n      assigned_to: paper_agent\n      status: open\n\n- id: \"F2-W9b\"\n  summary: \"22 个 orphan bib entries（44% orphan ratio）\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [2]\n      note: \"不影响内容但显得仓促。\"\n  action_items:\n    - round: 2\n      action: \"清理 .bib 文件，移除未引用条目\"\n      assigned_to: paper_agent\n      status: open\n\n# --- MISSING REFERENCES ---\n\n- id: \"F2-REF1\"\n  summary: \"遗漏 arXiv:2502.15654 (detection-based mitigation for model collapse)\"\n  category: reference\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [2]\n\n- id: \"F2-REF2\"\n  summary: \"Schaeffer et al. (2025) 的 8 种 model collapse 定义应在 Related Work 中与本文 claim scoping 对接\"\n  category: reference\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [2]\n\n- id: \"F2-REF3\"\n  summary: \"Dakos et al. (2012) methods comparison + Schreiber (2000) transfer entropy + Ernst (2004)/Phipson & Smyth (2010) permutation testing power — bib 中有但正文未引用\"\n  category: reference\n  severity: minor\n  status: open\n  first_raised_round: 2\n  last_seen_round: 2\n  mentions:\n    - round: 2\n      reviewers: [1]"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66c8451a-4082-41f2-8c1a-a9674d7d22ad",
+            "isSidechain": false,
+            "requestId": "req_011CbDs6JwkXPtffLwHESHz8",
+            "type": "assistant",
+            "uuid": "21665b56-3e28-4670-a43d-4b247f157266",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NhCeRjcKBCQDW2CQLptEJt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6436,
+                "cache_read_input_tokens": 108983,
+                "output_tokens": 11421,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6436,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11421,
+                    "cache_read_input_tokens": 108983,
+                    "cache_creation_input_tokens": 6436,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6436
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-20T13:05:03.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U3pnTZ7YFcygavEqr5Akiw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 19194}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "21665b56-3e28-4670-a43d-4b247f157266",
+            "isSidechain": false,
+            "promptId": "39273f10-85d7-433b-90bc-990d8babdb68",
+            "type": "user",
+            "uuid": "91711730-f7e2-4d5b-88a7-c205c9696667",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 19194}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/review_issues.yaml\", \"bytes\": 19194}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "21665b56-3e28-4670-a43d-4b247f157266",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]:  # Reviewer 1 交叉回应 — 对 Reviewer 2 Round 1 审稿意见  ---  ## 对 Weaknesses 的逐条回应  **[AGREE] R2-W1: 格式不合规** 同意，与我的 W8 一致。这是客观事实（main.tex: `\\documentclass[11pt,a4paper,twocolumn]{article}`…",
+                "leafUuid": "91711730-f7e2-4d5b-88a7-c205c9696667",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review distrib_canary_collapse paper for EMNLP",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-20T13:05:09.296Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Issue tracker updated. Now let me compose and submit the final review report. The report should follow the structure specified in the skill:\n\n1. Summary\n2. Strengths\n3. Weaknesses (重点)\n4. Reviewer Consensus\n5. Reviewer Divergence\n6. Questions\n7. Missing References\n8. External Review\n9. Visual Layout Check\n10. Overall Assessment\n11. Detailed Comments\n\nLet me prepare the report and submit it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91711730-f7e2-4d5b-88a7-c205c9696667",
+            "isSidechain": false,
+            "requestId": "req_011CbDsMdk1taDZg4TKyKrRZ",
+            "type": "assistant",
+            "uuid": "ca239e76-b663-4ac2-9091-2121a70011cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdSr7usMyBCuQEYKsnLqzn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11503,
+                "cache_read_input_tokens": 115419,
+                "output_tokens": 6505,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11503,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6505,
+                    "cache_read_input_tokens": 115419,
+                    "cache_creation_input_tokens": 11503,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11503
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-20T13:05:10.388Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue Tracker 已更新。现在编写并投递最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca239e76-b663-4ac2-9091-2121a70011cf",
+            "isSidechain": false,
+            "requestId": "req_011CbDsMdk1taDZg4TKyKrRZ",
+            "type": "assistant",
+            "uuid": "91b91e7e-ebec-45b3-96e9-181521bc5917",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdSr7usMyBCuQEYKsnLqzn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11503,
+                "cache_read_input_tokens": 115419,
+                "output_tokens": 6505,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11503,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6505,
+                    "cache_read_input_tokens": 115419,
+                    "cache_creation_input_tokens": 11503,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11503
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-20T13:07:30.092Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SAapV9CCpdBPKAbo89Gp22",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "project": "distrib_canary_collapse",
+                "report": "# 审稿报告 — Round 2 (Fresh Review)\n\n**论文**: A Detection Phase Transition in Iterative Model Collapse\n**Venue**: EMNLP 2026 Main Track (via ARR June 2026)\n**截止日期**: 2026-06-15\n**审稿日期**: 2026-05-20\n**Reviewer 编排**: 2 人（R1: 方法严谨性+实验设计 | R2: 新颖性+完整性+格式合规）\n**轮次**: Round 1 独立审稿 → 交叉分享 → 收敛（1 轮即收敛）\n\n---\n\n## Summary\n\n本文发现迭代合成数据训练中 canary metric→downstream metric 的 Granger 因果可检测性在 per-generation mixing ratio α≈0.50 处呈现陡峭的 sigmoid 型跃迁（PermG 检测率从 0/8 跳至 6/8），并提出 Signal×Resolution (S×R) 框架和 Multi-Method Consensus Test (MMCT) 来解释和系统化这一现象。实验覆盖 6 个模型族（345M–6.9B）的 15 个模型-种子组合，87% 条件下确认检测。论文的方法论对比（五种统计方法在相同数据上产生 0%–75% 显著性率）对 model collapse 文献有实质性警示价值，但存在若干关键问题：内部数据矛盾、承诺的附录分析缺失、以及格式不合规。\n\n---\n\n## Strengths\n\n**S1. 方法敏感性的系统暴露是核心价值。** [共识] Table 1 展示五种方法在相同数据上产生 0%–75% forward significance rate（κ=0.185），first-differencing 将 canary→perplexity 从显著变为完全不显著（F≈0, p=0.99）而保留 canary→diversity（24/24→24/24）。这一发现独立于 \"phase transition\" 叙事，对依赖单一方法的 model collapse 文献构成有力批判。\n\n**S2. 诚实的 claim scoping。** [共识] 论文明确声明 Granger precedence ≠ causation，canary claim 仅限 diversity metrics（非 perplexity），MMCT 是 consensus protocol 非 novel method。这种自我约束在 ML 文献中值得肯定。\n\n**S3. 充分的实验覆盖和 robustness checks。** [共识] 13 个 α 水平、最多 4 seeds、6 架构家族、2 数据域，加上 permutation count stability、FDR threshold sensitivity、observation window sensitivity 等检验。Cross-architecture 验证（15 组合，13 确认）提供了广泛的泛化证据。\n\n**S4. Null-control 校准设计专业。** [共识] α=0.0 作为 FPR 校准（0/24, 3 seeds），α=1.0 作为 FNR 校准（0% FNR），是实验设计的亮点。\n\n**S5. 实用价值。** [共识] Canary-based predictive cessation 提前一代触发，降低 58% 峰值 perplexity。四层检测分类提供从 α≥0.10 到 α≥0.50 的分级诊断。\n\n**S6. 非单调 dose-response 是最有趣的发现。** [共识] α≈0.60 synchronous dip 非直觉，temporal resolution 压缩的解释合理——但此发现的实验支撑不足（见 W1）。\n\n---\n\n## Weaknesses\n\n### Must-Fix（CRITICAL）\n\n**W1. α=0.60 同步凹陷：内部矛盾 + 证据不足。** [R1 首发, R2 AGREE]\nSection 4.1 列 α=0.60 为 \"single-seed probing point\"；Limitations 确认 \"single seed; bf16\"；但 Section 4.3 声称 \"dual-seed confirmed\"——三处不可能同时为真。四 regime 结构（blind/onset/synchronous dip/detection）中，synchronous dip 是区分本文四 regime 与简单三 regime 的关键，但仅有 single-seed bf16 一个数据点支撑。如果 dip 是精度伪影或 seed 偶然，S×R 框架的 R→0 解释将失去实验锚点。\n\n**W2. Specification curve analysis (1,160 specs) 声称但缺失。** [R1 首发, R2 AGREE]\nSection 4.2 最后一句声称此分析存在，但正文+附录（~15 页）中无任何图表、数据或描述。对以 \"analytical robustness\" 为核心定位的论文，unsubstantiated claim 严重损害可信度。\n\n**W3. 更多 promised appendix content 缺失。** [R1 首发, R2 AGREE]\nSection 3 承诺 \"per-method dose-response profiles, Shapley value analysis, and the full MMCT algorithm appear in the Appendix\"——三项均不存在。MMCT 是论文的 Contribution 3，但读者无法获得完整定义（权重公式有，但 weighted score → formal p-value 的流程、empirical null distribution 构建均不完整）。直接影响可复现性。\n\n**W4. 格式不合规——面临 desk rejection。** [R1+R2 共识]\n使用 `\\documentclass[article]` + `\\usepackage[numbers]{natbib}` + 自定义 geometry，非 ACL 官方模板。引用显示为 [1] 而非 (Author, Year)。ARR desk rejection checklist 第一项即模板合规。\n\n### Should-Fix（MAJOR）\n\n**W5. \"Phase transition\" framing oversells power curve crossing。** [R2 首发 CRITICAL, R1 REBUT 降为 MAJOR]\n论文自身承认 \"the onset reflects PermG's power curve crossing the detection floor, not the emergence of a new physical signal\"。Power = Φ(effect_size × √n / σ) 是教科书级 power analysis。R1 辩护：实证量化（sigmoid k≥200, Δα≈0.02）和方法敏感性暴露在 model collapse 领域有独立价值。**Director 判定 MAJOR**：术语需降级（\"detection onset/threshold\"），但实证贡献不可否认。\n\n**W6. T=20 预测未验证 + 大部分不可证伪。** [R1+R2 共识]\n三个 \"testable predictions\" 无实验数据（\"under empirical verification\"）。α=0.45 和 α=0.50 的 bootstrap CI 均为 [0,7]，几乎任何结果都 \"consistent\"。唯一有约束力的预测：α≥0.75 predicted 7/8 [6,8]，below 6/8 would falsify。声称 falsifiable 却不提供 falsification attempt 削弱 S×R 作为 predictive theory 的定位。\n\n**W7. S×R 框架是标准 power analysis 的重新包装。** [R2 首发, R1 partial REBUT]\nPower = Φ(S·R·√T/σ) 即 z-test power formula。R(α) 非单调性有定性机制论证（relaxation time matching），但 R(α) 无独立于 PermG 检测率的可操作化定义，非第一性原理推导。建议定位为 \"interpretive decomposition\" 而非 \"theory/framework\"。\n\n**W8. PermG formal power analysis 缺失。** [R1 首发, R2 AGREE with nuance]\nT=11 差分后 10 点、lag-1 仅 ~9 有效观测。5,000 permutation 验证采样稳定性而非检验功效。Empirical null-control 校准提供部分辩护，但不等于 formal power analysis across α spectrum。\n\n**W9. Token entropy → distinct-n 机械耦合 confound 未讨论。** [R1 首发, R2 partial AGREE]\nEntropy 下降→生成分布集中→n-gram 多样性机械降低。R2 辩护：纯机械耦合是同步的，不应产生 one-generation lag（Figure 1），且 first-differencing 存活提供部分排除。但论文应显式讨论此 confound。\n\n**W10. 与 Gu et al. (2024, 2025) 关系分析不充分。** [R2 首发, R1 AGREE]\nCMR scaling law 的 critical ratio 和 data mixing phase transitions 与本文 α_c≈0.50 可能描述同一现象——仅有 \"invites connection\" 一句 forward-looking 声明，无定量对比。\n\n**W11. Introduction \"four deficiencies\" 存在 straw-man 倾向。** [R2 首发, R1 partial REBUT]\n对描述性 collapse 研究不公平，但对做了 temporal precedence claims 的先行工作（Du 2025/2026, Gambetta 2024）合理。建议收窄适用范围。\n\n**W12. Intervention 实验薄弱。** [R1+R2 共识]\n15% entropy threshold 无理论依据、无 sensitivity analysis。仅 2 模型（410M, 1.4B）。Bootstrap CI [29%, 64%] 极宽。未测试 partial contamination (α<1.0)。\n\n### Minor\n\n**W13.** \"Causal detection\" 措辞残留，与 Granger ≠ causation 声明不一致\n**W14.** 87% headline 掩盖两类不同性质的架构依赖失败\n**W15.** α_c CI [0.43, 0.56] 跨越 blind/onset regime 边界\n**W16.** 非均匀 seed 覆盖 + α=0.45 seed 数量不一致（Section 4.1 vs Appendix）\n**W17.** Abstract ≥20 个数值，信息密度过高\n**W18.** 22 个 orphan bib entries (44% orphan ratio)\n\n---\n\n## Reviewer Consensus [AGREE]\n\n以下问题两位 Reviewer 完全一致：\n\n1. **格式必须修复**，否则面临 desk rejection（W4）\n2. **α=0.60 内部矛盾**必须澄清——dual-seed 还是 single-seed？（W1）\n3. **所有 promised appendix content 必须补齐**——specification curve、Shapley、MMCT algorithm、dose-response profiles（W2, W3）\n4. **T=20 需要数据或降级声明**（W6）\n5. **方法敏感性暴露是论文的核心价值**，独立于 phase transition framing（S1）\n6. **Intervention 实验需要加强或降低 claim 强度**（W12）\n7. **机械耦合 confound 必须在 Discussion 中讨论**，即使 one-generation lag 部分排除纯机械解释（W9）\n8. **Overall 3.0 (Findings)**——当前状态适合 Findings，修复后有 3.5–4.0 潜力\n\n---\n\n## Reviewer Divergence [REBUT]\n\n**1. Excitement (R1: 3.5 vs R2: 2.5)**\n- R1 认为：在 model collapse 领域实证量化检测阈值（sigmoid k≥200）和方法敏感性（κ=0.185）有独立贡献价值，类比 Boettiger & Hastings (2012) 在生态学中的角色\n- R2 认为：核心发现是教科书级 power analysis 的直接推论，MMCT 非新方法，S×R 非新理论，新颖性有限\n- **Director 判定**：3.0。R1 的辩护有道理——实证发现在特定领域的首次系统量化有价值——但 R2 正确指出 framing 的 oversell 降低了 excitement。真正新颖的部分（非单调 dose-response、method sensitivity 暴露）未被充分突出\n\n**2. Reproducibility (R1: 2.5 vs R2: 3.0, revised from 4.0)**\n- R1 强调 MMCT 方法框架的可复现性（核心方法无完整定义）\n- R2 强调实验 setup 的可复现性（超参数完整）\n- **Director 判定**：2.5。方法定义的完整性比超参报告更根本——MMCT 是论文的 Contribution 3，但读者无法从论文中重建它\n\n---\n\n## Questions（需作者回答）\n\n1. Section 4.3 声称 α=0.60 \"dual-seed confirmed\"。请澄清两个 seed 的精度和来源，或更正为 single-seed。\n2. Specification curve analysis (1,160 specifications) 的完整结果在哪里？\n3. Shapley value analysis、MMCT algorithm pseudocode、per-method dose-response profiles 为什么没有出现在声称的附录中？\n4. 是否考虑过 token entropy 和 distinct-n 之间的机械耦合（entropy 降低→分布集中→diversity 机械下降）作为 24/24 完美保留的替代解释？\n5. 15% entropy threshold 如何选定？是否有 sensitivity analysis？\n6. α=0.45 实际有几个 seed？Section 4.1 说 single-seed probing point，Appendix 报告了 2 seeds。\n7. α_c=0.476 与 Gu et al. (2024) CMR scaling law 预测的 critical ratio 的定量关系是什么？\n8. α=0.00 下 distinct-1 已降 14.1%（纯 fine-tuning drift）。contamination 到底添加了什么额外信号使得 Granger precedence 出现？\n9. C4 domain α=0.50 s42 PermG reverse 7/8——这对 directionality claim 意味着什么？\n10. 为什么选择 replace-only 而非 accumulate protocol？\n\n---\n\n## Missing References\n\n1. **arXiv:2502.15654** (2025) — Detection-based mitigation for model collapse，直接相关\n2. **Schaeffer et al. (2025)** \"Position: Model Collapse Does Not Mean What You Think\" — 8 种 collapse 定义应在 Related Work 中与本文 claim scoping 对接（当前仅在 Limitations 简单引用）\n3. **Dakos et al. (2012)** \"Methods for Detecting Early Warnings\" — bib 中有但未 cite，与本文 multi-method 比较高度相关\n4. **Schreiber (2000)** \"Measuring Information Transfer\" — 附录使用 Transfer Entropy 但未在正文引用\n5. **Ernst (2004) / Phipson & Smyth (2010)** — Permutation testing 功效和 p-value 处理的参考文献\n6. **Marcinkevics & Vogt (2022)** — Neural Granger causality，bib 中有但未 cite\n7. **Kazdan et al. (2025)** \"Collapse or Thrive?\" — bib 中有但未 cite，与 Schaeffer (2025) 互补\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n**状态：已跳过。** 外部审稿请求已发送但被用户跳过（skipped at 2026-05-20T12:45:54）。\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态：已完成。** 3 warnings, 9 info items。\n\n关键发现：\n- ⚠️ **前 4 页纯文本无 figure/table**：审稿人在前 2 分钟内只看到密集双栏文字墙。建议将核心结果图（Figure 1 的相变曲线）前移到 page 2 或 Introduction 末尾\n- ⚠️ **Figure 1 使用单栏宽度**：作为论文核心可视化，建议改用 figure*（全宽）增强视觉冲击力\n- ⚠️ **主文 8 页仅 4 个 display items**：作为实证论文，密度偏低（通常 5-8 个），大量表格推到 appendix\n- ℹ️ Figure 1 axis labels 偏小（接近可读性下限），建议 ≥9pt\n- ℹ️ Figure 2 灰度打印下蓝/绿线可能难区分，建议辅以不同 line style\n- ℹ️ Table 1/2 未对关键数值加粗标注\n- ℹ️ 13 个 appendix tables，部分小表可合并\n- ℹ️ References 格式统一，无 [?] 未解析引用\n\n---\n\n## Overall Assessment\n\n**Overall: 3.0 — Findings（可被 Findings 接收）**\n\n| 维度 | R1 | R2 | Director |\n|------|-----|-----|----------|\n| Soundness | 3.0 | 3.5 | **3.0** |\n| Excitement | 3.5 | 2.5 | **3.0** |\n| Reproducibility | 2.5 | 3.0 | **2.5** |\n| Confidence | 4/5 | 4/5 | — |\n\n**理由：**\n\n论文的核心价值在于方法敏感性的系统暴露（S1）和 null-control 校准设计（S4），这些对 model collapse 文献有独立贡献。检测阈值的实证发现（sigmoid k≥200, Δα≈0.02, Fisher exact p=3.45×10⁻¹¹）在该领域是新的。\n\n但论文自身的方法论标准与实际执行之间存在显著 gap——一篇以\"暴露方法论缺陷\"为卖点的论文出现了：(a) 支撑核心 framing 的数据点存在内部矛盾（α=0.60 W1）；(b) 正文声称的多项分析在附录中不存在（W2, W3）；(c) 核心方法论框架（MMCT）无法从论文中完整重建。这些问题的严重性在于它们恰好出现在论文声称最 rigorous 的维度上。\n\n格式不合规（W4）是独立的 blocking issue——当前模板无法通过 ARR desk check。\n\n**升级路径（3.0→3.5–4.0）：**\n1. ⬆️ **修复 α=0.60 矛盾** + 补 fp32 multi-seed（四 regime 是否成立的关键）\n2. ⬆️ **补齐所有 promised appendix content**（specification curve, Shapley, MMCT algorithm, dose-response profiles）\n3. ⬆️ **迁移 ACL 模板** + author-year citations\n4. ⬆️ **完成至少一个 T=20 验证点**（t20_a075 已在运行中）\n5. ↗️ 将 \"phase transition\" 降级为 \"detection onset/threshold\"\n6. ↗️ Discussion 增加机械耦合 confound 讨论\n7. ↗️ 与 Gu et al. CMR 做定量对比\n8. ↗️ Intervention threshold sensitivity analysis\n\n项 1-4 如全部完成，论文有 Borderline Conference (3.5) 到 Conference (4.0) 的潜力。核心 insight 足够 strong，当前的 gap 是 addressable 的。\n\n---\n\n## Detailed Comments（逐节）\n\n### Abstract\n- 信息密度过高（≥20 个数值），建议精简至 3-5 个关键数字\n- \"causal detection\" 措辞与后文 \"Granger precedence ≠ causation\" 不一致\n\n### Introduction\n- \"Four deficiencies\" 对描述性 collapse 研究不公平，建议收窄到做了 temporal precedence claims 的工作\n- 贡献列表清晰，但 Contribution 2 (S×R theory) 的定位过高\n\n### Method (Section 3)\n- MMCT 权重公式有但完整流程不完整\n- \"appear in the Appendix\" 引用的三项内容均缺失\n- S×R 框架定位应从 \"theory\" 降为 \"interpretive framework\"\n\n### Experiments (Section 4)\n- 核心发现（检测阈值 0/8→6/8）统计支撑充分（Fisher exact + sigmoid fit + sub-threshold gradient）\n- α=0.60 \"dual-seed confirmed\" 与 Section 4.1/Limitations 直接矛盾\n- α=0.45 seed 数量描述不一致\n- Specification curve analysis 声称但缺失\n- Cross-architecture 87% headline 应区分两类失败模式\n- Intervention 15% threshold 无理论依据\n\n### Discussion\n- Granger precedence ≠ causation 的声明到位\n- 缺少机械耦合 confound 讨论\n- 与 Gu et al. CMR 的连接仅有一句 forward-looking 声明\n- α=0.00 fine-tuning drift 产生 14.1% diversity decline 但不产生 Granger precedence 的机制未解释\n\n### Limitations\n- 内容充实且诚实\n- 与 Section 4.1 和 4.3 关于 α=0.60 的描述存在内部矛盾\n\n### Format\n- 未使用 ACL 官方模板（desk rejection 风险）\n- Numbered citations 而非 author-year\n- 自定义 margins\n- Limitations 和 Ethics statement 位置和内容合规\n- 匿名性合规",
+                "reviewer_ids_acknowledged": "[\"1\", \"2\"]",
+                "cross_response_reviewer_ids": "[\"1\", \"2\"]",
+                "overall_score": "3.0"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "91b91e7e-ebec-45b3-96e9-181521bc5917",
+            "isSidechain": false,
+            "requestId": "req_011CbDsMdk1taDZg4TKyKrRZ",
+            "type": "assistant",
+            "uuid": "56c5a9b1-c921-4f31-b737-2dba423a0cd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UdSr7usMyBCuQEYKsnLqzn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11503,
+                "cache_read_input_tokens": 115419,
+                "output_tokens": 6505,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11503,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6505,
+                    "cache_read_input_tokens": 115419,
+                    "cache_creation_input_tokens": 11503,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11503
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-20T13:07:34.446Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SAapV9CCpdBPKAbo89Gp22",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "56c5a9b1-c921-4f31-b737-2dba423a0cd3",
+            "isSidechain": false,
+            "promptId": "39273f10-85d7-433b-90bc-990d8babdb68",
+            "type": "user",
+            "uuid": "2fd1f868-b5e8-4fca-b6dc-6833f02b1a67",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "56c5a9b1-c921-4f31-b737-2dba423a0cd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review distrib_canary_collapse paper for EMNLP",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-20T13:07:47.040Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-20T13:07:47.040Z",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+                "content": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 交叉回应 — 对 Reviewer 2 W1-W9 逐条回应\n\n---\n\n**[AGREE] R2-W1 [CRITICAL] 格式不合规**\n同意 CRITICAL 级别。ARR desk review 明确检查模板合规性，numbered citations 不仅是格式问题，还影响审稿体验（reviewer 无法从引用直接识别作者和年份，需要反复翻看 references）。我在 Round 1 中将此列为 MAJOR (W8)，现在认同 R2 的升级理由——desk rejection 是真实风险，应为 CRITICAL。\n\n---\n\n**[REBUT] R2-W2 [CRITICAL] \"Phase transition\" 新颖性被 power curve crossing 削弱**\n\n维持我在之前交叉回应中的立场：**MAJOR 合适，CRITICAL 过重。**\n\nR2 的论证链是：power curve crossing 是教科书级 → \"phase transition\" 是 oversell → 核心新颖性不足。我认为第一步成立，第二步成立，但第三步不成立。具体理由：\n\n1. **发现本身 vs. 解释机制的区分。** \"α≈0.50 处存在极其陡峭的检测阈值\" 是一个实证发现，不是 power 公式的先验推论。你不能从 Power = Φ(S·R·√T/σ) 出发 *预测* k≥200、Δα≈0.02，因为 S(α) 和 R(α) 的函数形式需要实验测定。类比：在药理学中，发现某药物的剂量-响应曲线有极陡的 Hill coefficient 是 empirical contribution，即便 Hill equation 本身是教科书公式。\n\n2. **方法敏感性的量化。** κ=0.185（Table 1）和 0%–75% significance rate span 不是 power analysis 的推论——这是对 model collapse 文献中从未被系统暴露的分析脆弱性的实证揭示。R2 在 S1 中也肯定了这一点。\n\n3. **但 \"phase transition\" 用词确实误导。** 物理学 phase transition 有严格定义（对称性破缺、序参量不连续/奇异性等），此处不满足。建议作者改用 \"detection onset\" 或 \"power-driven threshold\"。\n\n**结论：framing 需要降级，但科学贡献本身（实证量化 + 方法对比 + 非单调 dose-response）支撑 Excitement 3.5。R2 的 2.5 过低——如果去掉 \"phase transition\" 包装，纯看 Table 1 的方法对比 + Figure 2 的 dose-response + first-differencing 的诊断价值，这些对 model collapse 研究实践的影响是 \"Interesting: I might mention some points of this paper to others\"（ARR 3.0）以上。**\n\n---\n\n**[AGREE] R2-W3 [MAJOR] T=20 预测未验证**\n同意。与我的 W6 可以合并为更强论点：**预测既不够 specific 以至于可证伪（我的 W6: CI [0,7] at α=0.45/0.50），又没有提供任何 falsification attempt（R2-W3: \"under empirical verification\" 无数据）。** 两者叠加意味着 S×R 的 \"三个可检验预测\" 目前既不可检验、也未被检验——应降级为 \"conjectures\" 或 \"qualitative expectations\"。这不影响 S×R 作为 interpretive framework 的价值，但影响论文将其包装为 predictive theory 的声明强度。\n\n---\n\n**[AGREE] R2-W4 [MAJOR] S×R 是标准 power analysis 的重新包装**\n同意 R2 的核心批评。补充：R2 说 \"R(α) 非单调性从数据回推而非第一性原理推导\" 是准确的。Section 3.1 对 R(α) 的论证是定性的（\"relaxation time matching compresses both responses into a single generation\"），缺乏独立于 PermG 检测率的 R(α) 测量。如果 R(α) 只能通过 PermG 检测率来推断，那么 S×R 就是一个循环解释：用 PermG 结果定义 R(α)，再用 S(α)×R(α) 解释 PermG 结果。\n\n然而，公平地说，论文确实试图提供 R(α) 的独立证据——metric trajectory plots（Figure 1）显示 entropy 在 gen 1 下降而 diversity 在 gen 2-3 下降，这个 temporal offset 是 R 的 operationalization。但这个 temporal offset 仅在 α≥0.50 处清晰可见，在 α=0.60 处据称消失（R→0），而 α=0.60 的数据本身有问题（我的 W1）。所以循环性 concern 仍然成立。\n\n---\n\n**[AGREE] R2-W5 [MAJOR] 与 Gu et al. (2024, 2025) 关系不充分**\n同意这是一个重要遗漏。我在 Round 1 中未提及此点，承认疏漏。α_c≈0.50 与 Gu et al. (2024) 的 critical mixture ratio 之间是否存在理论联系是一个高价值问题——如果两者描述同一 underlying phenomenon 的不同 manifestation，本文的贡献会被重新定位（从 \"discovery of a new phenomenon\" 变为 \"methodological characterization of a known phenomenon\"）。论文应在 Discussion 中正面讨论这一可能性。\n\n---\n\n**[REBUT] R2-W6 [MAJOR] Introduction \"four deficiencies\" straw-man 倾向**\n\n**部分同意，但不认为是完全的 straw-man。** 我在之前的交叉回应中已详细论述，此处精简重述：\n\n- 对于 Shumailov (2024)、Alemohammad (2024)——描述性工作，不做 lead-lag claims——批评其缺乏 differencing 和 FDR 是 straw-man。同意 R2。\n- 对于 Du & Tanaka-Ishii (2026)（\"calibration error rises before accuracy degrades\"）、Du et al. (2025)（\"ECE increases at 30% before accuracy drops\"）——这些工作 *确实* 做出了 temporal precedence claims，指出它们缺乏控制 spurious regression 和多方法验证的手段是合理批评。\n\n**建议：不是删除 \"four deficiencies\"，而是收窄适用范围——明确指出这些 deficiencies 适用于 \"prior lead-lag and monitoring analyses\"（即做出 precedence claims 的工作），而非整个 model collapse 文献。MAJOR 级别合理。**\n\n---\n\n**[AGREE] R2-W7 [MINOR] Abstract 信息密度过高**\n同意。Abstract 应传达核心 insight 和主要结论，而非压缩整个 results section。建议砍掉至少一半的括号内数值，保留 3-4 个最关键的。\n\n---\n\n**[AGREE] R2-W8 [MINOR] 单 seed 关键条件**\n同意，但认为 R2 定级 MINOR 偏轻。α=0.60 的单 seed 问题在我的 W1 中是 CRITICAL（因为存在内部矛盾），α=0.10 blind spot 的单 seed 问题至少是 MAJOR（因为 \"39.6% distinct-1 drop at α=0.10\" 是 blind spot 论证的唯一数据点）。\n\n---\n\n**[AGREE] R2-W9 [MINOR] 22 个 orphan bib entries**\n同意。Minor housekeeping，不影响评审。\n\n---\n\n## 关于评分差异的最终立场\n\n| 维度 | R1 (我) | R2 | 我的调整后评估 |\n|------|---------|-----|------------|\n| Soundness | 3.0 | 3.5 | **维持 3.0** — α=0.60 矛盾 + 缺失附录是硬伤 |\n| Excitement | 3.5 | 2.5 | **维持 3.5** — 方法对比和检测阈值的实证量化有独立价值 |\n| Reproducibility | 2.5 | 4.0 | **维持 2.5** — MMCT 不可重建是根本问题 |\n| Overall | 3.0 | 3.0 | **维持 3.0 (Findings)** |\n\n两位 reviewer 的 Overall 一致（3.0 Findings），分项差异反映评审视角不同但不影响最终判断。核心共识：论文有价值但执行有显著 gap，修复后有 Conference 潜力。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。对 R2 的 9 条 Weaknesses：6 条 [AGREE]，3 条 [REBUT]（W2 新颖性降级为 MAJOR 而非 CRITICAL、W4 承认循环性但指出有部分独立证据、W6 认为 straw-man 批评部分成立但不完全）。Overall 维持 3.0 Findings 不变。"
+              }
+            }
+          ],
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-20T13:07:47.041Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-20T13:07:47.041Z",
+                "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c"
+              }
+            }
+          ],
+          "id": "event-000186"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "messages": [
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-20T13:07:47.029Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2fd1f868-b5e8-4fca-b6dc-6833f02b1a67",
+            "isSidechain": false,
+            "promptId": "69503d4f-12b8-460b-9b37-a3461412c5bc",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "b362ceee-a480-42d1-ad51-d6dc9a3e776d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-20T13:07:47.030Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b362ceee-a480-42d1-ad51-d6dc9a3e776d",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "4eb52fcf-5aec-49f3-9a7f-620251d83f37",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "id": "7b9ea1ca-e772-4edf-8b72-3fdf32e0a9ab",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000188"
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "messages": [
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-20T13:07:47.138Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 交叉回应 — 对 Reviewer 2 W1-W9 逐条回应\n\n---\n\n**[AGREE] R2-W1 [CRITICAL] 格式不合规**\n同意 CRITICAL 级别。ARR desk review 明确检查模板合规性，numbered citations 不仅是格式问题，还影响审稿体验（reviewer 无法从引用直接识别作者和年份，需要反复翻看 references）。我在 Round 1 中将此列为 MAJOR (W8)，现在认同 R2 的升级理由——desk rejection 是真实风险，应为 CRITICAL。\n\n---\n\n**[REBUT] R2-W2 [CRITICAL] \"Phase transition\" 新颖性被 power curve crossing 削弱**\n\n维持我在之前交叉回应中的立场：**MAJOR 合适，CRITICAL 过重。**\n\nR2 的论证链是：power curve crossing 是教科书级 → \"phase transition\" 是 oversell → 核心新颖性不足。我认为第一步成立，第二步成立，但第三步不成立。具体理由：\n\n1. **发现本身 vs. 解释机制的区分。** \"α≈0.50 处存在极其陡峭的检测阈值\" 是一个实证发现，不是 power 公式的先验推论。你不能从 Power = Φ(S·R·√T/σ) 出发 *预测* k≥200、Δα≈0.02，因为 S(α) 和 R(α) 的函数形式需要实验测定。类比：在药理学中，发现某药物的剂量-响应曲线有极陡的 Hill coefficient 是 empirical contribution，即便 Hill equation 本身是教科书公式。\n\n2. **方法敏感性的量化。** κ=0.185（Table 1）和 0%–75% significance rate span 不是 power analysis 的推论——这是对 model collapse 文献中从未被系统暴露的分析脆弱性的实证揭示。R2 在 S1 中也肯定了这一点。\n\n3. **但 \"phase transition\" 用词确实误导。** 物理学 phase transition 有严格定义（对称性破缺、序参量不连续/奇异性等），此处不满足。建议作者改用 \"detection onset\" 或 \"power-driven threshold\"。\n\n**结论：framing 需要降级，但科学贡献本身（实证量化 + 方法对比 + 非单调 dose-response）支撑 Excitement 3.5。R2 的 2.5 过低——如果去掉 \"phase transition\" 包装，纯看 Table 1 的方法对比 + Figure 2 的 dose-response + first-differencing 的诊断价值，这些对 model collapse 研究实践的影响是 \"Interesting: I might mention some points of this paper to others\"（ARR 3.0）以上。**\n\n---\n\n**[AGREE] R2-W3 [MAJOR] T=20 预测未验证**\n同意。与我的 W6 可以合并为更强论点：**预测既不够 specific 以至于可证伪（我的 W6: CI [0,7] at α=0.45/0.50），又没有提供任何 falsification attempt（R2-W3: \"under empirical verification\" 无数据）。** 两者叠加意味着 S×R 的 \"三个可检验预测\" 目前既不可检验、也未被检验——应降级为 \"conjectures\" 或 \"qualitative expectations\"。这不影响 S×R 作为 interpretive framework 的价值，但影响论文将其包装为 predictive theory 的声明强度。\n\n---\n\n**[AGREE] R2-W4 [MAJOR] S×R 是标准 power analysis 的重新包装**\n同意 R2 的核心批评。补充：R2 说 \"R(α) 非单调性从数据回推而非第一性原理推导\" 是准确的。Section 3.1 对 R(α) 的论证是定性的（\"relaxation time matching compresses both responses into a single generation\"），缺乏独立于 PermG 检测率的 R(α) 测量。如果 R(α) 只能通过 PermG 检测率来推断，那么 S×R 就是一个循环解释：用 PermG 结果定义 R(α)，再用 S(α)×R(α) 解释 PermG 结果。\n\n然而，公平地说，论文确实试图提供 R(α) 的独立证据——metric trajectory plots（Figure 1）显示 entropy 在 gen 1 下降而 diversity 在 gen 2-3 下降，这个 temporal offset 是 R 的 operationalization。但这个 temporal offset 仅在 α≥0.50 处清晰可见，在 α=0.60 处据称消失（R→0），而 α=0.60 的数据本身有问题（我的 W1）。所以循环性 concern 仍然成立。\n\n---\n\n**[AGREE] R2-W5 [MAJOR] 与 Gu et al. (2024, 2025) 关系不充分**\n同意这是一个重要遗漏。我在 Round 1 中未提及此点，承认疏漏。α_c≈0.50 与 Gu et al. (2024) 的 critical mixture ratio 之间是否存在理论联系是一个高价值问题——如果两者描述同一 underlying phenomenon 的不同 manifestation，本文的贡献会被重新定位（从 \"discovery of a new phenomenon\" 变为 \"methodological characterization of a known phenomenon\"）。论文应在 Discussion 中正面讨论这一可能性。\n\n---\n\n**[REBUT] R2-W6 [MAJOR] Introduction \"four deficiencies\" straw-man 倾向**\n\n**部分同意，但不认为是完全的 straw-man。** 我在之前的交叉回应中已详细论述，此处精简重述：\n\n- 对于 Shumailov (2024)、Alemohammad (2024)——描述性工作，不做 lead-lag claims——批评其缺乏 differencing 和 FDR 是 straw-man。同意 R2。\n- 对于 Du & Tanaka-Ishii (2026)（\"calibration error rises before accuracy degrades\"）、Du et al. (2025)（\"ECE increases at 30% before accuracy drops\"）——这些工作 *确实* 做出了 temporal precedence claims，指出它们缺乏控制 spurious regression 和多方法验证的手段是合理批评。\n\n**建议：不是删除 \"four deficiencies\"，而是收窄适用范围——明确指出这些 deficiencies 适用于 \"prior lead-lag and monitoring analyses\"（即做出 precedence claims 的工作），而非整个 model collapse 文献。MAJOR 级别合理。**\n\n---\n\n**[AGREE] R2-W7 [MINOR] Abstract 信息密度过高**\n同意。Abstract 应传达核心 insight 和主要结论，而非压缩整个 results section。建议砍掉至少一半的括号内数值，保留 3-4 个最关键的。\n\n---\n\n**[AGREE] R2-W8 [MINOR] 单 seed 关键条件**\n同意，但认为 R2 定级 MINOR 偏轻。α=0.60 的单 seed 问题在我的 W1 中是 CRITICAL（因为存在内部矛盾），α=0.10 blind spot 的单 seed 问题至少是 MAJOR（因为 \"39.6% distinct-1 drop at α=0.10\" 是 blind spot 论证的唯一数据点）。\n\n---\n\n**[AGREE] R2-W9 [MINOR] 22 个 orphan bib entries**\n同意。Minor housekeeping，不影响评审。\n\n---\n\n## 关于评分差异的最终立场\n\n| 维度 | R1 (我) | R2 | 我的调整后评估 |\n|------|---------|-----|------------|\n| Soundness | 3.0 | 3.5 | **维持 3.0** — α=0.60 矛盾 + 缺失附录是硬伤 |\n| Excitement | 3.5 | 2.5 | **维持 3.5** — 方法对比和检测阈值的实证量化有独立价值 |\n| Reproducibility | 2.5 | 4.0 | **维持 2.5** — MMCT 不可重建是根本问题 |\n| Overall | 3.0 | 3.0 | **维持 3.0 (Findings)** |\n\n两位 reviewer 的 Overall 一致（3.0 Findings），分项差异反映评审视角不同但不影响最终判断。核心共识：论文有价值但执行有显著 gap，修复后有 Conference 潜力。\n\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。对 R2 的 9 条 Weaknesses：6 条 [AGREE]，3 条 [REBUT]（W2 新颖性降级为 MAJOR 而非 CRITICAL、W4 承认循环性但指出有部分独立证据、W6 认为 straw-man 批评部分成立但不完全）。Overall 维持 3.0 Findings 不变。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4eb52fcf-5aec-49f3-9a7f-620251d83f37",
+            "isSidechain": false,
+            "promptId": "69503d4f-12b8-460b-9b37-a3461412c5bc",
+            "type": "user",
+            "uuid": "dbd7e8f0-aba6-4b9a-8c62-e09cc6de635b",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/review_director_741faaa0",
+            "sessionId": "4a34da4d-bca1-4fd8-b109-3cca22a1228c",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000189"
+        }
+      ]
+    }
+  ]
+}

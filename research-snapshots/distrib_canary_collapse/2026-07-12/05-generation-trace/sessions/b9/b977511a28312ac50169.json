@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b977511a28312ac50169",
+  "project": "distrib_canary_collapse--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Main Agent，这是 Loop #16。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：westd-17855 cuda:0-5, westd-198",
+  "task_key": "09350247-a24f-4a21-bdc5-b4558e145c5e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/09350247-a24f-4a21-bdc5-b4558e145c5e.jsonl",
+    "occurrence": 1,
+    "bytes": 624257,
+    "sha256": "7f1f4f80bdba2ee6b4d5a92a05b100f8599545db4ec5efbf01d0abf6aa3f2eb0"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 1,
+    "tool_calls": 45,
+    "roles": {
+      "record": 37,
+      "user": 1,
+      "assistant": 35,
+      "tool_call": 45,
+      "tool_result": 43
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b977511a28312ac50169-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "b977511a28312ac50169-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "b977511a28312ac50169-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-main-agent-loop-16-task-context-1-gpu-westd-17855-cuda-0-5-westd-198.md"
+}
