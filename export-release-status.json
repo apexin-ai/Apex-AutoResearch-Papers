@@ -89,6 +89,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1538
+        },
+        "struct_self_consist_ie": {
+          "status": "uploaded",
+          "project": "struct_self_consist_ie",
+          "collection": "struct_self_consist_ie--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "18d8f17cacf7eb6b99cce951c9e28aa729530b99ac5e39e9aff2489aa3368b40",
+          "indexed_members": 796,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 791
         }
       },
       "status": "in_progress",

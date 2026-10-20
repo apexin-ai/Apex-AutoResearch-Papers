@@ -1191,6 +1191,19 @@
       }
     },
     {
+      "project": "struct_self_consist_ie--export-20260712",
+      "title": "When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap (July export snapshot)",
+      "catalog": "../research-snapshots/struct_self_consist_ie/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 791,
+        "messages": 162647,
+        "user_turns": 7913,
+        "tool_calls": 41621,
+        "unparsed_lines": 0,
+        "conversation": 791
+      }
+    },
+    {
       "project": "structfuse-context",
       "title": "StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval",
       "catalog": "../paper-assets/structfuse-context/05-generation-trace/catalog.json",

@@ -12,3 +12,4 @@ These snapshots preserve later project exports alongside the initial workspace r
 | persuasion_turn_jailbreak_detect | 2026-07-12 | No PDF in snapshot | [Assets](persuasion_turn_jailbreak_detect/2026-07-12/README.md) · [Conversations](persuasion_turn_jailbreak_detect/2026-07-12/05-generation-trace/readable/README.md) |
 | policy_ambiguity_safety | 2026-07-12 | No PDF in snapshot | [Assets](policy_ambiguity_safety/2026-07-12/README.md) · [Conversations](policy_ambiguity_safety/2026-07-12/05-generation-trace/readable/README.md) |
 | schema-dag-extraction | 2026-07-12 | No PDF in snapshot | [Assets](schema-dag-extraction/2026-07-12/README.md) · [Conversations](schema-dag-extraction/2026-07-12/05-generation-trace/readable/README.md) |
+| struct_self_consist_ie | 2026-07-12 | No PDF in snapshot | [Assets](struct_self_consist_ie/2026-07-12/README.md) · [Conversations](struct_self_consist_ie/2026-07-12/05-generation-trace/readable/README.md) |
